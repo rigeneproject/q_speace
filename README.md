@@ -1,5 +1,8 @@
 # Q-SPEACE — Quantum Super Planetary Entità Autonoma Cibernetica
 
+![CI](https://github.com/rigeneproject/q_speace/actions/workflows/ci.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Quantum layer for the SPEACE organism, derived from the guidelines in
 `progetto_q_speace_linee_guida.md` and reusing the mature components of
 the `cellular speace` repository.
