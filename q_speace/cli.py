@@ -8,6 +8,7 @@ import typer
 
 from .bcel import BCELCatalog
 from .earth_feed import EarthFeed
+from .fractal_qca_cascade import experiment_cross_scale, qi_bridge_cqasm
 from .genome import QuantumGeneSet
 from .orchestrator import QuantumOrchestrator
 from .quantum.backends import to_cqasm
@@ -78,6 +79,31 @@ def quantum_cqasm(
     angles = feed.fetch(tick).rotation_angles()
     circ = schumann_circuit(qubits, angles)
     print(to_cqasm(circ, version=version))
+
+
+@quantum_app.command("bridge")
+def quantum_bridge(
+    atom_coherence: float = typer.Option(0.5, "--atom", "-a"),
+    brain_seed: float = typer.Option(0.5, "--brain", "-b"),
+    version: str = typer.Option("1.0", "--version", "-v"),
+) -> None:
+    """Print a 5-qubit QI bridge circuit (phi_bridge + cross-scale coupling)."""
+    print(qi_bridge_cqasm(atom_coherence, brain_seed, version=version))
+
+
+@quantum_app.command("cross-scale")
+def quantum_cross_scale(
+    ticks: int = typer.Option(20, "--ticks", "-t"),
+    atom_noise: float = typer.Option(0.2, "--noise", "-n"),
+) -> None:
+    """Run the cross-scale emergence experiment (bottom-up noise proof)."""
+    base, noisy = experiment_cross_scale(ticks=ticks, atom_noise=atom_noise)
+    print(f"[cyan]brain sigma (baseline):[/cyan] {base:.4f}")
+    print(f"[cyan]brain sigma (atom-noise):[/cyan] {noisy:.4f}")
+    print(
+        "[green]cross-scale emergence:[/green]"
+        f" {'YES' if noisy > base else 'NO'}"
+    )
 
 
 @app.command()

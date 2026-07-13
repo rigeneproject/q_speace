@@ -10,6 +10,13 @@ from .bcel import BCELCatalog
 from .earth_feed import EarthFeed, EarthSignals
 from .edd_cvt import CosmicVirusOptimizer, CVConfig, InformationalLogicalField
 from .fractal_qca import FractalQCA
+from .fractal_qca_cascade import (
+    FractalQCACascade,
+    LevelSignature,
+    MacroLevel,
+    experiment_cross_scale,
+    qi_bridge_cqasm,
+)
 from .genome import QuantumGeneSet
 from .metabolism import QuantumCostModel, QuantumOperation
 from .orchestrator import QuantumOrchestrator, TickReport
@@ -43,6 +50,11 @@ __all__ = [
     "CosmicVirusOptimizer",
     "CVConfig",
     "FractalQCA",
+    "FractalQCACascade",
+    "LevelSignature",
+    "MacroLevel",
+    "experiment_cross_scale",
+    "qi_bridge_cqasm",
     "EarthFeed",
     "EarthSignals",
     "QuantumOrchestrator",
