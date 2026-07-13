@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "q-speace"
+version = "0.1.0"
+description = "Q-SPEACE — Quantum Super Planetary Entità Autonoma Cibernetica (layer quantistico)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.12"
+authors = [{name = "Rigene Project"}]
+keywords = ["quantum", "agi", "cybernetics", "fractal", "edd-cvt"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "numpy>=1.26",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+qiskit = ["qiskit>=1.0", "qiskit-aer>=0.13"]
+quantum-inspire = ["quantum-inspire-sdk>=1.0"]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "black>=24.0",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+qspace = "q_speace.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["q_speace"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "--cov=q_speace --cov-report=term-missing --cov-fail-under=20"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+disallow_untyped_defs = true
