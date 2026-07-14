@@ -132,60 +132,42 @@ class QuantumState:
         jump_prob = 0.0
         effective_h = np.zeros((dim, dim), dtype=np.complex128)
 
-        for (q, L), rate in zip(jump_operators, rates):
+        def _kron_op(mat_2x2: np.ndarray, qubit: int) -> np.ndarray:
+            op = np.array([1.0], dtype=np.complex128)
+            for i in range(n):
+                op = np.kron(op, mat_2x2 if i == qubit else np.eye(2, dtype=np.complex128))
+            return op.reshape(dim, dim)
+
+        for (q, l_mat), rate in zip(jump_operators, rates, strict=True):
             if rate <= 0:
                 continue
-            L = np.asarray(L, dtype=np.complex128)
-            L_dag = L.conj().T
-            L_op = np.array([1.0], dtype=np.complex128)
-            for i in range(n):
-                L_op = np.kron(L_op, L if i == q else np.eye(2, dtype=np.complex128))
-            L_op = L_op.reshape(dim, dim)
+            l_mat = np.asarray(l_mat, dtype=np.complex128)
+            l_dag = l_mat.conj().T
+            l_op = _kron_op(l_mat, q)
+            l_dag_l_op = _kron_op(l_dag @ l_mat, q)
 
-            L_dag_L = L_dag @ L
-            jump_op = np.array([1.0], dtype=np.complex128)
-            for i in range(n):
-                jump_op = np.kron(
-                    jump_op, L_dag_L if i == q else np.eye(2, dtype=np.complex128)
-                )
-            jump_op = jump_op.reshape(dim, dim)
-
-            exp_val = np.vdot(self.amplitudes, jump_op @ self.amplitudes)
+            exp_val = np.vdot(self.amplitudes, l_dag_l_op @ self.amplitudes)
             jump_prob += rate * dt * float(np.real(exp_val))
-            effective_h -= 0.5j * rate * jump_op
+            effective_h -= 0.5j * rate * l_dag_l_op
 
-        # Decide whether a jump occurs.
         if self._rng.random() < min(jump_prob, 1.0):
-            # Jump: randomly select which channel fired.
             r = self._rng.random() * jump_prob
             cumulative = 0.0
-            for (q, L), rate in zip(jump_operators, rates):
+            for (q, l_mat), rate in zip(jump_operators, rates, strict=True):
                 if rate <= 0:
                     continue
-                L = np.asarray(L, dtype=np.complex128)
-                L_op = np.array([1.0], dtype=np.complex128)
-                for i in range(n):
-                    L_op = np.kron(
-                        L_op, L if i == q else np.eye(2, dtype=np.complex128)
-                    )
-                L_op = L_op.reshape(dim, dim)
-                L_dag_L = L.conj().T @ L
-                jump_op = np.array([1.0], dtype=np.complex128)
-                for i in range(n):
-                    jump_op = np.kron(
-                        jump_op, L_dag_L if i == q else np.eye(2, dtype=np.complex128)
-                    )
-                jump_op = jump_op.reshape(dim, dim)
-                exp_val = np.vdot(self.amplitudes, jump_op @ self.amplitudes)
+                l_mat = np.asarray(l_mat, dtype=np.complex128)
+                l_op = _kron_op(l_mat, q)
+                l_dag_l_op = _kron_op(l_mat.conj().T @ l_mat, q)
+                exp_val = np.vdot(self.amplitudes, l_dag_l_op @ self.amplitudes)
                 cumulative += rate * dt * float(np.real(exp_val))
                 if r <= cumulative:
-                    self.amplitudes = L_op @ self.amplitudes
+                    self.amplitudes = l_op @ self.amplitudes
                     break
             self.normalize()
         else:
-            # No-jump evolution under effective non-Hermitian Hamiltonian.
-            U_eff = np.eye(dim, dtype=np.complex128) + effective_h * dt
-            self.amplitudes = U_eff @ self.amplitudes
+            u_eff = np.eye(dim, dtype=np.complex128) + effective_h * dt
+            self.amplitudes = u_eff @ self.amplitudes
             self.normalize()
 
     def measure(self, qubit_index: int | None = None) -> MeasurementResult:

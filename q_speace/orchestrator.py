@@ -72,7 +72,7 @@ class QuantumOrchestrator:
 
         # ILF adaptive clock (EDD-CVT eq.9).
         self._ilf.coherence_phi = 1.0 - signals.kp  # storm -> lower coherence
-        clock_rate = self._ilf.adaptive_clock_rate()
+        self._ilf.adaptive_clock_rate()
 
         # Cost the operation before executing (energy gate).
         op = QuantumOperation(

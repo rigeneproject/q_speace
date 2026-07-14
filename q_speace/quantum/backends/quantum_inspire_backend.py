@@ -17,7 +17,6 @@ import os
 
 from .base import QuantumBackend
 
-
 _QI_GATE_NAMES = {"RX": "Rx", "RY": "Ry", "RZ": "Rz"}
 
 
