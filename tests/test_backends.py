@@ -78,3 +78,26 @@ def test_quantum_inspire_requires_token(monkeypatch):
         assert False, "expected RuntimeError without token"
     except RuntimeError as exc:
         assert "QI_TOKEN" in str(exc)
+
+
+def test_qiskit_backend_imports():
+    from q_speace.quantum.backends import QiskitBackend
+
+    assert QiskitBackend.name == "qiskit"
+
+
+def test_qiskit_falls_back_to_numpy_without_sdk():
+    backend = build("qiskit")
+    assert backend.name == "numpy"
+    assert backend.run(_bell())
+
+
+def test_qiskit_backend_raises_without_sdk():
+    from q_speace.quantum.backends import QiskitBackend
+
+    bk = QiskitBackend()
+    try:
+        bk.run(_bell())
+        assert False, "expected RuntimeError without qiskit"
+    except RuntimeError as exc:
+        assert "qiskit" in str(exc).lower()

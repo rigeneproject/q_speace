@@ -31,13 +31,20 @@ class QuantumCostModel:
     W_PER_GATE: float = 0.001
     # Entanglement maintenance cost scales with depth.
     W_PER_ENTANGLEMENT_DEPTH: float = 0.01
+    # Decoherence penalty (extra power to maintain fidelity).
+    W_PER_DECOHERENCE_UNIT: float = 0.1
 
     def energy_watts(self, op: QuantumOperation) -> float:
-        """Instantaneous power draw estimate for the operation."""
+        """Instantaneous power draw estimate for the operation.
+
+        Decoherence budget increases the cost: a higher budget means the
+        system must expend more energy to maintain the desired fidelity.
+        """
         return (
             op.num_qubits * self.W_PER_QUBIT
             + op.num_gates * self.W_PER_GATE
             + op.entanglement_depth * self.W_PER_ENTANGLEMENT_DEPTH
+            + op.decoherence_budget * self.W_PER_DECOHERENCE_UNIT
         )
 
     def energy_joules(self, op: QuantumOperation, duration_s: float = 1.0) -> float:

@@ -109,6 +109,85 @@ class QuantumState:
             raise ValueError("matrix is not unitary (tolerance 1e-6)")
         self.amplitudes = u @ self.amplitudes
 
+    def apply_lindblad(
+        self,
+        jump_operators: list[tuple[int, np.ndarray]],
+        rates: list[float],
+        dt: float = 0.01,
+    ) -> None:
+        """Stochastic Lindblad evolution via Monte Carlo wavefunction method.
+
+        For each jump operator L_k (2x2 matrix acting on qubit ``q``) with
+        rate ``rates[k]``:
+          1. Compute jump probability  p_k = rates[k] * dt * <psi|L_k^dag L_k|psi>
+          2. If a random sample falls below p_k, apply L_k and renormalise.
+        When no jump occurs the state is evolved under the non-Hermitian
+        effective Hamiltonian  H_eff = -(i/2) Σ_k rates[k] * L_k^dag L_k.
+
+        This reproduces the average Lindblad master equation over many
+        trajectories.
+        """
+        n = self.num_qubits
+        dim = 1 << n
+        jump_prob = 0.0
+        effective_h = np.zeros((dim, dim), dtype=np.complex128)
+
+        for (q, L), rate in zip(jump_operators, rates):
+            if rate <= 0:
+                continue
+            L = np.asarray(L, dtype=np.complex128)
+            L_dag = L.conj().T
+            L_op = np.array([1.0], dtype=np.complex128)
+            for i in range(n):
+                L_op = np.kron(L_op, L if i == q else np.eye(2, dtype=np.complex128))
+            L_op = L_op.reshape(dim, dim)
+
+            L_dag_L = L_dag @ L
+            jump_op = np.array([1.0], dtype=np.complex128)
+            for i in range(n):
+                jump_op = np.kron(
+                    jump_op, L_dag_L if i == q else np.eye(2, dtype=np.complex128)
+                )
+            jump_op = jump_op.reshape(dim, dim)
+
+            exp_val = np.vdot(self.amplitudes, jump_op @ self.amplitudes)
+            jump_prob += rate * dt * float(np.real(exp_val))
+            effective_h -= 0.5j * rate * jump_op
+
+        # Decide whether a jump occurs.
+        if self._rng.random() < min(jump_prob, 1.0):
+            # Jump: randomly select which channel fired.
+            r = self._rng.random() * jump_prob
+            cumulative = 0.0
+            for (q, L), rate in zip(jump_operators, rates):
+                if rate <= 0:
+                    continue
+                L = np.asarray(L, dtype=np.complex128)
+                L_op = np.array([1.0], dtype=np.complex128)
+                for i in range(n):
+                    L_op = np.kron(
+                        L_op, L if i == q else np.eye(2, dtype=np.complex128)
+                    )
+                L_op = L_op.reshape(dim, dim)
+                L_dag_L = L.conj().T @ L
+                jump_op = np.array([1.0], dtype=np.complex128)
+                for i in range(n):
+                    jump_op = np.kron(
+                        jump_op, L_dag_L if i == q else np.eye(2, dtype=np.complex128)
+                    )
+                jump_op = jump_op.reshape(dim, dim)
+                exp_val = np.vdot(self.amplitudes, jump_op @ self.amplitudes)
+                cumulative += rate * dt * float(np.real(exp_val))
+                if r <= cumulative:
+                    self.amplitudes = L_op @ self.amplitudes
+                    break
+            self.normalize()
+        else:
+            # No-jump evolution under effective non-Hermitian Hamiltonian.
+            U_eff = np.eye(dim, dtype=np.complex128) + effective_h * dt
+            self.amplitudes = U_eff @ self.amplitudes
+            self.normalize()
+
     def measure(self, qubit_index: int | None = None) -> MeasurementResult:
         if qubit_index is None:
             return self._measure_all()
@@ -121,6 +200,46 @@ class QuantumState:
 
     def probabilities(self) -> np.ndarray:
         return np.abs(self.amplitudes) ** 2
+
+    def phi_proxy(self, partition: int | None = None) -> float:
+        """Proxy for integrated information Φ (IIT-inspired).
+
+        Uses the quantum mutual information between two halves of the
+        qubit register as a stand-in for informational integration.
+        For a partition at qubit ``k``, the proxy is:
+          Φ ≈ I(A:B) = S(ρ_A) + S(ρ_B) - S(ρ_AB)
+        where S is the von Neumann entropy of the reduced density matrix.
+
+        A value > 1.0 indicates significant integration (the whole is
+        more than the sum of the parts). The maximum is bounded by
+        2 * min(|A|, |B|) (in bits).
+        """
+        n = self.num_qubits
+        if n < 2:
+            return 0.0
+        k = partition if partition is not None else n // 2
+        k = max(1, min(k, n - 1))
+        dim_a = 1 << k
+        dim_b = 1 << (n - k)
+        rho = np.outer(self.amplitudes, self.amplitudes.conj()).reshape(
+            dim_a, dim_b, dim_a, dim_b
+        )
+        rho_a = np.trace(rho, axis1=1, axis2=3)
+        rho_b = np.trace(rho, axis1=0, axis2=2)
+        evals_a = np.linalg.eigvalsh(rho_a)
+        evals_b = np.linalg.eigvalsh(rho_b)
+        evals_ab = np.linalg.eigvalsh(
+            np.outer(self.amplitudes, self.amplitudes.conj())
+        )
+
+        def entropy(evals):
+            clipped = np.maximum(np.real(evals), 1e-12)
+            return -np.sum(clipped * np.log2(clipped))
+
+        s_a = entropy(evals_a)
+        s_b = entropy(evals_b)
+        s_ab = entropy(evals_ab)
+        return float(max(0.0, s_a + s_b - s_ab))
 
     def is_entangled_with(self, other: QuantumState) -> bool:
         joint = np.kron(self.amplitudes, other.amplitudes)

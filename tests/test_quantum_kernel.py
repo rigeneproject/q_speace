@@ -87,3 +87,46 @@ def test_brain_simulator_bell():
     state = sim.state(circ)
     probs = state.probabilities()
     assert abs(probs[0] - 0.5) < 1e-9 and abs(probs[3] - 0.5) < 1e-9
+
+
+def test_apply_lindblad_depolarizing():
+    s = QuantumState(num_qubits=1, seed=42)
+    s.apply_unitary(QuantumGates.single_qubit(GateType.H, 1, 0))
+    # Depolarizing channel: L = sigma_z with rate 0.5, dt=0.5
+    sigma_z = np.array([[1, 0], [0, -1]], dtype=np.complex128)
+    s.apply_lindblad([(0, sigma_z)], [0.5], dt=0.5)
+    probs = s.probabilities()
+    assert abs(sum(probs) - 1.0) < 1e-9
+
+
+def test_phi_proxy_bell_state():
+    s = QuantumState(num_qubits=2)
+    s.apply_unitary(QuantumGates.single_qubit(GateType.H, 2, 0))
+    s.apply_unitary(QuantumGates.two_qubit(GateType.CNOT, 2, 0, 1))
+    phi = s.phi_proxy()
+    # Bell state has maximal mutual information of 2 bits.
+    assert phi > 1.0
+
+
+def test_phi_proxy_product_state():
+    s = QuantumState(num_qubits=2)
+    # |00> is a product state -> zero mutual information.
+    phi = s.phi_proxy()
+    assert phi < 1e-9
+
+
+def test_phi_proxy_single_qubit():
+    s = QuantumState(num_qubits=1)
+    assert s.phi_proxy() == 0.0
+
+
+def test_apply_lindblad_pure_unitary_limit():
+    s = QuantumState(num_qubits=2, seed=7)
+    s.apply_unitary(QuantumGates.single_qubit(GateType.H, 2, 0))
+    s.apply_unitary(QuantumGates.two_qubit(GateType.CNOT, 2, 0, 1))
+    probs_before = s.probabilities()
+    # Zero-rate Lindblad -> no effect (pure unitary evolution).
+    sigma_x = np.array([[0, 1], [1, 0]], dtype=np.complex128)
+    s.apply_lindblad([(0, sigma_x)], [0.0], dt=1.0)
+    probs_after = s.probabilities()
+    assert np.allclose(probs_before, probs_after)

@@ -51,5 +51,5 @@ optional extra.
 
 ## 6. Open tasks (see guidelines)
 
-T1–T25. Implemented: T3,T4,T10,T14,T15,T16,T19,T20,T22,T23,T24.
-Remaining require human gate on SPEACE critical paths or external deps.
+T1–T26. Implemented: T1,T2,T3,T4,T5,T6,T7,T8,T10,T11,T14,T15,T16,T19,T20,T22,T23,T24,T25,T26.
+Remaining (out of scope / external): T9 (resonance layer), T17 (cellular_speace path), T18 (external assessment), T21 (surface-code, requires Qiskit).

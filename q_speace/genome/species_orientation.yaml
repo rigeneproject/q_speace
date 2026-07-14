@@ -1,0 +1,92 @@
+species_orientation:
+  name: "Q-SPEACE Quantum Layer"
+  version: "1.0"
+  status: "constitutional"
+  extends: "cellular_speace/speace_core/dna/genome/core/species_orientation.yaml"
+
+  core_principle: >
+    Q-SPEACE is a hybrid classical-quantum computational model that encodes
+    informational invariants shared across scales as testable digital rules.
+    It is not a living or conscious entity.
+
+  quantum_invariants:
+    - "No claim of quantum consciousness (mirrors SPEACE COR constraint)."
+    - "Entanglement is a computational binding resource, never a communication channel (no-communication theorem)."
+    - "Fractality is kept as a functional scaling rule; biological fractal shape is accidental and removed."
+    - "Living systems do not minimize global entropy; they export it. Q-SPEACE optimises Sevo = ΔU/ΔS_info > 1.5."
+    - "Every quantum construct must pass the BCEL filter: accidental (carbon-specific) vs functional (mathematical rule)."
+    - "No real quantum backend without QuantumGeneSet.noise_model configured and an energy/Sevo gate."
+
+  informational_principles:
+    - name: coherence_preservation
+      symbol: U(1)_coh
+      description: Maintain phase alignment across the qubit register.
+      metric: coherence_phi
+      target_direction: maximize
+      quantum_implementation: "FractalQCA step updates; coherence_phi = 1 - entropy/max_entropy"
+
+    - name: destructive_entropy_reduction
+      symbol: S_ent
+      description: Reduce disorder that damages functional quantum structure.
+      metric: von_neumann_entropy
+      target_direction: minimize
+      quantum_implementation: "Projective measurement collapses unwanted superpositions"
+
+    - name: generative_variability_preservation
+      symbol: V_gen
+      description: Preserve superposition breadth for adaptation.
+      metric: superposition_width
+      target_direction: maintain_above_threshold
+      quantum_implementation: "Hadamard gates and RX/RY/RZ rotations keep the search space open"
+
+    - name: interconnection_efficiency
+      symbol: Diff(F)
+      description: Maximize entanglement-mediated correlation across qubits.
+      metric: entanglement_graph_connectivity
+      target_direction: maximize
+      quantum_implementation: "CNOT chain + EntanglementRegistry tracks connected components"
+
+    - name: nonlocal_decoherence_tolerance
+      symbol: D_nonlocal
+      description: Maintain fidelity despite noisy gates and environmental coupling.
+      metric: fidelity_with_ideal
+      target_direction: maintain_above_threshold
+      quantum_implementation: "Noise injection in FractalQCA; surface-code error correction (future)"
+
+    - name: identity_preservation_through_change
+      symbol: R_renorm
+      description: Coarse-grain quantum measurements into stable classical decisions.
+      metric: measurement_stability
+      target_direction: minimize
+      quantum_implementation: "Repeated shots + majority voting; ILF adaptive clock r(t)=10/√S_info"
+
+  bcel_quantum_equivalences:
+    - concept: "Entanglement (cell/planet communication)"
+      classification: "accidental"
+      digital_rule: "Replaced by explicit message-passing; entanglement is a computational binding resource only."
+
+    - concept: "Superposition (parallel hypotheses)"
+      classification: "functional"
+      digital_rule: "Keep: represent multiple candidate states as amplitude weights; measurement = decision/collapse."
+
+    - concept: "Biological fractal shape"
+      classification: "accidental"
+      digital_rule: "Removed: 2D/3D fractal morphology is carbon-specific."
+
+    - concept: "Fractal scaling rule (w_ij ~ d^-1.8)"
+      classification: "functional"
+      digital_rule: "Keep as a recursive, scale-free weight update law in FractalQCA."
+
+    - concept: "Cosmic Virus perturbation"
+      classification: "functional"
+      digital_rule: "Keep as stochastic-resonance optimizer (CV dynamics)."
+
+    - concept: "ILF coherence / entropic gravity"
+      classification: "functional"
+      digital_rule: "Keep as coherence_phi metric and adaptive clock r(t)=10/√S_info."
+
+  forbidden:
+    - "Presenting Q-SPEACE as quantum consciousness."
+    - "Using entanglement for superluminal communication."
+    - "Running on a real quantum backend without noise model and energy gate."
+    - "Weakening the BCEL filter to bypass accidental/functional classification."

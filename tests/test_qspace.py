@@ -25,6 +25,13 @@ def test_energy_cost_scales_with_qubits():
     assert cm.energy_watts(op4) > cm.energy_watts(op1)
 
 
+def test_decoherence_budget_increases_cost():
+    cm = QuantumCostModel()
+    low = QuantumOperation(num_qubits=1, num_gates=1, decoherence_budget=0.1)
+    high = QuantumOperation(num_qubits=1, num_gates=1, decoherence_budget=0.9)
+    assert cm.energy_watts(high) > cm.energy_watts(low)
+
+
 def test_ilf_adaptive_clock():
     ilf = InformationalLogicalField(coherence_phi=0.2)
     # Low coherence -> high S_info -> high clock rate.
@@ -55,12 +62,27 @@ def test_orchestrator_run():
     report = orch.run(ticks=5)
     assert len(report) == 5
     assert "mean_coherence_phi" in orch.report()
+    assert "gate_blocked_ratio" in orch.report()
+    for r in report:
+        assert hasattr(r, "gate_blocked")
+        assert hasattr(r, "sevo")
 
 
 def test_orchestrator_disabled():
     genome = QuantumGeneSet(enabled=False)
     orch = QuantumOrchestrator(genome=genome)
     assert orch.tick() is None
+
+
+def test_orchestrator_energy_gate_blocks():
+    genome = QuantumGeneSet(enabled=True)
+    orch = QuantumOrchestrator(
+        genome=genome,
+        neurons=[f"n{i}" for i in range(4)],
+        max_energy_w=0.001,  # very low budget -> gate blocks
+    )
+    report = orch.run(ticks=3)
+    assert sum(1 for r in report if r.gate_blocked) > 0
 
 
 def test_schumann_experiment():
