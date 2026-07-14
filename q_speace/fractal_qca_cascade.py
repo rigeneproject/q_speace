@@ -132,7 +132,7 @@ def experiment_cross_scale(
 def qi_bridge_cqasm(
     atom_coherence: float = 0.5,
     brain_seed: float = 0.5,
-    version: str = "1.0",
+    version: str = "3.0",
 ) -> str:
     """5-qubit cQASM for Starmon-5: phi_bridge + bottom-up/top-down demo.
 

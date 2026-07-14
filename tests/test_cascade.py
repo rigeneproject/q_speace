@@ -54,9 +54,10 @@ def test_cross_scale_emergence():
 
 
 def test_qi_bridge_cqasm_valid():
-    cqasm = qi_bridge_cqasm(atom_coherence=0.5, brain_seed=0.5, version="1.0")
-    assert cqasm.startswith("version 1.0")
-    assert "qubits 5" in cqasm
+    cqasm = qi_bridge_cqasm(atom_coherence=0.5, brain_seed=0.5, version="3.0")
+    assert cqasm.startswith("version 3.0")
+    assert "qubit[5] q" in cqasm
+    assert "init q[0]" in cqasm
     # the phi_bridge cross-scale CNOT is present
     assert "CNOT q[1], q[2]" in cqasm
-    assert "measure q[4]" in cqasm
+    assert "b[4] = measure q[4]" in cqasm

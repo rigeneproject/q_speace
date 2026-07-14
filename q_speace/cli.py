@@ -67,7 +67,7 @@ def quantum_synthesize() -> None:
 def quantum_cqasm(
     qubits: int = typer.Option(4, "--qubits", "-q"),
     tick: int = typer.Option(0, "--tick", "-t"),
-    version: str = typer.Option("1.0", "--version", "-v"),
+    version: str = typer.Option("3.0", "--version", "-v"),
     use_network: bool = typer.Option(False, "--earth/--no-earth"),
 ) -> None:
     """Print a cQASM program ready to paste into Quantum Inspire.
@@ -85,7 +85,7 @@ def quantum_cqasm(
 def quantum_bridge(
     atom_coherence: float = typer.Option(0.5, "--atom", "-a"),
     brain_seed: float = typer.Option(0.5, "--brain", "-b"),
-    version: str = typer.Option("1.0", "--version", "-v"),
+    version: str = typer.Option("3.0", "--version", "-v"),
 ) -> None:
     """Print a 5-qubit QI bridge circuit (phi_bridge + cross-scale coupling)."""
     print(qi_bridge_cqasm(atom_coherence, brain_seed, version=version))

@@ -16,13 +16,27 @@ def _bell() -> BrainQuantumCircuit:
     return circ
 
 
-def test_cqasm_serialization_v1_default():
+def test_cqasm_serialization_v3_default():
     cqasm = to_cqasm(_bell())
+    assert cqasm.startswith("version 3.0")
+    assert "qubit[2] q" in cqasm
+    assert "bit[2] b" in cqasm
+    assert "init q[0]" in cqasm
+    assert "init q[1]" in cqasm
+    assert "H q[0]" in cqasm
+    assert "CNOT q[0], q[1]" in cqasm
+    assert "Ry(0.5000) q[1]" in cqasm
+    assert "b[0] = measure q[0]" in cqasm
+    assert "b[1] = measure q[1]" in cqasm
+
+
+def test_cqasm_serialization_v1_legacy():
+    cqasm = to_cqasm(_bell(), version="1.0")
     assert cqasm.startswith("version 1.0")
     assert "qubits 2" in cqasm
     assert "H q[0]" in cqasm
     assert "CNOT q[0], q[1]" in cqasm
-    assert "RY(0.500000) q[1]" in cqasm
+    assert "Ry(0.5000) q[1]" in cqasm
     assert "measure q[0]" in cqasm
     assert "measure q[1]" in cqasm
     assert "measure_all" not in cqasm
@@ -31,7 +45,12 @@ def test_cqasm_serialization_v1_default():
 def test_cqasm_serialization_v3():
     cqasm = to_cqasm(_bell(), version="3.0")
     assert cqasm.startswith("version 3.0")
-    assert cqasm.strip().endswith("measure_all")
+    assert "qubit[2] q" in cqasm
+    assert "bit[2] b" in cqasm
+    assert "init q[0]" in cqasm
+    assert "init q[1]" in cqasm
+    assert "b[0] = measure q[0]" in cqasm
+    assert "b[1] = measure q[1]" in cqasm
 
 
 def test_selector_default_numpy():

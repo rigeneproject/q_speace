@@ -18,19 +18,31 @@ import os
 from .base import QuantumBackend
 
 
-def to_cqasm(circuit, version: str = "1.0") -> str:
+_QI_GATE_NAMES = {"RX": "Rx", "RY": "Ry", "RZ": "Rz"}
+
+
+def to_cqasm(circuit, version: str = "3.0") -> str:
     """Serialize a BrainQuantumCircuit to a cQASM program.
 
-    version="1.0" (default) emits cQASM 1.0 compatible with the Quantum
-    Inspire QX emulator (per-qubit ``measure q[i]``). version="3.0" emits
-    cQASM 3.0 with ``measure_all``.
+    version="3.0" (default) emits cQASM 3.0 compatible with Quantum Inspire
+    (qubit/bit declarations, init, per-qubit measurement, Rx/Ry/Rz casing).
+    version="1.0" uses the older ``qubits n`` / ``measure q[i]`` format.
     """
     if version not in ("1.0", "3.0"):
         raise ValueError("version must be '1.0' or '3.0'")
     n = circuit.num_qubits
-    lines = [f"version {version}\n", f"qubits {n}\n"]
+    lines: list[str] = [f"version {version}"]
+
+    if version == "3.0":
+        lines += ["", f"qubit[{n}] q", f"bit[{n}] b", ""]
+        for i in range(n):
+            lines.append(f"init q[{i}]")
+        lines.append("")
+    else:
+        lines += ["", f"qubits {n}"]
     for op in circuit.gates():
         g = op.gate.value if hasattr(op.gate, "value") else str(op.gate)
+        display = _QI_GATE_NAMES.get(g, g)
         if op.control is not None:
             c = circuit._role_index[op.control]
             t = circuit._role_index[op.target]
@@ -38,22 +50,24 @@ def to_cqasm(circuit, version: str = "1.0") -> str:
                 lines.append(f"CNOT q[{c}], q[{t}]")
             elif g == "SWAP":
                 lines.append(f"SWAP q[{c}], q[{t}]")
-            elif g in ("RX", "RY", "RZ"):
+            elif g in _QI_GATE_NAMES:
                 ang = op.angle if op.angle is not None else 0.0
-                lines.append(f"{g}({ang:.6f}) q[{c}], q[{t}]")
+                lines.append(f"{display}({ang:.4f}) q[{c}], q[{t}]")
             else:
                 raise ValueError(f"unsupported two-qubit gate {g}")
         else:
             t = circuit._role_index[op.target]
             if g in ("H", "X", "Y", "Z", "S", "T"):
                 lines.append(f"{g} q[{t}]")
-            elif g in ("RX", "RY", "RZ"):
+            elif g in _QI_GATE_NAMES:
                 ang = op.angle if op.angle is not None else 0.0
-                lines.append(f"{g}({ang:.6f}) q[{t}]")
+                lines.append(f"{display}({ang:.4f}) q[{t}]")
             else:
                 raise ValueError(f"unsupported single-qubit gate {g}")
     if version == "3.0":
-        lines.append("measure_all")
+        lines.append("")
+        for i in range(n):
+            lines.append(f"b[{i}] = measure q[{i}]")
     else:
         for i in range(n):
             lines.append(f"measure q[{i}]")
