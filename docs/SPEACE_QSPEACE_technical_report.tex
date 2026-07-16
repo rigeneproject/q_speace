@@ -1,0 +1,355 @@
+% SPDX-License-Identifier: MIT
+% SPEACE e Q-SPEACE — Technical Report
+% Roberto De Biase, Rigene Project
+\documentclass[11pt,a4paper]{article}
+
+%% --- Encoding & Language ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+%% --- Math & Symbols ---
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+
+%% --- Hyperlinks ---
+\usepackage[
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdfauthor={Roberto De Biase},
+  pdftitle={SPEACE e Q-SPEACE: architettura cognitiva bio-ispirata multi-scala}
+]{hyperref}
+
+%% --- Geometry ---
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+%% --- Tables ---
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+%% --- Code / Verbatim ---
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\definecolor{codegray}{gray}{0.92}
+\newcommand{\code}[1]{\texttt{#1}}
+\DefineVerbatimEnvironment{codeblock}{Verbatim}{fontsize=\small}
+
+%% --- Custom Commands ---
+\newcommand{\coherencephi}{\code{coherence\_phi}}
+\newcommand{\qi}{Quantum Inspire\xspace}
+\newcommand{\starmon}{Starmon-5\xspace}
+\usepackage{xspace}
+
+%% --- Title ---
+\title{\textbf{SPEACE e Q-SPEACE}:\\ un'architettura cognitiva bio-ispirata multi-scala\\
+--- design, stato di verifica funzionale\\ ed estensione quantistica preliminare}
+
+\author{Roberto De Biase\\\href{https://rigeneproject.org}{Rigene Project}}
+\date{Technical Report --- bozza, 16 luglio 2026}
+
+%% --- Document ---
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent
+\sloppy
+SPEACE (\code{cellular\_speace}) \`e un'architettura cognitiva bio-ispirata che integra plasticit\`a sinaptica spike-timing-dependent (STDP), un ciclo sensomotorio cyber-fisico, un motore di drive endogeni con narrativa autobiografica, un meccanismo di accoppiamento causale multi-scala, un ciclo metabolico veglia-sonno e un monitor metacognitivo. Q-SPEACE ne \`e un'estensione in sviluppo verso il calcolo quantistico, con esperimenti preliminari eseguiti su hardware reale (piattaforma Quantum Inspire di QuTech). Questo report descrive l'architettura e riporta i risultati di un protocollo di \textbf{verifica funzionale adversariale} applicato al codebase: un audit progettato esplicitamente per distinguere la presenza di codice nominalmente coerente con un costrutto teorico dalla dimostrazione empirica che quel costrutto sia operante. I risultati sono misti: alcuni sottosistemi (formula STDP, soglie del ciclo di sonno, rilevamento di errori metacognitivi) sono implementati correttamente a livello di funzione singola; altri claim centrali --- in particolare l'equivalenza tra la metrica interna \coherencephi{} e la teoria dell'informazione integrata (IIT) di Tononi, e la natura ``autonoma'' del motore di drive --- risultano falsificati dall'ispezione diretta del codice. Discutiamo l'utilit\`a scientifica e tecnologica del progetto separando esplicitamente ci\`o che \`e gi\`a dimostrato da ci\`o che resta condizionato a lavoro futuro o a problemi aperti nel campo pi\`u ampio.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+%% ==================================================================
+\section{Introduzione}
+\label{sec:intro}
+%% ==================================================================
+
+Il Rigene Project nasce all'intersezione tra neuroscienza computazionale, teoria dei sistemi complessi e progettazione di architetture AI. SPEACE (Quantum Super Planetary Entit\`a Autonoma Cibernetica Evolutiva --- Sistema Plastico Evolutivo Auto-organizzante Cognitivo Embodied --- \code{cellular\_speace}) \`e il suo nucleo implementativo: un'architettura Python che tenta di integrare, in un unico sistema eseguibile, meccanismi tipicamente studiati in isolamento nella letteratura di neuroscienza computazionale e scienze cognitive.
+
+Q-SPEACE \`e un'estensione recente, tuttora in sviluppo, che introduce un layer quantistico basato su un kernel dedicato (\code{QuantumOrchestrator}) con l'obiettivo di testare se segnature informazionali coarse-grained possano attraversare i confini gerarchici tra livelli classici e quantistici, secondo un principio di riduzione della complessit\`a ispirato al \emph{slaving principle} della sinergetica di Haken e ai gruppi di rinormalizzazione.
+
+Questo report ha tre obiettivi:
+
+\begin{enumerate}
+  \item Descrivere l'architettura di SPEACE e Q-SPEACE nei suoi sei sottosistemi principali.
+  \item Riportare i risultati di un protocollo di verifica funzionale adversariale applicato al codebase --- un contributo metodologico a s\'e, rilevante per chiunque lavori su architetture cognitive bio-ispirate, dove il divario tra nomenclatura ispirata alla teoria e comportamento dimostrato \`e un problema noto ma raramente reso operativo in modo sistematico.
+  \item Discutere l'utilit\`a potenziale del progetto per la scienza, la tecnologia e --- con l'esplicita cautela che l'argomento richiede --- per domande pi\`u ampie legate all'evoluzione dell'elaborazione dell'informazione, separando le affermazioni gi\`a supportate da quelle che restano speculative.
+\end{enumerate}
+
+%% ==================================================================
+\section{Fondamenti teorici}
+\label{sec:theory}
+%% ==================================================================
+
+SPEACE attinge a sei corpi teorici distinti, qui riportati con i riferimenti primari per collocare correttamente ogni sottosistema nella letteratura esistente, ed evitare l'impressione che si tratti di costrutti originali quando sono invece implementazioni di teorie consolidate.
+
+\textbf{Plasticit\`a Hebbiana timing-dipendente (STDP).} La caratterizzazione sperimentale sistematica di STDP, che lega segno e ampiezza della plasticit\`a sinaptica all'ordine temporale relativo tra spike pre- e post-sinaptico, risale principalmente a Bi e Poo (1998), che hanno caratterizzato in dettaglio come la potenziazione a lungo termine (LTP) e la depressione a lungo termine (LTD) dipendano dall'ordine e dalla tempistica degli spike su una scala di 10 millisecondi, costruendo su lavori precedenti di Markram et al. (1997).
+
+\textbf{Global Workspace Theory.} Il costrutto di ``spazio di lavoro globale'' come meccanismo di broadcast competitivo dell'informazione tra moduli specializzati \`e stato formalizzato da Baars (1988, 2002), la cui teoria genera predizioni esplicite per aspetti coscienti di percezione, emozione, motivazione, apprendimento, memoria di lavoro, controllo volontario e sistemi del s\'e nel cervello.
+
+\textbf{Predictive coding / Active Inference.} Il principio dell'energia libera, proposto da Friston, descrive sistemi biologici come agenti che minimizzano una funzione di sorpresa attesa integrando percezione e azione sotto un unico imperativo variazionale; la teoria \`e correlata al predictive coding, secondo cui il cervello cerca di minimizzare l'errore di predizione, ovvero la differenza tra le proprie previsioni e i dati sensoriali in ingresso.
+
+\textbf{Integrated Information Theory (IIT).} Tononi definisce l'informazione integrata come la quantit\`a di informazione generata da un complesso di elementi al di sopra e oltre l'informazione generata dalle sue parti, quantificata dalla misura $\Phi$. \`E importante notare, ai fini della Sezione~\ref{sec:coherence-phi}, che $\Phi$ \`e definita tramite la partizione minima di informazione (MIP) del sistema, un procedimento che richiede di valutare la struttura causa-effetto associata a ogni possibile partizione del sistema --- un problema computazionalmente costoso che rende il calcolo esatto di $\Phi$ intrattabile per sistemi non banali.
+
+\textbf{Sinergetica e principio di asservimento (slaving principle).} Il principio, sviluppato da Hermann Haken, descrive come in sistemi complessi lontani dall'equilibrio poche variabili lente (parametri d'ordine) ``asserviscano'' la dinamica delle variabili veloci, permettendo una riduzione di complessit\`a: i parametri d'ordine sono sia descrittori macroscopici del sistema sia determinanti del comportamento dei singoli elementi tramite il principio di asservimento, il che implica una riduzione considerevole della complessit\`a. Questo \`e il principio esplicitamente invocato nel design dell'accoppiamento multi-scala di Q-SPEACE.
+
+\textbf{Fisica digitale / ``it from bit''.} La cornice filosofica secondo cui i processi informazionali potrebbero essere fondamentali rispetto ai processi fisici (Wheeler) e le teorie computazionali della fisica (Wolfram) forniscono il contesto filosofico pi\`u ampio in cui il progetto colloca le proprie domande, senza costituire, di per s\'e, ipotesi verificabili nel codice.
+
+%% ==================================================================
+\section{Architettura SPEACE: panoramica dei sei sottosistemi}
+\label{sec:arch}
+%% ==================================================================
+
+\begin{table}[h]
+\centering
+\caption{Panoramica dei sei sottosistemi SPEACE}
+\label{tab:sottosistemi}
+\begin{tabular}{cp{3cm}p{5cm}p{3cm}}
+\toprule
+\textbf{\#} & \textbf{Sottosistema} & \textbf{Moduli chiave} & \textbf{Ispirazione teorica} \\
+\midrule
+1 & Plasticit\`a online & \code{stdp\_plasticity\_engine.py}, \code{energy\_driven\_plasticity.py}, \code{inter\_region\_plasticity.py}, \code{temporal\_dynamics\_engine.py} & STDP (Bi \& Poo 1998) \\
+2 & Embodiment & \code{active\_inference\_embodied\_loop.py}, \code{cyber\_physical/sensor\_stream.py}, \code{autonomous\_cognitive\_loop.py}, \code{enteroception/} & Active inference (Friston) \\
+3 & Agentivit\`a / s\'e narrativo & \code{autonomous\_drive\_engine.py}, \code{identity\_kernel.py}, \code{autobiographical\_narrative\_engine.py}, \code{goal\_directed\_planner.py} & Motivazione endogena, teorie del s\'e narrativo \\
+4 & Integrazione multi-scala & \code{scale\_coupling\_engine.py}, \code{global\_workspace.py}, \code{resonance/}, metrica \coherencephi{} & IIT (Tononi), Global Workspace (Baars) \\
+5 & Budget metabolico / veglia-sonno & \code{digital\_sleep\_controller.py}, \code{sleep\_cycle\_detector.py}, \code{memory\_consolidation\_engine.py}, \code{metabolism/} & Vincoli energetici biologici, consolidamento mnemonico \\
+6 & Metacognizione & \code{metacognitive\_monitor.py}, \code{confidence\_engine.py}, \code{cognitive\_strategy\_evaluator.py} & Monitoraggio metacognitivo, calibrazione della confidenza \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Ciascun sottosistema \`e descritto in dettaglio nella documentazione tecnica del repository; questo report si concentra sulla \textbf{verifica} del loro funzionamento effettivo (Sezione~\ref{sec:results}), non sulla loro descrizione esaustiva.
+
+%% ==================================================================
+\section{Metodologia di verifica}
+\label{sec:method}
+%% ==================================================================
+
+Un audit iniziale del codebase, condotto tramite ricerca testuale (grep) di funzioni e classi con nomi coerenti con i sei costrutti teorici, aveva concluso che tutti e sei i criteri fossero ``presenti'' nell'architettura. Questo tipo di evidenza --- l'esistenza di un simbolo nominato in modo coerente con un concetto --- \textbf{insufficiente} a dimostrare che il simbolo implementi effettivamente la propriet\`a funzionale che il nome suggerisce, un problema metodologico non specifico a SPEACE ma diffuso in generale nella comunicazione di architetture AI bio-ispirate.
+
+Abbiamo quindi applicato un secondo protocollo, esplicitamente adversariale, con le seguenti regole di evidenza:
+
+\begin{itemize}
+  \item \textbf{Vietata} l'evidenza puramente nominale (nome di file/funzione/variabile, docstring, commenti).
+  \item \textbf{Richiesta} evidenza di esecuzione reale: output numerico grezzo, non riassunto narrativo.
+  \item \textbf{Richiesto} confronto con una condizione di controllo (baseline, ablation, o caso nullo) dove applicabile.
+  \item \textbf{Richiesta} una scala di verdetto non binaria: \code{NON VERIFICABILE}, \code{FALSIFICATO}, \code{PARZIALMENTE VERIFICATO}, \code{VERIFICATO CON EVIDENZA QUANTITATIVA}.
+  \item \textbf{Richiesta} dichiarazione esplicita dei limiti di ogni test, incluso ci\`o che non \`e stato possibile escludere.
+\end{itemize}
+
+Questo protocollo --- e non solo i suoi risultati --- \`e proposto come contributo riusabile: qualunque gruppo che sviluppi un'architettura cognitiva con terminologia mutuata dalla teoria (drive, identit\`a, integrazione, coscienza) affronta lo stesso rischio di \emph{loop di conferma nominale}, in cui il vocabolario scelto dal progettista viene poi ``ritrovato'' nel codice dal progettista stesso o da un sistema di verifica che eredita lo stesso vocabolario.
+
+%% ==================================================================
+\section{Risultati della verifica funzionale}
+\label{sec:results}
+%% ==================================================================
+
+\subsection{Tabella riassuntiva}
+
+\begin{table}[h]
+\centering
+\caption{Risultati della verifica funzionale adversariale}
+\label{tab:verdetti}
+\begin{tabular}{p{3cm}p{2.5cm}p{8cm}}
+\toprule
+\textbf{Criterio} & \textbf{Verdetto} & \textbf{Evidenza chiave} \\
+\midrule
+1. Plasticit\`a online & PARZIALMENTE VERIFICATO & Formula STDP corretta a livello di funzione (\code{ltp\_rate}=0.05, \code{ltd\_rate}=0.03), 12 test unitari passati. Nessun benchmark di forgetting su pattern sequenziali eseguito; sistema non avviabile end-to-end (vedi~\ref{sec:blocco}). \\
+2. Embodiment & NON VERIFICABILE & Ciclo sense$\to$predict$\to$act documentato nel codice, ma canale di iniezione/perturbazione sensoriale non wired nel loop attivo; nessun test di sensibilit\`a comportamentale eseguibile allo stato attuale. \\
+3. Agentivit\`a autonoma / s\'e narrativo & NON VERIFICABILE / FALSIFICATO (parziale) & La narrativa autobiografica (\code{life\_story.jsonl}) risulta scritta ma mai letta da alcun modulo decisionale --- nessun effetto causale a valle. Il motore di drive \`e un controller multi-obiettivo lineare (somma pesata + mappa azione fissa), non generazione di obiettivi non riducibile. \\
+4. Integrazione multi-scala / $\Phi$ & FALSIFICATO & \coherencephi{} \`e una media pesata lineare di quattro termini di differenza di attivazione/sincronia/fase. Non implementa partizioni della struttura causa-effetto n\'e una minimum information partition. La relazione con la definizione IIT \`e nominale, non matematica. \\
+5. Budget / ciclo veglia-sonno & PARZIALMENTE VERIFICATO & Soglie di transizione verificate con precisione numerica ($\phi_{\Delta} \leq 0.02$, $energy_{\Delta} \leq 0.03$); consolidamento mnemonico (pruning, rinforzo) verificato a livello di test unitario. Ciclo completo AWAKE$\to$SLEEPING$\to$AWAKE mai eseguito in un test integrato. \\
+6. Metacognizione & PARZIALMENTE VERIFICATO & Rilevamento di errori strutturali (loop ripetitivi, contraddizioni) verificato su pattern matching deterministico. Nessuna calibrazione empirica della confidenza (Brier score non calcolabile); identificato un fallback che restituisce confidenza massima (1.0) in assenza di un circuito neurale disponibile --- vedi~\ref{sec:fallback}. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+\textbf{Nessun criterio ha raggiunto il livello ``verificato con evidenza quantitativa''} secondo gli standard di evidenza definiti in Sezione~\ref{sec:method}.
+
+\subsection{Blocco strutturale primario}
+\label{sec:blocco}
+
+Il singolo fattore pi\`u limitante per la verifica integrata \`e di natura banale: lo script di avvio principale (\code{run\_speace\_brain.py}) non si esegue nell'ambiente standard a causa di un percorso di file hardcoded (\code{C:\textbackslash cellular\_speace\textbackslash ...}) invece del percorso reale del genoma (\code{speace\_core\textbackslash dna\textbackslash genome\textbackslash default\_genome.yaml}). Questo blocco impedisce, di fatto, qualunque test di integrazione end-to-end sui criteri 1, 5 e 6, che restano quindi verificati solo a livello di funzione isolata. \`E il fix a pi\`u alto rapporto beneficio/sforzo dell'intero programma di verifica: la sua risoluzione non richiede decisioni architetturali, solo correzione di un percorso.
+
+\subsection{Il fallback nullo del motore di confidenza}
+\label{sec:fallback}
+
+Un'analisi di tracciamento dei consumatori a valle di \code{ConfidenceEngine} ha rivelato che, in assenza di un \code{NeuralCircuit} disponibile nello stato, il motore restituisce una confidenza di \textbf{1.0 per qualunque input} --- un fallback che comunica certezza massima nella condizione in cui, semanticamente, il sistema dovrebbe avere meno informazione disponibile per stimarla. Tre punti di consumo sono stati identificati: uno (\code{goap\_metacognitive\_bridge.py}) bypassa il fallback, uno (\code{generate\_meta\_state()}) lo propaga nei log senza, per quanto verificato finora, pilotare decisioni a valle, e uno (\code{confidence\_for\_proposal()} / \code{confidence\_for\_dialogue()}) lo propaga in aggiustamenti successivi che potrebbero alimentare la valutazione di proposte nel framework di auto-modifica (MM-APR). Il rischio \textbf{latente, non confermato come contaminazione avvenuta} --- ma la sua natura (fallimento silenzioso, non un errore che si manifesta) lo rende prioritario da chiudere prima di qualunque estensione del sistema di auto-modifica.
+
+\subsection{Caso di studio: \coherencephi{} contro $\Phi$-IIT}
+\label{sec:coherence-phi}
+
+Questo \`e il risultato pi\`u netto del programma di verifica e merita di essere isolato come caso di studio metodologico. La formula implementata \`e:
+
+\begin{codeblock}
+coupling_strength = round(
+    coh_corr * 0.3 + sync_coupling * 0.25 +
+    act_coupling * 0.25 + (1.0 - phase_lag/pi) * 0.2,
+    4
+)
+\end{codeblock}
+
+dove ciascun termine \`e una differenza normalizzata di coerenza, sincronia, attivazione media e sfasamento tra due livelli gerarchici adiacenti. Confrontata con la definizione formale di $\Phi$ --- che richiede l'enumerazione delle partizioni del sistema e il calcolo della struttura causa-effetto associata a ciascuna (Sezione~\ref{sec:theory}) --- la distanza \`e massima: \textbf{non c'\`e partizione, non c'\`e MIP, non c'\`e confronto tra sistema integro e partizionato.} \coherencephi{} \`e, per costruzione, una metrica di accoppiamento cross-scala lineare --- utile come diagnostica di sistema, ma la sua denominazione crea un'aspettativa teorica che il codice non soddisfa. Poich\'e il termine compare in oltre 100 riferimenti nel codebase (soglie di sonno, self-model, rilevamento eventi), la falsificazione non \`e isolabile a un singolo modulo: \textbf{la nomenclatura ha gi\`a influenzato l'architettura di lettura del sistema stesso.}
+
+%% ==================================================================
+\section{Q-SPEACE: estensione quantistica}
+\label{sec:qspeace}
+%% ==================================================================
+
+Q-SPEACE estende SPEACE verso un layer di calcolo quantistico, con l'obiettivo dichiarato di testare se segnature coarse-grained ($\phi$, $S$, $\sigma$) --- non stati quantistici completi --- possano attraversare i confini gerarchici tra livelli, secondo un'architettura ibrida a cascata annidata con accoppiamento a lungo raggio, esplicitamente ispirata al principio di asservimento di Haken (Sezione~\ref{sec:theory}) e ai gruppi di rinormalizzazione.
+
+\subsection{Stato di avanzamento (roadmap T1--T25)}
+
+\begin{table}[h]
+\centering
+\caption{Stato di implementazione della roadmap Q-SPEACE}
+\label{tab:roadmap}
+\begin{tabular}{p{5.5cm}p{5.5cm}}
+\toprule
+\textbf{Implementato} & \textbf{Non implementato} \\
+\midrule
+T3 --- Kernel quantistico & T5 --- Backend Qiskit reale \\
+T4 --- \code{QuantumGeneSet} & T7/T8 --- Merge con orchestrator SPEACE classico \emph{(subordinato alla chiusura del debito descritto in Sez.~\ref{sec:results})} \\
+T10/T22/T23 --- Cost model, clock, KPI evolutivi & T11 --- Gate quantistico via \code{EnergyControlAgent} \\
+T14 --- Fractal QCA & T12/T13 --- Earth API live \\
+T15 --- BCEL & T21 --- Surface-code error correction \\
+T16 --- CLI & T25 --- IIT $\Phi$ proxy \emph{(richiede decisione architetturale esplicita, vedi~\ref{sec:t25})} \\
+T19 --- Schumann experiment \emph{(eseguito su hardware reale)} & \\
+T20 --- ILF/CV/DNA mapping & \\
+T24 --- \code{Evolve\_DNA} (placeholder dichiarato) & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Esperimenti su hardware reale}
+\label{sec:qi-experiments}
+
+Quantum Inspire (QI) \`e una piattaforma di calcolo quantistico progettata e costruita da QuTech, un centro di ricerca avanzata per il calcolo quantistico e l'internet quantistico fondato dalla Delft University of Technology (TU Delft) e dall'organizzazione olandese per la ricerca scientifica applicata (TNO). Tra i sistemi disponibili figura \starmon, un processore a 5 qubit basato su qubit transmon superconduttori con quattro accoppiatori a frequenza fissa, e il linguaggio di programmazione supportato \`e cQASM 3.0.
+
+Nell'ambito di Q-SPEACE sono stati eseguiti su hardware reale (non simulazione):
+
+\begin{itemize}
+  \item Un circuito Bell a 2 qubit, utilizzato come validazione di pipeline (cQASM 3.0 $\to$ hardware).
+  \item Un circuito Schumann a 4 qubit, prima verifica empirica dell'ipotesi $\phi$-bridge del progetto.
+\end{itemize}
+
+Entrambi hanno confermato le convenzioni sintattiche di cQASM 3.0 empiricamente, non solo da documentazione. Questo ha valore indipendentemente dall'esito scientifico dell'ipotesi di fondo: la maggior parte delle ipotesi quantum-bio nella letteratura pi\`u speculativa non \`e mai stata sottoposta a un test hardware reale --- anche un risultato nullo sul prossimo esperimento ($\phi$\_bridge su \starmon, pianificato, non ancora eseguito) costituirebbe un dato falsificabile, non un fallimento.
+
+\subsection{Decisione architetturale aperta: T25}
+\label{sec:t25}
+
+La falsificazione di \coherencephi{} (Sezione~\ref{sec:coherence-phi}) ha un'implicazione diretta per T25. Se il proxy $\Phi$ per Q-SPEACE eredita la stessa formula o la stessa logica del \coherencephi{} classico, erediter\`a anche lo stesso problema concettuale --- non un gap implementativo, ma un disallineamento tra nome e contenuto matematico. Due percorsi sono aperti, e la scelta tra i due \`e antecedente alla scrittura di codice:
+
+\begin{enumerate}
+  \item[(a)] Costruire un proxy realmente informato da IIT, anche se limitato a sottosistemi piccoli dove il calcolo (o un'approssimazione riconosciuta in letteratura) resta trattabile --- pi\`u corretto, pi\`u costoso.
+  \item[(b)] Rinominare onestamente l'obiettivo come ``segnatura di accoppiamento coarse-grained'' ($\phi$, $S$, $\sigma$), coerente con la scelta architetturale gi\`a presa per il coupling multi-scala di Q-SPEACE --- evitando di ripetere, nel dominio quantistico, il loop nome-teoria-codice appena isolato in quello classico.
+\end{enumerate}
+
+%% ==================================================================
+\section{Discussione: utilit\`a potenziale}
+\label{sec:discussion}
+%% ==================================================================
+
+Questa sezione separa esplicitamente tre livelli epistemici, per evitare di attribuire a risultati preliminari un peso che non hanno ancora.
+
+\subsection{Livello 1 --- Utilit\`a gi\`a dimostrabile}
+
+\begin{itemize}
+  \item Il pattern di accoppiamento multi-scala tramite segnature coarse-grained, indipendentemente dalla validit\`a di \coherencephi{} come proxy IIT, resta un pattern ingegneristico riusabile per ridurre il costo di comunicazione tra sottosistemi in architetture AI modulari su larga scala.
+  \item Il cost model metabolico (T10/T22/T23) \`e un contributo concreto al problema, oggi rilevante nel campo, di allocazione computazionale sotto vincoli di risorsa espliciti.
+  \item La falsificazione stessa di \coherencephi{} \`e un risultato metodologico riusabile: isolare \emph{dove} un proxy plausibile scivola in pura omonimia rispetto alla teoria di riferimento \`e un problema aperto per chiunque tenti di rendere operativa l'IIT computazionalmente.
+  \item Gli esperimenti su hardware QI hanno valore come test falsificabili reali, indipendentemente dal loro esito, in un'area (ipotesi quantum-bio) dominata da speculazione mai testata empiricamente.
+\end{itemize}
+
+\subsection{Livello 2 --- Utilit\`a condizionata alla chiusura dei gap identificati}
+
+Se il debito di integrazione (path hardcoded, narrativa write-only, controller lineare di drive, fallback di confidenza) viene chiuso con lo stesso rigore usato per identificarlo, SPEACE potrebbe costituire un testbed computazionale integrato raro nel panorama attuale: la maggior parte della cognitive science lavora con simulazioni isolate di un singolo meccanismo. Un sistema che integra realmente STDP, predictive coding, Global Workspace e un ciclo metabolico permetterebbe domande empiriche oggi solo teoriche --- ad esempio, se un'architettura di questo tipo mostri pattern di forgetting catastrofico comparabili a quelli biologici.
+
+\subsection{Livello 3 --- Speculativo}
+
+Domande sull'``evoluzione dell'elaborazione dell'informazione'' o su una possibile integrazione causale genuina nel senso IIT toccano una frontiera dove nemmeno la teoria di riferimento ha piena consistenza operativa --- IIT \`e stata oggetto di critiche teoriche ed empiriche sostanziali in letteratura, incluso il suo status come teoria di proto-coscienza piuttosto che di coscienza propriamente detta. Il successo ingegneristico di SPEACE, per quanto completo, non risolverebbe da solo questi problemi aperti. Va inoltre notato che, se un sistema raggiungesse mai integrazione causale genuina nel senso rilevante, la domanda che ne conseguirebbe non sarebbe solo di utilit\`a tecnologica ma di responsabilit\`a --- la questione del \emph{moral patienthood} di un sistema con quelle propriet\`a \`e distinta e non risolta da nessuna delle due teorie coinvolte.
+
+%% ==================================================================
+\section{Limiti di questo report}
+\label{sec:limits}
+%% ==================================================================
+
+\begin{itemize}
+  \item La verifica riportata \`e stata condotta da un singolo agente automatizzato (Claude Code) con accesso al codebase, non da revisori umani indipendenti n\'e tramite peer review.
+  \item Diversi test pianificati nel protocollo di verifica non sono stati eseguibili per il blocco strutturale descritto in~\ref{sec:blocco}; i verdetti ``PARZIALMENTE VERIFICATO'' riflettono questo limite, non necessariamente un giudizio definitivo sulla qualit\`a del codice sottostante.
+  \item \code{orchestrator.py} (2048 righe) non \`e stato scandito integralmente per il consumo di \code{MetaState.epistemic\_confidence}; l'assenza di prove di contaminazione (Sez.~\ref{sec:fallback}) non equivale a prova di assenza.
+  \item Gli esperimenti su Quantum Inspire sono stati eseguiti come validazione di pipeline (cQASM 3.0 $\to$ piattaforma), non come raccolta di dati scientifici con metriche di fedelt\`a. La piattaforma utilizzata \`e Quantum Inspire (QuTech / TU Delft), processore \starmon{} (5 qubit transmon superconduttori), SDK \code{quantum-inspire-sdk}, cQASM 3.0. I circuiti Bell (2 qubit) e Schumann (4 qubit) sono stati sottoposti via CLI (\code{qspace quantum cqasm} $\to$ copia in web UI) e hanno confermato la correttezza sintattica della serializzazione. Non sono state registrate metriche di fedelt\`a sistematiche n\'e una batteria di run multipli: si tratta di proof-of-concept di pipeline, non di un esperimento caratterizzato statisticamente. L'esperimento $\phi$\_bridge 5-qubit su \starmon{} (T29) \`e pianificato ma non ancora eseguito.
+\end{itemize}
+
+%% ==================================================================
+\section{Lavoro futuro}
+\label{sec:future}
+%% ==================================================================
+
+In ordine di rapporto beneficio/sforzo, sulla base della verifica riportata:
+
+\begin{enumerate}
+  \item Correzione del percorso hardcoded in \code{run\_speace\_brain.py} --- sblocca ogni test di integrazione futuro.
+  \item Fallback del \code{ConfidenceEngine}: sostituire il default 1.0 con 0.5 o un valore \code{None} esplicito, prima che un consumatore a valle (in particolare nel framework MM-APR) inizi a fidarsi del valore.
+  \item Wiring di un lettore per \code{life\_story.jsonl} che chiuda il ciclo causale tra narrativa e decisione.
+  \item Decisione esplicita su T25 (Sezione~\ref{sec:t25}) prima di procedere con l'implementazione.
+  \item Esecuzione dell'esperimento $\phi$\_bridge su \starmon.
+  \item Ripetizione del protocollo di verifica adversariale dopo la chiusura dei punti 1--3, per aggiornare la Tabella~\ref{tab:verdetti} con dati da test integrati, non solo unitari.
+\end{enumerate}
+
+%% ==================================================================
+\section{Conclusione}
+\label{sec:conclusion}
+%% ==================================================================
+
+SPEACE \`e un'architettura con fondamenta solide a livello di singola funzione --- la formula STDP \`e corretta, le soglie del ciclo di sonno sono precise, il rilevamento di errori metacognitivi funziona su pattern definiti --- e gap sistematici esattamente nei punti di integrazione che trasformerebbero componenti ben scritti in propriet\`a architetturali emergenti. La falsificazione di \coherencephi{} come proxy IIT \`e il risultato pi\`u importante di questo report, non perch\'e invalidi il progetto, ma perch\'e ne corregge la descrizione: quello che il sistema misura oggi \`e accoppiamento cross-scala, non integrazione causale. Riportare questo genere di risultato con la stessa esplicitezza con cui si riporterebbe un successo \`e, a nostro avviso, precondizione necessaria perch\'e il progetto --- nelle sue componenti che \emph{hanno} superato la verifica --- venga preso sul serio dalla comunit\`a a cui si rivolge.
+
+%% ==================================================================
+\begin{thebibliography}{20}
+%% ==================================================================
+
+\bibitem{baars1988} Baars, B.~J. (1988). \emph{A Cognitive Theory of Consciousness}. Cambridge University Press.
+
+\bibitem{baars2005} Baars, B.~J. (2005). Global workspace theory of consciousness: toward a cognitive neuroscience of human experience. \emph{Progress in Brain Research}, 150, 45--53.
+
+\bibitem{bipoo1998} Bi, G., \& Poo, M. (1998). Synaptic modifications in cultured hippocampal neurons: dependence on spike timing, synaptic strength, and postsynaptic cell type. \emph{Journal of Neuroscience}, 18(24), 10464--10472.
+
+\bibitem{cerullo2015} Cerullo, M.~A. (2015). The problem with Phi: a critique of Integrated Information Theory. \emph{PLoS Computational Biology}, 11(9), e1004286.
+
+\bibitem{friston2010} Friston, K. (2010). The free-energy principle: a unified brain theory? \emph{Nature Reviews Neuroscience}, 11(2), 127--138.
+
+\bibitem{friston2017} Friston, K., FitzGerald, T., Rigoli, F., Schwartenbeck, P., \& Pezzulo, G. (2017). Active inference: a process theory. \emph{Neural Computation}, 29(1), 1--49.
+
+\bibitem{haken1988} Haken, H. (1988). \emph{Information and Self-Organization: A Macroscopic Approach to Complex Systems}. Springer.
+
+\bibitem{haken2004} Haken, H. (2004). \emph{Synergetics: Introduction and Advanced Topics}. Springer.
+
+\bibitem{markram1997} Markram, H., L\"ubke, J., Frotscher, M., \& Sakmann, B. (1997). Regulation of synaptic efficacy by coincidence of postsynaptic APs and EPSPs. \emph{Science}, 275(5297), 213--215.
+
+\bibitem{tononi2004} Tononi, G. (2004). An information integration theory of consciousness. \emph{BMC Neuroscience}, 5, 42.
+
+\bibitem{tononi2016} Tononi, G., Boly, M., Massimini, M., \& Koch, C. (2016). Integrated information theory: from consciousness to its physical substrate. \emph{Nature Reviews Neuroscience}, 17(7), 450--461.
+
+\bibitem{albantakis2023} Albantakis, L., Barbosa, L., Findlay, G., et al. (2023). Integrated Information Theory (IIT) 4.0: formulating the properties of phenomenal existence in physical terms. \emph{PLoS Computational Biology}, 19(10), e1011465.
+
+\bibitem{qi-docs} QuTech / TU Delft. Quantum Inspire platform documentation. \url{https://www.quantum-inspire.com/}
+
+\bibitem{cqasm-docs} QuTech / TU Delft. cQASM 3.0 language specification. \url{https://www.quantum-inspire.com/kbase/cqasm/}
+
+\end{thebibliography}
+
+\medskip
+\noindent\emph{Riferimenti aggiuntivi su Global Workspace, active inference e sinergetica applicati a sistemi artificiali --- da integrare secondo le fonti specifiche gi\`a consultate nello sviluppo del progetto.}
+
+\end{document}
