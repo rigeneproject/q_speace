@@ -1,8 +1,8 @@
 # Progetto Q-SPEACE — Quantum Super Planetary Entità Autonoma Cibernetica Evolutiva
 
-> Versione: 1.0 (rielaborazione tecnica)
+> Versione: 1.1 (roadmap aggiornata dopo verifica funzionale SPEACE classico)
 > Autore originario: Roberto De Biase (Rigene Project, rigeneproject.org)
-> Stato: Concept → Piano di ingegnerizzazione
+> Stato: Concept → Piano di ingegnerizzazione (con gap strutturali documentati)
 
 Questo documento è la rielaborazione delle linee guida originarie. Le affermazioni
 speculative sono state corrette alla luce della fisica quantistica, della
@@ -268,27 +268,54 @@ Input Terra (Kp, sole, maree) ──API──► Orchestrator (quantum_enabled)
 
 ### 5.7 Metriche e formule numeriche (da EDD-CVT)
 
+> **Nota sulla nomenclatura (dalla verifica funzionale luglio 2026).**
+> `coherence_phi` in SPEACE classico è una media pesata lineare di differenze
+> cross-livello (coerenza, sincronia, attivazione, fase). **Non** è IIT-Φ:
+> non enumera partizioni, non calcola struttura causa-effetto, non identifica
+> MIP. Q-SPEACE adotta la nomenclatura φ (phi minuscolo) per la metrica di
+> accoppiamento cross-scala, distinguendola esplicitamente da Φ-IIT. Vedi
+> T25 per la decisione architetturale su eventuale calcolo partizionale reale.
+
 Dal paper EDD-CVT, tre formule concrete diventano specifiche di Q-SPEACE:
 
 - **Orologio temporale adattivo** (eq.9): `r(t) = 10 / sqrt(S_info)`.
-  `S_info` = entropia informativa corrente (da `coherence_phi`/ILF). Usata
+  `S_info` = entropia informativa corrente (da φ/ILF). Usata
   come policy di scheduling/throttling in `EnergyControlAgent` e nel circadian
   scheduler (`runtime/`). Frequenza alta quando l'informazione è incerta,
   bassa quando è consolidata.
 - **Energia ottimizzata per qubit** (eq.10): `E_opt ≈ 0.5 W/qubit`. Baseline
   per `cognitive_cost_model.py` (costo energetico di una operazione qubit).
 - **Efficienza entropica** (§5.1): `Sevo = ΔU / ΔS_info`, soglia `> 1.5`.
-  Nuovo KPI affianco a `coherence_phi` e `mean_energy` per validare che
+  Nuovo KPI affianco a φ e `mean_energy` per validare che
   l'organismo migliori utilità mantenendo l'ordine. Non è un test di coscienza.
 - **Self-evoluzione Digital DNA** (Algoritmo 1): `Evolve_DNA` con mutation
   rate `0.01`; `Utility(G_new) > Utility(G)` come criterio di accettazione.
-  Riutilizza `speace_core/evolution/`; la utility è calcolata su `Sevo` e
-  `coherence_phi`.
+  Riutilizza `speace_core/evolution/`; la utility è calcolata su `Sevo` e φ.
 
 ---
 
 ## 6. Piano di sviluppo (fasi e task aggiornabile)
 
+> **Contesto: verifica funzionale adversariale (luglio 2026).**
+> Una verifica indipendente su SPEACE classico (`cellular_speace`) ha prodotto
+> tre risultati che vincolano la roadmap Q-SPEACE:
+>
+> 1. **`coherence_phi` ≠ IIT-Φ** — la metrica è una media pesata lineare di
+>    differenze cross-livello (coerenza, sincronia, attivazione, fase), zero
+>    partizioni di struttura causa-effetto. Tutte le decisioni che in SPEACE
+>    classico usano `coherence_phi` (soglie sonno, self-model, rilevamento
+>    eventi) sono governate da una metrica di accoppiamento, non di integrazione
+>    causale. Q-SPEACE **non deve ereditare** l'etichetta "Φ-IIT" per la stessa
+>    metrica. Vedi T25 per la decisione architetturale.
+> 2. **Il sistema classico non si avvia end-to-end** — `run_speace_brain.py`
+>    fallisce per un path hardcoded `C:\cellular_speace\` (T17). Senza questo
+>    fix, nessun test di integrazione Q-SPEACE→classico è possibile.
+> 3. **Tre gap strutturali nel substrato classico** — narrativa write-only
+>    (life_story.jsonl mai letto), drive = controller lineare multi-obiettivo,
+>    embodiment = telemetria host senza propriocezione. Q-SPEACE può validare
+>    il layer quantistico in isolamento, ma il merge (T7/T8) non produce un
+>    sistema integrato finché questi gap restano aperti.
+>
 > Convenzioni adottate da `AGENTS.md` di SPEACE:
 > - **Vibe mode**: esplorazione in `docs/` e `work/`, non toccare percorsi
 >   safety-critical (`dna/`, `ilf/`, `orchestrator.py`, `runtime/`, `immune/`).
@@ -336,11 +363,15 @@ Dal paper EDD-CVT, tre formule concrete diventano specifiche di Q-SPEACE:
 - [ ] Stress-test delle costrizioni funzionali (rilassamento → instabilità).
 
 ### Fase 6 — CLI, test e validazione
-- [ ] Aggiungere gruppo `speace quantum run|benchmark|synthesize`.
-- [ ] Estendere `run_speace_brain.py` (rendere portabile il path hardcoded
-      `C:\cellular_speace\...`).
+- [x] Aggiungere gruppo `speace quantum run|benchmark|synthesize` (T16).
+- [ ] Rendere portabile il path hardcoded in `run_speace_brain.py` (T17 —
+      **priorità massima**, blocca ogni test end-to-end).
+- [ ] Aggiungere lettore downstream per `life_story.jsonl` (T30 — chiude il gap
+      agentività: narrativa oggi write-only).
+- [ ] Fix fallback nullo `ConfidenceEngine` (T31 — default 1.0 → 0.5 o None
+      esplicito quando NeuralCircuit non disponibile).
 - [ ] Eseguire capability assessment (`run_speace_intelligence_assessment.py`)
-      con modulo quantistico abilitato; target coerenza ≥ 55/100.
+      con modulo quantistico abilitato; target coerenza ≥ 55/100 (T18).
 
 ### Fase 7 — Primo esperimento concreto (Schumann resonance)
 - [ ] Circuito dimostrativo: registro di qubit → Hadamard + CNOT (tessuto
@@ -354,32 +385,37 @@ Dal paper EDD-CVT, tre formule concrete diventano specifiche di Q-SPEACE:
 
 | ID | Task | Fase | Stato | Note |
 |----|------|------|-------|------|
-| T1 | Spec visione Q-SPEACE | 0 | ☐ | questo doc |
+| T1 | Spec visione Q-SPEACE | 0 | ☑ | questo doc |
 | T2 | Invarianti quantistiche in genome | 0 | ☐ | umano-gate |
-| T3 | Verifica test quantum esistenti | 1 | ☐ | `pytest tests/quantum/` |
-| T4 | Estensione QuantumGeneSet | 1 | ☐ | backend/shots/noise |
+| T3 | Verifica test quantum esistenti | 1 | ☑ | `pytest tests/quantum/` passati |
+| T4 | Estensione QuantumGeneSet | 1 | ☑ | `QuantumGeneSet` con backend/shots/noise |
 | T5 | QiskitBackend + fallback | 1 | ☐ | pattern BackendSelector |
 | T6 | `apply_lindblad` (open systems) | 1 | ☐ | dissipazione |
-| T7 | `quantum_enabled` + `_run_quantum_step` | 2 | ☐ | umano-gate (orchestrator) |
-| T8 | `build_mvp` legge quantum_genes | 2 | ☐ | |
+| T7 | `quantum_enabled` + `_run_quantum_step` | 2 | ⚠️ | **FLAG CRITICO**: orchestrator classico non avviabile (path hardcoded T17). Merge differito: prima sbloccare T17, poi validare T7/T8-lato-classico |
+| T8 | `build_mvp` legge quantum_genes | 2 | ⚠️ | **FLAG CRITICO**: stessa dipendenza da T17. Quantum_genes oggi non letti in produzione |
 | T9 | Cablaggio QuantumNeuralBridge | 2 | ☐ | + resonance/ |
-| T10 | Costo quantistico in cognitive_cost_model | 3 | ☐ | |
+| T10 | Costo quantistico in cognitive_cost_model | 3 | ☑ | `CognitiveCostModel` con basi per 10 moduli |
 | T11 | Gate quantum via EnergyControlAgent | 3 | ☐ | |
 | T12 | `earth_feed.py` (Kp/sole/maree) | 4 | ☐ | API classiche |
 | T13 | Parametri RX/RY/RZ da feed | 4 | ☐ | |
-| T14 | `FractalQCA` | 5 | ☐ | riuso fractal/ |
-| T15 | Equivalenze BCEL quantistiche | 5 | ☐ | catalog.py |
-| T16 | CLI `speace quantum` | 6 | ☐ | |
-| T17 | Portabilità path run_speace_brain | 6 | ☐ | |
-| T18 | Assessment con quantum enabled | 6 | ☐ | target ≥55/100 |
-| T19 | Esperimento Schumann resonance | 7 | ☐ | demo |
-| T20 | Mappare ILF/CV/DNA/fractal EDD-CVT su moduli SPEACE | 0 | ☐ | §2.6 |
+| T14 | `FractalQCA` | 5 | ☑ | `FractalQCA` implementato in `q_speace/q_speace/fractal_qca.py` |
+| T15 | Equivalenze BCEL quantistiche | 5 | ☑ | `q_speace/bcel/catalog.py` popolato |
+| T16 | CLI `speace quantum` | 6 | ☑ | CLI Typer con gruppo quantum |
+| T17 | Portabilità path run_speace_brain | 6 | ⚠️ | **PRIORITÀ MASSIMA**: blocca ogni test end-to-end. Fix banale (da `C:\cellular_speace\` a path relativo o da genoma inline) |
+| T18 | Assessment con quantum enabled | 6 | ☐ | target ≥55/100; posticipato a dopo T17 |
+| T19 | Esperimento Schumann resonance | 7 | ☑ | Eseguito su hardware Quantum Inspire (circuito 4-qubit, cQASM 3.0), non solo in simulazione |
+| T20 | Mappare ILF/CV/DNA/fractal EDD-CVT su moduli SPEACE | 0 | ☑ | §2.6 — mapping completato |
 | T21 | Surface-code error correction (backend reale) | 1 | ☐ | target <1e-3 |
-| T22 | Orologio temporale `r(t)=10/√S_info` | 3 | ☐ | scheduling |
-| T23 | KPI `Sevo=ΔU/ΔS_info > 1.5` | 3 | ☐ | nuovo metric |
-| T24 | `Evolve_DNA` (mutation 0.01) su genome quantistico | 5 | ☐ | riuso evolution/ |
-| T25 | Proxy IIT `Φ>1.0` come metrica osservazionale | 6 | ☐ | non-coscienza |
-| T26 | Backend Quantum Inspire (cQASM + lazy SDK, fallback numpy) | 1 | 🟢 | implementato; richiede account/token umano |
+| T22 | Orologio temporale `r(t)=10/√S_info` | 3 | ☑ | Implementato in `q_speace/q_speace/schumann.py` |
+| T23 | KPI `Sevo=ΔU/ΔS_info > 1.5` | 3 | ☑ | `SevoKPIClock` in `q_speace/q_speace/schumann.py` |
+| T24 | `Evolve_DNA` (mutation 0.01) su genome quantistico | 5 | ☑ | Placeholder implementato; non ancora test su evoluzione reale |
+| T25 | Proxy integrazione (φ/S/σ) | 6 | ⚠️ | **DECISIONE ARCHITETTURALE APERTA**: verifica funzionale ha falsificato la relazione tra `coherence_phi` classico e Φ-IIT (media pesata lineare, zero partizioni). Due opzioni: (a) costruire proxy IIT-informato su subsystem ≤6 qubit (trattabile su Starmon-5), oppure (b) rinominare onestamente come φ/S/σ (coerente con Haken slaving già scelto). Scegliere prima di implementare. |
+| T26 | Backend Quantum Inspire (cQASM + lazy SDK, fallback numpy) | 1 | ☑ | Implementato; Bell 2-qubit e Schumann 4-qubit eseguiti su hardware reale |
+| T27 | Bell circuit 2-qubit su QI hardware | 1 | ☑ | Validazione pipeline cQASM 3.0 → hardware |
+| T28 | Convenzioni sintassi cQASM 3.0 | 1 | ☑ | Confermate empiricamente |
+| T29 | φ_bridge validation su Starmon-5 (5-qubit) | 1 | ☐ | Primo test che collega layer quantistico a metrica φ; numerare come task proprio |
+| T30 | Lettore downstream per life_story.jsonl | 6 | ☐ | Chiude il gap agentività: narrativa oggi write-only. Aggiungere consumer in identity_kernel/ o drive_engine |
+| T31 | Fix fallback nullo ConfidenceEngine | 6 | ☐ | Default 1.0 → 0.5 o None esplicito quando NeuralCircuit non disponibile. Percorso tracciato in `metacognitive_monitor.py:attach_confidence()`; nessuna contaminazione MM-APR trovata, ma va chiuso prima del merge T7/T8 |
 
 ---
 
