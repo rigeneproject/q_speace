@@ -1,0 +1,188 @@
+# Tissue Definitions
+# Each tissue is a functional unit within an organ, composed of cell types.
+# Version: 1.0.0
+
+tissues:
+  # ── Cognitive System > Memory Organ ───────────────────────────
+  semantic_tissue:
+    organ: memory
+    cell_types: [ltm_cell, wm_cell]
+    produces: [coherence]
+    consumes: [dopamine, acetylcholine]
+    receptors: [D1, M1]
+    metabolic_budget: 0.05
+    description: "Semantic knowledge storage and retrieval"
+
+  episodic_tissue:
+    organ: memory
+    cell_types: [episodic_cell]
+    produces: [novelty, coherence]
+    consumes: [dopamine, acetylcholine]
+    receptors: [D1, M1]
+    metabolic_budget: 0.03
+    description: "Episodic experience storage"
+
+  # ── Cognitive System > Attention Organ ────────────────────────
+  salience_tissue:
+    organ: attention
+    cell_types: [salience_cell]
+    produces: [novelty, threat]
+    consumes: [dopamine, noradrenaline, cortisol]
+    receptors: [D1, ADRA1, GR]
+    metabolic_budget: 0.04
+    description: "Salience detection and gating"
+
+  # ── Cognitive System > Prediction Organ ───────────────────────
+  error_minimisation_tissue:
+    organ: prediction
+    cell_types: [prediction_cell]
+    produces: [prediction_error]
+    consumes: [glutamate, dopamine, acetylcholine]
+    receptors: [NMDA, D1, M1]
+    metabolic_budget: 0.06
+    description: "Free-energy minimisation, prediction error computation"
+
+  # ── Immune System > Threat Assessment Organ ───────────────────
+  pattern_recognition_tissue:
+    organ: threat_assessment
+    cell_types: [pattern_recognition_cell]
+    produces: [il6]
+    consumes: [cortisol, energy]
+    receptors: [GR, IR]
+    metabolic_budget: 0.03
+    description: "Anomaly detection in signal patterns"
+
+  alarm_signalling_tissue:
+    organ: threat_assessment
+    cell_types: [alarm_signalling_cell]
+    produces: [tnfa, adrenaline]
+    consumes: [il6, energy]
+    receptors: [IL6R, ADRB2]
+    metabolic_budget: 0.04
+    description: "Danger signal propagation"
+
+  # ── Immune System > Response Organ ────────────────────────────
+  inflammation_tissue:
+    organ: immune_response
+    cell_types: [inflammation_cell]
+    produces: [il6, tnfa]
+    consumes: [energy, nutrition]
+    receptors: [IL6R, TNFR, GR]
+    metabolic_budget: 0.05
+    description: "Inflammatory response execution"
+
+  repair_tissue:
+    organ: immune_response
+    cell_types: [repair_cell]
+    produces: [repair, igf1]
+    consumes: [energy, nutrition, growth_hormone]
+    receptors: [GHR, IGF1R, IR]
+    metabolic_budget: 0.06
+    description: "Structural repair and regeneration"
+
+  # ── Enteric System > Gut Organ ────────────────────────────────
+  microbiome_tissue:
+    organ: gut
+    cell_types: [microbiome_cell]
+    produces: [serotonin, nutrition, novelty]
+    consumes: [nutrition, energy]
+    receptors: [ADRB2]
+    metabolic_budget: 0.02
+    description: "Microbial population dynamics and metabolite production"
+
+  barrier_tissue:
+    organ: gut
+    cell_types: [barrier_cell]
+    produces: [inflammation]
+    consumes: [energy, nutrition, cortisol]
+    receptors: [GR, IL6R]
+    metabolic_budget: 0.03
+    description: "Gut barrier integrity and permeability regulation"
+
+  enteric_neural_tissue:
+    organ: gut
+    cell_types: [enteric_neural_cell]
+    produces: [serotonin, gut_learning, coherence]
+    consumes: [dopamine, serotonin, noradrenaline]
+    receptors: [D1, 5HT1A, ADRA1]
+    metabolic_budget: 0.03
+    description: "Enteric nervous system — local gut-brain signalling"
+
+  # ── Endocrine System > HPA Axis Organ ─────────────────────────
+  crh_tissue:
+    organ: hpa_axis
+    cell_types: [crh_cell]
+    produces: [cortisol]
+    consumes: [energy, stress]
+    receptors: [GR, ADRA1]
+    metabolic_budget: 0.02
+    description: "CRH → ACTH → cortisol cascade initiation"
+
+  # ── Endocrine System > Pancreatic Organ ───────────────────────
+  beta_tissue:
+    organ: pancreas
+    cell_types: [beta_cell]
+    produces: [insulin]
+    consumes: [energy, nutrition]
+    receptors: [IR, GLP1R]
+    metabolic_budget: 0.02
+    description: "Insulin secretion in response to glucose"
+
+  alpha_tissue:
+    organ: pancreas
+    cell_types: [alpha_cell]
+    produces: [glucagon]
+    consumes: [energy]
+    receptors: [IR, GR]
+    metabolic_budget: 0.01
+    description: "Glucagon secretion in response to low glucose"
+
+  # ── Endocrine System > Adipose Organ ─────────────────────────
+  leptin_tissue:
+    organ: adipose
+    cell_types: [adipose_cell]
+    produces: [leptin]
+    consumes: [energy, nutrition]
+    receptors: [IR, ADRB2, GR]
+    metabolic_budget: 0.02
+    description: "Leptin secretion — long-term energy balance signal"
+
+  # ── Autonomic System > Sympathetic Organ ──────────────────────
+  sympathetic_tissue:
+    organ: sympathetic
+    cell_types: [sympathetic_cell]
+    produces: [noradrenaline, adrenaline]
+    consumes: [energy, threat]
+    receptors: [ADRA1, GR]
+    metabolic_budget: 0.03
+    description: "Sympathetic activation — fight-or-flight"
+
+  # ── Autonomic System > Parasympathetic Organ ──────────────────
+  parasympathetic_tissue:
+    organ: parasympathetic
+    cell_types: [parasympathetic_cell]
+    produces: [acetylcholine]
+    consumes: [energy, safety, oxytocin]
+    receptors: [M1, OXTR]
+    metabolic_budget: 0.03
+    description: "Parasympathetic activation — rest-and-digest"
+
+  # ── Metabolic System > Energy Regulation Organ ────────────────
+  energy_regulation_tissue:
+    organ: energy_regulation
+    cell_types: [energy_regulation_cell]
+    produces: [energy]
+    consumes: [nutrition, hydration, energy]
+    receptors: [IR, GHR, IGF1R]
+    metabolic_budget: 0.02
+    description: "Global energy pool regulation"
+
+  # ── Metabolic System > Waste Clearance Organ ──────────────────
+  waste_clearance_tissue:
+    organ: waste_clearance
+    cell_types: [waste_clearance_cell]
+    produces: [entropy]
+    consumes: [energy, hydration]
+    receptors: [IR]
+    metabolic_budget: 0.03
+    description: "Metabolic waste clearance, entropy reduction"

@@ -1,0 +1,248 @@
+=== T+0s ‚Äî STATO INIZIALE ===
+Sat Jun  6 13:38:11     2026
+
+--- /api/status ---
+{"status":"online","agents_count":20,"plan_progress":0.26666666666666666,"model":"minimax-m3:cloud"}
+--- /api/orchestrator/status ---
+{"running":true,"load_distribution":{"chief_architect":0.0,"brain_supervisor":0.0,"dna_supervisor":0.0,"organism_supervisor":0.0,"memory_supervisor":0.0,"selfimprovement_supervisor":0.0,"embodied_cognition_supervisor":0.0,"advanced_language_supervisor":0.0,"longterm_planning_supervisor":0.0,"self_awareness_supervisor":0.0,"neuron_tech":0.0,"synapse_tech":0.0,"region_tech":0.0,"genome_tech":0.0,"runtime_tech":0.0,"defense_tech":0.0,"memory_tech":0.0,"evolution_tech":0.0,"network_tech":0.0,"embodiment_tech":0.0},"scheduler":{"findings_count":0,"seconds_since_chief":1780745891.321368,"seconds_since_supervisors":1780745891.3213687,"chief_interval":300.0,"supervisor_interval":600.0},"health_alerts":[],"executions_count":0}
+--- /api/orchestrator/health ---
+{"ok":true,"checks":["morphological_snapshot","embodiment_state"],"alerts":[],"coherence_phi":0.5,"tick":370,"cpu":0.19,"memory":0.0,"timestamp":1780745891.3675864,"cpu_raw":19.0,"memory_raw":5883502592.0}
+
+=== T+10s ‚Äî CREAZIONE TASK ===
+Sat Jun  6 13:38:42     2026
+
+Task 1 (M0, runtime_tech, high):
+{"detail":"There was an error parsing the body"}
+Task 2 (M1, region_tech, high):
+{"id":"T4","title":"Analisi routing inter-regionale","description":"Verifica routing segnali tra le 8 regioni cerebrali, identifica colli di bottiglia nel pathway plasticity, e proponi ottimizzazioni per bilanciare il carico tra regioni.","agent_id":"region_tech","milestone_id":"M1","priority":"high","status":"pending","created_at":1780745922.5338311,"completed_at":null}
+Task 3 (M2, genome_tech, medium):
+{"detail":"There was an error parsing the body"}
+Task 4 (M3, memory_tech, medium):
+{"id":"T5","title":"Ottimizzazione consolidamento mnemonico","description":"Verifica il ciclo di consolidamento delle memorie morfologiche, episodiche e semantiche. Identifica pattern di regressione e proponi miglioramenti al pattern completion.","agent_id":"memory_tech","milestone_id":"M3","priority":"medium","status":"pending","created_at":1780745922.6610422,"completed_at":null}
+Task 5 (M4, evolution_tech, high):
+{"id":"T6","title":"Ciclo di auto-miglioramento","description":"Il tecnico evolution_tech deve valutare lo stato del SelfImprovementLoop, del EDDCVTEvolutionaryKernel e del MultiCycleEvolutionRunner, e proporre patch architetturali.","agent_id":"evolution_tech","milestone_id":"M4","priority":"high","status":"pending","created_at":1780745922.7263978,"completed_at":null}
+Task 6 (M5, defense_tech, medium):
+{"id":"T7","title":"Verifica difesa cellulare","description":"Verifica lo stato del sistema immunitario digitale, del CellularDefenseEngine e del CellularRepairEngine. Identifica pattern di stress cellulare anomalo.","agent_id":"defense_tech","milestone_id":"M5","priority":"medium","status":"pending","created_at":1780745922.7870119,"completed_at":null}
+Task 7 (auto, M7, high):
+{"id":"T8","title":"Test load balancing automatico","description":"Questo task deve essere auto-assegnato dal sistema al tecnico meno carico della milestone M7.","agent_id":"auto","milestone_id":"M7","priority":"high","status":"pending","created_at":1780745922.8491776,"completed_at":null}
+--- Task list ---
+  T1: pending    agent=selfimprovement_supervisor     title=Verificare limitation detector
+  T2: pending    agent=chief_architect                title=Test task automatico
+  T3: completed  agent=neuron_tech                    title=Verifica coerenze cervello digitale
+  T4: pending    agent=region_tech                    title=Analisi routing inter-regionale
+  T5: pending    agent=memory_tech                    title=Ottimizzazione consolidamento mnemonico
+  T6: pending    agent=evolution_tech                 title=Ciclo di auto-miglioramento
+  T7: pending    agent=defense_tech                   title=Verifica difesa cellulare
+  T8: pending    agent=auto                           title=Test load balancing automatico
+
+=== T+20s ‚Äî TEST AUTO-ASSIGN ===
+Sat Jun  6 13:38:55     2026
+
+T8 auto-assign (milestone M7):
+{"task_id":"T8","assigned_to":"memory_tech"}
+Verifica T8 dopo auto-assign:
+  T8: agent=memory_tech (auto-assigned from milestone M7)
+
+=== T+30s ‚Äî ESECUZIONE T4 (region_tech) ===
+Sat Jun  6 13:39:11     2026
+
+Esecuzione T4 (analisi routing regioni cerebrali):
+Tempo esecuzione: 134s
+
+=== T+165s ‚Äî ESECUZIONE T5 (memory_tech) ===
+Sat Jun  6 13:41:59     2026
+T5 tempo: 171s
+Errore lettura T5: [Errno 2] No such file or directory: '/c/temp/t5_result.json'
+
+=== T+6m ‚Äî ESECUZIONE T6 (evolution_tech) ===
+Sat Jun  6 13:46:37     2026
+T6 tempo: 120s
+  T6: outcome=failed, agent=evolution_tech, duration=120.7s, steps=2
+  Validation note: none
+
+=== T+8m ‚Äî ESECUZIONE T7 (defense_tech) ===
+Sat Jun  6 13:49:10     2026
+T7 tempo: 132s
+  T7: outcome=success, agent=defense_tech, duration=132.0s, steps=2
+  Validation note: Output parziale: richiede follow-up
+
+=== T+10m ‚Äî RICERCA WEB 1: STDP per brain_supervisor ===
+Sat Jun  6 13:51:35     2026
+Tempo: 84s
+  Agent: brain_supervisor
+  Results: 2, Documents: 1
+  Synthesis: 8944 chars
+  Preview: # üìö Sintesi Letteratura STDP ‚Üí Applicazione a SPEACE
+
+---
+
+## 1Ô∏è‚É£ Punti Chiave dalla Letteratura
+
+### üéØ Definizione canonica
+Lo **Spike-Ti...
+
+=== T+12m ‚Äî RICERCA WEB 2: neurogenesi per neuron_tech ===
+Sat Jun  6 13:53:19     2026
+Tempo: 99s
+  Agent: neuron_tech
+  Results: 2, Documents: 1
+  Synthesis: 8942 chars
+
+Cronologia ricerche brain_supervisor:
+  research: STDP synaptic plasticity
+  research: STDP synaptic plasticity
+
+=== T+14m ‚Äî TEST BROADCAST ===
+Sat Jun  6 13:55:13     2026
+Broadcast tempo: 0s
+  Risposte ricevute da 0 agenti:
+    ... (altri 0 agenti)
+
+=== T+22m ‚Äî BROADCAST RISULTATI (20/20 agenti) ===
+Sat Jun  6 14:02:08     2026
+Risposte totali: 20/20 agenti
+
+=== T+22m ‚Äî STATO ORCHESTRATOR DOPO 22 MINUTI ===
+Sat Jun  6 14:02:23     2026
+
+--- Orchestrator status ---
+  Findings count: 10
+  Sec since chief: 971s (intervallo: 300.0s)
+  Sec since supervisors: 971s (intervallo: 600.0s)
+  Executions count: 2
+
+--- Health ---
+  OK: False
+  Coherence: 0.5
+  Tick: 370
+  CPU: 0.19
+  Alerts: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 971s']
+
+--- Load distribution ---
+  Top 5 agenti pi˘ carichi:
+    organism_supervisor                : 3.0
+    selfimprovement_supervisor         : 3.0
+    defense_tech                       : 3.0
+    evolution_tech                     : 3.0
+
+=== T+23m ‚Äî FORZA AUTO-ANALYSIS TICK ===
+Sat Jun  6 14:02:50     2026
+
+Tick forzato, attesa 60s per generazione findings...
+  Findings count dopo tick: 13
+  Sec since chief: 147s
+
+--- Auto-analysis recenti ---
+  Trovate 5 entries
+    supervisor_review: longterm_planning_supervisor (1780747161.703133)
+    supervisor_review: self_awareness_supervisor (1780747253.5815585)
+    chief_review: chief_architect (1780747357.5901592)
+
+=== T+24m ‚Äî HEALTH ALERTS LOG ===
+Sat Jun  6 14:04:02     2026
+  Alert registrati: 4
+    1780739003.9889774: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 873s']
+    1780739856.2456727: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 1725s']
+    1780740775.5010998: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 2644s']
+
+=== T+25m ‚Äî TEST AGENT ENDPOINT + TASK FINAL STATE ===
+Sat Jun  6 14:04:19     2026
+
+--- Singolo agent chat (chief_architect) ---
+Chat tempo: 0s
+  Response length: 0 chars
+  Preview: ...
+
+--- Singolo agent analyze (runtime_tech) ---
+Analyze tempo: 44s
+  Analysis length: 3978 chars
+  Preview: # üîç Analisi Contesto Runtime SPEACE v0.9.0
+
+---
+
+## 1Ô∏è‚É£ Osservazioni e Anomalie Rilevate
+
+| Metrica | Valore | Lettura | ‚ö†Ô∏è Anomalia |
+|---...
+
+--- Stato finale task ---
+  Overall progress: 26.7%
+  Total tasks: 8
+  Completed: 2
+  Pending: 3
+  Failed: 3
+
+=== T+27m ‚Äî TEST RICERCA WEB 3: embodied cognition ===
+Sat Jun  6 14:05:34     2026
+Tempo: 81s
+  Agent: embodied_cognition_supervisor
+  Results: 2, Documents: 1
+  Synthesis: 8401 chars
+
+=== T+29m ‚Äî ESECUZIONE T8 (memory_tech da auto-assign) ===
+Sat Jun  6 14:07:06     2026
+T8 tempo: 94s
+  T8: outcome=failed, agent=memory_tech, duration=93.8s
+  Note: none
+
+=== T+30m ‚Äî REPORT FINALE TEST 30 MINUTI ===
+Sat Jun  6 14:09:34     2026
+
+--- /api/status finale ---
+{"status":"online","agents_count":20,"plan_progress":0.26666666666666666,"model":"minimax-m3:cloud"}
+
+--- Orchestrator status finale ---
+  Findings count: 19
+  Sec since chief: 491s
+  Sec since supervisors: 1402s
+  Executions count: 3
+  Health alerts (last 5):
+    ‚ö†Ô∏è Tick 370 non avanza da 911s
+    ‚ö†Ô∏è Tick 370 non avanza da 971s
+
+--- Health finale ---
+  OK: False
+  Coherence: 0.5
+  Tick: 370
+  CPU: 0.19
+  Alerts: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 1402s']
+
+--- Piano finale ---
+  Overall progress: 26.7%
+  Total tasks: 8 | Completed: 2 | Pending: 2 | Failed: 4
+
+--- Task list finale ---
+  T1: pending    agent=selfimprovement_supervisor     title=Verificare limitation detector
+  T2: pending    agent=chief_architect                title=Test task automatico
+  T3: completed  agent=neuron_tech                    title=Verifica coerenze cervello digitale
+  T4: failed     agent=region_tech                    title=Analisi routing inter-regionale
+  T5: failed     agent=memory_tech                    title=Ottimizzazione consolidamento mnemonico
+  T6: failed     agent=evolution_tech                 title=Ciclo di auto-miglioramento
+  T7: completed  agent=defense_tech                   title=Verifica difesa cellulare
+  T8: failed     agent=memory_tech                    title=Test load balancing automatico
+
+--- Ricerche web per agente ---
+  brain_supervisor:
+    research: STDP synaptic plasticity
+    research: STDP synaptic plasticity
+  neuron_tech:
+    research: adult neurogenesis hippocampus review
+    research: adult neurogenesis hippocampus review
+  embodied_cognition_supervisor:
+    research: sensorimotor integration robotics
+    research: sensorimotor integration robotics
+
+--- Health alerts log ---
+  Total alerts: 4
+    ts=1780739003.9889774: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 873s']
+    ts=1780739856.2456727: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 1725s']
+    ts=1780740775.5010998: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 2644s']
+    ts=1780747283.578091: ['‚ö\xa0Ô∏\udc8f Tick 370 non avanza da 911s']
+
+--- Auto-analysis count ---
+  Total: 73 findings
+    chief_review: 9
+    supervisor_review: 64
+
+=== TEST COMPLETATO ===
+Sat Jun  6 14:09:35     2026

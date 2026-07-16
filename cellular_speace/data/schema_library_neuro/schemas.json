@@ -1,0 +1,20 @@
+{
+  "schema_fractal_self_replicate_in_3x3_out_9x9_cin_4_cout_4_gr": {
+    "schema_id": "schema_fractal_self_replicate_in_3x3_out_9x9_cin_4_cout_4_gr",
+    "name": "fractal_self_replicate",
+    "transformation_type": "tiling",
+    "steps": [
+      {
+        "name": "fractal_self_replicate",
+        "params": {}
+      }
+    ],
+    "parameters": {},
+    "parameter_defaults": {},
+    "task_signature": "in_3x3_out_9x9_cin_4_cout_4_grow",
+    "success_count": 1,
+    "avg_pixel_score": 1.0,
+    "created_at": 1781215911.4599528,
+    "last_used": 1781215911.4599535
+  }
+}

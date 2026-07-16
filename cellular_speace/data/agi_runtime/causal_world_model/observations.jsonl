@@ -1,0 +1,64 @@
+{"timestamp": 1781432138.6175818, "action_name": "write_text_file", "action_params": {"path": "C:\\cellular_speace\\data\\agi_runtime\\autonomous_log.txt"}, "effect": "log_written", "confidence": 1.0, "context": {"tick": 10, "coherence": 0.5736336301415055}}
+{"timestamp": 1781432141.3757398, "action_name": "write_text_file", "action_params": {"path": "C:\\cellular_speace\\data\\agi_runtime\\autonomous_log.txt"}, "effect": "log_written", "confidence": 1.0, "context": {"tick": 20, "coherence": 0.5742603867734906}}
+{"timestamp": 1781432143.8593504, "action_name": "write_text_file", "action_params": {"path": "C:\\cellular_speace\\data\\agi_runtime\\autonomous_log.txt"}, "effect": "log_written", "confidence": 1.0, "context": {"tick": 30, "coherence": 0.5742253088685279}}
+{"timestamp": 1781432146.7254643, "action_name": "write_text_file", "action_params": {"path": "C:\\cellular_speace\\data\\agi_runtime\\autonomous_log.txt"}, "effect": "log_written", "confidence": 1.0, "context": {"tick": 40, "coherence": 0.5746351048518499}}
+{"timestamp": 1781435508.890358, "action_name": "write_text_file", "action_params": {"path": "/tmp/log.txt"}, "effect": "file_created", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.8909812, "action_name": "write_text_file", "action_params": {"path": "/tmp/out.txt"}, "effect": "file_appended", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.8915918, "action_name": "write_text_file", "action_params": {"path": "/tmp/data.json"}, "effect": "bytes_written", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.8921661, "action_name": "write_text_file", "action_params": {"path": "/tmp/report.md"}, "effect": "disk_full", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.8931444, "action_name": "write_text_file", "action_params": {"path": "/tmp/debug.log"}, "effect": "permission_denied", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.893726, "action_name": "read_text_file", "action_params": {"path": "/tmp/log.txt"}, "effect": "content_read", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.8942516, "action_name": "read_text_file", "action_params": {"path": "/tmp/out.txt"}, "effect": "file_not_found", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.894741, "action_name": "read_text_file", "action_params": {"path": "/tmp/data.json"}, "effect": "empty_file", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.895256, "action_name": "read_text_file", "action_params": {"path": "/tmp/report.md"}, "effect": "binary_detected", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.895816, "action_name": "read_text_file", "action_params": {"path": "/tmp/debug.log"}, "effect": "permission_denied", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.8963559, "action_name": "list_directory", "action_params": {"path": "/tmp"}, "effect": "entries_listed", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.8968782, "action_name": "list_directory", "action_params": {"path": "/home"}, "effect": "empty_directory", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.8974543, "action_name": "list_directory", "action_params": {"path": "/var/log"}, "effect": "permission_denied", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.8979993, "action_name": "list_directory", "action_params": {"path": "/etc"}, "effect": "symlink_detected", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.8985434, "action_name": "list_directory", "action_params": {"path": "/usr/local"}, "effect": "too_many_entries", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.8991733, "action_name": "get_system_time", "action_params": {"format": "unix"}, "effect": "timestamp_returned", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.8997061, "action_name": "get_system_time", "action_params": {"format": "iso"}, "effect": "timezone_detected", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.9002314, "action_name": "get_system_time", "action_params": {"format": "local"}, "effect": "ntp_synced", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.9008236, "action_name": "get_system_time", "action_params": {"format": "utc"}, "effect": "drift_detected", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.901418, "action_name": "get_system_time", "action_params": {"format": "epoch"}, "effect": "daylight_saving", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.9020033, "action_name": "get_cpu_temperature", "action_params": {"sensor": "cpu0"}, "effect": "temperature_read", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.9025943, "action_name": "get_cpu_temperature", "action_params": {"sensor": "cpu1"}, "effect": "sensor_not_found", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.9031913, "action_name": "get_cpu_temperature", "action_params": {"sensor": "package"}, "effect": "overheat_warning", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.9037547, "action_name": "get_cpu_temperature", "action_params": {"sensor": "core0"}, "effect": "fan_speed_increased", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.904328, "action_name": "get_cpu_temperature", "action_params": {"sensor": "core1"}, "effect": "thermal_throttled", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.9049056, "action_name": "get_memory_usage", "action_params": {"type": "ram"}, "effect": "usage_stats_returned", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.9055383, "action_name": "get_memory_usage", "action_params": {"type": "swap"}, "effect": "swap_high", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.906167, "action_name": "get_memory_usage", "action_params": {"type": "cached"}, "effect": "memory_pressure", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.9067662, "action_name": "get_memory_usage", "action_params": {"type": "buffers"}, "effect": "cache_freed", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.9074259, "action_name": "get_memory_usage", "action_params": {"type": "total"}, "effect": "oom_risk_detected", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.9080415, "action_name": "calculate_fibonacci", "action_params": {"n": 10}, "effect": "result_computed", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.908594, "action_name": "calculate_fibonacci", "action_params": {"n": 15}, "effect": "stack_overflow", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.9091747, "action_name": "calculate_fibonacci", "action_params": {"n": 20}, "effect": "large_number_warning", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.90991, "action_name": "calculate_fibonacci", "action_params": {"n": 25}, "effect": "cached_result", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.9105756, "action_name": "calculate_fibonacci", "action_params": {"n": 30}, "effect": "overflow_detected", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.9111826, "action_name": "sort_numbers", "action_params": {"algorithm": "bubble", "count": 100}, "effect": "sorted_successfully", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.9118233, "action_name": "sort_numbers", "action_params": {"algorithm": "quick", "count": 500}, "effect": "memory_exhausted", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.9124358, "action_name": "sort_numbers", "action_params": {"algorithm": "merge", "count": 200}, "effect": "already_sorted", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.913024, "action_name": "sort_numbers", "action_params": {"algorithm": "heap", "count": 300}, "effect": "reverse_sorted", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.9136784, "action_name": "sort_numbers", "action_params": {"algorithm": "insertion", "count": 50}, "effect": "partial_sort", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.9142876, "action_name": "search_text", "action_params": {"pattern": "error", "case_sensitive": true}, "effect": "matches_found", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.9150429, "action_name": "search_text", "action_params": {"pattern": "warning", "case_sensitive": false}, "effect": "no_matches", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.9156408, "action_name": "search_text", "action_params": {"pattern": "TODO", "case_sensitive": true}, "effect": "pattern_compiled", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.9162114, "action_name": "search_text", "action_params": {"pattern": "FIXME", "case_sensitive": false}, "effect": "case_sensitive_match", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.9168005, "action_name": "search_text", "action_params": {"pattern": "INFO", "case_sensitive": true}, "effect": "regex_error", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.9175198, "action_name": "count_lines", "action_params": {"file": "a.log", "include_empty": true}, "effect": "count_returned", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.9181447, "action_name": "count_lines", "action_params": {"file": "b.log", "include_empty": false}, "effect": "file_not_found", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.918806, "action_name": "count_lines", "action_params": {"file": "c.log", "include_empty": true}, "effect": "binary_file_skipped", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.9193685, "action_name": "count_lines", "action_params": {"file": "d.log", "include_empty": false}, "effect": "large_file_warning", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.9199564, "action_name": "count_lines", "action_params": {"file": "e.log", "include_empty": true}, "effect": "compressed_detected", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.9205313, "action_name": "ping_host", "action_params": {"host": "localhost", "count": 1}, "effect": "host_reachable", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.921141, "action_name": "ping_host", "action_params": {"host": "127.0.0.1", "count": 3}, "effect": "host_unreachable", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.9217596, "action_name": "ping_host", "action_params": {"host": "localhost", "count": 5}, "effect": "packet_loss", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.922328, "action_name": "ping_host", "action_params": {"host": "0.0.0.0", "count": 2}, "effect": "high_latency", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.9230456, "action_name": "ping_host", "action_params": {"host": "127.0.0.1", "count": 4}, "effect": "dns_resolved", "confidence": 0.98, "context": {}}
+{"timestamp": 1781435508.9236405, "action_name": "calculate_checksum", "action_params": {"algorithm": "md5"}, "effect": "checksum_computed", "confidence": 0.7, "context": {}}
+{"timestamp": 1781435508.9241939, "action_name": "calculate_checksum", "action_params": {"algorithm": "sha1"}, "effect": "algorithm_unsupported", "confidence": 0.77, "context": {}}
+{"timestamp": 1781435508.9248161, "action_name": "calculate_checksum", "action_params": {"algorithm": "sha256"}, "effect": "file_not_found", "confidence": 0.84, "context": {}}
+{"timestamp": 1781435508.925351, "action_name": "calculate_checksum", "action_params": {"algorithm": "sha512"}, "effect": "checksum_mismatch", "confidence": 0.91, "context": {}}
+{"timestamp": 1781435508.9258542, "action_name": "calculate_checksum", "action_params": {"algorithm": "crc32"}, "effect": "hash_collision", "confidence": 0.98, "context": {}}

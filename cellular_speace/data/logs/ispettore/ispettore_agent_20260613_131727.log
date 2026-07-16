@@ -1,0 +1,1742 @@
+2026-06-13 13:17:27.644 [OK] Avvio Ispettore | mode=local chat=False once=False
+2026-06-13 13:17:27.645 [OK] Ispettore avviato in modalita loop continuo
+2026-06-13 13:17:27.648 [INFO] ===== INIZIO CICLO #1 | Modalita local =====
+2026-06-13 13:17:27.673 [OK] Avvio Ispettore | mode=local chat=False once=False
+2026-06-13 13:17:27.677 [OK] Ispettore avviato in modalita loop continuo
+2026-06-13 13:17:27.681 [INFO] ===== INIZIO CICLO #1 | Modalita local =====
+2026-06-13 13:17:30.356 [INFO] File da scansionare: 14275
+2026-06-13 13:17:30.425 [INFO] File da scansionare: 14275
+2026-06-13 13:17:31.057 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:17:31.072 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_131731.md
+2026-06-13 13:17:31.107 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:17:31.178 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:17:31.195 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_131731.md
+2026-06-13 13:17:31.204 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:19:31.130 [INFO] ===== INIZIO CICLO #2 | Modalita local =====
+2026-06-13 13:19:31.219 [INFO] ===== INIZIO CICLO #2 | Modalita local =====
+2026-06-13 13:19:33.877 [INFO] File da scansionare: 14373
+2026-06-13 13:19:33.997 [INFO] File da scansionare: 14373
+2026-06-13 13:19:34.573 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:19:34.624 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_131934.md
+2026-06-13 13:19:34.640 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:19:34.825 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:19:34.833 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_131934.md
+2026-06-13 13:19:34.837 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:21:34.649 [INFO] ===== INIZIO CICLO #3 | Modalita local =====
+2026-06-13 13:21:34.842 [INFO] ===== INIZIO CICLO #3 | Modalita local =====
+2026-06-13 13:21:36.359 [INFO] File da scansionare: 14464
+2026-06-13 13:21:36.538 [INFO] File da scansionare: 14464
+2026-06-13 13:21:36.850 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:21:36.853 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132136.md
+2026-06-13 13:21:36.854 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:21:37.001 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:21:37.005 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132137.md
+2026-06-13 13:21:37.006 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:23:36.855 [INFO] ===== INIZIO CICLO #4 | Modalita local =====
+2026-06-13 13:23:37.008 [INFO] ===== INIZIO CICLO #4 | Modalita local =====
+2026-06-13 13:23:40.565 [INFO] File da scansionare: 14569
+2026-06-13 13:23:40.759 [INFO] File da scansionare: 14569
+2026-06-13 13:23:41.749 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:23:41.775 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132341.md
+2026-06-13 13:23:41.777 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:23:42.486 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:23:42.543 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132342.md
+2026-06-13 13:23:42.545 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:25:41.786 [INFO] ===== INIZIO CICLO #5 | Modalita local =====
+2026-06-13 13:25:42.548 [INFO] ===== INIZIO CICLO #5 | Modalita local =====
+2026-06-13 13:25:43.507 [INFO] File da scansionare: 14664
+2026-06-13 13:25:44.052 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:25:44.467 [INFO] File da scansionare: 14664
+2026-06-13 13:25:44.991 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:25:48.085 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 13:25:48.092 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132548.md
+2026-06-13 13:25:48.093 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:25:48.582 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 13:25:48.586 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132548.md
+2026-06-13 13:25:48.588 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:27:48.094 [INFO] ===== INIZIO CICLO #6 | Modalita local =====
+2026-06-13 13:27:48.589 [INFO] ===== INIZIO CICLO #6 | Modalita local =====
+2026-06-13 13:27:50.052 [INFO] File da scansionare: 14770
+2026-06-13 13:27:50.588 [INFO] File da scansionare: 14770
+2026-06-13 13:27:50.667 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:27:50.672 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132750.md
+2026-06-13 13:27:50.674 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:27:51.167 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:27:51.169 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132751.md
+2026-06-13 13:27:51.171 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:29:50.676 [INFO] ===== INIZIO CICLO #7 | Modalita local =====
+2026-06-13 13:29:51.172 [INFO] ===== INIZIO CICLO #7 | Modalita local =====
+2026-06-13 13:29:52.569 [INFO] File da scansionare: 14878
+2026-06-13 13:29:53.087 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:29:53.094 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132953.md
+2026-06-13 13:29:53.098 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:29:53.118 [INFO] File da scansionare: 14878
+2026-06-13 13:29:53.684 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:29:53.686 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_132953.md
+2026-06-13 13:29:53.688 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:31:53.099 [INFO] ===== INIZIO CICLO #8 | Modalita local =====
+2026-06-13 13:31:53.690 [INFO] ===== INIZIO CICLO #8 | Modalita local =====
+2026-06-13 13:31:54.825 [INFO] File da scansionare: 14987
+2026-06-13 13:31:55.282 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:31:55.285 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133155.md
+2026-06-13 13:31:55.286 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:31:55.354 [INFO] File da scansionare: 14987
+2026-06-13 13:31:55.834 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:31:55.836 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133155.md
+2026-06-13 13:31:55.838 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:33:55.287 [INFO] ===== INIZIO CICLO #9 | Modalita local =====
+2026-06-13 13:33:55.839 [INFO] ===== INIZIO CICLO #9 | Modalita local =====
+2026-06-13 13:33:56.992 [INFO] File da scansionare: 15104
+2026-06-13 13:33:57.484 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:33:57.490 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133357.md
+2026-06-13 13:33:57.491 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:33:57.631 [INFO] File da scansionare: 15104
+2026-06-13 13:33:58.073 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:33:58.076 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133358.md
+2026-06-13 13:33:58.077 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:35:57.492 [INFO] ===== INIZIO CICLO #10 | Modalita local =====
+2026-06-13 13:35:58.078 [INFO] ===== INIZIO CICLO #10 | Modalita local =====
+2026-06-13 13:35:59.062 [INFO] File da scansionare: 15215
+2026-06-13 13:35:59.494 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:35:59.495 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 13:35:59.501 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133559.md
+2026-06-13 13:35:59.503 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:35:59.730 [INFO] File da scansionare: 15215
+2026-06-13 13:36:00.112 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:36:00.113 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 13:36:00.119 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133600.md
+2026-06-13 13:36:00.120 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:37:59.505 [INFO] ===== INIZIO CICLO #11 | Modalita local =====
+2026-06-13 13:38:00.123 [INFO] ===== INIZIO CICLO #11 | Modalita local =====
+2026-06-13 13:38:01.850 [INFO] File da scansionare: 15316
+2026-06-13 13:38:02.437 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:38:02.444 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133802.md
+2026-06-13 13:38:02.445 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:38:02.460 [INFO] File da scansionare: 15318
+2026-06-13 13:38:03.043 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:38:03.046 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133803.md
+2026-06-13 13:38:03.048 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:40:02.451 [INFO] ===== INIZIO CICLO #12 | Modalita local =====
+2026-06-13 13:40:03.059 [INFO] ===== INIZIO CICLO #12 | Modalita local =====
+2026-06-13 13:40:04.915 [INFO] File da scansionare: 15424
+2026-06-13 13:40:05.576 [INFO] File da scansionare: 15424
+2026-06-13 13:40:05.580 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:40:05.595 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134005.md
+2026-06-13 13:40:05.600 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:40:06.208 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:40:06.223 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134006.md
+2026-06-13 13:40:06.228 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:42:05.605 [INFO] ===== INIZIO CICLO #13 | Modalita local =====
+2026-06-13 13:42:06.229 [INFO] ===== INIZIO CICLO #13 | Modalita local =====
+2026-06-13 13:42:07.159 [INFO] File da scansionare: 15512
+2026-06-13 13:42:07.802 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:42:07.807 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134207.md
+2026-06-13 13:42:07.809 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:42:08.222 [INFO] File da scansionare: 15512
+2026-06-13 13:42:08.900 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:42:08.903 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134208.md
+2026-06-13 13:42:08.905 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:44:07.810 [INFO] ===== INIZIO CICLO #14 | Modalita local =====
+2026-06-13 13:44:08.906 [INFO] ===== INIZIO CICLO #14 | Modalita local =====
+2026-06-13 13:44:09.345 [INFO] File da scansionare: 15605
+2026-06-13 13:44:09.891 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:44:09.893 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134409.md
+2026-06-13 13:44:09.894 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:44:10.412 [INFO] File da scansionare: 15606
+2026-06-13 13:44:10.854 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:44:10.856 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134410.md
+2026-06-13 13:44:10.857 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:46:09.895 [INFO] ===== INIZIO CICLO #15 | Modalita local =====
+2026-06-13 13:46:10.858 [INFO] ===== INIZIO CICLO #15 | Modalita local =====
+2026-06-13 13:46:11.741 [INFO] File da scansionare: 15700
+2026-06-13 13:46:12.407 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:46:12.408 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 13:46:12.411 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134612.md
+2026-06-13 13:46:12.413 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:46:12.773 [INFO] File da scansionare: 15702
+2026-06-13 13:46:13.242 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:46:13.243 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 13:46:13.247 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134613.md
+2026-06-13 13:46:13.248 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:48:12.414 [INFO] ===== INIZIO CICLO #16 | Modalita local =====
+2026-06-13 13:48:13.250 [INFO] ===== INIZIO CICLO #16 | Modalita local =====
+2026-06-13 13:48:13.890 [INFO] File da scansionare: 15800
+2026-06-13 13:48:14.375 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:48:14.378 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134814.md
+2026-06-13 13:48:14.379 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:48:14.804 [INFO] File da scansionare: 15800
+2026-06-13 13:48:15.277 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:48:15.279 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_134815.md
+2026-06-13 13:48:15.281 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:50:14.381 [INFO] ===== INIZIO CICLO #17 | Modalita local =====
+2026-06-13 13:50:15.283 [INFO] ===== INIZIO CICLO #17 | Modalita local =====
+2026-06-13 13:50:16.882 [INFO] File da scansionare: 15895
+2026-06-13 13:50:17.540 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:50:17.543 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135017.md
+2026-06-13 13:50:17.544 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:50:17.650 [INFO] File da scansionare: 15895
+2026-06-13 13:50:18.148 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:50:18.150 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135018.md
+2026-06-13 13:50:18.151 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:52:17.545 [INFO] ===== INIZIO CICLO #18 | Modalita local =====
+2026-06-13 13:52:18.152 [INFO] ===== INIZIO CICLO #18 | Modalita local =====
+2026-06-13 13:52:18.997 [INFO] File da scansionare: 15997
+2026-06-13 13:52:19.465 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:52:19.467 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135219.md
+2026-06-13 13:52:19.468 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:52:19.641 [INFO] File da scansionare: 15997
+2026-06-13 13:52:20.043 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:52:20.045 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135220.md
+2026-06-13 13:52:20.046 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:54:19.469 [INFO] ===== INIZIO CICLO #19 | Modalita local =====
+2026-06-13 13:54:20.047 [INFO] ===== INIZIO CICLO #19 | Modalita local =====
+2026-06-13 13:54:21.802 [INFO] File da scansionare: 16097
+2026-06-13 13:54:22.343 [INFO] File da scansionare: 16098
+2026-06-13 13:54:22.385 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:54:22.387 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135422.md
+2026-06-13 13:54:22.389 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:54:22.943 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:54:22.946 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135422.md
+2026-06-13 13:54:22.948 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:56:22.390 [INFO] ===== INIZIO CICLO #20 | Modalita local =====
+2026-06-13 13:56:22.949 [INFO] ===== INIZIO CICLO #20 | Modalita local =====
+2026-06-13 13:56:24.005 [INFO] File da scansionare: 16197
+2026-06-13 13:56:24.417 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:56:24.418 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 13:56:24.426 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135624.md
+2026-06-13 13:56:24.427 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:56:24.556 [INFO] File da scansionare: 16197
+2026-06-13 13:56:24.974 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:56:24.976 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 13:56:24.982 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135624.md
+2026-06-13 13:56:24.984 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:58:24.428 [INFO] ===== INIZIO CICLO #21 | Modalita local =====
+2026-06-13 13:58:24.985 [INFO] ===== INIZIO CICLO #21 | Modalita local =====
+2026-06-13 13:58:26.044 [INFO] File da scansionare: 16292
+2026-06-13 13:58:26.573 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:58:26.575 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135826.md
+2026-06-13 13:58:26.577 [INFO] Prossimo ciclo tra 120s
+2026-06-13 13:58:26.827 [INFO] File da scansionare: 16292
+2026-06-13 13:58:27.319 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:58:27.326 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_135827.md
+2026-06-13 13:58:27.327 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:00:26.578 [INFO] ===== INIZIO CICLO #22 | Modalita local =====
+2026-06-13 14:00:27.328 [INFO] ===== INIZIO CICLO #22 | Modalita local =====
+2026-06-13 14:00:28.765 [INFO] File da scansionare: 16400
+2026-06-13 14:00:29.340 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:00:29.343 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140029.md
+2026-06-13 14:00:29.344 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:00:29.404 [INFO] File da scansionare: 16401
+2026-06-13 14:00:29.923 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:00:29.927 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140029.md
+2026-06-13 14:00:29.932 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:02:29.346 [INFO] ===== INIZIO CICLO #23 | Modalita local =====
+2026-06-13 14:02:29.936 [INFO] ===== INIZIO CICLO #23 | Modalita local =====
+2026-06-13 14:02:31.877 [INFO] File da scansionare: 16489
+2026-06-13 14:02:32.352 [INFO] File da scansionare: 16490
+2026-06-13 14:02:32.454 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:02:32.456 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140232.md
+2026-06-13 14:02:32.457 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:02:32.875 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:02:32.877 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140232.md
+2026-06-13 14:02:32.879 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:04:32.466 [INFO] ===== INIZIO CICLO #24 | Modalita local =====
+2026-06-13 14:04:32.888 [INFO] ===== INIZIO CICLO #24 | Modalita local =====
+2026-06-13 14:04:35.682 [INFO] File da scansionare: 16587
+2026-06-13 14:04:36.090 [INFO] File da scansionare: 16588
+2026-06-13 14:04:36.418 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:04:36.433 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140436.md
+2026-06-13 14:04:36.436 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:04:36.808 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:04:36.817 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140436.md
+2026-06-13 14:04:36.825 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:06:36.441 [INFO] ===== INIZIO CICLO #25 | Modalita local =====
+2026-06-13 14:06:36.830 [INFO] ===== INIZIO CICLO #25 | Modalita local =====
+2026-06-13 14:06:39.236 [INFO] File da scansionare: 16676
+2026-06-13 14:06:39.555 [INFO] File da scansionare: 16677
+2026-06-13 14:06:39.979 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:06:39.983 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:06:39.990 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140639.md
+2026-06-13 14:06:39.994 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:06:40.238 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:06:40.249 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:06:40.265 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140640.md
+2026-06-13 14:06:40.267 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:08:39.999 [INFO] ===== INIZIO CICLO #26 | Modalita local =====
+2026-06-13 14:08:40.275 [INFO] ===== INIZIO CICLO #26 | Modalita local =====
+2026-06-13 14:08:42.828 [INFO] File da scansionare: 16778
+2026-06-13 14:08:43.075 [INFO] File da scansionare: 16778
+2026-06-13 14:08:43.688 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:08:43.702 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140843.md
+2026-06-13 14:08:43.717 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:08:43.811 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:08:43.823 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_140843.md
+2026-06-13 14:08:43.831 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:10:43.745 [INFO] ===== INIZIO CICLO #27 | Modalita local =====
+2026-06-13 14:10:43.850 [INFO] ===== INIZIO CICLO #27 | Modalita local =====
+2026-06-13 14:10:46.958 [INFO] File da scansionare: 16870
+2026-06-13 14:10:47.161 [INFO] File da scansionare: 16870
+2026-06-13 14:10:47.804 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:10:47.825 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141047.md
+2026-06-13 14:10:47.842 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:10:48.026 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:10:48.047 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141048.md
+2026-06-13 14:10:48.058 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:12:47.866 [INFO] ===== INIZIO CICLO #28 | Modalita local =====
+2026-06-13 14:12:48.069 [INFO] ===== INIZIO CICLO #28 | Modalita local =====
+2026-06-13 14:12:51.356 [INFO] File da scansionare: 16962
+2026-06-13 14:12:51.541 [INFO] File da scansionare: 16962
+2026-06-13 14:12:52.195 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:12:52.210 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141252.md
+2026-06-13 14:12:52.212 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:12:52.478 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:12:52.489 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141252.md
+2026-06-13 14:12:52.497 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:14:52.222 [INFO] ===== INIZIO CICLO #29 | Modalita local =====
+2026-06-13 14:14:52.517 [INFO] ===== INIZIO CICLO #29 | Modalita local =====
+2026-06-13 14:14:55.994 [INFO] File da scansionare: 17051
+2026-06-13 14:14:56.067 [INFO] File da scansionare: 17051
+2026-06-13 14:14:56.954 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:14:56.977 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141456.md
+2026-06-13 14:14:56.996 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:14:57.018 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:14:57.031 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141457.md
+2026-06-13 14:14:57.038 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:16:57.001 [INFO] ===== INIZIO CICLO #30 | Modalita local =====
+2026-06-13 14:16:57.043 [INFO] ===== INIZIO CICLO #30 | Modalita local =====
+2026-06-13 14:17:00.262 [INFO] File da scansionare: 17140
+2026-06-13 14:17:00.267 [INFO] File da scansionare: 17140
+2026-06-13 14:17:01.105 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:17:01.109 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:17:01.112 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:17:01.114 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:17:01.122 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141701.md
+2026-06-13 14:17:01.124 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:17:01.121 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141701.md
+2026-06-13 14:17:01.127 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:19:01.125 [INFO] ===== INIZIO CICLO #31 | Modalita local =====
+2026-06-13 14:19:01.128 [INFO] ===== INIZIO CICLO #31 | Modalita local =====
+2026-06-13 14:19:03.380 [INFO] File da scansionare: 17233
+2026-06-13 14:19:03.391 [INFO] File da scansionare: 17233
+2026-06-13 14:19:04.030 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:19:04.032 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141904.md
+2026-06-13 14:19:04.033 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:19:04.054 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:19:04.057 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_141904.md
+2026-06-13 14:19:04.060 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:21:04.034 [INFO] ===== INIZIO CICLO #32 | Modalita local =====
+2026-06-13 14:21:04.061 [INFO] ===== INIZIO CICLO #32 | Modalita local =====
+2026-06-13 14:21:05.966 [INFO] File da scansionare: 17324
+2026-06-13 14:21:05.993 [INFO] File da scansionare: 17324
+2026-06-13 14:21:06.553 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:21:06.559 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142106.md
+2026-06-13 14:21:06.561 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:21:06.564 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:21:06.566 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142106.md
+2026-06-13 14:21:06.567 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:23:06.562 [INFO] ===== INIZIO CICLO #33 | Modalita local =====
+2026-06-13 14:23:06.568 [INFO] ===== INIZIO CICLO #33 | Modalita local =====
+2026-06-13 14:23:08.201 [INFO] File da scansionare: 17421
+2026-06-13 14:23:08.220 [INFO] File da scansionare: 17421
+2026-06-13 14:23:08.734 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:23:08.735 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:23:08.738 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142308.md
+2026-06-13 14:23:08.738 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142308.md
+2026-06-13 14:23:08.739 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:25:08.740 [INFO] ===== INIZIO CICLO #34 | Modalita local =====
+2026-06-13 14:25:08.741 [INFO] ===== INIZIO CICLO #34 | Modalita local =====
+2026-06-13 14:25:11.276 [INFO] File da scansionare: 17510
+2026-06-13 14:25:11.305 [INFO] File da scansionare: 17510
+2026-06-13 14:25:11.987 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:25:11.993 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142511.md
+2026-06-13 14:25:11.995 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:25:12.000 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:25:12.002 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142512.md
+2026-06-13 14:25:12.004 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:27:11.996 [INFO] ===== INIZIO CICLO #35 | Modalita local =====
+2026-06-13 14:27:12.005 [INFO] ===== INIZIO CICLO #35 | Modalita local =====
+2026-06-13 14:27:14.476 [INFO] File da scansionare: 17605
+2026-06-13 14:27:14.494 [INFO] File da scansionare: 17605
+2026-06-13 14:27:15.147 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:27:15.148 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:27:15.151 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142715.md
+2026-06-13 14:27:15.153 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:27:15.172 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:27:15.174 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:27:15.177 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142715.md
+2026-06-13 14:27:15.179 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:29:15.158 [INFO] ===== INIZIO CICLO #36 | Modalita local =====
+2026-06-13 14:29:15.191 [INFO] ===== INIZIO CICLO #36 | Modalita local =====
+2026-06-13 14:29:18.688 [INFO] File da scansionare: 17692
+2026-06-13 14:29:18.839 [INFO] File da scansionare: 17692
+2026-06-13 14:29:19.546 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:29:19.560 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142919.md
+2026-06-13 14:29:19.570 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:29:19.896 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:29:19.904 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_142919.md
+2026-06-13 14:29:19.906 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:31:19.577 [INFO] ===== INIZIO CICLO #37 | Modalita local =====
+2026-06-13 14:31:19.913 [INFO] ===== INIZIO CICLO #37 | Modalita local =====
+2026-06-13 14:31:22.733 [INFO] File da scansionare: 17792
+2026-06-13 14:31:23.102 [INFO] File da scansionare: 17792
+2026-06-13 14:31:23.635 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:31:23.644 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143123.md
+2026-06-13 14:31:23.649 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:31:23.974 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:31:23.979 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143123.md
+2026-06-13 14:31:23.983 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:33:23.650 [INFO] ===== INIZIO CICLO #38 | Modalita local =====
+2026-06-13 14:33:23.989 [INFO] ===== INIZIO CICLO #38 | Modalita local =====
+2026-06-13 14:33:26.722 [INFO] File da scansionare: 17880
+2026-06-13 14:33:27.275 [INFO] File da scansionare: 17880
+2026-06-13 14:33:27.842 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:33:27.850 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143327.md
+2026-06-13 14:33:27.852 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:33:28.273 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:33:28.291 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143328.md
+2026-06-13 14:33:28.293 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:35:27.854 [INFO] ===== INIZIO CICLO #39 | Modalita local =====
+2026-06-13 14:35:28.296 [INFO] ===== INIZIO CICLO #39 | Modalita local =====
+2026-06-13 14:35:30.765 [INFO] File da scansionare: 17976
+2026-06-13 14:35:31.190 [INFO] File da scansionare: 17976
+2026-06-13 14:35:31.552 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:35:31.556 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143531.md
+2026-06-13 14:35:31.560 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:35:31.969 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:35:31.972 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143531.md
+2026-06-13 14:35:31.974 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:37:31.562 [INFO] ===== INIZIO CICLO #40 | Modalita local =====
+2026-06-13 14:37:31.976 [INFO] ===== INIZIO CICLO #40 | Modalita local =====
+2026-06-13 14:37:33.758 [INFO] File da scansionare: 18065
+2026-06-13 14:37:34.115 [INFO] File da scansionare: 18065
+2026-06-13 14:37:34.307 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:37:34.308 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:37:34.316 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143734.md
+2026-06-13 14:37:34.317 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:37:34.621 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:37:34.626 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:37:34.629 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143734.md
+2026-06-13 14:37:34.631 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:39:34.325 [INFO] ===== INIZIO CICLO #41 | Modalita local =====
+2026-06-13 14:39:34.644 [INFO] ===== INIZIO CICLO #41 | Modalita local =====
+2026-06-13 14:39:37.739 [INFO] File da scansionare: 18169
+2026-06-13 14:39:38.148 [INFO] File da scansionare: 18169
+2026-06-13 14:39:38.596 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:39:38.609 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143938.md
+2026-06-13 14:39:38.618 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:39:39.017 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:39:39.034 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_143939.md
+2026-06-13 14:39:39.045 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:41:38.619 [INFO] ===== INIZIO CICLO #42 | Modalita local =====
+2026-06-13 14:41:39.058 [INFO] ===== INIZIO CICLO #42 | Modalita local =====
+2026-06-13 14:41:41.460 [INFO] File da scansionare: 18256
+2026-06-13 14:41:41.873 [INFO] File da scansionare: 18256
+2026-06-13 14:41:42.223 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:41:42.237 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144142.md
+2026-06-13 14:41:42.241 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:41:42.601 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:41:42.604 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144142.md
+2026-06-13 14:41:42.606 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:43:42.254 [INFO] ===== INIZIO CICLO #43 | Modalita local =====
+2026-06-13 14:43:42.617 [INFO] ===== INIZIO CICLO #43 | Modalita local =====
+2026-06-13 14:43:46.032 [INFO] File da scansionare: 18354
+2026-06-13 14:43:46.119 [INFO] File da scansionare: 18354
+2026-06-13 14:43:46.911 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:43:46.925 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144346.md
+2026-06-13 14:43:46.931 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:43:46.979 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:43:46.988 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144346.md
+2026-06-13 14:43:46.989 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:45:46.940 [INFO] ===== INIZIO CICLO #44 | Modalita local =====
+2026-06-13 14:45:46.995 [INFO] ===== INIZIO CICLO #44 | Modalita local =====
+2026-06-13 14:45:50.296 [INFO] File da scansionare: 18454
+2026-06-13 14:45:50.307 [INFO] File da scansionare: 18454
+2026-06-13 14:45:51.209 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:45:51.216 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144551.md
+2026-06-13 14:45:51.224 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:45:51.279 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:45:51.289 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144551.md
+2026-06-13 14:45:51.300 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:47:51.233 [INFO] ===== INIZIO CICLO #45 | Modalita local =====
+2026-06-13 14:47:51.314 [INFO] ===== INIZIO CICLO #45 | Modalita local =====
+2026-06-13 14:47:54.082 [INFO] File da scansionare: 18538
+2026-06-13 14:47:54.149 [INFO] File da scansionare: 18538
+2026-06-13 14:47:54.842 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:47:54.849 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:47:54.852 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:47:54.848 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:47:54.857 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144754.md
+2026-06-13 14:47:54.859 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:47:54.857 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144754.md
+2026-06-13 14:47:54.862 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:49:54.864 [INFO] ===== INIZIO CICLO #46 | Modalita local =====
+2026-06-13 14:49:54.869 [INFO] ===== INIZIO CICLO #46 | Modalita local =====
+2026-06-13 14:49:58.384 [INFO] File da scansionare: 18633
+2026-06-13 14:49:58.452 [INFO] File da scansionare: 18634
+2026-06-13 14:49:59.252 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:49:59.259 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+port_scan_20260613_144959.md
+2026-06-13 14:49:59.272 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:49:59.273 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_144959.md
+2026-06-13 14:49:59.279 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:51:59.308 [INFO] ===== INIZIO CICLO #47 | Modalita local =====
+2026-06-13 14:51:59.320 [INFO] ===== INIZIO CICLO #47 | Modalita local =====
+2026-06-13 14:52:03.512 [INFO] File da scansionare: 18712
+2026-06-13 14:52:03.741 [INFO] File da scansionare: 18712
+2026-06-13 14:52:04.523 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:52:04.542 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_145204.md
+2026-06-13 14:52:04.561 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:52:04.739 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:52:04.768 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_145204.md
+2026-06-13 14:52:04.788 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:54:04.583 [INFO] ===== INIZIO CICLO #48 | Modalita local =====
+2026-06-13 14:54:04.813 [INFO] ===== INIZIO CICLO #48 | Modalita local =====
+2026-06-13 14:54:07.865 [INFO] File da scansionare: 18793
+2026-06-13 14:54:07.875 [INFO] File da scansionare: 18793
+2026-06-13 14:54:08.662 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:54:08.670 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:54:08.679 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_145408.md
+2026-06-13 14:54:08.687 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:54:08.681 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_145408.md
+2026-06-13 14:54:08.690 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:56:08.688 [INFO] ===== INIZIO CICLO #49 | Modalita local =====
+2026-06-13 14:56:08.712 [INFO] ===== INIZIO CICLO #49 | Modalita local =====
+2026-06-13 14:56:12.000 [INFO] File da scansionare: 18882
+2026-06-13 14:56:12.044 [INFO] File da scansionare: 18882
+2026-06-13 14:56:12.818 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:56:12.842 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_145612.md
+2026-06-13 14:56:12.871 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:56:12.951 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:56:12.957 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_145612.md
+2026-06-13 14:56:12.964 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:58:12.897 [INFO] ===== INIZIO CICLO #50 | Modalita local =====
+2026-06-13 14:58:12.971 [INFO] ===== INIZIO CICLO #50 | Modalita local =====
+2026-06-13 14:58:14.745 [INFO] File da scansionare: 18976
+2026-06-13 14:58:14.826 [INFO] File da scansionare: 18976
+2026-06-13 14:58:15.255 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:58:15.256 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:58:15.262 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_145815.md
+2026-06-13 14:58:15.263 [INFO] Prossimo ciclo tra 120s
+2026-06-13 14:58:15.327 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 14:58:15.328 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 14:58:15.330 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_145815.md
+2026-06-13 14:58:15.331 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:00:15.264 [INFO] ===== INIZIO CICLO #51 | Modalita local =====
+2026-06-13 15:00:15.332 [INFO] ===== INIZIO CICLO #51 | Modalita local =====
+2026-06-13 15:00:18.222 [INFO] File da scansionare: 19066
+2026-06-13 15:00:18.312 [INFO] File da scansionare: 19066
+2026-06-13 15:00:19.047 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:00:19.052 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150019.md
+2026-06-13 15:00:19.053 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:00:19.091 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:00:19.094 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150019.md
+2026-06-13 15:00:19.095 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:02:19.054 [INFO] ===== INIZIO CICLO #52 | Modalita local =====
+2026-06-13 15:02:19.097 [INFO] ===== INIZIO CICLO #52 | Modalita local =====
+2026-06-13 15:02:22.047 [INFO] File da scansionare: 19167
+2026-06-13 15:02:22.069 [INFO] File da scansionare: 19167
+2026-06-13 15:02:22.888 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:02:22.893 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150222.md
+2026-06-13 15:02:22.895 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:02:22.927 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:02:22.933 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150222.md
+2026-06-13 15:02:22.943 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:04:22.896 [INFO] ===== INIZIO CICLO #53 | Modalita local =====
+2026-06-13 15:04:22.949 [INFO] ===== INIZIO CICLO #53 | Modalita local =====
+2026-06-13 15:04:25.458 [INFO] File da scansionare: 19262
+2026-06-13 15:04:25.494 [INFO] File da scansionare: 19262
+2026-06-13 15:04:26.465 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:04:26.469 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150426.md
+2026-06-13 15:04:26.472 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:04:26.495 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:04:26.501 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150426.md
+2026-06-13 15:04:26.514 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:06:26.473 [INFO] ===== INIZIO CICLO #54 | Modalita local =====
+2026-06-13 15:06:26.516 [INFO] ===== INIZIO CICLO #54 | Modalita local =====
+2026-06-13 15:06:28.711 [INFO] File da scansionare: 19354
+2026-06-13 15:06:28.817 [INFO] File da scansionare: 19354
+2026-06-13 15:06:29.417 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:06:29.421 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150629.md
+2026-06-13 15:06:29.423 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:06:29.534 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:06:29.537 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150629.md
+2026-06-13 15:06:29.539 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:08:29.429 [INFO] ===== INIZIO CICLO #55 | Modalita local =====
+2026-06-13 15:08:29.545 [INFO] ===== INIZIO CICLO #55 | Modalita local =====
+2026-06-13 15:08:33.028 [INFO] File da scansionare: 19455
+2026-06-13 15:08:33.087 [INFO] File da scansionare: 19455
+2026-06-13 15:08:34.018 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:08:34.018 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:08:34.024 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:08:34.025 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:08:34.029 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150834.md
+2026-06-13 15:08:34.030 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_150834.md
+2026-06-13 15:08:34.032 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:08:34.032 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:10:34.034 [INFO] ===== INIZIO CICLO #56 | Modalita local =====
+2026-06-13 15:10:34.034 [INFO] ===== INIZIO CICLO #56 | Modalita local =====
+2026-06-13 15:10:37.240 [INFO] File da scansionare: 19547
+2026-06-13 15:10:37.256 [INFO] File da scansionare: 19547
+2026-06-13 15:10:38.186 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:10:38.188 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:10:38.192 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151038.md
+2026-06-13 15:10:38.194 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151038.md
+2026-06-13 15:10:38.199 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:10:38.200 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:12:38.205 [INFO] ===== INIZIO CICLO #57 | Modalita local =====
+2026-06-13 15:12:38.205 [INFO] ===== INIZIO CICLO #57 | Modalita local =====
+2026-06-13 15:12:40.969 [INFO] File da scansionare: 19638
+2026-06-13 15:12:41.005 [INFO] File da scansionare: 19638
+2026-06-13 15:12:41.802 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:12:41.805 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151241.md
+2026-06-13 15:12:41.807 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:12:41.811 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:12:41.814 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151241.md
+2026-06-13 15:12:41.815 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:14:41.808 [INFO] ===== INIZIO CICLO #58 | Modalita local =====
+2026-06-13 15:14:41.816 [INFO] ===== INIZIO CICLO #58 | Modalita local =====
+2026-06-13 15:14:44.197 [INFO] File da scansionare: 19727
+2026-06-13 15:14:44.254 [INFO] File da scansionare: 19727
+2026-06-13 15:14:44.847 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:14:44.849 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151444.md
+2026-06-13 15:14:44.853 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:14:44.911 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:14:44.913 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151444.md
+2026-06-13 15:14:44.920 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:16:44.861 [INFO] ===== INIZIO CICLO #59 | Modalita local =====
+2026-06-13 15:16:44.933 [INFO] ===== INIZIO CICLO #59 | Modalita local =====
+2026-06-13 15:16:48.435 [INFO] File da scansionare: 19838
+2026-06-13 15:16:48.436 [INFO] File da scansionare: 19838
+2026-06-13 15:16:49.320 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:16:49.333 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151649.md
+2026-06-13 15:16:49.337 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:16:49.343 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151649.md
+2026-06-13 15:16:49.343 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:16:49.348 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:18:49.357 [INFO] ===== INIZIO CICLO #60 | Modalita local =====
+2026-06-13 15:18:49.360 [INFO] ===== INIZIO CICLO #60 | Modalita local =====
+2026-06-13 15:18:52.802 [INFO] File da scansionare: 19919
+2026-06-13 15:18:52.831 [INFO] File da scansionare: 19919
+2026-06-13 15:18:53.725 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:18:53.735 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:18:53.742 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151853.md
+2026-06-13 15:18:53.743 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:18:53.743 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:18:53.749 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:18:53.755 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_151853.md
+2026-06-13 15:18:53.760 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:20:53.745 [INFO] ===== INIZIO CICLO #61 | Modalita local =====
+2026-06-13 15:20:53.767 [INFO] ===== INIZIO CICLO #61 | Modalita local =====
+2026-06-13 15:20:57.030 [INFO] File da scansionare: 20023
+2026-06-13 15:20:57.064 [INFO] File da scansionare: 20023
+2026-06-13 15:20:57.937 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:20:57.945 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:20:57.949 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152057.md
+2026-06-13 15:20:57.955 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152057.md
+2026-06-13 15:20:57.956 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:20:57.962 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:22:57.967 [INFO] ===== INIZIO CICLO #62 | Modalita local =====
+2026-06-13 15:22:57.973 [INFO] ===== INIZIO CICLO #62 | Modalita local =====
+2026-06-13 15:23:01.247 [INFO] File da scansionare: 20110
+2026-06-13 15:23:01.288 [INFO] File da scansionare: 20110
+2026-06-13 15:23:02.111 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:23:02.124 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152302.md
+2026-06-13 15:23:02.130 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:23:02.179 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:23:02.195 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152302.md
+2026-06-13 15:23:02.197 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:25:02.142 [INFO] ===== INIZIO CICLO #63 | Modalita local =====
+2026-06-13 15:25:02.205 [INFO] ===== INIZIO CICLO #63 | Modalita local =====
+2026-06-13 15:25:05.371 [INFO] File da scansionare: 20191
+2026-06-13 15:25:05.525 [INFO] File da scansionare: 20192
+2026-06-13 15:25:06.233 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:25:06.239 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152506.md
+2026-06-13 15:25:06.248 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:25:06.378 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:25:06.388 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152506.md
+2026-06-13 15:25:06.397 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:27:06.263 [INFO] ===== INIZIO CICLO #64 | Modalita local =====
+2026-06-13 15:27:06.411 [INFO] ===== INIZIO CICLO #64 | Modalita local =====
+2026-06-13 15:27:10.018 [INFO] File da scansionare: 20274
+2026-06-13 15:27:10.198 [INFO] File da scansionare: 20274
+2026-06-13 15:27:11.011 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:27:11.030 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152711.md
+2026-06-13 15:27:11.044 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:27:11.120 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:27:11.138 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152711.md
+2026-06-13 15:27:11.148 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:29:11.063 [INFO] ===== INIZIO CICLO #65 | Modalita local =====
+2026-06-13 15:29:11.162 [INFO] ===== INIZIO CICLO #65 | Modalita local =====
+2026-06-13 15:29:14.477 [INFO] File da scansionare: 20377
+2026-06-13 15:29:14.556 [INFO] File da scansionare: 20377
+2026-06-13 15:29:15.454 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:29:15.466 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:29:15.473 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:29:15.475 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152915.md
+2026-06-13 15:29:15.476 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_152915.md
+2026-06-13 15:29:15.476 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:29:15.478 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:31:15.483 [INFO] ===== INIZIO CICLO #66 | Modalita local =====
+2026-06-13 15:31:15.483 [INFO] ===== INIZIO CICLO #66 | Modalita local =====
+2026-06-13 15:31:18.853 [INFO] File da scansionare: 20473
+2026-06-13 15:31:18.877 [INFO] File da scansionare: 20473
+2026-06-13 15:31:19.797 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:31:19.809 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153119.md
+2026-06-13 15:31:19.815 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:31:19.820 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:31:19.838 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153119.md
+2026-06-13 15:31:19.849 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:33:19.823 [INFO] ===== INIZIO CICLO #67 | Modalita local =====
+2026-06-13 15:33:19.873 [INFO] ===== INIZIO CICLO #67 | Modalita local =====
+2026-06-13 15:33:23.704 [INFO] File da scansionare: 20563
+2026-06-13 15:33:23.724 [INFO] File da scansionare: 20563
+2026-06-13 15:33:24.787 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:33:24.796 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:33:24.806 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153324.md
+2026-06-13 15:33:24.814 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153324.md
+2026-06-13 15:33:24.820 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:33:24.829 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:35:24.835 [INFO] ===== INIZIO CICLO #68 | Modalita local =====
+2026-06-13 15:35:24.846 [INFO] ===== INIZIO CICLO #68 | Modalita local =====
+2026-06-13 15:35:28.191 [INFO] File da scansionare: 20639
+2026-06-13 15:35:28.226 [INFO] File da scansionare: 20639
+2026-06-13 15:35:29.097 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:35:29.107 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153529.md
+2026-06-13 15:35:29.114 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:35:29.115 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:35:29.122 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153529.md
+2026-06-13 15:35:29.126 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:37:29.118 [INFO] ===== INIZIO CICLO #69 | Modalita local =====
+2026-06-13 15:37:29.128 [INFO] ===== INIZIO CICLO #69 | Modalita local =====
+2026-06-13 15:37:31.548 [INFO] File da scansionare: 20728
+2026-06-13 15:37:31.628 [INFO] File da scansionare: 20728
+2026-06-13 15:37:32.392 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:37:32.395 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153732.md
+2026-06-13 15:37:32.397 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:37:32.467 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:37:32.469 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153732.md
+2026-06-13 15:37:32.470 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:39:32.400 [INFO] ===== INIZIO CICLO #70 | Modalita local =====
+2026-06-13 15:39:32.471 [INFO] ===== INIZIO CICLO #70 | Modalita local =====
+2026-06-13 15:39:35.638 [INFO] File da scansionare: 20826
+2026-06-13 15:39:35.695 [INFO] File da scansionare: 20826
+2026-06-13 15:39:36.540 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:39:36.543 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:39:36.551 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153936.md
+2026-06-13 15:39:36.554 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:39:36.616 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:39:36.619 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:39:36.625 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_153936.md
+2026-06-13 15:39:36.627 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:41:36.558 [INFO] ===== INIZIO CICLO #71 | Modalita local =====
+2026-06-13 15:41:36.628 [INFO] ===== INIZIO CICLO #71 | Modalita local =====
+2026-06-13 15:41:38.366 [INFO] File da scansionare: 20929
+2026-06-13 15:41:38.392 [INFO] File da scansionare: 20929
+2026-06-13 15:41:38.954 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:41:38.960 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154138.md
+2026-06-13 15:41:38.961 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:41:38.970 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:41:38.971 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154138.md
+2026-06-13 15:41:38.972 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:43:38.962 [INFO] ===== INIZIO CICLO #72 | Modalita local =====
+2026-06-13 15:43:38.973 [INFO] ===== INIZIO CICLO #72 | Modalita local =====
+2026-06-13 15:43:41.488 [INFO] File da scansionare: 21029
+2026-06-13 15:43:41.493 [INFO] File da scansionare: 21029
+2026-06-13 15:43:42.067 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:43:42.070 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154342.md
+2026-06-13 15:43:42.071 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:43:42.072 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:43:42.075 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154342.md
+2026-06-13 15:43:42.076 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:45:42.072 [INFO] ===== INIZIO CICLO #73 | Modalita local =====
+2026-06-13 15:45:42.077 [INFO] ===== INIZIO CICLO #73 | Modalita local =====
+2026-06-13 15:45:44.532 [INFO] File da scansionare: 21125
+2026-06-13 15:45:44.590 [INFO] File da scansionare: 21125
+2026-06-13 15:45:45.283 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:45:45.286 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154545.md
+2026-06-13 15:45:45.287 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:45:45.298 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:45:45.300 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154545.md
+2026-06-13 15:45:45.301 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:47:45.304 [INFO] ===== INIZIO CICLO #74 | Modalita local =====
+2026-06-13 15:47:45.316 [INFO] ===== INIZIO CICLO #74 | Modalita local =====
+2026-06-13 15:47:49.241 [INFO] File da scansionare: 21225
+2026-06-13 15:47:49.286 [INFO] File da scansionare: 21225
+2026-06-13 15:47:50.370 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:47:50.391 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154750.md
+2026-06-13 15:47:50.403 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:47:50.396 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:47:50.426 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154750.md
+2026-06-13 15:47:50.446 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:49:50.430 [INFO] ===== INIZIO CICLO #75 | Modalita local =====
+2026-06-13 15:49:50.468 [INFO] ===== INIZIO CICLO #75 | Modalita local =====
+2026-06-13 15:49:54.214 [INFO] File da scansionare: 21305
+2026-06-13 15:49:54.233 [INFO] File da scansionare: 21305
+2026-06-13 15:49:55.130 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:49:55.137 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:49:55.142 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:49:55.146 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154955.md
+2026-06-13 15:49:55.150 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 15:49:55.158 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_154955.md
+2026-06-13 15:49:55.162 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:51:55.155 [INFO] ===== INIZIO CICLO #76 | Modalita local =====
+2026-06-13 15:51:55.164 [INFO] ===== INIZIO CICLO #76 | Modalita local =====
+2026-06-13 15:51:58.304 [INFO] File da scansionare: 21381
+2026-06-13 15:51:58.326 [INFO] File da scansionare: 21381
+2026-06-13 15:51:59.182 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:51:59.186 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_155159.md
+2026-06-13 15:51:59.189 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:51:59.201 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:51:59.205 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_155159.md
+2026-06-13 15:51:59.209 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:53:59.192 [INFO] ===== INIZIO CICLO #77 | Modalita local =====
+2026-06-13 15:53:59.211 [INFO] ===== INIZIO CICLO #77 | Modalita local =====
+2026-06-13 15:54:02.351 [INFO] File da scansionare: 21472
+2026-06-13 15:54:02.444 [INFO] File da scansionare: 21472
+2026-06-13 15:54:03.226 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:54:03.231 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_155403.md
+2026-06-13 15:54:03.233 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:54:03.301 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:54:03.305 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_155403.md
+2026-06-13 15:54:03.308 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:56:03.235 [INFO] ===== INIZIO CICLO #78 | Modalita local =====
+2026-06-13 15:56:03.315 [INFO] ===== INIZIO CICLO #78 | Modalita local =====
+2026-06-13 15:56:06.403 [INFO] File da scansionare: 21573
+2026-06-13 15:56:06.505 [INFO] File da scansionare: 21573
+2026-06-13 15:56:07.221 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:56:07.224 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_155607.md
+2026-06-13 15:56:07.227 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:56:07.311 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:56:07.314 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_155607.md
+2026-06-13 15:56:07.315 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:58:07.230 [INFO] ===== INIZIO CICLO #79 | Modalita local =====
+2026-06-13 15:58:07.329 [INFO] ===== INIZIO CICLO #79 | Modalita local =====
+2026-06-13 15:58:11.118 [INFO] File da scansionare: 21660
+2026-06-13 15:58:11.151 [INFO] File da scansionare: 21659
+2026-06-13 15:58:12.130 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:58:12.146 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_155812.md
+2026-06-13 15:58:12.150 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 15:58:12.161 [INFO] Prossimo ciclo tra 120s
+2026-06-13 15:58:12.165 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_155812.md
+2026-06-13 15:58:12.174 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:00:12.167 [INFO] ===== INIZIO CICLO #80 | Modalita local =====
+2026-06-13 16:00:12.186 [INFO] ===== INIZIO CICLO #80 | Modalita local =====
+2026-06-13 16:00:15.609 [INFO] File da scansionare: 21746
+2026-06-13 16:00:15.611 [INFO] File da scansionare: 21746
+2026-06-13 16:00:16.560 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:00:16.574 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:00:16.592 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160016.md
+2026-06-13 16:00:16.593 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:00:16.590 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:00:16.602 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160016.md
+2026-06-13 16:00:16.611 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:02:16.600 [INFO] ===== INIZIO CICLO #81 | Modalita local =====
+2026-06-13 16:02:16.623 [INFO] ===== INIZIO CICLO #81 | Modalita local =====
+2026-06-13 16:02:19.977 [INFO] File da scansionare: 21848
+2026-06-13 16:02:20.016 [INFO] File da scansionare: 21848
+2026-06-13 16:02:20.873 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:02:20.884 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160220.md
+2026-06-13 16:02:20.889 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:02:20.894 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:02:20.900 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160220.md
+2026-06-13 16:02:20.904 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:04:20.896 [INFO] ===== INIZIO CICLO #82 | Modalita local =====
+2026-06-13 16:04:20.914 [INFO] ===== INIZIO CICLO #82 | Modalita local =====
+2026-06-13 16:04:24.281 [INFO] File da scansionare: 21950
+2026-06-13 16:04:24.287 [INFO] File da scansionare: 21950
+2026-06-13 16:04:25.164 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:04:25.168 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:04:25.170 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160425.md
+2026-06-13 16:04:25.174 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160425.md
+2026-06-13 16:04:25.176 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:04:25.179 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:06:25.185 [INFO] ===== INIZIO CICLO #83 | Modalita local =====
+2026-06-13 16:06:25.186 [INFO] ===== INIZIO CICLO #83 | Modalita local =====
+2026-06-13 16:06:28.525 [INFO] File da scansionare: 22041
+2026-06-13 16:06:28.535 [INFO] File da scansionare: 22041
+2026-06-13 16:06:29.489 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:06:29.496 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:06:29.497 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160629.md
+2026-06-13 16:06:29.501 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160629.md
+2026-06-13 16:06:29.504 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:06:29.508 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:08:29.512 [INFO] ===== INIZIO CICLO #84 | Modalita local =====
+2026-06-13 16:08:29.514 [INFO] ===== INIZIO CICLO #84 | Modalita local =====
+2026-06-13 16:08:32.642 [INFO] File da scansionare: 22133
+2026-06-13 16:08:32.658 [INFO] File da scansionare: 22133
+2026-06-13 16:08:33.506 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:08:33.507 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:08:33.509 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160833.md
+2026-06-13 16:08:33.511 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:08:33.511 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_160833.md
+2026-06-13 16:08:33.516 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:10:33.515 [INFO] ===== INIZIO CICLO #85 | Modalita local =====
+2026-06-13 16:10:33.519 [INFO] ===== INIZIO CICLO #85 | Modalita local =====
+2026-06-13 16:10:36.857 [INFO] File da scansionare: 22223
+2026-06-13 16:10:36.906 [INFO] File da scansionare: 22223
+2026-06-13 16:10:37.769 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:10:37.775 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:10:37.782 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161037.md
+2026-06-13 16:10:37.786 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:10:37.802 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:10:37.805 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:10:37.811 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161037.md
+2026-06-13 16:10:37.816 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:12:37.794 [INFO] ===== INIZIO CICLO #86 | Modalita local =====
+2026-06-13 16:12:37.820 [INFO] ===== INIZIO CICLO #86 | Modalita local =====
+2026-06-13 16:12:39.685 [INFO] File da scansionare: 22324
+2026-06-13 16:12:39.733 [INFO] File da scansionare: 22324
+2026-06-13 16:12:40.236 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:12:40.238 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161240.md
+2026-06-13 16:12:40.239 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:12:40.265 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:12:40.267 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161240.md
+2026-06-13 16:12:40.268 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:14:40.241 [INFO] ===== INIZIO CICLO #87 | Modalita local =====
+2026-06-13 16:14:40.269 [INFO] ===== INIZIO CICLO #87 | Modalita local =====
+2026-06-13 16:14:42.311 [INFO] File da scansionare: 22410
+2026-06-13 16:14:42.377 [INFO] File da scansionare: 22410
+2026-06-13 16:14:43.039 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:14:43.041 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161443.md
+2026-06-13 16:14:43.042 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:14:43.093 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:14:43.095 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161443.md
+2026-06-13 16:14:43.098 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:16:43.044 [INFO] ===== INIZIO CICLO #88 | Modalita local =====
+2026-06-13 16:16:43.099 [INFO] ===== INIZIO CICLO #88 | Modalita local =====
+2026-06-13 16:16:44.920 [INFO] File da scansionare: 22505
+2026-06-13 16:16:44.936 [INFO] File da scansionare: 22505
+2026-06-13 16:16:45.516 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:16:45.518 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161645.md
+2026-06-13 16:16:45.519 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:16:45.535 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:16:45.537 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161645.md
+2026-06-13 16:16:45.538 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:18:45.521 [INFO] ===== INIZIO CICLO #89 | Modalita local =====
+2026-06-13 16:18:45.539 [INFO] ===== INIZIO CICLO #89 | Modalita local =====
+2026-06-13 16:18:48.931 [INFO] File da scansionare: 22606
+2026-06-13 16:18:48.952 [INFO] File da scansionare: 22606
+2026-06-13 16:18:49.839 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:18:49.843 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161849.md
+2026-06-13 16:18:49.846 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:18:49.847 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:18:49.850 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_161849.md
+2026-06-13 16:18:49.852 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:20:49.848 [INFO] ===== INIZIO CICLO #90 | Modalita local =====
+2026-06-13 16:20:49.853 [INFO] ===== INIZIO CICLO #90 | Modalita local =====
+2026-06-13 16:20:52.370 [INFO] File da scansionare: 22695
+2026-06-13 16:20:52.467 [INFO] File da scansionare: 22695
+2026-06-13 16:20:53.072 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:20:53.073 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:20:53.080 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162053.md
+2026-06-13 16:20:53.082 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:20:53.129 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:20:53.130 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:20:53.137 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162053.md
+2026-06-13 16:20:53.138 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:22:53.083 [INFO] ===== INIZIO CICLO #91 | Modalita local =====
+2026-06-13 16:22:53.141 [INFO] ===== INIZIO CICLO #91 | Modalita local =====
+2026-06-13 16:22:56.541 [INFO] File da scansionare: 22782
+2026-06-13 16:22:56.596 [INFO] File da scansionare: 22782
+2026-06-13 16:22:57.555 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:22:57.565 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162257.md
+2026-06-13 16:22:57.567 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:22:57.643 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:22:57.648 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162257.md
+2026-06-13 16:22:57.651 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:24:57.570 [INFO] ===== INIZIO CICLO #92 | Modalita local =====
+2026-06-13 16:24:57.657 [INFO] ===== INIZIO CICLO #92 | Modalita local =====
+2026-06-13 16:25:01.299 [INFO] File da scansionare: 22881
+2026-06-13 16:25:01.300 [INFO] File da scansionare: 22881
+2026-06-13 16:25:02.379 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:25:02.397 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162502.md
+2026-06-13 16:25:02.409 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:25:02.419 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:25:02.427 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162502.md
+2026-06-13 16:25:02.434 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:27:02.410 [INFO] ===== INIZIO CICLO #93 | Modalita local =====
+2026-06-13 16:27:02.439 [INFO] ===== INIZIO CICLO #93 | Modalita local =====
+2026-06-13 16:27:05.795 [INFO] File da scansionare: 22969
+2026-06-13 16:27:05.825 [INFO] File da scansionare: 22969
+2026-06-13 16:27:06.682 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:27:06.687 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162706.md
+2026-06-13 16:27:06.690 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:27:06.715 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:27:06.719 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162706.md
+2026-06-13 16:27:06.722 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:29:06.696 [INFO] ===== INIZIO CICLO #94 | Modalita local =====
+2026-06-13 16:29:06.725 [INFO] ===== INIZIO CICLO #94 | Modalita local =====
+2026-06-13 16:29:10.077 [INFO] File da scansionare: 23060
+2026-06-13 16:29:10.094 [INFO] File da scansionare: 23060
+2026-06-13 16:29:11.002 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:29:11.006 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162911.md
+2026-06-13 16:29:11.008 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:29:11.014 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:29:11.017 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_162911.md
+2026-06-13 16:29:11.018 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:31:11.010 [INFO] ===== INIZIO CICLO #95 | Modalita local =====
+2026-06-13 16:31:11.019 [INFO] ===== INIZIO CICLO #95 | Modalita local =====
+2026-06-13 16:31:14.249 [INFO] File da scansionare: 23165
+2026-06-13 16:31:14.258 [INFO] File da scansionare: 23165
+2026-06-13 16:31:15.146 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:31:15.148 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:31:15.151 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163115.md
+2026-06-13 16:31:15.153 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:31:15.155 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:31:15.157 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:31:15.160 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163115.md
+2026-06-13 16:31:15.163 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:33:15.163 [INFO] ===== INIZIO CICLO #96 | Modalita local =====
+2026-06-13 16:33:15.176 [INFO] ===== INIZIO CICLO #96 | Modalita local =====
+2026-06-13 16:33:19.024 [INFO] File da scansionare: 23255
+2026-06-13 16:33:19.076 [INFO] File da scansionare: 23255
+2026-06-13 16:33:20.097 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:33:20.109 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+port_scan_20260613_163320.md
+2026-06-13 16:33:20.121 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:33:20.122 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163320.md
+2026-06-13 16:33:20.124 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:35:20.123 [INFO] ===== INIZIO CICLO #97 | Modalita local =====
+2026-06-13 16:35:20.127 [INFO] ===== INIZIO CICLO #97 | Modalita local =====
+2026-06-13 16:35:23.591 [INFO] File da scansionare: 23345
+2026-06-13 16:35:23.603 [INFO] File da scansionare: 23345
+2026-06-13 16:35:24.554 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:35:24.556 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:35:24.560 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163524.md
+2026-06-13 16:35:24.559 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163524.md
+2026-06-13 16:35:24.563 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:35:24.563 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:37:24.564 [INFO] ===== INIZIO CICLO #98 | Modalita local =====
+2026-06-13 16:37:24.565 [INFO] ===== INIZIO CICLO #98 | Modalita local =====
+2026-06-13 16:37:27.678 [INFO] File da scansionare: 23438
+2026-06-13 16:37:27.694 [INFO] File da scansionare: 23438
+2026-06-13 16:37:28.562 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:37:28.564 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163728.md
+2026-06-13 16:37:28.566 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:37:28.580 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:37:28.585 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163728.md
+2026-06-13 16:37:28.587 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:39:28.570 [INFO] ===== INIZIO CICLO #99 | Modalita local =====
+2026-06-13 16:39:28.592 [INFO] ===== INIZIO CICLO #99 | Modalita local =====
+2026-06-13 16:39:32.188 [INFO] File da scansionare: 23542
+2026-06-13 16:39:32.242 [INFO] File da scansionare: 23543
+2026-06-13 16:39:33.153 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:39:33.163 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163933.md
+2026-06-13 16:39:33.171 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:39:33.193 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:39:33.199 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_163933.md
+2026-06-13 16:39:33.204 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:41:33.184 [INFO] ===== INIZIO CICLO #100 | Modalita local =====
+2026-06-13 16:41:33.230 [INFO] ===== INIZIO CICLO #100 | Modalita local =====
+2026-06-13 16:41:37.136 [INFO] File da scansionare: 23639
+2026-06-13 16:41:37.233 [INFO] File da scansionare: 23639
+2026-06-13 16:41:38.221 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:41:38.215 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:41:38.228 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:41:38.229 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:41:38.237 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164138.md
+2026-06-13 16:41:38.245 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:41:38.243 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164138.md
+2026-06-13 16:41:38.260 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:43:38.260 [INFO] ===== INIZIO CICLO #101 | Modalita local =====
+2026-06-13 16:43:38.286 [INFO] ===== INIZIO CICLO #101 | Modalita local =====
+2026-06-13 16:43:42.107 [INFO] File da scansionare: 23721
+2026-06-13 16:43:42.128 [INFO] File da scansionare: 23721
+2026-06-13 16:43:43.106 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:43:43.119 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:43:43.120 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164343.md
+2026-06-13 16:43:43.134 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:43:43.130 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164343.md
+2026-06-13 16:43:43.144 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:45:43.141 [INFO] ===== INIZIO CICLO #102 | Modalita local =====
+2026-06-13 16:45:43.151 [INFO] ===== INIZIO CICLO #102 | Modalita local =====
+2026-06-13 16:45:46.749 [INFO] File da scansionare: 23812
+2026-06-13 16:45:46.756 [INFO] File da scansionare: 23812
+2026-06-13 16:45:47.749 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:45:47.755 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:45:47.762 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164547.md
+2026-06-13 16:45:47.762 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164547.md
+2026-06-13 16:45:47.768 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:45:47.768 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:47:47.770 [INFO] ===== INIZIO CICLO #103 | Modalita local =====
+2026-06-13 16:47:47.776 [INFO] ===== INIZIO CICLO #103 | Modalita local =====
+2026-06-13 16:47:51.238 [INFO] File da scansionare: 23898
+2026-06-13 16:47:51.251 [INFO] File da scansionare: 23898
+2026-06-13 16:47:52.174 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:47:52.177 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:47:52.180 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164752.md
+2026-06-13 16:47:52.185 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:47:52.183 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164752.md
+2026-06-13 16:47:52.188 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:49:52.188 [INFO] ===== INIZIO CICLO #104 | Modalita local =====
+2026-06-13 16:49:52.191 [INFO] ===== INIZIO CICLO #104 | Modalita local =====
+2026-06-13 16:49:55.554 [INFO] File da scansionare: 23984
+2026-06-13 16:49:55.608 [INFO] File da scansionare: 23984
+2026-06-13 16:49:56.500 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:49:56.504 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164956.md
+2026-06-13 16:49:56.506 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:49:56.523 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:49:56.526 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_164956.md
+2026-06-13 16:49:56.529 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:51:56.509 [INFO] ===== INIZIO CICLO #105 | Modalita local =====
+2026-06-13 16:51:56.531 [INFO] ===== INIZIO CICLO #105 | Modalita local =====
+2026-06-13 16:51:59.602 [INFO] File da scansionare: 24071
+2026-06-13 16:51:59.697 [INFO] File da scansionare: 24071
+2026-06-13 16:52:00.606 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:52:00.611 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:52:00.613 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:52:00.616 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_165200.md
+2026-06-13 16:52:00.619 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:52:00.619 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 16:52:00.624 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_165200.md
+2026-06-13 16:52:00.625 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:54:00.621 [INFO] ===== INIZIO CICLO #106 | Modalita local =====
+2026-06-13 16:54:00.627 [INFO] ===== INIZIO CICLO #106 | Modalita local =====
+2026-06-13 16:54:04.154 [INFO] File da scansionare: 24171
+2026-06-13 16:54:04.155 [INFO] File da scansionare: 24171
+2026-06-13 16:54:05.114 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:54:05.115 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:54:05.124 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_165405.md
+2026-06-13 16:54:05.125 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_165405.md
+2026-06-13 16:54:05.126 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:54:05.127 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:56:05.127 [INFO] ===== INIZIO CICLO #107 | Modalita local =====
+2026-06-13 16:56:05.128 [INFO] ===== INIZIO CICLO #107 | Modalita local =====
+2026-06-13 16:56:07.789 [INFO] File da scansionare: 24272
+2026-06-13 16:56:07.813 [INFO] File da scansionare: 24272
+2026-06-13 16:56:08.449 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:56:08.451 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_165608.md
+2026-06-13 16:56:08.453 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:56:08.528 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:56:08.531 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_165608.md
+2026-06-13 16:56:08.532 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:58:08.454 [INFO] ===== INIZIO CICLO #108 | Modalita local =====
+2026-06-13 16:58:08.534 [INFO] ===== INIZIO CICLO #108 | Modalita local =====
+2026-06-13 16:58:11.607 [INFO] File da scansionare: 24366
+2026-06-13 16:58:11.768 [INFO] File da scansionare: 24366
+2026-06-13 16:58:12.530 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:58:12.532 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_165812.md
+2026-06-13 16:58:12.533 [INFO] Prossimo ciclo tra 120s
+2026-06-13 16:58:12.725 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 16:58:12.728 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_165812.md
+2026-06-13 16:58:12.730 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:00:12.534 [INFO] ===== INIZIO CICLO #109 | Modalita local =====
+2026-06-13 17:00:12.732 [INFO] ===== INIZIO CICLO #109 | Modalita local =====
+2026-06-13 17:00:14.667 [INFO] File da scansionare: 24458
+2026-06-13 17:00:14.888 [INFO] File da scansionare: 24458
+2026-06-13 17:00:15.289 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:00:15.290 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170015.md
+2026-06-13 17:00:15.292 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:00:15.466 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:00:15.468 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170015.md
+2026-06-13 17:00:15.469 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:02:15.297 [INFO] ===== INIZIO CICLO #110 | Modalita local =====
+2026-06-13 17:02:15.476 [INFO] ===== INIZIO CICLO #110 | Modalita local =====
+2026-06-13 17:02:19.194 [INFO] File da scansionare: 24564
+2026-06-13 17:02:19.355 [INFO] File da scansionare: 24564
+2026-06-13 17:02:20.260 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:02:20.277 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:02:20.294 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170220.md
+2026-06-13 17:02:20.303 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:02:20.410 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:02:20.419 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:02:20.435 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170220.md
+2026-06-13 17:02:20.442 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:04:20.315 [INFO] ===== INIZIO CICLO #111 | Modalita local =====
+2026-06-13 17:04:20.451 [INFO] ===== INIZIO CICLO #111 | Modalita local =====
+2026-06-13 17:04:23.895 [INFO] File da scansionare: 24655
+2026-06-13 17:04:23.972 [INFO] File da scansionare: 24655
+2026-06-13 17:04:24.863 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:04:24.871 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170424.md
+2026-06-13 17:04:24.880 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:04:24.889 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:04:24.896 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170424.md
+2026-06-13 17:04:24.900 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:06:24.884 [INFO] ===== INIZIO CICLO #112 | Modalita local =====
+2026-06-13 17:06:24.903 [INFO] ===== INIZIO CICLO #112 | Modalita local =====
+2026-06-13 17:06:28.309 [INFO] File da scansionare: 24738
+2026-06-13 17:06:28.342 [INFO] File da scansionare: 24738
+2026-06-13 17:06:29.251 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:06:29.253 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:06:29.254 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170629.md
+2026-06-13 17:06:29.256 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:06:29.256 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170629.md
+2026-06-13 17:06:29.257 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:08:29.257 [INFO] ===== INIZIO CICLO #113 | Modalita local =====
+2026-06-13 17:08:29.258 [INFO] ===== INIZIO CICLO #113 | Modalita local =====
+2026-06-13 17:08:32.705 [INFO] File da scansionare: 24821
+2026-06-13 17:08:32.713 [INFO] File da scansionare: 24821
+2026-06-13 17:08:33.650 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:08:33.653 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:08:33.654 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170833.md
+2026-06-13 17:08:33.656 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_170833.md
+2026-06-13 17:08:33.657 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:08:33.659 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:10:33.660 [INFO] ===== INIZIO CICLO #114 | Modalita local =====
+2026-06-13 17:10:33.661 [INFO] ===== INIZIO CICLO #114 | Modalita local =====
+2026-06-13 17:10:37.375 [INFO] File da scansionare: 24926
+2026-06-13 17:10:37.415 [INFO] File da scansionare: 24926
+2026-06-13 17:10:38.398 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:10:38.396 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:10:38.408 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171038.md
+2026-06-13 17:10:38.410 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:10:38.410 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171038.md
+2026-06-13 17:10:38.414 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:12:38.410 [INFO] ===== INIZIO CICLO #115 | Modalita local =====
+2026-06-13 17:12:38.419 [INFO] ===== INIZIO CICLO #115 | Modalita local =====
+2026-06-13 17:12:41.959 [INFO] File da scansionare: 25033
+2026-06-13 17:12:41.998 [INFO] File da scansionare: 25033
+2026-06-13 17:12:42.994 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:12:43.003 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:12:43.012 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171243.md
+2026-06-13 17:12:43.013 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:12:43.045 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:12:43.049 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:12:43.054 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171243.md
+2026-06-13 17:12:43.055 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:14:43.015 [INFO] ===== INIZIO CICLO #116 | Modalita local =====
+2026-06-13 17:14:43.057 [INFO] ===== INIZIO CICLO #116 | Modalita local =====
+2026-06-13 17:14:46.522 [INFO] File da scansionare: 25134
+2026-06-13 17:14:46.542 [INFO] File da scansionare: 25134
+2026-06-13 17:14:47.501 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:14:47.504 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171447.md
+2026-06-13 17:14:47.507 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:14:47.513 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:14:47.516 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171447.md
+2026-06-13 17:14:47.517 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:16:47.509 [INFO] ===== INIZIO CICLO #117 | Modalita local =====
+2026-06-13 17:16:47.518 [INFO] ===== INIZIO CICLO #117 | Modalita local =====
+2026-06-13 17:16:50.813 [INFO] File da scansionare: 25235
+2026-06-13 17:16:50.883 [INFO] File da scansionare: 25235
+2026-06-13 17:16:51.765 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:16:51.767 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171651.md
+2026-06-13 17:16:51.769 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:16:51.822 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:16:51.824 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171651.md
+2026-06-13 17:16:51.825 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:18:51.778 [INFO] ===== INIZIO CICLO #118 | Modalita local =====
+2026-06-13 17:18:51.834 [INFO] ===== INIZIO CICLO #118 | Modalita local =====
+2026-06-13 17:18:55.815 [INFO] File da scansionare: 25333
+2026-06-13 17:18:55.816 [INFO] File da scansionare: 25333
+2026-06-13 17:18:56.900 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:18:56.914 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171856.md
+2026-06-13 17:18:56.933 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_171856.md
+2026-06-13 17:18:56.934 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:18:56.932 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:20:56.937 [INFO] ===== INIZIO CICLO #119 | Modalita local =====
+2026-06-13 17:20:56.950 [INFO] ===== INIZIO CICLO #119 | Modalita local =====
+2026-06-13 17:21:00.825 [INFO] File da scansionare: 25422
+2026-06-13 17:21:00.875 [INFO] File da scansionare: 25422
+2026-06-13 17:21:01.933 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:21:01.939 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172101.md
+2026-06-13 17:21:01.945 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:21:01.992 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:21:02.004 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172102.md
+2026-06-13 17:21:02.014 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:23:01.955 [INFO] ===== INIZIO CICLO #120 | Modalita local =====
+2026-06-13 17:23:02.024 [INFO] ===== INIZIO CICLO #120 | Modalita local =====
+2026-06-13 17:23:05.569 [INFO] File da scansionare: 25520
+2026-06-13 17:23:05.653 [INFO] File da scansionare: 25520
+2026-06-13 17:23:06.571 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:23:06.575 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:23:06.579 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172306.md
+2026-06-13 17:23:06.583 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:23:06.587 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:23:06.590 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:23:06.596 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172306.md
+2026-06-13 17:23:06.598 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:25:06.587 [INFO] ===== INIZIO CICLO #121 | Modalita local =====
+2026-06-13 17:25:06.601 [INFO] ===== INIZIO CICLO #121 | Modalita local =====
+2026-06-13 17:25:10.153 [INFO] File da scansionare: 25601
+2026-06-13 17:25:10.160 [INFO] File da scansionare: 25601
+2026-06-13 17:25:11.152 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:25:11.152 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:25:11.158 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172511.md
+2026-06-13 17:25:11.155 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172511.md
+2026-06-13 17:25:11.160 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:25:11.162 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:27:11.164 [INFO] ===== INIZIO CICLO #122 | Modalita local =====
+2026-06-13 17:27:11.164 [INFO] ===== INIZIO CICLO #122 | Modalita local =====
+2026-06-13 17:27:13.404 [INFO] File da scansionare: 25699
+2026-06-13 17:27:13.416 [INFO] File da scansionare: 25699
+2026-06-13 17:27:14.008 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:27:14.010 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172714.md
+2026-06-13 17:27:14.011 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:27:14.013 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:27:14.014 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172714.md
+2026-06-13 17:27:14.015 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:29:14.012 [INFO] ===== INIZIO CICLO #123 | Modalita local =====
+2026-06-13 17:29:14.017 [INFO] ===== INIZIO CICLO #123 | Modalita local =====
+2026-06-13 17:29:17.565 [INFO] File da scansionare: 25802
+2026-06-13 17:29:17.583 [INFO] File da scansionare: 25802
+2026-06-13 17:29:18.618 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:29:18.623 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:29:18.628 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172918.md
+2026-06-13 17:29:18.634 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_172918.md
+2026-06-13 17:29:18.637 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:29:18.643 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:31:18.645 [INFO] ===== INIZIO CICLO #124 | Modalita local =====
+2026-06-13 17:31:18.652 [INFO] ===== INIZIO CICLO #124 | Modalita local =====
+2026-06-13 17:31:22.539 [INFO] File da scansionare: 25897
+2026-06-13 17:31:22.541 [INFO] File da scansionare: 25897
+2026-06-13 17:31:23.634 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:31:23.643 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173123.md
+2026-06-13 17:31:23.650 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:31:23.700 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:31:23.707 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173123.md
+2026-06-13 17:31:23.714 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:33:23.658 [INFO] ===== INIZIO CICLO #125 | Modalita local =====
+2026-06-13 17:33:23.718 [INFO] ===== INIZIO CICLO #125 | Modalita local =====
+2026-06-13 17:33:26.037 [INFO] File da scansionare: 25995
+2026-06-13 17:33:26.094 [INFO] File da scansionare: 25995
+2026-06-13 17:33:26.710 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:33:26.712 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:33:26.715 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173326.md
+2026-06-13 17:33:26.716 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:33:26.751 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:33:26.752 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:33:26.755 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173326.md
+2026-06-13 17:33:26.756 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:35:26.717 [INFO] ===== INIZIO CICLO #126 | Modalita local =====
+2026-06-13 17:35:26.757 [INFO] ===== INIZIO CICLO #126 | Modalita local =====
+2026-06-13 17:35:29.037 [INFO] File da scansionare: 26092
+2026-06-13 17:35:29.062 [INFO] File da scansionare: 26092
+2026-06-13 17:35:29.726 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:35:29.729 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173529.md
+2026-06-13 17:35:29.731 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:35:29.737 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:35:29.739 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173529.md
+2026-06-13 17:35:29.741 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:37:29.732 [INFO] ===== INIZIO CICLO #127 | Modalita local =====
+2026-06-13 17:37:29.742 [INFO] ===== INIZIO CICLO #127 | Modalita local =====
+2026-06-13 17:37:32.023 [INFO] File da scansionare: 26181
+2026-06-13 17:37:32.030 [INFO] File da scansionare: 26181
+2026-06-13 17:37:32.680 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:37:32.681 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173732.md
+2026-06-13 17:37:32.683 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:37:32.686 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:37:32.688 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173732.md
+2026-06-13 17:37:32.689 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:39:32.684 [INFO] ===== INIZIO CICLO #128 | Modalita local =====
+2026-06-13 17:39:32.691 [INFO] ===== INIZIO CICLO #128 | Modalita local =====
+2026-06-13 17:39:36.650 [INFO] File da scansionare: 26284
+2026-06-13 17:39:36.657 [INFO] File da scansionare: 26284
+2026-06-13 17:39:37.728 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:39:37.734 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:39:37.737 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173937.md
+2026-06-13 17:39:37.742 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:39:37.742 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_173937.md
+2026-06-13 17:39:37.747 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:41:37.751 [INFO] ===== INIZIO CICLO #129 | Modalita local =====
+2026-06-13 17:41:37.757 [INFO] ===== INIZIO CICLO #129 | Modalita local =====
+2026-06-13 17:41:42.231 [INFO] File da scansionare: 26374
+2026-06-13 17:41:42.357 [INFO] File da scansionare: 26374
+2026-06-13 17:41:43.453 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:41:43.469 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_174143.md
+2026-06-13 17:41:43.472 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:41:43.482 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:41:43.486 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_174143.md
+2026-06-13 17:41:43.501 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:43:43.498 [INFO] ===== INIZIO CICLO #130 | Modalita local =====
+2026-06-13 17:43:43.515 [INFO] ===== INIZIO CICLO #130 | Modalita local =====
+2026-06-13 17:43:47.322 [INFO] File da scansionare: 26459
+2026-06-13 17:43:47.327 [INFO] File da scansionare: 26459
+2026-06-13 17:43:48.384 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:43:48.385 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:43:48.388 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:43:48.389 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:43:48.394 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_174348.md
+2026-06-13 17:43:48.394 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_174348.md
+2026-06-13 17:43:48.397 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:43:48.397 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:45:48.399 [INFO] ===== INIZIO CICLO #131 | Modalita local =====
+2026-06-13 17:45:48.399 [INFO] ===== INIZIO CICLO #131 | Modalita local =====
+2026-06-13 17:45:52.009 [INFO] File da scansionare: 26566
+2026-06-13 17:45:52.041 [INFO] File da scansionare: 26566
+2026-06-13 17:45:52.911 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:45:52.913 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_174552.md
+2026-06-13 17:45:52.915 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:45:52.982 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:45:52.985 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_174552.md
+2026-06-13 17:45:52.986 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:47:52.921 [INFO] ===== INIZIO CICLO #132 | Modalita local =====
+2026-06-13 17:47:52.991 [INFO] ===== INIZIO CICLO #132 | Modalita local =====
+2026-06-13 17:47:56.645 [INFO] File da scansionare: 26661
+2026-06-13 17:47:56.661 [INFO] File da scansionare: 26661
+2026-06-13 17:47:57.667 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:47:57.670 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:47:57.673 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_174757.md
+2026-06-13 17:47:57.673 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_174757.md
+2026-06-13 17:47:57.675 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:47:57.675 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:49:57.678 [INFO] ===== INIZIO CICLO #133 | Modalita local =====
+2026-06-13 17:49:57.678 [INFO] ===== INIZIO CICLO #133 | Modalita local =====
+2026-06-13 17:50:01.705 [INFO] File da scansionare: 26765
+2026-06-13 17:50:01.707 [INFO] File da scansionare: 26765
+2026-06-13 17:50:02.775 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:50:02.778 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:50:02.783 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175002.md
+2026-06-13 17:50:02.781 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175002.md
+2026-06-13 17:50:02.786 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:50:02.787 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:52:02.792 [INFO] ===== INIZIO CICLO #134 | Modalita local =====
+2026-06-13 17:52:02.794 [INFO] ===== INIZIO CICLO #134 | Modalita local =====
+2026-06-13 17:52:06.635 [INFO] File da scansionare: 26862
+2026-06-13 17:52:06.647 [INFO] File da scansionare: 26862
+2026-06-13 17:52:07.766 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:52:07.764 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:52:07.770 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175207.md
+2026-06-13 17:52:07.774 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:52:07.773 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175207.md
+2026-06-13 17:52:07.779 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:54:07.780 [INFO] ===== INIZIO CICLO #135 | Modalita local =====
+2026-06-13 17:54:07.788 [INFO] ===== INIZIO CICLO #135 | Modalita local =====
+2026-06-13 17:54:11.683 [INFO] File da scansionare: 26965
+2026-06-13 17:54:11.684 [INFO] File da scansionare: 26965
+2026-06-13 17:54:12.712 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:54:12.713 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:54:12.713 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:54:12.714 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 17:54:12.718 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175412.md
+2026-06-13 17:54:12.719 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:54:12.719 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175412.md
+2026-06-13 17:54:12.721 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:56:12.726 [INFO] ===== INIZIO CICLO #136 | Modalita local =====
+2026-06-13 17:56:12.730 [INFO] ===== INIZIO CICLO #136 | Modalita local =====
+2026-06-13 17:56:17.276 [INFO] File da scansionare: 27037
+2026-06-13 17:56:17.284 [INFO] File da scansionare: 27037
+2026-06-13 17:56:18.516 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:56:18.521 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:56:18.527 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175618.md
+2026-06-13 17:56:18.533 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175618.md
+2026-06-13 17:56:18.537 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:56:18.544 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:58:18.553 [INFO] ===== INIZIO CICLO #137 | Modalita local =====
+2026-06-13 17:58:18.558 [INFO] ===== INIZIO CICLO #137 | Modalita local =====
+2026-06-13 17:58:23.021 [INFO] File da scansionare: 27140
+2026-06-13 17:58:23.083 [INFO] File da scansionare: 27140
+2026-06-13 17:58:24.238 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:58:24.251 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175824.md
+2026-06-13 17:58:24.265 [INFO] Prossimo ciclo tra 120s
+2026-06-13 17:58:24.271 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 17:58:24.281 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_175824.md
+2026-06-13 17:58:24.291 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:00:24.276 [INFO] ===== INIZIO CICLO #138 | Modalita local =====
+2026-06-13 18:00:24.314 [INFO] ===== INIZIO CICLO #138 | Modalita local =====
+2026-06-13 18:00:28.718 [INFO] File da scansionare: 27231
+2026-06-13 18:00:28.770 [INFO] File da scansionare: 27231
+2026-06-13 18:00:29.958 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:00:29.965 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180029.md
+2026-06-13 18:00:29.973 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:00:30.019 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:00:30.027 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180030.md
+2026-06-13 18:00:30.035 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:02:29.992 [INFO] ===== INIZIO CICLO #139 | Modalita local =====
+2026-06-13 18:02:30.060 [INFO] ===== INIZIO CICLO #139 | Modalita local =====
+2026-06-13 18:02:34.345 [INFO] File da scansionare: 27317
+2026-06-13 18:02:34.408 [INFO] File da scansionare: 27317
+2026-06-13 18:02:35.596 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:02:35.602 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:02:35.609 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180235.md
+2026-06-13 18:02:35.610 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180235.md
+2026-06-13 18:02:35.613 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:02:35.615 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:04:35.619 [INFO] ===== INIZIO CICLO #140 | Modalita local =====
+2026-06-13 18:04:35.625 [INFO] ===== INIZIO CICLO #140 | Modalita local =====
+2026-06-13 18:04:38.378 [INFO] File da scansionare: 27398
+2026-06-13 18:04:38.453 [INFO] File da scansionare: 27398
+2026-06-13 18:04:39.172 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:04:39.173 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:04:39.176 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180439.md
+2026-06-13 18:04:39.177 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:04:39.265 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:04:39.266 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:04:39.268 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180439.md
+2026-06-13 18:04:39.269 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:06:39.178 [INFO] ===== INIZIO CICLO #141 | Modalita local =====
+2026-06-13 18:06:39.271 [INFO] ===== INIZIO CICLO #141 | Modalita local =====
+2026-06-13 18:06:42.107 [INFO] File da scansionare: 27492
+2026-06-13 18:06:42.123 [INFO] File da scansionare: 27492
+2026-06-13 18:06:42.783 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:06:42.786 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180642.md
+2026-06-13 18:06:42.787 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:06:42.792 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:06:42.794 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180642.md
+2026-06-13 18:06:42.795 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:08:42.788 [INFO] ===== INIZIO CICLO #142 | Modalita local =====
+2026-06-13 18:08:42.796 [INFO] ===== INIZIO CICLO #142 | Modalita local =====
+2026-06-13 18:08:45.427 [INFO] File da scansionare: 27580
+2026-06-13 18:08:45.466 [INFO] File da scansionare: 27580
+2026-06-13 18:08:46.145 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:08:46.147 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180846.md
+2026-06-13 18:08:46.148 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:08:46.180 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:08:46.182 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_180846.md
+2026-06-13 18:08:46.183 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:10:46.149 [INFO] ===== INIZIO CICLO #143 | Modalita local =====
+2026-06-13 18:10:46.184 [INFO] ===== INIZIO CICLO #143 | Modalita local =====
+2026-06-13 18:10:49.608 [INFO] File da scansionare: 27687
+2026-06-13 18:10:49.625 [INFO] File da scansionare: 27687
+2026-06-13 18:10:50.552 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:10:50.554 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181050.md
+2026-06-13 18:10:50.555 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:10:50.556 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:10:50.557 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181050.md
+2026-06-13 18:10:50.558 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:12:50.557 [INFO] ===== INIZIO CICLO #144 | Modalita local =====
+2026-06-13 18:12:50.559 [INFO] ===== INIZIO CICLO #144 | Modalita local =====
+2026-06-13 18:12:52.987 [INFO] File da scansionare: 27786
+2026-06-13 18:12:52.993 [INFO] File da scansionare: 27786
+2026-06-13 18:12:53.711 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:12:53.711 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:12:53.714 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181253.md
+2026-06-13 18:12:53.714 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181253.md
+2026-06-13 18:12:53.715 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:14:53.716 [INFO] ===== INIZIO CICLO #145 | Modalita local =====
+2026-06-13 18:14:56.405 [INFO] File da scansionare: 27878
+2026-06-13 18:14:56.457 [INFO] File da scansionare: 27878
+2026-06-13 18:14:57.170 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:14:57.172 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:14:57.174 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181457.md
+2026-06-13 18:14:57.179 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:14:57.254 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:14:57.255 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:14:57.257 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181457.md
+2026-06-13 18:14:57.259 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:16:57.183 [INFO] ===== INIZIO CICLO #146 | Modalita local =====
+2026-06-13 18:16:57.265 [INFO] ===== INIZIO CICLO #146 | Modalita local =====
+2026-06-13 18:17:01.856 [INFO] File da scansionare: 27974
+2026-06-13 18:17:01.948 [INFO] File da scansionare: 27974
+2026-06-13 18:17:03.324 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:17:03.347 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181703.md
+2026-06-13 18:17:03.362 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:17:03.389 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:17:03.408 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181703.md
+2026-06-13 18:17:03.423 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:19:03.384 [INFO] ===== INIZIO CICLO #147 | Modalita local =====
+2026-06-13 18:19:03.437 [INFO] ===== INIZIO CICLO #147 | Modalita local =====
+2026-06-13 18:19:07.792 [INFO] File da scansionare: 28062
+2026-06-13 18:19:07.816 [INFO] File da scansionare: 28063
+2026-06-13 18:19:08.997 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:19:09.006 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181909.md
+2026-06-13 18:19:09.017 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:19:09.085 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:19:09.093 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_181909.md
+2026-06-13 18:19:09.097 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:21:09.031 [INFO] ===== INIZIO CICLO #148 | Modalita local =====
+2026-06-13 18:21:09.108 [INFO] ===== INIZIO CICLO #148 | Modalita local =====
+2026-06-13 18:21:13.509 [INFO] File da scansionare: 28146
+2026-06-13 18:21:13.577 [INFO] File da scansionare: 28146
+2026-06-13 18:21:14.782 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:21:14.795 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182114.md
+2026-06-13 18:21:14.800 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:21:14.857 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:21:14.867 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182114.md
+2026-06-13 18:21:14.872 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:23:14.811 [INFO] ===== INIZIO CICLO #149 | Modalita local =====
+2026-06-13 18:23:14.886 [INFO] ===== INIZIO CICLO #149 | Modalita local =====
+2026-06-13 18:23:19.258 [INFO] File da scansionare: 28224
+2026-06-13 18:23:19.278 [INFO] File da scansionare: 28224
+2026-06-13 18:23:20.449 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:23:20.461 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182320.md
+2026-06-13 18:23:20.469 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:23:20.475 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:23:20.488 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182320.md
+2026-06-13 18:23:20.500 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:25:20.475 [INFO] ===== INIZIO CICLO #150 | Modalita local =====
+2026-06-13 18:25:20.510 [INFO] ===== INIZIO CICLO #150 | Modalita local =====
+2026-06-13 18:25:24.353 [INFO] File da scansionare: 28314
+2026-06-13 18:25:24.360 [INFO] File da scansionare: 28314
+2026-06-13 18:25:25.462 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:25:25.465 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:25:25.466 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:25:25.469 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:25:25.473 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182525.md
+2026-06-13 18:25:25.474 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182525.md
+2026-06-13 18:25:25.475 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:25:25.477 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:27:25.477 [INFO] ===== INIZIO CICLO #151 | Modalita local =====
+2026-06-13 18:27:25.478 [INFO] ===== INIZIO CICLO #151 | Modalita local =====
+2026-06-13 18:27:28.935 [INFO] File da scansionare: 28414
+2026-06-13 18:27:29.044 [INFO] File da scansionare: 28414
+2026-06-13 18:27:29.948 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:27:29.951 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182729.md
+2026-06-13 18:27:29.953 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:27:30.011 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:27:30.014 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182730.md
+2026-06-13 18:27:30.015 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:29:29.954 [INFO] ===== INIZIO CICLO #152 | Modalita local =====
+2026-06-13 18:29:30.019 [INFO] ===== INIZIO CICLO #152 | Modalita local =====
+2026-06-13 18:29:34.016 [INFO] File da scansionare: 28516
+2026-06-13 18:29:34.070 [INFO] File da scansionare: 28516
+2026-06-13 18:29:35.156 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:29:35.162 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182935.md
+2026-06-13 18:29:35.159 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:29:35.166 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_182935.md
+2026-06-13 18:29:35.171 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:29:35.165 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:31:35.177 [INFO] ===== INIZIO CICLO #153 | Modalita local =====
+2026-06-13 18:31:35.179 [INFO] ===== INIZIO CICLO #153 | Modalita local =====
+2026-06-13 18:31:39.719 [INFO] File da scansionare: 28616
+2026-06-13 18:31:39.730 [INFO] File da scansionare: 28616
+2026-06-13 18:31:40.913 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:31:40.915 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:31:40.918 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_183140.md
+2026-06-13 18:31:40.921 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_183140.md
+2026-06-13 18:31:40.923 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:31:40.925 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:33:40.930 [INFO] ===== INIZIO CICLO #154 | Modalita local =====
+2026-06-13 18:33:40.932 [INFO] ===== INIZIO CICLO #154 | Modalita local =====
+2026-06-13 18:33:45.546 [INFO] File da scansionare: 28700
+2026-06-13 18:33:45.561 [INFO] File da scansionare: 28700
+2026-06-13 18:33:46.785 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:33:46.787 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:33:46.804 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_183346.md
+2026-06-13 18:33:46.805 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_183346.md
+2026-06-13 18:33:46.813 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:33:46.813 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:35:46.817 [INFO] ===== INIZIO CICLO #155 | Modalita local =====
+2026-06-13 18:35:51.087 [INFO] File da scansionare: 28783
+2026-06-13 18:35:51.132 [INFO] File da scansionare: 28783
+2026-06-13 18:35:52.346 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:35:52.349 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:35:52.355 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:35:52.360 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_183552.md
+2026-06-13 18:35:52.356 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:35:52.364 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:35:52.365 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_183552.md
+2026-06-13 18:35:52.375 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:37:52.364 [INFO] ===== INIZIO CICLO #156 | Modalita local =====
+2026-06-13 18:37:52.389 [INFO] ===== INIZIO CICLO #156 | Modalita local =====
+2026-06-13 18:37:56.669 [INFO] File da scansionare: 28888
+2026-06-13 18:37:56.739 [INFO] File da scansionare: 28888
+2026-06-13 18:37:58.066 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:37:58.080 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_183758.md
+2026-06-13 18:37:58.090 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:37:58.137 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:37:58.143 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_183758.md
+2026-06-13 18:37:58.149 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:39:58.103 [INFO] ===== INIZIO CICLO #157 | Modalita local =====
+2026-06-13 18:39:58.161 [INFO] ===== INIZIO CICLO #157 | Modalita local =====
+2026-06-13 18:40:02.443 [INFO] File da scansionare: 28974
+2026-06-13 18:40:02.498 [INFO] File da scansionare: 28974
+2026-06-13 18:40:03.717 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:40:03.718 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:40:03.729 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184003.md
+2026-06-13 18:40:03.730 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:40:03.728 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184003.md
+2026-06-13 18:40:03.734 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:42:03.743 [INFO] ===== INIZIO CICLO #158 | Modalita local =====
+2026-06-13 18:42:03.751 [INFO] ===== INIZIO CICLO #158 | Modalita local =====
+2026-06-13 18:42:09.038 [INFO] File da scansionare: 29048
+2026-06-13 18:42:09.133 [INFO] File da scansionare: 29048
+2026-06-13 18:42:10.448 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:42:10.469 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184210.md
+2026-06-13 18:42:10.482 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:42:10.505 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:42:10.522 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184210.md
+2026-06-13 18:42:10.532 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:44:10.501 [INFO] ===== INIZIO CICLO #159 | Modalita local =====
+2026-06-13 18:44:10.549 [INFO] ===== INIZIO CICLO #159 | Modalita local =====
+2026-06-13 18:44:15.329 [INFO] File da scansionare: 29135
+2026-06-13 18:44:15.381 [INFO] File da scansionare: 29135
+2026-06-13 18:44:16.771 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:44:16.801 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184416.md
+2026-06-13 18:44:16.823 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:44:16.853 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:44:16.863 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184416.md
+2026-06-13 18:44:16.875 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:46:16.832 [INFO] ===== INIZIO CICLO #160 | Modalita local =====
+2026-06-13 18:46:16.880 [INFO] ===== INIZIO CICLO #160 | Modalita local =====
+2026-06-13 18:46:20.423 [INFO] File da scansionare: 29224
+2026-06-13 18:46:20.434 [INFO] File da scansionare: 29224
+2026-06-13 18:46:21.433 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:46:21.434 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:46:21.437 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184621.md
+2026-06-13 18:46:21.438 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:46:21.441 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:46:21.442 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:46:21.445 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184621.md
+2026-06-13 18:46:21.447 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:48:21.439 [INFO] ===== INIZIO CICLO #161 | Modalita local =====
+2026-06-13 18:48:21.449 [INFO] ===== INIZIO CICLO #161 | Modalita local =====
+2026-06-13 18:48:24.824 [INFO] File da scansionare: 29314
+2026-06-13 18:48:24.921 [INFO] File da scansionare: 29314
+2026-06-13 18:48:25.752 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:48:25.754 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184825.md
+2026-06-13 18:48:25.755 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:48:25.948 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:48:25.950 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_184825.md
+2026-06-13 18:48:25.952 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:50:25.757 [INFO] ===== INIZIO CICLO #162 | Modalita local =====
+2026-06-13 18:50:25.954 [INFO] ===== INIZIO CICLO #162 | Modalita local =====
+2026-06-13 18:50:29.272 [INFO] File da scansionare: 29403
+2026-06-13 18:50:29.334 [INFO] File da scansionare: 29404
+2026-06-13 18:50:30.103 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:50:30.106 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185030.md
+2026-06-13 18:50:30.107 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:50:30.111 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:50:30.113 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185030.md
+2026-06-13 18:50:30.114 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:52:30.109 [INFO] ===== INIZIO CICLO #163 | Modalita local =====
+2026-06-13 18:52:30.115 [INFO] ===== INIZIO CICLO #163 | Modalita local =====
+2026-06-13 18:52:33.050 [INFO] File da scansionare: 29489
+2026-06-13 18:52:33.177 [INFO] File da scansionare: 29489
+2026-06-13 18:52:33.829 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:52:33.831 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185233.md
+2026-06-13 18:52:33.832 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:52:33.959 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:52:33.961 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185233.md
+2026-06-13 18:52:33.962 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:54:33.833 [INFO] ===== INIZIO CICLO #164 | Modalita local =====
+2026-06-13 18:54:33.963 [INFO] ===== INIZIO CICLO #164 | Modalita local =====
+2026-06-13 18:54:36.801 [INFO] File da scansionare: 29575
+2026-06-13 18:54:36.859 [INFO] File da scansionare: 29575
+2026-06-13 18:54:37.745 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:54:37.747 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185437.md
+2026-06-13 18:54:37.749 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:54:37.780 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:54:37.782 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185437.md
+2026-06-13 18:54:37.784 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:56:37.754 [INFO] ===== INIZIO CICLO #165 | Modalita local =====
+2026-06-13 18:56:37.789 [INFO] ===== INIZIO CICLO #165 | Modalita local =====
+2026-06-13 18:56:42.769 [INFO] File da scansionare: 29674
+2026-06-13 18:56:42.772 [INFO] File da scansionare: 29674
+2026-06-13 18:56:44.121 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:56:44.128 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:56:44.137 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185644.md
+2026-06-13 18:56:44.143 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:56:44.258 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:56:44.268 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-13 18:56:44.280 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185644.md
+2026-06-13 18:56:44.287 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:58:44.157 [INFO] ===== INIZIO CICLO #166 | Modalita local =====
+2026-06-13 18:58:44.303 [INFO] ===== INIZIO CICLO #166 | Modalita local =====
+2026-06-13 18:58:49.239 [INFO] File da scansionare: 29770
+2026-06-13 18:58:49.425 [INFO] File da scansionare: 29771
+2026-06-13 18:58:50.757 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:58:50.774 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185850.md
+2026-06-13 18:58:50.787 [INFO] Prossimo ciclo tra 120s
+2026-06-13 18:58:50.932 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 18:58:50.943 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_185850.md
+2026-06-13 18:58:50.954 [INFO] Prossimo ciclo tra 120s
+2026-06-13 19:00:50.808 [INFO] ===== INIZIO CICLO #167 | Modalita local =====
+2026-06-13 19:00:50.969 [INFO] ===== INIZIO CICLO #167 | Modalita local =====
+2026-06-13 19:00:56.715 [INFO] File da scansionare: 29862
+2026-06-13 19:00:56.758 [INFO] File da scansionare: 29862
+2026-06-13 19:00:58.331 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 19:00:58.350 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_190058.md
+2026-06-13 19:00:58.391 [INFO] Prossimo ciclo tra 120s
+2026-06-13 19:00:58.410 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 19:00:58.425 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_190058.md
+2026-06-13 19:00:58.443 [INFO] Prossimo ciclo tra 120s
+2026-06-13 19:02:58.412 [INFO] ===== INIZIO CICLO #168 | Modalita local =====
+2026-06-13 19:02:58.472 [INFO] ===== INIZIO CICLO #168 | Modalita local =====
+2026-06-13 19:03:04.221 [INFO] File da scansionare: 29930
+2026-06-13 19:03:04.223 [INFO] File da scansionare: 29930
+2026-06-13 19:03:05.978 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 19:03:06.029 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_190306.md
+2026-06-13 19:03:06.015 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 19:03:06.045 [INFO] Prossimo ciclo tra 120s
+2026-06-13 19:03:06.062 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_190306.md
+2026-06-13 19:03:06.125 [INFO] Prossimo ciclo tra 120s

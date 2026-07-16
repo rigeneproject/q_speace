@@ -1,0 +1,24 @@
+﻿Report non serializzabile. Riassunto:
+
+
+Timestamp    : 2026-06-13 13:40:43.640
+Frequenza    : ogni_5min
+AllOk        : False
+Checks       : {Snapshot non disponibile o vecchio: , 417 errori nei log (ultimi 10min)}
+SystemHealth : {UptimeDays, UptimeOk, CpuOk, RamTotalGB...}
+SpeaceStatus : {SpeaceCliPresent, SnapshotTick, RunningPids, SnapshotAge...}
+RecentErrors : 417
+ErrorList    : {@{File=ispettore_20260613_130726.log; Line=2026-06-13 13:38:24.636 [ERROR] Errore in ciclo completo: 
+               Il processo non può accedere al file 
+               'C:\cellular_speace\reports\ispettore\report_scan_20260613_133824.json' perché è in uso da un altro 
+               processo.; Timestamp=13/06/2026 13:40:31}, @{File=diagnostica_20260613_133119.log; Line=2026-06-13 
+               13:31:19.330 [ERROR] [alto] Runtime/snapshot_vecchio: Snapshot ha 32.8min (>30min); 
+               Timestamp=13/06/2026 13:31:23}, @{File=diagnostica_20260613_133119.log; Line=2026-06-13 13:31:19.346 
+               [WARN] [medio] Runtime/errore_lettura_snapshot: Errore lettura snapshot: Impossibile convertire la 
+               stringa JSON perché un dizionario convertito da tale stringa contiene le chiavi duplicate 'Server' e 
+               'SERVER'.; Timestamp=13/06/2026 13:31:23}, @{File=diagnostica_20260613_133119.log; Line=2026-06-13 
+               13:31:21.884 [DIAG] Diagnostica log errori...; Timestamp=13/06/2026 13:31:23}...}
+
+
+
+

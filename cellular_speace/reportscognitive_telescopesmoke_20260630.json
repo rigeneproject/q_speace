@@ -1,0 +1,114 @@
+{
+  "timestamp": 1782807847.5430057,
+  "factors": {
+    "wm": {
+      "value": 0.0,
+      "max_slots": 4,
+      "healthy_range": [
+        0.4,
+        0.8
+      ],
+      "tag": "cognitive_factor:wm",
+      "module": "cognition.subgrid_attention_working_memory.SubgridAttentionWorkingMemory"
+    },
+    "speed": {
+      "value": 0.038,
+      "total_cost": 0.38,
+      "n_modules": 10,
+      "healthy_range": [
+        0.0,
+        0.5
+      ],
+      "tag": "cognitive_factor:speed",
+      "module": "metabolism.cognitive_cost_model.CognitiveCostModel"
+    },
+    "pattern": {
+      "value": 0.0,
+      "note": "empty (no live concept graph in this snapshot)",
+      "healthy_range": [
+        0.05,
+        1.0
+      ],
+      "tag": "cognitive_factor:pattern",
+      "module": "cognition.concept_graph + cognition.arc_primitive_discovery_engine"
+    },
+    "knowledge": {
+      "value": 0.0,
+      "note": "empty (no live semantic store in this snapshot)",
+      "healthy_range": [
+        0.0,
+        1.0
+      ],
+      "tag": "cognitive_factor:knowledge",
+      "module": "evolutionary_memory + memory.semantic.semantic_memory_store"
+    },
+    "abstraction": {
+      "value": 1,
+      "healthy_range": [
+        2,
+        5
+      ],
+      "tag": "cognitive_factor:abstraction",
+      "module": "cognition.hierarchical_concept_abstraction_layer",
+      "note": "baseline (1 = flat concepts only)"
+    },
+    "relational": {
+      "value": 0,
+      "healthy_range": [
+        1,
+        1000000
+      ],
+      "tag": "cognitive_factor:relational",
+      "module": "cognition.temporal_causal_reasoning_layer",
+      "note": "baseline (no live observations)"
+    },
+    "metacognition": {
+      "value": 0.0,
+      "healthy_range": [
+        0.1,
+        1000.0
+      ],
+      "tag": "cognitive_factor:metacognition",
+      "module": "metacognition.metacognitive_monitor",
+      "note": "baseline (no active metacognitive monitor)"
+    },
+    "attention": {
+      "value": 0,
+      "healthy_range": [
+        0,
+        2
+      ],
+      "tag": "cognitive_factor:attention",
+      "module": "regions.thalamic_relay_engine.ThalamicRelayEngine",
+      "note": "0 = tonic (sustained attention); 1 = currently in burst (gap)"
+    },
+    "motivation": {
+      "value": 0.8,
+      "setpoints": {
+        "self_preservation": 0.7,
+        "energy_conservation": 0.5,
+        "resource_acquisition": 0.4,
+        "information_exploration": 0.3,
+        "homeostatic_equilibrium": 0.7,
+        "adaptive_exploration": 0.3,
+        "coherence_maintenance": 0.8
+      },
+      "healthy_range": [
+        0.0,
+        0.8
+      ],
+      "tag": "cognitive_factor:motivation",
+      "module": "dna.genome.morphology.autonomous_drives"
+    },
+    "flexibility": {
+      "value": 0.0,
+      "healthy_range": [
+        0.2,
+        100.0
+      ],
+      "tag": "cognitive_factor:flexibility",
+      "module": "cognition.mmapr_council",
+      "note": "baseline (no background perspective-switch counter)"
+    }
+  }
+}

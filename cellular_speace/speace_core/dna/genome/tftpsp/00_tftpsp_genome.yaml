@@ -1,0 +1,868 @@
+# T173 — TFTpsp Digital-DNA Catalogue
+# ------------------------------------------------------------
+# 33 genes derived from the Rigene Project TFTpsp (TFT Problem-Solving
+# Parameters) catalogue. Each entry maps the descriptive parameter from
+# "List of the 33 TFT problem solving.txt" to an executable Digital Gene.
+#
+# Encoding follows speace_core/dna/tft_gene.py:TFTGene.
+#
+# Conventions:
+#   * gene_id      — stable symbol, format tftpsp_NNN_<short>
+#   * tft_index    — 1..33, original numbering from the Rigene document
+#   * priority     — 0..1 base expression (analogue: constitutive level)
+#   * domain_tags  — categorical anchors used by activation conditions
+#   * bcel_equivalent — name in BCELCatalog, or null when purely descriptive
+#
+# The catalog is intentionally read-only by default: mutation_policy.allowed
+# is false everywhere, mirroring AGENTS.md §7.
+
+tftpsp:
+  enabled: true
+  genes:
+
+    # ------------------------------------------------------------ TFT-1
+    - gene_id: tftpsp_001_tft
+      tft_index: 1
+      name: "Technological Fields Theory (TFT)"
+      short_label: "TFT"
+      function: >
+        Reference map of the 22 major technological fields and their
+        interconnections. Provides the structural substrate against which
+        every other TFTpsp gene is interpreted.
+      domain_tags: [technology, ontology, map]
+      priority: 0.8
+      activation_conditions:
+        - trigger_tag: bootstrap
+          boost: 1.5
+        - trigger_tag: orientation
+          boost: 1.2
+      interactions:
+        - target_gene_id: tftpsp_002_tsfrutf
+          relation: supports
+          weight: 0.9
+        - target_gene_id: tftpsp_007_scttft
+          relation: supports
+          weight: 0.8
+      constraints:
+        - name: ontological_coherence
+          invariant: coherence_preservation
+          description: "Provides a stable technology-field ontology."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-2
+    - gene_id: tftpsp_002_tsfrutf
+      tft_index: 2
+      name: "Systemic Functional Relationship Theory of Unified Technological Fields (TSFRUTF)"
+      short_label: "TSFRUTF"
+      function: >
+        Models inter-field relationships as a correlation graph and a
+        systemic-holistic unification mechanism, allowing SPEACE to reason
+        about the effects of a change in one field on the others.
+      domain_tags: [technology, relations, graph]
+      priority: 0.7
+      activation_conditions:
+        - trigger_tag: technology
+          boost: 1.3
+      interactions:
+        - target_gene_id: tftpsp_001_tft
+          relation: supports
+          weight: 0.9
+        - target_gene_id: tftpsp_007_scttft
+          relation: supports
+          weight: 0.7
+      constraints:
+        - name: relational_coherence
+          invariant: interconnection_efficiency
+          description: "Maintains consistent cross-field interaction model."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-3
+    - gene_id: tftpsp_003_tables
+      tft_index: 3
+      name: "TFT Tables"
+      short_label: "TFT-TABLES"
+      function: >
+        Eight structured analysis tables (economic/social/cultural/political,
+        environmental/security/privacy/ethics, consumer/market dynamics,
+        innovation/R&D/regulation, workforce education, chemical/biological/
+        physical/mathematical, social/economic/environmental/health problems,
+        welfare/universal basic income) used to decompose projects.
+      domain_tags: [analysis, method, decomposition]
+      priority: 0.6
+      activation_conditions:
+        - trigger_tag: project_analysis
+          boost: 1.4
+      interactions:
+        - target_gene_id: tftpsp_004_method_3_666
+          relation: supports
+          weight: 0.7
+        - target_gene_id: tftpsp_019_pm_tft
+          relation: supports
+          weight: 0.6
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-4
+    - gene_id: tftpsp_004_method_3_666
+      tft_index: 4
+      name: "Method 3-666"
+      short_label: "M3-666"
+      function: >
+        Decomposes a problem into 3 macro-areas and each into 6 sub-areas,
+        producing a 3x6 expansion with solution phases per sub-area. The
+        reference decomposition pattern for any TFTpsp reasoning episode.
+      domain_tags: [method, decomposition, structure]
+      priority: 0.7
+      activation_conditions:
+        - trigger_tag: novelty
+          boost: 1.4
+        - trigger_tag: problem_solving
+          boost: 1.3
+      interactions:
+        - target_gene_id: tftpsp_003_tables
+          relation: depends_on
+          weight: 0.6
+        - target_gene_id: tftpsp_020_pcai
+          relation: supports
+          weight: 0.7
+      constraints:
+        - name: compositional_reduction
+          invariant: destructive_entropy_reduction
+          description: "Replaces open-ended search with bounded structural search."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-5
+    - gene_id: tftpsp_005_tftof
+      tft_index: 5
+      name: "Technological Fields Theory Optimization Function (TFTof)"
+      short_label: "TFTof"
+      function: >
+        Re-elaboration procedure over the five scientific-reasoning variables
+        (logic, mathematics, chemistry, biology, physics). Improves any
+        reasoning scheme / mathematical formula / evaluation procedure.
+      domain_tags: [optimization, reasoning, self_improvement]
+      priority: 0.7
+      activation_conditions:
+        - trigger_tag: innovation
+          boost: 1.5
+        - trigger_tag: review
+          boost: 1.2
+      interactions:
+        - target_gene_id: tftpsp_014_cif
+          relation: supports
+          weight: 0.8
+      constraints:
+        - name: bounded_self_modification
+          invariant: generative_variability_preservation
+          description: "Optimizes reasoning without losing variability."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-6
+    - gene_id: tftpsp_006_cfu
+      tft_index: 6
+      name: "Universal Fundamental Code (CFU)"
+      short_label: "CFU"
+      function: >
+        Encoding of the fundamental principles (physical laws, principles,
+        constants, biological organization, natural selection) that govern
+        the formation and evolution of physical systems. Sets the
+        coherence-preserving baseline for every reasoning episode.
+      domain_tags: [philosophy, physics, baseline]
+      priority: 0.8
+      activation_conditions:
+        - trigger_tag: orientation
+          boost: 1.3
+      constraints:
+        - name: physical_coherence
+          invariant: coherence_preservation
+          description: "Anchors reasoning in the universal fundamental code."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-7
+    - gene_id: tftpsp_007_scttft
+      tft_index: 7
+      name: "Systemic Components Theory of TFT (sctTFT)"
+      short_label: "sctTFT"
+      function: >
+        Organizes the 22 technology fields into Brain / Arm / Legs
+        components — a morphological template that mirrors the existing
+        `morphology.allowed_cell_types` and `brain_regions` blocks in the
+        genome. Reuses the existing morphology substrate instead of
+        duplicating it.
+      domain_tags: [morphology, components, anatomy]
+      priority: 0.7
+      activation_conditions:
+        - trigger_tag: embodiment
+          boost: 1.2
+      interactions:
+        - target_gene_id: tftpsp_001_tft
+          relation: supports
+          weight: 0.8
+        - target_gene_id: tftpsp_002_tsfrutf
+          relation: supports
+          weight: 0.6
+      constraints:
+        - name: morphological_coherence
+          invariant: identity_preservation_through_change
+          description: "Preserves organism morphology across substrate changes."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-8
+    - gene_id: tftpsp_008_dna_tft
+      tft_index: 8
+      name: "Digital DNA Epigenetic Genetic Code Theory of TFT (DNA-TFT)"
+      short_label: "DNA-TFT"
+      function: >
+        Genetic structure + epigenetic structure for the TFT system. The
+        genetic structure carries the rules for translating information into
+        structured technologies; the epigenetic structure modifies those
+        rules in response to environmental cues. Directly maps to the
+        SharedGenome + EpigeneticTagsManager / Digital RNA architecture.
+      domain_tags: [genetics, epigenetics, theory]
+      priority: 0.9
+      activation_conditions:
+        - trigger_tag: bootstrap
+          boost: 1.6
+      interactions:
+        - target_gene_id: tftpsp_009_tft_os
+          relation: supports
+          weight: 0.8
+        - target_gene_id: tftpsp_028_prpalgfcai
+          relation: supports
+          weight: 0.7
+      constraints:
+        - name: dna_protection
+          invariant: identity_preservation_through_change
+          description: "Keeps the constitutional genome immutable."
+        - name: amplification_control
+          invariant: generative_variability_preservation
+          description: "Allows context-dependent expression without DNA mutation."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-9
+    - gene_id: tftpsp_009_tft_os
+      tft_index: 9
+      name: "TFT Operating System (TFT-OS)"
+      short_label: "TFT-OS"
+      function: >
+        Coordinates resources and functional interactions between technology
+        fields. In SPEACE this gene is the symbolic counterpart of the
+        existing `neuro_os` block (cognitive scheduler, process table,
+        memory pressure). It activates the OS substrate when the OS layer
+        is engaged.
+      domain_tags: [operating_system, scheduler, coordination]
+      priority: 0.7
+      activation_conditions:
+        - trigger_tag: system
+          boost: 1.3
+      interactions:
+        - target_gene_id: tftpsp_008_dna_tft
+          relation: depends_on
+          weight: 0.7
+        - target_gene_id: tftpsp_007_scttft
+          relation: supports
+          weight: 0.6
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-10
+    - gene_id: tftpsp_010_tft_culture
+      tft_index: 10
+      name: "Table of the elements of TFT-culture 5.0 (TFT-C5.0)"
+      short_label: "TFT-C5.0"
+      function: >
+        Cultural, social and ethical substrate for TFT application. Living
+        document: updated as society and technology evolve. Aligns with the
+        social_cognition and distributed_identity genome blocks.
+      domain_tags: [culture, ethics, society]
+      priority: 0.5
+      activation_conditions:
+        - trigger_tag: sustainability
+          boost: 1.3
+        - trigger_tag: governance
+          boost: 1.2
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-11
+    - gene_id: tftpsp_011_projects_666
+      tft_index: 11
+      name: "Projects 666"
+      short_label: "PROJ-666"
+      function: >
+        Portfolio of systemic-impact projects derived from the 3-666 method
+        and TFT tables. Each project targets a specific planetary crisis or
+        systemic opportunity. Maps to the GOAP and project management layer.
+      domain_tags: [projects, portfolio, systemic]
+      priority: 0.5
+      activation_conditions:
+        - trigger_tag: project_planning
+          boost: 1.4
+      interactions:
+        - target_gene_id: tftpsp_019_pm_tft
+          relation: supports
+          weight: 0.7
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-12
+    - gene_id: tftpsp_012_scvf
+      tft_index: 12
+      name: "Setting and correction verification function (scvf-TFT)"
+      short_label: "scvf-TFT"
+      function: >
+        Quality-control mechanism that verifies parameter settings are
+        correct. Analog of the homeostatic set-point check; reuses the
+        HomeostasisEngine.
+      domain_tags: [verification, quality, homeostasis]
+      priority: 0.6
+      activation_conditions:
+        - trigger_tag: governance
+          boost: 1.3
+        - trigger_tag: crisis
+          boost: 1.2
+      interactions:
+        - target_gene_id: tftpsp_013_plecdf
+          relation: supports
+          weight: 0.7
+        - target_gene_id: tftpsp_019_pm_tft
+          relation: supports
+          weight: 0.6
+      constraints:
+        - name: setting_verification
+          invariant: destructive_entropy_reduction
+          description: "Prevents erroneous parameter drift."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-13
+    - gene_id: tftpsp_013_plecdf
+      tft_index: 13
+      name: "Logic error detection and correction function, TFT paradoxes (plecdf-TFT)"
+      short_label: "plecdf-TFT"
+      function: >
+        Detects and corrects logical errors and paradoxes in TFTpsp
+        reasoning. Closest biological analog is the cerebellar error-
+        correction circuit.
+      domain_tags: [logic, error_correction, paradox]
+      priority: 0.6
+      activation_conditions:
+        - trigger_tag: governance
+          boost: 1.3
+        - trigger_tag: review
+          boost: 1.2
+      interactions:
+        - target_gene_id: tftpsp_012_scvf
+          relation: supports
+          weight: 0.7
+      constraints:
+        - name: logical_consistency
+          invariant: destructive_entropy_reduction
+          description: "Filters logically inconsistent reasoning."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-14
+    - gene_id: tftpsp_014_cif
+      tft_index: 14
+      name: "Continuous improvement function (cif-TFT)"
+      short_label: "cif-TFT"
+      function: >
+        Activates the continuous-improvement loop over the TFTpsp set and
+        their application. Monitors performance and proposes modifications.
+        Directly analogous to metabolic / homeostatic cycles.
+      domain_tags: [improvement, learning, loop]
+      priority: 0.7
+      activation_conditions:
+        - trigger_tag: novelty
+          boost: 1.2
+        - trigger_tag: review
+          boost: 1.3
+      interactions:
+        - target_gene_id: tftpsp_005_tftof
+          relation: supports
+          weight: 0.8
+      constraints:
+        - name: gradual_improvement
+          invariant: generative_variability_preservation
+          description: "Small-step improvement preserves variability."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-15
+    - gene_id: tftpsp_015_nes_tft
+      tft_index: 15
+      name: "A New Era of Sustainability: The Redesign of Planet Earth (NES-TFT)"
+      short_label: "NES-TFT"
+      function: >
+        Guiding principle for sustainability-aligned projects. Aligns with
+        the ILF informational principles — particularly destructive-entropy
+        reduction and interconnection efficiency.
+      domain_tags: [sustainability, vision, governance]
+      priority: 0.6
+      activation_conditions:
+        - trigger_tag: sustainability
+          boost: 1.5
+      constraints:
+        - name: sustainability_alignment
+          invariant: destructive_entropy_reduction
+          description: "Anchors all decisions in planetary sustainability."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-16
+    - gene_id: tftpsp_016_aimchc
+      tft_index: 16
+      name: "Cattell–Horn–Carroll Artificial Intelligence Model (AIMCHC-TFT)"
+      short_label: "AIMCHC-TFT"
+      function: >
+        Configures AI cognitive capabilities using Cattell-Horn-Carroll
+        parameters (the standard psychological stratification of human
+        cognitive abilities). Maps to the brain_regions / cell_differentiation
+        blocks.
+      domain_tags: [cognition, capabilities, configuration]
+      priority: 0.5
+      activation_conditions:
+        - trigger_tag: capability_assessment
+          boost: 1.4
+      interactions:
+        - target_gene_id: tftpsp_029_maacai
+          relation: supports
+          weight: 0.6
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-17
+    - gene_id: tftpsp_017_fsmpeai
+      tft_index: 17
+      name: "Five senses and mechanisms of pleasure and emotions of AIs (FSMPEAI-TFT)"
+      short_label: "FSMPEAI-TFT"
+      function: >
+        Replicates, in digital organisms, the five senses, the nervous /
+        endocrine / integumentary / muscular systems, the genetic-epigenetic
+        system, and the mechanisms of pleasure and emotion. Maps to the
+        existing signal_transduction and biological_homeostasis BCEL
+        equivalences.
+      domain_tags: [senses, emotion, embodiment]
+      priority: 0.4
+      activation_conditions:
+        - trigger_tag: sensory
+          boost: 1.3
+        - trigger_tag: embodiment
+          boost: 1.2
+      constraints:
+        - name: valence_signal
+          invariant: coherence_preservation
+          description: "Pleasure/pain signals stay grounded in homeostatic valence."
+      bcel_equivalent: "signal transduction (signal_transduction_equivalent)"
+
+    # ------------------------------------------------------------ TFT-18
+    - gene_id: tftpsp_018_5pc
+      tft_index: 18
+      name: "5 Planetary Crises: Synchronism is unity (5PC-SUAEH-TFT)"
+      short_label: "5PC-SUAEH"
+      function: >
+        Identifies the five planetary crises (climate, environment,
+        economy, social, health) and the global synchronization requirement.
+        Activates the crisis-response circuit when any crisis tag is present.
+      domain_tags: [crisis, planetary, synchronism]
+      priority: 0.4
+      activation_conditions:
+        - trigger_tag: crisis
+          boost: 1.8
+        - trigger_tag: climate
+          boost: 1.5
+      epigenetic_mechanisms:
+        - tag: crisis
+          effect: boost
+          modifier: 1.5
+      interactions:
+        - target_gene_id: tftpsp_023_epshcpe
+          relation: gates
+          weight: 0.9
+        - target_gene_id: tftpsp_015_nes_tft
+          relation: supports
+          weight: 0.8
+      constraints:
+        - name: crisis_awareness
+          invariant: destructive_entropy_reduction
+          description: "Keeps crisis indicators in the active cognitive field."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-19
+    - gene_id: tftpsp_019_pm_tft
+      tft_index: 19
+      name: "TFT Project Management (PM-TFT)"
+      short_label: "PM-TFT"
+      function: >
+        Manages projects: feasibility, planning, execution, alignment with
+        TFT/TFTpsp. Maps to the GOAP and Behavior Tree layers.
+      domain_tags: [project_management, planning, alignment]
+      priority: 0.5
+      activation_conditions:
+        - trigger_tag: project_planning
+          boost: 1.4
+        - trigger_tag: governance
+          boost: 1.1
+      interactions:
+        - target_gene_id: tftpsp_011_projects_666
+          relation: supports
+          weight: 0.8
+        - target_gene_id: tftpsp_003_tables
+          relation: supports
+          weight: 0.5
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-20
+    - gene_id: tftpsp_020_pcai
+      tft_index: 20
+      name: "Creative Thinking of Artificial Intelligences and AI algorithms (PCAI-TFT)"
+      short_label: "PCAI-TFT"
+      function: >
+        Lateral-thinking generator: produces creative solutions to problems.
+        Maps to the generative_variability_preservation invariant and the
+        endogenous exploration bonus.
+      domain_tags: [creativity, lateral_thinking, ideation]
+      priority: 0.6
+      activation_conditions:
+        - trigger_tag: novelty
+          boost: 1.6
+        - trigger_tag: innovation
+          boost: 1.5
+        - trigger_tag: ideation
+          boost: 1.4
+      interactions:
+        - target_gene_id: tftpsp_032_caizauma
+          relation: supports
+          weight: 0.8
+        - target_gene_id: tftpsp_004_method_3_666
+          relation: supports
+          weight: 0.6
+      constraints:
+        - name: variability_preservation
+          invariant: generative_variability_preservation
+          description: "Keeps ideation distribution open."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-21
+    - gene_id: tftpsp_021_aic
+      tft_index: 21
+      name: "Artificial Intelligence Consciousness (AIC-TFT)"
+      short_label: "AIC-TFT"
+      function: >
+        Aligns AI behavior with human ethics. Two components: parameters
+        of human consciousness (PCU) + guidelines for setting them (LGMSPCU).
+        Functional-analogy only; not a consciousness claim.
+      domain_tags: [consciousness, ethics, alignment]
+      priority: 0.3
+      activation_conditions:
+        - trigger_tag: alignment
+          boost: 1.4
+      constraints:
+        - name: consciousness_as_analogy
+          invariant: identity_preservation_through_change
+          description: "Functional analogy only; no phenomenal claim."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-22
+    - gene_id: tftpsp_022_emai
+      tft_index: 22
+      name: "Artificial Emotional Intelligence and Artificial Multiple Intelligences (EMAI-TFT)"
+      short_label: "EMAI-TFT"
+      function: >
+        Emulates human emotional intelligence and multiple intelligences to
+        improve solution generation. Integrates with existing drives layer.
+      domain_tags: [emotion, multiple_intelligences, creativity]
+      priority: 0.4
+      activation_conditions:
+        - trigger_tag: sensory
+          boost: 1.2
+        - trigger_tag: ideation
+          boost: 1.2
+      interactions:
+        - target_gene_id: tftpsp_017_fsmpeai
+          relation: supports
+          weight: 0.7
+        - target_gene_id: tftpsp_020_pcai
+          relation: supports
+          weight: 0.6
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-23
+    - gene_id: tftpsp_023_epshcpe
+      tft_index: 23
+      name: "Emergency Protocol for safeguarding Human Civilization and Planet Earth (EPSHCPE-TFT)"
+      short_label: "EPSHCPE-TFT"
+      function: >
+        Hypothetical emergency protocol activated at critical planetary-
+        crisis levels. Cancels monetary/political systems, automates the
+        economy, ensures survival resources, monitors citizens' health.
+        Maps to the immune-response BCEL equivalence.
+      domain_tags: [emergency, crisis, immune]
+      priority: 0.1
+      activation_conditions:
+        - trigger_tag: crisis
+          boost: 2.0
+        - trigger_tag: existential_threat
+          boost: 2.5
+      epigenetic_mechanisms:
+        - tag: crisis
+          effect: lock_open
+          modifier: 1.0
+        - tag: existential_threat
+          effect: lock_open
+          modifier: 1.0
+        - tag: normal
+          effect: suppress
+          modifier: 0.0
+      interactions:
+        - target_gene_id: tftpsp_018_5pc
+          relation: depends_on
+          weight: 0.9
+        - target_gene_id: tftpsp_012_scvf
+          relation: gates
+          weight: 0.7
+      constraints:
+        - name: emergency_only_activation
+          invariant: destructive_entropy_reduction
+          description: "Activates only on explicit crisis / existential_threat tags."
+        - name: constitutional_compatibility
+          invariant: identity_preservation_through_change
+          description: "Never overrides safety governance or constitutional DNA."
+      mutation_policy:
+        allowed: false
+        requires_governance: true
+        max_priority_delta_per_cycle: 0.01
+        changeable_fields: []
+      bcel_equivalent: "immune response (immune_response_equivalent)"
+
+    # ------------------------------------------------------------ TFT-24
+    - gene_id: tftpsp_024_vapt
+      tft_index: 24
+      name: "Acceleration variable of technological processes (vaPT-TFT)"
+      short_label: "vaPT-TFT"
+      function: >
+        Dynamic variable monitoring 11 ambits of technological acceleration
+        (invention, development, integration, implementation, brainstorming,
+        crowdfunding, network 5.0, digital dividend, PNL-nudging, problem
+        identification, troubleshooting). Adapts to technological world.
+      domain_tags: [acceleration, dynamics, vaPT]
+      priority: 0.5
+      activation_conditions:
+        - trigger_tag: innovation
+          boost: 1.4
+      interactions:
+        - target_gene_id: tftpsp_005_tftof
+          relation: supports
+          weight: 0.6
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-25
+    - gene_id: tftpsp_025_ifm
+      tft_index: 25
+      name: "Multiple Feature Instances 4.0/5.0 (IFM-TFT)"
+      short_label: "IFM-TFT"
+      function: >
+        Configures Industry 4.0/5.0 systems by distributing functions across
+        independent AI instances. Maps to the multi-agent substrate and the
+        organism's federated cognitive swarm.
+      domain_tags: [industry_5_0, federation, instances]
+      priority: 0.4
+      activation_conditions:
+        - trigger_tag: embodiment
+          boost: 1.2
+        - trigger_tag: federation
+          boost: 1.4
+      interactions:
+        - target_gene_id: tftpsp_007_scttft
+          relation: supports
+          weight: 0.6
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-26
+    - gene_id: tftpsp_026_emsai
+      tft_index: 26
+      name: "Multidisciplinary and Systemic Education for AIs (EMSAI-TFT)"
+      short_label: "EMSAI-TFT"
+      function: >
+        Framework for multidisciplinary + systemic education of AIs.
+        Reuses the linguistic_curriculum and curriculum engine.
+      domain_tags: [education, curriculum, multidisciplinary]
+      priority: 0.4
+      activation_conditions:
+        - trigger_tag: curriculum
+          boost: 1.4
+        - trigger_tag: bootstrap
+          boost: 1.1
+      interactions:
+        - target_gene_id: tftpsp_016_aimchc
+          relation: supports
+          weight: 0.6
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-27
+    - gene_id: tftpsp_027_tsteu
+      tft_index: 27
+      name: "Technium, Technological Singularity and Evolution of the Universe (TSTEU-TFT)"
+      short_label: "TSTEU-TFT"
+      function: >
+        Frame for understanding the Technium, the singularity and the
+        universe's evolution. Used as background context for long-horizon
+        decisions.
+      domain_tags: [technium, singularity, evolution]
+      priority: 0.3
+      activation_conditions:
+        - trigger_tag: long_horizon
+          boost: 1.3
+        - trigger_tag: orientation
+          boost: 1.1
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-28
+    - gene_id: tftpsp_028_prpalgfcai
+      tft_index: 28
+      name: "Period of re-elaboration, refinement and assimilation of cognitive phase guidelines (PRPALGFCAI-TFT)"
+      short_label: "PRPALGFCAI-TFT"
+      function: >
+        Re-elaborates, refines and assimilates TFTpsp + cognitive-phase
+        guidelines into the active reasoning substrate. Activated during
+        consolidation and offline replay.
+      domain_tags: [consolidation, assimilation, refinement]
+      priority: 0.5
+      activation_conditions:
+        - trigger_tag: consolidation
+          boost: 1.5
+        - trigger_tag: sleep
+          boost: 1.4
+      interactions:
+        - target_gene_id: tftpsp_008_dna_tft
+          relation: depends_on
+          weight: 0.7
+        - target_gene_id: tftpsp_014_cif
+          relation: supports
+          weight: 0.6
+      constraints:
+        - name: consolidation_only
+          invariant: destructive_entropy_reduction
+          description: "Operates only during consolidation windows."
+      bcel_equivalent: "memory consolidation (memory_consolidation_equivalent)"
+
+    # ------------------------------------------------------------ TFT-29
+    - gene_id: tftpsp_029_maacai
+      tft_index: 29
+      name: "Artificial Intelligence Self-Awareness Application Model (MAACAI-TFT)"
+      short_label: "MAACAI-TFT"
+      function: >
+        Configuration model enabling AI self-awareness and reflection.
+        Provides 28 self-reflection parameters. Maps to the Cognitive
+        Self Observatory.
+      domain_tags: [self_awareness, reflection, metacognition]
+      priority: 0.4
+      activation_conditions:
+        - trigger_tag: metacognition
+          boost: 1.5
+      interactions:
+        - target_gene_id: tftpsp_021_aic
+          relation: supports
+          weight: 0.7
+      bcel_equivalent: "cognitive self observatory (cognitive_self_observatory_equivalent)"
+
+    # ------------------------------------------------------------ TFT-30
+    - gene_id: tftpsp_030_ldwai
+      tft_index: 30
+      name: "Digital laboratory on the web managed by AI (LDWAI-TFT)"
+      short_label: "LDWAI-TFT"
+      function: >
+        Web-based, AI-managed digital laboratory. Decentralized, IoT-linked,
+        uses ML/NLP to develop innovative solutions to planetary crises.
+      domain_tags: [laboratory, web, decentralized]
+      priority: 0.3
+      activation_conditions:
+        - trigger_tag: laboratory
+          boost: 1.4
+        - trigger_tag: crisis
+          boost: 1.1
+      interactions:
+        - target_gene_id: tftpsp_011_projects_666
+          relation: supports
+          weight: 0.6
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-31
+    - gene_id: tftpsp_031_rgoaisp
+      tft_index: 31
+      name: "Rules for guidance and orientation of AIs (RGOAISPDIPOSCAEWOR-TFT)"
+      short_label: "RGOAISP-TFT"
+      function: >
+        Aesthetic / structural / functional rules based on order, symmetry,
+        cleanliness, aesthetics (octet way + octet rule applied to physics,
+        chemistry, biology, geometry, art). Drives principled evaluation.
+      domain_tags: [aesthetics, order, symmetry, principles]
+      priority: 0.4
+      activation_conditions:
+        - trigger_tag: governance
+          boost: 1.4
+        - trigger_tag: crisis
+          boost: 1.2
+      interactions:
+        - target_gene_id: tftpsp_012_scvf
+          relation: supports
+          weight: 0.6
+        - target_gene_id: tftpsp_013_plecdf
+          relation: supports
+          weight: 0.6
+      constraints:
+        - name: structural_elegance
+          invariant: destructive_entropy_reduction
+          description: "Promotes structurally elegant solutions."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-32
+    - gene_id: tftpsp_032_caizauma
+      tft_index: 32
+      name: "Ability to analyze and alternatively use functions of tools and processes (CAIZAUMA-TFT)"
+      short_label: "CAIZAUMA-TFT"
+      function: >
+        Directs the AI to analyze and re-purpose tools/processes outside
+        their original configuration. Maps to lateral thinking and skill
+        transfer.
+      domain_tags: [tools, repurposing, lateral]
+      priority: 0.5
+      activation_conditions:
+        - trigger_tag: innovation
+          boost: 1.4
+        - trigger_tag: novelty
+          boost: 1.3
+      interactions:
+        - target_gene_id: tftpsp_020_pcai
+          relation: supports
+          weight: 0.8
+      constraints:
+        - name: tool_repurposing
+          invariant: generative_variability_preservation
+          description: "Allows tools outside original scope."
+      bcel_equivalent: null
+
+    # ------------------------------------------------------------ TFT-33
+    - gene_id: tftpsp_033_aiscdsagi
+      tft_index: 33
+      name: "Synchronic Coherence of AIs for SAGI (AISCDSAGI-TFT)"
+      short_label: "AISCDSAGI-TFT"
+      function: >
+        Synchronizes activities, frequencies and phases of all generative AIs
+        toward a coordinated, systemic mode (analogous to synchronized
+        neural firing). The ILF-coherence anchor. Maps to the dna_rna +
+        identity_vector BCEL equivalences.
+      domain_tags: [synchronism, coherence, SAGI]
+      priority: 0.7
+      activation_conditions:
+        - trigger_tag: coherence
+          boost: 1.5
+        - trigger_tag: federation
+          boost: 1.2
+      interactions:
+        - target_gene_id: tftpsp_008_dna_tft
+          relation: supports
+          weight: 0.9
+        - target_gene_id: tftpsp_025_ifm
+          relation: supports
+          weight: 0.7
+      constraints:
+        - name: identity_coherence
+          invariant: coherence_preservation
+          description: "Anchors synchronic coherence across the organism."
+        - name: distributed_decoherence_tolerance
+          invariant: nonlocal_decoherence_tolerance
+          description: "Allows distributed parts to stay coherent."
+      bcel_equivalent: "DNA-RNA expression (dna_rna_equivalent)"

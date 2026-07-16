@@ -1,0 +1,121 @@
+﻿2026-06-13 13:19:09.412 [INFO] Esecuzione singola (once mode)
+2026-06-13 13:19:09.542 [INFO] ===== INIZIO SCANSIONE COMPLETA #0 =====
+2026-06-13 13:19:09.626 [INFO] Scansione in corso: Speace Core (Cervello) (C:\cellular_speace\speace_core)
+2026-06-13 13:19:10.266 [WARN] ISSUE: [Speace Core (Cervello)] orchestrator.py - FILE_TROPPO_GRANDE: orchestrator.py ha 2044 linee (>2000)
+2026-06-13 13:19:10.654 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:10.846 [WARN] ISSUE: [Speace Core (Cervello)] neurofunctional_benchmark.py - FILE_TROPPO_GRANDE: neurofunctional_benchmark.py ha 2058 linee (>2000)
+2026-06-13 13:19:10.862 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:10.948 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:11.310 [WARN] ISSUE: [Speace Core (Cervello)] cognitive_mutation_sandbox.py - USO_DI_EXEC_EVAL: cognitive_mutation_sandbox.py contiene eval/exec
+2026-06-13 13:19:11.468 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:11.862 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:12.088 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - TODO_FOUND: causal_model_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 13:19:12.112 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - FILE_TROPPO_GRANDE: causal_model_engine.py ha 2418 linee (>2000)
+2026-06-13 13:19:12.360 [WARN] ISSUE: [Speace Core (Cervello)] imitation_learning_sandbox.py - USO_DI_EXEC_EVAL: imitation_learning_sandbox.py contiene eval/exec
+2026-06-13 13:19:12.580 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.040 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.048 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.058 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.065 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.075 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.161 [WARN] ISSUE: [Speace Core (Cervello)] trust_governor.py - USO_DI_EXEC_EVAL: trust_governor.py contiene eval/exec
+2026-06-13 13:19:13.196 [WARN] ISSUE: [Speace Core (Cervello)] evolution_controller.py - TODO_FOUND: evolution_controller.py contiene TODO/FIXME da risolvere
+2026-06-13 13:19:13.319 [WARN] ISSUE: [Speace Core (Cervello)] subsystem_connector.py - TODO_FOUND: subsystem_connector.py contiene TODO/FIXME da risolvere
+2026-06-13 13:19:13.333 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.346 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.378 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.593 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:13.781 [WARN] ISSUE: [Speace Core (Cervello)] test_morphological_memory.py - USO_DI_EXEC_EVAL: test_morphological_memory.py contiene eval/exec
+2026-06-13 13:19:13.911 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:14.037 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:14.354 [WARN] Scansione completata: Speace Core (Cervello) - 26 issue trovate
+2026-06-13 13:19:14.363 [INFO] Scansione in corso: Speace AGI Team (C:\cellular_speace\speace_agi_team)
+2026-06-13 13:19:14.401 [WARN] ISSUE: [Speace AGI Team] config.py - USO_DI_EXEC_EVAL: config.py contiene eval/exec
+2026-06-13 13:19:14.762 [WARN] Scansione completata: Speace AGI Team - 1 issue trovate
+2026-06-13 13:19:14.768 [INFO] Scansione in corso: Data (C:\cellular_speace\data)
+2026-06-13 13:19:15.198 [WARN] ISSUE: [Data] evaluation.json - JSON_INVALIDO: evaluation.json non e JSON valido
+2026-06-13 13:19:15.203 [WARN] ISSUE: [Data] evaluation.json - FILE_TROPPO_GRANDE: evaluation.json ha 6582 linee (>2000)
+2026-06-13 13:19:15.241 [WARN] ISSUE: [Data] training.json - JSON_INVALIDO: training.json non e JSON valido
+2026-06-13 13:19:15.241 [WARN] ISSUE: [Data] training.json - FILE_TROPPO_GRANDE: training.json ha 6594 linee (>2000)
+2026-06-13 13:19:17.985 [WARN] ISSUE: [Data] latest_snapshot.json - JSON_INVALIDO: latest_snapshot.json non e JSON valido
+2026-06-13 13:19:17.996 [WARN] ISSUE: [Data] latest_snapshot.json - FILE_TROPPO_GRANDE: latest_snapshot.json ha 2244 linee (>2000)
+2026-06-13 13:19:18.025 [WARN] ISSUE: [Data] checkpoint_1781347769994.json - JSON_INVALIDO: checkpoint_1781347769994.json non e JSON valido
+2026-06-13 13:19:18.039 [WARN] ISSUE: [Data] checkpoint_1781347769994.json - FILE_TROPPO_GRANDE: checkpoint_1781347769994.json ha 3523 linee (>2000)
+2026-06-13 13:19:18.058 [WARN] ISSUE: [Data] checkpoint_1781347792037.json - JSON_INVALIDO: checkpoint_1781347792037.json non e JSON valido
+2026-06-13 13:19:18.066 [WARN] ISSUE: [Data] checkpoint_1781347792037.json - FILE_TROPPO_GRANDE: checkpoint_1781347792037.json ha 3523 linee (>2000)
+2026-06-13 13:19:18.090 [WARN] ISSUE: [Data] checkpoint_1781348035541.json - JSON_INVALIDO: checkpoint_1781348035541.json non e JSON valido
+2026-06-13 13:19:18.104 [WARN] ISSUE: [Data] checkpoint_1781348035541.json - FILE_TROPPO_GRANDE: checkpoint_1781348035541.json ha 3523 linee (>2000)
+2026-06-13 13:19:18.129 [WARN] ISSUE: [Data] checkpoint_1781348071659.json - JSON_INVALIDO: checkpoint_1781348071659.json non e JSON valido
+2026-06-13 13:19:18.136 [WARN] ISSUE: [Data] checkpoint_1781348071659.json - FILE_TROPPO_GRANDE: checkpoint_1781348071659.json ha 3523 linee (>2000)
+2026-06-13 13:19:18.157 [WARN] ISSUE: [Data] checkpoint_1781348072435.json - JSON_INVALIDO: checkpoint_1781348072435.json non e JSON valido
+2026-06-13 13:19:18.163 [WARN] ISSUE: [Data] checkpoint_1781348072435.json - FILE_TROPPO_GRANDE: checkpoint_1781348072435.json ha 3523 linee (>2000)
+2026-06-13 13:19:18.188 [WARN] ISSUE: [Data] checkpoint_1781348095270.json - JSON_INVALIDO: checkpoint_1781348095270.json non e JSON valido
+2026-06-13 13:19:18.198 [WARN] ISSUE: [Data] checkpoint_1781348095270.json - FILE_TROPPO_GRANDE: checkpoint_1781348095270.json ha 3523 linee (>2000)
+2026-06-13 13:19:18.233 [WARN] ISSUE: [Data] checkpoint_1781348370010.json - JSON_INVALIDO: checkpoint_1781348370010.json non e JSON valido
+2026-06-13 13:19:18.240 [WARN] ISSUE: [Data] checkpoint_1781348370010.json - FILE_TROPPO_GRANDE: checkpoint_1781348370010.json ha 3522 linee (>2000)
+2026-06-13 13:19:18.288 [WARN] ISSUE: [Data] checkpoint_1781348395464.json - JSON_INVALIDO: checkpoint_1781348395464.json non e JSON valido
+2026-06-13 13:19:18.294 [WARN] ISSUE: [Data] checkpoint_1781348395464.json - FILE_TROPPO_GRANDE: checkpoint_1781348395464.json ha 3522 linee (>2000)
+2026-06-13 13:19:18.327 [WARN] ISSUE: [Data] checkpoint_1781348402219.json - JSON_INVALIDO: checkpoint_1781348402219.json non e JSON valido
+2026-06-13 13:19:18.342 [WARN] ISSUE: [Data] checkpoint_1781348402219.json - FILE_TROPPO_GRANDE: checkpoint_1781348402219.json ha 3522 linee (>2000)
+2026-06-13 13:19:18.360 [WARN] ISSUE: [Data] checkpoint_1781348423399.json - JSON_INVALIDO: checkpoint_1781348423399.json non e JSON valido
+2026-06-13 13:19:18.368 [WARN] ISSUE: [Data] checkpoint_1781348423399.json - FILE_TROPPO_GRANDE: checkpoint_1781348423399.json ha 3522 linee (>2000)
+2026-06-13 13:19:18.582 [WARN] Scansione completata: Data - 13 issue trovate
+2026-06-13 13:19:18.590 [INFO] Scansione in corso: Scripts (C:\cellular_speace\scripts)
+2026-06-13 13:19:18.626 [WARN] ISSUE: [Scripts] speace_seed.py - USO_DI_EXEC_EVAL: speace_seed.py contiene eval/exec
+2026-06-13 13:19:18.664 [WARN] ISSUE: [Scripts] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:18.694 [WARN] Scansione completata: Scripts - 2 issue trovate
+2026-06-13 13:19:18.701 [INFO] Scansione in corso: Tests (C:\cellular_speace\tests)
+2026-06-13 13:19:18.943 [WARN] ISSUE: [Tests] test_phase8_mmapr_veto.py - USO_DI_EXEC_EVAL: test_phase8_mmapr_veto.py contiene eval/exec
+2026-06-13 13:19:18.973 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:18.987 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.023 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.056 [WARN] ISSUE: [Tests] test_coherence_proposal_executor.py - TODO_FOUND: test_coherence_proposal_executor.py contiene TODO/FIXME da risolvere
+2026-06-13 13:19:19.096 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.107 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.127 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.155 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.223 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.227 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.233 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.285 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.305 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.333 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.347 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.359 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.370 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.401 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.468 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.489 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.515 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.527 [WARN] ISSUE: [Tests] test_evolutionary_memory_governance_audit_runner.py - TODO_FOUND: test_evolutionary_memory_governance_audit_runner.py contiene TODO/FIXME da risolvere
+2026-06-13 13:19:19.532 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.540 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.562 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.575 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.586 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.594 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.605 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.620 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.669 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.713 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.737 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.747 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.831 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.865 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.882 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.913 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:19.973 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:20.025 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:20.035 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:20.045 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:20.052 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:20.063 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:20.066 [WARN] ISSUE: [Tests] test_auth_engine.py - TODO_FOUND: test_auth_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 13:19:20.114 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:19:20.183 [WARN] Scansione completata: Tests - 47 issue trovate
+2026-06-13 13:19:20.188 [INFO] Scansione in corso: Documentazione (C:\cellular_speace\docs)
+2026-06-13 13:19:20.223 [WARN] ISSUE: [Documentazione] cellular_speace.md - FILE_TROPPO_GRANDE: cellular_speace.md ha 2117 linee (>2000)
+2026-06-13 13:19:20.292 [WARN] ISSUE: [Documentazione] metacognizione_pensiero_linguaggio_di_SPEACE.md - FILE_TROPPO_GRANDE: metacognizione_pensiero_linguaggio_di_SPEACE.md ha 3210 linee (>2000)
+2026-06-13 13:19:20.723 [WARN] ISSUE: [Documentazione] NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf - FILE_TROPPO_GRANDE: NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf ha 3486 linee (>2000)
+2026-06-13 13:19:20.780 [WARN] Scansione completata: Documentazione - 3 issue trovate
+2026-06-13 13:19:20.784 [INFO] Scansione in corso: Reports (C:\cellular_speace\reports)

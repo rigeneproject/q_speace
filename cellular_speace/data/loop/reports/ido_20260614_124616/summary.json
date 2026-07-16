@@ -1,0 +1,133 @@
+{
+  "cycle_id": "ido-209ecf2e",
+  "started_at": "2026-06-14T12:45:33.611878",
+  "finished_at": "2026-06-14T12:46:16.353958",
+  "duration_sec": 42.742,
+  "system_health_before": 1.0,
+  "system_health_after": 0.9567,
+  "improvement": -0.0433,
+  "inspection": {
+    "total_findings": 1017,
+    "components_checked": 24,
+    "component_status": {
+      "autonomic": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "regions": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "immune": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "sleep": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "metabolism": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "organism": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "memory": {
+        "status": "degraded",
+        "score": 0.89
+      },
+      "organism_observer": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "evolution": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "ilf": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "cells": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "runtime": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "scripts": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "regulation": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "self_improvement": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "dynamics": {
+        "status": "healthy",
+        "score": 1.0
+      },
+      "istruttore": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "dna": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "docs": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "tests": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "monitoring": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "evolution_daemon": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "cognition": {
+        "status": "healthy",
+        "score": 0.99
+      },
+      "speace_core_root": {
+        "status": "degraded",
+        "score": 0.19
+      }
+    }
+  },
+  "diagnosis": {
+    "total_diagnoses": 8,
+    "system_health_score": 0.9567,
+    "priority_actions": [
+      "Revisionare structural in speace_core_root",
+      "Eseguire test mirati sui moduli interessati",
+      "Revisionare eval/exec/subprocess per sicurezza",
+      "Valutare se i pattern sono necessari o sostituibili",
+      "Pianificare pulizia tecnica (tech debt)",
+      "Prioritizzare warning in scripts",
+      "Prioritizzare warning in tests",
+      "Prioritizzare warning in monitoring",
+      "Prioritizzare warning in evolution_daemon",
+      "Prioritizzare warning in speace_core_root"
+    ]
+  },
+  "optimization": {
+    "total_actions": 3,
+    "applied": 0,
+    "failed": 0,
+    "skipped": 0
+  }
+}

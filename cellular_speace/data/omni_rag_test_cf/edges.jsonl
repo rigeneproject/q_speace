@@ -1,0 +1,10 @@
+{"source_id": "bcel:cognitive_factor:_working_memory", "target_id": "constraint:working_memory_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_processing_speed", "target_id": "constraint:processing_speed_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_pattern_recognition", "target_id": "constraint:pattern_recognition_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_prior_knowledge", "target_id": "constraint:prior_knowledge_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_abstraction", "target_id": "constraint:abstraction_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_relational_reasoning", "target_id": "constraint:relational_reasoning_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_metacognition", "target_id": "constraint:metacognition_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_sustained_attention", "target_id": "constraint:sustained_attention_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_motivation", "target_id": "constraint:motivation_cap", "relation": "validates", "metadata": {}, "weight": 1.0}
+{"source_id": "bcel:cognitive_factor:_cognitive_flexibility", "target_id": "constraint:cognitive_flexibility_cap", "relation": "validates", "metadata": {}, "weight": 1.0}

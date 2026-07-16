@@ -1,0 +1,21 @@
+﻿Report non serializzabile. Riassunto:
+
+
+Timestamp    : 2026-06-13 19:52:51.667
+Frequenza    : ogni_5min
+AllOk        : False
+Checks       : {CPU sopra 85%: 100%, Snapshot non disponibile o vecchio: , 221 errori nei log (ultimi 10min)}
+SystemHealth : {UptimeDays, UptimeOk, CpuOk, RamTotalGB...}
+SpeaceStatus : {SpeaceCliPresent, SnapshotTick, RunningPids, SnapshotAge...}
+RecentErrors : 221
+ErrorList    : {@{File=ispettore_agent_20260613_190340.log; Line=2026-06-13 19:03:46.487 [WARN] Cloud LLM HTTP error 
+               403: error code: 1010; Timestamp=13/06/2026 19:52:32}, @{File=ispettore_agent_20260613_190340.log; 
+               Line=2026-06-13 19:05:46.586 [WARN] Local LLM error: timed out; Timestamp=13/06/2026 19:52:32}, 
+               @{File=ispettore_agent_20260613_190340.log; Line=2026-06-13 19:05:46.620 [DIAG] Analisi LLM: [ERRORE: 
+               entrambi i LLM non hanno risposto]...; Timestamp=13/06/2026 19:52:32}, 
+               @{File=ispettore_agent_20260613_190340.log; Line=2026-06-13 19:07:53.426 [WARN] Cloud LLM HTTP error 
+               403: error code: 1010; Timestamp=13/06/2026 19:52:32}...}
+
+
+
+

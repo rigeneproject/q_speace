@@ -1,0 +1,4 @@
+2026-06-16 10:30:47 [INFO] Anemos agent inizializzato: Kimi-K2.7-Code:cloud
+2026-06-16 10:31:19 [INFO] Kimi call: 2 messaggi, max_tokens=8192
+2026-06-16 10:31:20 [ERROR] Chiamata Kimi fallita al turno 0: [Errno 11002] getaddrinfo failed
+2026-06-16 10:31:20 [ERROR] Chat fallita: Kimi-K2.7-Code:cloud non raggiungibile. Anemos non esegue fallback. Errore: [Errno 11002] getaddrinfo failed

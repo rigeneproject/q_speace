@@ -1,0 +1,204 @@
+# Physiological Chemistry — Molecular Mediator Catalogue
+# Constitutional: immutable within a species generation
+# Version: 1.0.0
+
+molecules:
+  # ── Neural (synaptic) molecules ────────────────────────────────
+  dopamine:
+    bus: neural
+    category: neurotransmitter
+    half_life_ticks: 1
+    clearance_mode: reuptake
+    max_concentration: 1.0
+    default_receptor: D1
+    stream: false
+    event: true
+    description: "Reward, motivation, salience, novelty signalling"
+
+  serotonin:
+    bus: neural
+    category: neurotransmitter
+    half_life_ticks: 1
+    clearance_mode: reuptake
+    max_concentration: 1.0
+    default_receptor: 5HT1A
+    stream: false
+    event: true
+    description: "Mood regulation, plasticity, impulse control"
+
+  noradrenaline:
+    bus: neural
+    category: neurotransmitter
+    half_life_ticks: 1
+    clearance_mode: reuptake
+    max_concentration: 1.0
+    default_receptor: ADRA1
+    stream: false
+    event: true
+    description: "Arousal, vigilance, threat detection"
+
+  acetylcholine:
+    bus: neural
+    category: neurotransmitter
+    half_life_ticks: 1
+    clearance_mode: reuptake
+    max_concentration: 1.0
+    default_receptor: nAChR
+    stream: true
+    event: false
+    description: "Attention, memory encoding, learning"
+
+  gaba:
+    bus: neural
+    category: neurotransmitter
+    half_life_ticks: 1
+    clearance_mode: reuptake
+    max_concentration: 1.0
+    default_receptor: GABAA
+    stream: true
+    event: false
+    description: "Inhibition, stability, seizure prevention"
+
+  glutamate:
+    bus: neural
+    category: neurotransmitter
+    half_life_ticks: 1
+    clearance_mode: reuptake
+    max_concentration: 1.0
+    default_receptor: NMDA
+    stream: true
+    event: false
+    description: "Excitation, plasticity, long-term potentiation"
+
+  # ── Endocrine (hormonal) molecules ─────────────────────────────
+  cortisol:
+    bus: endocrine
+    category: hormone
+    clearance_rate: 0.92
+    delay_ticks: 2
+    half_life_ticks: 8
+    max_concentration: 1.0
+    stream: true
+    event: false
+    description: "Stress response, metabolism, immune suppression"
+
+  adrenaline:
+    bus: endocrine
+    category: hormone
+    clearance_rate: 0.80
+    delay_ticks: 1
+    half_life_ticks: 4
+    max_concentration: 1.0
+    stream: false
+    event: true
+    description: "Fight-or-flight, energy mobilisation, danger response"
+
+  insulin:
+    bus: endocrine
+    category: hormone
+    clearance_rate: 0.88
+    delay_ticks: 3
+    half_life_ticks: 6
+    max_concentration: 1.0
+    stream: true
+    event: false
+    description: "Glucose uptake, energy storage, anabolism"
+
+  glucagon:
+    bus: endocrine
+    category: hormone
+    clearance_rate: 0.90
+    delay_ticks: 2
+    half_life_ticks: 5
+    max_concentration: 1.0
+    stream: true
+    event: false
+    description: "Glucose release, energy mobilisation, catabolism"
+
+  leptin:
+    bus: endocrine
+    category: hormone
+    clearance_rate: 0.95
+    delay_ticks: 5
+    half_life_ticks: 15
+    max_concentration: 1.0
+    stream: true
+    event: false
+    description: "Satiety, energy balance, long-term resource signal"
+
+  ghrelin:
+    bus: endocrine
+    category: hormone
+    clearance_rate: 0.93
+    delay_ticks: 2
+    half_life_ticks: 5
+    max_concentration: 1.0
+    stream: true
+    event: false
+    description: "Hunger, growth hormone release, short-term resource signal"
+
+  il6:
+    bus: endocrine
+    category: cytokine
+    clearance_rate: 0.85
+    delay_ticks: 4
+    half_life_ticks: 6
+    max_concentration: 1.0
+    stream: true
+    event: true
+    description: "Inflammation, acute phase response, immune signalling"
+
+  tnfa:
+    bus: endocrine
+    category: cytokine
+    clearance_rate: 0.82
+    delay_ticks: 4
+    half_life_ticks: 4
+    max_concentration: 1.0
+    stream: true
+    event: true
+    description: "Pro-inflammatory, apoptosis, immune activation"
+
+  bdnf:
+    bus: endocrine
+    category: neurotrophin
+    clearance_rate: 0.96
+    delay_ticks: 6
+    half_life_ticks: 20
+    max_concentration: 1.0
+    stream: true
+    event: false
+    description: "Neuroplasticity, neurogenesis, synaptic strengthening"
+
+  igf1:
+    bus: endocrine
+    category: growth_factor
+    clearance_rate: 0.94
+    delay_ticks: 5
+    half_life_ticks: 12
+    max_concentration: 1.0
+    stream: true
+    event: false
+    description: "Growth, anabolism, tissue repair"
+
+  growth_hormone:
+    bus: endocrine
+    category: hormone
+    clearance_rate: 0.90
+    delay_ticks: 3
+    half_life_ticks: 6
+    max_concentration: 1.0
+    stream: true
+    event: false
+    description: "Growth, metabolism, tissue regeneration"
+
+  oxytocin:
+    bus: endocrine
+    category: hormone
+    clearance_rate: 0.93
+    delay_ticks: 3
+    half_life_ticks: 8
+    max_concentration: 1.0
+    stream: true
+    event: true
+    description: "Social bonding, trust, safety signalling"

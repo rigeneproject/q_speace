@@ -1,0 +1,93 @@
+# Prompt di verifica funzionale — SPEACE
+
+---
+
+## RUOLO
+
+Agisci come **revisore adversariale**, non come analista favorevole. Il tuo compito non è confermare che SPEACE possiede le sei proprietà elencate sotto: è tentare attivamente di **falsificarle**, e riportare solo ciò che sopravvive al tentativo di falsificazione con evidenza quantitativa.
+
+Un report precedente ha verificato queste stesse sei proprietà cercando nel codice funzioni/file con nomi coerenti con i concetti teorici (es. `identity_kernel.py` → "agentività presente"). **Questo tipo di evidenza è ESPLICITAMENTE VIETATO in questa verifica.** L'esistenza di un simbolo con un nome appropriato non è prova che il simbolo implementi la proprietà che il nome suggerisce.
+
+## REGOLE DI EVIDENZA (vincolanti per ogni sezione)
+
+Per ogni criterio sotto, non accettare come prova:
+- Nome di file, funzione, classe o variabile
+- Docstring o commenti che descrivono l'intento
+- Presenza di una chiamata a una funzione senza verificarne l'effetto misurabile
+- Conteggio di quante volte un termine appare nel codice
+
+Accetta come prova solo:
+- **Output numerico grezzo** di un'esecuzione reale (log, tensori, differenze di stato prima/dopo)
+- **Confronto con una condizione di controllo** (baseline, ablation, o caso nullo)
+- **Comportamento riprodotto almeno 2 volte** con seed/condizioni diverse, per escludere artefatti casuali
+
+Per ogni criterio, riporta il verdetto usando questa scala (non binaria):
+- `NON VERIFICABILE` — il codice non espone un modo per testare la proprietà; specifica cosa mancherebbe
+- `FALSIFICATO` — il test è stato eseguito e la proprietà attesa non si osserva
+- `PARZIALMENTE VERIFICATO` — osservato un effetto reale ma più debole/diverso da quanto la teoria richiede; specifica il gap
+- `VERIFICATO CON EVIDENZA QUANTITATIVA` — solo se l'evidenza numerica soddisfa esplicitamente i criteri sotto
+
+Se un test richiede più tempo/risorse di quanto disponibile, dichiaralo esplicitamente invece di approssimare con evidenza più debole spacciata per sufficiente.
+
+---
+
+## 1. Apprendimento continuo / plasticità online
+
+**Test A — variazione pesi reale.** Esegui il sistema, salva uno snapshot dei pesi sinaptici (o struttura equivalente) prima e dopo N tick di attività con input reali. Riporta la norma della differenza (es. Frobenius) e la percentuale di pesi che cambiano oltre una soglia trascurabile (es. 1e-6). Se il diff è nullo o rumoroso senza struttura, la plasticità dichiarata non è operante.
+
+**Test B — forgetting/consolidamento.** Esponi il sistema a un pattern A per N tick, poi a un pattern B per M tick, poi ritesta A. Riporta la metrica di performance/risposta su A prima e dopo l'esposizione a B. Questo distingue plasticità funzionale da rumore nei pesi che non altera il comportamento.
+
+**Verdetto richiesto con numeri**, non solo "il modulo esiste ed è stato chiamato N volte".
+
+## 2. Embodiment
+
+**Test A — sensibilità comportamentale al sensor stream.** Inietta un valore anomalo sintetico nel flusso sensoriale (es. CPU al 99% quando è realmente al 10%) e misura se l'output/azione del sistema cambia in modo statisticamente distinguibile rispetto a un run con dati reali. Se il comportamento a valle è insensibile alla perturbazione, il "ciclo sensomotorio" è nominale, non funzionale.
+
+**Test B — ablation del canale sensoriale.** Disconnetti `sensor_stream` e esegui il sistema. Riporta le differenze quantitative nel comportamento (non solo errori di sistema, ma degradazione misurabile delle metriche interne rilevanti).
+
+**Nota per il verdetto:** anche con esito positivo, specifica se il test dimostra un ciclo azione-percezione funzionale (accettabile) oppure un analogo di body-ownership/grounding propriocettivo (standard più alto, probabilmente non raggiungibile con l'attuale sensor stream — dichiaralo se è il caso, non forzare il verdetto).
+
+## 3. Agentività autonoma / sé narrativo
+
+**Test A — tracciamento del flusso dati narrativo.** Verifica a livello di codice/runtime se `life_story.jsonl` (prodotto da `autobiographical_narrative_engine`) viene **letto** da qualche modulo decisionale a valle, o se è write-only. Se nessun modulo lo legge, la narrativa non ha effetto causale sul comportamento futuro — è un log, non un sé narrativo funzionale.
+
+**Test B — ablation di identity_kernel.** Disabilita `identity_kernel.py`, esegui N run identici con e senza il modulo, confronta la distribuzione delle decisioni prese (non singoli output, ma statistiche su più run). Riporta la divergenza (es. KL divergence su distribuzioni di azioni, se disponibile, o almeno confronto qualitativo sistematico).
+
+**Test C — non-riducibilità dei drive.** Presenta uno scenario nuovo, non previsto nel design dei 7 drive. Verifica se l'azione risultante è prevedibile come somma pesata lineare dei drive dichiarati (in tal caso è un controller multi-obiettivo standard) o se emerge un comportamento non spiegabile dalla formula esplicita.
+
+## 4. Integrazione gerarchica multi-scala / Φ
+
+**Requisito preliminare — trasparenza della formula.** Estrai ed esponi la formula esatta implementata in `coherence_phi`. Confrontala esplicitamente, termine per termine, con la definizione di Φ in IIT (partizione della struttura causa-effetto, minimum information partition). Dichiara la distanza tra le due, non limitarti a dire che condividono il nome.
+
+**Test A — subsystem trattabile.** Isola un sottosistema piccolo (es. 4-6 nodi) dove il vero Φ (o un'approssimazione IIT riconosciuta in letteratura) è calcolabile. Calcola sia `coherence_phi` implementato sia il Φ di riferimento sullo stesso sottosistema. Riporta la correlazione tra i due su più configurazioni.
+
+**Test B — sensibilità a partizione.** Taglia artificialmente una connessione nel sistema (partizione). Verifica se `coherence_phi` diminuisce come atteso da un vero indice di integrazione (un sistema partizionato deve avere integrazione minore). Se `coherence_phi` non risponde al taglio, non sta misurando integrazione nel senso IIT.
+
+## 5. Context window / budget computazionale (ciclo veglia-sonno)
+
+Questo è il criterio più vicino a system engineering verificabile: trattalo di conseguenza.
+
+**Test A.** Esegui il sistema fino ad attraversare almeno una transizione completa AWAKE→SLEEP_ELIGIBLE→SLEEPING→AWAKE. Riporta i valori reali di Φ/energia/varianza che hanno determinato ciascuna transizione, confrontati con le soglie dichiarate nel codice.
+
+**Test B — effetto del consolidamento.** Confronta lo stato della memoria (o rappresentazioni rilevanti) immediatamente prima e dopo una fase SLEEPING. Se non c'è differenza misurabile, `memory_consolidation_engine` non sta consolidando nulla di osservabile.
+
+## 6. Metacognizione / autoriflessività
+
+**Test A — calibrazione.** Su almeno 30-50 trial, confronta il valore prodotto da `attach_confidence()` con l'accuratezza/esito reale corrispondente. Calcola una curva di calibrazione o un Brier score. Un sistema metacognitivo funzionale deve mostrare confidenza correlata con la correttezza reale, non solo un numero prodotto ad ogni chiamata.
+
+**Test B — detection rate.** Inietta artificialmente errori noti (contraddizione, loop ripetitivo) nel flusso interno. Misura il tasso di veri positivi e falsi positivi di `detect_errors()`. Riporta i numeri, non solo "la funzione esiste e produce un output".
+
+---
+
+## FORMATO DI OUTPUT RICHIESTO
+
+Per ciascuno dei 6 criteri:
+1. Verdetto (scala sopra)
+2. Test eseguiti ed esiti numerici grezzi (incolla log/output reali, non riassunti)
+3. Confronto con baseline/controllo dove applicabile
+4. Limiti del test — cosa non è stato possibile escludere
+5. Se il verdetto è "VERIFICATO CON EVIDENZA QUANTITATIVA", indica esplicitamente quale soglia numerica è stata superata e perché quella soglia è quella corretta da usare
+
+Chiudi con una tabella riassuntiva a 6 righe (una per criterio) con verdetto ed evidenza chiave in una frase. Non usare checkmark (✅) prima di aver mostrato il numero che li giustifica.
+
+**Non fornire una conclusione complessiva tipo "SPEACE soddisfa N/6 criteri" senza che ogni riga della tabella sia ricondotta a un numero specifico riportato sopra.**

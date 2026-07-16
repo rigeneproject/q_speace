@@ -1,0 +1,12 @@
+{
+  "assembly_to_label": {
+    "asm-ciao": "ciao",
+    "asm-stai": "stai",
+    "asm-rilevi": "rilevi"
+  },
+  "label_to_assembly": {
+    "ciao": "asm-ciao",
+    "stai": "asm-stai",
+    "rilevi": "asm-rilevi"
+  }
+}

@@ -1,0 +1,15 @@
+﻿Diagnosi non serializzabile.
+
+Name                           Value                                                                                   
+----                           -----                                                                                   
+Timestamp                      2026-06-13 15:31:35.523                                                                 
+Raccomandazioni                {Nessuna anomalia critica. Sistema apparentemente sano.}                                
+AutoRepair                     False                                                                                   
+Focus                          processi                                                                                
+AzioniCorrettive               {}                                                                                      
+Esito                          OK                                                                                      
+Diagnosi                       {}                                                                                      
+Anomalie                       {}                                                                                      
+
+
+

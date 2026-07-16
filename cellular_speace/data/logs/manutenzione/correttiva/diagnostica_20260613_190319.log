@@ -1,0 +1,3 @@
+﻿2026-06-13 19:03:19.424 [DIAG] Diagnostica runtime...
+2026-06-13 19:03:19.585 [ERROR] [alto] Runtime/snapshot_vecchio: Snapshot ha 364.8min (>30min)
+2026-06-13 19:03:20.817 [WARN] [medio] Runtime/errore_lettura_snapshot: Errore lettura snapshot: Impossibile convertire la stringa JSON perché un dizionario convertito da tale stringa contiene le chiavi duplicate 'Server' e 'SERVER'.

@@ -1,0 +1,188 @@
+{
+  "version": 2,
+  "updated_at": "2026-06-17T11:41:26.740269+00:00",
+  "current_agi_percentage": 46.34,
+  "current_ari_percentage": 79.78,
+  "milestones": [
+    {
+      "id": "M-AGI-10",
+      "label": "AGI % \u2265 10 \u2014 operational cognition loop",
+      "threshold": 10.0,
+      "achieved": true
+    },
+    {
+      "id": "M-AGI-25",
+      "label": "AGI % \u2265 25 \u2014 multi-axis reasoning",
+      "threshold": 25.0,
+      "achieved": true
+    },
+    {
+      "id": "M-AGI-50",
+      "label": "AGI % \u2265 50 \u2014 fluid concept integration",
+      "threshold": 50.0,
+      "achieved": false
+    },
+    {
+      "id": "M-AGI-75",
+      "label": "AGI % \u2265 75 \u2014 robust abstraction & transfer",
+      "threshold": 75.0,
+      "achieved": false
+    },
+    {
+      "id": "M-AGI-100",
+      "label": "AGI % = 100 \u2014 full self-directed cognition",
+      "threshold": 100.0,
+      "achieved": false
+    }
+  ],
+  "ari_roadmap": [
+    {
+      "axis": "arc_score",
+      "current": 0.7295,
+      "current_target": 0.3,
+      "next_target": 0.5,
+      "rationale": "ARC is the highest-weighted ARI axis (0.20). 30%+ requires the FSPI engine to produce non-zero candidates on at least the trivial ARC primitives (rotate / flip / fill)."
+    },
+    {
+      "axis": "generalization",
+      "current": 0.9804,
+      "current_target": 0.85,
+      "next_target": 0.95,
+      "rationale": "Already strong. Keep AGI% variance low across cycles."
+    },
+    {
+      "axis": "memory_integration",
+      "current": 0.6,
+      "current_target": 0.85,
+      "next_target": 0.95,
+      "rationale": "Workspace active_items and ignition_score are both 0; needs the cognitive subsystem to feed live ignition events into the snapshot."
+    },
+    {
+      "axis": "self_improvement",
+      "current": 0.6651,
+      "current_target": 0.6,
+      "next_target": 0.8,
+      "rationale": "Slope-based measure; improve by completing at least one cycle that produces a measurable AGI delta."
+    },
+    {
+      "axis": "planning",
+      "current": 0.8333,
+      "current_target": 0.85,
+      "next_target": 0.95,
+      "rationale": "Task generator already produces 8 well-prioritised tasks per cycle."
+    },
+    {
+      "axis": "robustness",
+      "current": 1.0,
+      "current_target": 0.95,
+      "next_target": 1.0,
+      "rationale": "No errors observed. Maintain during refactors."
+    },
+    {
+      "axis": "knowledge_graph_coherence",
+      "current": 1.0,
+      "current_target": 0.85,
+      "next_target": 0.95,
+      "rationale": "Recency OK (0.80 from cycle activity). Density can grow by adding per-module dependencies and capability gap nodes."
+    },
+    {
+      "axis": "autonomy",
+      "current": 0.65,
+      "current_target": 0.9,
+      "next_target": 1.0,
+      "rationale": "Runtime reports 'started'; full autonomy means orchestrator+runtime stay up across cycles without restart."
+    }
+  ],
+  "capability_gaps": [
+    {
+      "gap_id": "compartment:embodiment",
+      "title": "Stabilise embodiment compartment",
+      "severity": "low",
+      "category": "diagnostics",
+      "rationale": "status=idle"
+    },
+    {
+      "gap_id": "compartment:cognition",
+      "title": "Stabilise cognition compartment",
+      "severity": "medium",
+      "category": "diagnostics",
+      "rationale": "status=watch"
+    },
+    {
+      "gap_id": "compartment:runtime",
+      "title": "Stabilise runtime compartment",
+      "severity": "low",
+      "category": "diagnostics",
+      "rationale": "status=no_data"
+    },
+    {
+      "gap_id": "ari-axis:memory_integration",
+      "title": "Improve ARI axis 'memory_integration' (current 0.60 < target 0.85)",
+      "severity": "high",
+      "category": "ari_alignment",
+      "rationale": "Workspace active_items and ignition_score are both 0; needs the cognitive subsystem to feed live ignition events into the snapshot."
+    },
+    {
+      "gap_id": "ari-axis:planning",
+      "title": "Improve ARI axis 'planning' (current 0.83 < target 0.85)",
+      "severity": "medium",
+      "category": "ari_alignment",
+      "rationale": "Task generator already produces 8 well-prioritised tasks per cycle."
+    },
+    {
+      "gap_id": "ari-axis:autonomy",
+      "title": "Improve ARI axis 'autonomy' (current 0.65 < target 0.90)",
+      "severity": "high",
+      "category": "ari_alignment",
+      "rationale": "Runtime reports 'started'; full autonomy means orchestrator+runtime stay up across cycles without restart."
+    }
+  ],
+  "next_objectives": [
+    {
+      "title": "Stabilise cognition compartment",
+      "category": "diagnostics",
+      "rationale": "Status=watch"
+    },
+    {
+      "title": "ARI axis 'memory_integration': lift from 0.60 to \u22650.85",
+      "category": "ari_alignment",
+      "weight": 0.15,
+      "rationale": "weight=0.15, current=0.60"
+    },
+    {
+      "title": "ARI axis 'planning': lift from 0.83 to \u22650.85",
+      "category": "ari_alignment",
+      "weight": 0.1,
+      "rationale": "weight=0.1, current=0.83"
+    },
+    {
+      "title": "ARI axis 'autonomy': lift from 0.65 to \u22650.90",
+      "category": "ari_alignment",
+      "weight": 0.1,
+      "rationale": "weight=0.1, current=0.65"
+    }
+  ],
+  "open_proposals": [
+    {
+      "proposal_id": "proposal-70618e8c",
+      "title": "Extract genome loader into reusable helper",
+      "category": "refactor"
+    },
+    {
+      "proposal_id": "proposal-dbb2a241",
+      "title": "Merge STDP plasticity toggles into a single dataclass",
+      "category": "refactor"
+    },
+    {
+      "proposal_id": "proposal-f5e6bce4",
+      "title": "Cache DashboardStateReader per request",
+      "category": "refactor"
+    }
+  ],
+  "constraints": [
+    "T104 governance: human approval for all changes",
+    "Log + proposal only (no auto-apply)",
+    "Cycle interval: 300 s",
+    "Budget: 40% benchmark/diagnostics, 40% cognitive dev, 20% refactor"
+  ]
+}

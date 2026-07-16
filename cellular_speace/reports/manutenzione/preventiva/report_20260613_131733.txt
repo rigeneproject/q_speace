@@ -1,0 +1,25 @@
+﻿Report non serializzabile. Riassunto:
+
+
+Timestamp    : 2026-06-13 13:17:28.569
+Frequenza    : ogni_5min
+AllOk        : False
+Checks       : {CPU sopra 85%: 100%, Snapshot non disponibile o vecchio: , 593 errori nei log (ultimi 10min)}
+SystemHealth : {UptimeDays, UptimeOk, CpuOk, RamTotalGB...}
+SpeaceStatus : {SpeaceCliPresent, SnapshotTick, RunningPids, SnapshotAge...}
+RecentErrors : 593
+ErrorList    : {@{File=ispettore_20260613_122932.log; Line=2026-06-13 12:29:34.722 [ERROR] Errore in ciclo completo: 
+               In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\di
+               agnostica.ps1:389 car:62; Timestamp=13/06/2026 13:17:03}, @{File=ispettore_20260613_122932.log; 
+               Line=2026-06-13 12:31:36.357 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutento
+               re_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62; 
+               Timestamp=13/06/2026 13:17:03}, @{File=ispettore_20260613_122932.log; Line=2026-06-13 12:33:37.921 
+               [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di
+               _speace\manutenzione\correttiva\diagnostica.ps1:389 car:62; Timestamp=13/06/2026 13:17:03}, 
+               @{File=ispettore_20260613_122932.log; Line=2026-06-13 12:35:39.368 [ERROR] Errore in ciclo completo: In 
+               C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagn
+               ostica.ps1:389 car:62; Timestamp=13/06/2026 13:17:03}...}
+
+
+
+

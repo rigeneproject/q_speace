@@ -1,0 +1,7 @@
+2026-06-13 13:16:52.190 [OK] Avvio Ispettore | mode=local chat=False once=False
+2026-06-13 13:16:52.193 [OK] Ispettore avviato in modalita loop continuo
+2026-06-13 13:16:52.198 [INFO] ===== INIZIO CICLO #1 | Modalita local =====
+2026-06-13 13:16:54.708 [INFO] File da scansionare: 14238
+2026-06-13 13:16:55.363 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:16:55.366 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_131655.md
+2026-06-13 13:16:55.368 [INFO] Prossimo ciclo tra 120s

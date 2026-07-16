@@ -1,0 +1,37 @@
+expression_rules:
+  digital_neuron:
+    role: digital_neuron
+    express:
+      - signal_processing
+      - memory_trace
+      - plasticity
+    threshold_defaults:
+      threshold: 0.5
+      plasticity_rate: 0.05
+  digital_astrocyte:
+    role: digital_astrocyte
+    express:
+      - energy_regulation
+      - noise_suppression
+      - overload_detection
+    threshold_defaults:
+      overload_threshold: 0.85
+      noise_suppression_rate: 0.2
+  digital_microglia:
+    role: digital_microglia
+    express:
+      - anomaly_detection
+      - quarantine
+      - pruning
+    threshold_defaults:
+      prune_threshold: 0.1
+      quarantine_error_limit: 10
+  digital_oligodendrocyte:
+    role: digital_oligodendrocyte
+    express:
+      - pathway_optimization
+      - latency_reduction
+      - energy_efficiency
+    threshold_defaults:
+      myelination_success_threshold: 0.8
+      latency_reduction: 0.3

@@ -1,0 +1,329 @@
+# Physiological Signal Ontology
+# Constitutional signals are immutable within a species generation.
+# Epigenetic signals can be registered at runtime.
+# Version: 1.0.0
+
+signals:
+  # ── Energy & Metabolism (all streams) ─────────────────────────
+  energy:
+    molecule: [insulin, glucagon]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.97
+    baseline: 0.5
+    polarity: positive
+    vital: true
+    description: "Available metabolic energy"
+
+  nutrition:
+    molecule: [ghrelin, leptin]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.95
+    baseline: 0.5
+    polarity: positive
+    vital: true
+    description: "Nutrient / resource availability"
+
+  fatigue:
+    molecule: []
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.93
+    baseline: 0.2
+    polarity: negative
+    vital: true
+    description: "Cumulative metabolic exhaustion"
+
+  repair:
+    molecule: [igf1, growth_hormone]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.90
+    baseline: 0.3
+    polarity: positive
+    vital: false
+    description: "Active repair / restoration"
+
+  growth:
+    molecule: [igf1, growth_hormone]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.95
+    baseline: 0.3
+    polarity: positive
+    vital: false
+    description: "Growth / reinforcement rate"
+
+  # ── Stress & Threat (stream + event) ──────────────────────────
+  stress:
+    molecule: [cortisol]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.90
+    baseline: 0.2
+    polarity: negative
+    vital: true
+    description: "Acute / chronic stress level"
+
+  threat:
+    molecule: [cortisol]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.85
+    baseline: 0.1
+    polarity: negative
+    vital: false
+    description: "Perceived external threat"
+
+  danger:
+    molecule: [adrenaline]
+    bus: neural
+    type: event
+    range: [0, 1]
+    unit: boolean
+    decay: 0.80
+    polarity: negative
+    vital: true
+    event_duration: 0
+    description: "Imminent danger flag (discrete, alarm)"
+
+  safety:
+    molecule: [oxytocin]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.95
+    baseline: 0.5
+    polarity: positive
+    vital: false
+    description: "Perceived safety / security"
+
+  prediction_error:
+    molecule: []
+    bus: neural
+    type: event
+    range: [0.0, infinity]
+    unit: nats
+    decay: 0.80
+    polarity: negative
+    vital: false
+    event_duration: 1
+    description: "Surprise / free-energy / model mismatch"
+
+  # ── Inflammation & Damage (stream + event) ────────────────────
+  inflammation:
+    molecule: [il6, tnfa]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.88
+    baseline: 0.1
+    polarity: negative
+    vital: true
+    event_duration: 5
+    description: "Systemic inflammation level (baseline + acute spikes)"
+
+  damage:
+    molecule: []
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.85
+    baseline: 0.0
+    polarity: negative
+    vital: true
+    description: "Accumulated structural damage"
+
+  plasticity:
+    molecule: [bdnf]
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.92
+    baseline: 0.4
+    polarity: positive
+    vital: false
+    description: "Neuroplasticity / adaptability / learning capacity"
+
+  # ── Reward & Motivation (events + stream) ─────────────────────
+  reward:
+    molecule: [dopamine]
+    bus: neural
+    type: event
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.92
+    polarity: positive
+    vital: false
+    event_duration: 1
+    description: "Reward / prediction achieved"
+
+  novelty:
+    molecule: [dopamine]
+    bus: neural
+    type: event
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.90
+    polarity: positive
+    vital: false
+    event_duration: 1
+    description: "Novelty / information gain"
+
+  opportunity:
+    molecule: [dopamine]
+    bus: neural
+    type: event
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.88
+    polarity: positive
+    vital: false
+    event_duration: 1
+    description: "Perceived opportunity for reward"
+
+  curiosity:
+    molecule: [dopamine, serotonin]
+    bus: [neural, endocrine]
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.95
+    baseline: 0.3
+    polarity: positive
+    vital: false
+    description: "Drive to explore the unknown"
+
+  # ── Coherence & State (all streams) ───────────────────────────
+  coherence:
+    molecule: []
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.95
+    baseline: 0.5
+    polarity: positive
+    vital: false
+    description: "Global information coherence (phi)"
+
+  entropy:
+    molecule: []
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.92
+    baseline: 0.3
+    polarity: negative
+    vital: false
+    description: "System entropy / disorder"
+
+  synchronization:
+    molecule: []
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.93
+    baseline: 0.5
+    polarity: positive
+    vital: false
+    description: "Inter-region synchrony"
+
+  temperature:
+    molecule: []
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: normalized
+    decay: 0.90
+    baseline: 0.3
+    polarity: neutral
+    vital: false
+    upper_alarm: 0.8
+    lower_alarm: 0.05
+    description: "Thermal load (normalised 0-1)"
+
+  hydration:
+    molecule: []
+    bus: endocrine
+    type: stream
+    range: [0.0, 1.0]
+    unit: fraction
+    decay: 0.97
+    baseline: 0.7
+    polarity: positive
+    vital: false
+    description: "Resource fluidity"
+
+  # ── Epigenetic signals (extensible at runtime) ────────────────
+  # These are examples. New organs may register additional signals
+  # via physiome.register_signal() with genome validation.
+  epigenetic:
+    microbial_reward:
+      molecule: []
+      bus: endocrine
+      type: stream
+      range: [0.0, 1.0]
+      unit: fraction
+      decay: 0.90
+      polarity: positive
+      description: "Microbiome-derived reward signal"
+    gut_learning:
+      molecule: [serotonin]
+      bus: endocrine
+      type: event
+      range: [0.0, 1.0]
+      unit: fraction
+      decay: 0.92
+      event_duration: 3
+      polarity: positive
+      description: "Gut-derived learning signal"
+    space_radiation:
+      molecule: []
+      bus: endocrine
+      type: stream
+      range: [0.0, 1.0]
+      unit: fraction
+      decay: 0.80
+      polarity: negative
+      description: "Environmental radiation load"
+    robot_temperature:
+      molecule: []
+      bus: endocrine
+      type: stream
+      range: [0.0, 1.0]
+      unit: normalized
+      decay: 0.95
+      polarity: neutral
+      description: "Hardware thermal reading"
+    quantum_noise:
+      molecule: []
+      bus: neural
+      type: event
+      range: [0.0, 1.0]
+      unit: fraction
+      decay: 0.85
+      event_duration: 1
+      polarity: negative
+      description: "Quantum computation noise"

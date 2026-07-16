@@ -1,0 +1,2 @@
+{"id": "bcel:cognitive_factor:_working_memory", "node_type": "bcel_mapping", "name": "cognitive factor: working memory", "description": "", "source_path": "", "source_line": 0, "metadata": {}, "tags": [], "created_at": 1782855476.7234914, "updated_at": 1782855476.7234914}
+{"id": "constraint:no_invariant", "node_type": "constraint", "name": "no_invariant", "description": "", "source_path": "", "source_line": 0, "metadata": {}, "tags": [], "created_at": 1782855476.7239144, "updated_at": 1782855476.7239149}

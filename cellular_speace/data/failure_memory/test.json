@@ -1,0 +1,62 @@
+[
+  {
+    "task_id": "test",
+    "failure_pattern": "prediction_mismatch",
+    "failure_cause": "candidato trovato ma prediczione test non corrisponde",
+    "failed_hypothesis": "Program (0 matches, conf=0.50): rotate_90",
+    "corrective_strategy": "raffinare la composizione o aumentare profondit\u00e0 ricerca",
+    "match_score": 0.0,
+    "candidates_explored": 2,
+    "train_examples": 1,
+    "test_examples": 1,
+    "input_shape": "1x1",
+    "output_shape": "1x1",
+    "timestamp": "2026-06-11T22:03:22Z",
+    "metadata": {}
+  },
+  {
+    "task_id": "test",
+    "failure_pattern": "prediction_mismatch",
+    "failure_cause": "candidato trovato ma prediczione test non corrisponde",
+    "failed_hypothesis": "Program (0 matches, conf=0.50): rotate_90",
+    "corrective_strategy": "raffinare la composizione o aumentare profondit\u00e0 ricerca",
+    "match_score": 0.0,
+    "candidates_explored": 2,
+    "train_examples": 1,
+    "test_examples": 1,
+    "input_shape": "1x1",
+    "output_shape": "1x1",
+    "timestamp": "2026-06-11T22:03:34Z",
+    "metadata": {}
+  },
+  {
+    "task_id": "test",
+    "failure_pattern": "prediction_mismatch",
+    "failure_cause": "candidato trovato ma prediczione test non corrisponde",
+    "failed_hypothesis": "Program (0 matches, conf=0.50): rotate_90",
+    "corrective_strategy": "raffinare la composizione o aumentare profondit\u00e0 ricerca",
+    "match_score": 0.0,
+    "candidates_explored": 2,
+    "train_examples": 1,
+    "test_examples": 1,
+    "input_shape": "1x1",
+    "output_shape": "1x1",
+    "timestamp": "2026-06-11T22:03:34Z",
+    "metadata": {}
+  },
+  {
+    "task_id": "test",
+    "failure_pattern": "prediction_mismatch",
+    "failure_cause": "candidato trovato ma prediczione test non corrisponde",
+    "failed_hypothesis": "Program (0 matches, conf=0.50): rotate_90",
+    "corrective_strategy": "raffinare la composizione o aumentare profondit\u00e0 ricerca",
+    "match_score": 0.0,
+    "candidates_explored": 2,
+    "train_examples": 1,
+    "test_examples": 1,
+    "input_shape": "1x1",
+    "output_shape": "1x1",
+    "timestamp": "2026-06-11T22:03:34Z",
+    "metadata": {}
+  }
+]

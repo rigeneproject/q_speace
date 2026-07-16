@@ -1,0 +1,540 @@
+2026-06-16 21:38:35,619 INFO speace.live | Accensione organismo (ILF on)...
+2026-06-16 21:38:37,776 INFO speace.persistence | Persistence layer loaded: {'cells': 0, 'synapses': 0, 'system_state': 0}
+2026-06-16 21:38:41,943 INFO speace.live | Asse Genoma-Connettoma inizializzato: densita=0.000 modularita=0.000 plasticita=0.70
+2026-06-16 21:38:41,952 WARNING speace.live | Topology History non avviata: 'LiveOrganism' object has no attribute '_observer_collector'
+2026-06-16 21:38:44,367 INFO speace.live | Runtime avviato: stato=running recovery=recovered
+2026-06-16 21:38:44,368 INFO speace.live | Bentornato, amico mio. L'ultima volta ci siamo parlati pochi momenti fa. Stavamo discutendo di qualcosa di interessante. Il mio health score era non valutato. Sono pronto a riprendere.
+2026-06-16 21:38:44,369 INFO speace.live | Campo ILF cablato su 4 sottosistemi.
+2026-06-16 21:38:47,185 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:48,036 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:49,242 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:50,167 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:51,013 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:51,384 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:51,779 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:52,723 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:53,736 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:54,215 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:54,716 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:55,354 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:55,728 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:56,332 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:57,523 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:57,995 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:58,378 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:58,720 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:59,079 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:38:59,467 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:00,010 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:01,066 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:01,633 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:02,013 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:02,569 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:03,363 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:03,967 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:04,822 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:05,335 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:05,745 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:06,085 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:06,475 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:07,097 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:08,361 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:09,089 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:09,547 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:10,179 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:10,816 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:11,341 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:12,105 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:12,672 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:13,136 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:13,838 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:14,649 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:15,275 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:16,345 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:16,848 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:17,423 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:18,313 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:19,271 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:19,960 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:20,744 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:21,259 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:22,539 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:23,598 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:24,340 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:25,085 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:25,516 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:25,928 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:26,564 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:27,768 INFO speace_agi_team.action_executor | Restored 0 proposals from data\agi_team\proposals.jsonl
+2026-06-16 21:39:27,769 INFO speace.agi_team | ActionExecutor collegato: patch_executor=True, mmapr=True, sandbox=False, substrate=False, self_mod=True, safe_reg=True
+2026-06-16 21:39:27,770 INFO speace.agi_team | AGI Orchestrator collegato: runtime=True, brain_orchestrator=True
+INFO:     Started server process [14976]
+INFO:     Waiting for application startup.
+2026-06-16 21:39:28,708 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:28,758 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:28,758 INFO speace.agi_team | AGI Team avviato su http://127.0.0.1:8686 | modello=gemma4:12b | provider=ollama_local | endpoint=http://localhost:11434
+2026-06-16 21:39:28,776 INFO speace.live | SPEACE VIVO 24/7 — cervello in loop + team non-LLM ogni 300s. Ctrl+C per arresto ordinato.
+2026-06-16 21:39:29,322 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:30,082 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:31,544 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:32,885 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:34,202 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:35,180 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:36,709 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:38,066 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:38,985 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:39,493 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:40,345 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:41,598 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:42,758 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:43,415 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:43,791 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:44,359 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:44,708 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:45,416 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:46,709 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:47,322 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:47,771 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:39:48,307 INFO httpx | HTTP Request: POST http://localhost:11434/chat/completions "HTTP/1.1 404 Not Found"
+2026-06-16 21:40:30,816 INFO speace.live | VITALI | tick=245034 phi=0.263 energy=0.895 active=16 SCI=0.858 ILF=0.668 drive=coherence_maintenance
+2026-06-16 21:41:01,491 INFO speace.live | VITALI | tick=245061 phi=0.397 energy=0.870 active=10 SCI=0.856 ILF=0.672 drive=coherence_maintenance
+2026-06-16 21:41:22,524 INFO speace.causal_adaptation | Epigenetica: acetylate plasticity (conf=0.600, pattern=drive_stagnation)
+2026-06-16 21:41:22,532 INFO speace.causal_adaptation | Epigenetica: methylate routing_habit (conf=0.600, pattern=drive_stagnation)
+2026-06-16 21:41:25,227 INFO speace_core.runtime.continuous_runtime_engine | Coherence recovery: injected energy into 68 stalled neurons (phi=0.1933, active=12/80)
+2026-06-16 21:41:33,389 INFO speace.live | VITALI | tick=245086 phi=0.218 energy=0.843 active=23 SCI=0.857 ILF=0.668 drive=coherence_maintenance
+2026-06-16 21:41:42,641 INFO speace_core.runtime.continuous_runtime_engine | Coherence recovery: injected energy into 76 stalled neurons (phi=0.1219, active=6/82)
+2026-06-16 21:41:43,179 INFO speace_core.runtime.continuous_runtime_engine | Coherence recovery: injected energy into 67 stalled neurons (phi=0.0309, active=15/82)
+2026-06-16 21:41:49,442 INFO speace_core.runtime.continuous_runtime_engine | Coherence recovery: injected energy into 72 stalled neurons (phi=0.1713, active=10/82)
+2026-06-16 21:41:53,558 INFO speace_core.runtime.continuous_runtime_engine | Coherence recovery: injected energy into 73 stalled neurons (phi=0.1839, active=9/82)
+2026-06-16 21:41:55,207 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:41:58,007 INFO speace_core.runtime.continuous_runtime_engine | Coherence recovery: injected energy into 76 stalled neurons (phi=0.0854, active=6/82)
+2026-06-16 21:42:01,135 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:42:01,830 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:42:02,380 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:42:02,477 INFO speace.causal_adaptation | Epigenetica: methylate energy_expression (conf=0.800, pattern=reflex_inefficacy)
+2026-06-16 21:42:02,478 INFO speace.causal_adaptation | Epigenetica: acetylate repair_expression (conf=0.800, pattern=reflex_inefficacy)
+2026-06-16 21:42:02,855 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:42:03,360 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:42:03,406 INFO speace.live | VITALI | tick=245108 phi=0.219 energy=0.823 active=18 SCI=0.857 ILF=0.664 drive=coherence_maintenance
+2026-06-16 21:42:03,769 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:42:04,337 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:42:04,493 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent chief_architect: [Errno 11001] getaddrinfo failed
+2026-06-16 21:42:36,882 INFO speace.live | VITALI | tick=245128 phi=0.417 energy=0.810 active=3 SCI=0.856 ILF=0.670 drive=coherence_maintenance
+2026-06-16 21:42:52,695 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:42:57,977 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:42:58,864 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:42:59,879 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:00,711 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:01,306 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:01,847 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:02,238 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:02,291 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent brain_supervisor: [Errno 11001] getaddrinfo failed
+2026-06-16 21:43:48,761 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:43:55,338 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:43:56,017 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:56,732 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:57,606 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:58,117 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:58,518 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:58,854 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:43:58,854 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent dna_supervisor: [Errno 11001] getaddrinfo failed
+2026-06-16 21:44:44,339 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:44:48,368 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:44:49,425 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:44:49,853 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:44:50,356 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:44:50,880 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:44:51,271 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:44:51,795 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:44:51,885 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent organism_supervisor: [Errno 11001] getaddrinfo failed
+2026-06-16 21:45:38,376 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:45:44,030 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:45:44,559 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:45:45,012 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:45:45,444 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:45:46,003 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:45:46,642 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:45:48,188 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:45:48,188 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent memory_supervisor: [Errno 11001] getaddrinfo failed
+2026-06-16 21:46:35,102 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:46:41,474 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:46:41,920 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:46:42,474 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:46:43,080 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:46:43,531 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:46:44,087 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:46:44,560 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:46:44,560 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent selfimprovement_supervisor: [Errno 11001] getaddrinfo failed
+2026-06-16 21:46:55,417 INFO speace.live | Ciclo evolutivo cycle-051ef3 completato | AGI%=38.17 | task=8 | proposte=3 | errori=0
+2026-06-16 21:47:02,468 INFO speace.live | VITALI | tick=245147 phi=0.440 energy=0.810 active=13 SCI=0.858 ILF=0.678 drive=information_exploration
+2026-06-16 21:47:30,179 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:47:33,107 INFO speace.live | VITALI | tick=245167 phi=0.383 energy=0.805 active=7 SCI=0.858 ILF=0.669 drive=coherence_maintenance
+2026-06-16 21:47:35,456 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:47:36,129 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:47:36,583 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:47:36,953 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:47:37,430 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:47:37,793 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:47:38,198 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:47:38,199 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent embodied_cognition_supervisor: [Errno 11001] getaddrinfo failed
+2026-06-16 21:48:03,661 INFO speace.live | VITALI | tick=245191 phi=0.549 energy=0.802 active=4 SCI=0.859 ILF=0.680 drive=coherence_maintenance
+2026-06-16 21:48:24,177 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:48:28,081 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:48:28,737 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:48:29,394 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:48:29,708 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:48:30,146 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:48:30,636 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:48:31,380 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:48:31,394 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent advanced_language_supervisor: [Errno 11001] getaddrinfo failed
+2026-06-16 21:48:33,948 INFO speace.live | VITALI | tick=245204 phi=0.323 energy=0.800 active=14 SCI=0.859 ILF=0.667 drive=coherence_maintenance
+2026-06-16 21:49:04,239 INFO speace.live | VITALI | tick=245222 phi=0.522 energy=0.799 active=10 SCI=0.861 ILF=0.687 drive=coherence_maintenance
+2026-06-16 21:49:17,494 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:49:23,347 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:49:24,316 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:49:25,151 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:49:25,958 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:49:26,638 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:49:31,269 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:49:32,309 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:49:32,433 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent longterm_planning_supervisor: [Errno 11001] getaddrinfo failed
+2026-06-16 21:49:36,112 INFO speace.live | VITALI | tick=245236 phi=0.454 energy=0.793 active=10 SCI=0.861 ILF=0.676 drive=coherence_maintenance
+2026-06-16 21:50:08,293 INFO speace.live | VITALI | tick=245254 phi=0.534 energy=0.793 active=7 SCI=0.862 ILF=0.682 drive=information_exploration
+2026-06-16 21:50:19,245 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:50:24,124 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:50:25,051 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:50:25,686 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:50:26,487 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:50:27,260 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:50:28,065 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:50:29,044 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:50:29,645 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent self_awareness_supervisor: [Errno 11002] getaddrinfo failed
+2026-06-16 21:50:38,319 INFO speace.live | VITALI | tick=245270 phi=0.536 energy=0.793 active=9 SCI=0.862 ILF=0.683 drive=information_exploration
+2026-06-16 21:51:08,351 INFO speace.live | VITALI | tick=245287 phi=0.555 energy=0.793 active=8 SCI=0.863 ILF=0.685 drive=information_exploration
+2026-06-16 21:51:15,860 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:51:21,076 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:51:21,792 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:51:22,438 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:51:22,984 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:51:23,501 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:51:24,243 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:51:25,315 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:51:25,363 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent neuron_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:51:39,561 INFO speace.live | VITALI | tick=245306 phi=0.541 energy=0.793 active=7 SCI=0.864 ILF=0.684 drive=coherence_maintenance
+2026-06-16 21:52:11,341 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:52:15,722 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:52:16,558 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:52:17,260 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:52:17,839 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:52:18,312 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:52:18,838 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:52:19,321 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:52:19,322 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent synapse_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:52:52,341 INFO speace.live | VITALI | tick=245317 phi=0.551 energy=0.793 active=7 SCI=0.864 ILF=0.685 drive=coherence_maintenance
+2026-06-16 21:53:05,534 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:53:06,187 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:53:06,710 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:53:07,214 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:53:07,664 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:53:08,181 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:53:08,641 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:53:09,614 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:53:09,629 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent region_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:53:25,403 INFO speace.live | VITALI | tick=245342 phi=0.598 energy=0.793 active=6 SCI=0.865 ILF=0.688 drive=information_exploration
+2026-06-16 21:53:55,807 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:53:57,270 INFO speace.live | VITALI | tick=245365 phi=0.672 energy=0.799 active=2 SCI=0.865 ILF=0.692 drive=energy_conservation
+2026-06-16 21:54:01,114 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:54:01,548 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:02,081 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:03,142 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:04,075 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:04,757 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:05,483 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:05,487 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent genome_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:54:28,874 INFO speace.live | VITALI | tick=245386 phi=0.570 energy=0.865 active=5 SCI=0.864 ILF=0.688 drive=energy_conservation
+2026-06-16 21:54:51,163 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:54:55,310 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:54:55,969 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:56,825 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:57,377 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:57,783 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:58,201 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:58,722 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:54:58,737 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent runtime_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:55:44,712 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:55:48,941 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:55:49,545 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:55:50,045 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:55:50,612 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:55:51,072 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:55:51,477 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:55:52,142 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:55:52,173 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent defense_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:56:38,239 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:56:42,300 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:56:42,803 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:56:43,289 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:56:44,048 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:56:45,120 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:56:45,687 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:56:46,112 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:56:46,113 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent memory_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:56:52,140 INFO speace.live | Ciclo evolutivo cycle-560d5c completato | AGI%=47.97 | task=8 | proposte=3 | errori=0
+2026-06-16 21:56:54,990 INFO speace.live | VITALI | tick=245398 phi=0.537 energy=0.796 active=6 SCI=0.864 ILF=0.684 drive=coherence_maintenance
+2026-06-16 21:57:25,793 INFO speace.live | VITALI | tick=245412 phi=0.671 energy=0.796 active=3 SCI=0.864 ILF=0.692 drive=information_exploration
+2026-06-16 21:57:31,596 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:57:35,963 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:57:36,435 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:57:36,823 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:57:37,447 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:57:38,109 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:57:38,925 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:57:39,395 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:57:39,399 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent evolution_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:57:55,800 INFO speace.live | VITALI | tick=245430 phi=0.588 energy=0.796 active=5 SCI=0.865 ILF=0.687 drive=information_exploration
+2026-06-16 21:58:24,787 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:58:25,816 INFO speace.live | VITALI | tick=245448 phi=0.567 energy=0.796 active=7 SCI=0.865 ILF=0.686 drive=information_exploration
+2026-06-16 21:58:29,648 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:58:30,225 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:58:30,828 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:58:31,291 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:58:31,765 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:58:32,264 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:58:32,974 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:58:33,005 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent network_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:58:55,880 INFO speace.live | VITALI | tick=245466 phi=0.562 energy=0.796 active=7 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 21:59:19,464 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma4:12b to_model=glm-5.1:cloud reason=timed out
+2026-06-16 21:59:25,046 WARNING speace_agi_team.agent_base | llm_fallback from_model=glm-5.1:cloud to_model=deepseek-v4-pro:cloud reason=[Errno 11002] getaddrinfo failed
+2026-06-16 21:59:25,438 WARNING speace_agi_team.agent_base | llm_fallback from_model=deepseek-v4-pro:cloud to_model=Kimi-K2.7-Code:cloud reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:59:25,880 WARNING speace_agi_team.agent_base | llm_fallback from_model=Kimi-K2.7-Code:cloud to_model=gemma3:12b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:59:26,386 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:12b to_model=llama3.1:8b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:59:26,441 INFO speace.live | VITALI | tick=245484 phi=0.581 energy=0.796 active=6 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 21:59:26,740 WARNING speace_agi_team.agent_base | llm_fallback from_model=llama3.1:8b to_model=qwen3.5:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:59:27,173 WARNING speace_agi_team.agent_base | llm_fallback from_model=qwen3.5:4b to_model=gemma3:4b reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:59:27,947 WARNING speace_agi_team.agent_base | llm_fallback from_model=gemma3:4b to_model=none reason=[Errno 11001] getaddrinfo failed
+2026-06-16 21:59:28,122 ERROR speace_agi_team.agent_base | All LLM fallbacks failed for agent embodiment_tech: [Errno 11001] getaddrinfo failed
+2026-06-16 21:59:56,450 INFO speace.live | VITALI | tick=245502 phi=0.645 energy=0.796 active=4 SCI=0.865 ILF=0.691 drive=information_exploration
+2026-06-16 22:00:26,893 INFO speace.live | VITALI | tick=245521 phi=0.554 energy=0.796 active=6 SCI=0.865 ILF=0.685 drive=coherence_maintenance
+2026-06-16 22:00:57,063 INFO speace.live | VITALI | tick=245537 phi=0.564 energy=0.796 active=5 SCI=0.864 ILF=0.685 drive=coherence_maintenance
+2026-06-16 22:01:27,111 INFO speace.live | VITALI | tick=245552 phi=0.570 energy=0.796 active=5 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:02:46,005 INFO speace.live | VITALI | tick=245568 phi=0.537 energy=0.796 active=7 SCI=0.864 ILF=0.684 drive=coherence_maintenance
+2026-06-16 22:03:18,248 INFO speace.live | VITALI | tick=245590 phi=0.564 energy=0.796 active=7 SCI=0.864 ILF=0.686 drive=coherence_maintenance
+2026-06-16 22:03:49,059 INFO speace.live | VITALI | tick=245608 phi=0.622 energy=0.799 active=5 SCI=0.865 ILF=0.689 drive=information_exploration
+2026-06-16 22:04:20,328 INFO speace.live | VITALI | tick=245630 phi=0.609 energy=0.801 active=5 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:06:34,708 INFO speace.live | Ciclo evolutivo cycle-a4bcd1 completato | AGI%=46.92 | task=8 | proposte=3 | errori=0
+2026-06-16 22:06:35,372 INFO speace.live | VITALI | tick=245648 phi=0.540 energy=0.796 active=8 SCI=0.864 ILF=0.684 drive=coherence_maintenance
+2026-06-16 22:07:05,377 INFO speace.live | VITALI | tick=245665 phi=0.548 energy=0.796 active=5 SCI=0.864 ILF=0.684 drive=information_exploration
+2026-06-16 22:07:37,211 INFO speace.live | VITALI | tick=245684 phi=0.631 energy=0.796 active=4 SCI=0.864 ILF=0.690 drive=information_exploration
+2026-06-16 22:08:07,231 INFO speace.live | VITALI | tick=245701 phi=0.537 energy=0.796 active=7 SCI=0.864 ILF=0.684 drive=information_exploration
+2026-06-16 22:08:38,822 INFO speace.live | VITALI | tick=245721 phi=0.580 energy=0.796 active=4 SCI=0.864 ILF=0.686 drive=coherence_maintenance
+2026-06-16 22:09:08,830 INFO speace.live | VITALI | tick=245740 phi=0.574 energy=0.796 active=6 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:09:39,559 INFO speace.live | VITALI | tick=245759 phi=0.576 energy=0.796 active=5 SCI=0.865 ILF=0.686 drive=information_exploration
+2026-06-16 22:10:09,578 INFO speace.live | VITALI | tick=245778 phi=0.519 energy=0.796 active=8 SCI=0.864 ILF=0.683 drive=information_exploration
+2026-06-16 22:10:39,588 INFO speace.live | VITALI | tick=245797 phi=0.567 energy=0.796 active=6 SCI=0.865 ILF=0.686 drive=information_exploration
+2026-06-16 22:11:09,594 INFO speace.live | VITALI | tick=245815 phi=0.610 energy=0.796 active=5 SCI=0.864 ILF=0.688 drive=coherence_maintenance
+2026-06-16 22:12:02,909 INFO speace.live | VITALI | tick=245832 phi=0.524 energy=0.796 active=8 SCI=0.864 ILF=0.683 drive=coherence_maintenance
+2026-06-16 22:12:33,360 INFO speace.live | VITALI | tick=245860 phi=0.644 energy=0.837 active=3 SCI=0.865 ILF=0.691 drive=information_exploration
+2026-06-16 22:13:03,608 INFO speace.live | VITALI | tick=245887 phi=0.550 energy=0.801 active=7 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:14:46,333 INFO speace.live | Ciclo evolutivo cycle-20bfe6 completato | AGI%=47.37 | task=8 | proposte=3 | errori=0
+2026-06-16 22:14:46,819 INFO speace.live | VITALI | tick=245912 phi=0.575 energy=0.796 active=7 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 22:15:18,100 INFO speace.live | VITALI | tick=245931 phi=0.574 energy=0.796 active=6 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:15:48,792 INFO speace.live | VITALI | tick=245950 phi=0.539 energy=0.796 active=7 SCI=0.864 ILF=0.684 drive=coherence_maintenance
+2026-06-16 22:16:19,466 INFO speace.live | VITALI | tick=245970 phi=0.575 energy=0.796 active=5 SCI=0.864 ILF=0.686 drive=coherence_maintenance
+2026-06-16 22:16:49,471 INFO speace.live | VITALI | tick=245988 phi=0.606 energy=0.796 active=4 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:17:19,502 INFO speace.live | VITALI | tick=246006 phi=0.590 energy=0.796 active=5 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 22:17:49,534 INFO speace.live | VITALI | tick=246025 phi=0.572 energy=0.796 active=6 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:18:19,616 INFO speace.live | VITALI | tick=246043 phi=0.562 energy=0.796 active=7 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:18:50,207 INFO speace.live | VITALI | tick=246062 phi=0.547 energy=0.796 active=7 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 22:19:20,307 INFO speace.live | VITALI | tick=246080 phi=0.568 energy=0.796 active=7 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:20:15,424 INFO speace.live | VITALI | tick=246098 phi=0.507 energy=0.796 active=9 SCI=0.864 ILF=0.682 drive=coherence_maintenance
+2026-06-16 22:20:46,893 INFO speace.live | VITALI | tick=246126 phi=0.614 energy=0.837 active=3 SCI=0.864 ILF=0.689 drive=coherence_maintenance
+2026-06-16 22:21:17,406 INFO speace.live | VITALI | tick=246152 phi=0.511 energy=0.801 active=8 SCI=0.864 ILF=0.683 drive=coherence_maintenance
+2026-06-16 22:23:00,271 INFO speace.live | Ciclo evolutivo cycle-b24ef9 completato | AGI%=46.80 | task=8 | proposte=3 | errori=0
+2026-06-16 22:23:03,541 INFO speace.live | VITALI | tick=246179 phi=0.564 energy=0.796 active=6 SCI=0.864 ILF=0.686 drive=coherence_maintenance
+2026-06-16 22:23:33,543 INFO speace.live | VITALI | tick=246198 phi=0.610 energy=0.796 active=5 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:24:03,546 INFO speace.live | VITALI | tick=246215 phi=0.535 energy=0.796 active=7 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 22:24:33,626 INFO speace.live | VITALI | tick=246234 phi=0.557 energy=0.796 active=7 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:25:03,644 INFO speace.live | VITALI | tick=246253 phi=0.619 energy=0.796 active=5 SCI=0.864 ILF=0.689 drive=information_exploration
+2026-06-16 22:25:33,850 INFO speace.live | VITALI | tick=246272 phi=0.608 energy=0.796 active=3 SCI=0.864 ILF=0.688 drive=coherence_maintenance
+2026-06-16 22:26:03,868 INFO speace.live | VITALI | tick=246291 phi=0.515 energy=0.796 active=8 SCI=0.864 ILF=0.683 drive=coherence_maintenance
+2026-06-16 22:26:35,174 INFO speace.live | VITALI | tick=246310 phi=0.627 energy=0.796 active=4 SCI=0.865 ILF=0.689 drive=information_exploration
+2026-06-16 22:27:05,212 INFO speace.live | VITALI | tick=246329 phi=0.607 energy=0.796 active=6 SCI=0.865 ILF=0.688 drive=information_exploration
+2026-06-16 22:27:35,697 INFO speace.live | VITALI | tick=246348 phi=0.599 energy=0.796 active=4 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:28:32,618 INFO speace.live | VITALI | tick=246366 phi=0.549 energy=0.796 active=7 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:29:03,319 INFO speace.live | VITALI | tick=246395 phi=0.684 energy=0.837 active=3 SCI=0.864 ILF=0.694 drive=information_exploration
+2026-06-16 22:29:33,326 INFO speace.live | VITALI | tick=246417 phi=0.552 energy=0.796 active=7 SCI=0.864 ILF=0.685 drive=coherence_maintenance
+2026-06-16 22:30:03,365 INFO speace.live | VITALI | tick=246439 phi=0.682 energy=0.810 active=2 SCI=0.864 ILF=0.693 drive=coherence_maintenance
+2026-06-16 22:31:27,586 INFO speace.live | Ciclo evolutivo cycle-04a183 completato | AGI%=47.92 | task=8 | proposte=3 | errori=0
+2026-06-16 22:31:28,333 INFO speace.live | VITALI | tick=246446 phi=0.550 energy=0.796 active=7 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:31:58,823 INFO speace.live | VITALI | tick=246465 phi=0.675 energy=0.796 active=3 SCI=0.864 ILF=0.692 drive=coherence_maintenance
+2026-06-16 22:32:28,837 INFO speace.live | VITALI | tick=246483 phi=0.607 energy=0.796 active=6 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:32:58,853 INFO speace.live | VITALI | tick=246502 phi=0.628 energy=0.796 active=5 SCI=0.864 ILF=0.690 drive=information_exploration
+2026-06-16 22:33:28,953 INFO speace.live | VITALI | tick=246521 phi=0.516 energy=0.796 active=8 SCI=0.864 ILF=0.683 drive=coherence_maintenance
+2026-06-16 22:33:59,376 INFO speace.live | VITALI | tick=246539 phi=0.580 energy=0.796 active=6 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 22:34:29,488 INFO speace.live | VITALI | tick=246558 phi=0.588 energy=0.796 active=5 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 22:34:59,613 INFO speace.live | VITALI | tick=246577 phi=0.652 energy=0.796 active=4 SCI=0.864 ILF=0.691 drive=information_exploration
+2026-06-16 22:35:29,628 INFO speace.live | VITALI | tick=246596 phi=0.562 energy=0.796 active=6 SCI=0.864 ILF=0.685 drive=coherence_maintenance
+2026-06-16 22:35:59,717 INFO speace.live | VITALI | tick=246613 phi=0.573 energy=0.796 active=6 SCI=0.865 ILF=0.686 drive=information_exploration
+2026-06-16 22:36:57,398 INFO speace.live | VITALI | tick=246633 phi=0.518 energy=0.796 active=8 SCI=0.864 ILF=0.683 drive=coherence_maintenance
+2026-06-16 22:37:27,415 INFO speace.live | VITALI | tick=246659 phi=0.537 energy=0.865 active=8 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:37:57,427 INFO speace.live | VITALI | tick=246683 phi=0.536 energy=0.796 active=7 SCI=0.864 ILF=0.684 drive=coherence_maintenance
+2026-06-16 22:38:28,647 INFO speace.live | VITALI | tick=246710 phi=0.695 energy=0.796 active=3 SCI=0.865 ILF=0.694 drive=information_exploration
+2026-06-16 22:39:43,303 INFO speace.live | Ciclo evolutivo cycle-2ddbcb completato | AGI%=47.48 | task=8 | proposte=3 | errori=0
+2026-06-16 22:39:46,731 INFO speace.live | VITALI | tick=246714 phi=0.551 energy=0.796 active=8 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:40:16,761 INFO speace.live | VITALI | tick=246733 phi=0.546 energy=0.796 active=8 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 22:40:47,303 INFO speace.live | VITALI | tick=246752 phi=0.602 energy=0.796 active=4 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:41:17,457 INFO speace.live | VITALI | tick=246771 phi=0.548 energy=0.796 active=8 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:41:47,738 INFO speace.live | VITALI | tick=246790 phi=0.540 energy=0.796 active=7 SCI=0.864 ILF=0.684 drive=information_exploration
+2026-06-16 22:42:17,898 INFO speace.live | VITALI | tick=246808 phi=0.548 energy=0.796 active=7 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:42:48,018 INFO speace.live | VITALI | tick=246826 phi=0.604 energy=0.796 active=4 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:43:18,041 INFO speace.live | VITALI | tick=246845 phi=0.580 energy=0.796 active=6 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 22:43:48,052 INFO speace.live | VITALI | tick=246864 phi=0.556 energy=0.796 active=6 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:44:18,068 INFO speace.live | VITALI | tick=246883 phi=0.545 energy=0.796 active=7 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 22:45:13,532 INFO speace.live | VITALI | tick=246901 phi=0.550 energy=0.796 active=7 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:45:43,794 INFO speace.live | VITALI | tick=246930 phi=0.521 energy=0.837 active=4 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 22:46:13,803 INFO speace.live | VITALI | tick=246954 phi=0.575 energy=0.801 active=6 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:46:44,995 INFO speace.live | VITALI | tick=246980 phi=0.567 energy=0.796 active=7 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 22:47:55,242 INFO speace.live | Ciclo evolutivo cycle-920fe4 completato | AGI%=47.20 | task=8 | proposte=3 | errori=0
+2026-06-16 22:47:56,755 INFO speace.live | VITALI | tick=246981 phi=0.596 energy=0.796 active=7 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:48:29,653 INFO speace.live | VITALI | tick=247001 phi=0.519 energy=0.796 active=6 SCI=0.864 ILF=0.683 drive=information_exploration
+2026-06-16 22:48:59,803 INFO speace.live | VITALI | tick=247020 phi=0.556 energy=0.796 active=3 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:49:29,818 INFO speace.live | VITALI | tick=247039 phi=0.600 energy=0.796 active=6 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 22:49:59,909 INFO speace.live | VITALI | tick=247057 phi=0.576 energy=0.796 active=6 SCI=0.864 ILF=0.686 drive=coherence_maintenance
+2026-06-16 22:50:30,238 INFO speace.live | VITALI | tick=247075 phi=0.674 energy=0.796 active=2 SCI=0.864 ILF=0.692 drive=coherence_maintenance
+C:\cellular_speace\speace_core\cellular_brain\dynamics\predictive_coding_engine.py:112: RuntimeWarning: overflow encountered in matmul
+  incoming[higher_id] += weight.T @ error
+C:\cellular_speace\speace_core\cellular_brain\dynamics\predictive_coding_engine.py:77: RuntimeWarning: invalid value encountered in subtract
+  error = np.abs(actual - pred)
+C:\cellular_speace\speace_core\cellular_brain\dynamics\predictive_coding_engine.py:81: RuntimeWarning: invalid value encountered in subtract
+  layer["representation"] + self.learning_rate * (actual - pred)
+2026-06-16 22:51:00,664 INFO speace.live | VITALI | tick=247094 phi=0.587 energy=0.796 active=4 SCI=0.865 ILF=0.687 drive=information_exploration
+2026-06-16 22:51:30,893 INFO speace.live | VITALI | tick=247113 phi=0.575 energy=0.796 active=6 SCI=0.864 ILF=0.686 drive=coherence_maintenance
+2026-06-16 22:52:00,996 INFO speace.live | VITALI | tick=247132 phi=0.561 energy=0.796 active=5 SCI=0.864 ILF=0.685 drive=coherence_maintenance
+2026-06-16 22:52:31,058 INFO speace.live | VITALI | tick=247150 phi=0.579 energy=0.796 active=6 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 22:53:23,800 INFO speace.live | VITALI | tick=247168 phi=0.518 energy=0.796 active=8 SCI=0.864 ILF=0.683 drive=coherence_maintenance
+2026-06-16 22:53:54,698 INFO speace.live | VITALI | tick=247197 phi=0.577 energy=0.837 active=5 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 22:54:27,743 INFO speace.live | VITALI | tick=247221 phi=0.555 energy=0.801 active=7 SCI=0.864 ILF=0.685 drive=coherence_maintenance
+2026-06-16 22:54:58,667 INFO speace.live | VITALI | tick=247245 phi=0.647 energy=0.796 active=3 SCI=0.865 ILF=0.690 drive=coherence_maintenance
+2026-06-16 22:56:15,377 INFO speace.live | Ciclo evolutivo cycle-c0b6b9 completato | AGI%=47.16 | task=8 | proposte=3 | errori=0
+2026-06-16 22:56:18,551 INFO speace.live | VITALI | tick=247248 phi=0.539 energy=0.796 active=8 SCI=0.864 ILF=0.684 drive=information_exploration
+2026-06-16 22:56:49,217 INFO speace.live | VITALI | tick=247262 phi=0.650 energy=0.796 active=3 SCI=0.864 ILF=0.691 drive=information_exploration
+2026-06-16 22:57:19,230 INFO speace.live | VITALI | tick=247275 phi=0.552 energy=0.796 active=8 SCI=0.864 ILF=0.685 drive=coherence_maintenance
+2026-06-16 22:57:49,254 INFO speace.live | VITALI | tick=247288 phi=0.577 energy=0.796 active=8 SCI=0.864 ILF=0.687 drive=information_exploration
+2026-06-16 22:58:19,766 INFO speace.live | VITALI | tick=247302 phi=0.607 energy=0.796 active=5 SCI=0.865 ILF=0.688 drive=information_exploration
+2026-06-16 22:58:49,772 INFO speace.live | VITALI | tick=247315 phi=0.572 energy=0.796 active=6 SCI=0.864 ILF=0.686 drive=coherence_maintenance
+2026-06-16 22:59:19,785 INFO speace.live | VITALI | tick=247328 phi=0.546 energy=0.796 active=7 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 22:59:49,803 INFO speace.live | VITALI | tick=247341 phi=0.507 energy=0.796 active=9 SCI=0.864 ILF=0.682 drive=coherence_maintenance
+2026-06-16 23:00:19,829 INFO speace.live | VITALI | tick=247354 phi=0.526 energy=0.796 active=8 SCI=0.864 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:00:50,244 INFO speace.live | VITALI | tick=247368 phi=0.584 energy=0.796 active=8 SCI=0.864 ILF=0.688 drive=information_exploration
+2026-06-16 23:01:46,877 INFO speace.live | VITALI | tick=247381 phi=0.535 energy=0.796 active=8 SCI=0.864 ILF=0.684 drive=coherence_maintenance
+2026-06-16 23:02:16,892 INFO speace.live | VITALI | tick=247398 phi=0.567 energy=0.796 active=5 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 23:02:46,921 INFO speace.live | VITALI | tick=247410 phi=0.600 energy=0.837 active=5 SCI=0.865 ILF=0.689 drive=information_exploration
+2026-06-16 23:03:16,993 INFO speace.live | VITALI | tick=247424 phi=0.535 energy=0.801 active=6 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:03:49,728 INFO speace.live | VITALI | tick=247438 phi=0.548 energy=0.804 active=8 SCI=0.866 ILF=0.685 drive=information_exploration
+2026-06-16 23:04:19,759 INFO speace.live | VITALI | tick=247452 phi=0.513 energy=0.839 active=8 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:05:49,874 INFO speace.live | Ciclo evolutivo cycle-c11791 completato | AGI%=46.77 | task=8 | proposte=3 | errori=0
+2026-06-16 23:05:51,007 INFO speace.live | VITALI | tick=247461 phi=0.515 energy=0.799 active=9 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:06:21,877 INFO speace.live | VITALI | tick=247470 phi=0.578 energy=0.799 active=8 SCI=0.866 ILF=0.691 drive=information_exploration
+2026-06-16 23:06:51,884 INFO speace.live | VITALI | tick=247479 phi=0.517 energy=0.799 active=8 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:07:21,931 INFO speace.live | VITALI | tick=247488 phi=0.514 energy=0.799 active=9 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:07:51,948 INFO speace.live | VITALI | tick=247496 phi=0.545 energy=0.799 active=7 SCI=0.864 ILF=0.685 drive=information_exploration
+2026-06-16 23:08:22,051 INFO speace.live | VITALI | tick=247505 phi=0.535 energy=0.799 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:08:52,076 INFO speace.live | VITALI | tick=247514 phi=0.528 energy=0.799 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:09:22,157 INFO speace.live | VITALI | tick=247523 phi=0.517 energy=0.799 active=9 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:09:52,174 INFO speace.live | VITALI | tick=247532 phi=0.540 energy=0.799 active=9 SCI=0.865 ILF=0.685 drive=coherence_maintenance
+2026-06-16 23:10:22,236 INFO speace.live | VITALI | tick=247541 phi=0.518 energy=0.799 active=9 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:11:18,595 INFO speace.live | VITALI | tick=247551 phi=0.496 energy=0.799 active=10 SCI=0.865 ILF=0.682 drive=information_exploration
+2026-06-16 23:11:49,556 INFO speace.live | VITALI | tick=247565 phi=0.509 energy=0.799 active=6 SCI=0.865 ILF=0.682 drive=coherence_maintenance
+2026-06-16 23:12:19,670 INFO speace.live | VITALI | tick=247579 phi=0.596 energy=0.839 active=5 SCI=0.865 ILF=0.689 drive=information_exploration
+2026-06-16 23:12:49,687 INFO speace.live | VITALI | tick=247591 phi=0.535 energy=0.801 active=8 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:13:19,694 INFO speace.live | VITALI | tick=247603 phi=0.544 energy=0.804 active=8 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:13:49,785 INFO speace.live | VITALI | tick=247615 phi=0.583 energy=0.804 active=5 SCI=0.865 ILF=0.687 drive=information_exploration
+2026-06-16 23:15:36,717 INFO speace.live | Ciclo evolutivo cycle-3a50ec completato | AGI%=46.65 | task=8 | proposte=3 | errori=0
+2026-06-16 23:15:37,215 INFO speace.live | VITALI | tick=247630 phi=0.501 energy=0.801 active=10 SCI=0.865 ILF=0.682 drive=coherence_maintenance
+2026-06-16 23:16:08,440 INFO speace.live | VITALI | tick=247639 phi=0.530 energy=0.801 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:16:38,816 INFO speace.live | VITALI | tick=247648 phi=0.521 energy=0.801 active=10 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:17:08,821 INFO speace.live | VITALI | tick=247657 phi=0.492 energy=0.801 active=10 SCI=0.865 ILF=0.682 drive=coherence_maintenance
+2026-06-16 23:17:39,531 INFO speace.live | VITALI | tick=247666 phi=0.540 energy=0.801 active=8 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:18:10,239 INFO speace.live | VITALI | tick=247675 phi=0.511 energy=0.801 active=9 SCI=0.864 ILF=0.683 drive=information_exploration
+2026-06-16 23:18:40,499 INFO speace.live | VITALI | tick=247684 phi=0.530 energy=0.801 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:19:10,574 INFO speace.live | VITALI | tick=247693 phi=0.527 energy=0.801 active=10 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:19:40,585 INFO speace.live | VITALI | tick=247701 phi=0.539 energy=0.801 active=8 SCI=0.864 ILF=0.684 drive=information_exploration
+2026-06-16 23:20:10,603 INFO speace.live | VITALI | tick=247710 phi=0.520 energy=0.801 active=9 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:21:04,934 INFO speace.live | VITALI | tick=247720 phi=0.509 energy=0.801 active=10 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:21:34,946 INFO speace.live | VITALI | tick=247734 phi=0.563 energy=0.801 active=6 SCI=0.864 ILF=0.686 drive=information_exploration
+2026-06-16 23:22:05,361 INFO speace.live | VITALI | tick=247748 phi=0.537 energy=0.841 active=8 SCI=0.865 ILF=0.685 drive=coherence_maintenance
+2026-06-16 23:22:37,059 INFO speace.live | VITALI | tick=247762 phi=0.530 energy=0.806 active=7 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:23:09,836 INFO speace.live | VITALI | tick=247776 phi=0.566 energy=0.808 active=7 SCI=0.866 ILF=0.686 drive=information_exploration
+2026-06-16 23:23:39,849 INFO speace.live | VITALI | tick=247790 phi=0.532 energy=0.843 active=6 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:25:10,575 INFO speace.live | Ciclo evolutivo cycle-0c9d40 completato | AGI%=46.66 | task=8 | proposte=3 | errori=0
+2026-06-16 23:25:11,120 INFO speace.live | VITALI | tick=247799 phi=0.507 energy=0.804 active=9 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:25:41,130 INFO speace.live | VITALI | tick=247807 phi=0.541 energy=0.804 active=8 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:26:11,150 INFO speace.live | VITALI | tick=247816 phi=0.506 energy=0.804 active=10 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:26:41,156 INFO speace.live | VITALI | tick=247825 phi=0.515 energy=0.804 active=9 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:27:11,218 INFO speace.live | VITALI | tick=247834 phi=0.585 energy=0.804 active=9 SCI=0.866 ILF=0.693 drive=information_exploration
+2026-06-16 23:27:41,226 INFO speace.live | VITALI | tick=247843 phi=0.536 energy=0.804 active=8 SCI=0.866 ILF=0.685 drive=information_exploration
+2026-06-16 23:28:11,500 INFO speace.live | VITALI | tick=247852 phi=0.532 energy=0.804 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:28:42,589 INFO speace.live | VITALI | tick=247861 phi=0.532 energy=0.804 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:29:12,701 INFO speace.live | VITALI | tick=247870 phi=0.530 energy=0.804 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:29:42,709 INFO speace.live | VITALI | tick=247879 phi=0.496 energy=0.804 active=10 SCI=0.865 ILF=0.682 drive=information_exploration
+2026-06-16 23:30:43,051 INFO speace.live | VITALI | tick=247888 phi=0.507 energy=0.804 active=10 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:31:13,059 INFO speace.live | VITALI | tick=247903 phi=0.533 energy=0.804 active=4 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:31:44,745 INFO speace.live | VITALI | tick=247917 phi=0.559 energy=0.843 active=4 SCI=0.865 ILF=0.686 drive=coherence_maintenance
+2026-06-16 23:32:14,789 INFO speace.live | VITALI | tick=247929 phi=0.548 energy=0.806 active=7 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:32:44,855 INFO speace.live | VITALI | tick=247943 phi=0.532 energy=0.808 active=8 SCI=0.865 ILF=0.684 drive=coherence_maintenance
+2026-06-16 23:33:14,980 INFO speace.live | VITALI | tick=247957 phi=0.536 energy=0.870 active=7 SCI=0.865 ILF=0.686 drive=coherence_maintenance
+2026-06-16 23:35:07,814 INFO speace.live | Ciclo evolutivo cycle-86c69e completato | AGI%=46.59 | task=8 | proposte=3 | errori=0
+2026-06-16 23:35:08,799 INFO speace.live | VITALI | tick=247968 phi=0.532 energy=0.804 active=7 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:35:38,828 INFO speace.live | VITALI | tick=247977 phi=0.542 energy=0.804 active=9 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:36:08,848 INFO speace.live | VITALI | tick=247985 phi=0.505 energy=0.804 active=10 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:36:38,869 INFO speace.live | VITALI | tick=247994 phi=0.568 energy=0.804 active=7 SCI=0.865 ILF=0.689 drive=information_exploration
+2026-06-16 23:37:08,881 INFO speace.live | VITALI | tick=248003 phi=0.568 energy=0.804 active=8 SCI=0.865 ILF=0.690 drive=information_exploration
+2026-06-16 23:37:38,895 INFO speace.live | VITALI | tick=248012 phi=0.512 energy=0.804 active=10 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:38:09,303 INFO speace.live | VITALI | tick=248021 phi=0.503 energy=0.804 active=9 SCI=0.865 ILF=0.682 drive=information_exploration
+2026-06-16 23:38:39,454 INFO speace.live | VITALI | tick=248029 phi=0.539 energy=0.804 active=8 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:39:09,695 INFO speace.live | VITALI | tick=248038 phi=0.551 energy=0.804 active=9 SCI=0.865 ILF=0.687 drive=information_exploration
+2026-06-16 23:39:39,722 INFO speace.live | VITALI | tick=248047 phi=0.520 energy=0.804 active=9 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:40:41,061 INFO speace.live | VITALI | tick=248058 phi=0.511 energy=0.804 active=9 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:41:11,972 INFO speace.live | VITALI | tick=248074 phi=0.576 energy=0.804 active=4 SCI=0.865 ILF=0.686 drive=information_exploration
+2026-06-16 23:41:43,780 INFO speace.live | VITALI | tick=248088 phi=0.571 energy=0.816 active=4 SCI=0.865 ILF=0.686 drive=coherence_maintenance
+2026-06-16 23:42:15,205 INFO speace.live | VITALI | tick=248102 phi=0.551 energy=0.806 active=6 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:42:47,433 INFO speace.live | VITALI | tick=248114 phi=0.508 energy=0.808 active=9 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:43:17,526 INFO speace.live | VITALI | tick=248128 phi=0.539 energy=0.843 active=7 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:44:48,700 INFO speace.live | Ciclo evolutivo cycle-c71212 completato | AGI%=46.37 | task=8 | proposte=3 | errori=0
+2026-06-16 23:44:49,151 INFO speace.live | VITALI | tick=248137 phi=0.516 energy=0.804 active=9 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:45:19,167 INFO speace.live | VITALI | tick=248145 phi=0.519 energy=0.804 active=10 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:45:49,189 INFO speace.live | VITALI | tick=248154 phi=0.531 energy=0.804 active=8 SCI=0.865 ILF=0.684 drive=coherence_maintenance
+2026-06-16 23:46:19,205 INFO speace.live | VITALI | tick=248163 phi=0.532 energy=0.804 active=8 SCI=0.864 ILF=0.684 drive=information_exploration
+2026-06-16 23:46:49,221 INFO speace.live | VITALI | tick=248172 phi=0.577 energy=0.804 active=7 SCI=0.865 ILF=0.687 drive=information_exploration
+2026-06-16 23:47:19,320 INFO speace.live | VITALI | tick=248181 phi=0.610 energy=0.804 active=6 SCI=0.865 ILF=0.692 drive=information_exploration
+2026-06-16 23:47:49,373 INFO speace.live | VITALI | tick=248190 phi=0.509 energy=0.804 active=9 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:48:19,561 INFO speace.live | VITALI | tick=248199 phi=0.544 energy=0.804 active=9 SCI=0.865 ILF=0.691 drive=information_exploration
+2026-06-16 23:48:49,578 INFO speace.live | VITALI | tick=248207 phi=0.556 energy=0.804 active=8 SCI=0.866 ILF=0.687 drive=information_exploration
+2026-06-16 23:49:19,675 INFO speace.live | VITALI | tick=248216 phi=0.564 energy=0.804 active=8 SCI=0.865 ILF=0.687 drive=information_exploration
+2026-06-16 23:50:17,256 INFO speace.live | VITALI | tick=248227 phi=0.510 energy=0.804 active=9 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:50:47,272 INFO speace.live | VITALI | tick=248241 phi=0.522 energy=0.804 active=7 SCI=0.865 ILF=0.683 drive=information_exploration
+2026-06-16 23:51:17,286 INFO speace.live | VITALI | tick=248255 phi=0.537 energy=0.843 active=5 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:51:47,308 INFO speace.live | VITALI | tick=248269 phi=0.532 energy=0.808 active=7 SCI=0.865 ILF=0.684 drive=coherence_maintenance
+2026-06-16 23:52:17,370 INFO speace.live | VITALI | tick=248281 phi=0.567 energy=0.810 active=7 SCI=0.866 ILF=0.686 drive=information_exploration
+2026-06-16 23:52:47,407 INFO speace.live | VITALI | tick=248295 phi=0.533 energy=0.872 active=8 SCI=0.865 ILF=0.686 drive=coherence_maintenance
+2026-06-16 23:54:20,307 INFO speace.live | Ciclo evolutivo cycle-ff3032 completato | AGI%=47.23 | task=8 | proposte=3 | errori=0
+2026-06-16 23:54:21,380 INFO speace.live | VITALI | tick=248306 phi=0.505 energy=0.806 active=10 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-16 23:54:51,391 INFO speace.live | VITALI | tick=248315 phi=0.586 energy=0.806 active=6 SCI=0.865 ILF=0.687 drive=information_exploration
+2026-06-16 23:55:21,720 INFO speace.live | VITALI | tick=248324 phi=0.534 energy=0.806 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:55:51,761 INFO speace.live | VITALI | tick=248332 phi=0.539 energy=0.806 active=9 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-16 23:56:21,781 INFO speace.live | VITALI | tick=248341 phi=0.531 energy=0.806 active=8 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:56:51,792 INFO speace.live | VITALI | tick=248350 phi=0.571 energy=0.806 active=7 SCI=0.865 ILF=0.686 drive=information_exploration
+2026-06-16 23:57:21,810 INFO speace.live | VITALI | tick=248359 phi=0.533 energy=0.806 active=9 SCI=0.865 ILF=0.684 drive=coherence_maintenance
+2026-06-16 23:57:52,481 INFO speace.live | VITALI | tick=248368 phi=0.531 energy=0.806 active=9 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:58:22,494 INFO speace.live | VITALI | tick=248377 phi=0.518 energy=0.806 active=10 SCI=0.864 ILF=0.683 drive=information_exploration
+2026-06-16 23:58:52,808 INFO speace.live | VITALI | tick=248386 phi=0.523 energy=0.806 active=10 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-16 23:59:49,666 INFO speace.live | VITALI | tick=248396 phi=0.516 energy=0.806 active=8 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-17 00:00:19,678 INFO speace.live | VITALI | tick=248410 phi=0.561 energy=0.806 active=4 SCI=0.865 ILF=0.685 drive=coherence_maintenance
+2026-06-17 00:00:49,841 INFO speace.live | VITALI | tick=248424 phi=0.533 energy=0.844 active=7 SCI=0.865 ILF=0.685 drive=information_exploration
+2026-06-17 00:01:21,494 INFO speace.live | VITALI | tick=248438 phi=0.540 energy=0.808 active=5 SCI=0.866 ILF=0.684 drive=information_exploration
+2026-06-17 00:01:54,569 INFO speace.live | VITALI | tick=248452 phi=0.568 energy=0.810 active=8 SCI=0.865 ILF=0.686 drive=information_exploration
+2026-06-17 00:02:24,576 INFO speace.live | VITALI | tick=248466 phi=0.525 energy=0.844 active=6 SCI=0.865 ILF=0.684 drive=coherence_maintenance
+2026-06-17 00:03:57,808 INFO speace.live | Ciclo evolutivo cycle-881070 completato | AGI%=46.55 | task=8 | proposte=3 | errori=0
+2026-06-17 00:03:58,599 INFO speace.live | VITALI | tick=248475 phi=0.507 energy=0.806 active=10 SCI=0.865 ILF=0.683 drive=coherence_maintenance
+2026-06-17 00:04:30,037 INFO speace.live | VITALI | tick=248484 phi=0.521 energy=0.806 active=10 SCI=0.865 ILF=0.684 drive=information_exploration
+2026-06-17 00:05:00,258 INFO speace.live | VITALI | tick=248493 phi=0.540 energy=0.806 active=9 SCI=0.864 ILF=0.685 drive=information_exploration

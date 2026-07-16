@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPEACE Anemos — Il Principio Vitale</title>
+<link rel="stylesheet" href="/static/anemos.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="logo">
+      <span class="logo-icon">💨</span>
+      <div>
+        <h1>SPEACE <span class="accent">Anemos</span></h1>
+        <span class="subtitle">Il principio vitale — anima dell'organismo SPEACE</span>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="stat"><span class="stat-label">Modello</span><span id="modelName" class="stat-value">...</span></div>
+      <div class="stat"><span class="stat-label">Messaggi</span><span id="msgCount" class="stat-value">0</span></div>
+      <div class="stat"><span class="stat-label">Stato</span><span id="systemStatus" class="stat-value status-ok">Online</span></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Sidebar: Filesystem -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h3>📁 Filesystem</h3>
+        <span class="hint">C:\cellular_speace\</span>
+      </div>
+
+      <div class="fs-actions">
+        <input id="fsPath" type="text" placeholder="path (es. docs o speace_core)" value="." />
+        <div class="fs-buttons">
+          <button id="fsListBtn" class="btn btn-small">Lista</button>
+          <button id="fsRootBtn" class="btn btn-small btn-secondary">Root</button>
+        </div>
+      </div>
+
+      <div id="fsResults" class="fs-results">
+        <div class="fs-placeholder">Clicca "Lista" o "Root" per esplorare</div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="auditBtn" class="btn btn-small btn-secondary">📋 Audit Log</button>
+        <button id="clearHistoryBtn" class="btn btn-small btn-danger">🗑️ Pulisci chat</button>
+      </div>
+    </aside>
+
+    <!-- Chat principale -->
+    <section class="chat-main">
+      <div class="chat-header">
+        <span id="chatSubtitle">💬 Dialogo con Anemos</span>
+        <div class="chat-actions">
+          <button id="reloadHistoryBtn" class="btn btn-small">↻ Ricarica</button>
+        </div>
+      </div>
+
+      <div id="chatMessages" class="chat-messages">
+        <div class="chat-placeholder">Caricamento...</div>
+      </div>
+
+      <div class="chat-input-area">
+        <textarea id="chatInput" placeholder="Scrivi a Roberto... (Shift+Enter per andare a capo, Enter per inviare)" rows="3"></textarea>
+        <div class="input-actions">
+          <span id="typingIndicator" class="typing-indicator"></span>
+          <button id="chatSendBtn" class="btn btn-primary">Invia ad Anemos</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Lettura file -->
+  <div id="fileModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="fileModalTitle">File</h3>
+        <button class="modal-close" data-modal="fileModal">&times;</button>
+      </div>
+      <pre id="fileModalContent" class="file-content"></pre>
+      <div class="modal-footer">
+        <button id="fileModalCopyBtn" class="btn btn-small">Copia</button>
+        <button class="btn btn-small btn-secondary modal-close" data-modal="fileModal">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Audit log -->
+  <div id="auditModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📋 Audit Log FS</h3>
+        <button class="modal-close" data-modal="auditModal">&times;</button>
+      </div>
+      <pre id="auditModalContent" class="file-content"></pre>
+      <div class="modal-footer">
+        <button class="btn btn-small btn-secondary modal-close" data-modal="auditModal">Chiudi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/anemos.js"></script>
+</body>
+</html>

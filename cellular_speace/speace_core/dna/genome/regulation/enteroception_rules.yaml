@@ -1,0 +1,8 @@
+enteroception:
+  enabled: true
+  update_interval_ticks: 10
+  max_strains: 10
+  diversity_threshold: 0.4
+  stress_suppression_factor: 0.3
+  max_substrate: 100.0
+  metabolite_decay: 0.95

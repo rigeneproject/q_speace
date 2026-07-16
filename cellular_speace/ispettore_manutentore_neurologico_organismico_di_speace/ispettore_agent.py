@@ -1,0 +1,625 @@
+"""
+Ispettore Manutentore Neurologico Organismico di SPEACE
+Agentic AI autonomo per ispezione, diagnosi, correzione e ottimizzazione.
+
+Caratteristiche:
+- Loop continuo con auto-riavvio gestito dal wrapper .bat
+- Modelli LLM: cloud (DeepSeek V4 Flash Free via OpenCode Zen) e locale (gemma4:12b via Ollama)
+- Sub-agents in parallelo (reader, inspector, diagnostician, optimizer, corrector)
+- Capacita di lettura, modifica e creazione file nel workspace C:\\cellular_speace
+- Ricerca web tramite speace_agi_team.web_search
+- Chat interattiva con l'owner Roberto
+- Manutenzione preventiva e correttiva integrate
+"""
+
+from __future__ import annotations
+
+import argparse
+import datetime
+import json
+import logging
+import os
+import re
+import sys
+import time
+import traceback
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
+PROJECT_ROOT = Path("C:/cellular_speace")
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+try:
+    from speace_agi_team.web_search import research, WebSearcher, DocumentFetcher
+except Exception as e:
+    research = None
+    WebSearcher = None
+    DocumentFetcher = None
+    logging.warning("speace_agi_team.web_search non disponibile: %s", e)
+
+
+AGENT_DIR = Path(__file__).resolve().parent
+LOG_DIR = PROJECT_ROOT / "data" / "logs" / "ispettore"
+REPORT_DIR = PROJECT_ROOT / "reports" / "ispettore"
+DIAGNOSI_DIR = PROJECT_ROOT / "data" / "diagnosi"
+STATE_DIR = PROJECT_ROOT / "data" / "state" / "ispettore"
+
+for d in (LOG_DIR, REPORT_DIR, DIAGNOSI_DIR, STATE_DIR):
+    d.mkdir(parents=True, exist_ok=True)
+
+LOG_FILE = LOG_DIR / f"ispettore_agent_{datetime.datetime.now():%Y%m%d_%H%M%S}.log"
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        logging.StreamHandler(sys.stdout),
+    ],
+)
+logger = logging.getLogger("ispettore")
+
+
+def log(level: str, message: str) -> None:
+    ts = datetime.datetime.now().isoformat(sep=" ", timespec="milliseconds")
+    line = f"{ts} [{level}] {message}"
+    logging.info(line)
+    with LOG_FILE.open("a", encoding="utf-8") as f:
+        f.write(line + "\n")
+
+
+CLOUD_MODEL = "opencode/deepseek-v4-flash-free"
+CLOUD_API_KEY = os.environ.get("OPENCODE_API_KEY", "")
+LOCAL_MODEL = "gemma4:12b"
+LOCAL_ENDPOINT = "http://localhost:11434"
+
+
+def _ask_cloud_llm(prompt: str, max_tokens: int = 4096) -> Optional[str]:
+    import urllib.request
+    import urllib.error
+
+    if not CLOUD_API_KEY:
+        log("WARN", "OPENCODE_API_KEY non impostata. Cloud LLM disabilitato.")
+        return None
+
+    endpoint = "https://api.opencode.ai/v1/chat/completions"
+    payload = {
+        "model": CLOUD_MODEL,
+        "messages": [
+            {"role": "system", "content": "Sei l'Ispettore Manutentore Neurologico Organismico di SPEACE. Analizza, diagnostica e ottimizza il sistema SPEACE. Rispondi in italiano."},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 0.2,
+        "max_tokens": max_tokens,
+        "stream": False,
+    }
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        endpoint,
+        data=data,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {CLOUD_API_KEY}",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+        choices = result.get("choices", [])
+        if choices:
+            return choices[0].get("message", {}).get("content", "")
+    except urllib.error.HTTPError as e:
+        log("WARN", f"Cloud LLM HTTP error {e.code}: {e.read().decode('utf-8', errors='ignore')[:200]}")
+    except Exception as e:
+        log("WARN", f"Cloud LLM error: {e}")
+    return None
+
+
+def _ask_local_llm(prompt: str, max_tokens: int = 4096) -> Optional[str]:
+    import urllib.request
+    import urllib.error
+
+    endpoint = f"{LOCAL_ENDPOINT}/api/generate"
+    payload = {
+        "model": LOCAL_MODEL,
+        "prompt": (
+            "Sei l'Ispettore Manutentore Neurologico Organismico di SPEACE. "
+            "Analizza, diagnostica e ottimizza il sistema SPEACE. Rispondi in italiano.\n\n"
+            f"{prompt}"
+        ),
+        "stream": False,
+        "options": {"temperature": 0.2, "num_predict": max_tokens},
+    }
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(endpoint, data=data, headers={"Content-Type": "application/json"}, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+        return result.get("response", "")
+    except urllib.error.HTTPError as e:
+        log("WARN", f"Local LLM HTTP error {e.code}: {e.read().decode('utf-8', errors='ignore')[:200]}")
+    except Exception as e:
+        log("WARN", f"Local LLM error: {e}")
+    return None
+
+
+def ask_llm(prompt: str, mode: str = "local", max_tokens: int = 4096) -> str:
+    if mode == "cloud":
+        out = _ask_cloud_llm(prompt, max_tokens)
+        if out:
+            return out
+        log("WARN", "Cloud LLM fallito, fallback su locale")
+        out = _ask_local_llm(prompt, max_tokens)
+        return out or "[ERRORE: entrambi i LLM non hanno risposto]"
+    else:
+        out = _ask_local_llm(prompt, max_tokens)
+        if out:
+            return out
+        log("WARN", "Local LLM fallito, fallback su cloud")
+        out = _ask_cloud_llm(prompt, max_tokens)
+        return out or "[ERRORE: entrambi i LLM non hanno risposto]"
+
+
+SCAN_TARGETS = [
+    {"path": PROJECT_ROOT / "speace_core", "label": "Speace Core (Cervello)", "patterns": ["*.py", "*.json", "*.yaml", "*.yml"]},
+    {"path": PROJECT_ROOT / "speace_agi_team", "label": "Speace AGI Team", "patterns": ["*.py", "*.json", "*.md"]},
+    {"path": PROJECT_ROOT / "data", "label": "Data", "patterns": ["*.json", "*.csv", "*.yaml", "*.yml"]},
+    {"path": PROJECT_ROOT / "scripts", "label": "Scripts", "patterns": ["*.py", "*.ps1", "*.bat"]},
+    {"path": PROJECT_ROOT / "tests", "label": "Tests", "patterns": ["*.py", "*.json"]},
+    {"path": PROJECT_ROOT / "docs", "label": "Documentazione", "patterns": ["*.md", "*.txt"]},
+    {"path": PROJECT_ROOT / "reports", "label": "Reports", "patterns": ["*.md", "*.json", "*.txt"]},
+    {"path": PROJECT_ROOT / "evolution_daemon", "label": "Evolution Daemon", "patterns": ["*.py", "*.json"]},
+    {"path": PROJECT_ROOT / "reports" / "assessment", "label": "Capability Assessment", "patterns": ["*.json"]},
+    {"path": PROJECT_ROOT / "reports" / "environment", "label": "Environment Reports", "patterns": ["*.json"]},
+    {"path": PROJECT_ROOT / "speace_core" / "environment", "label": "External Environments", "patterns": ["*.py"]},
+]
+
+
+def get_files_to_scan() -> List[Path]:
+    files: List[Path] = []
+    for target in SCAN_TARGETS:
+        base: Path = target["path"]
+        if not base.exists():
+            continue
+        for pattern in target["patterns"]:
+            for f in base.rglob(pattern):
+                if f.is_file():
+                    files.append(f)
+    return sorted(set(files))
+
+
+def read_text_file(path: Path, max_chars: int = 50000) -> str:
+    try:
+        content = path.read_text(encoding="utf-8", errors="ignore")
+        if len(content) > max_chars:
+            content = content[:max_chars] + "\n\n[...TRONCATO...]"
+        return content
+    except Exception as e:
+        return f"[ERRORE LETTURA {path}: {e}]"
+
+
+DIAG_RULES = {
+    "python": [
+        (r"\beval\s*\(", "USO_EVAL: uso di eval() rilevato"),
+        (r"\bexec\s*\(", "USO_EXEC: uso di exec() rilevato"),
+        (r"\b__import__\s*\(", "USO__IMPORT__: uso dinamico di __import__"),
+        (r"(?m)^(?!.*#).*\bprint\s*\(", "RAW_PRINT: print() non commentato (preferire logging)"),
+        (r"(?i)(TODO|FIXME|HACK|XXX)", "TODO_FOUND: marker di lavoro incompleto"),
+    ],
+}
+
+
+def diagnose_file(path: Path) -> List[Dict[str, Any]]:
+    issues: List[Dict[str, Any]] = []
+    suffix = path.suffix.lower()
+    content = read_text_file(path, max_chars=20000)
+
+    if suffix == ".py":
+        for pattern, desc_template in DIAG_RULES["python"]:
+            matches = list(re.finditer(pattern, content))
+            for m in matches:
+                line = content[:m.start()].count("\n") + 1
+                issues.append({
+                    "type": desc_template.split(":")[0],
+                    "description": desc_template.split(":", 1)[1].strip(),
+                    "line": line,
+                    "severity": "warn",
+                })
+    elif suffix in (".json",):
+        try:
+            data = path.read_bytes()
+            if data.startswith(b"\xef\xbb\xbf"):
+                data = data[3:]
+            json.loads(data.decode("utf-8"))
+        except Exception as e:
+            issues.append({"type": "JSON_INVALIDO", "description": f"JSON non valido: {e}", "severity": "error"})
+
+    if content == "" or content.startswith("[ERRORE LETTURA"):
+        issues.append({"type": "FILE_VUOTO", "description": "File vuoto o non leggibile", "severity": "warn"})
+
+    line_count = content.count("\n") + 1
+    if line_count > 2000:
+        issues.append({"type": "FILE_TROPPO_GRANDE", "description": f"{line_count} linee (>2000)", "severity": "info"})
+
+    return issues
+
+
+def run_parallel_subagents(file_path: Path, mode: str = "local", max_parallel: int = 3) -> List[SubAgentResult]:
+    agents = [SubAgent(t, mode) for t in ["reader", "inspector", "diagnostician", "optimizer", "corrector"]]
+    results: List[SubAgentResult] = []
+    with ThreadPoolExecutor(max_workers=max_parallel) as ex:
+        futures = {ex.submit(a.inspect, file_path): a for a in agents}
+        for future in as_completed(futures):
+            try:
+                results.append(future.result())
+            except Exception as e:
+                results.append(SubAgentResult(agent_type=futures[future].agent_type, file_path=str(file_path), summary=f"ERRORE: {e}"))
+    return results
+
+
+@dataclass
+class SubAgentResult:
+    agent_type: str
+    file_path: str
+    findings: List[Dict[str, Any]] = field(default_factory=list)
+    summary: str = ""
+
+
+class SubAgent:
+    def __init__(self, agent_type: str, mode: str = "local"):
+        self.agent_type = agent_type
+        self.mode = mode
+
+    def inspect(self, file_path: Path) -> SubAgentResult:
+        content = read_text_file(file_path)
+        issues = diagnose_file(file_path)
+        prompt = self._build_prompt(file_path, content, issues)
+        summary = ask_llm(prompt, mode=self.mode, max_tokens=2048)
+        return SubAgentResult(
+            agent_type=self.agent_type,
+            file_path=str(file_path),
+            findings=issues,
+            summary=summary,
+        )
+
+    def _build_prompt(self, file_path: Path, content: str, issues: List[Dict[str, Any]]) -> str:
+        role_map = {
+            "reader": "Riassumi il contenuto e identifica lo scopo del file.",
+            "inspector": "Trova bug, errori strutturali e codice sospetto.",
+            "diagnostician": "Diagnostica la causa radice dei problemi trovati.",
+            "optimizer": "Suggerisci ottimizzazioni concrete e refactoring.",
+            "corrector": "Proponi correzioni precise, includendo frammenti di codice se necessario.",
+        }
+        role = role_map.get(self.agent_type, "Analizza il file.")
+        issue_text = json.dumps(issues, ensure_ascii=False, indent=2) if issues else "Nessun issue rilevato da regole base."
+        short_content = content[:8000]
+        prompt = (
+            f"Ruolo sub-agent: {self.agent_type} - {role}\n"
+            f"File: {file_path}\n"
+            f"Issue base rilevate: {issue_text}\n\n"
+            f"Contenuto file (prime 8000 caratteri):\n```\n{short_content}\n```\n\n"
+            f"Fornisci un'analisi strutturata con: osservazioni, problemi, azioni consigliate."
+        )
+        return prompt
+
+def web_research(query: str, max_results: int = 5, fetch_top: int = 2) -> Dict[str, Any]:
+    if research is None:
+        return {"query": query, "error": "web_search non disponibile", "results": [], "documents": []}
+    try:
+        return research(query, max_results=max_results, fetch_top=fetch_top)
+    except Exception as e:
+        return {"query": query, "error": str(e), "results": [], "documents": []}
+
+
+def apply_simple_fixes(file_path: Path, issues: List[Dict[str, Any]]) -> List[str]:
+    applied: List[str] = []
+    if file_path.suffix.lower() != ".py":
+        return applied
+
+    try:
+        content = file_path.read_text(encoding="utf-8")
+    except Exception:
+        return applied
+
+    new_content = content
+
+    if any(i["type"] == "RAW_PRINT" for i in issues):
+        def replace_print(match: re.Match) -> str:
+            indent = match.group(1)
+            args = match.group(2).strip()
+            if not args:
+                args = '""'
+            return f'{indent}import logging; logging.info({args})'
+        pattern = re.compile(r"^(\s*)print\s*\((.*?)\)\s*$", re.MULTILINE)
+        new_content, count = pattern.subn(replace_print, new_content)
+        if count:
+            applied.append(f"Sostituiti {count} print() con logging.info()")
+
+    if applied and "import logging" not in new_content:
+        new_content = "import logging\n" + new_content
+        applied.append("Aggiunto import logging")
+
+    if new_content != content:
+        backup_path = Path(str(file_path) + f".backup_{datetime.datetime.now():%Y%m%d_%H%M%S}")
+        backup_path.write_text(content, encoding="utf-8")
+        file_path.write_text(new_content, encoding="utf-8")
+        applied.append(f"Backup creato: {backup_path}")
+
+    return applied
+
+
+def save_report(scan_data: Dict[str, Any]) -> Path:
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    report_file = REPORT_DIR / f"report_scan_{timestamp}.json"
+    report_file.write_text(json.dumps(scan_data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    md_file = REPORT_DIR / f"report_scan_{timestamp}.md"
+    md_file.write_text(_build_markdown_report(scan_data), encoding="utf-8")
+    return md_file
+
+
+def _build_markdown_report(scan_data: Dict[str, Any]) -> str:
+    lines = [
+        "# Report Ispettore Manutentore Neurologico Organismico di SPEACE",
+        "",
+        f"**Data:** {scan_data.get('timestamp')}",
+        f"**Modalita LLM:** {scan_data.get('llm_mode')}",
+        f"**Ciclo:** #{scan_data.get('cycle')}",
+        f"**Issue totali:** {scan_data.get('total_issues', 0)}",
+        "",
+        "## Issue rilevate",
+        "",
+    ]
+    for item in scan_data.get("issues", []):
+        lines.append(f"### {item['file']}")
+        for issue in item.get("issues", []):
+            lines.append(f"- **{issue['type']}** ({issue['severity']}): {issue['description']} (linea {issue.get('line', '-')})")
+        lines.append("")
+    if scan_data.get("fixes"):
+        lines.append("## Correzioni applicate")
+        for fix in scan_data["fixes"]:
+            lines.append(f"- {fix}")
+        lines.append("")
+    lines.append("---")
+    lines.append("*Generato automaticamente dall'Ispettore Manutentore Neurologico Organismico di SPEACE.*")
+    return "\n".join(lines)
+
+
+def _read_latest_json_in_dir(dir_path: Path, pattern: str = "*.json", max_chars: int = 20000) -> Optional[Dict[str, Any]]:
+    """Read the most recent JSON file matching a pattern in a directory."""
+    if not dir_path.exists():
+        return None
+    try:
+        files = sorted(
+            [f for f in dir_path.iterdir() if f.is_file() and f.match(pattern)],
+            key=lambda f: f.stat().st_mtime,
+            reverse=True,
+        )
+        if not files:
+            return None
+        content = files[0].read_text(encoding="utf-8", errors="ignore")
+        if len(content) > max_chars:
+            content = content[:max_chars] + "\n\n[...TRONCATO...]"
+        return json.loads(content)
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def _read_latest_assessment_report() -> Optional[Dict[str, Any]]:
+    return _read_latest_json_in_dir(PROJECT_ROOT / "reports" / "assessment", "capability_assessment_*.json")
+
+
+def _read_latest_environment_report() -> Optional[Dict[str, Any]]:
+    return _read_latest_json_in_dir(PROJECT_ROOT / "reports" / "environment", "run_*.json")
+
+
+class IspettoreAgent:
+    def __init__(self, mode: str = "local", scan_interval: int = 60, auto_fix: bool = True,
+                 enable_web: bool = True, use_llm: bool = False, use_subagents: bool = False):
+        self.mode = mode
+        self.scan_interval = scan_interval
+        self.auto_fix = auto_fix
+        self.enable_web = enable_web
+        self.use_llm = use_llm
+        self.use_subagents = use_subagents
+        self.cycle = 0
+        self.running = True
+        self.state_file = STATE_DIR / "agent_state.json"
+        self.last_web_research = None
+
+    def load_state(self) -> Dict[str, Any]:
+        if self.state_file.exists():
+            try:
+                return json.loads(self.state_file.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        return {}
+
+    def save_state(self) -> None:
+        state = {"cycle": self.cycle, "last_run": datetime.datetime.now().isoformat(), "mode": self.mode}
+        self.state_file.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    def run_cycle(self) -> Dict[str, Any]:
+        self.cycle += 1
+        log("INFO", f"===== INIZIO CICLO #{self.cycle} | Modalita {self.mode} =====")
+        files = get_files_to_scan()
+        log("INFO", f"File da scansionare: {len(files)}")
+
+        all_issues = []
+        all_fixes = []
+
+        max_files_per_cycle = 50
+        if len(files) > max_files_per_cycle:
+            files = sorted(files, key=lambda p: p.stat().st_mtime, reverse=True)[:max_files_per_cycle]
+
+        for f in files:
+            issues = diagnose_file(f)
+            if issues:
+                log("WARN", f"[{f.relative_to(PROJECT_ROOT)}] {len(issues)} issue")
+                all_issues.append({"file": str(f), "issues": issues})
+                if self.auto_fix:
+                    fixes = apply_simple_fixes(f, issues)
+                    for fix in fixes:
+                        log("FIX", fix)
+                    all_fixes.extend(fixes)
+            if self.use_subagents and (issues or self.cycle % 3 == 0):
+                log("INFO", f"Sub-agents in parallelo su {f.relative_to(PROJECT_ROOT)}")
+                sub_results = run_parallel_subagents(f, mode=self.mode, max_parallel=3)
+                for sr in sub_results:
+                    log("INFO", f"  [{sr.agent_type}] {sr.summary[:120]}...")
+
+        issue_summary = json.dumps(all_issues[:10], ensure_ascii=False, indent=2)
+        llm_analysis = "[LLM disabilitato per questo ciclo]"
+        if self.use_llm:
+            llm_prompt = (
+                "Sei l'Ispettore Manutentore Neurologico Organismico di SPEACE. "
+                "Analizza le issue rilevate in questo ciclo e proponi un piano di intervento. "
+                "Rispondi in italiano.\n\n"
+                f"Issue rilevate:\n{issue_summary}\n\n"
+                "Fornisci: 1) sintesi 2) priorita 3) azioni consigliate."
+            )
+            llm_analysis = ask_llm(llm_prompt, mode=self.mode, max_tokens=2048)
+        log("DIAG", f"Analisi LLM: {llm_analysis[:300]}...")
+
+        web_info = None
+        if self.enable_web and self.cycle % 5 == 0:
+            query = "best practices Python system health monitoring autonomous self-healing"
+            web_info = web_research(query, max_results=3, fetch_top=1)
+            self.last_web_research = web_info
+            log("INFO", f"Ricerca web eseguita: {len(web_info.get('results', []))} risultati")
+
+        scan_data = {
+            "timestamp": datetime.datetime.now().isoformat(),
+            "cycle": self.cycle,
+            "llm_mode": self.mode,
+            "total_issues": sum(len(i["issues"]) for i in all_issues),
+            "files_scanned": len(files),
+            "issues": all_issues,
+            "fixes": all_fixes,
+            "llm_analysis": llm_analysis,
+            "web_research": web_info,
+            "capability_assessment": assessment_report,
+            "environment_report": environment_report,
+        }
+
+        report_path = save_report(scan_data)
+        log("OK", f"Report salvato: {report_path}")
+        self.save_state()
+
+        return scan_data
+
+    def run_forever(self) -> None:
+        log("OK", "Ispettore avviato in modalita loop continuo")
+        while self.running:
+            try:
+                self.run_cycle()
+            except Exception as e:
+                log("ERROR", f"Errore nel ciclo: {e}\n{traceback.format_exc()}")
+            log("INFO", f"Prossimo ciclo tra {self.scan_interval}s")
+            time.sleep(self.scan_interval)
+
+    def stop(self) -> None:
+        self.running = False
+
+
+def chat_mode(mode: str = "local") -> None:
+    logging.info("=" * 70)
+    logging.info(" ISPETTORE MANUTENTORE NEUROLOGICO ORGANISMICO DI SPEACE")
+    logging.info(" Modalita CHAT con Roberto (owner)")
+    logging.info(f" Modello attivo: {'Cloud' if mode == 'cloud' else 'Locale'}")
+    logging.info("=" * 70)
+    logging.info("Comandi speciali: /scan /status /report /web <query> /exit")
+    logging.info("")
+    while True:
+        try:
+            user_input = input("[Roberto] ").strip()
+        except EOFError:
+            break
+        if not user_input:
+            continue
+        if user_input.lower() in ("/exit", "/quit", "/esci"):
+            logging.info("[Ispettore] Sessione terminata.")
+            break
+        if user_input.lower().startswith("/scan"):
+            logging.info("[Ispettore] Avvio scansione manuale...")
+            agent = IspettoreAgent(mode=mode, scan_interval=60)
+            result = agent.run_cycle()
+            logging.info(f"[Ispettore] Scansione completata: {result['total_issues']} issue su {result['files_scanned']} file.")
+            continue
+        if user_input.lower().startswith("/status"):
+            logging.info(f"[Ispettore] Stato: modalita={mode}, log={LOG_FILE}, ultimo report in {REPORT_DIR}")
+            continue
+        if user_input.lower().startswith("/report"):
+            files = sorted(REPORT_DIR.glob("report_scan_*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
+            if files:
+                logging.info(f"[Ispettore] Ultimo report: {files[0]}")
+            else:
+                logging.info("[Ispettore] Nessun report disponibile.")
+            continue
+        if user_input.lower().startswith("/web "):
+            query = user_input[5:].strip()
+            logging.info(f"[Ispettore] Ricerca web per: {query}")
+            res = web_research(query, max_results=5, fetch_top=2)
+            logging.info(f"[Ispettore] Trovati {len(res.get('results', []))} risultati.")
+            for r in res.get("results", [])[:5]:
+                logging.info(f"  - {r.get('title')} | {r.get('url')}")
+            continue
+
+        prompt = (
+            "Sei l'Ispettore Manutentore Neurologico Organismico di SPEACE. "
+            "L'utente owner Roberto ti sta parlando. Rispondi in italiano, con tono professionale, "
+            "focalizzandoti sullo stato di SPEACE, task attivi, obiettivi, ottimizzazioni e istruzioni operative.\n\n"
+            f"Messaggio di Roberto: {user_input}"
+        )
+        response = ask_llm(prompt, mode=mode, max_tokens=2048)
+        logging.info(f"[Ispettore] {response}")
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Ispettore Manutentore Neurologico Organismico di SPEACE")
+    parser.add_argument("--mode", choices=["cloud", "local"], default="local", help="Modello LLM da usare")
+    parser.add_argument("--chat", action="store_true", help="Modalita chat interattiva")
+    parser.add_argument("--once", action="store_true", help="Esegui un solo ciclo e termina")
+    parser.add_argument("--scan-interval", type=int, default=60, help="Secondi tra cicli")
+    parser.add_argument("--no-auto-fix", action="store_true", help="Disabilita correzioni automatiche")
+    parser.add_argument("--no-web", action="store_true", help="Disabilita ricerca web")
+    parser.add_argument("--use-llm", action="store_true", help="Abilita analisi LLM a ogni ciclo")
+    parser.add_argument("--use-subagents", action="store_true", help="Abilita sub-agents in parallelo per ogni file")
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    log("OK", f"Avvio Ispettore | mode={args.mode} chat={args.chat} once={args.once}")
+
+    if args.chat:
+        chat_mode(mode=args.mode)
+        return 0
+
+    agent = IspettoreAgent(
+        mode=args.mode,
+        scan_interval=args.scan_interval,
+        auto_fix=not args.no_auto_fix,
+        enable_web=not args.no_web,
+        use_llm=args.use_llm,
+        use_subagents=args.use_subagents,
+    )
+
+    if args.once:
+        agent.run_cycle()
+        return 0
+
+    try:
+        agent.run_forever()
+    except KeyboardInterrupt:
+        log("INFO", "Interruzione manuale richiesta (Ctrl+C)")
+        agent.stop()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+
+

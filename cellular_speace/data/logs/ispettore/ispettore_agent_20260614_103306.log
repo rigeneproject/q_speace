@@ -1,0 +1,9 @@
+2026-06-14 10:33:06.039 [OK] Avvio Ispettore | mode=cloud chat=False once=False
+2026-06-14 10:33:06.040 [OK] Ispettore avviato in modalita loop continuo
+2026-06-14 10:33:06.041 [INFO] ===== INIZIO CICLO #1 | Modalita cloud =====
+2026-06-14 10:33:08.828 [INFO] File da scansionare: 30872
+2026-06-14 10:33:09.702 [WARN] [scripts\start_web_gateway.py] 6 issue
+2026-06-14 10:33:09.704 [FIX] Sostituiti 6 print() con logging.info()
+2026-06-14 10:33:09.705 [FIX] Backup creato: C:\cellular_speace\scripts\start_web_gateway.py.backup_20260614_103309
+2026-06-14 10:33:09.744 [WARN] OPENCODE_API_KEY non impostata. Cloud LLM disabilitato.
+2026-06-14 10:33:09.748 [WARN] Cloud LLM fallito, fallback su locale

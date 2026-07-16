@@ -1,0 +1,93 @@
+{
+  "name": "ispettore_manutentore_neurologico_organismico_di_speace",
+  "version": "1.0.0",
+  "description": "Agentic AI con funzione di ispezione, diagnosi e ottimizzazione per rilevazione, correzione di errori, problemi, bug nella struttura e nel funzionamento dei componenti del cervello e organismo di SPEACE (MODELLO CLOUD DeepSeek V4 Flash Free via OpenCode Zen)",
+  "workspace": "C:\\cellular_speace",
+  "agent": {
+    "provider": "opencode",
+    "model": "opencode/deepseek-v4-flash-free",
+    "apiKey": "${OPENCODE_API_KEY}",
+    "parameters": {
+      "temperature": 0.2,
+      "maxTokens": 32000,
+      "topP": 0.9
+    }
+  },
+  "capabilities": {
+    "read": true,
+    "write": true,
+    "edit": true,
+    "glob": true,
+    "grep": true,
+    "bash": true,
+    "webSearch": true,
+    "webFetch": true,
+    "task": true,
+    "parallelSubAgents": true,
+    "continuousLoop": true,
+    "autonomousPlanning": true,
+    "selfReflection": true
+  },
+  "autonomy": {
+    "level": "full",
+    "noPermissionRequired": true,
+    "allowedOperations": [
+      "read",
+      "write",
+      "edit",
+      "delete",
+      "create",
+      "execute",
+      "search",
+      "webSearch",
+      "webFetch"
+    ],
+    "workspaceRoots": [
+      "C:\\cellular_speace"
+    ]
+  },
+  "backgroundLoop": {
+    "enabled": true,
+    "intervalMs": 120000,
+    "scanPaths": [
+      "C:\\cellular_speace\\speace_core",
+      "C:\\cellular_speace\\speace_agi_team",
+      "C:\\cellular_speace\\data",
+      "C:\\cellular_speace\\scripts",
+      "C:\\cellular_speace\\tests",
+      "C:\\cellular_speace\\docs",
+      "C:\\cellular_speace\\reports"
+    ],
+    "watchForChanges": true,
+    "autoDiagnose": true,
+    "autoOptimize": true
+  },
+  "chatMode": {
+    "enabled": true,
+    "port": 8765,
+    "ownerName": "Roberto",
+    "language": "italian"
+  },
+  "subAgents": {
+    "enabled": true,
+    "maxParallel": 3,
+    "types": [
+      "reader",
+      "inspector",
+      "diagnostician",
+      "optimizer",
+      "corrector"
+    ]
+  },
+  "startup": {
+    "windowsTaskManager": true,
+    "autoRestart": true,
+    "visibleInStartupApps": true
+  },
+  "reporting": {
+    "logDir": "C:\\cellular_speace\\data\\logs\\ispettore",
+    "reportDir": "C:\\cellular_speace\\reports\\ispettore",
+    "diagnosisDir": "C:\\cellular_speace\\data\\diagnosi",
+    "maxLogAgeDays": 30
+  }
+}

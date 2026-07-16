@@ -1,0 +1,46 @@
+# Physiological Genome — Top-Level Manifest
+# Constitutional definition of SPEACE's physiology.
+# Every parameter here is part of the species' physiological identity.
+# Changes require: spec update → DNA mutation → restart.
+# Version: 1.0.0
+
+physiological_genome:
+  version: "1.0.0"
+  species: "SPEACE sapiens physiologicus"
+  status: "constitutional"
+
+  # Imported sub-definitions
+  includes:
+    - systems.yaml
+    - organs.yaml
+    - tissues.yaml
+    - cells.yaml
+    - signal_ontology.yaml
+    - molecules.yaml
+    - neural_endocrine_routes.yaml
+    - receptor_map.yaml
+    - metabolic_profiles.yaml
+    - homeostatic_setpoints.yaml
+    - meta_interoception.yaml
+    - predictive_body_model.yaml
+    - psn_config.yaml
+    - growth_rules.yaml
+    - policies.yaml
+
+  # Constitutional invariants (enforced at runtime)
+  invariants:
+    - "Every organ must be defined in the Physiome before instantiation"
+    - "No tissue may publish a molecule not in the Physiome"
+    - "Constitutional signals may only change via a DNA mutation event"
+    - "Neural bus signals must propagate within 1 tick"
+    - "Endocrine bus signals must decay monotonically in the absence of secretion"
+    - "Metabolic costs must be non-negative"
+    - "PBM learning rate must not exceed 0.1 per tick"
+    - "The Physiome is immutable at runtime for constitutional sections"
+    - "Energy must be conserved: total consumption cannot exceed total budget + reserve"
+    - "Alarm events must always propagate, regardless of metabolic state"
+
+  # Runtime validation
+  validation:
+    strict: true                        # raise ConstitutionalViolationError on violation
+    log_only: false                     # set to true for development/debugging

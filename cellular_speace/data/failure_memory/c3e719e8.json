@@ -1,0 +1,17 @@
+[
+  {
+    "task_id": "c3e719e8",
+    "failure_pattern": "partial_match",
+    "failure_cause": "prediczione parziale (<50% pixel match)",
+    "failed_hypothesis": "Program (0 matches, conf=0.50): fractal_self_replicate",
+    "corrective_strategy": "migliorare primitive per task o aggiungere pattern-specifiche",
+    "match_score": 0.4444444444444444,
+    "candidates_explored": 1,
+    "train_examples": 3,
+    "test_examples": 1,
+    "input_shape": "3x3",
+    "output_shape": "9x9",
+    "timestamp": "2026-06-11T22:11:57Z",
+    "metadata": {}
+  }
+]

@@ -1,0 +1,133 @@
+{
+  "cycle_id": "ido-28b91a05",
+  "started_at": "2026-06-14T12:33:02.177795",
+  "finished_at": "2026-06-14T12:42:37.573182",
+  "duration_sec": 575.395,
+  "system_health_before": 1.0,
+  "system_health_after": 0.0375,
+  "improvement": -0.9625,
+  "inspection": {
+    "total_findings": 136679,
+    "components_checked": 24,
+    "component_status": {
+      "autonomic": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "immune": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "regions": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "sleep": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "metabolism": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "organism": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "memory": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "organism_observer": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "evolution": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "ilf": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "evolution_daemon": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "speace_core_root": {
+        "status": "error",
+        "score": 0.0
+      },
+      "scripts": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "monitoring": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "docs": {
+        "status": "healthy",
+        "score": 0.9
+      },
+      "dna": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "istruttore": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "cells": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "regulation": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "tests": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "self_improvement": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "dynamics": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "runtime": {
+        "status": "degraded",
+        "score": 0.0
+      },
+      "cognition": {
+        "status": "degraded",
+        "score": 0.0
+      }
+    }
+  },
+  "diagnosis": {
+    "total_diagnoses": 27,
+    "system_health_score": 0.0375,
+    "priority_actions": [
+      "Correggere immediatamente: Inspection crashed: 'str' object has no attribute 'stem'",
+      "Revisionare eval/exec/subprocess per sicurezza",
+      "Valutare se i pattern sono necessari o sostituibili",
+      "Correggere dipendenze circolari e import mancanti",
+      "Verificare assenza di errori di sintassi",
+      "Pianificare pulizia tecnica (tech debt)",
+      "Prioritizzare warning in autonomic",
+      "Prioritizzare warning in immune",
+      "Prioritizzare warning in regions",
+      "Prioritizzare warning in sleep"
+    ]
+  },
+  "optimization": {
+    "total_actions": 27,
+    "applied": 1,
+    "failed": 0,
+    "skipped": 0
+  }
+}

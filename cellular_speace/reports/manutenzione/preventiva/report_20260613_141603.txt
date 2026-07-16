@@ -1,0 +1,28 @@
+﻿Report non serializzabile. Riassunto:
+
+
+Timestamp    : 2026-06-13 14:15:25.676
+Frequenza    : ogni_1h
+AllOk        : False
+Checks       : {CPU sopra 85%: 100%, Errore verifica processi: Il processo non può accedere al file 
+               'C:\cellular_speace\data\logs\manutenzione\preventiva\preventiva_20260613.log' perché è in uso da un 
+               altro processo., Snapshot non disponibile o vecchio: , 2504 errori nei log (ultimi 120min)}
+SystemHealth : {UptimeDays, UptimeOk, CpuOk, RamTotalGB...}
+SpeaceStatus : {SpeaceCliPresent, SnapshotTick, RunningPids, SnapshotAge...}
+RecentErrors : 2504
+ErrorList    : {@{File=ispettore_20260613_122855.log; Line=2026-06-13 12:28:59.243 [ERROR] Errore in ciclo completo: 
+               In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\di
+               agnostica.ps1:389 car:62; Timestamp=13/06/2026 12:28:59}, @{File=ispettore_20260613_122932.log; 
+               Line=2026-06-13 14:11:18.327 [ERROR] Errore in ciclo completo: Il processo non può accedere al file 
+               'C:\cellular_speace\data\logs\manutenzione\preventiva\preventiva_20260613.log' perché è in uso da un 
+               altro processo.; Timestamp=13/06/2026 14:15:27}, @{File=ispettore_20260613_122932.log; Line=2026-06-13 
+               14:13:27.106 [ERROR] Errore in ciclo completo: Il processo non può accedere al file 
+               'C:\cellular_speace\data\logs\manutenzione\preventiva\preventiva_20260613.log' perché è in uso da un 
+               altro processo.; Timestamp=13/06/2026 14:15:27}, @{File=ispettore_20260613_122932.log; Line=2026-06-13 
+               14:15:39.846 [ERROR] Errore in ciclo completo: Il processo non può accedere al file 
+               'C:\cellular_speace\data\logs\manutenzione\preventiva\preventiva_20260613.log' perché è in uso da un 
+               altro processo.; Timestamp=13/06/2026 14:15:27}...}
+
+
+
+

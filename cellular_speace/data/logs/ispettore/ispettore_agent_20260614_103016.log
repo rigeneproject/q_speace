@@ -1,0 +1,10 @@
+2026-06-14 10:30:16.818 [OK] Avvio Ispettore | mode=cloud chat=False once=False
+2026-06-14 10:30:16.819 [OK] Ispettore avviato in modalita loop continuo
+2026-06-14 10:30:16.819 [INFO] ===== INIZIO CICLO #1 | Modalita cloud =====
+2026-06-14 10:30:19.768 [INFO] File da scansionare: 30868
+2026-06-14 10:30:20.939 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 10:30:20.940 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:32:20.953 [WARN] Local LLM error: timed out
+2026-06-14 10:32:20.955 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:32:20.962 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_103220.md
+2026-06-14 10:32:20.966 [INFO] Prossimo ciclo tra 120s

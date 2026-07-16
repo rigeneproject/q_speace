@@ -1,0 +1,60 @@
+# T171 — DNA ↔ Periodic Table Binding (additive YAML)
+#
+# This file is *additional* to species_orientation.yaml.
+# It maps each informational_principle onto a periodic-trend expression
+# without redefining the principles themselves.
+#
+# Read by: tests/dna/test_dna_periodic_table_binding.py
+# Related: docs/T171_DNA_PERIODIC_TABLE_BINDING_SPEC.md
+#
+# DO NOT EDIT species_orientation.yaml from this file. The principle set
+# is constitutional and gated by human review (AGENTS.md §7.1).
+
+dna_periodic_binding:
+  - invariant: coherence_preservation
+    symbol: U(1)_coh
+    trend_name: coherence_trend
+    expression: "0.5 + 0.5 * (1 - abs(g - 9.5) / 9)"
+    element_pair: ["EXECUTIVE_LIMBIC", "NOBLE_BACKGROUND"]
+    ilf_metric: coherence_phi
+    test_direction: maximize
+
+  - invariant: destructive_entropy_reduction
+    symbol: S_ent
+    trend_name: gain_decay_trend
+    expression: "pow(2.71828, -0.05 * n)"
+    element_pair: ["REGULATORY_INHIBITORY", "S_BLOCK"]
+    ilf_metric: systemic_entropy
+    test_direction: minimize
+
+  - invariant: generative_variability_preservation
+    symbol: V_gen
+    trend_name: plasticity_trend
+    expression: "0.4 + 0.6 * (p / 7.0)"
+    element_pair: ["EXECUTIVE_PFC", "ASSOCIATION_SEMANTIC"]
+    ilf_metric: generative_variability
+    test_direction: maintain
+
+  - invariant: interconnection_efficiency
+    symbol: Diff(F)
+    trend_name: affinity_trend
+    expression: "1.0 - abs(z1 - z2) / 30.0"
+    element_pair: ["ALL", "ALL"]
+    ilf_metric: network_interconnection_index
+    test_direction: maximize
+
+  - invariant: nonlocal_decoherence_tolerance
+    symbol: D_nonlocal
+    trend_name: rate_limit_trend
+    expression: "1.0 / (1.0 + rate * 0.01)"
+    element_pair: ["REGULATORY_BRAINSTEM", "REGULATORY_INHIBITORY"]
+    ilf_metric: decoherence_stability_margin
+    test_direction: maintain
+
+  - invariant: identity_preservation_through_change
+    symbol: R_renorm
+    trend_name: identity_anchor_trend
+    expression: "1.0 if 0.0 < abs(mid - e) < 0.4 else 0.0"
+    element_pair: ["EXECUTIVE_DMN", "NOBLE_BACKGROUND"]
+    ilf_metric: identity_kernel_distance
+    test_direction: minimize

@@ -1,0 +1,119 @@
+2026-06-14 09:38:45.641 [OK] Avvio Ispettore | mode=cloud chat=False once=False
+2026-06-14 09:38:45.644 [OK] Ispettore avviato in modalita loop continuo
+2026-06-14 09:38:45.650 [INFO] ===== INIZIO CICLO #1 | Modalita cloud =====
+2026-06-14 09:38:50.424 [INFO] File da scansionare: 30792
+2026-06-14 09:38:51.796 [WARN] [scripts\measure_agi_readiness.py] 8 issue
+2026-06-14 09:38:51.835 [FIX] Sostituiti 7 print() con logging.info()
+2026-06-14 09:38:51.845 [FIX] Backup creato: C:\cellular_speace\scripts\measure_agi_readiness.py.backup_20260614_093851
+2026-06-14 09:38:51.864 [WARN] [tests\agi_readiness\test_agi_readiness_score.py] 1 issue
+2026-06-14 09:38:51.896 [WARN] [tests\agi_readiness\__init__.py] 1 issue
+2026-06-14 09:38:52.214 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 09:38:52.233 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 09:40:52.308 [WARN] Local LLM error: timed out
+2026-06-14 09:40:52.343 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 09:40:52.384 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_094052.md
+2026-06-14 09:40:52.499 [INFO] Prossimo ciclo tra 120s
+2026-06-14 09:42:52.516 [INFO] ===== INIZIO CICLO #2 | Modalita cloud =====
+2026-06-14 09:42:57.211 [INFO] File da scansionare: 30801
+2026-06-14 09:42:58.505 [WARN] [scripts\measure_agi_readiness.py] 1 issue
+2026-06-14 09:42:58.528 [WARN] [tests\agi_readiness\test_agi_readiness_score.py] 1 issue
+2026-06-14 09:42:58.543 [WARN] [tests\agi_readiness\__init__.py] 1 issue
+2026-06-14 09:42:58.725 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 09:42:58.726 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 09:44:58.735 [WARN] Local LLM error: timed out
+2026-06-14 09:44:58.745 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 09:44:58.752 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_094458.md
+2026-06-14 09:44:58.767 [INFO] Prossimo ciclo tra 120s
+2026-06-14 09:46:58.779 [INFO] ===== INIZIO CICLO #3 | Modalita cloud =====
+2026-06-14 09:47:02.909 [INFO] File da scansionare: 30811
+2026-06-14 09:47:04.112 [WARN] [scripts\run_autonomous_loop.py] 3 issue
+2026-06-14 09:47:04.115 [FIX] Sostituiti 3 print() con logging.info()
+2026-06-14 09:47:04.116 [FIX] Backup creato: C:\cellular_speace\scripts\run_autonomous_loop.py.backup_20260614_094704
+2026-06-14 09:47:04.339 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 09:47:04.340 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 09:49:04.353 [WARN] Local LLM error: timed out
+2026-06-14 09:49:04.354 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 09:49:04.359 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_094904.md
+2026-06-14 09:49:04.366 [INFO] Prossimo ciclo tra 120s
+2026-06-14 09:51:04.368 [INFO] ===== INIZIO CICLO #4 | Modalita cloud =====
+2026-06-14 09:51:08.255 [INFO] File da scansionare: 30816
+2026-06-14 09:51:09.518 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 09:51:09.519 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 09:53:09.526 [WARN] Local LLM error: timed out
+2026-06-14 09:53:09.530 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 09:53:09.538 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_095309.md
+2026-06-14 09:53:09.550 [INFO] Prossimo ciclo tra 120s
+2026-06-14 09:55:09.553 [INFO] ===== INIZIO CICLO #5 | Modalita cloud =====
+2026-06-14 09:55:13.824 [INFO] File da scansionare: 30820
+2026-06-14 09:55:15.601 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 09:55:15.602 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 09:57:15.606 [WARN] Local LLM error: timed out
+2026-06-14 09:57:15.609 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 09:57:15.633 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-14 09:57:15.644 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_095715.md
+2026-06-14 09:57:15.653 [INFO] Prossimo ciclo tra 120s
+2026-06-14 09:59:15.656 [INFO] ===== INIZIO CICLO #6 | Modalita cloud =====
+2026-06-14 09:59:20.164 [INFO] File da scansionare: 30825
+2026-06-14 09:59:21.547 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 09:59:21.548 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:01:21.564 [WARN] Local LLM error: timed out
+2026-06-14 10:01:21.570 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:01:21.573 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_100121.md
+2026-06-14 10:01:21.577 [INFO] Prossimo ciclo tra 120s
+2026-06-14 10:03:21.582 [INFO] ===== INIZIO CICLO #7 | Modalita cloud =====
+2026-06-14 10:03:25.578 [INFO] File da scansionare: 30830
+2026-06-14 10:03:27.028 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 10:03:27.030 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:05:27.042 [WARN] Local LLM error: timed out
+2026-06-14 10:05:27.056 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:05:27.066 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_100527.md
+2026-06-14 10:05:27.092 [INFO] Prossimo ciclo tra 120s
+2026-06-14 10:07:27.103 [INFO] ===== INIZIO CICLO #8 | Modalita cloud =====
+2026-06-14 10:07:31.658 [INFO] File da scansionare: 30832
+2026-06-14 10:07:32.971 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 10:07:32.972 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:09:32.989 [WARN] Local LLM error: timed out
+2026-06-14 10:09:32.993 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:09:33.000 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_100932.md
+2026-06-14 10:09:33.007 [INFO] Prossimo ciclo tra 120s
+2026-06-14 10:11:33.009 [INFO] ===== INIZIO CICLO #9 | Modalita cloud =====
+2026-06-14 10:11:37.201 [INFO] File da scansionare: 30838
+2026-06-14 10:11:38.797 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 10:11:38.809 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:13:38.828 [WARN] Local LLM error: timed out
+2026-06-14 10:13:38.831 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:13:38.835 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_101338.md
+2026-06-14 10:13:38.841 [INFO] Prossimo ciclo tra 120s
+2026-06-14 10:15:38.843 [INFO] ===== INIZIO CICLO #10 | Modalita cloud =====
+2026-06-14 10:15:42.720 [INFO] File da scansionare: 30849
+2026-06-14 10:15:44.092 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 10:15:44.096 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:17:44.115 [WARN] Local LLM error: timed out
+2026-06-14 10:17:44.119 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:17:44.122 [INFO] Ricerca web eseguita: 3 risultati
+2026-06-14 10:17:44.127 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_101744.md
+2026-06-14 10:17:44.138 [INFO] Prossimo ciclo tra 120s
+2026-06-14 10:19:44.143 [INFO] ===== INIZIO CICLO #11 | Modalita cloud =====
+2026-06-14 10:19:46.826 [INFO] File da scansionare: 30856
+2026-06-14 10:19:47.786 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 10:19:47.786 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:21:47.799 [WARN] Local LLM error: timed out
+2026-06-14 10:21:47.801 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:21:47.809 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_102147.md
+2026-06-14 10:21:47.813 [INFO] Prossimo ciclo tra 120s
+2026-06-14 10:23:47.815 [INFO] ===== INIZIO CICLO #12 | Modalita cloud =====
+2026-06-14 10:23:50.494 [INFO] File da scansionare: 30860
+2026-06-14 10:23:51.449 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 10:23:51.450 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:25:51.458 [WARN] Local LLM error: timed out
+2026-06-14 10:25:51.460 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:25:51.464 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_102551.md
+2026-06-14 10:25:51.469 [INFO] Prossimo ciclo tra 120s
+2026-06-14 10:27:51.471 [INFO] ===== INIZIO CICLO #13 | Modalita cloud =====
+2026-06-14 10:27:54.158 [INFO] File da scansionare: 30864
+2026-06-14 10:27:55.224 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-14 10:27:55.225 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-14 10:29:55.239 [WARN] Local LLM error: timed out
+2026-06-14 10:29:55.242 [DIAG] Analisi LLM: [ERRORE: entrambi i LLM non hanno risposto]...
+2026-06-14 10:29:55.249 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260614_102955.md
+2026-06-14 10:29:55.254 [INFO] Prossimo ciclo tra 120s

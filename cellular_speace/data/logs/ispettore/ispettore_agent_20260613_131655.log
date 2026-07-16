@@ -1,0 +1,6 @@
+2026-06-13 13:16:55.162 [OK] Avvio Ispettore | mode=cloud chat=False once=False
+2026-06-13 13:16:55.203 [OK] Ispettore avviato in modalita loop continuo
+2026-06-13 13:16:55.204 [INFO] ===== INIZIO CICLO #1 | Modalita cloud =====
+2026-06-13 13:16:57.335 [INFO] File da scansionare: 14240
+2026-06-13 13:16:57.927 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-13 13:16:57.928 [WARN] Cloud LLM fallito, fallback su locale

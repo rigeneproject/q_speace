@@ -1,0 +1,158 @@
+# Metabolic Profiles
+# Energy costs per operation type, per tissue and globally.
+# Version: 1.0.0
+
+global:
+  base_production_rate: 0.05        # energy units per tick from basal metabolism
+  max_energy: 10.0
+  initial_energy: 5.0
+  heat_coefficient: 0.3             # fraction of energy consumed → heat
+  cooling_rate: 0.02                # heat dissipation per tick
+  crisis_threshold: 0.5             # global energy below this → crisis mode
+
+per_operation:
+  neural_synapse: 0.01
+  endocrine_secrete: 0.05
+  organ_publish: 0.02
+  organ_subscribe: 0.01            # per subscription, per tick
+  organ_sense: 0.03
+  meta_integrate: 0.10
+  pbm_predict: 0.08
+  pbm_learn: 0.15
+  bridge_check: 0.02               # per bridge, per tick
+  receptor_binding: 0.005          # per active receptor, per tick
+
+per_tissue:
+  semantic_tissue:
+    base_budget: 0.05
+    low_power_threshold: 0.7      # fraction of budget → warning
+    critical_threshold: 0.3       # fraction of budget → pause
+    publish_cost: 0.02
+    sense_cost: 0.03
+    subscribe_cost: 0.01
+  episodic_tissue:
+    base_budget: 0.03
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.03
+    subscribe_cost: 0.01
+  salience_tissue:
+    base_budget: 0.04
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.03
+    subscribe_cost: 0.01
+  error_minimisation_tissue:
+    base_budget: 0.06
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.03
+    sense_cost: 0.04
+    subscribe_cost: 0.01
+  pattern_recognition_tissue:
+    base_budget: 0.03
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.03
+    subscribe_cost: 0.01
+  alarm_signalling_tissue:
+    base_budget: 0.04
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.03
+    sense_cost: 0.03
+    subscribe_cost: 0.01
+  inflammation_tissue:
+    base_budget: 0.05
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.03
+    sense_cost: 0.04
+    subscribe_cost: 0.01
+  repair_tissue:
+    base_budget: 0.06
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.03
+    sense_cost: 0.04
+    subscribe_cost: 0.01
+  microbiome_tissue:
+    base_budget: 0.02
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.01
+    sense_cost: 0.02
+    subscribe_cost: 0.01
+  barrier_tissue:
+    base_budget: 0.03
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.02
+    subscribe_cost: 0.01
+  enteric_neural_tissue:
+    base_budget: 0.03
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.03
+    subscribe_cost: 0.01
+  crh_tissue:
+    base_budget: 0.02
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.02
+    subscribe_cost: 0.01
+  beta_tissue:
+    base_budget: 0.02
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.02
+    subscribe_cost: 0.01
+  alpha_tissue:
+    base_budget: 0.01
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.01
+    sense_cost: 0.02
+    subscribe_cost: 0.01
+  leptin_tissue:
+    base_budget: 0.02
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.02
+    subscribe_cost: 0.01
+  sympathetic_tissue:
+    base_budget: 0.03
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.03
+    subscribe_cost: 0.01
+  parasympathetic_tissue:
+    base_budget: 0.03
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.03
+    subscribe_cost: 0.01
+  energy_regulation_tissue:
+    base_budget: 0.02
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.02
+    subscribe_cost: 0.01
+  waste_clearance_tissue:
+    base_budget: 0.03
+    low_power_threshold: 0.7
+    critical_threshold: 0.3
+    publish_cost: 0.02
+    sense_cost: 0.03
+    subscribe_cost: 0.01

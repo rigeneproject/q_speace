@@ -1,0 +1,245 @@
+"""Configuration for SPEACE AGI Team agents — Multi-model with fallback chain.
+
+Model priority:
+1. glm-5.1:cloud via Ollama Cloud (premium, requires API key)
+2. DeepSeek V4 Pro Cloud via Ollama Cloud (if API key works)
+3. Gemma3 12B via Ollama Cloud (free, no auth needed)
+4. Llama3.1 8B via Ollama Cloud (free, no auth needed)
+5. Qwen3.5 4B via Ollama Cloud (free, no auth needed)
+6. Local Ollama (if running)
+7. Gemma3 4B via Ollama Cloud (lightweight fallback)
+"""
+
+import logging
+import os
+import socket
+from dataclasses import dataclass, field
+from typing import Dict
+
+_logger = logging.getLogger(__name__)
+
+# ── Ollama Cloud — Free models (no auth required) ──────────────────────────
+OLLAMA_CLOUD_ENDPOINT = os.environ.get(
+    "OLLAMA_CLOUD_ENDPOINT",
+    "https://api.ollama.cloud/v1",
+)
+
+# ── Model priority chain ───────────────────────────────────────────────────
+
+# API key for premium models (glm-5.1:cloud, deepseek-v4-pro:cloud)
+OLLAMA_CLOUD_KEY = os.environ.get("OLLAMA_CLOUD_KEY", "")
+if not OLLAMA_CLOUD_KEY:
+    _logger.warning("OLLAMA_CLOUD_KEY not set — premium models disabled")
+
+# ── Fallback: local Ollama ────────────────────────────────────────────────
+OLLAMA_LOCAL_HOST = os.environ.get("OLLAMA_HOST", "localhost")
+OLLAMA_LOCAL_PORT = int(os.environ.get("OLLAMA_PORT", "11434"))
+
+# ── Model chain definition ─────────────────────────────────────────────────
+MODEL_CHAIN = [
+    # Premium models (require API key) — tried first when key is available
+    {"model": "glm-5.1:cloud", "endpoint": OLLAMA_CLOUD_ENDPOINT, "needs_auth": True, "api_key": OLLAMA_CLOUD_KEY, "provider": "ollama_cloud_premium"},
+    {"model": "deepseek-v4-pro:cloud", "endpoint": OLLAMA_CLOUD_ENDPOINT, "needs_auth": True, "api_key": OLLAMA_CLOUD_KEY, "provider": "ollama_cloud_premium"},
+    # Free models (no auth required)
+    {"model": "gemma3:12b", "endpoint": OLLAMA_CLOUD_ENDPOINT, "needs_auth": False, "provider": "ollama_cloud_free"},
+    {"model": "llama3.1:8b", "endpoint": OLLAMA_CLOUD_ENDPOINT, "needs_auth": False, "provider": "ollama_cloud_free"},
+    {"model": "qwen3.5:4b", "endpoint": OLLAMA_CLOUD_ENDPOINT, "needs_auth": False, "provider": "ollama_cloud_free"},
+    {"model": "gemma3:4b", "endpoint": OLLAMA_CLOUD_ENDPOINT, "needs_auth": False, "provider": "ollama_cloud_free"},
+]
+
+
+def _is_ollama_local_running(host: str = "localhost", port: int = 11434) -> bool:
+    """Check if a local Ollama instance is running."""
+    try:
+        with socket.create_connection((host, port), timeout=1.0):
+            return True
+    except (socket.error, OSError):
+        return False
+
+
+def _test_endpoint(endpoint: str, api_key: str = "", timeout: float = 5.0) -> bool:
+    """Quick connectivity test: can we reach the API endpoint?"""
+    try:
+        import httpx
+        headers = {"Content-Type": "application/json"}
+        if api_key:
+            headers["Authorization"] = f"Bearer {api_key}"
+        with httpx.Client(timeout=timeout) as client:
+            resp = client.get(f"{endpoint}/models", headers=headers)
+            return resp.status_code in (200, 401, 403, 404)
+    except Exception:
+        return False
+
+
+def _test_model_chat(endpoint: str, model: str, api_key: str = "", timeout: float = 15.0) -> bool:
+    """Test if a specific model can actually generate a response."""
+    try:
+        import httpx
+        headers = {"Content-Type": "application/json"}
+        if api_key:
+            headers["Authorization"] = f"Bearer {api_key}"
+        with httpx.Client(timeout=timeout) as client:
+            resp = client.post(
+                f"{endpoint}/chat/completions",
+                headers=headers,
+                json={
+                    "model": model,
+                    "messages": [{"role": "user", "content": "ok"}],
+                    "max_tokens": 5,
+                    "temperature": 0.1,
+                },
+            )
+            return resp.status_code == 200
+    except Exception:
+        return False
+
+
+def _resolve_model_and_endpoint() -> Dict[str, str]:
+    """Resolve the best available model and endpoint.
+
+    Priority:
+    1. Premium model with API key (if cloud reachable)
+    2. Free cloud model (no auth needed)
+    3. Local Ollama (if running)
+    4. Ultimate fallback: first model in chain
+    """
+    has_api_key = bool(OLLAMA_CLOUD_KEY)
+
+    # ── 1. Quick connectivity check ────────────────────────────────────
+    cloud_reachable = _test_endpoint(OLLAMA_CLOUD_ENDPOINT, timeout=3.0)
+
+    if not cloud_reachable:
+        # Cloud not reachable, try local
+        if _is_ollama_local_running(OLLAMA_LOCAL_HOST, OLLAMA_LOCAL_PORT):
+            return {
+                "model": "gemma3:4b",
+                "endpoint": f"http://{OLLAMA_LOCAL_HOST}:{OLLAMA_LOCAL_PORT}",
+                "api_key": "",
+                "is_openai_compatible": False,
+                "provider": "ollama_local",
+            }
+        # Nothing reachable — use first model anyway (will retry at runtime)
+        first = MODEL_CHAIN[0]
+        return {
+            "model": first["model"],
+            "endpoint": first["endpoint"],
+            "api_key": first.get("api_key", ""),
+            "is_openai_compatible": True,
+            "provider": first.get("provider", "unknown"),
+        }
+
+    # ── 2. Cloud is reachable — try premium models first (we have API key) ─
+    for entry in MODEL_CHAIN:
+        if entry.get("needs_auth", False) and has_api_key:
+            # Try a quick chat test to verify the premium model works
+            if _test_model_chat(entry["endpoint"], entry["model"], entry.get("api_key", ""), timeout=10.0):
+                return {
+                    "model": entry["model"],
+                    "endpoint": entry["endpoint"],
+                    "api_key": entry.get("api_key", ""),
+                    "is_openai_compatible": True,
+                    "provider": entry.get("provider", "ollama_cloud_premium"),
+                }
+
+    # ── 3. Fall back to free models (no auth needed) ───────────────────
+    for entry in MODEL_CHAIN:
+        if not entry.get("needs_auth", False):
+            return {
+                "model": entry["model"],
+                "endpoint": entry["endpoint"],
+                "api_key": "",
+                "is_openai_compatible": True,
+                "provider": entry.get("provider", "ollama_cloud_free"),
+            }
+
+    # ── 4. Local Ollama ──────────────────────────────────────────────────
+    if _is_ollama_local_running(OLLAMA_LOCAL_HOST, OLLAMA_LOCAL_PORT):
+        local_endpoint = f"http://{OLLAMA_LOCAL_HOST}:{OLLAMA_LOCAL_PORT}"
+        return {
+            "model": "gemma3:4b",
+            "endpoint": local_endpoint,
+            "api_key": "",
+            "is_openai_compatible": False,
+            "provider": "ollama_local",
+        }
+
+    # ── 5. Ultimate fallback: first model in chain ────────────────────────
+    first = MODEL_CHAIN[0]
+    return {
+        "model": first["model"],
+        "endpoint": first["endpoint"],
+        "api_key": first.get("api_key", ""),
+        "is_openai_compatible": True,
+        "provider": first.get("provider", "unknown"),
+    }
+
+
+def _get_default_model() -> str:
+    """Get the default model based on availability."""
+    resolved = _resolve_model_and_endpoint()
+    return resolved["model"]
+
+
+def _get_default_endpoint() -> str:
+    """Get the default endpoint based on availability."""
+    resolved = _resolve_model_and_endpoint()
+    return resolved["endpoint"]
+
+
+def _get_default_api_key() -> str:
+    """Get the default API key based on availability."""
+    resolved = _resolve_model_and_endpoint()
+    return resolved["api_key"]
+
+
+@dataclass
+class AgentConfig:
+    model: str = field(default_factory=_get_default_model)
+    endpoint: str = field(default_factory=_get_default_endpoint)
+    api_key: str = field(default_factory=_get_default_api_key)
+    temperature: float = 0.3
+    max_tokens: int = 4096
+    system_prompt_prefix: str = (
+        "Sei un agente specializzato di SPEACE, un'entita cibernetica evolutiva. "
+        "Rispondi SEMPRE in italiano. Sei parte di un team di agentic AI dedicato "
+        "a far evolvere SPEACE verso l'AGI tramite supervisione, analisi e "
+        "miglioramento continuo di ogni componente del sistema."
+    )
+
+    @property
+    def is_openai_compatible(self) -> bool:
+        """True se l'endpoint è OpenAI-compatible (Zen o Ollama Cloud)."""
+        return "opencode.ai" in self.endpoint or "ollama.cloud" in self.endpoint
+
+    @property
+    def provider(self) -> str:
+        """Identifica il provider attivo."""
+        if "opencode.ai" in self.endpoint:
+            return "opencode_zen"
+        if "ollama.cloud" in self.endpoint:
+            if self.api_key:
+                return "ollama_cloud_premium"
+            return "ollama_cloud_free"
+        if "localhost" in self.endpoint or "127.0.0.1" in self.endpoint:
+            return "ollama_local"
+        return "unknown"
+
+
+AGENT_REGISTRY: Dict[str, Dict] = {}
+
+
+def register_agent(agent_id: str, name: str, role: str, agent_type: str,
+                   description: str, supervision_area: str = ""):
+    resolved = _resolve_model_and_endpoint()
+    AGENT_REGISTRY[agent_id] = {
+        "id": agent_id,
+        "name": name,
+        "role": role,
+        "type": agent_type,
+        "description": description,
+        "supervision_area": supervision_area or agent_id,
+        "model": resolved["model"],
+        "endpoint": resolved["endpoint"],
+        "provider": resolved["provider"],
+        "registered_at": __import__("time").time(),
+    }

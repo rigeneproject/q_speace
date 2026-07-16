@@ -1,0 +1,25 @@
+Agentic AI ispettore_manutentore_neurologico_organismico_di_speace nella directory "C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace"
+
+L'Agentic AI "ispettore_manutentore_neurologico_organismico_di_speace" è un sistema agentico con funzione di ispezione, diagnosi e ottimizzazione per rilevazione, correzione di errori, problemi, bug nella struttura e nel funzionamento dei componenti del cervello e organismo di SPEACE,
+e di tutti gli strumenti funzionali al miglioramento di SPEACE come il team agentico AGI "speace_agi_team", ecc., e ottimizzazione dell'intero sistema.
+L'Agentic AI ha sia skill di lettura, analisi di tutti i file della directory "cellular_speace", sia skill di modifica dei file e creazione di nuovi file.
+L'Agentic AI deve funzionare in background con loop continuo, nel caso di sepgnimento del computer deve essere riavviato in automatico come processo di avvio di windows inserito nel task manager (gestione attività) in app di avvio.
+L'Agentic AI deve essere settato con un modello LLM cloud avviabile via file .bat e un modello LLM locale avviabile tramite un differente file .bat.
+Il modello cloud attuale è: "DeepSeek V4 Flash Free" via OpenCode Zen, con API Key sk-e5Tpd7ZsOjogmlOsf4jVzyFRcpQUnQKcT8g3fr4AmWAwjA7LKxvJSfCWOVb7tZYR
+Il modello locale attuale è: "gemma4:12b" via Ollama locale
+
+L'Agentic AI si avvia tramite file .bat (sia un file di avvio con LLM locale sia un file di avvio con LLM in cloud) nel terminale in modalità lettura, modifica e ricerca web, con capacità di creare sub-agents in parallelo in grado a loro volta di di leggere, ispezionare file e modificare e creare file.
+
+L'Agentic AI dispone di capacità di dialogo in modalità chat via terminale avviabile da file .bat per discutere con l'utente owner Roberto dello stato di SPEACE con scelta del modello LLM cloud o locale, task attivi dell'Agentic AI, obiettivi, ottimizzazioni in atto e ricevere istruzioni operative.
+
+L'Agentic AI esegue:
+
+Manutenzione preventiva: Controlli periodici programmati via cron per verificare lo stato di SPEACE ed evitare blocchi improvvisi.
+Manutenzione correttiva: Interventi tempestivi per diagnosticare e riparare guasti, correggere errori, problemi, bug già avvenuti.
+
+Questo Agentic AI ha la seguente architettura agentica e capacità: 
+Interpretazione dell'intento: capire un obiettivo macro fornito dall'utente senza bisogno di istruzioni passo-passo.
+Pianificazione autonoma: scomporre l'obiettivo principale in sotto-attività necessarie. 
+Uso di strumenti: accesso a software e tool per compiere azioni concrete, utilizzo autonomo di calcolatori, API, ricerche web o software esterni per estrarre dati e compiere azioni concrete, modifiche dei file e crezione nuovi file.
+Riflessione e correzione: Valuta i propri errori durante il processo e corregge la strategia in tempo reale senza intervento umano, valuta i risultati parziali, corregge eventuali errori e adatta il piano in corso d'opera finché l'obiettivo non è raggiunto.
+Lettura, ispezione, diagnosi, correzione e ottimizzazione di file, cartelle di ogni tipo nella directory di lavoro "C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace" con autonomia totale senza permessi dell'utente owner.

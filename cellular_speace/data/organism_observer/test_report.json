@@ -1,0 +1,41 @@
+{
+  "node_count": 0,
+  "edge_count": 0,
+  "density": 0.0,
+  "degree_centrality": {},
+  "clustering_coefficient": {},
+  "avg_clustering": 0.0,
+  "global_efficiency": 0.0,
+  "small_world": {
+    "sigma": 1.0,
+    "C": 0.0,
+    "L": 0.0,
+    "C_rand": 0.0,
+    "L_rand": 0.0
+  },
+  "modularity": {
+    "Q": 0.0,
+    "n_communities": 0,
+    "community_map": {}
+  },
+  "hubs": {
+    "broadcasters": [],
+    "collectors": [],
+    "bridges": []
+  },
+  "betweenness_centrality": {},
+  "collector": {
+    "session_id": "5ee1e5436e03",
+    "buffer_events": 0,
+    "unique_sources": 0,
+    "unique_targets": 0,
+    "message_types": {},
+    "persist_path": "data\\organism_observer\\test_report.jsonl"
+  },
+  "graph": {
+    "nodes": 0,
+    "edges": 0,
+    "density": 0.0,
+    "built_at": 1780903048.7971883
+  }
+}

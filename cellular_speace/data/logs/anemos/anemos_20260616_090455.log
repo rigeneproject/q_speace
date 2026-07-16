@@ -1,0 +1,24 @@
+2026-06-16 09:04:55,333 [INFO] 2026-06-16 09:04:55.333 [OK] SPEACE Anemos avvio | mode=cloud chat=False web=True once=False
+2026-06-16 09:04:55.333 [OK] SPEACE Anemos avvio | mode=cloud chat=False web=True once=False
+2026-06-16 09:04:55,476 [INFO] 2026-06-16 09:04:55.476 [OK] Web server su http://127.0.0.1:9090
+2026-06-16 09:04:55.476 [OK] Web server su http://127.0.0.1:9090
+2026-06-16 09:04:55,477 [INFO] 2026-06-16 09:04:55.477 [OK] Anemos in loop continuo
+2026-06-16 09:04:55.477 [OK] Anemos in loop continuo
+2026-06-16 09:04:55,478 [INFO] 2026-06-16 09:04:55.478 [INFO] ===== CICLO #1 | CLOUD =====
+2026-06-16 09:04:55.478 [INFO] ===== CICLO #1 | CLOUD =====
+2026-06-16 09:04:55,878 [INFO] 2026-06-16 09:04:55.878 [OK] Web server su http://127.0.0.1:9090
+2026-06-16 09:04:55.878 [OK] Web server su http://127.0.0.1:9090
+2026-06-16 09:04:55,929 [INFO] 2026-06-16 09:04:55.929 [OK] Web server Anemos avviato
+2026-06-16 09:04:55.929 [OK] Web server Anemos avviato
+2026-06-16 09:04:55,932 [INFO] 2026-06-16 09:04:55.932 [OK] Web server Anemos fermato
+2026-06-16 09:04:55.932 [OK] Web server Anemos fermato
+2026-06-16 09:04:57,944 [INFO] 2026-06-16 09:04:57.943 [INFO] File trovati: 31328
+2026-06-16 09:04:57.943 [INFO] File trovati: 31328
+2026-06-16 09:05:00,767 [INFO] 2026-06-16 09:05:00.767 [WARN] [speace_anemos\anemos_agent.py] 12 issue
+2026-06-16 09:05:00.767 [WARN] [speace_anemos\anemos_agent.py] 12 issue
+2026-06-16 09:05:00,772 [INFO] 2026-06-16 09:05:00.772 [FIX] except: -> except Exception in anemos_agent.py
+2026-06-16 09:05:00.772 [FIX] except: -> except Exception in anemos_agent.py
+2026-06-16 09:05:00,773 [INFO] 2026-06-16 09:05:00.773 [FIX] Backup: anemos_agent.py.backup_20260616_090500
+2026-06-16 09:05:00.773 [FIX] Backup: anemos_agent.py.backup_20260616_090500
+2026-06-16 09:05:00,774 [INFO] 2026-06-16 09:05:00.774 [INFO] Sub-agents su speace_anemos\anemos_agent.py
+2026-06-16 09:05:00.774 [INFO] Sub-agents su speace_anemos\anemos_agent.py

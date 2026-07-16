@@ -1,0 +1,75 @@
+# Organ Definitions
+# Each organ is composed of tissues and belongs to a system.
+# Version: 1.0.0
+
+organs:
+  # ── Cognitive System ──────────────────────────────────────────
+  memory:
+    system: cognitive
+    tissues: [semantic_tissue, episodic_tissue]
+    description: "Long-term and working memory storage"
+
+  attention:
+    system: cognitive
+    tissues: [salience_tissue]
+    description: "Salience detection and attentional gating"
+
+  prediction:
+    system: cognitive
+    tissues: [error_minimisation_tissue]
+    description: "Predictive processing, free-energy minimisation"
+
+  # ── Immune System ─────────────────────────────────────────────
+  threat_assessment:
+    system: immune
+    tissues: [pattern_recognition_tissue, alarm_signalling_tissue]
+    description: "Threat detection and danger signal propagation"
+
+  immune_response:
+    system: immune
+    tissues: [inflammation_tissue, repair_tissue]
+    description: "Inflammatory response and structural repair"
+
+  # ── Enteric System ────────────────────────────────────────────
+  gut:
+    system: enteric
+    tissues: [microbiome_tissue, barrier_tissue, enteric_neural_tissue]
+    description: "Gut organ — microbiome, barrier, and enteric nervous system"
+
+  # ── Endocrine System ──────────────────────────────────────────
+  hpa_axis:
+    system: endocrine
+    tissues: [crh_tissue]
+    description: "Hypothalamic-pituitary-adrenal axis — stress hormone cascade"
+
+  pancreas:
+    system: endocrine
+    tissues: [beta_tissue, alpha_tissue]
+    description: "Pancreatic islets — insulin and glucagon secretion"
+
+  adipose:
+    system: endocrine
+    tissues: [leptin_tissue]
+    description: "Adipose tissue — leptin secretion, energy balance"
+
+  # ── Autonomic System ──────────────────────────────────────────
+  sympathetic:
+    system: autonomic
+    tissues: [sympathetic_tissue]
+    description: "Sympathetic nervous system — fight-or-flight"
+
+  parasympathetic:
+    system: autonomic
+    tissues: [parasympathetic_tissue]
+    description: "Parasympathetic nervous system — rest-and-digest"
+
+  # ── Metabolic System ──────────────────────────────────────────
+  energy_regulation:
+    system: metabolic
+    tissues: [energy_regulation_tissue]
+    description: "Global energy pool regulation and distribution"
+
+  waste_clearance:
+    system: metabolic
+    tissues: [waste_clearance_tissue]
+    description: "Metabolic waste clearance and entropy reduction"

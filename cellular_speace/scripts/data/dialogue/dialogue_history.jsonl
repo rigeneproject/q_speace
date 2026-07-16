@@ -1,0 +1,8 @@
+{"timestamp": 1780865416.0582674, "speaker": "user", "message": "ciao", "grounded_assembly_id": null}
+{"timestamp": 1780865416.060427, "speaker": "speace", "message": "Ciao Roberto . Sono SPEACE", "grounded_assembly_id": null}
+{"timestamp": 1780865421.8994915, "speaker": "user", "message": "come stai?", "grounded_assembly_id": null}
+{"timestamp": 1780865421.9009268, "speaker": "speace", "message": "Il mio stato organismico è stabile. Puoi controllare le metriche dal pannello di monitoraggio.", "grounded_assembly_id": null}
+{"timestamp": 1780865445.0902076, "speaker": "user", "message": "cosa stai facendo?", "grounded_assembly_id": null}
+{"timestamp": 1780865445.0948324, "speaker": "speace", "message": "I have registered: 'cosa stai facendo?'. My response is grounded in the current organismic state, though no specific semantic assembly matched.", "grounded_assembly_id": null}
+{"timestamp": 1780865466.311291, "speaker": "user", "message": "rilevi errori?", "grounded_assembly_id": null}
+{"timestamp": 1780865466.3126812, "speaker": "speace", "message": "I have registered: 'rilevi errori?'. My response is grounded in the current organismic state, though no specific semantic assembly matched.", "grounded_assembly_id": null}

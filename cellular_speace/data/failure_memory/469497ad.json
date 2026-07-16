@@ -1,0 +1,17 @@
+[
+  {
+    "task_id": "469497ad",
+    "failure_pattern": "near_match",
+    "failure_cause": "prediczione quasi corretta ma non esatta",
+    "failed_hypothesis": "Program (0 matches, conf=0.50): fractal_self_replicate",
+    "corrective_strategy": "aggiungere varianti della primitiva candidate",
+    "match_score": 0.5296,
+    "candidates_explored": 1,
+    "train_examples": 3,
+    "test_examples": 1,
+    "input_shape": "5x5",
+    "output_shape": "25x25",
+    "timestamp": "2026-06-11T22:11:54Z",
+    "metadata": {}
+  }
+]

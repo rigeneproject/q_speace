@@ -1,0 +1,4 @@
+2026-06-16 08:37:01,468 [INFO] 2026-06-16 08:37:01.468 [WARN] Cloud LLM error: <urlopen error [Errno 11002] getaddrinfo failed>
+2026-06-16 08:37:01.468 [WARN] Cloud LLM error: <urlopen error [Errno 11002] getaddrinfo failed>
+2026-06-16 08:37:01,469 [INFO] 2026-06-16 08:37:01.469 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-16 08:37:01.469 [WARN] Cloud LLM fallito, fallback su locale

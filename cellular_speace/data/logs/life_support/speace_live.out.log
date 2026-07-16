@@ -1,0 +1,6 @@
+[AGI Team] 20 agenti inizializzati con modello gemma4:12b (ollama_local)
+[AGI Team] Orchestrator avviato — auto-analisi e monitor attivi
+[AGI Team] Contesto live: runtime=True, brain_orchestrator=True
+2026-06-16 21:39:48 [INFO] [ANEMOS] Anemos server avviato su http://127.0.0.1:8787
+[AGI Team] SPEACE Anemos attivo su http://127.0.0.1:8787
+2026-06-16 21:39:48 [INFO] [ANEMOS] Anemos agent inizializzato: Kimi-K2.7-Code:cloud

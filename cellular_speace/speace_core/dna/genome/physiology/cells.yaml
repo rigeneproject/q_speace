@@ -1,0 +1,190 @@
+# Cell Type Definitions
+# Each cell type defines the atomic processing unit within a tissue.
+# Version: 1.0.0
+
+cells:
+  # ── Cognitive System ──────────────────────────────────────────
+  ltm_cell:
+    description: "Long-term memory cell — stores stable patterns"
+    produces: [coherence]
+    consumes: [dopamine, acetylcholine]
+    receptors: [D1, M1]
+    metabolic_budget: 0.02
+    plasticity: true
+    lifetime_ticks: null  # immortal (reset on damage)
+
+  wm_cell:
+    description: "Working memory cell — transient buffer"
+    produces: [coherence]
+    consumes: [dopamine, acetylcholine, glutamate]
+    receptors: [D1, M1, NMDA]
+    metabolic_budget: 0.03
+    plasticity: true
+    lifetime_ticks: 100  # refreshes every 100 ticks
+
+  episodic_cell:
+    description: "Episodic memory cell — time-stamped experiences"
+    produces: [novelty, coherence]
+    consumes: [dopamine, acetylcholine]
+    receptors: [D1, M1]
+    metabolic_budget: 0.02
+    plasticity: true
+    lifetime_ticks: null
+
+  salience_cell:
+    description: "Salience detection cell — novelty + threat gating"
+    produces: [novelty, threat]
+    consumes: [dopamine, noradrenaline, cortisol]
+    receptors: [D1, ADRA1, GR]
+    metabolic_budget: 0.02
+    plasticity: true
+    lifetime_ticks: null
+
+  prediction_cell:
+    description: "Prediction error cell — computes free-energy minimisation"
+    produces: [prediction_error]
+    consumes: [glutamate, dopamine, acetylcholine]
+    receptors: [NMDA, D1, M1]
+    metabolic_budget: 0.04
+    plasticity: true
+    lifetime_ticks: null
+
+  # ── Immune System ─────────────────────────────────────────────
+  pattern_recognition_cell:
+    description: "Detects anomalous patterns in signal space"
+    produces: [il6]
+    consumes: [cortisol, energy]
+    receptors: [GR, IR]  # glucocorticoid + insulin receptor
+    metabolic_budget: 0.02
+    plasticity: true
+    lifetime_ticks: null
+
+  alarm_signalling_cell:
+    description: "Propagates danger signals on threat detection"
+    produces: [tnfa, adrenaline]
+    consumes: [il6, energy]
+    receptors: [IL6R, ADRB2]
+    metabolic_budget: 0.03
+    plasticity: false
+    lifetime_ticks: null
+
+  inflammation_cell:
+    description: "Sustains inflammatory response"
+    produces: [il6, tnfa]
+    consumes: [energy, nutrition]
+    receptors: [IL6R, TNFR, GR]
+    metabolic_budget: 0.03
+    plasticity: false
+    lifetime_ticks: 200  # limited lifespan
+
+  repair_cell:
+    description: "Executes structural repair"
+    produces: [repair, igf1]
+    consumes: [energy, nutrition, growth_hormone]
+    receptors: [GHR, IGF1R, IR]
+    metabolic_budget: 0.04
+    plasticity: false
+    lifetime_ticks: null
+
+  # ── Enteric System ────────────────────────────────────────────
+  microbiome_cell:
+    description: "Gut microbial strain — produces metabolites"
+    produces: [serotonin, nutrition, novelty]
+    consumes: [nutrition, energy]
+    receptors: [ADRB2]  # stress-sensitive
+    metabolic_budget: 0.01
+    plasticity: true
+    lifetime_ticks: 50  # turnover
+
+  barrier_cell:
+    description: "Gut barrier cell — regulates permeability"
+    produces: [inflammation]
+    consumes: [energy, nutrition, cortisol]
+    receptors: [GR, IL6R]
+    metabolic_budget: 0.02
+    plasticity: false
+    lifetime_ticks: 30
+
+  enteric_neural_cell:
+    description: "Enteric neuron — local gut-brain signalling"
+    produces: [serotonin, gut_learning, coherence]
+    consumes: [dopamine, serotonin, noradrenaline]
+    receptors: [D1, 5HT1A, ADRA1]
+    metabolic_budget: 0.02
+    plasticity: true
+    lifetime_ticks: null
+
+  # ── Endocrine System ──────────────────────────────────────────
+  crh_cell:
+    description: "Corticotropin-releasing hormone cell (hypothalamus)"
+    produces: [cortisol]  # via CRH → ACTH cascade
+    consumes: [energy, stress]
+    receptors: [GR, ADRA1]  # feedback inhibition + stress activation
+    metabolic_budget: 0.01
+    plasticity: false
+    lifetime_ticks: null
+
+  beta_cell:
+    description: "Pancreatic beta cell — insulin secretion"
+    produces: [insulin]
+    consumes: [energy, nutrition]
+    receptors: [IR, GLP1R]
+    metabolic_budget: 0.02
+    plasticity: false
+    lifetime_ticks: null
+
+  alpha_cell:
+    description: "Pancreatic alpha cell — glucagon secretion"
+    produces: [glucagon]
+    consumes: [energy]
+    receptors: [IR, GR]  # low glucose → glucagon
+    metabolic_budget: 0.01
+    plasticity: false
+    lifetime_ticks: null
+
+  adipose_cell:
+    description: "Adipose tissue cell — leptin secretion"
+    produces: [leptin]
+    consumes: [energy, nutrition]
+    receptors: [IR, ADRB2, GR]
+    metabolic_budget: 0.01
+    plasticity: false
+    lifetime_ticks: 500
+
+  # ── Autonomic System ──────────────────────────────────────────
+  sympathetic_cell:
+    description: "Sympathetic neuron — fight-or-flight"
+    produces: [noradrenaline, adrenaline]
+    consumes: [energy, threat]
+    receptors: [ADRA1, GR]
+    metabolic_budget: 0.02
+    plasticity: false
+    lifetime_ticks: null
+
+  parasympathetic_cell:
+    description: "Parasympathetic neuron — rest-and-digest"
+    produces: [acetylcholine]
+    consumes: [energy, safety, oxytocin]
+    receptors: [M1, OXTR]
+    metabolic_budget: 0.02
+    plasticity: false
+    lifetime_ticks: null
+
+  # ── Metabolic System ──────────────────────────────────────────
+  energy_regulation_cell:
+    description: "Regulates global energy pool"
+    produces: [energy]
+    consumes: [nutrition, hydration, energy]
+    receptors: [IR, GHR, IGF1R]
+    metabolic_budget: 0.01
+    plasticity: false
+    lifetime_ticks: null
+
+  waste_clearance_cell:
+    description: "Clears metabolic waste, reduces entropy"
+    produces: [entropy]  # negative entropy production (order)
+    consumes: [energy, hydration]
+    receptors: [IR]
+    metabolic_budget: 0.02
+    plasticity: false
+    lifetime_ticks: null

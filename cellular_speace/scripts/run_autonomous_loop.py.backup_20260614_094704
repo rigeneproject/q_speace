@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+"""Run the SPEACE autonomous cognitive loop for a number of ticks.
+
+This is a safe, read-only-plus-log demonstration of closed-loop cognition:
+sensors -> neural dynamics -> global workspace -> optional embodied action ->
+world model.  All actions are confined to ``data/agi_runtime/``.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from speace_core.cellular_brain.runtime.autonomous_cognitive_loop import (
+    AutonomousCognitiveLoop,
+)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Run SPEACE autonomous cognitive loop.")
+    parser.add_argument("--ticks", type=int, default=100, help="Number of ticks to run.")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed.")
+    parser.add_argument("--interval", type=float, default=0.0, help="Seconds between ticks.")
+    parser.add_argument("--data-root", type=str, default="data/agi_runtime", help="Data directory.")
+    args = parser.parse_args()
+
+    loop = AutonomousCognitiveLoop(
+        data_root=PROJECT_ROOT / args.data_root,
+        seed=args.seed,
+    )
+    print(f"Starting autonomous loop: ticks={args.ticks}, seed={args.seed}")
+    stats = loop.run(n_ticks=args.ticks, tick_interval=args.interval)
+    summary = loop.summary()
+
+    print("\nLoop completed.")
+    print(json.dumps(summary, indent=2, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

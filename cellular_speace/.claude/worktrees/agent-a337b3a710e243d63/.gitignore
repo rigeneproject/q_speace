@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+
+# Generated reports (non-baseline)
+reports/**/*.json
+reports/**/*.md
+!reports/**/.gitkeep
+
+# Runtime data
+data/evolution/*.jsonl
+data/episodic_memory/*.jsonl
+data/self_improvement/*.jsonl
+
+# Coverage
+cov.json
+
+# Temp files
+docs/_temp*.txt
+*.tmp
+
+# PDF docs
+docs/*.pdf

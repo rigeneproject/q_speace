@@ -1,0 +1,4 @@
+2026-06-16 08:41:23,145 [INFO] 2026-06-16 08:41:23.145 [WARN] Cloud LLM HTTP 403: error code: 1010
+2026-06-16 08:41:23.145 [WARN] Cloud LLM HTTP 403: error code: 1010
+2026-06-16 08:41:23,147 [INFO] 2026-06-16 08:41:23.147 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-16 08:41:23.147 [WARN] Cloud LLM fallito, fallback su locale

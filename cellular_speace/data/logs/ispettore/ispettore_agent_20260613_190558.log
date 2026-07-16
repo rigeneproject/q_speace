@@ -1,0 +1,4 @@
+2026-06-13 19:05:58.738 [OK] Avvio Ispettore | mode=cloud chat=True once=False
+2026-06-13 19:06:14.019 [WARN] Cloud LLM HTTP error 403: error code: 1010
+2026-06-13 19:06:14.019 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-13 19:08:14.040 [WARN] Local LLM error: timed out

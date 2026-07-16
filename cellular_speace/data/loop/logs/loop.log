@@ -1,0 +1,37 @@
+2026-06-14 12:33:02,174 [INFO] loop.agentic | AgenticLoop inizializzato | interval=300s auto_fix=True dry_run=False
+2026-06-14 12:33:02,177 [INFO] loop.agentic | ========================================================================
+2026-06-14 12:33:02,178 [INFO] loop.agentic | CICLO IDO #ido-28b91a05 (n.1) avviato
+2026-06-14 12:33:02,178 [INFO] loop.agentic | ========================================================================
+2026-06-14 12:33:02,178 [INFO] loop.inspector | ===== FASE 1: ISPEZIONE SISTEMICA =====
+2026-06-14 12:34:53,107 [ERROR] loop.inspector | Ispettore speace_core_root fallito: 'str' object has no attribute 'stem'
+2026-06-14 12:35:19,656 [WARNING] speace_agi_team.config | OLLAMA_CLOUD_KEY not set — premium models disabled
+2026-06-14 12:37:38,078 [WARNING] speace_agi_team.config | OLLAMA_CLOUD_KEY not set — premium models disabled
+2026-06-14 12:37:40,487 [WARNING] root | speace_agi_team.web_search non disponibile: 'speace_agi_team.web_search'
+2026-06-14 12:42:36,687 [INFO] loop.inspector | Ispezione completata: 24 componenti, 136679 findings in 574.5s
+2026-06-14 12:42:36,688 [INFO] loop.diagnostician | ===== FASE 2: DIAGNOSI SISTEMICA =====
+2026-06-14 12:42:37,031 [INFO] loop.diagnostician | Diagnosi completata: 27 diagnosi, health=0.037 in 0.3s
+2026-06-14 12:42:37,031 [INFO] loop.optimizer | ===== FASE 3: OTTIMIZZAZIONE =====
+2026-06-14 12:42:37,572 [INFO] loop.optimizer | Ottimizzazione completata: 1 correzioni applicate in 0.5s
+2026-06-14 12:42:41,266 [INFO] loop.reporters | Report IDO salvati in C:\cellular_speace\data\loop\reports\ido_20260614_124237
+2026-06-14 12:45:33,608 [INFO] loop.agentic | AgenticLoop inizializzato | interval=300s auto_fix=True dry_run=False
+2026-06-14 12:45:33,611 [INFO] loop.agentic | ========================================================================
+2026-06-14 12:45:33,612 [INFO] loop.agentic | CICLO IDO #ido-209ecf2e (n.1) avviato
+2026-06-14 12:45:33,612 [INFO] loop.agentic | ========================================================================
+2026-06-14 12:45:33,612 [INFO] loop.inspector | ===== FASE 1: ISPEZIONE SISTEMICA =====
+2026-06-14 12:46:16,026 [INFO] loop.inspector | Ispezione completata: 24 componenti, 1017 findings in 42.4s
+2026-06-14 12:46:16,027 [INFO] loop.diagnostician | ===== FASE 2: DIAGNOSI SISTEMICA =====
+2026-06-14 12:46:16,029 [INFO] loop.diagnostician | Diagnosi completata: 8 diagnosi, health=0.957 in 0.0s
+2026-06-14 12:46:16,029 [INFO] loop.optimizer | ===== FASE 3: OTTIMIZZAZIONE =====
+2026-06-14 12:46:16,353 [INFO] loop.optimizer | Ottimizzazione completata: Nessuna azione eseguita in 0.3s
+2026-06-14 12:46:16,383 [INFO] loop.reporters | Report IDO salvati in C:\cellular_speace\data\loop\reports\ido_20260614_124616
+2026-06-14 12:48:08,457 [INFO] loop.agentic | AgenticLoop inizializzato | interval=300s auto_fix=True dry_run=False
+2026-06-14 12:48:08,461 [INFO] loop.agentic | ========================================================================
+2026-06-14 12:48:08,461 [INFO] loop.agentic | CICLO IDO #ido-8dcb82ca (n.1) avviato
+2026-06-14 12:48:08,461 [INFO] loop.agentic | ========================================================================
+2026-06-14 12:48:08,461 [INFO] loop.inspector | ===== FASE 1: ISPEZIONE SISTEMICA =====
+2026-06-14 12:48:51,161 [INFO] loop.inspector | Ispezione completata: 24 componenti, 1013 findings in 42.7s
+2026-06-14 12:48:51,162 [INFO] loop.diagnostician | ===== FASE 2: DIAGNOSI SISTEMICA =====
+2026-06-14 12:48:51,165 [INFO] loop.diagnostician | Diagnosi completata: 7 diagnosi, health=0.994 in 0.0s
+2026-06-14 12:48:51,165 [INFO] loop.optimizer | ===== FASE 3: OTTIMIZZAZIONE =====
+2026-06-14 12:48:51,499 [INFO] loop.optimizer | Ottimizzazione completata: 1 correzioni applicate in 0.3s
+2026-06-14 12:48:51,528 [INFO] loop.reporters | Report IDO salvati in C:\cellular_speace\data\loop\reports\ido_20260614_124851

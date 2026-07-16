@@ -1,0 +1,17 @@
++-- SPEACE MM-APR Supervision Dashboard -----------------------------+
+| Health: WARNING    | Iteration:    47     | Uptime: 18.1h  |
+| Cycle count:    10     | Veto rate:   0.0%   | Rollback:   0.0%  |
++-- Veto distribution (per class) -----------------------+
+|   Class A (Evolution):       0                       |
+|   Class B (Verification):    0                       |
+|   Class C (Adversarial):     0  <- veto-capable      |
+|   Class D (Meta-Govern):     0                       |
+|   Total vetoes:              0                       |
+|   ........................................  |
++-- Memory status counts --------------------------------+
+|   STABLE:   0   PROBATIONARY:   0   DEPRECATED:   0   |
+|   FORGOTTEN:   0   QUARANTINED:   0   VOLATILE:   0   |
++-- Fitness trend (last 7 samples) -------------------------------+
+|   d1: 0.640  d2: 0.651  d3: 0.648  d4: 0.659  d5: 0.667  d6: 0.671  d7: 0.674                                       |
+|   Delta: +3.4% ^                                                  |
++-- Next governance in: 168.0h ----------------------------+

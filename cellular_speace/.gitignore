@@ -1,0 +1,67 @@
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+
+# Generated reports (non-baseline)
+reports/**/*.json
+reports/**/*.md
+!reports/**/.gitkeep
+
+# Runtime data
+data/evolution/*.jsonl
+data/episodic_memory/*.jsonl
+data/self_improvement/*.jsonl
+data/self_improvement/*.json
+data/self_improvement/*.npz
+data/sandbox/
+data/architecture_patches/
+data/evolution_daemon/
+data/monitoring/
+data/drives/
+data/experience/
+data/cognitive_evolution/
+data/simulated_embodiment/
+data/persistent_process/
+data/regulation/
+data/morphological_memory/
+data/identity_kernel/
+data/self_model/
+data/daemon_tasks.jsonl
+data/knowledge_graph.jsonl
+data/node_identity/
+data/embodiment/
+data/experiments/
+data/linguistic_curriculum/
+data/dialogue/
+data/arc_agi/
+data/language/
+data/web_gateway/
+data/regulation/
+data/drives/
+data/ecosystem/
+data/test_actuator_*/
+data/test_web_gateway*/
+data/test_mobile_sensors/
+data/test_t132_*/
+
+# Coverage
+cov.json
+
+# Temp files
+docs/_temp*.txt
+*.tmp
+
+# PDF docs
+docs/*.pdf
+
+# Local secrets / API keys (never commit)
+.env
+.env.*
+!**/.env.example

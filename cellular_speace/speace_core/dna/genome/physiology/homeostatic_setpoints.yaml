@@ -1,0 +1,130 @@
+# Homeostatic Setpoints
+# Healthy ranges for all stream signals.
+# When a stream deviates outside its setpoint range, the organism
+# initiates corrective action (alarm, policy shift, metabolic reallocation).
+# Version: 1.0.0
+
+homeostatic_setpoints:
+  # ── Energy & Metabolism ───────────────────────────────────────
+  energy:
+    healthy_range: [0.3, 0.8]
+    critical_low: 0.1
+    critical_high: 0.95
+    decay_to_baseline: 0.03  # drift per tick towards baseline
+    description: "Available metabolic energy"
+
+  nutrition:
+    healthy_range: [0.3, 0.8]
+    critical_low: 0.1
+    critical_high: null
+    decay_to_baseline: 0.02
+    description: "Nutrient availability"
+
+  fatigue:
+    healthy_range: [0.0, 0.4]
+    critical_low: null
+    critical_high: 0.8
+    decay_to_baseline: 0.02  # drifts down (recovers) when not active
+    description: "Metabolic exhaustion"
+
+  repair:
+    healthy_range: [0.2, 0.6]
+    critical_low: 0.05
+    critical_high: null
+    decay_to_baseline: 0.01
+    description: "Active repair level"
+
+  growth:
+    healthy_range: [0.2, 0.6]
+    critical_low: 0.05
+    critical_high: null
+    decay_to_baseline: 0.01
+    description: "Growth rate"
+
+  # ── Stress & Threat ───────────────────────────────────────────
+  stress:
+    healthy_range: [0.0, 0.4]
+    critical_low: null
+    critical_high: 0.8
+    decay_to_baseline: 0.05  # recovers when stressor removed
+    description: "Acute/chronic stress level"
+
+  threat:
+    healthy_range: [0.0, 0.3]
+    critical_low: null
+    critical_high: 0.7
+    decay_to_baseline: 0.04
+    description: "Perceived external threat"
+
+  safety:
+    healthy_range: [0.4, 1.0]
+    critical_low: 0.2
+    critical_high: null
+    decay_to_baseline: 0.02
+    description: "Perceived safety"
+
+  # ── Inflammation & Damage ─────────────────────────────────────
+  inflammation:
+    healthy_range: [0.0, 0.3]
+    critical_low: null
+    critical_high: 0.7
+    decay_to_baseline: 0.03
+    description: "Systemic inflammation"
+
+  damage:
+    healthy_range: [0.0, 0.2]
+    critical_low: null
+    critical_high: 0.6
+    decay_to_baseline: 0.01  # repair reduces damage
+    description: "Accumulated structural damage"
+
+  plasticity:
+    healthy_range: [0.3, 0.8]
+    critical_low: 0.1
+    critical_high: null
+    decay_to_baseline: 0.01
+    description: "Neuroplasticity"
+
+  # ── Motivation ────────────────────────────────────────────────
+  curiosity:
+    healthy_range: [0.2, 0.7]
+    critical_low: 0.05
+    critical_high: null
+    decay_to_baseline: 0.02
+    description: "Exploration drive"
+
+  # ── Coherence & State ─────────────────────────────────────────
+  coherence:
+    healthy_range: [0.4, 1.0]
+    critical_low: 0.2
+    critical_high: null
+    decay_to_baseline: 0.02
+    description: "Global information coherence"
+
+  entropy:
+    healthy_range: [0.0, 0.4]
+    critical_low: null
+    critical_high: 0.7
+    decay_to_baseline: 0.02
+    description: "System entropy"
+
+  synchronization:
+    healthy_range: [0.4, 1.0]
+    critical_low: 0.2
+    critical_high: null
+    decay_to_baseline: 0.02
+    description: "Inter-region synchrony"
+
+  temperature:
+    healthy_range: [0.2, 0.6]
+    critical_low: 0.05
+    critical_high: 0.8
+    decay_to_baseline: 0.05  # thermal regulation
+    description: "Thermal load"
+
+  hydration:
+    healthy_range: [0.4, 0.9]
+    critical_low: 0.2
+    critical_high: null
+    decay_to_baseline: 0.02
+    description: "Resource fluidity"

@@ -1,0 +1,5 @@
+2026-06-13 13:14:07.694 [OK] Avvio Ispettore | mode=local chat=False once=True
+2026-06-13 13:14:07.695 [INFO] ===== INIZIO CICLO #1 | Modalita local =====
+2026-06-13 13:14:09.338 [INFO] File da scansionare: 14093
+2026-06-13 13:14:09.780 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:14:09.786 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_131409.md

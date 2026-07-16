@@ -1,0 +1,156 @@
+{
+  "diagnosis_timestamp": "2026-06-05T09:00:00Z",
+  "host": "WINWORK-0HSAG2M",
+  "os": "Windows 11 Pro, AMD64",
+  "admin": false,
+  "speace_version": {
+    "build_mvp": true,
+    "build_time_seconds": 0.89,
+    "vfs_enabled": true,
+    "system_assimilation_enabled": true,
+    "arc_agi_enabled": true,
+    "region_architecture": true
+  },
+  "heartbeat": {
+    "tick": 91851,
+    "state": "running",
+    "sleep_enabled": true,
+    "brainstem_controller": true,
+    "global_workspace": true,
+    "embodiment": true,
+    "temporal_dynamics": true,
+    "predictive_coding": true,
+    "active_inference": true,
+    "plasticity": true
+  },
+  "neuronal_network": {
+    "input_neurons": 10,
+    "hidden_neurons": 60,
+    "output_neurons": 10,
+    "total_neurons": 80,
+    "synapses": 293,
+    "connectivity_density": 3.66,
+    "astrocytes": 5,
+    "microglia": 2,
+    "oligodendrocytes": 2
+  },
+  "brain_regions": [
+    "sensory",
+    "limbic",
+    "hippocampus",
+    "default_mode",
+    "prefrontal",
+    "cerebellar",
+    "motor",
+    "brainstem_homeostatic",
+    "language"
+  ],
+  "modules_health": {
+    "VFS": "OK",
+    "SystemAssimilator": "OK",
+    "ARC-AGI": "OK",
+    "RegionRegistry": "OK",
+    "Homeostasis": "OK",
+    "Plasticity": "OK",
+    "Neurogenesis": "OK",
+    "Confidence": "OK",
+    "BrainstemController": "FAIL (lazy-init)",
+    "GlobalWorkspace": "FAIL (lazy-init)",
+    "NarrativeEngine": "FAIL (lazy-init)",
+    "SensorArray": "FAIL (lazy-init)"
+  },
+  "system_assimilation": {
+    "processes": 176,
+    "services": 289,
+    "devices": 0,
+    "storage_c_drive_gb": {
+      "total": 471.6,
+      "free": 255.3,
+      "used_pct": 45.9
+    },
+    "admin": false
+  },
+  "vfs": {
+    "root_entries_indexed": 22,
+    "errors": 0,
+    "symlink_root_link": "exists"
+  },
+  "arc_agi_benchmark": {
+    "status": "completed",
+    "accuracy": 0.1,
+    "tasks_tested": 10,
+    "tasks_correct": 1,
+    "tasks_failed": 9,
+    "pattern_library_primitives": 14,
+    "root_cause": "0/9 failed tasks had primitives but none validated to 100% match",
+    "successful_task": "007bbfb7 - fractal_self_replicate (5 matches, conf=1.00)"
+  },
+  "system_issues": [
+    {
+      "severity": "warning",
+      "type": "not_admin",
+      "detail": "System assimilation cannot access protected processes/services",
+      "action": "Run start_as_admin.ps1 as Administrator"
+    },
+    {
+      "severity": "info",
+      "type": "defender",
+      "detail": "Windows Defender real-time active (275MB). Add exclusion for C:\\cellular_speace",
+      "action": "Requires admin: Add-MpPreference -ExclusionPath C:\\cellular_speace"
+    },
+    {
+      "severity": "info",
+      "type": "resources",
+      "detail": "CPU 5%, RAM 31.7%, Disk 45.9% - no saturation"
+    }
+  ],
+  "corrective_tasks": [
+    {
+      "id": "C001",
+      "priority": "high",
+      "area": "system",
+      "action": "Run start_as_admin.ps1 as Administrator",
+      "expected_outcome": "Full system access, Defender exclusion"
+    },
+    {
+      "id": "C002",
+      "priority": "medium",
+      "area": "arc_agi",
+      "action": "Add rotate_and_copy transformation primitive to FewShotProgramInductionEngine",
+      "expected_outcome": "Improved pattern matching for shape rotation tasks"
+    },
+    {
+      "id": "C003",
+      "priority": "medium",
+      "area": "arc_agi",
+      "action": "Add pattern_mirror and flood_fill primitives",
+      "expected_outcome": "Better coverage of spatial transformation patterns"
+    },
+    {
+      "id": "C004",
+      "priority": "low",
+      "area": "arc_agi",
+      "action": "Implement meta-learning composer to combine multiple primitives",
+      "expected_outcome": "Complex task coverage through composition"
+    },
+    {
+      "id": "C005",
+      "priority": "medium",
+      "area": "cognitive",
+      "action": "Enable global_workspace and embodiment in genome defaults",
+      "expected_outcome": "Activate higher cognitive functions at startup"
+    },
+    {
+      "id": "C006",
+      "priority": "high",
+      "area": "stability",
+      "action": "Run full integration test suite after each change",
+      "expected_outcome": "Verify no regressions"
+    }
+  ],
+  "test_results": {
+    "tests_passed": 574,
+    "coverage_pct": 23,
+    "build_mvp_breaking_change": false
+  }
+}

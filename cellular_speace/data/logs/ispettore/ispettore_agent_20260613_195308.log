@@ -1,0 +1,14 @@
+2026-06-13 19:53:08.865 [OK] Avvio Ispettore | mode=local chat=False once=False
+2026-06-13 19:53:08.866 [OK] Ispettore avviato in modalita loop continuo
+2026-06-13 19:53:08.867 [INFO] ===== INIZIO CICLO #1 | Modalita local =====
+2026-06-13 19:53:08.883 [OK] Avvio Ispettore | mode=local chat=False once=False
+2026-06-13 19:53:08.884 [OK] Ispettore avviato in modalita loop continuo
+2026-06-13 19:53:08.885 [INFO] ===== INIZIO CICLO #1 | Modalita local =====
+2026-06-13 19:53:12.133 [INFO] File da scansionare: 30678
+2026-06-13 19:53:12.160 [INFO] File da scansionare: 30678
+2026-06-13 19:53:13.157 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 19:53:13.159 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_195313.md
+2026-06-13 19:53:13.162 [INFO] Prossimo ciclo tra 120s
+2026-06-13 19:53:13.172 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 19:53:13.174 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_195313.md
+2026-06-13 19:53:13.175 [INFO] Prossimo ciclo tra 120s

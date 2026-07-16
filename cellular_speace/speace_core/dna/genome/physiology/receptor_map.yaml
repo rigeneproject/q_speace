@@ -1,0 +1,92 @@
+# Receptor Map
+# Receptor expression profiles per tissue.
+# Each entry: receptor_id: {affinity, effect, desensitization_rate, metabolic_cost}
+# Version: 1.0.0
+
+receptors:
+  # ── Cognitive System ──────────────────────────────────────────
+  semantic_tissue:
+    D1: {affinity: 0.8, effect: excitation, desensitization_rate: 0.001, metabolic_cost: 0.005}
+    M1: {affinity: 0.7, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.004}
+
+  episodic_tissue:
+    D1: {affinity: 0.9, effect: excitation, desensitization_rate: 0.001, metabolic_cost: 0.005}
+    M1: {affinity: 0.6, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.004}
+
+  salience_tissue:
+    D1: {affinity: 0.7, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.005}
+    ADRA1: {affinity: 0.8, effect: excitation, desensitization_rate: 0.004, metabolic_cost: 0.006}
+    GR: {affinity: 0.5, effect: inhibition, desensitization_rate: 0.005, metabolic_cost: 0.006}
+
+  error_minimisation_tissue:
+    NMDA: {affinity: 0.8, effect: excitation, desensitization_rate: 0.001, metabolic_cost: 0.008}
+    D1: {affinity: 0.6, effect: modulation, desensitization_rate: 0.002, metabolic_cost: 0.005}
+    M1: {affinity: 0.5, effect: modulation, desensitization_rate: 0.003, metabolic_cost: 0.004}
+
+  # ── Immune System ─────────────────────────────────────────────
+  pattern_recognition_tissue:
+    GR: {affinity: 0.6, effect: inhibition, desensitization_rate: 0.003, metabolic_cost: 0.005}
+    IR: {affinity: 0.4, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.004}
+
+  alarm_signalling_tissue:
+    IL6R: {affinity: 0.8, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.006}
+    ADRB2: {affinity: 0.7, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.005}
+
+  inflammation_tissue:
+    IL6R: {affinity: 0.9, effect: excitation, desensitization_rate: 0.001, metabolic_cost: 0.006}
+    TNFR: {affinity: 0.8, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.006}
+    GR: {affinity: 0.5, effect: inhibition, desensitization_rate: 0.004, metabolic_cost: 0.005}
+
+  repair_tissue:
+    GHR: {affinity: 0.7, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.005}
+    IGF1R: {affinity: 0.8, effect: excitation, desensitization_rate: 0.001, metabolic_cost: 0.006}
+    IR: {affinity: 0.5, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.004}
+
+  # ── Enteric System ────────────────────────────────────────────
+  microbiome_tissue:
+    ADRB2: {affinity: 0.6, effect: inhibition, desensitization_rate: 0.004, metabolic_cost: 0.003}
+
+  barrier_tissue:
+    GR: {affinity: 0.7, effect: inhibition, desensitization_rate: 0.003, metabolic_cost: 0.004}
+    IL6R: {affinity: 0.5, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.005}
+
+  enteric_neural_tissue:
+    D1: {affinity: 0.6, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.004}
+    5HT1A: {affinity: 0.8, effect: modulation, desensitization_rate: 0.002, metabolic_cost: 0.004}
+    ADRA1: {affinity: 0.5, effect: inhibition, desensitization_rate: 0.004, metabolic_cost: 0.005}
+
+  # ── Endocrine System ──────────────────────────────────────────
+  crh_tissue:
+    GR: {affinity: 0.7, effect: inhibition, desensitization_rate: 0.002, metabolic_cost: 0.004}
+    ADRA1: {affinity: 0.6, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.005}
+
+  beta_tissue:
+    IR: {affinity: 0.8, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.004}
+    GLP1R: {affinity: 0.7, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.004}
+
+  alpha_tissue:
+    IR: {affinity: 0.5, effect: inhibition, desensitization_rate: 0.003, metabolic_cost: 0.004}
+    GR: {affinity: 0.4, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.005}
+
+  leptin_tissue:
+    IR: {affinity: 0.6, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.004}
+    ADRB2: {affinity: 0.5, effect: inhibition, desensitization_rate: 0.004, metabolic_cost: 0.004}
+    GR: {affinity: 0.4, effect: inhibition, desensitization_rate: 0.004, metabolic_cost: 0.005}
+
+  # ── Autonomic System ──────────────────────────────────────────
+  sympathetic_tissue:
+    ADRA1: {affinity: 0.9, effect: excitation, desensitization_rate: 0.001, metabolic_cost: 0.006}
+    GR: {affinity: 0.5, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.005}
+
+  parasympathetic_tissue:
+    M1: {affinity: 0.8, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.005}
+    OXTR: {affinity: 0.6, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.004}
+
+  # ── Metabolic System ──────────────────────────────────────────
+  energy_regulation_tissue:
+    IR: {affinity: 0.7, effect: excitation, desensitization_rate: 0.002, metabolic_cost: 0.004}
+    GHR: {affinity: 0.5, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.004}
+    IGF1R: {affinity: 0.6, effect: excitation, desensitization_rate: 0.003, metabolic_cost: 0.005}
+
+  waste_clearance_tissue:
+    IR: {affinity: 0.4, effect: excitation, desensitization_rate: 0.004, metabolic_cost: 0.003}

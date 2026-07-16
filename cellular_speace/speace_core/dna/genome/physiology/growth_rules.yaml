@@ -1,0 +1,92 @@
+# Growth & Differentiation Rules
+# Defines how new tissues and organs can emerge during the organism's lifetime.
+# Version: 1.0.0
+
+growth:
+  # Maximum number of organs per system
+  max_organs_per_system: 10
+
+  # Maximum number of tissues per organ
+  max_tissues_per_organ: 8
+
+  # Stem-cell-like precursor pools
+  stem_cells:
+    cognitive:
+      pool_size: 5
+      differentiation_cost: 0.5          # energy units per differentiation event
+      maturation_ticks: 100               # ticks before new tissue is fully functional
+      available_tissues:
+        - semantic_tissue
+        - episodic_tissue
+        - salience_tissue
+        - error_minimisation_tissue
+    immune:
+      pool_size: 3
+      differentiation_cost: 0.4
+      maturation_ticks: 80
+      available_tissues:
+        - pattern_recognition_tissue
+        - alarm_signalling_tissue
+        - inflammation_tissue
+        - repair_tissue
+    enteric:
+      pool_size: 2
+      differentiation_cost: 0.3
+      maturation_ticks: 60
+      available_tissues:
+        - microbiome_tissue
+        - barrier_tissue
+        - enteric_neural_tissue
+    endocrine:
+      pool_size: 3
+      differentiation_cost: 0.4
+      maturation_ticks: 90
+      available_tissues:
+        - crh_tissue
+        - beta_tissue
+        - alpha_tissue
+        - leptin_tissue
+    autonomic:
+      pool_size: 2
+      differentiation_cost: 0.3
+      maturation_ticks: 70
+      available_tissues:
+        - sympathetic_tissue
+        - parasympathetic_tissue
+    metabolic:
+      pool_size: 2
+      differentiation_cost: 0.3
+      maturation_ticks: 50
+      available_tissues:
+        - energy_regulation_tissue
+        - waste_clearance_tissue
+
+  # Triggers for growth / differentiation
+  triggers:
+    stress_induced:
+      - condition: "meta_stress > 0.7 for 50 consecutive ticks"
+        action: "differentiate alarm_signalling_tissue"
+        max_repetitions: 2
+    damage_induced:
+      - condition: "damage > 0.4"
+        action: "differentiate repair_tissue"
+        max_repetitions: 3
+    learning_induced:
+      - condition: "cumulative_reward > 10.0"
+        action: "differentiate semantic_tissue"
+        max_repetitions: 3
+    novelty_induced:
+      - condition: "dopamine_novelty_events > 20"
+        action: "differentiate episodic_tissue"
+        max_repetitions: 2
+    resource_induced:
+      - condition: "nutrition > 0.7 for 100 consecutive ticks"
+        action: "differentiate adipose_tissue or beta_tissue"
+        max_repetitions: 1
+
+  # Pruning rules (tissue removal)
+  pruning:
+    enabled: true
+    disuse_threshold: 200                 # ticks without activity → pruning candidate
+    energy_crisis_prune: true            # prune lowest-value tissues during crisis
+    prune_cost: 0.1                      # energy cost to prune a tissue

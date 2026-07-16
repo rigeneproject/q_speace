@@ -1,0 +1,137 @@
+"""EntanglementRegistry — track entangled (neuron, neuron) pairs.
+
+In the SPEACE quantum layer, two DigitalNeurons (or any objects with
+a stable id) can become entangled via the QuantumNeuralBridge. The
+registry keeps a record of these pairs and offers queries for the
+overall entanglement structure.
+"""
+from __future__ import annotations
+
+import time
+from dataclasses import dataclass, field
+from typing import Dict, List, Optional, Set, Tuple
+
+
+@dataclass
+class EntangledPair:
+    """A bidirectional entanglement between two entities."""
+    entity_a: str
+    entity_b: str
+    fidelity: float = 0.0
+    created_at: float = field(default_factory=time.time)
+    label: str = ""
+    metadata: Dict[str, str] = field(default_factory=dict)
+
+    def involves(self, entity_id: str) -> bool:
+        return entity_id in (self.entity_a, self.entity_b)
+
+    def other(self, entity_id: str) -> str:
+        if entity_id == self.entity_a:
+            return self.entity_b
+        if entity_id == self.entity_b:
+            return self.entity_a
+        raise KeyError(f"entity {entity_id} not in pair")
+
+
+class EntanglementRegistry:
+    """Registry of entangled entity pairs.
+
+    Provides O(1) add/query and graph-level queries (e.g. connected
+    components, entanglement degree of an entity).
+    """
+
+    def __init__(self) -> None:
+        self._pairs: List[EntangledPair] = []
+        self._by_entity: Dict[str, List[int]] = {}
+
+    def entangle(
+        self,
+        entity_a: str,
+        entity_b: str,
+        fidelity: float = 0.0,
+        label: str = "",
+        metadata: Optional[Dict[str, str]] = None,
+    ) -> EntangledPair:
+        if entity_a == entity_b:
+            raise ValueError("cannot entangle an entity with itself")
+        metadata = metadata or {}
+        pair = EntangledPair(
+            entity_a=entity_a,
+            entity_b=entity_b,
+            fidelity=float(fidelity),
+            label=label,
+            metadata=metadata,
+        )
+        self._pairs.append(pair)
+        idx = len(self._pairs) - 1
+        self._by_entity.setdefault(entity_a, []).append(idx)
+        self._by_entity.setdefault(entity_b, []).append(idx)
+        return pair
+
+    def disentangle(self, entity_a: str, entity_b: str) -> bool:
+        removed = False
+        for i in range(len(self._pairs) - 1, -1, -1):
+            p = self._pairs[i]
+            if {p.entity_a, p.entity_b} == {entity_a, entity_b}:
+                self._pairs.pop(i)
+                removed = True
+        # rebuild index
+        if removed:
+            self._by_entity.clear()
+            for j, p in enumerate(self._pairs):
+                self._by_entity.setdefault(p.entity_a, []).append(j)
+                self._by_entity.setdefault(p.entity_b, []).append(j)
+        return removed
+
+    def pairs_of(self, entity_id: str) -> List[EntangledPair]:
+        return [self._pairs[i] for i in self._by_entity.get(entity_id, [])]
+
+    def partners_of(self, entity_id: str) -> Set[str]:
+        out: Set[str] = set()
+        for p in self.pairs_of(entity_id):
+            out.add(p.other(entity_id))
+        return out
+
+    def degree(self, entity_id: str) -> int:
+        return len(self._by_entity.get(entity_id, []))
+
+    def is_entangled(self, entity_a: str, entity_b: str) -> bool:
+        return any(
+            {p.entity_a, p.entity_b} == {entity_a, entity_b}
+            for p in self._pairs
+        )
+
+    def all_pairs(self) -> List[EntangledPair]:
+        return list(self._pairs)
+
+    def connected_components(self) -> List[Set[str]]:
+        """Return connected components of the entanglement graph."""
+        nodes: Set[str] = set()
+        for p in self._pairs:
+            nodes.add(p.entity_a)
+            nodes.add(p.entity_b)
+        visited: Set[str] = set()
+        comps: List[Set[str]] = []
+        for n in nodes:
+            if n in visited:
+                continue
+            stack = [n]
+            comp: Set[str] = set()
+            while stack:
+                cur = stack.pop()
+                if cur in visited:
+                    continue
+                visited.add(cur)
+                comp.add(cur)
+                for nb in self.partners_of(cur):
+                    if nb not in visited:
+                        stack.append(nb)
+            comps.append(comp)
+        return comps
+
+    def count(self) -> int:
+        return len(self._pairs)
+
+    def clear(self) -> None:
+        self._pairs.clear()
+        self._by_entity.clear()

@@ -1,0 +1,16 @@
+﻿2026-06-09 13:35:21.214 [BOOT] Inizializzazione gateway v0.9.0
+2026-06-09 13:35:21.225 [BOOT] Directory progetto C:\cellular_speace
+2026-06-09 13:35:21.229 [BOOT] Log file C:\cellular_speace\data\logs\gateway_20260609_133521.log
+2026-06-09 13:35:21.236 [BOOT] Verifica Python ...
+2026-06-09 13:35:21.411 [BOOT] Python Python 3.14.3
+2026-06-09 13:35:21.414 [BOOT] Verifica SPEACE CLI ...
+2026-06-09 13:35:22.699 [BOOT] SPEACE CLI speace-core 0.9.0
+2026-06-09 13:35:22.728 [BOOT] Rilevamento sistema ...
+2026-06-09 13:35:23.061 [BOOT] Sistema operativo Microsoft Windows 11 Pro (10.0.26200)
+2026-06-09 13:35:24.330 [BOOT] Processore Intel(R) Core(TM) i7-4790S CPU @ 3.20GHz
+2026-06-09 13:35:24.362 [BOOT] Memoria RAM 15.9 GB
+2026-06-09 13:35:24.367 [BOOT] Pronto per l'avvio live
+2026-06-09 13:35:24.897 [LAUNCH] Starting SPEACE in live mode
+2026-06-09 13:35:24.902 [SPEACE] python -m speace_core.cli live
+2026-06-09 13:35:27.847 [SPEACE] Processo terminato con codice 1
+2026-06-09 13:35:27.862 [SHUTDOWN] SPEACE Gateway terminated

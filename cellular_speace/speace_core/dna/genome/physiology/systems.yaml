@@ -1,0 +1,40 @@
+# System Definitions
+# Top-level functional systems that group related organs.
+# Version: 1.0.0
+
+systems:
+  cognitive:
+    description: "Memory, attention, prediction, and learning"
+    organs: [memory, attention, prediction]
+    priority: 1  # highest (cognitive functions)
+    enabled: true
+
+  immune:
+    description: "Threat detection, inflammation, and repair"
+    organs: [threat_assessment, immune_response]
+    priority: 2  # survival-critical
+    enabled: true
+
+  enteric:
+    description: "Gut-brain axis, microbiome, digestion, enteric nervous system"
+    organs: [gut]
+    priority: 2
+    enabled: true
+
+  endocrine:
+    description: "Hormonal regulation — stress, metabolism, growth, social bonding"
+    organs: [hpa_axis, pancreas, adipose]
+    priority: 2
+    enabled: true
+
+  autonomic:
+    description: "Autonomic nervous system — sympathetic and parasympathetic branches"
+    organs: [sympathetic, parasympathetic]
+    priority: 1
+    enabled: true
+
+  metabolic:
+    description: "Energy regulation, waste clearance, resource management"
+    organs: [energy_regulation, waste_clearance]
+    priority: 1
+    enabled: true

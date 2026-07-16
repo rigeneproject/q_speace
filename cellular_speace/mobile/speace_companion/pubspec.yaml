@@ -1,0 +1,32 @@
+name: speace_companion
+description: T120 — SPEACE Mobile Companion Node (read-only dashboard + dialogue)
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.0
+  shared_preferences: ^2.2.0
+  cupertino_icons: ^1.0.2
+  # T120-C sensors
+  battery_plus: ^6.0.0
+  connectivity_plus: ^6.0.0
+  sensors_plus: ^6.0.0
+  geolocator: ^13.0.0
+  # T120-D notifications
+  flutter_local_notifications: ^17.0.0
+  # T120-F QR code
+  mobile_scanner: ^6.0.0
+  qr_flutter: ^4.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true

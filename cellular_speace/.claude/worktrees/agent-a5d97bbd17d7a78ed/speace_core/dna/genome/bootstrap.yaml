@@ -1,0 +1,23 @@
+speace_bootstrap_dna:
+  organism: SPEACE
+  bootstrap_version: "0.1.0"
+  repo: https://github.com/rigeneproject/cellular_speace
+  branch: main
+  allowed_modes:
+    - monitoring
+    - dialogue
+    - passive_sync
+    - controlled_runtime
+  forbidden_modes:
+    - autonomous_replication
+    - autonomous_shell_execution
+    - unsupervised_actuation
+    - credential_extraction
+    - network_scanning
+  node_identity:
+    generate_unique_node_id: true
+    require_human_pairing: true
+  safety:
+    default_mode: safe
+    localhost_only: true
+    require_approval_for_regulation: true

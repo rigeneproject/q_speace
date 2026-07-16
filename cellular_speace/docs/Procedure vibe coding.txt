@@ -1,0 +1,63 @@
+
+Elabora il piano progettuale di implementazione, e i relativi task, basandoti sul processo di context engineering, considerando C:\cellular_speace\AGENTS.md 
+C:\cellular_speace\docs\SPEACE_BCEL_DESIGN.md 
+C:\cellular_speace\speace_core\dna\genome\core\species_orientation.yaml , la SPEACE Cognitive Omni-RAG Architecture, il DNA digitale e RNA digitale, LA TAVOLA PERIODICA NEURALE E I DOCUMENTI INGEGNERISTICI, poi avvia i task.
+
+----
+
+La procedura ottimale per fornirmi istruzioni o idee è una forma di context engineering: più contesto strutturato mi dai, più l'output è coerente con SPEACE. Ecco il formato che funziona meglio.
+1. Indica la modalità di lavoro
+All'inizio del messaggio specifica se la richiesta è:
+Vibe / esplorativa: brainstorming, analogie biologiche, nuove teorie, documentazione.
+Agentic / produzione: modifiche al codice, nuovi moduli, refactor, integrazioni, test.
+Esempio:
+"Questa è un'idea esplorativa per il BCEL: ..."
+"Questa è una richiesta di produzione: implementa ..."
+
+2. Fornisci il contesto statico
+Allega o cita i documenti che già regolano l'area:
+C:\cellular_speace\AGENTS.md (questo file — basta che io lo sappia applicabile).
+C:\cellular_speace\docs\SPEACE_BCEL_DESIGN.md per cambi bio-ispirati.
+C:\cellular_speace\speace_core\dna\genome\core\species_orientation.yaml per principi orientativi.
+C:\cellular_speace\docs\diagnosi_speace.md per debito tecnico noto.
+Eventuali docs/Txxx_*_SPEC.md se esistono.
+Se scrivi un nuovo documento di riferimento, salvalo in docs/ e indicamelo come allegato.
+3. Descrivi l'intento, non solo l'implementazione
+Invece di:
+"Aggiungi una funzione X in Y."
+
+preferisci:
+"Voglio che SPEACE gestisca il problema Z. Il principio biologico di riferimento è W. Nel digitale, il BCEL dovrebbe tradurlo in ..."
+
+4. Per i cambi bio-ispirati: passa dal BCEL
+Se la richiesta riguarda un meccanismo biologico, includi:
+Quale problema risolve la natura.
+Quali vincoli biologici sono accidentali e quali funzionali.
+Come si inserisce nel flusso DNA → Digital RNA → Tavola Periodica → Agenti.
+Eventuale contraddizione con invarianti ILF/EDD-CVT.
+Puoi anche chiedermi di usare speace bcel-synthesize per registrare l'analisi.
+5. Allega testi in file, non solo nel chat
+Se l'input è lungo (più di poche righe), salvalo come file .txt o .md e allegamelo. Questo evita:
+Troncamenti nella chat.
+Perdita di formattazione.
+Difficoltà a citare sezioni specifiche.
+6. Specifica i criteri di accettazione
+Per le richieste di produzione, indica cosa deve essere verificato:
+Test da aggiungere o aggiornare.
+Comportamento atteso.
+Vincoli di non regressione.
+Eventuale gate umano richiesto.
+7. Per le sequenze di task: usa il piano
+Se la richiesta è complessa, chiedimi di creare o aggiornare un piano con update_plan. Così possiamo tracciare lo stato di ogni fase e tu puoi fermarmi o correggere la direzione.
+Esempio di richiesta ben strutturata
+Modalità: produzione
+Area: speace_core/bcel/
+Riferimenti: docs/SPEACE_BCEL_DESIGN.md, AGENTS.md
+Intento: estendere il catalogo BCEL al sistema endocrino biologico, perché SPEACE ha già un buffer di messaggi endocrini in speace_core/ilf/field_integrator.py.
+BCEL: il sistema endocrino risolve il problema della comunicazione lenta ma diffusa tra organi. I vincoli accidentali sono la diffusione chimica e la latenza; quelli funzionali sono la modulazione globale dello stato e la prioritizzazione dei segnali.
+Accettazione: aggiungere l'equivalenza al catalogo, un test in tests/test_bcel.py, e verificare che speace bcel-catalog la mostri.
+Cosa evitare
+Non inserire token, password o chiavi nei messaggi.
+Non chiedere cambiamenti a più domini critici in un'unica richiesta senza specificare i gate.
+Non dare istruzioni vaghe per codice di produzione ("migliora un po' tutto").
+In sintesi: intento + contesto + criteri = output di qualità. Se segui questa struttura, applico automaticamente il filtro AGENTS.md e il workflow BCEL.

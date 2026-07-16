@@ -1,0 +1,6 @@
+2026-06-16 08:39:25,118 [INFO] 2026-06-16 08:39:25.118 [WARN] Cloud LLM HTTP 405: {"error":"Method Not Allowed"}
+
+2026-06-16 08:39:25.118 [WARN] Cloud LLM HTTP 405: {"error":"Method Not Allowed"}
+
+2026-06-16 08:39:25,119 [INFO] 2026-06-16 08:39:25.119 [WARN] Cloud LLM fallito, fallback su locale
+2026-06-16 08:39:25.119 [WARN] Cloud LLM fallito, fallback su locale

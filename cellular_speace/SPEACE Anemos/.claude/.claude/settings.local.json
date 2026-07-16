@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8787/)",
+      "Bash(curl -s -X POST http://localhost:8787/chat -H \"Content-Type: application/json\" -d '{\"message\":\"ANEMOS_STATUS\"}')",
+      "WebSearch",
+      "Bash(curl -s http://localhost:8787/)",
+      "Bash(curl -s -X POST http://localhost:8787/chat -H \"Content-Type: application/json\" -d '{\"message\":\"Ciao\"}')",
+      "Bash(taskkill *)",
+      "PowerShell(Stop-Process *)",
+      "Bash(curl *)"
+    ]
+  }
+}

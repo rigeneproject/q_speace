@@ -1,0 +1,6 @@
+﻿2026-06-13 13:08:28.952 [DIAG] Diagnostica processi...
+2026-06-13 13:08:29.241 [WARN] Errore diagnostica processi: Eccezione durante la chiamata di "ToDateTime" con "1" argomento/i: "Argomento specificato non compreso nell'intervallo.
+Nome parametro: dmtfDate"
+2026-06-13 13:08:29.255 [DIAG] Generazione raccomandazioni...
+2026-06-13 13:08:29.294 [OK] Report diagnostica salvato: C:\cellular_speace\reports\manutenzione\correttiva\diagnosi_20260613_130828.json
+2026-06-13 13:08:29.303 [OK] Diagnosi Markdown salvata: C:\cellular_speace\data\diagnosi\diagnosi_20260613_130828.md

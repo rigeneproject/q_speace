@@ -1,0 +1,162 @@
+# Meta-Interoceptive Integration
+# Defines meta-signal synthesis from raw molecular signals.
+# Coefficients are dynamic — modulated by genome, age, experience, state.
+# Version: 1.0.0
+
+meta_signals:
+  wellbeing:
+    formula: "energy * w1 + safety * w2 + (1-stress) * w3 + (1-inflammation) * w4 + coherence * w5"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.30, modulation: [{factor: age, function: "linear(0.8, 1.2)"}, {factor: plasticity, function: "sigmoid(0.5, 0.1)"}]}
+      w2: {base: 0.20, modulation: [{factor: threat, function: "inverse_linear(0.5, 1.5)"}]}
+      w3: {base: 0.20, modulation: [{factor: energy, function: "linear(0.8, 1.2)"}]}
+      w4: {base: 0.15, modulation: [{factor: age, function: "linear(0.8, 1.1)"}]}
+      w5: {base: 0.15, modulation: [{factor: plasticity, function: "sigmoid(0.4, 0.2)"}]}
+
+  stress:
+    formula: "cortisol * w1 + adrenaline * w2 + prediction_error_sigmoid * w3"
+    range: [0.0, 1.0]
+    polarity: negative
+    coefficients:
+      w1: {base: 0.50, modulation: [{factor: age, function: "linear(0.8, 1.3)"}]}
+      w2: {base: 0.30, modulation: [{factor: threat, function: "linear(1.0, 2.0)"}]}
+      w3: {base: 0.20, modulation: [{factor: plasticity, function: "inverse_linear(0.5, 1.5)"}]}
+
+  fatigue:
+    formula: "fatigue_raw * w1 + (1-energy) * w2 + (1-nutrition) * w3"
+    range: [0.0, 1.0]
+    polarity: negative
+    coefficients:
+      w1: {base: 0.60, modulation: [{factor: age, function: "linear(0.8, 1.4)"}]}
+      w2: {base: 0.20, modulation: [{factor: energy, function: "inverse_linear(0.5, 1.5)"}]}
+      w3: {base: 0.20, modulation: [{factor: nutrition, function: "inverse_linear(0.5, 1.5)"}]}
+
+  inflammation:
+    formula: "il6 * w1 + tnfa * w2 + damage * w3"
+    range: [0.0, 1.0]
+    polarity: negative
+    coefficients:
+      w1: {base: 0.50, modulation: [{factor: stress, function: "linear(0.8, 1.5)"}]}
+      w2: {base: 0.30, modulation: [{factor: stress, function: "linear(0.8, 1.3)"}]}
+      w3: {base: 0.20, modulation: [{factor: age, function: "linear(0.8, 1.2)"}]}
+
+  resilience:
+    formula: "(1-cortisol) * w1 + energy * w2 + safety * w3 + repair * w4 + bdnf * w5"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.30, modulation: [{factor: plasticity, function: "sigmoid(0.5, 0.2)"}]}
+      w2: {base: 0.20, modulation: [{factor: energy, function: "linear(0.8, 1.2)"}]}
+      w3: {base: 0.20, modulation: [{factor: threat, function: "inverse_linear(0.5, 1.5)"}]}
+      w4: {base: 0.15, modulation: [{factor: age, function: "linear(0.8, 1.1)"}]}
+      w5: {base: 0.15, modulation: [{factor: plasticity, function: "sigmoid(0.5, 0.1)"}]}
+
+  plasticity:
+    formula: "bdnf * w1 + dopamine_novelty * w2 + curiosity * w3"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.50, modulation: [{factor: age, function: "inverse_linear(0.5, 1.5)"}]}
+      w2: {base: 0.25, modulation: [{factor: novelty, function: "linear(0.8, 1.3)"}]}
+      w3: {base: 0.25, modulation: [{factor: curiosity, function: "linear(0.8, 1.2)"}]}
+
+  motivation:
+    formula: "dopamine_reward * w1 + dopamine_opportunity * w2 + curiosity * w3 + (1-fatigue) * w4 + energy * w5"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.30, modulation: [{factor: stress, function: "inverse_linear(0.5, 1.5)"}]}
+      w2: {base: 0.25, modulation: [{factor: safety, function: "linear(0.8, 1.3)"}]}
+      w3: {base: 0.20, modulation: [{factor: plasticity, function: "sigmoid(0.5, 0.2)"}]}
+      w4: {base: 0.15, modulation: [{factor: energy, function: "linear(0.8, 1.2)"}]}
+      w5: {base: 0.10, modulation: [{factor: energy, function: "linear(0.8, 1.3)"}]}
+
+  curiosity:
+    formula: "dopamine_novelty * w1 + dopamine_opportunity * w2 + (1-cortisol) * w3 + oxytocin * w4"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.40, modulation: [{factor: plasticity, function: "sigmoid(0.5, 0.2)"}]}
+      w2: {base: 0.30, modulation: [{factor: safety, function: "linear(0.8, 1.4)"}]}
+      w3: {base: 0.20, modulation: [{factor: stress, function: "inverse_linear(0.5, 2.0)"}]}
+      w4: {base: 0.10, modulation: [{factor: threat, function: "inverse_linear(0.5, 1.5)"}]}
+
+  exploration_readiness:
+    formula: "energy * w1 + curiosity * w2 + oxytocin * w3 + (1-fatigue) * w4"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.30, modulation: [{factor: energy, function: "linear(0.8, 1.3)"}]}
+      w2: {base: 0.30, modulation: [{factor: curiosity, function: "linear(0.8, 1.2)"}]}
+      w3: {base: 0.20, modulation: [{factor: safety, function: "linear(0.8, 1.3)"}]}
+      w4: {base: 0.20, modulation: [{factor: fatigue, function: "inverse_linear(0.5, 1.5)"}]}
+
+  repair_need:
+    formula: "damage * w1 + il6 * w2 + tnfa * w3 + fatigue * w4"
+    range: [0.0, 1.0]
+    polarity: negative
+    coefficients:
+      w1: {base: 0.40, modulation: [{factor: age, function: "linear(0.8, 1.3)"}]}
+      w2: {base: 0.30, modulation: [{factor: inflammation, function: "linear(0.8, 1.2)"}]}
+      w3: {base: 0.20, modulation: [{factor: inflammation, function: "linear(0.8, 1.2)"}]}
+      w4: {base: 0.10, modulation: [{factor: fatigue, function: "linear(0.8, 1.2)"}]}
+
+  threat_level:
+    formula: "cortisol * w1 + adrenaline * w2 + danger * w3 + prediction_error_sigmoid * w4"
+    range: [0.0, 1.0]
+    polarity: negative
+    coefficients:
+      w1: {base: 0.40, modulation: [{factor: stress, function: "linear(0.8, 1.3)"}]}
+      w2: {base: 0.30, modulation: [{factor: threat, function: "linear(1.0, 2.0)"}]}
+      w3: {base: 0.20, modulation: [{factor: danger, function: "binary"}]}  # 0 or 1 override
+      w4: {base: 0.10, modulation: [{factor: plasticity, function: "inverse_linear(0.5, 1.5)"}]}
+
+  resource_availability:
+    formula: "insulin * w1 + leptin * w2 + (1-ghrelin) * w3 + energy * w4"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.30, modulation: [{factor: nutrition, function: "linear(0.8, 1.3)"}]}
+      w2: {base: 0.30, modulation: [{factor: energy, function: "linear(0.8, 1.2)"}]}
+      w3: {base: 0.20, modulation: [{factor: ghrelin, function: "inverse_linear(0.5, 1.5)"}]}
+      w4: {base: 0.20, modulation: [{factor: energy, function: "linear(0.8, 1.2)"}]}
+
+  prediction_stability:
+    formula: "coherence * w1 + (1-entropy) * w2 + synchronization * w3"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.40, modulation: [{factor: stress, function: "inverse_linear(0.5, 1.5)"}]}
+      w2: {base: 0.30, modulation: [{factor: entropy, function: "inverse_linear(0.5, 1.5)"}]}
+      w3: {base: 0.30, modulation: [{factor: coherence, function: "linear(0.8, 1.2)"}]}
+
+  homeostatic_reserve:
+    formula: "energy * w1 + (1-cortisol) * w2 + nutrition * w3 + repair * w4 + (1-il6) * w5"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.30, modulation: [{factor: energy, function: "linear(0.8, 1.3)"}]}
+      w2: {base: 0.25, modulation: [{factor: stress, function: "inverse_linear(0.5, 1.5)"}]}
+      w3: {base: 0.20, modulation: [{factor: nutrition, function: "linear(0.8, 1.2)"}]}
+      w4: {base: 0.15, modulation: [{factor: age, function: "linear(0.8, 1.1)"}]}
+      w5: {base: 0.10, modulation: [{factor: inflammation, function: "inverse_linear(0.5, 1.5)"}]}
+
+  social_readiness:
+    formula: "(1-cortisol) * w1 + oxytocin * w2 + energy * w3 + curiosity * w4 + (1-adrenaline) * w5"
+    range: [0.0, 1.0]
+    polarity: positive
+    coefficients:
+      w1: {base: 0.30, modulation: [{factor: stress, function: "inverse_linear(0.5, 2.0)"}]}
+      w2: {base: 0.25, modulation: [{factor: safety, function: "linear(0.8, 1.4)"}]}
+      w3: {base: 0.20, modulation: [{factor: energy, function: "linear(0.8, 1.2)"}]}
+      w4: {base: 0.15, modulation: [{factor: curiosity, function: "linear(0.8, 1.2)"}]}
+      w5: {base: 0.10, modulation: [{factor: danger, function: "binary"}]}
+
+# Global integrator parameters
+integrator:
+  update_interval: 5                    # ticks between integrations
+  prediction_error_sigmoid_gain: 2.0   # steepness of sigmoid(precision_error)
+  output_bus: endocrine                 # meta-signals published to Endocrine Bus
+  output_prefix: "meta_"               # e.g., meta_wellbeing, meta_stress

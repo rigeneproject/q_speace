@@ -1,0 +1,7 @@
+﻿2026-06-13 12:28:55.577 [OK] ===== AVVIO MANUTENZIONE COMPLETA (PREVENTIVA + CORRETTIVA) =====
+2026-06-13 12:28:55.686 [INFO] === Ciclo manutenzione completo #1 ===
+2026-06-13 12:28:59.243 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:28:59.246 [INFO] Prossimo ciclo tra 60s

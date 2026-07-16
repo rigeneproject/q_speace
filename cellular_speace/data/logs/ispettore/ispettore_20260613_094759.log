@@ -1,0 +1,115 @@
+﻿2026-06-13 09:48:00.063 [INFO] Esecuzione singola (once mode)
+2026-06-13 09:48:00.181 [INFO] ===== INIZIO SCANSIONE COMPLETA #0 =====
+2026-06-13 09:48:00.258 [INFO] Scansione in corso: Speace Core (Cervello) (C:\cellular_speace\speace_core)
+2026-06-13 09:48:00.642 [WARN] ISSUE: [Speace Core (Cervello)] orchestrator.py - FILE_TROPPO_GRANDE: orchestrator.py ha 2958 linee (>2000)
+2026-06-13 09:48:00.933 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:00.993 [WARN] ISSUE: [Speace Core (Cervello)] neurofunctional_benchmark.py - FILE_TROPPO_GRANDE: neurofunctional_benchmark.py ha 3377 linee (>2000)
+2026-06-13 09:48:01.005 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:01.026 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:01.234 [WARN] ISSUE: [Speace Core (Cervello)] cognitive_mutation_sandbox.py - USO_DI_EXEC_EVAL: cognitive_mutation_sandbox.py contiene eval/exec
+2026-06-13 09:48:01.401 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:01.577 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:01.727 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - TODO_FOUND: causal_model_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 09:48:01.734 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - FILE_TROPPO_GRANDE: causal_model_engine.py ha 2418 linee (>2000)
+2026-06-13 09:48:01.901 [WARN] ISSUE: [Speace Core (Cervello)] imitation_learning_sandbox.py - USO_DI_EXEC_EVAL: imitation_learning_sandbox.py contiene eval/exec
+2026-06-13 09:48:02.026 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.259 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.275 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.280 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.282 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.290 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.314 [WARN] ISSUE: [Speace Core (Cervello)] trust_governor.py - USO_DI_EXEC_EVAL: trust_governor.py contiene eval/exec
+2026-06-13 09:48:02.345 [WARN] ISSUE: [Speace Core (Cervello)] evolution_controller.py - TODO_FOUND: evolution_controller.py contiene TODO/FIXME da risolvere
+2026-06-13 09:48:02.415 [WARN] ISSUE: [Speace Core (Cervello)] subsystem_connector.py - TODO_FOUND: subsystem_connector.py contiene TODO/FIXME da risolvere
+2026-06-13 09:48:02.429 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.439 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.454 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.525 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.557 [WARN] ISSUE: [Speace Core (Cervello)] test_morphological_memory.py - USO_DI_EXEC_EVAL: test_morphological_memory.py contiene eval/exec
+2026-06-13 09:48:02.583 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.620 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:02.790 [WARN] Scansione completata: Speace Core (Cervello) - 26 issue trovate
+2026-06-13 09:48:02.797 [INFO] Scansione in corso: Speace AGI Team (C:\cellular_speace\speace_agi_team)
+2026-06-13 09:48:02.828 [WARN] ISSUE: [Speace AGI Team] config.py - USO_DI_EXEC_EVAL: config.py contiene eval/exec
+2026-06-13 09:48:02.986 [WARN] Scansione completata: Speace AGI Team - 1 issue trovate
+2026-06-13 09:48:03.004 [INFO] Scansione in corso: Data (C:\cellular_speace\data)
+2026-06-13 09:48:04.482 [WARN] ISSUE: [Data] evaluation.json - FILE_TROPPO_GRANDE: evaluation.json ha 844336 linee (>2000)
+2026-06-13 09:48:05.214 [WARN] ISSUE: [Data] training.json - FILE_TROPPO_GRANDE: training.json ha 522201 linee (>2000)
+2026-06-13 09:48:07.889 [WARN] ISSUE: [Data] latest_snapshot.json - JSON_INVALIDO: latest_snapshot.json non e JSON valido
+2026-06-13 09:48:07.895 [WARN] ISSUE: [Data] latest_snapshot.json - FILE_TROPPO_GRANDE: latest_snapshot.json ha 2174 linee (>2000)
+2026-06-13 09:48:07.953 [WARN] ISSUE: [Data] checkpoint_1781334419065.json - FILE_TROPPO_GRANDE: checkpoint_1781334419065.json ha 8052 linee (>2000)
+2026-06-13 09:48:08.046 [WARN] ISSUE: [Data] checkpoint_1781334719559.json - FILE_TROPPO_GRANDE: checkpoint_1781334719559.json ha 10186 linee (>2000)
+2026-06-13 09:48:08.152 [WARN] ISSUE: [Data] checkpoint_1781335021306.json - FILE_TROPPO_GRANDE: checkpoint_1781335021306.json ha 11022 linee (>2000)
+2026-06-13 09:48:08.214 [WARN] ISSUE: [Data] checkpoint_1781335322539.json - FILE_TROPPO_GRANDE: checkpoint_1781335322539.json ha 11022 linee (>2000)
+2026-06-13 09:48:08.282 [WARN] ISSUE: [Data] checkpoint_1781335622808.json - FILE_TROPPO_GRANDE: checkpoint_1781335622808.json ha 11022 linee (>2000)
+2026-06-13 09:48:08.400 [WARN] ISSUE: [Data] checkpoint_1781335923623.json - FILE_TROPPO_GRANDE: checkpoint_1781335923623.json ha 11022 linee (>2000)
+2026-06-13 09:48:08.491 [WARN] ISSUE: [Data] checkpoint_1781336225723.json - FILE_TROPPO_GRANDE: checkpoint_1781336225723.json ha 11022 linee (>2000)
+2026-06-13 09:48:08.550 [WARN] ISSUE: [Data] checkpoint_1781336526724.json - FILE_TROPPO_GRANDE: checkpoint_1781336526724.json ha 11022 linee (>2000)
+2026-06-13 09:48:08.620 [WARN] ISSUE: [Data] checkpoint_1781336714320.json - FILE_TROPPO_GRANDE: checkpoint_1781336714320.json ha 11022 linee (>2000)
+2026-06-13 09:48:08.690 [WARN] ISSUE: [Data] checkpoint_1781336843200.json - FILE_TROPPO_GRANDE: checkpoint_1781336843200.json ha 11022 linee (>2000)
+2026-06-13 09:48:08.829 [WARN] Scansione completata: Data - 13 issue trovate
+2026-06-13 09:48:08.837 [INFO] Scansione in corso: Scripts (C:\cellular_speace\scripts)
+2026-06-13 09:48:08.874 [WARN] ISSUE: [Scripts] speace_seed.py - USO_DI_EXEC_EVAL: speace_seed.py contiene eval/exec
+2026-06-13 09:48:08.900 [WARN] ISSUE: [Scripts] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:08.933 [WARN] Scansione completata: Scripts - 2 issue trovate
+2026-06-13 09:48:08.938 [INFO] Scansione in corso: Tests (C:\cellular_speace\tests)
+2026-06-13 09:48:09.093 [WARN] ISSUE: [Tests] test_phase8_mmapr_veto.py - USO_DI_EXEC_EVAL: test_phase8_mmapr_veto.py contiene eval/exec
+2026-06-13 09:48:09.107 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.118 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.150 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.168 [WARN] ISSUE: [Tests] test_coherence_proposal_executor.py - TODO_FOUND: test_coherence_proposal_executor.py contiene TODO/FIXME da risolvere
+2026-06-13 09:48:09.205 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.217 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.231 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.249 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.297 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.299 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.310 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.359 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.373 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.415 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.433 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.448 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.464 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.499 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.563 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.578 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.593 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.609 [WARN] ISSUE: [Tests] test_evolutionary_memory_governance_audit_runner.py - TODO_FOUND: test_evolutionary_memory_governance_audit_runner.py contiene TODO/FIXME da risolvere
+2026-06-13 09:48:09.614 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.622 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.645 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.661 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.680 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.692 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.710 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.727 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.772 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.810 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.837 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.837 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.894 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.917 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.932 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.958 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:09.989 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:10.045 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:10.054 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:10.059 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:10.075 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:10.078 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:10.088 [WARN] ISSUE: [Tests] test_auth_engine.py - TODO_FOUND: test_auth_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 09:48:10.126 [WARN] ISSUE: [Tests] __init__.py - ERRORE_LETTURA: Impossibile leggere __init__.py : Impossibile chiamare un metodo su un'espressione con valore null.
+2026-06-13 09:48:10.179 [WARN] Scansione completata: Tests - 47 issue trovate
+2026-06-13 09:48:10.179 [INFO] Scansione in corso: Documentazione (C:\cellular_speace\docs)
+2026-06-13 09:48:10.214 [WARN] ISSUE: [Documentazione] cellular_speace.md - FILE_TROPPO_GRANDE: cellular_speace.md ha 2117 linee (>2000)
+2026-06-13 09:48:10.268 [WARN] ISSUE: [Documentazione] metacognizione_pensiero_linguaggio_di_SPEACE.md - FILE_TROPPO_GRANDE: metacognizione_pensiero_linguaggio_di_SPEACE.md ha 3321 linee (>2000)
+2026-06-13 09:48:10.354 [WARN] ISSUE: [Documentazione] 104_NeuroEvolve_A_Dynamic_Brai.pdf - FILE_TROPPO_GRANDE: 104_NeuroEvolve_A_Dynamic_Brai.pdf ha 3743 linee (>2000)
+2026-06-13 09:48:10.562 [WARN] ISSUE: [Documentazione] 2604.25917v1.pdf - FILE_TROPPO_GRANDE: 2604.25917v1.pdf ha 47384 linee (>2000)
+2026-06-13 09:48:10.713 [WARN] ISSUE: [Documentazione] A brain-inspired framework for.pdf - FILE_TROPPO_GRANDE: A brain-inspired framework for.pdf ha 29697 linee (>2000)
+2026-06-13 09:48:10.833 [WARN] ISSUE: [Documentazione] Network geometry of the Drosophila brain.pdf - FILE_TROPPO_GRANDE: Network geometry of the Drosophila brain.pdf ha 34584 linee (>2000)
+2026-06-13 09:48:10.883 [WARN] ISSUE: [Documentazione] NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf - FILE_TROPPO_GRANDE: NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf ha 52360 linee (>2000)
+2026-06-13 09:48:11.175 [WARN] ISSUE: [Documentazione] Recursive Multi-Agent Systems.pdf - FILE_TROPPO_GRANDE: Recursive Multi-Agent Systems.pdf ha 47384 linee (>2000)
+2026-06-13 09:48:11.208 [WARN] ISSUE: [Documentazione] Reti neurali artificiali e apprendimenti basati sulla biofisica dei neuroni.pdf - FILE_TROPPO_GRANDE: Reti neurali artificiali e apprendimenti basati sulla biofisica dei neuroni.pdf ha 16566 linee (>2000)
+2026-06-13 09:48:11.224 [WARN] Scansione completata: Documentazione - 9 issue trovate
+2026-06-13 09:48:11.227 [INFO] Scansione in corso: Reports (C:\cellular_speace\reports)

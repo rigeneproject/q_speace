@@ -1,0 +1,124 @@
+# Neural / Endocrine Routing Table
+# Defines which molecules use which bus and their transport parameters.
+# Version: 1.0.0
+
+routing:
+  # ── Neural Bus ────────────────────────────────────────────────
+  neural:
+    dopamine:
+      default_receptor: D1
+      clearance: 1.0
+      stream: false
+      event: true
+      max_channels_per_target: 10
+    serotonin:
+      default_receptor: 5HT1A
+      clearance: 1.0
+      stream: false
+      event: true
+      max_channels_per_target: 8
+    noradrenaline:
+      default_receptor: ADRA1
+      clearance: 1.0
+      stream: false
+      event: true
+      max_channels_per_target: 6
+    acetylcholine:
+      default_receptor: nAChR
+      clearance: 1.0
+      stream: true
+      event: false
+      max_channels_per_target: 8
+    gaba:
+      default_receptor: GABAA
+      clearance: 1.0
+      stream: true
+      event: false
+      max_channels_per_target: 12
+    glutamate:
+      default_receptor: NMDA
+      clearance: 1.0
+      stream: true
+      event: false
+      max_channels_per_target: 12
+
+  # ── Endocrine Bus ─────────────────────────────────────────────
+  endocrine:
+    cortisol:
+      clearance_rate: 0.92
+      delay_ticks: 2
+      stream: true
+      event: false
+      max_accumulation: 1.0
+    adrenaline:
+      clearance_rate: 0.80
+      delay_ticks: 1
+      stream: false
+      event: true
+      max_accumulation: 1.0
+    insulin:
+      clearance_rate: 0.88
+      delay_ticks: 3
+      stream: true
+      event: false
+      max_accumulation: 1.0
+    glucagon:
+      clearance_rate: 0.90
+      delay_ticks: 2
+      stream: true
+      event: false
+      max_accumulation: 1.0
+    leptin:
+      clearance_rate: 0.95
+      delay_ticks: 5
+      stream: true
+      event: false
+      max_accumulation: 1.0
+    ghrelin:
+      clearance_rate: 0.93
+      delay_ticks: 2
+      stream: true
+      event: false
+      max_accumulation: 1.0
+    il6:
+      clearance_rate: 0.85
+      delay_ticks: 4
+      stream: true
+      event: true
+      max_accumulation: 1.0
+      event_duration: 5
+      event_decay: 0.80
+    tnfa:
+      clearance_rate: 0.82
+      delay_ticks: 4
+      stream: true
+      event: true
+      max_accumulation: 1.0
+      event_duration: 4
+      event_decay: 0.75
+    bdnf:
+      clearance_rate: 0.96
+      delay_ticks: 6
+      stream: true
+      event: false
+      max_accumulation: 1.0
+    igf1:
+      clearance_rate: 0.94
+      delay_ticks: 5
+      stream: true
+      event: false
+      max_accumulation: 1.0
+    growth_hormone:
+      clearance_rate: 0.90
+      delay_ticks: 3
+      stream: true
+      event: false
+      max_accumulation: 1.0
+    oxytocin:
+      clearance_rate: 0.93
+      delay_ticks: 3
+      stream: true
+      event: true
+      max_accumulation: 1.0
+      event_duration: 3
+      event_decay: 0.85

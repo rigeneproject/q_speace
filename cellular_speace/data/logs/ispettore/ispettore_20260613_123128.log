@@ -1,0 +1,1460 @@
+﻿2026-06-13 12:31:28.966 [OK] ===== AVVIO MANUTENZIONE COMPLETA (PREVENTIVA + CORRETTIVA) =====
+2026-06-13 12:31:29.048 [INFO] === Ciclo manutenzione completo #1 ===
+2026-06-13 12:31:31.241 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:31:31.248 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:32:31.265 [INFO] === Ciclo manutenzione completo #2 ===
+2026-06-13 12:32:32.623 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:32:32.623 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:33:32.629 [INFO] === Ciclo manutenzione completo #3 ===
+2026-06-13 12:33:34.165 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:33:34.184 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:34:34.189 [INFO] === Ciclo manutenzione completo #4 ===
+2026-06-13 12:34:35.599 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:34:35.604 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:35:35.622 [INFO] === Ciclo manutenzione completo #5 ===
+2026-06-13 12:35:36.968 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:35:36.977 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:36:36.983 [INFO] === Ciclo manutenzione completo #6 ===
+2026-06-13 12:36:40.151 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:36:40.163 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:37:40.182 [INFO] === Ciclo manutenzione completo #7 ===
+2026-06-13 12:37:41.626 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:37:41.642 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:38:41.653 [INFO] === Ciclo manutenzione completo #8 ===
+2026-06-13 12:38:43.052 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:38:43.052 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:39:43.067 [INFO] === Ciclo manutenzione completo #9 ===
+2026-06-13 12:39:44.542 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:39:44.544 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:40:44.555 [INFO] === Ciclo manutenzione completo #10 ===
+2026-06-13 12:40:45.883 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:40:45.883 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:41:45.886 [INFO] === Ciclo manutenzione completo #11 ===
+2026-06-13 12:41:47.425 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:41:47.542 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:42:47.891 [INFO] === Ciclo manutenzione completo #12 ===
+2026-06-13 12:42:54.962 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:42:54.968 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:43:54.985 [INFO] === Ciclo manutenzione completo #13 ===
+2026-06-13 12:43:56.711 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:43:56.724 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:44:56.739 [INFO] === Ciclo manutenzione completo #14 ===
+2026-06-13 12:44:58.576 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:44:58.580 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:45:58.587 [INFO] === Ciclo manutenzione completo #15 ===
+2026-06-13 12:46:00.158 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:46:00.195 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:47:00.214 [INFO] === Ciclo manutenzione completo #16 ===
+2026-06-13 12:47:03.269 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:47:03.527 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:48:03.698 [INFO] === Ciclo manutenzione completo #17 ===
+2026-06-13 12:48:05.179 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\correttiva\diagnostica.ps1:389 car:62
++ ... vita) { "critico" { "ðŸ”´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ " } "ba ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Token '´" } "alto" { "ðŸŸ¡" } "medio" { "ðŸŸ' imprevisto nell'espressione o nell'istruzione.
+2026-06-13 12:48:05.184 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:49:05.212 [INFO] === Ciclo manutenzione completo #18 ===
+2026-06-13 12:49:15.633 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:50:15.768 [INFO] === Ciclo manutenzione completo #19 ===
+2026-06-13 12:50:17.325 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:51:17.341 [INFO] === Ciclo manutenzione completo #20 ===
+2026-06-13 12:51:21.958 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:52:22.068 [INFO] === Ciclo manutenzione completo #21 ===
+2026-06-13 12:52:28.675 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:53:28.685 [INFO] === Ciclo manutenzione completo #22 ===
+2026-06-13 12:53:31.043 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:54:31.052 [INFO] === Ciclo manutenzione completo #23 ===
+2026-06-13 12:54:33.316 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:55:33.319 [INFO] === Ciclo manutenzione completo #24 ===
+2026-06-13 12:55:48.153 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:56:48.180 [INFO] === Ciclo manutenzione completo #25 ===
+2026-06-13 12:56:50.656 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:57:50.667 [INFO] === Ciclo manutenzione completo #26 ===
+2026-06-13 12:57:53.566 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:58:53.582 [INFO] === Ciclo manutenzione completo #27 ===
+2026-06-13 12:58:59.610 [INFO] Prossimo ciclo tra 60s
+2026-06-13 12:59:59.621 [INFO] === Ciclo manutenzione completo #28 ===
+2026-06-13 13:00:02.958 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:01:02.972 [INFO] === Ciclo manutenzione completo #29 ===
+2026-06-13 13:01:04.571 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:02:04.587 [INFO] === Ciclo manutenzione completo #30 ===
+2026-06-13 13:02:09.852 [ERROR] Errore in ciclo completo: In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:71 car:117
++ ... regroundColor Yellow; $script:warnings += "$Category / $Name: $Detail ...
++                                                            ~~~~~~
+Riferimento a variabile non valido. ':' non è seguito da un carattere del nome di variabile valido. Provare a utilizzare ${} per delimitare il nome.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:72 car:112
++ ... " -ForegroundColor Red; $script:errors += "$Category / $Name: $Detail ...
++                                                            ~~~~~~
+Riferimento a variabile non valido. ':' non è seguito da un carattere del nome di variabile valido. Provare a utilizzare ${} per delimitare il nome.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:292 car:121
++ ... ARN" { "âš ï¸ WARN" } "FAIL" { "âŒ FAIL" } "INFO" { "â„¹ï¸ INFO" } ...
++                                                              ~~~~
+Token '¹ï¸' imprevisto nell'espressione o nell'istruzione.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:293 car:48
++         $escapedDetail = $c.Detail -replace "\|", "/"
++                                                ~~~~~~
+Le espressioni sono consentite solo come primo elemento di una pipeline.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:294 car:19
++         $md += "| $($c.Name) | $statusIcon | $escapedDetail |`n"
++                   ~~~~~~~~~~
+Le espressioni sono consentite solo come primo elemento di una pipeline.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:294 car:32
++         $md += "| $($c.Name) | $statusIcon | $escapedDetail |`n"
++                                ~~~~~~~~~~~
+Le espressioni sono consentite solo come primo elemento di una pipeline.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:294 car:46
++         $md += "| $($c.Name) | $statusIcon | $escapedDetail |`n"
++                                              ~~~~~~~~~~~~~~
+Le espressioni sono consentite solo come primo elemento di una pipeline.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:300 car:4
++ ---
++    ~
+Espressione mancante dopo l'operatore unario '-'.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:301 car:2
++ *Report generato automaticamente dall'Ispettore Manutentore Neurologi ...
++  ~
+Specificare un'espressione di valore sul lato destro dell'operatore '*'.
+
+In C:\cellular_speace\ispettore_manutentore_neurologico_organismico_di_speace\manutenzione\preventiva\checklist_preventiva.ps1:301 car:2
++ *Report generato automaticamente dall'Ispettore Manutentore Neurologi ...
++  ~~~~~~
+Token 'Report' imprevisto nell'espressione o nell'istruzione.
+
+Non sono stati segnalati tutti gli errori di analisi. Correggere gli errori segnalati e riprovare.
+2026-06-13 13:02:09.857 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:03:09.859 [INFO] === Ciclo manutenzione completo #31 ===
+2026-06-13 13:03:11.696 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:04:11.696 [INFO] === Ciclo manutenzione completo #32 ===
+2026-06-13 13:04:13.509 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:05:13.523 [INFO] === Ciclo manutenzione completo #33 ===
+2026-06-13 13:05:18.050 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:06:18.060 [INFO] === Ciclo manutenzione completo #34 ===
+2026-06-13 13:06:20.677 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:07:20.684 [INFO] === Ciclo manutenzione completo #35 ===
+2026-06-13 13:07:23.019 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:08:23.024 [INFO] === Ciclo manutenzione completo #36 ===
+2026-06-13 13:08:39.452 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:09:39.463 [INFO] === Ciclo manutenzione completo #37 ===
+2026-06-13 13:09:41.615 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:10:41.630 [INFO] === Ciclo manutenzione completo #38 ===
+2026-06-13 13:10:43.886 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:11:43.891 [INFO] === Ciclo manutenzione completo #39 ===
+2026-06-13 13:11:48.907 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:12:48.914 [INFO] === Ciclo manutenzione completo #40 ===
+2026-06-13 13:12:51.353 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:13:51.373 [INFO] === Ciclo manutenzione completo #41 ===
+2026-06-13 13:13:53.696 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:14:53.700 [INFO] === Ciclo manutenzione completo #42 ===
+2026-06-13 13:15:04.990 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:16:05.006 [INFO] === Ciclo manutenzione completo #43 ===
+2026-06-13 13:16:07.415 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:17:07.419 [INFO] === Ciclo manutenzione completo #44 ===
+2026-06-13 13:17:11.345 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:18:11.465 [INFO] === Ciclo manutenzione completo #45 ===
+2026-06-13 13:18:22.355 [INFO] ===== INIZIO SCANSIONE COMPLETA #45 =====
+2026-06-13 13:18:22.441 [INFO] Scansione in corso: Speace Core (Cervello) (C:\cellular_speace\speace_core)
+2026-06-13 13:18:22.792 [WARN] ISSUE: [Speace Core (Cervello)] orchestrator.py - FILE_TROPPO_GRANDE: orchestrator.py ha 2958 linee (>2000)
+2026-06-13 13:18:22.979 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:23.061 [WARN] ISSUE: [Speace Core (Cervello)] neurofunctional_benchmark.py - FILE_TROPPO_GRANDE: neurofunctional_benchmark.py ha 3377 linee (>2000)
+2026-06-13 13:18:23.063 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:23.089 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:23.349 [WARN] ISSUE: [Speace Core (Cervello)] cognitive_mutation_sandbox.py - USO_DI_EXEC_EVAL: cognitive_mutation_sandbox.py contiene eval/exec
+2026-06-13 13:18:23.446 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:23.676 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:23.886 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - TODO_FOUND: causal_model_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 13:18:23.891 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - FILE_TROPPO_GRANDE: causal_model_engine.py ha 2418 linee (>2000)
+2026-06-13 13:18:24.124 [WARN] ISSUE: [Speace Core (Cervello)] imitation_learning_sandbox.py - USO_DI_EXEC_EVAL: imitation_learning_sandbox.py contiene eval/exec
+2026-06-13 13:18:24.325 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:24.722 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:24.729 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:24.733 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:24.741 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:24.749 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:24.798 [WARN] ISSUE: [Speace Core (Cervello)] trust_governor.py - USO_DI_EXEC_EVAL: trust_governor.py contiene eval/exec
+2026-06-13 13:18:24.825 [WARN] ISSUE: [Speace Core (Cervello)] evolution_controller.py - TODO_FOUND: evolution_controller.py contiene TODO/FIXME da risolvere
+2026-06-13 13:18:24.951 [WARN] ISSUE: [Speace Core (Cervello)] subsystem_connector.py - TODO_FOUND: subsystem_connector.py contiene TODO/FIXME da risolvere
+2026-06-13 13:18:24.959 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:24.963 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:24.977 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:25.071 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:25.124 [WARN] ISSUE: [Speace Core (Cervello)] test_morphological_memory.py - USO_DI_EXEC_EVAL: test_morphological_memory.py contiene eval/exec
+2026-06-13 13:18:25.169 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:25.279 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:25.549 [WARN] Scansione completata: Speace Core (Cervello) - 26 issue trovate
+2026-06-13 13:18:25.558 [INFO] Scansione in corso: Speace AGI Team (C:\cellular_speace\speace_agi_team)
+2026-06-13 13:18:25.631 [WARN] ISSUE: [Speace AGI Team] config.py - USO_DI_EXEC_EVAL: config.py contiene eval/exec
+2026-06-13 13:18:25.785 [WARN] Scansione completata: Speace AGI Team - 1 issue trovate
+2026-06-13 13:18:25.790 [INFO] Scansione in corso: Data (C:\cellular_speace\data)
+2026-06-13 13:18:28.315 [WARN] ISSUE: [Data] evaluation.json - FILE_TROPPO_GRANDE: evaluation.json ha 844336 linee (>2000)
+2026-06-13 13:18:29.614 [WARN] ISSUE: [Data] training.json - FILE_TROPPO_GRANDE: training.json ha 522201 linee (>2000)
+2026-06-13 13:18:35.118 [WARN] ISSUE: [Data] latest_snapshot.json - JSON_INVALIDO: latest_snapshot.json non e JSON valido
+2026-06-13 13:18:35.124 [WARN] ISSUE: [Data] latest_snapshot.json - FILE_TROPPO_GRANDE: latest_snapshot.json ha 2244 linee (>2000)
+2026-06-13 13:18:35.227 [WARN] ISSUE: [Data] checkpoint_1781347769994.json - FILE_TROPPO_GRANDE: checkpoint_1781347769994.json ha 11022 linee (>2000)
+2026-06-13 13:18:35.402 [WARN] ISSUE: [Data] checkpoint_1781347792037.json - FILE_TROPPO_GRANDE: checkpoint_1781347792037.json ha 11022 linee (>2000)
+2026-06-13 13:18:35.548 [WARN] ISSUE: [Data] checkpoint_1781348035541.json - FILE_TROPPO_GRANDE: checkpoint_1781348035541.json ha 11022 linee (>2000)
+2026-06-13 13:18:35.712 [WARN] ISSUE: [Data] checkpoint_1781348071659.json - FILE_TROPPO_GRANDE: checkpoint_1781348071659.json ha 11022 linee (>2000)
+2026-06-13 13:18:35.892 [WARN] ISSUE: [Data] checkpoint_1781348072435.json - FILE_TROPPO_GRANDE: checkpoint_1781348072435.json ha 11022 linee (>2000)
+2026-06-13 13:18:36.100 [WARN] ISSUE: [Data] checkpoint_1781348095270.json - FILE_TROPPO_GRANDE: checkpoint_1781348095270.json ha 11022 linee (>2000)
+2026-06-13 13:18:36.307 [WARN] ISSUE: [Data] checkpoint_1781348370010.json - FILE_TROPPO_GRANDE: checkpoint_1781348370010.json ha 11022 linee (>2000)
+2026-06-13 13:18:36.399 [WARN] ISSUE: [Data] checkpoint_1781348395464.json - FILE_TROPPO_GRANDE: checkpoint_1781348395464.json ha 11022 linee (>2000)
+2026-06-13 13:18:36.549 [WARN] ISSUE: [Data] checkpoint_1781348402219.json - FILE_TROPPO_GRANDE: checkpoint_1781348402219.json ha 11022 linee (>2000)
+2026-06-13 13:18:36.796 [WARN] ISSUE: [Data] checkpoint_1781348423399.json - FILE_TROPPO_GRANDE: checkpoint_1781348423399.json ha 11022 linee (>2000)
+2026-06-13 13:18:37.120 [WARN] Scansione completata: Data - 13 issue trovate
+2026-06-13 13:18:37.198 [INFO] Scansione in corso: Scripts (C:\cellular_speace\scripts)
+2026-06-13 13:18:37.302 [WARN] ISSUE: [Scripts] speace_seed.py - USO_DI_EXEC_EVAL: speace_seed.py contiene eval/exec
+2026-06-13 13:18:37.619 [WARN] ISSUE: [Scripts] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:37.810 [WARN] Scansione completata: Scripts - 2 issue trovate
+2026-06-13 13:18:37.817 [INFO] Scansione in corso: Tests (C:\cellular_speace\tests)
+2026-06-13 13:18:38.523 [WARN] ISSUE: [Tests] test_phase8_mmapr_veto.py - USO_DI_EXEC_EVAL: test_phase8_mmapr_veto.py contiene eval/exec
+2026-06-13 13:18:38.554 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:38.568 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:38.630 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:38.674 [WARN] ISSUE: [Tests] test_coherence_proposal_executor.py - TODO_FOUND: test_coherence_proposal_executor.py contiene TODO/FIXME da risolvere
+2026-06-13 13:18:38.740 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:38.786 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:38.828 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:38.893 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.167 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.358 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.404 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.544 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.685 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.745 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.825 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.877 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:39.936 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.006 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.111 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.154 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.196 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.231 [WARN] ISSUE: [Tests] test_evolutionary_memory_governance_audit_runner.py - TODO_FOUND: test_evolutionary_memory_governance_audit_runner.py contiene TODO/FIXME da risolvere
+2026-06-13 13:18:40.285 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.324 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.406 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.417 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.450 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.489 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.543 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.556 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.611 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.647 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.689 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.714 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.782 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.825 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.847 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.883 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:40.946 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:41.026 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:41.041 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:41.052 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:41.075 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:41.091 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:41.102 [WARN] ISSUE: [Tests] test_auth_engine.py - TODO_FOUND: test_auth_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 13:18:41.148 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:18:41.225 [WARN] Scansione completata: Tests - 47 issue trovate
+2026-06-13 13:18:41.235 [INFO] Scansione in corso: Documentazione (C:\cellular_speace\docs)
+2026-06-13 13:18:41.296 [WARN] ISSUE: [Documentazione] cellular_speace.md - FILE_TROPPO_GRANDE: cellular_speace.md ha 2117 linee (>2000)
+2026-06-13 13:18:41.415 [WARN] ISSUE: [Documentazione] metacognizione_pensiero_linguaggio_di_SPEACE.md - FILE_TROPPO_GRANDE: metacognizione_pensiero_linguaggio_di_SPEACE.md ha 3321 linee (>2000)
+2026-06-13 13:18:41.562 [WARN] ISSUE: [Documentazione] 104_NeuroEvolve_A_Dynamic_Brai.pdf - FILE_TROPPO_GRANDE: 104_NeuroEvolve_A_Dynamic_Brai.pdf ha 3743 linee (>2000)
+2026-06-13 13:18:41.890 [WARN] ISSUE: [Documentazione] 2604.25917v1.pdf - FILE_TROPPO_GRANDE: 2604.25917v1.pdf ha 47384 linee (>2000)
+2026-06-13 13:18:42.122 [WARN] ISSUE: [Documentazione] A brain-inspired framework for.pdf - FILE_TROPPO_GRANDE: A brain-inspired framework for.pdf ha 29697 linee (>2000)
+2026-06-13 13:18:42.264 [WARN] ISSUE: [Documentazione] Network geometry of the Drosophila brain.pdf - FILE_TROPPO_GRANDE: Network geometry of the Drosophila brain.pdf ha 34584 linee (>2000)
+2026-06-13 13:18:42.372 [WARN] ISSUE: [Documentazione] NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf - FILE_TROPPO_GRANDE: NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf ha 52360 linee (>2000)
+2026-06-13 13:18:42.983 [WARN] ISSUE: [Documentazione] Recursive Multi-Agent Systems.pdf - FILE_TROPPO_GRANDE: Recursive Multi-Agent Systems.pdf ha 47384 linee (>2000)
+2026-06-13 13:18:43.084 [WARN] ISSUE: [Documentazione] Reti neurali artificiali e apprendimenti basati sulla biofisica dei neuroni.pdf - FILE_TROPPO_GRANDE: Reti neurali artificiali e apprendimenti basati sulla biofisica dei neuroni.pdf ha 16566 linee (>2000)
+2026-06-13 13:18:43.128 [WARN] Scansione completata: Documentazione - 9 issue trovate
+2026-06-13 13:18:43.157 [INFO] Scansione in corso: Reports (C:\cellular_speace\reports)
+2026-06-13 13:19:01.984 [WARN] ISSUE: [Reports] arc_agi_report_20260528_074249.json - FILE_TROPPO_GRANDE: arc_agi_report_20260528_074249.json ha 2132 linee (>2000)
+2026-06-13 13:19:02.012 [WARN] ISSUE: [Reports] arc_agi_report_20260528_084421.json - FILE_TROPPO_GRANDE: arc_agi_report_20260528_084421.json ha 2565 linee (>2000)
+2026-06-13 13:19:08.417 [WARN] ISSUE: [Reports] calibration_20260519_113608.json - FILE_TROPPO_GRANDE: calibration_20260519_113608.json ha 2212 linee (>2000)
+2026-06-13 13:19:08.463 [WARN] ISSUE: [Reports] calibration_20260519_123918.json - FILE_TROPPO_GRANDE: calibration_20260519_123918.json ha 2212 linee (>2000)
+2026-06-13 13:19:08.522 [WARN] ISSUE: [Reports] calibration_20260519_143733.json - FILE_TROPPO_GRANDE: calibration_20260519_143733.json ha 2212 linee (>2000)
+2026-06-13 13:19:08.598 [WARN] ISSUE: [Reports] calibration_20260519_162439.json - FILE_TROPPO_GRANDE: calibration_20260519_162439.json ha 2212 linee (>2000)
+2026-06-13 13:19:08.689 [WARN] ISSUE: [Reports] calibration_20260519_183750.json - FILE_TROPPO_GRANDE: calibration_20260519_183750.json ha 2212 linee (>2000)
+2026-06-13 13:19:08.760 [WARN] ISSUE: [Reports] calibration_20260519_203926.json - FILE_TROPPO_GRANDE: calibration_20260519_203926.json ha 2332 linee (>2000)
+2026-06-13 13:19:08.823 [WARN] ISSUE: [Reports] calibration_20260519_204627.json - FILE_TROPPO_GRANDE: calibration_20260519_204627.json ha 2332 linee (>2000)
+2026-06-13 13:19:08.866 [WARN] ISSUE: [Reports] calibration_20260519_204828.json - FILE_TROPPO_GRANDE: calibration_20260519_204828.json ha 2332 linee (>2000)
+2026-06-13 13:19:09.008 [WARN] ISSUE: [Reports] calibration_20260520_131929.json - FILE_TROPPO_GRANDE: calibration_20260520_131929.json ha 2708 linee (>2000)
+2026-06-13 13:19:09.036 [WARN] ISSUE: [Reports] calibration_20260520_131930.json - FILE_TROPPO_GRANDE: calibration_20260520_131930.json ha 2018 linee (>2000)
+2026-06-13 13:19:09.068 [WARN] ISSUE: [Reports] calibration_20260520_150158.json - FILE_TROPPO_GRANDE: calibration_20260520_150158.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.092 [WARN] ISSUE: [Reports] calibration_20260520_150159.json - FILE_TROPPO_GRANDE: calibration_20260520_150159.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.122 [WARN] ISSUE: [Reports] calibration_20260520_150246.json - FILE_TROPPO_GRANDE: calibration_20260520_150246.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.138 [WARN] ISSUE: [Reports] calibration_20260520_150247.json - FILE_TROPPO_GRANDE: calibration_20260520_150247.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.165 [WARN] ISSUE: [Reports] calibration_20260520_150402.json - FILE_TROPPO_GRANDE: calibration_20260520_150402.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.190 [WARN] ISSUE: [Reports] calibration_20260521_102444.json - FILE_TROPPO_GRANDE: calibration_20260521_102444.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.217 [WARN] ISSUE: [Reports] calibration_20260521_102445.json - FILE_TROPPO_GRANDE: calibration_20260521_102445.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.234 [WARN] ISSUE: [Reports] calibration_20260521_103431.json - FILE_TROPPO_GRANDE: calibration_20260521_103431.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.263 [WARN] ISSUE: [Reports] calibration_20260521_103625.json - FILE_TROPPO_GRANDE: calibration_20260521_103625.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.294 [WARN] ISSUE: [Reports] calibration_20260521_103626.json - FILE_TROPPO_GRANDE: calibration_20260521_103626.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.323 [WARN] ISSUE: [Reports] calibration_20260522_085147.json - FILE_TROPPO_GRANDE: calibration_20260522_085147.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.353 [WARN] ISSUE: [Reports] calibration_20260522_085311.json - FILE_TROPPO_GRANDE: calibration_20260522_085311.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.379 [WARN] ISSUE: [Reports] calibration_20260522_085352.json - FILE_TROPPO_GRANDE: calibration_20260522_085352.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.419 [WARN] ISSUE: [Reports] calibration_20260522_110739.json - FILE_TROPPO_GRANDE: calibration_20260522_110739.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.460 [WARN] ISSUE: [Reports] calibration_20260522_111318.json - FILE_TROPPO_GRANDE: calibration_20260522_111318.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.484 [WARN] ISSUE: [Reports] calibration_20260522_111319.json - FILE_TROPPO_GRANDE: calibration_20260522_111319.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.518 [WARN] ISSUE: [Reports] calibration_20260522_114415.json - FILE_TROPPO_GRANDE: calibration_20260522_114415.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.542 [WARN] ISSUE: [Reports] calibration_20260522_114416.json - FILE_TROPPO_GRANDE: calibration_20260522_114416.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.586 [WARN] ISSUE: [Reports] calibration_20260522_114707.json - FILE_TROPPO_GRANDE: calibration_20260522_114707.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.605 [WARN] ISSUE: [Reports] calibration_20260522_114708.json - FILE_TROPPO_GRANDE: calibration_20260522_114708.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.641 [WARN] ISSUE: [Reports] calibration_20260522_114719.json - FILE_TROPPO_GRANDE: calibration_20260522_114719.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.714 [WARN] ISSUE: [Reports] calibration_20260522_114720.json - FILE_TROPPO_GRANDE: calibration_20260522_114720.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.744 [WARN] ISSUE: [Reports] calibration_20260522_114904.json - FILE_TROPPO_GRANDE: calibration_20260522_114904.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.780 [WARN] ISSUE: [Reports] calibration_20260522_133123.json - FILE_TROPPO_GRANDE: calibration_20260522_133123.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.868 [WARN] ISSUE: [Reports] calibration_20260522_133842.json - FILE_TROPPO_GRANDE: calibration_20260522_133842.json ha 2804 linee (>2000)
+2026-06-13 13:19:09.900 [WARN] ISSUE: [Reports] calibration_20260522_133843.json - FILE_TROPPO_GRANDE: calibration_20260522_133843.json ha 2090 linee (>2000)
+2026-06-13 13:19:09.941 [WARN] ISSUE: [Reports] calibration_20260522_134102.json - FILE_TROPPO_GRANDE: calibration_20260522_134102.json ha 2804 linee (>2000)
+2026-06-13 13:19:10.004 [WARN] ISSUE: [Reports] calibration_20260522_134103.json - FILE_TROPPO_GRANDE: calibration_20260522_134103.json ha 2090 linee (>2000)
+2026-06-13 13:19:10.069 [WARN] ISSUE: [Reports] calibration_20260522_150547.json - FILE_TROPPO_GRANDE: calibration_20260522_150547.json ha 2804 linee (>2000)
+2026-06-13 13:19:10.096 [WARN] ISSUE: [Reports] calibration_20260522_150548.json - FILE_TROPPO_GRANDE: calibration_20260522_150548.json ha 2090 linee (>2000)
+2026-06-13 13:19:10.136 [WARN] ISSUE: [Reports] calibration_20260522_152541.json - FILE_TROPPO_GRANDE: calibration_20260522_152541.json ha 2090 linee (>2000)
+2026-06-13 13:19:10.177 [WARN] ISSUE: [Reports] calibration_20260522_162803.json - FILE_TROPPO_GRANDE: calibration_20260522_162803.json ha 2804 linee (>2000)
+2026-06-13 13:19:10.346 [WARN] ISSUE: [Reports] calibration_20260522_162804.json - FILE_TROPPO_GRANDE: calibration_20260522_162804.json ha 2090 linee (>2000)
+2026-06-13 13:19:10.388 [WARN] ISSUE: [Reports] calibration_20260522_163121.json - FILE_TROPPO_GRANDE: calibration_20260522_163121.json ha 2090 linee (>2000)
+2026-06-13 13:19:10.514 [WARN] ISSUE: [Reports] calibration_20260522_163434.json - FILE_TROPPO_GRANDE: calibration_20260522_163434.json ha 2804 linee (>2000)
+2026-06-13 13:19:10.550 [WARN] ISSUE: [Reports] calibration_20260522_163435.json - FILE_TROPPO_GRANDE: calibration_20260522_163435.json ha 2090 linee (>2000)
+2026-06-13 13:19:10.667 [WARN] ISSUE: [Reports] calibration_20260522_163551.json - FILE_TROPPO_GRANDE: calibration_20260522_163551.json ha 2090 linee (>2000)
+2026-06-13 13:19:10.722 [WARN] ISSUE: [Reports] calibration_20260522_164145.json - FILE_TROPPO_GRANDE: calibration_20260522_164145.json ha 2821 linee (>2000)
+2026-06-13 13:19:10.854 [WARN] ISSUE: [Reports] calibration_20260522_164146.json - FILE_TROPPO_GRANDE: calibration_20260522_164146.json ha 2090 linee (>2000)
+2026-06-13 13:19:10.916 [WARN] ISSUE: [Reports] calibration_20260522_164157.json - FILE_TROPPO_GRANDE: calibration_20260522_164157.json ha 2821 linee (>2000)
+2026-06-13 13:19:10.963 [WARN] ISSUE: [Reports] calibration_20260522_164158.json - FILE_TROPPO_GRANDE: calibration_20260522_164158.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.044 [WARN] ISSUE: [Reports] calibration_20260522_164355.json - FILE_TROPPO_GRANDE: calibration_20260522_164355.json ha 2821 linee (>2000)
+2026-06-13 13:19:11.090 [WARN] ISSUE: [Reports] calibration_20260522_164356.json - FILE_TROPPO_GRANDE: calibration_20260522_164356.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.128 [WARN] ISSUE: [Reports] calibration_20260522_172728.json - FILE_TROPPO_GRANDE: calibration_20260522_172728.json ha 2821 linee (>2000)
+2026-06-13 13:19:11.165 [WARN] ISSUE: [Reports] calibration_20260522_172729.json - FILE_TROPPO_GRANDE: calibration_20260522_172729.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.264 [WARN] ISSUE: [Reports] calibration_20260522_172831.json - FILE_TROPPO_GRANDE: calibration_20260522_172831.json ha 2821 linee (>2000)
+2026-06-13 13:19:11.294 [WARN] ISSUE: [Reports] calibration_20260522_172832.json - FILE_TROPPO_GRANDE: calibration_20260522_172832.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.332 [WARN] ISSUE: [Reports] calibration_20260522_172951.json - FILE_TROPPO_GRANDE: calibration_20260522_172951.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.411 [WARN] ISSUE: [Reports] calibration_20260522_175403.json - FILE_TROPPO_GRANDE: calibration_20260522_175403.json ha 2821 linee (>2000)
+2026-06-13 13:19:11.450 [WARN] ISSUE: [Reports] calibration_20260522_175404.json - FILE_TROPPO_GRANDE: calibration_20260522_175404.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.504 [WARN] ISSUE: [Reports] calibration_20260522_175651.json - FILE_TROPPO_GRANDE: calibration_20260522_175651.json ha 2821 linee (>2000)
+2026-06-13 13:19:11.551 [WARN] ISSUE: [Reports] calibration_20260522_175652.json - FILE_TROPPO_GRANDE: calibration_20260522_175652.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.631 [WARN] ISSUE: [Reports] calibration_20260522_175859.json - FILE_TROPPO_GRANDE: calibration_20260522_175859.json ha 2821 linee (>2000)
+2026-06-13 13:19:11.712 [WARN] ISSUE: [Reports] calibration_20260522_175900.json - FILE_TROPPO_GRANDE: calibration_20260522_175900.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.757 [WARN] ISSUE: [Reports] calibration_20260522_180234.json - FILE_TROPPO_GRANDE: calibration_20260522_180234.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.792 [WARN] ISSUE: [Reports] calibration_20260522_200442.json - FILE_TROPPO_GRANDE: calibration_20260522_200442.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.846 [WARN] ISSUE: [Reports] calibration_20260522_200629.json - FILE_TROPPO_GRANDE: calibration_20260522_200629.json ha 2821 linee (>2000)
+2026-06-13 13:19:11.929 [WARN] ISSUE: [Reports] calibration_20260522_200630.json - FILE_TROPPO_GRANDE: calibration_20260522_200630.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.950 [WARN] ISSUE: [Reports] calibration_20260524_174454.json - FILE_TROPPO_GRANDE: calibration_20260524_174454.json ha 2090 linee (>2000)
+2026-06-13 13:19:11.985 [WARN] ISSUE: [Reports] calibration_20260524_175729.json - FILE_TROPPO_GRANDE: calibration_20260524_175729.json ha 2821 linee (>2000)
+2026-06-13 13:19:12.007 [WARN] ISSUE: [Reports] calibration_20260524_175730.json - FILE_TROPPO_GRANDE: calibration_20260524_175730.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.037 [WARN] ISSUE: [Reports] calibration_20260525_090925.json - FILE_TROPPO_GRANDE: calibration_20260525_090925.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.083 [WARN] ISSUE: [Reports] calibration_20260525_091027.json - FILE_TROPPO_GRANDE: calibration_20260525_091027.json ha 2821 linee (>2000)
+2026-06-13 13:19:12.145 [WARN] ISSUE: [Reports] calibration_20260525_091028.json - FILE_TROPPO_GRANDE: calibration_20260525_091028.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.170 [WARN] ISSUE: [Reports] calibration_20260525_091654.json - FILE_TROPPO_GRANDE: calibration_20260525_091654.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.205 [WARN] ISSUE: [Reports] calibration_20260528_092819.json - FILE_TROPPO_GRANDE: calibration_20260528_092819.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.233 [WARN] ISSUE: [Reports] calibration_20260603_134833.json - FILE_TROPPO_GRANDE: calibration_20260603_134833.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.276 [WARN] ISSUE: [Reports] calibration_20260603_135336.json - FILE_TROPPO_GRANDE: calibration_20260603_135336.json ha 2821 linee (>2000)
+2026-06-13 13:19:12.308 [WARN] ISSUE: [Reports] calibration_20260603_135337.json - FILE_TROPPO_GRANDE: calibration_20260603_135337.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.360 [WARN] ISSUE: [Reports] calibration_20260603_135411.json - FILE_TROPPO_GRANDE: calibration_20260603_135411.json ha 2821 linee (>2000)
+2026-06-13 13:19:12.464 [WARN] ISSUE: [Reports] calibration_20260603_135412.json - FILE_TROPPO_GRANDE: calibration_20260603_135412.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.524 [WARN] ISSUE: [Reports] calibration_20260603_140425.json - FILE_TROPPO_GRANDE: calibration_20260603_140425.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.555 [WARN] ISSUE: [Reports] calibration_20260603_140506.json - FILE_TROPPO_GRANDE: calibration_20260603_140506.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.597 [WARN] ISSUE: [Reports] calibration_20260603_141518.json - FILE_TROPPO_GRANDE: calibration_20260603_141518.json ha 2821 linee (>2000)
+2026-06-13 13:19:12.621 [WARN] ISSUE: [Reports] calibration_20260603_141519.json - FILE_TROPPO_GRANDE: calibration_20260603_141519.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.681 [WARN] ISSUE: [Reports] calibration_20260603_142531.json - FILE_TROPPO_GRANDE: calibration_20260603_142531.json ha 2821 linee (>2000)
+2026-06-13 13:19:12.722 [WARN] ISSUE: [Reports] calibration_20260603_142532.json - FILE_TROPPO_GRANDE: calibration_20260603_142532.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.749 [WARN] ISSUE: [Reports] calibration_20260603_143545.json - FILE_TROPPO_GRANDE: calibration_20260603_143545.json ha 2821 linee (>2000)
+2026-06-13 13:19:12.785 [WARN] ISSUE: [Reports] calibration_20260603_143546.json - FILE_TROPPO_GRANDE: calibration_20260603_143546.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.831 [WARN] ISSUE: [Reports] calibration_20260603_153336.json - FILE_TROPPO_GRANDE: calibration_20260603_153336.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.874 [WARN] ISSUE: [Reports] calibration_20260603_153849.json - FILE_TROPPO_GRANDE: calibration_20260603_153849.json ha 2821 linee (>2000)
+2026-06-13 13:19:12.901 [WARN] ISSUE: [Reports] calibration_20260603_153850.json - FILE_TROPPO_GRANDE: calibration_20260603_153850.json ha 2090 linee (>2000)
+2026-06-13 13:19:12.923 [WARN] ISSUE: [Reports] calibration_20260603_154351.json - FILE_TROPPO_GRANDE: calibration_20260603_154351.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.036 [WARN] ISSUE: [Reports] calibration_20260603_224852.json - FILE_TROPPO_GRANDE: calibration_20260603_224852.json ha 2821 linee (>2000)
+2026-06-13 13:19:13.063 [WARN] ISSUE: [Reports] calibration_20260603_224853.json - FILE_TROPPO_GRANDE: calibration_20260603_224853.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.100 [WARN] ISSUE: [Reports] calibration_20260603_230350.json - FILE_TROPPO_GRANDE: calibration_20260603_230350.json ha 2821 linee (>2000)
+2026-06-13 13:19:13.141 [WARN] ISSUE: [Reports] calibration_20260603_230351.json - FILE_TROPPO_GRANDE: calibration_20260603_230351.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.186 [WARN] ISSUE: [Reports] calibration_20260603_230839.json - FILE_TROPPO_GRANDE: calibration_20260603_230839.json ha 2821 linee (>2000)
+2026-06-13 13:19:13.218 [WARN] ISSUE: [Reports] calibration_20260603_230840.json - FILE_TROPPO_GRANDE: calibration_20260603_230840.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.255 [WARN] ISSUE: [Reports] calibration_20260604_090715.json - FILE_TROPPO_GRANDE: calibration_20260604_090715.json ha 2821 linee (>2000)
+2026-06-13 13:19:13.281 [WARN] ISSUE: [Reports] calibration_20260604_090716.json - FILE_TROPPO_GRANDE: calibration_20260604_090716.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.329 [WARN] ISSUE: [Reports] calibration_20260604_092914.json - FILE_TROPPO_GRANDE: calibration_20260604_092914.json ha 2821 linee (>2000)
+2026-06-13 13:19:13.369 [WARN] ISSUE: [Reports] calibration_20260604_092915.json - FILE_TROPPO_GRANDE: calibration_20260604_092915.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.429 [WARN] ISSUE: [Reports] calibration_20260604_132412.json - FILE_TROPPO_GRANDE: calibration_20260604_132412.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.499 [WARN] ISSUE: [Reports] calibration_20260604_141002.json - FILE_TROPPO_GRANDE: calibration_20260604_141002.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.707 [WARN] ISSUE: [Reports] calibration_20260605_085333.json - FILE_TROPPO_GRANDE: calibration_20260605_085333.json ha 2821 linee (>2000)
+2026-06-13 13:19:13.861 [WARN] ISSUE: [Reports] calibration_20260605_085336.json - FILE_TROPPO_GRANDE: calibration_20260605_085336.json ha 2090 linee (>2000)
+2026-06-13 13:19:13.925 [WARN] ISSUE: [Reports] calibration_20260605_085622.json - FILE_TROPPO_GRANDE: calibration_20260605_085622.json ha 2821 linee (>2000)
+2026-06-13 13:19:13.968 [WARN] ISSUE: [Reports] calibration_20260605_085625.json - FILE_TROPPO_GRANDE: calibration_20260605_085625.json ha 2090 linee (>2000)
+2026-06-13 13:19:14.040 [WARN] ISSUE: [Reports] calibration_20260605_123607.json - FILE_TROPPO_GRANDE: calibration_20260605_123607.json ha 2821 linee (>2000)
+2026-06-13 13:19:14.083 [WARN] ISSUE: [Reports] calibration_20260605_123612.json - FILE_TROPPO_GRANDE: calibration_20260605_123612.json ha 2090 linee (>2000)
+2026-06-13 13:19:17.757 [WARN] ISSUE: [Reports] deep_region_audit_20260520_080704.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_080704.json ha 2053 linee (>2000)
+2026-06-13 13:19:17.806 [WARN] ISSUE: [Reports] deep_region_audit_20260520_131917.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_131917.json ha 2107 linee (>2000)
+2026-06-13 13:19:17.856 [WARN] ISSUE: [Reports] deep_region_audit_20260520_150147.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_150147.json ha 2179 linee (>2000)
+2026-06-13 13:19:17.882 [WARN] ISSUE: [Reports] deep_region_audit_20260520_150235.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_150235.json ha 2179 linee (>2000)
+2026-06-13 13:19:17.925 [WARN] ISSUE: [Reports] deep_region_audit_20260520_150350.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_150350.json ha 2179 linee (>2000)
+2026-06-13 13:19:17.973 [WARN] ISSUE: [Reports] deep_region_audit_20260521_102432.json - FILE_TROPPO_GRANDE: deep_region_audit_20260521_102432.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.004 [WARN] ISSUE: [Reports] deep_region_audit_20260521_103419.json - FILE_TROPPO_GRANDE: deep_region_audit_20260521_103419.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.063 [WARN] ISSUE: [Reports] deep_region_audit_20260521_103613.json - FILE_TROPPO_GRANDE: deep_region_audit_20260521_103613.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.104 [WARN] ISSUE: [Reports] deep_region_audit_20260522_085136.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_085136.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.130 [WARN] ISSUE: [Reports] deep_region_audit_20260522_085259.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_085259.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.155 [WARN] ISSUE: [Reports] deep_region_audit_20260522_085340.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_085340.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.196 [WARN] ISSUE: [Reports] deep_region_audit_20260522_110725.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_110725.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.232 [WARN] ISSUE: [Reports] deep_region_audit_20260522_111307.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_111307.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.260 [WARN] ISSUE: [Reports] deep_region_audit_20260522_114403.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_114403.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.354 [WARN] ISSUE: [Reports] deep_region_audit_20260522_114653.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_114653.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.389 [WARN] ISSUE: [Reports] deep_region_audit_20260522_114703.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_114703.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.415 [WARN] ISSUE: [Reports] deep_region_audit_20260522_114851.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_114851.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.468 [WARN] ISSUE: [Reports] deep_region_audit_20260522_133110.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_133110.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.531 [WARN] ISSUE: [Reports] deep_region_audit_20260522_133830.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_133830.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.573 [WARN] ISSUE: [Reports] deep_region_audit_20260522_134050.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_134050.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.613 [WARN] ISSUE: [Reports] deep_region_audit_20260522_150535.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_150535.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.656 [WARN] ISSUE: [Reports] deep_region_audit_20260522_152529.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_152529.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.692 [WARN] ISSUE: [Reports] deep_region_audit_20260522_162751.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_162751.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.733 [WARN] ISSUE: [Reports] deep_region_audit_20260522_163109.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_163109.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.797 [WARN] ISSUE: [Reports] deep_region_audit_20260522_163422.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_163422.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.833 [WARN] ISSUE: [Reports] deep_region_audit_20260522_163539.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_163539.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.873 [WARN] ISSUE: [Reports] deep_region_audit_20260522_164133.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_164133.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.922 [WARN] ISSUE: [Reports] deep_region_audit_20260522_164145.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_164145.json ha 2179 linee (>2000)
+2026-06-13 13:19:18.952 [WARN] ISSUE: [Reports] deep_region_audit_20260522_164343.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_164343.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.001 [WARN] ISSUE: [Reports] deep_region_audit_20260522_172717.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_172717.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.044 [WARN] ISSUE: [Reports] deep_region_audit_20260522_172939.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_172939.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.086 [WARN] ISSUE: [Reports] deep_region_audit_20260522_174926.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_174926.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.113 [WARN] ISSUE: [Reports] deep_region_audit_20260522_175351.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_175351.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.154 [WARN] ISSUE: [Reports] deep_region_audit_20260522_175848.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_175848.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.206 [WARN] ISSUE: [Reports] deep_region_audit_20260522_180222.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_180222.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.239 [WARN] ISSUE: [Reports] deep_region_audit_20260522_200430.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_200430.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.273 [WARN] ISSUE: [Reports] deep_region_audit_20260522_200617.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_200617.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.298 [WARN] ISSUE: [Reports] deep_region_audit_20260524_174442.json - FILE_TROPPO_GRANDE: deep_region_audit_20260524_174442.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.318 [WARN] ISSUE: [Reports] deep_region_audit_20260524_175718.json - FILE_TROPPO_GRANDE: deep_region_audit_20260524_175718.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.349 [WARN] ISSUE: [Reports] deep_region_audit_20260525_090848.json - FILE_TROPPO_GRANDE: deep_region_audit_20260525_090848.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.377 [WARN] ISSUE: [Reports] deep_region_audit_20260526_141156.json - FILE_TROPPO_GRANDE: deep_region_audit_20260526_141156.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.415 [WARN] ISSUE: [Reports] deep_region_audit_20260528_092806.json - FILE_TROPPO_GRANDE: deep_region_audit_20260528_092806.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.456 [WARN] ISSUE: [Reports] deep_region_audit_20260603_134546.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_134546.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.542 [WARN] ISSUE: [Reports] deep_region_audit_20260603_134820.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_134820.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.576 [WARN] ISSUE: [Reports] deep_region_audit_20260603_135324.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_135324.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.594 [WARN] ISSUE: [Reports] deep_region_audit_20260603_135359.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_135359.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.634 [WARN] ISSUE: [Reports] deep_region_audit_20260603_140412.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_140412.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.661 [WARN] ISSUE: [Reports] deep_region_audit_20260603_140453.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_140453.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.687 [WARN] ISSUE: [Reports] deep_region_audit_20260603_141506.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_141506.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.718 [WARN] ISSUE: [Reports] deep_region_audit_20260603_142519.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_142519.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.749 [WARN] ISSUE: [Reports] deep_region_audit_20260603_143533.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_143533.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.777 [WARN] ISSUE: [Reports] deep_region_audit_20260603_153323.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_153323.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.809 [WARN] ISSUE: [Reports] deep_region_audit_20260603_153836.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_153836.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.835 [WARN] ISSUE: [Reports] deep_region_audit_20260603_154337.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_154337.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.865 [WARN] ISSUE: [Reports] deep_region_audit_20260603_224837.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_224837.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.889 [WARN] ISSUE: [Reports] deep_region_audit_20260603_230335.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_230335.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.920 [WARN] ISSUE: [Reports] deep_region_audit_20260603_230824.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_230824.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.956 [WARN] ISSUE: [Reports] deep_region_audit_20260604_090700.json - FILE_TROPPO_GRANDE: deep_region_audit_20260604_090700.json ha 2179 linee (>2000)
+2026-06-13 13:19:19.979 [WARN] ISSUE: [Reports] deep_region_audit_20260604_092859.json - FILE_TROPPO_GRANDE: deep_region_audit_20260604_092859.json ha 2179 linee (>2000)
+2026-06-13 13:19:20.015 [WARN] ISSUE: [Reports] deep_region_audit_20260604_132400.json - FILE_TROPPO_GRANDE: deep_region_audit_20260604_132400.json ha 2179 linee (>2000)
+2026-06-13 13:19:20.037 [WARN] ISSUE: [Reports] deep_region_audit_20260604_140950.json - FILE_TROPPO_GRANDE: deep_region_audit_20260604_140950.json ha 2179 linee (>2000)
+2026-06-13 13:19:20.063 [WARN] ISSUE: [Reports] deep_region_audit_20260605_073612.json - FILE_TROPPO_GRANDE: deep_region_audit_20260605_073612.json ha 2179 linee (>2000)
+2026-06-13 13:19:20.094 [WARN] ISSUE: [Reports] deep_region_audit_20260605_085130.json - FILE_TROPPO_GRANDE: deep_region_audit_20260605_085130.json ha 2179 linee (>2000)
+2026-06-13 13:19:20.121 [WARN] ISSUE: [Reports] deep_region_audit_20260605_122228.json - FILE_TROPPO_GRANDE: deep_region_audit_20260605_122228.json ha 2179 linee (>2000)
+2026-06-13 13:19:20.154 [WARN] ISSUE: [Reports] deep_region_audit_20260605_123159.json - FILE_TROPPO_GRANDE: deep_region_audit_20260605_123159.json ha 2179 linee (>2000)
+2026-06-13 13:19:20.185 [WARN] ISSUE: [Reports] deep_region_audit_20260611_103841.json - FILE_TROPPO_GRANDE: deep_region_audit_20260611_103841.json ha 2179 linee (>2000)
+2026-06-13 13:19:22.659 [WARN] ISSUE: [Reports] report_scan_20260613_131724.json - FILE_TROPPO_GRANDE: report_scan_20260613_131724.json ha 2678 linee (>2000)
+2026-06-13 13:19:35.208 [WARN] ISSUE: [Reports] pathway_20260520_080718.json - FILE_TROPPO_GRANDE: pathway_20260520_080718.json ha 2034 linee (>2000)
+2026-06-13 13:19:35.273 [WARN] ISSUE: [Reports] pathway_20260520_131931.json - FILE_TROPPO_GRANDE: pathway_20260520_131931.json ha 2088 linee (>2000)
+2026-06-13 13:19:35.335 [WARN] ISSUE: [Reports] pathway_20260520_150200.json - FILE_TROPPO_GRANDE: pathway_20260520_150200.json ha 2160 linee (>2000)
+2026-06-13 13:19:35.431 [WARN] ISSUE: [Reports] pathway_20260520_150248.json - FILE_TROPPO_GRANDE: pathway_20260520_150248.json ha 2160 linee (>2000)
+2026-06-13 13:19:35.544 [WARN] ISSUE: [Reports] pathway_20260520_150403.json - FILE_TROPPO_GRANDE: pathway_20260520_150403.json ha 2160 linee (>2000)
+2026-06-13 13:19:35.619 [WARN] ISSUE: [Reports] pathway_20260521_102446.json - FILE_TROPPO_GRANDE: pathway_20260521_102446.json ha 2160 linee (>2000)
+2026-06-13 13:19:35.703 [WARN] ISSUE: [Reports] pathway_20260521_103432.json - FILE_TROPPO_GRANDE: pathway_20260521_103432.json ha 2160 linee (>2000)
+2026-06-13 13:19:35.740 [WARN] ISSUE: [Reports] pathway_20260521_103627.json - FILE_TROPPO_GRANDE: pathway_20260521_103627.json ha 2160 linee (>2000)
+2026-06-13 13:19:35.857 [WARN] ISSUE: [Reports] pathway_20260522_085149.json - FILE_TROPPO_GRANDE: pathway_20260522_085149.json ha 2160 linee (>2000)
+2026-06-13 13:19:35.957 [WARN] ISSUE: [Reports] pathway_20260522_085313.json - FILE_TROPPO_GRANDE: pathway_20260522_085313.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.036 [WARN] ISSUE: [Reports] pathway_20260522_085353.json - FILE_TROPPO_GRANDE: pathway_20260522_085353.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.073 [WARN] ISSUE: [Reports] pathway_20260522_110741.json - FILE_TROPPO_GRANDE: pathway_20260522_110741.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.113 [WARN] ISSUE: [Reports] pathway_20260522_111320.json - FILE_TROPPO_GRANDE: pathway_20260522_111320.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.169 [WARN] ISSUE: [Reports] pathway_20260522_114417.json - FILE_TROPPO_GRANDE: pathway_20260522_114417.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.206 [WARN] ISSUE: [Reports] pathway_20260522_114710.json - FILE_TROPPO_GRANDE: pathway_20260522_114710.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.279 [WARN] ISSUE: [Reports] pathway_20260522_114721.json - FILE_TROPPO_GRANDE: pathway_20260522_114721.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.317 [WARN] ISSUE: [Reports] pathway_20260522_114906.json - FILE_TROPPO_GRANDE: pathway_20260522_114906.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.358 [WARN] ISSUE: [Reports] pathway_20260522_133124.json - FILE_TROPPO_GRANDE: pathway_20260522_133124.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.420 [WARN] ISSUE: [Reports] pathway_20260522_133844.json - FILE_TROPPO_GRANDE: pathway_20260522_133844.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.469 [WARN] ISSUE: [Reports] pathway_20260522_134104.json - FILE_TROPPO_GRANDE: pathway_20260522_134104.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.585 [WARN] ISSUE: [Reports] pathway_20260522_150549.json - FILE_TROPPO_GRANDE: pathway_20260522_150549.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.697 [WARN] ISSUE: [Reports] pathway_20260522_152543.json - FILE_TROPPO_GRANDE: pathway_20260522_152543.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.754 [WARN] ISSUE: [Reports] pathway_20260522_162805.json - FILE_TROPPO_GRANDE: pathway_20260522_162805.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.844 [WARN] ISSUE: [Reports] pathway_20260522_163123.json - FILE_TROPPO_GRANDE: pathway_20260522_163123.json ha 2160 linee (>2000)
+2026-06-13 13:19:36.950 [WARN] ISSUE: [Reports] pathway_20260522_163436.json - FILE_TROPPO_GRANDE: pathway_20260522_163436.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.102 [WARN] ISSUE: [Reports] pathway_20260522_163552.json - FILE_TROPPO_GRANDE: pathway_20260522_163552.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.165 [WARN] ISSUE: [Reports] pathway_20260522_164147.json - FILE_TROPPO_GRANDE: pathway_20260522_164147.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.206 [WARN] ISSUE: [Reports] pathway_20260522_164159.json - FILE_TROPPO_GRANDE: pathway_20260522_164159.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.239 [WARN] ISSUE: [Reports] pathway_20260522_164357.json - FILE_TROPPO_GRANDE: pathway_20260522_164357.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.264 [WARN] ISSUE: [Reports] pathway_20260522_172730.json - FILE_TROPPO_GRANDE: pathway_20260522_172730.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.357 [WARN] ISSUE: [Reports] pathway_20260522_172833.json - FILE_TROPPO_GRANDE: pathway_20260522_172833.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.387 [WARN] ISSUE: [Reports] pathway_20260522_172953.json - FILE_TROPPO_GRANDE: pathway_20260522_172953.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.442 [WARN] ISSUE: [Reports] pathway_20260522_175405.json - FILE_TROPPO_GRANDE: pathway_20260522_175405.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.471 [WARN] ISSUE: [Reports] pathway_20260522_175653.json - FILE_TROPPO_GRANDE: pathway_20260522_175653.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.499 [WARN] ISSUE: [Reports] pathway_20260522_175901.json - FILE_TROPPO_GRANDE: pathway_20260522_175901.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.526 [WARN] ISSUE: [Reports] pathway_20260522_180236.json - FILE_TROPPO_GRANDE: pathway_20260522_180236.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.575 [WARN] ISSUE: [Reports] pathway_20260522_200443.json - FILE_TROPPO_GRANDE: pathway_20260522_200443.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.630 [WARN] ISSUE: [Reports] pathway_20260522_200631.json - FILE_TROPPO_GRANDE: pathway_20260522_200631.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.687 [WARN] ISSUE: [Reports] pathway_20260524_174456.json - FILE_TROPPO_GRANDE: pathway_20260524_174456.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.719 [WARN] ISSUE: [Reports] pathway_20260524_175731.json - FILE_TROPPO_GRANDE: pathway_20260524_175731.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.796 [WARN] ISSUE: [Reports] pathway_20260525_090927.json - FILE_TROPPO_GRANDE: pathway_20260525_090927.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.827 [WARN] ISSUE: [Reports] pathway_20260525_091029.json - FILE_TROPPO_GRANDE: pathway_20260525_091029.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.892 [WARN] ISSUE: [Reports] pathway_20260525_091656.json - FILE_TROPPO_GRANDE: pathway_20260525_091656.json ha 2160 linee (>2000)
+2026-06-13 13:19:37.955 [WARN] ISSUE: [Reports] pathway_20260528_092821.json - FILE_TROPPO_GRANDE: pathway_20260528_092821.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.006 [WARN] ISSUE: [Reports] pathway_20260603_134835.json - FILE_TROPPO_GRANDE: pathway_20260603_134835.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.054 [WARN] ISSUE: [Reports] pathway_20260603_135338.json - FILE_TROPPO_GRANDE: pathway_20260603_135338.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.125 [WARN] ISSUE: [Reports] pathway_20260603_135413.json - FILE_TROPPO_GRANDE: pathway_20260603_135413.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.172 [WARN] ISSUE: [Reports] pathway_20260603_140427.json - FILE_TROPPO_GRANDE: pathway_20260603_140427.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.215 [WARN] ISSUE: [Reports] pathway_20260603_140508.json - FILE_TROPPO_GRANDE: pathway_20260603_140508.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.298 [WARN] ISSUE: [Reports] pathway_20260603_141520.json - FILE_TROPPO_GRANDE: pathway_20260603_141520.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.344 [WARN] ISSUE: [Reports] pathway_20260603_142533.json - FILE_TROPPO_GRANDE: pathway_20260603_142533.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.392 [WARN] ISSUE: [Reports] pathway_20260603_143547.json - FILE_TROPPO_GRANDE: pathway_20260603_143547.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.434 [WARN] ISSUE: [Reports] pathway_20260603_153338.json - FILE_TROPPO_GRANDE: pathway_20260603_153338.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.502 [WARN] ISSUE: [Reports] pathway_20260603_153851.json - FILE_TROPPO_GRANDE: pathway_20260603_153851.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.610 [WARN] ISSUE: [Reports] pathway_20260603_154353.json - FILE_TROPPO_GRANDE: pathway_20260603_154353.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.680 [WARN] ISSUE: [Reports] pathway_20260603_224855.json - FILE_TROPPO_GRANDE: pathway_20260603_224855.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.761 [WARN] ISSUE: [Reports] pathway_20260603_230352.json - FILE_TROPPO_GRANDE: pathway_20260603_230352.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.845 [WARN] ISSUE: [Reports] pathway_20260603_230842.json - FILE_TROPPO_GRANDE: pathway_20260603_230842.json ha 2160 linee (>2000)
+2026-06-13 13:19:38.971 [WARN] ISSUE: [Reports] pathway_20260604_090717.json - FILE_TROPPO_GRANDE: pathway_20260604_090717.json ha 2160 linee (>2000)
+2026-06-13 13:19:39.036 [WARN] ISSUE: [Reports] pathway_20260604_092917.json - FILE_TROPPO_GRANDE: pathway_20260604_092917.json ha 2160 linee (>2000)
+2026-06-13 13:19:39.170 [WARN] ISSUE: [Reports] pathway_20260604_132414.json - FILE_TROPPO_GRANDE: pathway_20260604_132414.json ha 2160 linee (>2000)
+2026-06-13 13:19:39.209 [WARN] ISSUE: [Reports] pathway_20260604_141004.json - FILE_TROPPO_GRANDE: pathway_20260604_141004.json ha 2160 linee (>2000)
+2026-06-13 13:19:39.227 [WARN] ISSUE: [Reports] pathway_20260605_085341.json - FILE_TROPPO_GRANDE: pathway_20260605_085341.json ha 2160 linee (>2000)
+2026-06-13 13:19:39.248 [WARN] ISSUE: [Reports] pathway_20260605_085631.json - FILE_TROPPO_GRANDE: pathway_20260605_085631.json ha 2160 linee (>2000)
+2026-06-13 13:19:39.280 [WARN] ISSUE: [Reports] pathway_20260605_123623.json - FILE_TROPPO_GRANDE: pathway_20260605_123623.json ha 2160 linee (>2000)
+2026-06-13 13:19:39.320 [WARN] ISSUE: [Reports] t54b_audit_20260518_101821.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_101821.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.354 [WARN] ISSUE: [Reports] t54b_audit_20260518_101904.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_101904.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.382 [WARN] ISSUE: [Reports] t54b_audit_20260518_103333.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_103333.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.393 [WARN] ISSUE: [Reports] t54b_audit_20260518_103646.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_103646.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.405 [WARN] ISSUE: [Reports] t54b_audit_20260518_104130.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_104130.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.444 [WARN] ISSUE: [Reports] t54b_audit_20260518_122316.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_122316.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.472 [WARN] ISSUE: [Reports] t54b_audit_20260518_135418.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_135418.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.518 [WARN] ISSUE: [Reports] t54b_audit_20260518_141922.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_141922.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.575 [WARN] ISSUE: [Reports] t54b_audit_20260518_151456.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_151456.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.681 [WARN] ISSUE: [Reports] t54b_audit_20260518_161609.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_161609.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.805 [WARN] ISSUE: [Reports] t54b_audit_20260518_161701.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_161701.json ha 2511 linee (>2000)
+2026-06-13 13:19:39.888 [WARN] ISSUE: [Reports] t54b_audit_20260518_161929.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_161929.json ha 2511 linee (>2000)
+2026-06-13 13:19:40.034 [WARN] ISSUE: [Reports] t54b_audit_20260518_165542.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_165542.json ha 2511 linee (>2000)
+2026-06-13 13:19:40.163 [WARN] ISSUE: [Reports] t54b_audit_20260518_165903.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_165903.json ha 2511 linee (>2000)
+2026-06-13 13:19:40.333 [WARN] ISSUE: [Reports] t54b_audit_20260518_181738.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_181738.json ha 2511 linee (>2000)
+2026-06-13 13:19:40.479 [WARN] ISSUE: [Reports] t54b_audit_20260518_201758.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_201758.json ha 2511 linee (>2000)
+2026-06-13 13:19:40.550 [WARN] ISSUE: [Reports] t54b_audit_20260518_201954.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_201954.json ha 2511 linee (>2000)
+2026-06-13 13:19:40.703 [WARN] ISSUE: [Reports] t54b_audit_20260518_205116.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_205116.json ha 2511 linee (>2000)
+2026-06-13 13:19:40.802 [WARN] ISSUE: [Reports] t54b_audit_20260518_214351.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214351.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.021 [WARN] ISSUE: [Reports] t54b_audit_20260518_214604.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214604.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.068 [WARN] ISSUE: [Reports] t54b_audit_20260518_214743.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214743.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.113 [WARN] ISSUE: [Reports] t54b_audit_20260518_214850.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214850.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.204 [WARN] ISSUE: [Reports] t54b_audit_20260518_214947.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214947.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.357 [WARN] ISSUE: [Reports] t54b_audit_20260518_215047.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215047.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.404 [WARN] ISSUE: [Reports] t54b_audit_20260518_215146.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215146.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.460 [WARN] ISSUE: [Reports] t54b_audit_20260518_215246.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215246.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.664 [WARN] ISSUE: [Reports] t54b_audit_20260518_215353.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215353.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.776 [WARN] ISSUE: [Reports] t54b_audit_20260518_215511.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215511.json ha 2511 linee (>2000)
+2026-06-13 13:19:41.856 [WARN] ISSUE: [Reports] t54b_audit_20260518_215624.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215624.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.027 [WARN] ISSUE: [Reports] t54b_audit_20260518_215724.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215724.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.152 [WARN] ISSUE: [Reports] t54b_audit_20260518_215838.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215838.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.184 [WARN] ISSUE: [Reports] t54b_audit_20260518_215936.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215936.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.227 [WARN] ISSUE: [Reports] t54b_audit_20260518_220034.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_220034.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.260 [WARN] ISSUE: [Reports] t54b_audit_20260518_220231.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_220231.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.280 [WARN] ISSUE: [Reports] t54b_audit_20260518_220452.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_220452.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.313 [WARN] ISSUE: [Reports] t54b_audit_20260518_220553.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_220553.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.360 [WARN] ISSUE: [Reports] t54b_audit_20260518_223526.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_223526.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.384 [WARN] ISSUE: [Reports] t54b_audit_20260518_223925.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_223925.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.409 [WARN] ISSUE: [Reports] t54b_audit_20260518_224038.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_224038.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.443 [WARN] ISSUE: [Reports] t54b_audit_20260519_073210.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_073210.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.475 [WARN] ISSUE: [Reports] t54b_audit_20260519_093630.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_093630.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.619 [WARN] ISSUE: [Reports] t54b_audit_20260519_103939.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_103939.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.750 [WARN] ISSUE: [Reports] t54b_audit_20260519_123753.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_123753.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.794 [WARN] ISSUE: [Reports] t54b_audit_20260519_123901.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_123901.json ha 2511 linee (>2000)
+2026-06-13 13:19:42.935 [WARN] ISSUE: [Reports] t54b_audit_20260519_141659.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_141659.json ha 2511 linee (>2000)
+2026-06-13 13:19:43.083 [WARN] ISSUE: [Reports] t54b_audit_20260519_142500.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_142500.json ha 2511 linee (>2000)
+2026-06-13 13:19:43.227 [WARN] ISSUE: [Reports] t54b_audit_20260519_163813.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_163813.json ha 2511 linee (>2000)
+2026-06-13 13:19:43.443 [WARN] ISSUE: [Reports] t54b_audit_20260519_183813.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_183813.json ha 2511 linee (>2000)
+2026-06-13 13:19:43.529 [WARN] ISSUE: [Reports] t54b_audit_20260519_183949.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_183949.json ha 2511 linee (>2000)
+2026-06-13 13:19:43.665 [WARN] ISSUE: [Reports] t54b_audit_20260519_184455.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_184455.json ha 2511 linee (>2000)
+2026-06-13 13:19:43.800 [WARN] ISSUE: [Reports] t54b_audit_20260519_184650.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_184650.json ha 2511 linee (>2000)
+2026-06-13 13:19:43.868 [WARN] ISSUE: [Reports] t54b_audit_20260519_184851.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_184851.json ha 2511 linee (>2000)
+2026-06-13 13:19:43.966 [WARN] ISSUE: [Reports] t54b_audit_20260519_185301.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_185301.json ha 2511 linee (>2000)
+2026-06-13 13:19:44.173 [WARN] ISSUE: [Reports] t54b_audit_20260519_195646.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_195646.json ha 2511 linee (>2000)
+2026-06-13 13:19:44.253 [WARN] ISSUE: [Reports] t54b_audit_20260519_204947.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_204947.json ha 2511 linee (>2000)
+2026-06-13 13:19:44.347 [WARN] ISSUE: [Reports] t54b_audit_20260519_210047.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_210047.json ha 2511 linee (>2000)
+2026-06-13 13:19:44.411 [WARN] ISSUE: [Reports] t54b_audit_20260520_060737.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_060737.json ha 2511 linee (>2000)
+2026-06-13 13:19:44.517 [WARN] ISSUE: [Reports] t54b_audit_20260520_111953.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_111953.json ha 2511 linee (>2000)
+2026-06-13 13:19:44.579 [WARN] ISSUE: [Reports] t54b_audit_20260520_130219.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_130219.json ha 2511 linee (>2000)
+2026-06-13 13:19:44.745 [WARN] ISSUE: [Reports] t54b_audit_20260520_130307.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_130307.json ha 2511 linee (>2000)
+2026-06-13 13:19:44.891 [WARN] ISSUE: [Reports] t54b_audit_20260520_130423.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_130423.json ha 2511 linee (>2000)
+2026-06-13 13:19:45.079 [WARN] ISSUE: [Reports] t54b_audit_20260521_082507.json - FILE_TROPPO_GRANDE: t54b_audit_20260521_082507.json ha 2511 linee (>2000)
+2026-06-13 13:19:45.246 [WARN] ISSUE: [Reports] t54b_audit_20260521_083452.json - FILE_TROPPO_GRANDE: t54b_audit_20260521_083452.json ha 2511 linee (>2000)
+2026-06-13 13:19:45.362 [WARN] ISSUE: [Reports] t54b_audit_20260521_083647.json - FILE_TROPPO_GRANDE: t54b_audit_20260521_083647.json ha 2511 linee (>2000)
+2026-06-13 13:19:45.472 [WARN] ISSUE: [Reports] t54b_audit_20260522_065208.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_065208.json ha 2511 linee (>2000)
+2026-06-13 13:19:45.579 [WARN] ISSUE: [Reports] t54b_audit_20260522_065413.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_065413.json ha 2511 linee (>2000)
+2026-06-13 13:19:45.755 [WARN] ISSUE: [Reports] t54b_audit_20260522_090803.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_090803.json ha 2511 linee (>2000)
+2026-06-13 13:19:45.855 [WARN] ISSUE: [Reports] t54b_audit_20260522_091340.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_091340.json ha 2511 linee (>2000)
+2026-06-13 13:19:45.909 [WARN] ISSUE: [Reports] t54b_audit_20260522_094439.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_094439.json ha 2511 linee (>2000)
+2026-06-13 13:19:46.007 [WARN] ISSUE: [Reports] t54b_audit_20260522_094737.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_094737.json ha 2511 linee (>2000)
+2026-06-13 13:19:46.074 [WARN] ISSUE: [Reports] t54b_audit_20260522_094749.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_094749.json ha 2511 linee (>2000)
+2026-06-13 13:19:46.107 [WARN] ISSUE: [Reports] t54b_audit_20260522_094928.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_094928.json ha 2511 linee (>2000)
+2026-06-13 13:19:46.268 [WARN] ISSUE: [Reports] t54b_audit_20260522_113145.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_113145.json ha 2511 linee (>2000)
+2026-06-13 13:19:46.405 [WARN] ISSUE: [Reports] t54b_audit_20260522_113905.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_113905.json ha 2511 linee (>2000)
+2026-06-13 13:19:46.561 [WARN] ISSUE: [Reports] t54b_audit_20260522_114125.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_114125.json ha 2511 linee (>2000)
+2026-06-13 13:19:46.817 [WARN] ISSUE: [Reports] t54b_audit_20260522_130610.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_130610.json ha 2511 linee (>2000)
+2026-06-13 13:19:46.999 [WARN] ISSUE: [Reports] t54b_audit_20260522_132603.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_132603.json ha 2511 linee (>2000)
+2026-06-13 13:19:47.286 [WARN] ISSUE: [Reports] t54b_audit_20260522_142826.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_142826.json ha 2511 linee (>2000)
+2026-06-13 13:19:47.391 [WARN] ISSUE: [Reports] t54b_audit_20260522_143143.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_143143.json ha 2511 linee (>2000)
+2026-06-13 13:19:47.529 [WARN] ISSUE: [Reports] t54b_audit_20260522_143457.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_143457.json ha 2511 linee (>2000)
+2026-06-13 13:19:47.734 [WARN] ISSUE: [Reports] t54b_audit_20260522_143612.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_143612.json ha 2511 linee (>2000)
+2026-06-13 13:19:47.928 [WARN] ISSUE: [Reports] t54b_audit_20260522_144208.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_144208.json ha 2511 linee (>2000)
+2026-06-13 13:19:48.131 [WARN] ISSUE: [Reports] t54b_audit_20260522_144220.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_144220.json ha 2511 linee (>2000)
+2026-06-13 13:19:48.526 [WARN] ISSUE: [Reports] t54b_audit_20260522_144420.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_144420.json ha 2511 linee (>2000)
+2026-06-13 13:19:48.741 [WARN] ISSUE: [Reports] t54b_audit_20260522_152750.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_152750.json ha 2511 linee (>2000)
+2026-06-13 13:19:48.930 [WARN] ISSUE: [Reports] t54b_audit_20260522_152853.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_152853.json ha 2511 linee (>2000)
+2026-06-13 13:19:49.115 [WARN] ISSUE: [Reports] t54b_audit_20260522_153013.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_153013.json ha 2511 linee (>2000)
+2026-06-13 13:19:49.342 [WARN] ISSUE: [Reports] t54b_audit_20260522_155434.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_155434.json ha 2511 linee (>2000)
+2026-06-13 13:19:49.542 [WARN] ISSUE: [Reports] t54b_audit_20260522_155721.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_155721.json ha 2511 linee (>2000)
+2026-06-13 13:19:49.739 [WARN] ISSUE: [Reports] t54b_audit_20260522_155946.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_155946.json ha 2511 linee (>2000)
+2026-06-13 13:19:49.919 [WARN] ISSUE: [Reports] t54b_audit_20260522_160327.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_160327.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.095 [WARN] ISSUE: [Reports] t54b_audit_20260522_180531.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_180531.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.202 [WARN] ISSUE: [Reports] t54b_audit_20260522_180723.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_180723.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.329 [WARN] ISSUE: [Reports] t54b_audit_20260603_133636.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_133636.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.388 [WARN] ISSUE: [Reports] t54b_audit_20260603_134210.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_134210.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.465 [WARN] ISSUE: [Reports] t54b_audit_20260603_134708.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_134708.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.528 [WARN] ISSUE: [Reports] t54b_audit_20260603_205227.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_205227.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.640 [WARN] ISSUE: [Reports] t54b_audit_20260603_211240.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_211240.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.727 [WARN] ISSUE: [Reports] t54b_audit_20260604_071138.json - FILE_TROPPO_GRANDE: t54b_audit_20260604_071138.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.798 [WARN] ISSUE: [Reports] t54b_audit_20260604_073350.json - FILE_TROPPO_GRANDE: t54b_audit_20260604_073350.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.853 [WARN] ISSUE: [Reports] t54b_audit_20260604_112716.json - FILE_TROPPO_GRANDE: t54b_audit_20260604_112716.json ha 2511 linee (>2000)
+2026-06-13 13:19:50.913 [WARN] ISSUE: [Reports] t54b_audit_20260604_121308.json - FILE_TROPPO_GRANDE: t54b_audit_20260604_121308.json ha 2511 linee (>2000)
+2026-06-13 13:19:57.630 [WARN] Scansione completata: Reports - 347 issue trovate
+2026-06-13 13:19:57.682 [WARN] ===== SCANSIONE COMPLETA #45: 445 ISSUE TOTALI =====
+2026-06-13 13:19:57.839 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_131957.json
+2026-06-13 13:19:58.034 [DIAG] Diagnosi salvata: C:\cellular_speace\data\diagnosi\diagnosi_20260613_131957.md
+2026-06-13 13:19:58.075 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:20:58.102 [INFO] === Ciclo manutenzione completo #46 ===
+2026-06-13 13:21:00.953 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:22:00.972 [INFO] === Ciclo manutenzione completo #47 ===
+2026-06-13 13:22:03.610 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:23:03.628 [INFO] === Ciclo manutenzione completo #48 ===
+2026-06-13 13:23:23.369 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:24:23.386 [INFO] === Ciclo manutenzione completo #49 ===
+2026-06-13 13:24:25.835 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:25:25.846 [INFO] === Ciclo manutenzione completo #50 ===
+2026-06-13 13:25:28.768 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:26:28.783 [INFO] === Ciclo manutenzione completo #51 ===
+2026-06-13 13:26:35.979 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:27:35.985 [INFO] === Ciclo manutenzione completo #52 ===
+2026-06-13 13:27:39.058 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:28:39.067 [INFO] === Ciclo manutenzione completo #53 ===
+2026-06-13 13:28:41.702 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:29:41.720 [INFO] === Ciclo manutenzione completo #54 ===
+2026-06-13 13:29:52.919 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:30:52.933 [INFO] === Ciclo manutenzione completo #55 ===
+2026-06-13 13:30:55.483 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:31:55.487 [INFO] === Ciclo manutenzione completo #56 ===
+2026-06-13 13:31:59.092 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:32:59.106 [INFO] === Ciclo manutenzione completo #57 ===
+2026-06-13 13:33:07.281 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:34:07.300 [INFO] === Ciclo manutenzione completo #58 ===
+2026-06-13 13:34:10.550 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:35:10.566 [INFO] === Ciclo manutenzione completo #59 ===
+2026-06-13 13:35:13.704 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:36:13.712 [INFO] === Ciclo manutenzione completo #60 ===
+2026-06-13 13:36:41.256 [INFO] ===== INIZIO SCANSIONE COMPLETA #60 =====
+2026-06-13 13:36:41.263 [INFO] Scansione in corso: Speace Core (Cervello) (C:\cellular_speace\speace_core)
+2026-06-13 13:36:41.521 [WARN] ISSUE: [Speace Core (Cervello)] orchestrator.py - FILE_TROPPO_GRANDE: orchestrator.py ha 2958 linee (>2000)
+2026-06-13 13:36:41.617 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:41.677 [WARN] ISSUE: [Speace Core (Cervello)] neurofunctional_benchmark.py - FILE_TROPPO_GRANDE: neurofunctional_benchmark.py ha 3377 linee (>2000)
+2026-06-13 13:36:41.683 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:41.696 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:41.849 [WARN] ISSUE: [Speace Core (Cervello)] cognitive_mutation_sandbox.py - USO_DI_EXEC_EVAL: cognitive_mutation_sandbox.py contiene eval/exec
+2026-06-13 13:36:41.944 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.093 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.183 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - TODO_FOUND: causal_model_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 13:36:42.189 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - FILE_TROPPO_GRANDE: causal_model_engine.py ha 2418 linee (>2000)
+2026-06-13 13:36:42.292 [WARN] ISSUE: [Speace Core (Cervello)] imitation_learning_sandbox.py - USO_DI_EXEC_EVAL: imitation_learning_sandbox.py contiene eval/exec
+2026-06-13 13:36:42.396 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.606 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.614 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.618 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.624 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.628 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.650 [WARN] ISSUE: [Speace Core (Cervello)] trust_governor.py - USO_DI_EXEC_EVAL: trust_governor.py contiene eval/exec
+2026-06-13 13:36:42.671 [WARN] ISSUE: [Speace Core (Cervello)] evolution_controller.py - TODO_FOUND: evolution_controller.py contiene TODO/FIXME da risolvere
+2026-06-13 13:36:42.739 [WARN] ISSUE: [Speace Core (Cervello)] subsystem_connector.py - TODO_FOUND: subsystem_connector.py contiene TODO/FIXME da risolvere
+2026-06-13 13:36:42.753 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.766 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.778 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.849 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.881 [WARN] ISSUE: [Speace Core (Cervello)] test_morphological_memory.py - USO_DI_EXEC_EVAL: test_morphological_memory.py contiene eval/exec
+2026-06-13 13:36:42.896 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:42.942 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:43.160 [WARN] Scansione completata: Speace Core (Cervello) - 26 issue trovate
+2026-06-13 13:36:43.167 [INFO] Scansione in corso: Speace AGI Team (C:\cellular_speace\speace_agi_team)
+2026-06-13 13:36:43.201 [WARN] ISSUE: [Speace AGI Team] config.py - USO_DI_EXEC_EVAL: config.py contiene eval/exec
+2026-06-13 13:36:43.247 [WARN] Scansione completata: Speace AGI Team - 1 issue trovate
+2026-06-13 13:36:43.251 [INFO] Scansione in corso: Data (C:\cellular_speace\data)
+2026-06-13 13:36:45.468 [WARN] ISSUE: [Data] evaluation.json - FILE_TROPPO_GRANDE: evaluation.json ha 844336 linee (>2000)
+2026-06-13 13:36:46.633 [WARN] ISSUE: [Data] training.json - FILE_TROPPO_GRANDE: training.json ha 522201 linee (>2000)
+2026-06-13 13:36:49.346 [WARN] ISSUE: [Data] latest_snapshot.json - JSON_INVALIDO: latest_snapshot.json non e JSON valido
+2026-06-13 13:36:49.364 [WARN] ISSUE: [Data] latest_snapshot.json - FILE_TROPPO_GRANDE: latest_snapshot.json ha 2244 linee (>2000)
+2026-06-13 13:36:49.479 [WARN] ISSUE: [Data] checkpoint_1781347769994.json - FILE_TROPPO_GRANDE: checkpoint_1781347769994.json ha 11022 linee (>2000)
+2026-06-13 13:36:49.596 [WARN] ISSUE: [Data] checkpoint_1781347792037.json - FILE_TROPPO_GRANDE: checkpoint_1781347792037.json ha 11022 linee (>2000)
+2026-06-13 13:36:49.691 [WARN] ISSUE: [Data] checkpoint_1781348035541.json - FILE_TROPPO_GRANDE: checkpoint_1781348035541.json ha 11022 linee (>2000)
+2026-06-13 13:36:49.821 [WARN] ISSUE: [Data] checkpoint_1781348071659.json - FILE_TROPPO_GRANDE: checkpoint_1781348071659.json ha 11022 linee (>2000)
+2026-06-13 13:36:49.935 [WARN] ISSUE: [Data] checkpoint_1781348072435.json - FILE_TROPPO_GRANDE: checkpoint_1781348072435.json ha 11022 linee (>2000)
+2026-06-13 13:36:50.026 [WARN] ISSUE: [Data] checkpoint_1781348095270.json - FILE_TROPPO_GRANDE: checkpoint_1781348095270.json ha 11022 linee (>2000)
+2026-06-13 13:36:50.096 [WARN] ISSUE: [Data] checkpoint_1781348370010.json - FILE_TROPPO_GRANDE: checkpoint_1781348370010.json ha 11022 linee (>2000)
+2026-06-13 13:36:50.169 [WARN] ISSUE: [Data] checkpoint_1781348395464.json - FILE_TROPPO_GRANDE: checkpoint_1781348395464.json ha 11022 linee (>2000)
+2026-06-13 13:36:50.272 [WARN] ISSUE: [Data] checkpoint_1781348402219.json - FILE_TROPPO_GRANDE: checkpoint_1781348402219.json ha 11022 linee (>2000)
+2026-06-13 13:36:50.493 [WARN] ISSUE: [Data] checkpoint_1781348423399.json - FILE_TROPPO_GRANDE: checkpoint_1781348423399.json ha 11022 linee (>2000)
+2026-06-13 13:36:50.816 [WARN] Scansione completata: Data - 13 issue trovate
+2026-06-13 13:36:50.874 [INFO] Scansione in corso: Scripts (C:\cellular_speace\scripts)
+2026-06-13 13:36:50.964 [WARN] ISSUE: [Scripts] speace_seed.py - USO_DI_EXEC_EVAL: speace_seed.py contiene eval/exec
+2026-06-13 13:36:51.085 [WARN] ISSUE: [Scripts] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:51.191 [WARN] Scansione completata: Scripts - 2 issue trovate
+2026-06-13 13:36:51.279 [INFO] Scansione in corso: Tests (C:\cellular_speace\tests)
+2026-06-13 13:36:51.546 [WARN] ISSUE: [Tests] test_phase8_mmapr_veto.py - USO_DI_EXEC_EVAL: test_phase8_mmapr_veto.py contiene eval/exec
+2026-06-13 13:36:51.624 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:51.668 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:51.753 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:51.810 [WARN] ISSUE: [Tests] test_coherence_proposal_executor.py - TODO_FOUND: test_coherence_proposal_executor.py contiene TODO/FIXME da risolvere
+2026-06-13 13:36:51.876 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:51.895 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:51.984 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:52.083 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:52.214 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:52.308 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:52.362 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:52.470 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:52.532 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:52.671 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:52.858 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:53.020 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:53.160 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:53.312 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:53.464 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:53.577 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:53.696 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:53.835 [WARN] ISSUE: [Tests] test_evolutionary_memory_governance_audit_runner.py - TODO_FOUND: test_evolutionary_memory_governance_audit_runner.py contiene TODO/FIXME da risolvere
+2026-06-13 13:36:53.938 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:54.050 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:54.187 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:54.292 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:54.411 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:54.483 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:54.601 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:54.772 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:54.915 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.029 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.104 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.155 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.294 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.374 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.443 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.526 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.614 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.706 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.799 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.858 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:55.935 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:56.018 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:56.115 [WARN] ISSUE: [Tests] test_auth_engine.py - TODO_FOUND: test_auth_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 13:36:56.267 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:36:56.396 [WARN] Scansione completata: Tests - 47 issue trovate
+2026-06-13 13:36:56.445 [INFO] Scansione in corso: Documentazione (C:\cellular_speace\docs)
+2026-06-13 13:36:56.521 [WARN] ISSUE: [Documentazione] cellular_speace.md - FILE_TROPPO_GRANDE: cellular_speace.md ha 2117 linee (>2000)
+2026-06-13 13:36:56.649 [WARN] ISSUE: [Documentazione] metacognizione_pensiero_linguaggio_di_SPEACE.md - FILE_TROPPO_GRANDE: metacognizione_pensiero_linguaggio_di_SPEACE.md ha 3321 linee (>2000)
+2026-06-13 13:36:56.931 [WARN] ISSUE: [Documentazione] 104_NeuroEvolve_A_Dynamic_Brai.pdf - FILE_TROPPO_GRANDE: 104_NeuroEvolve_A_Dynamic_Brai.pdf ha 3743 linee (>2000)
+2026-06-13 13:36:57.370 [WARN] ISSUE: [Documentazione] 2604.25917v1.pdf - FILE_TROPPO_GRANDE: 2604.25917v1.pdf ha 47384 linee (>2000)
+2026-06-13 13:36:57.644 [WARN] ISSUE: [Documentazione] A brain-inspired framework for.pdf - FILE_TROPPO_GRANDE: A brain-inspired framework for.pdf ha 29697 linee (>2000)
+2026-06-13 13:36:57.888 [WARN] ISSUE: [Documentazione] Network geometry of the Drosophila brain.pdf - FILE_TROPPO_GRANDE: Network geometry of the Drosophila brain.pdf ha 34584 linee (>2000)
+2026-06-13 13:36:58.001 [WARN] ISSUE: [Documentazione] NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf - FILE_TROPPO_GRANDE: NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf ha 52360 linee (>2000)
+2026-06-13 13:36:58.700 [WARN] ISSUE: [Documentazione] Recursive Multi-Agent Systems.pdf - FILE_TROPPO_GRANDE: Recursive Multi-Agent Systems.pdf ha 47384 linee (>2000)
+2026-06-13 13:36:58.860 [WARN] ISSUE: [Documentazione] Reti neurali artificiali e apprendimenti basati sulla biofisica dei neuroni.pdf - FILE_TROPPO_GRANDE: Reti neurali artificiali e apprendimenti basati sulla biofisica dei neuroni.pdf ha 16566 linee (>2000)
+2026-06-13 13:36:58.919 [WARN] Scansione completata: Documentazione - 9 issue trovate
+2026-06-13 13:36:58.985 [INFO] Scansione in corso: Reports (C:\cellular_speace\reports)
+2026-06-13 13:37:10.183 [WARN] ISSUE: [Reports] arc_agi_report_20260528_074249.json - FILE_TROPPO_GRANDE: arc_agi_report_20260528_074249.json ha 2132 linee (>2000)
+2026-06-13 13:37:10.211 [WARN] ISSUE: [Reports] arc_agi_report_20260528_084421.json - FILE_TROPPO_GRANDE: arc_agi_report_20260528_084421.json ha 2565 linee (>2000)
+2026-06-13 13:37:15.516 [WARN] ISSUE: [Reports] calibration_20260519_113608.json - FILE_TROPPO_GRANDE: calibration_20260519_113608.json ha 2212 linee (>2000)
+2026-06-13 13:37:15.564 [WARN] ISSUE: [Reports] calibration_20260519_123918.json - FILE_TROPPO_GRANDE: calibration_20260519_123918.json ha 2212 linee (>2000)
+2026-06-13 13:37:15.606 [WARN] ISSUE: [Reports] calibration_20260519_143733.json - FILE_TROPPO_GRANDE: calibration_20260519_143733.json ha 2212 linee (>2000)
+2026-06-13 13:37:15.684 [WARN] ISSUE: [Reports] calibration_20260519_162439.json - FILE_TROPPO_GRANDE: calibration_20260519_162439.json ha 2212 linee (>2000)
+2026-06-13 13:37:15.735 [WARN] ISSUE: [Reports] calibration_20260519_183750.json - FILE_TROPPO_GRANDE: calibration_20260519_183750.json ha 2212 linee (>2000)
+2026-06-13 13:37:15.810 [WARN] ISSUE: [Reports] calibration_20260519_203926.json - FILE_TROPPO_GRANDE: calibration_20260519_203926.json ha 2332 linee (>2000)
+2026-06-13 13:37:15.915 [WARN] ISSUE: [Reports] calibration_20260519_204627.json - FILE_TROPPO_GRANDE: calibration_20260519_204627.json ha 2332 linee (>2000)
+2026-06-13 13:37:15.981 [WARN] ISSUE: [Reports] calibration_20260519_204828.json - FILE_TROPPO_GRANDE: calibration_20260519_204828.json ha 2332 linee (>2000)
+2026-06-13 13:37:16.135 [WARN] ISSUE: [Reports] calibration_20260520_131929.json - FILE_TROPPO_GRANDE: calibration_20260520_131929.json ha 2708 linee (>2000)
+2026-06-13 13:37:16.188 [WARN] ISSUE: [Reports] calibration_20260520_131930.json - FILE_TROPPO_GRANDE: calibration_20260520_131930.json ha 2018 linee (>2000)
+2026-06-13 13:37:16.258 [WARN] ISSUE: [Reports] calibration_20260520_150158.json - FILE_TROPPO_GRANDE: calibration_20260520_150158.json ha 2804 linee (>2000)
+2026-06-13 13:37:16.294 [WARN] ISSUE: [Reports] calibration_20260520_150159.json - FILE_TROPPO_GRANDE: calibration_20260520_150159.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.354 [WARN] ISSUE: [Reports] calibration_20260520_150246.json - FILE_TROPPO_GRANDE: calibration_20260520_150246.json ha 2804 linee (>2000)
+2026-06-13 13:37:16.386 [WARN] ISSUE: [Reports] calibration_20260520_150247.json - FILE_TROPPO_GRANDE: calibration_20260520_150247.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.431 [WARN] ISSUE: [Reports] calibration_20260520_150402.json - FILE_TROPPO_GRANDE: calibration_20260520_150402.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.479 [WARN] ISSUE: [Reports] calibration_20260521_102444.json - FILE_TROPPO_GRANDE: calibration_20260521_102444.json ha 2804 linee (>2000)
+2026-06-13 13:37:16.521 [WARN] ISSUE: [Reports] calibration_20260521_102445.json - FILE_TROPPO_GRANDE: calibration_20260521_102445.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.568 [WARN] ISSUE: [Reports] calibration_20260521_103431.json - FILE_TROPPO_GRANDE: calibration_20260521_103431.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.614 [WARN] ISSUE: [Reports] calibration_20260521_103625.json - FILE_TROPPO_GRANDE: calibration_20260521_103625.json ha 2804 linee (>2000)
+2026-06-13 13:37:16.648 [WARN] ISSUE: [Reports] calibration_20260521_103626.json - FILE_TROPPO_GRANDE: calibration_20260521_103626.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.691 [WARN] ISSUE: [Reports] calibration_20260522_085147.json - FILE_TROPPO_GRANDE: calibration_20260522_085147.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.731 [WARN] ISSUE: [Reports] calibration_20260522_085311.json - FILE_TROPPO_GRANDE: calibration_20260522_085311.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.784 [WARN] ISSUE: [Reports] calibration_20260522_085352.json - FILE_TROPPO_GRANDE: calibration_20260522_085352.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.845 [WARN] ISSUE: [Reports] calibration_20260522_110739.json - FILE_TROPPO_GRANDE: calibration_20260522_110739.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.912 [WARN] ISSUE: [Reports] calibration_20260522_111318.json - FILE_TROPPO_GRANDE: calibration_20260522_111318.json ha 2804 linee (>2000)
+2026-06-13 13:37:16.944 [WARN] ISSUE: [Reports] calibration_20260522_111319.json - FILE_TROPPO_GRANDE: calibration_20260522_111319.json ha 2090 linee (>2000)
+2026-06-13 13:37:16.974 [WARN] ISSUE: [Reports] calibration_20260522_114415.json - FILE_TROPPO_GRANDE: calibration_20260522_114415.json ha 2804 linee (>2000)
+2026-06-13 13:37:17.003 [WARN] ISSUE: [Reports] calibration_20260522_114416.json - FILE_TROPPO_GRANDE: calibration_20260522_114416.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.047 [WARN] ISSUE: [Reports] calibration_20260522_114707.json - FILE_TROPPO_GRANDE: calibration_20260522_114707.json ha 2804 linee (>2000)
+2026-06-13 13:37:17.077 [WARN] ISSUE: [Reports] calibration_20260522_114708.json - FILE_TROPPO_GRANDE: calibration_20260522_114708.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.126 [WARN] ISSUE: [Reports] calibration_20260522_114719.json - FILE_TROPPO_GRANDE: calibration_20260522_114719.json ha 2804 linee (>2000)
+2026-06-13 13:37:17.152 [WARN] ISSUE: [Reports] calibration_20260522_114720.json - FILE_TROPPO_GRANDE: calibration_20260522_114720.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.177 [WARN] ISSUE: [Reports] calibration_20260522_114904.json - FILE_TROPPO_GRANDE: calibration_20260522_114904.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.205 [WARN] ISSUE: [Reports] calibration_20260522_133123.json - FILE_TROPPO_GRANDE: calibration_20260522_133123.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.235 [WARN] ISSUE: [Reports] calibration_20260522_133842.json - FILE_TROPPO_GRANDE: calibration_20260522_133842.json ha 2804 linee (>2000)
+2026-06-13 13:37:17.265 [WARN] ISSUE: [Reports] calibration_20260522_133843.json - FILE_TROPPO_GRANDE: calibration_20260522_133843.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.296 [WARN] ISSUE: [Reports] calibration_20260522_134102.json - FILE_TROPPO_GRANDE: calibration_20260522_134102.json ha 2804 linee (>2000)
+2026-06-13 13:37:17.323 [WARN] ISSUE: [Reports] calibration_20260522_134103.json - FILE_TROPPO_GRANDE: calibration_20260522_134103.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.376 [WARN] ISSUE: [Reports] calibration_20260522_150547.json - FILE_TROPPO_GRANDE: calibration_20260522_150547.json ha 2804 linee (>2000)
+2026-06-13 13:37:17.440 [WARN] ISSUE: [Reports] calibration_20260522_150548.json - FILE_TROPPO_GRANDE: calibration_20260522_150548.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.489 [WARN] ISSUE: [Reports] calibration_20260522_152541.json - FILE_TROPPO_GRANDE: calibration_20260522_152541.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.548 [WARN] ISSUE: [Reports] calibration_20260522_162803.json - FILE_TROPPO_GRANDE: calibration_20260522_162803.json ha 2804 linee (>2000)
+2026-06-13 13:37:17.599 [WARN] ISSUE: [Reports] calibration_20260522_162804.json - FILE_TROPPO_GRANDE: calibration_20260522_162804.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.638 [WARN] ISSUE: [Reports] calibration_20260522_163121.json - FILE_TROPPO_GRANDE: calibration_20260522_163121.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.685 [WARN] ISSUE: [Reports] calibration_20260522_163434.json - FILE_TROPPO_GRANDE: calibration_20260522_163434.json ha 2804 linee (>2000)
+2026-06-13 13:37:17.718 [WARN] ISSUE: [Reports] calibration_20260522_163435.json - FILE_TROPPO_GRANDE: calibration_20260522_163435.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.769 [WARN] ISSUE: [Reports] calibration_20260522_163551.json - FILE_TROPPO_GRANDE: calibration_20260522_163551.json ha 2090 linee (>2000)
+2026-06-13 13:37:17.810 [WARN] ISSUE: [Reports] calibration_20260522_164145.json - FILE_TROPPO_GRANDE: calibration_20260522_164145.json ha 2821 linee (>2000)
+2026-06-13 13:37:17.963 [WARN] ISSUE: [Reports] calibration_20260522_164146.json - FILE_TROPPO_GRANDE: calibration_20260522_164146.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.032 [WARN] ISSUE: [Reports] calibration_20260522_164157.json - FILE_TROPPO_GRANDE: calibration_20260522_164157.json ha 2821 linee (>2000)
+2026-06-13 13:37:18.071 [WARN] ISSUE: [Reports] calibration_20260522_164158.json - FILE_TROPPO_GRANDE: calibration_20260522_164158.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.113 [WARN] ISSUE: [Reports] calibration_20260522_164355.json - FILE_TROPPO_GRANDE: calibration_20260522_164355.json ha 2821 linee (>2000)
+2026-06-13 13:37:18.138 [WARN] ISSUE: [Reports] calibration_20260522_164356.json - FILE_TROPPO_GRANDE: calibration_20260522_164356.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.200 [WARN] ISSUE: [Reports] calibration_20260522_172728.json - FILE_TROPPO_GRANDE: calibration_20260522_172728.json ha 2821 linee (>2000)
+2026-06-13 13:37:18.244 [WARN] ISSUE: [Reports] calibration_20260522_172729.json - FILE_TROPPO_GRANDE: calibration_20260522_172729.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.284 [WARN] ISSUE: [Reports] calibration_20260522_172831.json - FILE_TROPPO_GRANDE: calibration_20260522_172831.json ha 2821 linee (>2000)
+2026-06-13 13:37:18.318 [WARN] ISSUE: [Reports] calibration_20260522_172832.json - FILE_TROPPO_GRANDE: calibration_20260522_172832.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.345 [WARN] ISSUE: [Reports] calibration_20260522_172951.json - FILE_TROPPO_GRANDE: calibration_20260522_172951.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.384 [WARN] ISSUE: [Reports] calibration_20260522_175403.json - FILE_TROPPO_GRANDE: calibration_20260522_175403.json ha 2821 linee (>2000)
+2026-06-13 13:37:18.431 [WARN] ISSUE: [Reports] calibration_20260522_175404.json - FILE_TROPPO_GRANDE: calibration_20260522_175404.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.470 [WARN] ISSUE: [Reports] calibration_20260522_175651.json - FILE_TROPPO_GRANDE: calibration_20260522_175651.json ha 2821 linee (>2000)
+2026-06-13 13:37:18.528 [WARN] ISSUE: [Reports] calibration_20260522_175652.json - FILE_TROPPO_GRANDE: calibration_20260522_175652.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.687 [WARN] ISSUE: [Reports] calibration_20260522_175859.json - FILE_TROPPO_GRANDE: calibration_20260522_175859.json ha 2821 linee (>2000)
+2026-06-13 13:37:18.733 [WARN] ISSUE: [Reports] calibration_20260522_175900.json - FILE_TROPPO_GRANDE: calibration_20260522_175900.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.807 [WARN] ISSUE: [Reports] calibration_20260522_180234.json - FILE_TROPPO_GRANDE: calibration_20260522_180234.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.855 [WARN] ISSUE: [Reports] calibration_20260522_200442.json - FILE_TROPPO_GRANDE: calibration_20260522_200442.json ha 2090 linee (>2000)
+2026-06-13 13:37:18.938 [WARN] ISSUE: [Reports] calibration_20260522_200629.json - FILE_TROPPO_GRANDE: calibration_20260522_200629.json ha 2821 linee (>2000)
+2026-06-13 13:37:18.970 [WARN] ISSUE: [Reports] calibration_20260522_200630.json - FILE_TROPPO_GRANDE: calibration_20260522_200630.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.097 [WARN] ISSUE: [Reports] calibration_20260524_174454.json - FILE_TROPPO_GRANDE: calibration_20260524_174454.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.138 [WARN] ISSUE: [Reports] calibration_20260524_175729.json - FILE_TROPPO_GRANDE: calibration_20260524_175729.json ha 2821 linee (>2000)
+2026-06-13 13:37:19.198 [WARN] ISSUE: [Reports] calibration_20260524_175730.json - FILE_TROPPO_GRANDE: calibration_20260524_175730.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.235 [WARN] ISSUE: [Reports] calibration_20260525_090925.json - FILE_TROPPO_GRANDE: calibration_20260525_090925.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.267 [WARN] ISSUE: [Reports] calibration_20260525_091027.json - FILE_TROPPO_GRANDE: calibration_20260525_091027.json ha 2821 linee (>2000)
+2026-06-13 13:37:19.345 [WARN] ISSUE: [Reports] calibration_20260525_091028.json - FILE_TROPPO_GRANDE: calibration_20260525_091028.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.469 [WARN] ISSUE: [Reports] calibration_20260525_091654.json - FILE_TROPPO_GRANDE: calibration_20260525_091654.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.520 [WARN] ISSUE: [Reports] calibration_20260528_092819.json - FILE_TROPPO_GRANDE: calibration_20260528_092819.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.546 [WARN] ISSUE: [Reports] calibration_20260603_134833.json - FILE_TROPPO_GRANDE: calibration_20260603_134833.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.617 [WARN] ISSUE: [Reports] calibration_20260603_135336.json - FILE_TROPPO_GRANDE: calibration_20260603_135336.json ha 2821 linee (>2000)
+2026-06-13 13:37:19.719 [WARN] ISSUE: [Reports] calibration_20260603_135337.json - FILE_TROPPO_GRANDE: calibration_20260603_135337.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.777 [WARN] ISSUE: [Reports] calibration_20260603_135411.json - FILE_TROPPO_GRANDE: calibration_20260603_135411.json ha 2821 linee (>2000)
+2026-06-13 13:37:19.819 [WARN] ISSUE: [Reports] calibration_20260603_135412.json - FILE_TROPPO_GRANDE: calibration_20260603_135412.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.868 [WARN] ISSUE: [Reports] calibration_20260603_140425.json - FILE_TROPPO_GRANDE: calibration_20260603_140425.json ha 2090 linee (>2000)
+2026-06-13 13:37:19.952 [WARN] ISSUE: [Reports] calibration_20260603_140506.json - FILE_TROPPO_GRANDE: calibration_20260603_140506.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.031 [WARN] ISSUE: [Reports] calibration_20260603_141518.json - FILE_TROPPO_GRANDE: calibration_20260603_141518.json ha 2821 linee (>2000)
+2026-06-13 13:37:20.105 [WARN] ISSUE: [Reports] calibration_20260603_141519.json - FILE_TROPPO_GRANDE: calibration_20260603_141519.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.154 [WARN] ISSUE: [Reports] calibration_20260603_142531.json - FILE_TROPPO_GRANDE: calibration_20260603_142531.json ha 2821 linee (>2000)
+2026-06-13 13:37:20.194 [WARN] ISSUE: [Reports] calibration_20260603_142532.json - FILE_TROPPO_GRANDE: calibration_20260603_142532.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.243 [WARN] ISSUE: [Reports] calibration_20260603_143545.json - FILE_TROPPO_GRANDE: calibration_20260603_143545.json ha 2821 linee (>2000)
+2026-06-13 13:37:20.300 [WARN] ISSUE: [Reports] calibration_20260603_143546.json - FILE_TROPPO_GRANDE: calibration_20260603_143546.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.345 [WARN] ISSUE: [Reports] calibration_20260603_153336.json - FILE_TROPPO_GRANDE: calibration_20260603_153336.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.410 [WARN] ISSUE: [Reports] calibration_20260603_153849.json - FILE_TROPPO_GRANDE: calibration_20260603_153849.json ha 2821 linee (>2000)
+2026-06-13 13:37:20.448 [WARN] ISSUE: [Reports] calibration_20260603_153850.json - FILE_TROPPO_GRANDE: calibration_20260603_153850.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.499 [WARN] ISSUE: [Reports] calibration_20260603_154351.json - FILE_TROPPO_GRANDE: calibration_20260603_154351.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.581 [WARN] ISSUE: [Reports] calibration_20260603_224852.json - FILE_TROPPO_GRANDE: calibration_20260603_224852.json ha 2821 linee (>2000)
+2026-06-13 13:37:20.621 [WARN] ISSUE: [Reports] calibration_20260603_224853.json - FILE_TROPPO_GRANDE: calibration_20260603_224853.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.669 [WARN] ISSUE: [Reports] calibration_20260603_230350.json - FILE_TROPPO_GRANDE: calibration_20260603_230350.json ha 2821 linee (>2000)
+2026-06-13 13:37:20.696 [WARN] ISSUE: [Reports] calibration_20260603_230351.json - FILE_TROPPO_GRANDE: calibration_20260603_230351.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.874 [WARN] ISSUE: [Reports] calibration_20260603_230839.json - FILE_TROPPO_GRANDE: calibration_20260603_230839.json ha 2821 linee (>2000)
+2026-06-13 13:37:20.899 [WARN] ISSUE: [Reports] calibration_20260603_230840.json - FILE_TROPPO_GRANDE: calibration_20260603_230840.json ha 2090 linee (>2000)
+2026-06-13 13:37:20.941 [WARN] ISSUE: [Reports] calibration_20260604_090715.json - FILE_TROPPO_GRANDE: calibration_20260604_090715.json ha 2821 linee (>2000)
+2026-06-13 13:37:21.000 [WARN] ISSUE: [Reports] calibration_20260604_090716.json - FILE_TROPPO_GRANDE: calibration_20260604_090716.json ha 2090 linee (>2000)
+2026-06-13 13:37:21.056 [WARN] ISSUE: [Reports] calibration_20260604_092914.json - FILE_TROPPO_GRANDE: calibration_20260604_092914.json ha 2821 linee (>2000)
+2026-06-13 13:37:21.118 [WARN] ISSUE: [Reports] calibration_20260604_092915.json - FILE_TROPPO_GRANDE: calibration_20260604_092915.json ha 2090 linee (>2000)
+2026-06-13 13:37:21.183 [WARN] ISSUE: [Reports] calibration_20260604_132412.json - FILE_TROPPO_GRANDE: calibration_20260604_132412.json ha 2090 linee (>2000)
+2026-06-13 13:37:21.270 [WARN] ISSUE: [Reports] calibration_20260604_141002.json - FILE_TROPPO_GRANDE: calibration_20260604_141002.json ha 2090 linee (>2000)
+2026-06-13 13:37:21.323 [WARN] ISSUE: [Reports] calibration_20260605_085333.json - FILE_TROPPO_GRANDE: calibration_20260605_085333.json ha 2821 linee (>2000)
+2026-06-13 13:37:21.370 [WARN] ISSUE: [Reports] calibration_20260605_085336.json - FILE_TROPPO_GRANDE: calibration_20260605_085336.json ha 2090 linee (>2000)
+2026-06-13 13:37:21.429 [WARN] ISSUE: [Reports] calibration_20260605_085622.json - FILE_TROPPO_GRANDE: calibration_20260605_085622.json ha 2821 linee (>2000)
+2026-06-13 13:37:21.487 [WARN] ISSUE: [Reports] calibration_20260605_085625.json - FILE_TROPPO_GRANDE: calibration_20260605_085625.json ha 2090 linee (>2000)
+2026-06-13 13:37:21.543 [WARN] ISSUE: [Reports] calibration_20260605_123607.json - FILE_TROPPO_GRANDE: calibration_20260605_123607.json ha 2821 linee (>2000)
+2026-06-13 13:37:21.599 [WARN] ISSUE: [Reports] calibration_20260605_123612.json - FILE_TROPPO_GRANDE: calibration_20260605_123612.json ha 2090 linee (>2000)
+2026-06-13 13:37:24.633 [WARN] ISSUE: [Reports] deep_region_audit_20260520_080704.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_080704.json ha 2053 linee (>2000)
+2026-06-13 13:37:24.682 [WARN] ISSUE: [Reports] deep_region_audit_20260520_131917.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_131917.json ha 2107 linee (>2000)
+2026-06-13 13:37:24.737 [WARN] ISSUE: [Reports] deep_region_audit_20260520_150147.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_150147.json ha 2179 linee (>2000)
+2026-06-13 13:37:24.841 [WARN] ISSUE: [Reports] deep_region_audit_20260520_150235.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_150235.json ha 2179 linee (>2000)
+2026-06-13 13:37:24.870 [WARN] ISSUE: [Reports] deep_region_audit_20260520_150350.json - FILE_TROPPO_GRANDE: deep_region_audit_20260520_150350.json ha 2179 linee (>2000)
+2026-06-13 13:37:24.906 [WARN] ISSUE: [Reports] deep_region_audit_20260521_102432.json - FILE_TROPPO_GRANDE: deep_region_audit_20260521_102432.json ha 2179 linee (>2000)
+2026-06-13 13:37:24.944 [WARN] ISSUE: [Reports] deep_region_audit_20260521_103419.json - FILE_TROPPO_GRANDE: deep_region_audit_20260521_103419.json ha 2179 linee (>2000)
+2026-06-13 13:37:24.974 [WARN] ISSUE: [Reports] deep_region_audit_20260521_103613.json - FILE_TROPPO_GRANDE: deep_region_audit_20260521_103613.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.003 [WARN] ISSUE: [Reports] deep_region_audit_20260522_085136.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_085136.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.032 [WARN] ISSUE: [Reports] deep_region_audit_20260522_085259.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_085259.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.072 [WARN] ISSUE: [Reports] deep_region_audit_20260522_085340.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_085340.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.132 [WARN] ISSUE: [Reports] deep_region_audit_20260522_110725.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_110725.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.239 [WARN] ISSUE: [Reports] deep_region_audit_20260522_111307.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_111307.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.298 [WARN] ISSUE: [Reports] deep_region_audit_20260522_114403.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_114403.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.365 [WARN] ISSUE: [Reports] deep_region_audit_20260522_114653.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_114653.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.423 [WARN] ISSUE: [Reports] deep_region_audit_20260522_114703.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_114703.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.462 [WARN] ISSUE: [Reports] deep_region_audit_20260522_114851.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_114851.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.496 [WARN] ISSUE: [Reports] deep_region_audit_20260522_133110.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_133110.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.534 [WARN] ISSUE: [Reports] deep_region_audit_20260522_133830.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_133830.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.564 [WARN] ISSUE: [Reports] deep_region_audit_20260522_134050.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_134050.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.609 [WARN] ISSUE: [Reports] deep_region_audit_20260522_150535.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_150535.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.633 [WARN] ISSUE: [Reports] deep_region_audit_20260522_152529.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_152529.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.656 [WARN] ISSUE: [Reports] deep_region_audit_20260522_162751.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_162751.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.698 [WARN] ISSUE: [Reports] deep_region_audit_20260522_163109.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_163109.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.735 [WARN] ISSUE: [Reports] deep_region_audit_20260522_163422.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_163422.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.801 [WARN] ISSUE: [Reports] deep_region_audit_20260522_163539.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_163539.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.855 [WARN] ISSUE: [Reports] deep_region_audit_20260522_164133.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_164133.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.892 [WARN] ISSUE: [Reports] deep_region_audit_20260522_164145.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_164145.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.958 [WARN] ISSUE: [Reports] deep_region_audit_20260522_164343.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_164343.json ha 2179 linee (>2000)
+2026-06-13 13:37:25.993 [WARN] ISSUE: [Reports] deep_region_audit_20260522_172717.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_172717.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.027 [WARN] ISSUE: [Reports] deep_region_audit_20260522_172939.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_172939.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.079 [WARN] ISSUE: [Reports] deep_region_audit_20260522_174926.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_174926.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.103 [WARN] ISSUE: [Reports] deep_region_audit_20260522_175351.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_175351.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.129 [WARN] ISSUE: [Reports] deep_region_audit_20260522_175848.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_175848.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.169 [WARN] ISSUE: [Reports] deep_region_audit_20260522_180222.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_180222.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.202 [WARN] ISSUE: [Reports] deep_region_audit_20260522_200430.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_200430.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.227 [WARN] ISSUE: [Reports] deep_region_audit_20260522_200617.json - FILE_TROPPO_GRANDE: deep_region_audit_20260522_200617.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.256 [WARN] ISSUE: [Reports] deep_region_audit_20260524_174442.json - FILE_TROPPO_GRANDE: deep_region_audit_20260524_174442.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.302 [WARN] ISSUE: [Reports] deep_region_audit_20260524_175718.json - FILE_TROPPO_GRANDE: deep_region_audit_20260524_175718.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.332 [WARN] ISSUE: [Reports] deep_region_audit_20260525_090848.json - FILE_TROPPO_GRANDE: deep_region_audit_20260525_090848.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.357 [WARN] ISSUE: [Reports] deep_region_audit_20260526_141156.json - FILE_TROPPO_GRANDE: deep_region_audit_20260526_141156.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.393 [WARN] ISSUE: [Reports] deep_region_audit_20260528_092806.json - FILE_TROPPO_GRANDE: deep_region_audit_20260528_092806.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.421 [WARN] ISSUE: [Reports] deep_region_audit_20260603_134546.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_134546.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.489 [WARN] ISSUE: [Reports] deep_region_audit_20260603_134820.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_134820.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.597 [WARN] ISSUE: [Reports] deep_region_audit_20260603_135324.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_135324.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.647 [WARN] ISSUE: [Reports] deep_region_audit_20260603_135359.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_135359.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.691 [WARN] ISSUE: [Reports] deep_region_audit_20260603_140412.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_140412.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.726 [WARN] ISSUE: [Reports] deep_region_audit_20260603_140453.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_140453.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.785 [WARN] ISSUE: [Reports] deep_region_audit_20260603_141506.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_141506.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.864 [WARN] ISSUE: [Reports] deep_region_audit_20260603_142519.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_142519.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.928 [WARN] ISSUE: [Reports] deep_region_audit_20260603_143533.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_143533.json ha 2179 linee (>2000)
+2026-06-13 13:37:26.985 [WARN] ISSUE: [Reports] deep_region_audit_20260603_153323.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_153323.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.070 [WARN] ISSUE: [Reports] deep_region_audit_20260603_153836.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_153836.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.114 [WARN] ISSUE: [Reports] deep_region_audit_20260603_154337.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_154337.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.191 [WARN] ISSUE: [Reports] deep_region_audit_20260603_224837.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_224837.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.243 [WARN] ISSUE: [Reports] deep_region_audit_20260603_230335.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_230335.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.286 [WARN] ISSUE: [Reports] deep_region_audit_20260603_230824.json - FILE_TROPPO_GRANDE: deep_region_audit_20260603_230824.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.343 [WARN] ISSUE: [Reports] deep_region_audit_20260604_090700.json - FILE_TROPPO_GRANDE: deep_region_audit_20260604_090700.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.370 [WARN] ISSUE: [Reports] deep_region_audit_20260604_092859.json - FILE_TROPPO_GRANDE: deep_region_audit_20260604_092859.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.405 [WARN] ISSUE: [Reports] deep_region_audit_20260604_132400.json - FILE_TROPPO_GRANDE: deep_region_audit_20260604_132400.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.427 [WARN] ISSUE: [Reports] deep_region_audit_20260604_140950.json - FILE_TROPPO_GRANDE: deep_region_audit_20260604_140950.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.495 [WARN] ISSUE: [Reports] deep_region_audit_20260605_073612.json - FILE_TROPPO_GRANDE: deep_region_audit_20260605_073612.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.550 [WARN] ISSUE: [Reports] deep_region_audit_20260605_085130.json - FILE_TROPPO_GRANDE: deep_region_audit_20260605_085130.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.599 [WARN] ISSUE: [Reports] deep_region_audit_20260605_122228.json - FILE_TROPPO_GRANDE: deep_region_audit_20260605_122228.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.647 [WARN] ISSUE: [Reports] deep_region_audit_20260605_123159.json - FILE_TROPPO_GRANDE: deep_region_audit_20260605_123159.json ha 2179 linee (>2000)
+2026-06-13 13:37:27.700 [WARN] ISSUE: [Reports] deep_region_audit_20260611_103841.json - FILE_TROPPO_GRANDE: deep_region_audit_20260611_103841.json ha 2179 linee (>2000)
+2026-06-13 13:37:30.014 [WARN] ISSUE: [Reports] report_scan_20260613_131724.json - FILE_TROPPO_GRANDE: report_scan_20260613_131724.json ha 2678 linee (>2000)
+2026-06-13 13:37:30.114 [WARN] ISSUE: [Reports] report_scan_20260613_131957.json - FILE_TROPPO_GRANDE: report_scan_20260613_131957.json ha 2684 linee (>2000)
+2026-06-13 13:37:30.196 [WARN] ISSUE: [Reports] report_scan_20260613_131958.json - FILE_TROPPO_GRANDE: report_scan_20260613_131958.json ha 2684 linee (>2000)
+2026-06-13 13:37:30.277 [WARN] ISSUE: [Reports] report_scan_20260613_132213.json - FILE_TROPPO_GRANDE: report_scan_20260613_132213.json ha 2696 linee (>2000)
+2026-06-13 13:37:30.332 [WARN] ISSUE: [Reports] report_scan_20260613_132226.json - FILE_TROPPO_GRANDE: report_scan_20260613_132226.json ha 2696 linee (>2000)
+2026-06-13 13:37:30.401 [WARN] ISSUE: [Reports] report_scan_20260613_132352.json - FILE_TROPPO_GRANDE: report_scan_20260613_132352.json ha 2708 linee (>2000)
+2026-06-13 13:37:30.510 [WARN] ISSUE: [Reports] report_scan_20260613_132628.json - FILE_TROPPO_GRANDE: report_scan_20260613_132628.json ha 2714 linee (>2000)
+2026-06-13 13:37:30.577 [WARN] ISSUE: [Reports] report_scan_20260613_132640.json - FILE_TROPPO_GRANDE: report_scan_20260613_132640.json ha 2714 linee (>2000)
+2026-06-13 13:37:30.652 [WARN] ISSUE: [Reports] report_scan_20260613_132706.json - FILE_TROPPO_GRANDE: report_scan_20260613_132706.json ha 2720 linee (>2000)
+2026-06-13 13:37:30.733 [WARN] ISSUE: [Reports] report_scan_20260613_132751.json - FILE_TROPPO_GRANDE: report_scan_20260613_132751.json ha 2732 linee (>2000)
+2026-06-13 13:37:30.849 [WARN] ISSUE: [Reports] report_scan_20260613_132826.json - FILE_TROPPO_GRANDE: report_scan_20260613_132826.json ha 2738 linee (>2000)
+2026-06-13 13:37:30.928 [WARN] ISSUE: [Reports] report_scan_20260613_132855.json - FILE_TROPPO_GRANDE: report_scan_20260613_132855.json ha 2744 linee (>2000)
+2026-06-13 13:37:30.985 [WARN] ISSUE: [Reports] report_scan_20260613_132939.json - FILE_TROPPO_GRANDE: report_scan_20260613_132939.json ha 2750 linee (>2000)
+2026-06-13 13:37:31.049 [WARN] ISSUE: [Reports] report_scan_20260613_133037.json - FILE_TROPPO_GRANDE: report_scan_20260613_133037.json ha 2756 linee (>2000)
+2026-06-13 13:37:31.112 [WARN] ISSUE: [Reports] report_scan_20260613_133040.json - FILE_TROPPO_GRANDE: report_scan_20260613_133040.json ha 2756 linee (>2000)
+2026-06-13 13:37:31.181 [WARN] ISSUE: [Reports] report_scan_20260613_133107.json - FILE_TROPPO_GRANDE: report_scan_20260613_133107.json ha 2768 linee (>2000)
+2026-06-13 13:37:31.272 [WARN] ISSUE: [Reports] report_scan_20260613_133114.json - FILE_TROPPO_GRANDE: report_scan_20260613_133114.json ha 2768 linee (>2000)
+2026-06-13 13:37:31.408 [WARN] ISSUE: [Reports] report_scan_20260613_133205.json - FILE_TROPPO_GRANDE: report_scan_20260613_133205.json ha 2780 linee (>2000)
+2026-06-13 13:37:31.492 [WARN] ISSUE: [Reports] report_scan_20260613_133216.json - FILE_TROPPO_GRANDE: report_scan_20260613_133216.json ha 2780 linee (>2000)
+2026-06-13 13:37:31.544 [WARN] ISSUE: [Reports] report_scan_20260613_133235.json - FILE_TROPPO_GRANDE: report_scan_20260613_133235.json ha 2786 linee (>2000)
+2026-06-13 13:37:31.622 [WARN] ISSUE: [Reports] report_scan_20260613_133246.json - FILE_TROPPO_GRANDE: report_scan_20260613_133246.json ha 2786 linee (>2000)
+2026-06-13 13:37:31.702 [WARN] ISSUE: [Reports] report_scan_20260613_133335.json - FILE_TROPPO_GRANDE: report_scan_20260613_133335.json ha 2804 linee (>2000)
+2026-06-13 13:37:31.798 [WARN] ISSUE: [Reports] report_scan_20260613_133338.json - FILE_TROPPO_GRANDE: report_scan_20260613_133338.json ha 2804 linee (>2000)
+2026-06-13 13:37:31.911 [WARN] ISSUE: [Reports] report_scan_20260613_133407.json - FILE_TROPPO_GRANDE: report_scan_20260613_133407.json ha 2810 linee (>2000)
+2026-06-13 13:37:32.007 [WARN] ISSUE: [Reports] report_scan_20260613_133410.json - FILE_TROPPO_GRANDE: report_scan_20260613_133410.json ha 2816 linee (>2000)
+2026-06-13 13:37:32.070 [WARN] ISSUE: [Reports] report_scan_20260613_133431.json - FILE_TROPPO_GRANDE: report_scan_20260613_133431.json ha 2816 linee (>2000)
+2026-06-13 13:37:32.150 [WARN] ISSUE: [Reports] report_scan_20260613_133435.json - FILE_TROPPO_GRANDE: report_scan_20260613_133435.json ha 2822 linee (>2000)
+2026-06-13 13:37:32.244 [WARN] ISSUE: [Reports] report_scan_20260613_133457.json - FILE_TROPPO_GRANDE: report_scan_20260613_133457.json ha 2828 linee (>2000)
+2026-06-13 13:37:32.340 [WARN] ISSUE: [Reports] report_scan_20260613_133515.json - FILE_TROPPO_GRANDE: report_scan_20260613_133515.json ha 2840 linee (>2000)
+2026-06-13 13:37:32.425 [WARN] ISSUE: [Reports] report_scan_20260613_133529.json - FILE_TROPPO_GRANDE: report_scan_20260613_133529.json ha 2846 linee (>2000)
+2026-06-13 13:37:32.513 [WARN] ISSUE: [Reports] report_scan_20260613_133543.json - FILE_TROPPO_GRANDE: report_scan_20260613_133543.json ha 2852 linee (>2000)
+2026-06-13 13:37:32.614 [WARN] ISSUE: [Reports] report_scan_20260613_133634.json - FILE_TROPPO_GRANDE: report_scan_20260613_133634.json ha 2864 linee (>2000)
+2026-06-13 13:37:32.693 [WARN] ISSUE: [Reports] report_scan_20260613_133640.json - FILE_TROPPO_GRANDE: report_scan_20260613_133640.json ha 2864 linee (>2000)
+2026-06-13 13:37:32.790 [WARN] ISSUE: [Reports] report_scan_20260613_133643.json - FILE_TROPPO_GRANDE: report_scan_20260613_133643.json ha 2864 linee (>2000)
+2026-06-13 13:37:45.489 [WARN] ISSUE: [Reports] pathway_20260520_080718.json - FILE_TROPPO_GRANDE: pathway_20260520_080718.json ha 2034 linee (>2000)
+2026-06-13 13:37:45.595 [WARN] ISSUE: [Reports] pathway_20260520_131931.json - FILE_TROPPO_GRANDE: pathway_20260520_131931.json ha 2088 linee (>2000)
+2026-06-13 13:37:45.690 [WARN] ISSUE: [Reports] pathway_20260520_150200.json - FILE_TROPPO_GRANDE: pathway_20260520_150200.json ha 2160 linee (>2000)
+2026-06-13 13:37:45.792 [WARN] ISSUE: [Reports] pathway_20260520_150248.json - FILE_TROPPO_GRANDE: pathway_20260520_150248.json ha 2160 linee (>2000)
+2026-06-13 13:37:45.902 [WARN] ISSUE: [Reports] pathway_20260520_150403.json - FILE_TROPPO_GRANDE: pathway_20260520_150403.json ha 2160 linee (>2000)
+2026-06-13 13:37:45.987 [WARN] ISSUE: [Reports] pathway_20260521_102446.json - FILE_TROPPO_GRANDE: pathway_20260521_102446.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.093 [WARN] ISSUE: [Reports] pathway_20260521_103432.json - FILE_TROPPO_GRANDE: pathway_20260521_103432.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.179 [WARN] ISSUE: [Reports] pathway_20260521_103627.json - FILE_TROPPO_GRANDE: pathway_20260521_103627.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.269 [WARN] ISSUE: [Reports] pathway_20260522_085149.json - FILE_TROPPO_GRANDE: pathway_20260522_085149.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.353 [WARN] ISSUE: [Reports] pathway_20260522_085313.json - FILE_TROPPO_GRANDE: pathway_20260522_085313.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.523 [WARN] ISSUE: [Reports] pathway_20260522_085353.json - FILE_TROPPO_GRANDE: pathway_20260522_085353.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.607 [WARN] ISSUE: [Reports] pathway_20260522_110741.json - FILE_TROPPO_GRANDE: pathway_20260522_110741.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.679 [WARN] ISSUE: [Reports] pathway_20260522_111320.json - FILE_TROPPO_GRANDE: pathway_20260522_111320.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.740 [WARN] ISSUE: [Reports] pathway_20260522_114417.json - FILE_TROPPO_GRANDE: pathway_20260522_114417.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.841 [WARN] ISSUE: [Reports] pathway_20260522_114710.json - FILE_TROPPO_GRANDE: pathway_20260522_114710.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.936 [WARN] ISSUE: [Reports] pathway_20260522_114721.json - FILE_TROPPO_GRANDE: pathway_20260522_114721.json ha 2160 linee (>2000)
+2026-06-13 13:37:46.989 [WARN] ISSUE: [Reports] pathway_20260522_114906.json - FILE_TROPPO_GRANDE: pathway_20260522_114906.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.085 [WARN] ISSUE: [Reports] pathway_20260522_133124.json - FILE_TROPPO_GRANDE: pathway_20260522_133124.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.178 [WARN] ISSUE: [Reports] pathway_20260522_133844.json - FILE_TROPPO_GRANDE: pathway_20260522_133844.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.267 [WARN] ISSUE: [Reports] pathway_20260522_134104.json - FILE_TROPPO_GRANDE: pathway_20260522_134104.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.348 [WARN] ISSUE: [Reports] pathway_20260522_150549.json - FILE_TROPPO_GRANDE: pathway_20260522_150549.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.434 [WARN] ISSUE: [Reports] pathway_20260522_152543.json - FILE_TROPPO_GRANDE: pathway_20260522_152543.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.505 [WARN] ISSUE: [Reports] pathway_20260522_162805.json - FILE_TROPPO_GRANDE: pathway_20260522_162805.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.556 [WARN] ISSUE: [Reports] pathway_20260522_163123.json - FILE_TROPPO_GRANDE: pathway_20260522_163123.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.612 [WARN] ISSUE: [Reports] pathway_20260522_163436.json - FILE_TROPPO_GRANDE: pathway_20260522_163436.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.677 [WARN] ISSUE: [Reports] pathway_20260522_163552.json - FILE_TROPPO_GRANDE: pathway_20260522_163552.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.763 [WARN] ISSUE: [Reports] pathway_20260522_164147.json - FILE_TROPPO_GRANDE: pathway_20260522_164147.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.842 [WARN] ISSUE: [Reports] pathway_20260522_164159.json - FILE_TROPPO_GRANDE: pathway_20260522_164159.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.892 [WARN] ISSUE: [Reports] pathway_20260522_164357.json - FILE_TROPPO_GRANDE: pathway_20260522_164357.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.939 [WARN] ISSUE: [Reports] pathway_20260522_172730.json - FILE_TROPPO_GRANDE: pathway_20260522_172730.json ha 2160 linee (>2000)
+2026-06-13 13:37:47.999 [WARN] ISSUE: [Reports] pathway_20260522_172833.json - FILE_TROPPO_GRANDE: pathway_20260522_172833.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.062 [WARN] ISSUE: [Reports] pathway_20260522_172953.json - FILE_TROPPO_GRANDE: pathway_20260522_172953.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.126 [WARN] ISSUE: [Reports] pathway_20260522_175405.json - FILE_TROPPO_GRANDE: pathway_20260522_175405.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.179 [WARN] ISSUE: [Reports] pathway_20260522_175653.json - FILE_TROPPO_GRANDE: pathway_20260522_175653.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.214 [WARN] ISSUE: [Reports] pathway_20260522_175901.json - FILE_TROPPO_GRANDE: pathway_20260522_175901.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.256 [WARN] ISSUE: [Reports] pathway_20260522_180236.json - FILE_TROPPO_GRANDE: pathway_20260522_180236.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.333 [WARN] ISSUE: [Reports] pathway_20260522_200443.json - FILE_TROPPO_GRANDE: pathway_20260522_200443.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.363 [WARN] ISSUE: [Reports] pathway_20260522_200631.json - FILE_TROPPO_GRANDE: pathway_20260522_200631.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.438 [WARN] ISSUE: [Reports] pathway_20260524_174456.json - FILE_TROPPO_GRANDE: pathway_20260524_174456.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.504 [WARN] ISSUE: [Reports] pathway_20260524_175731.json - FILE_TROPPO_GRANDE: pathway_20260524_175731.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.591 [WARN] ISSUE: [Reports] pathway_20260525_090927.json - FILE_TROPPO_GRANDE: pathway_20260525_090927.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.644 [WARN] ISSUE: [Reports] pathway_20260525_091029.json - FILE_TROPPO_GRANDE: pathway_20260525_091029.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.709 [WARN] ISSUE: [Reports] pathway_20260525_091656.json - FILE_TROPPO_GRANDE: pathway_20260525_091656.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.862 [WARN] ISSUE: [Reports] pathway_20260528_092821.json - FILE_TROPPO_GRANDE: pathway_20260528_092821.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.939 [WARN] ISSUE: [Reports] pathway_20260603_134835.json - FILE_TROPPO_GRANDE: pathway_20260603_134835.json ha 2160 linee (>2000)
+2026-06-13 13:37:48.966 [WARN] ISSUE: [Reports] pathway_20260603_135338.json - FILE_TROPPO_GRANDE: pathway_20260603_135338.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.018 [WARN] ISSUE: [Reports] pathway_20260603_135413.json - FILE_TROPPO_GRANDE: pathway_20260603_135413.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.066 [WARN] ISSUE: [Reports] pathway_20260603_140427.json - FILE_TROPPO_GRANDE: pathway_20260603_140427.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.113 [WARN] ISSUE: [Reports] pathway_20260603_140508.json - FILE_TROPPO_GRANDE: pathway_20260603_140508.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.167 [WARN] ISSUE: [Reports] pathway_20260603_141520.json - FILE_TROPPO_GRANDE: pathway_20260603_141520.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.222 [WARN] ISSUE: [Reports] pathway_20260603_142533.json - FILE_TROPPO_GRANDE: pathway_20260603_142533.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.287 [WARN] ISSUE: [Reports] pathway_20260603_143547.json - FILE_TROPPO_GRANDE: pathway_20260603_143547.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.359 [WARN] ISSUE: [Reports] pathway_20260603_153338.json - FILE_TROPPO_GRANDE: pathway_20260603_153338.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.409 [WARN] ISSUE: [Reports] pathway_20260603_153851.json - FILE_TROPPO_GRANDE: pathway_20260603_153851.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.477 [WARN] ISSUE: [Reports] pathway_20260603_154353.json - FILE_TROPPO_GRANDE: pathway_20260603_154353.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.525 [WARN] ISSUE: [Reports] pathway_20260603_224855.json - FILE_TROPPO_GRANDE: pathway_20260603_224855.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.573 [WARN] ISSUE: [Reports] pathway_20260603_230352.json - FILE_TROPPO_GRANDE: pathway_20260603_230352.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.641 [WARN] ISSUE: [Reports] pathway_20260603_230842.json - FILE_TROPPO_GRANDE: pathway_20260603_230842.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.679 [WARN] ISSUE: [Reports] pathway_20260604_090717.json - FILE_TROPPO_GRANDE: pathway_20260604_090717.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.713 [WARN] ISSUE: [Reports] pathway_20260604_092917.json - FILE_TROPPO_GRANDE: pathway_20260604_092917.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.765 [WARN] ISSUE: [Reports] pathway_20260604_132414.json - FILE_TROPPO_GRANDE: pathway_20260604_132414.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.819 [WARN] ISSUE: [Reports] pathway_20260604_141004.json - FILE_TROPPO_GRANDE: pathway_20260604_141004.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.868 [WARN] ISSUE: [Reports] pathway_20260605_085341.json - FILE_TROPPO_GRANDE: pathway_20260605_085341.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.910 [WARN] ISSUE: [Reports] pathway_20260605_085631.json - FILE_TROPPO_GRANDE: pathway_20260605_085631.json ha 2160 linee (>2000)
+2026-06-13 13:37:49.962 [WARN] ISSUE: [Reports] pathway_20260605_123623.json - FILE_TROPPO_GRANDE: pathway_20260605_123623.json ha 2160 linee (>2000)
+2026-06-13 13:37:50.016 [WARN] ISSUE: [Reports] t54b_audit_20260518_101821.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_101821.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.055 [WARN] ISSUE: [Reports] t54b_audit_20260518_101904.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_101904.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.108 [WARN] ISSUE: [Reports] t54b_audit_20260518_103333.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_103333.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.174 [WARN] ISSUE: [Reports] t54b_audit_20260518_103646.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_103646.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.216 [WARN] ISSUE: [Reports] t54b_audit_20260518_104130.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_104130.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.261 [WARN] ISSUE: [Reports] t54b_audit_20260518_122316.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_122316.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.318 [WARN] ISSUE: [Reports] t54b_audit_20260518_135418.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_135418.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.365 [WARN] ISSUE: [Reports] t54b_audit_20260518_141922.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_141922.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.393 [WARN] ISSUE: [Reports] t54b_audit_20260518_151456.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_151456.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.433 [WARN] ISSUE: [Reports] t54b_audit_20260518_161609.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_161609.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.477 [WARN] ISSUE: [Reports] t54b_audit_20260518_161701.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_161701.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.581 [WARN] ISSUE: [Reports] t54b_audit_20260518_161929.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_161929.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.636 [WARN] ISSUE: [Reports] t54b_audit_20260518_165542.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_165542.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.675 [WARN] ISSUE: [Reports] t54b_audit_20260518_165903.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_165903.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.722 [WARN] ISSUE: [Reports] t54b_audit_20260518_181738.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_181738.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.794 [WARN] ISSUE: [Reports] t54b_audit_20260518_201758.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_201758.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.870 [WARN] ISSUE: [Reports] t54b_audit_20260518_201954.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_201954.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.933 [WARN] ISSUE: [Reports] t54b_audit_20260518_205116.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_205116.json ha 2511 linee (>2000)
+2026-06-13 13:37:50.987 [WARN] ISSUE: [Reports] t54b_audit_20260518_214351.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214351.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.035 [WARN] ISSUE: [Reports] t54b_audit_20260518_214604.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214604.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.089 [WARN] ISSUE: [Reports] t54b_audit_20260518_214743.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214743.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.151 [WARN] ISSUE: [Reports] t54b_audit_20260518_214850.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214850.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.200 [WARN] ISSUE: [Reports] t54b_audit_20260518_214947.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_214947.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.261 [WARN] ISSUE: [Reports] t54b_audit_20260518_215047.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215047.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.307 [WARN] ISSUE: [Reports] t54b_audit_20260518_215146.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215146.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.357 [WARN] ISSUE: [Reports] t54b_audit_20260518_215246.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215246.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.430 [WARN] ISSUE: [Reports] t54b_audit_20260518_215353.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215353.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.476 [WARN] ISSUE: [Reports] t54b_audit_20260518_215511.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215511.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.542 [WARN] ISSUE: [Reports] t54b_audit_20260518_215624.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215624.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.612 [WARN] ISSUE: [Reports] t54b_audit_20260518_215724.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215724.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.676 [WARN] ISSUE: [Reports] t54b_audit_20260518_215838.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215838.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.722 [WARN] ISSUE: [Reports] t54b_audit_20260518_215936.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_215936.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.794 [WARN] ISSUE: [Reports] t54b_audit_20260518_220034.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_220034.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.862 [WARN] ISSUE: [Reports] t54b_audit_20260518_220231.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_220231.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.919 [WARN] ISSUE: [Reports] t54b_audit_20260518_220452.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_220452.json ha 2511 linee (>2000)
+2026-06-13 13:37:51.985 [WARN] ISSUE: [Reports] t54b_audit_20260518_220553.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_220553.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.037 [WARN] ISSUE: [Reports] t54b_audit_20260518_223526.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_223526.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.091 [WARN] ISSUE: [Reports] t54b_audit_20260518_223925.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_223925.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.134 [WARN] ISSUE: [Reports] t54b_audit_20260518_224038.json - FILE_TROPPO_GRANDE: t54b_audit_20260518_224038.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.208 [WARN] ISSUE: [Reports] t54b_audit_20260519_073210.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_073210.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.279 [WARN] ISSUE: [Reports] t54b_audit_20260519_093630.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_093630.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.329 [WARN] ISSUE: [Reports] t54b_audit_20260519_103939.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_103939.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.382 [WARN] ISSUE: [Reports] t54b_audit_20260519_123753.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_123753.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.503 [WARN] ISSUE: [Reports] t54b_audit_20260519_123901.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_123901.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.589 [WARN] ISSUE: [Reports] t54b_audit_20260519_141659.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_141659.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.645 [WARN] ISSUE: [Reports] t54b_audit_20260519_142500.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_142500.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.693 [WARN] ISSUE: [Reports] t54b_audit_20260519_163813.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_163813.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.753 [WARN] ISSUE: [Reports] t54b_audit_20260519_183813.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_183813.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.825 [WARN] ISSUE: [Reports] t54b_audit_20260519_183949.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_183949.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.896 [WARN] ISSUE: [Reports] t54b_audit_20260519_184455.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_184455.json ha 2511 linee (>2000)
+2026-06-13 13:37:52.960 [WARN] ISSUE: [Reports] t54b_audit_20260519_184650.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_184650.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.025 [WARN] ISSUE: [Reports] t54b_audit_20260519_184851.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_184851.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.092 [WARN] ISSUE: [Reports] t54b_audit_20260519_185301.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_185301.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.145 [WARN] ISSUE: [Reports] t54b_audit_20260519_195646.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_195646.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.210 [WARN] ISSUE: [Reports] t54b_audit_20260519_204947.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_204947.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.262 [WARN] ISSUE: [Reports] t54b_audit_20260519_210047.json - FILE_TROPPO_GRANDE: t54b_audit_20260519_210047.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.339 [WARN] ISSUE: [Reports] t54b_audit_20260520_060737.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_060737.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.414 [WARN] ISSUE: [Reports] t54b_audit_20260520_111953.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_111953.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.465 [WARN] ISSUE: [Reports] t54b_audit_20260520_130219.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_130219.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.528 [WARN] ISSUE: [Reports] t54b_audit_20260520_130307.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_130307.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.604 [WARN] ISSUE: [Reports] t54b_audit_20260520_130423.json - FILE_TROPPO_GRANDE: t54b_audit_20260520_130423.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.661 [WARN] ISSUE: [Reports] t54b_audit_20260521_082507.json - FILE_TROPPO_GRANDE: t54b_audit_20260521_082507.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.709 [WARN] ISSUE: [Reports] t54b_audit_20260521_083452.json - FILE_TROPPO_GRANDE: t54b_audit_20260521_083452.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.764 [WARN] ISSUE: [Reports] t54b_audit_20260521_083647.json - FILE_TROPPO_GRANDE: t54b_audit_20260521_083647.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.831 [WARN] ISSUE: [Reports] t54b_audit_20260522_065208.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_065208.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.901 [WARN] ISSUE: [Reports] t54b_audit_20260522_065413.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_065413.json ha 2511 linee (>2000)
+2026-06-13 13:37:53.946 [WARN] ISSUE: [Reports] t54b_audit_20260522_090803.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_090803.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.000 [WARN] ISSUE: [Reports] t54b_audit_20260522_091340.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_091340.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.069 [WARN] ISSUE: [Reports] t54b_audit_20260522_094439.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_094439.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.122 [WARN] ISSUE: [Reports] t54b_audit_20260522_094737.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_094737.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.180 [WARN] ISSUE: [Reports] t54b_audit_20260522_094749.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_094749.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.239 [WARN] ISSUE: [Reports] t54b_audit_20260522_094928.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_094928.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.300 [WARN] ISSUE: [Reports] t54b_audit_20260522_113145.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_113145.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.352 [WARN] ISSUE: [Reports] t54b_audit_20260522_113905.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_113905.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.417 [WARN] ISSUE: [Reports] t54b_audit_20260522_114125.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_114125.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.555 [WARN] ISSUE: [Reports] t54b_audit_20260522_130610.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_130610.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.633 [WARN] ISSUE: [Reports] t54b_audit_20260522_132603.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_132603.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.696 [WARN] ISSUE: [Reports] t54b_audit_20260522_142826.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_142826.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.759 [WARN] ISSUE: [Reports] t54b_audit_20260522_143143.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_143143.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.841 [WARN] ISSUE: [Reports] t54b_audit_20260522_143457.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_143457.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.903 [WARN] ISSUE: [Reports] t54b_audit_20260522_143612.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_143612.json ha 2511 linee (>2000)
+2026-06-13 13:37:54.962 [WARN] ISSUE: [Reports] t54b_audit_20260522_144208.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_144208.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.003 [WARN] ISSUE: [Reports] t54b_audit_20260522_144220.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_144220.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.053 [WARN] ISSUE: [Reports] t54b_audit_20260522_144420.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_144420.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.108 [WARN] ISSUE: [Reports] t54b_audit_20260522_152750.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_152750.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.156 [WARN] ISSUE: [Reports] t54b_audit_20260522_152853.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_152853.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.216 [WARN] ISSUE: [Reports] t54b_audit_20260522_153013.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_153013.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.281 [WARN] ISSUE: [Reports] t54b_audit_20260522_155434.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_155434.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.333 [WARN] ISSUE: [Reports] t54b_audit_20260522_155721.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_155721.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.400 [WARN] ISSUE: [Reports] t54b_audit_20260522_155946.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_155946.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.472 [WARN] ISSUE: [Reports] t54b_audit_20260522_160327.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_160327.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.540 [WARN] ISSUE: [Reports] t54b_audit_20260522_180531.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_180531.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.597 [WARN] ISSUE: [Reports] t54b_audit_20260522_180723.json - FILE_TROPPO_GRANDE: t54b_audit_20260522_180723.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.669 [WARN] ISSUE: [Reports] t54b_audit_20260603_133636.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_133636.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.731 [WARN] ISSUE: [Reports] t54b_audit_20260603_134210.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_134210.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.802 [WARN] ISSUE: [Reports] t54b_audit_20260603_134708.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_134708.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.862 [WARN] ISSUE: [Reports] t54b_audit_20260603_205227.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_205227.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.898 [WARN] ISSUE: [Reports] t54b_audit_20260603_211240.json - FILE_TROPPO_GRANDE: t54b_audit_20260603_211240.json ha 2511 linee (>2000)
+2026-06-13 13:37:55.967 [WARN] ISSUE: [Reports] t54b_audit_20260604_071138.json - FILE_TROPPO_GRANDE: t54b_audit_20260604_071138.json ha 2511 linee (>2000)
+2026-06-13 13:37:56.007 [WARN] ISSUE: [Reports] t54b_audit_20260604_073350.json - FILE_TROPPO_GRANDE: t54b_audit_20260604_073350.json ha 2511 linee (>2000)
+2026-06-13 13:37:56.050 [WARN] ISSUE: [Reports] t54b_audit_20260604_112716.json - FILE_TROPPO_GRANDE: t54b_audit_20260604_112716.json ha 2511 linee (>2000)
+2026-06-13 13:37:56.136 [WARN] ISSUE: [Reports] t54b_audit_20260604_121308.json - FILE_TROPPO_GRANDE: t54b_audit_20260604_121308.json ha 2511 linee (>2000)
+2026-06-13 13:38:00.876 [WARN] Scansione completata: Reports - 380 issue trovate
+2026-06-13 13:38:00.995 [WARN] ===== SCANSIONE COMPLETA #60: 478 ISSUE TOTALI =====
+2026-06-13 13:38:01.171 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_133801.json
+2026-06-13 13:38:01.435 [DIAG] Diagnosi salvata: C:\cellular_speace\data\diagnosi\diagnosi_20260613_133801.md
+2026-06-13 13:38:01.510 [INFO] Generazione report manutenzione completo...
+2026-06-13 13:38:01.577 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:39:01.644 [INFO] === Ciclo manutenzione completo #61 ===
+2026-06-13 13:39:07.417 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:40:07.544 [INFO] === Ciclo manutenzione completo #62 ===
+2026-06-13 13:40:12.872 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:41:12.889 [INFO] === Ciclo manutenzione completo #63 ===
+2026-06-13 13:41:22.204 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:42:22.204 [INFO] === Ciclo manutenzione completo #64 ===
+2026-06-13 13:42:25.736 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:43:25.738 [INFO] === Ciclo manutenzione completo #65 ===
+2026-06-13 13:43:29.480 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:44:29.494 [INFO] === Ciclo manutenzione completo #66 ===
+2026-06-13 13:44:45.514 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:45:45.525 [INFO] === Ciclo manutenzione completo #67 ===
+2026-06-13 13:45:48.870 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:46:48.876 [INFO] === Ciclo manutenzione completo #68 ===
+2026-06-13 13:46:54.626 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:47:54.718 [INFO] === Ciclo manutenzione completo #69 ===
+2026-06-13 13:48:03.868 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:49:03.891 [INFO] === Ciclo manutenzione completo #70 ===
+2026-06-13 13:49:07.823 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:50:07.831 [INFO] === Ciclo manutenzione completo #71 ===
+2026-06-13 13:50:12.712 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:51:12.735 [INFO] === Ciclo manutenzione completo #72 ===
+2026-06-13 13:51:40.634 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:52:40.647 [INFO] === Ciclo manutenzione completo #73 ===
+2026-06-13 13:52:44.165 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:53:44.183 [INFO] === Ciclo manutenzione completo #74 ===
+2026-06-13 13:53:48.235 [INFO] Prossimo ciclo tra 60s
+2026-06-13 13:54:48.251 [INFO] === Ciclo manutenzione completo #75 ===
+2026-06-13 13:55:06.654 [INFO] ===== INIZIO SCANSIONE COMPLETA #75 =====
+2026-06-13 13:55:06.654 [INFO] Scansione in corso: Speace Core (Cervello) (C:\cellular_speace\speace_core)
+2026-06-13 13:55:06.819 [WARN] ISSUE: [Speace Core (Cervello)] orchestrator.py - FILE_TROPPO_GRANDE: orchestrator.py ha 2958 linee (>2000)
+2026-06-13 13:55:06.908 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:06.955 [WARN] ISSUE: [Speace Core (Cervello)] neurofunctional_benchmark.py - FILE_TROPPO_GRANDE: neurofunctional_benchmark.py ha 3377 linee (>2000)
+2026-06-13 13:55:06.955 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:06.955 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.092 [WARN] ISSUE: [Speace Core (Cervello)] cognitive_mutation_sandbox.py - USO_DI_EXEC_EVAL: cognitive_mutation_sandbox.py contiene eval/exec
+2026-06-13 13:55:07.161 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.313 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.415 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - TODO_FOUND: causal_model_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 13:55:07.426 [WARN] ISSUE: [Speace Core (Cervello)] causal_model_engine.py - FILE_TROPPO_GRANDE: causal_model_engine.py ha 2418 linee (>2000)
+2026-06-13 13:55:07.522 [WARN] ISSUE: [Speace Core (Cervello)] imitation_learning_sandbox.py - USO_DI_EXEC_EVAL: imitation_learning_sandbox.py contiene eval/exec
+2026-06-13 13:55:07.618 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.773 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.775 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.775 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.792 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.796 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.821 [WARN] ISSUE: [Speace Core (Cervello)] trust_governor.py - USO_DI_EXEC_EVAL: trust_governor.py contiene eval/exec
+2026-06-13 13:55:07.838 [WARN] ISSUE: [Speace Core (Cervello)] evolution_controller.py - TODO_FOUND: evolution_controller.py contiene TODO/FIXME da risolvere
+2026-06-13 13:55:07.896 [WARN] ISSUE: [Speace Core (Cervello)] subsystem_connector.py - TODO_FOUND: subsystem_connector.py contiene TODO/FIXME da risolvere
+2026-06-13 13:55:07.904 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.904 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.917 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.977 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:07.996 [WARN] ISSUE: [Speace Core (Cervello)] test_morphological_memory.py - USO_DI_EXEC_EVAL: test_morphological_memory.py contiene eval/exec
+2026-06-13 13:55:08.022 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:08.062 [WARN] ISSUE: [Speace Core (Cervello)] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:08.203 [WARN] Scansione completata: Speace Core (Cervello) - 26 issue trovate
+2026-06-13 13:55:08.203 [INFO] Scansione in corso: Speace AGI Team (C:\cellular_speace\speace_agi_team)
+2026-06-13 13:55:08.247 [WARN] ISSUE: [Speace AGI Team] config.py - USO_DI_EXEC_EVAL: config.py contiene eval/exec
+2026-06-13 13:55:08.282 [WARN] Scansione completata: Speace AGI Team - 1 issue trovate
+2026-06-13 13:55:08.292 [INFO] Scansione in corso: Data (C:\cellular_speace\data)
+2026-06-13 13:55:10.152 [WARN] ISSUE: [Data] evaluation.json - FILE_TROPPO_GRANDE: evaluation.json ha 844336 linee (>2000)
+2026-06-13 13:55:10.890 [WARN] ISSUE: [Data] training.json - FILE_TROPPO_GRANDE: training.json ha 522201 linee (>2000)
+2026-06-13 13:55:12.519 [WARN] ISSUE: [Data] latest_snapshot.json - JSON_INVALIDO: latest_snapshot.json non e JSON valido
+2026-06-13 13:55:12.519 [WARN] ISSUE: [Data] latest_snapshot.json - FILE_TROPPO_GRANDE: latest_snapshot.json ha 2244 linee (>2000)
+2026-06-13 13:55:12.588 [WARN] ISSUE: [Data] checkpoint_1781347769994.json - FILE_TROPPO_GRANDE: checkpoint_1781347769994.json ha 11022 linee (>2000)
+2026-06-13 13:55:12.652 [WARN] ISSUE: [Data] checkpoint_1781347792037.json - FILE_TROPPO_GRANDE: checkpoint_1781347792037.json ha 11022 linee (>2000)
+2026-06-13 13:55:12.714 [WARN] ISSUE: [Data] checkpoint_1781348035541.json - FILE_TROPPO_GRANDE: checkpoint_1781348035541.json ha 11022 linee (>2000)
+2026-06-13 13:55:12.773 [WARN] ISSUE: [Data] checkpoint_1781348071659.json - FILE_TROPPO_GRANDE: checkpoint_1781348071659.json ha 11022 linee (>2000)
+2026-06-13 13:55:12.852 [WARN] ISSUE: [Data] checkpoint_1781348072435.json - FILE_TROPPO_GRANDE: checkpoint_1781348072435.json ha 11022 linee (>2000)
+2026-06-13 13:55:12.932 [WARN] ISSUE: [Data] checkpoint_1781348095270.json - FILE_TROPPO_GRANDE: checkpoint_1781348095270.json ha 11022 linee (>2000)
+2026-06-13 13:55:12.991 [WARN] ISSUE: [Data] checkpoint_1781348370010.json - FILE_TROPPO_GRANDE: checkpoint_1781348370010.json ha 11022 linee (>2000)
+2026-06-13 13:55:13.025 [WARN] ISSUE: [Data] checkpoint_1781348395464.json - FILE_TROPPO_GRANDE: checkpoint_1781348395464.json ha 11022 linee (>2000)
+2026-06-13 13:55:13.071 [WARN] ISSUE: [Data] checkpoint_1781348402219.json - FILE_TROPPO_GRANDE: checkpoint_1781348402219.json ha 11022 linee (>2000)
+2026-06-13 13:55:13.118 [WARN] ISSUE: [Data] checkpoint_1781348423399.json - FILE_TROPPO_GRANDE: checkpoint_1781348423399.json ha 11022 linee (>2000)
+2026-06-13 13:55:13.258 [WARN] Scansione completata: Data - 13 issue trovate
+2026-06-13 13:55:13.258 [INFO] Scansione in corso: Scripts (C:\cellular_speace\scripts)
+2026-06-13 13:55:13.274 [WARN] ISSUE: [Scripts] speace_seed.py - USO_DI_EXEC_EVAL: speace_seed.py contiene eval/exec
+2026-06-13 13:55:13.306 [WARN] ISSUE: [Scripts] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.328 [WARN] Scansione completata: Scripts - 2 issue trovate
+2026-06-13 13:55:13.332 [INFO] Scansione in corso: Tests (C:\cellular_speace\tests)
+2026-06-13 13:55:13.417 [WARN] ISSUE: [Tests] test_phase8_mmapr_veto.py - USO_DI_EXEC_EVAL: test_phase8_mmapr_veto.py contiene eval/exec
+2026-06-13 13:55:13.433 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.448 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.464 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.480 [WARN] ISSUE: [Tests] test_coherence_proposal_executor.py - TODO_FOUND: test_coherence_proposal_executor.py contiene TODO/FIXME da risolvere
+2026-06-13 13:55:13.496 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.496 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.512 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.528 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.559 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.559 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.575 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.607 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.620 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.650 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.655 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.671 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.671 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.702 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.758 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.766 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.766 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.790 [WARN] ISSUE: [Tests] test_evolutionary_memory_governance_audit_runner.py - TODO_FOUND: test_evolutionary_memory_governance_audit_runner.py contiene TODO/FIXME da risolvere
+2026-06-13 13:55:13.790 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.803 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.816 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.830 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.830 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.846 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.856 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.861 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.893 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.917 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.925 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.938 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.978 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:13.996 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.004 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.026 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.040 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.071 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.071 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.083 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.098 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.103 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.103 [WARN] ISSUE: [Tests] test_auth_engine.py - TODO_FOUND: test_auth_engine.py contiene TODO/FIXME da risolvere
+2026-06-13 13:55:14.136 [WARN] ISSUE: [Tests] __init__.py - FILE_VUOTO: __init__.py e vuoto
+2026-06-13 13:55:14.184 [WARN] Scansione completata: Tests - 47 issue trovate
+2026-06-13 13:55:14.188 [INFO] Scansione in corso: Documentazione (C:\cellular_speace\docs)
+2026-06-13 13:55:14.220 [WARN] ISSUE: [Documentazione] cellular_speace.md - FILE_TROPPO_GRANDE: cellular_speace.md ha 2117 linee (>2000)
+2026-06-13 13:55:14.258 [WARN] ISSUE: [Documentazione] metacognizione_pensiero_linguaggio_di_SPEACE.md - FILE_TROPPO_GRANDE: metacognizione_pensiero_linguaggio_di_SPEACE.md ha 3321 linee (>2000)
+2026-06-13 13:55:14.324 [WARN] ISSUE: [Documentazione] 104_NeuroEvolve_A_Dynamic_Brai.pdf - FILE_TROPPO_GRANDE: 104_NeuroEvolve_A_Dynamic_Brai.pdf ha 3743 linee (>2000)
+2026-06-13 13:55:14.581 [WARN] ISSUE: [Documentazione] 2604.25917v1.pdf - FILE_TROPPO_GRANDE: 2604.25917v1.pdf ha 47384 linee (>2000)
+2026-06-13 13:55:14.745 [WARN] ISSUE: [Documentazione] A brain-inspired framework for.pdf - FILE_TROPPO_GRANDE: A brain-inspired framework for.pdf ha 29697 linee (>2000)
+2026-06-13 13:55:14.881 [WARN] ISSUE: [Documentazione] Network geometry of the Drosophila brain.pdf - FILE_TROPPO_GRANDE: Network geometry of the Drosophila brain.pdf ha 34584 linee (>2000)
+2026-06-13 13:55:14.929 [WARN] ISSUE: [Documentazione] NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf - FILE_TROPPO_GRANDE: NeuroEvolve--A-brain-inspired-mutation-optimiz_2026_International-Journal-of.pdf ha 52360 linee (>2000)
+2026-06-13 13:55:15.309 [WARN] ISSUE: [Documentazione] Recursive Multi-Agent Systems.pdf - FILE_TROPPO_GRANDE: Recursive Multi-Agent Systems.pdf ha 47384 linee (>2000)
+2026-06-13 13:55:15.360 [WARN] ISSUE: [Documentazione] Reti neurali artificiali e apprendimenti basati sulla biofisica dei neuroni.pdf - FILE_TROPPO_GRANDE: Reti neurali artificiali e apprendimenti basati sulla biofisica dei neuroni.pdf ha 16566 linee (>2000)
+2026-06-13 13:55:15.360 [WARN] Scansione completata: Documentazione - 9 issue trovate
+2026-06-13 13:55:15.360 [INFO] Scansione in corso: Reports (C:\cellular_speace\reports)
+2026-06-13 13:55:22.781 [WARN] ISSUE: [Reports] arc_agi_report_20260528_074249.json - FILE_TROPPO_GRANDE: arc_agi_report_20260528_074249.json ha 2132 linee (>2000)
+2026-06-13 13:55:22.796 [WARN] ISSUE: [Reports] arc_agi_report_20260528_084421.json - FILE_TROPPO_GRANDE: arc_agi_report_20260528_084421.json ha 2565 linee (>2000)
+2026-06-13 13:55:26.040 [WARN] ISSUE: [Reports] calibration_20260519_113608.json - FILE_TROPPO_GRANDE: calibration_20260519_113608.json ha 2212 linee (>2000)
+2026-06-13 13:55:26.071 [WARN] ISSUE: [Reports] calibration_20260519_123918.json - FILE_TROPPO_GRANDE: calibration_20260519_123918.json ha 2212 linee (>2000)
+2026-06-13 13:55:26.107 [WARN] ISSUE: [Reports] calibration_20260519_143733.json - FILE_TROPPO_GRANDE: calibration_20260519_143733.json ha 2212 linee (>2000)
+2026-06-13 13:55:26.173 [WARN] ISSUE: [Reports] calibration_20260519_162439.json - FILE_TROPPO_GRANDE: calibration_20260519_162439.json ha 2212 linee (>2000)
+2026-06-13 13:55:26.196 [WARN] ISSUE: [Reports] calibration_20260519_183750.json - FILE_TROPPO_GRANDE: calibration_20260519_183750.json ha 2212 linee (>2000)
+2026-06-13 13:55:26.234 [WARN] ISSUE: [Reports] calibration_20260519_203926.json - FILE_TROPPO_GRANDE: calibration_20260519_203926.json ha 2332 linee (>2000)
+2026-06-13 13:55:26.276 [WARN] ISSUE: [Reports] calibration_20260519_204627.json - FILE_TROPPO_GRANDE: calibration_20260519_204627.json ha 2332 linee (>2000)
+2026-06-13 13:55:26.291 [WARN] ISSUE: [Reports] calibration_20260519_204828.json - FILE_TROPPO_GRANDE: calibration_20260519_204828.json ha 2332 linee (>2000)
+2026-06-13 13:55:26.415 [WARN] ISSUE: [Reports] calibration_20260520_131929.json - FILE_TROPPO_GRANDE: calibration_20260520_131929.json ha 2708 linee (>2000)
+2026-06-13 13:55:26.423 [WARN] ISSUE: [Reports] calibration_20260520_131930.json - FILE_TROPPO_GRANDE: calibration_20260520_131930.json ha 2018 linee (>2000)
+2026-06-13 13:55:26.450 [WARN] ISSUE: [Reports] calibration_20260520_150158.json - FILE_TROPPO_GRANDE: calibration_20260520_150158.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.466 [WARN] ISSUE: [Reports] calibration_20260520_150159.json - FILE_TROPPO_GRANDE: calibration_20260520_150159.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.482 [WARN] ISSUE: [Reports] calibration_20260520_150246.json - FILE_TROPPO_GRANDE: calibration_20260520_150246.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.498 [WARN] ISSUE: [Reports] calibration_20260520_150247.json - FILE_TROPPO_GRANDE: calibration_20260520_150247.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.516 [WARN] ISSUE: [Reports] calibration_20260520_150402.json - FILE_TROPPO_GRANDE: calibration_20260520_150402.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.550 [WARN] ISSUE: [Reports] calibration_20260521_102444.json - FILE_TROPPO_GRANDE: calibration_20260521_102444.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.580 [WARN] ISSUE: [Reports] calibration_20260521_102445.json - FILE_TROPPO_GRANDE: calibration_20260521_102445.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.598 [WARN] ISSUE: [Reports] calibration_20260521_103431.json - FILE_TROPPO_GRANDE: calibration_20260521_103431.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.625 [WARN] ISSUE: [Reports] calibration_20260521_103625.json - FILE_TROPPO_GRANDE: calibration_20260521_103625.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.645 [WARN] ISSUE: [Reports] calibration_20260521_103626.json - FILE_TROPPO_GRANDE: calibration_20260521_103626.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.663 [WARN] ISSUE: [Reports] calibration_20260522_085147.json - FILE_TROPPO_GRANDE: calibration_20260522_085147.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.683 [WARN] ISSUE: [Reports] calibration_20260522_085311.json - FILE_TROPPO_GRANDE: calibration_20260522_085311.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.702 [WARN] ISSUE: [Reports] calibration_20260522_085352.json - FILE_TROPPO_GRANDE: calibration_20260522_085352.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.720 [WARN] ISSUE: [Reports] calibration_20260522_110739.json - FILE_TROPPO_GRANDE: calibration_20260522_110739.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.744 [WARN] ISSUE: [Reports] calibration_20260522_111318.json - FILE_TROPPO_GRANDE: calibration_20260522_111318.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.760 [WARN] ISSUE: [Reports] calibration_20260522_111319.json - FILE_TROPPO_GRANDE: calibration_20260522_111319.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.784 [WARN] ISSUE: [Reports] calibration_20260522_114415.json - FILE_TROPPO_GRANDE: calibration_20260522_114415.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.799 [WARN] ISSUE: [Reports] calibration_20260522_114416.json - FILE_TROPPO_GRANDE: calibration_20260522_114416.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.821 [WARN] ISSUE: [Reports] calibration_20260522_114707.json - FILE_TROPPO_GRANDE: calibration_20260522_114707.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.831 [WARN] ISSUE: [Reports] calibration_20260522_114708.json - FILE_TROPPO_GRANDE: calibration_20260522_114708.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.866 [WARN] ISSUE: [Reports] calibration_20260522_114719.json - FILE_TROPPO_GRANDE: calibration_20260522_114719.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.883 [WARN] ISSUE: [Reports] calibration_20260522_114720.json - FILE_TROPPO_GRANDE: calibration_20260522_114720.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.898 [WARN] ISSUE: [Reports] calibration_20260522_114904.json - FILE_TROPPO_GRANDE: calibration_20260522_114904.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.915 [WARN] ISSUE: [Reports] calibration_20260522_133123.json - FILE_TROPPO_GRANDE: calibration_20260522_133123.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.926 [WARN] ISSUE: [Reports] calibration_20260522_133842.json - FILE_TROPPO_GRANDE: calibration_20260522_133842.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.946 [WARN] ISSUE: [Reports] calibration_20260522_133843.json - FILE_TROPPO_GRANDE: calibration_20260522_133843.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.958 [WARN] ISSUE: [Reports] calibration_20260522_134102.json - FILE_TROPPO_GRANDE: calibration_20260522_134102.json ha 2804 linee (>2000)
+2026-06-13 13:55:26.977 [WARN] ISSUE: [Reports] calibration_20260522_134103.json - FILE_TROPPO_GRANDE: calibration_20260522_134103.json ha 2090 linee (>2000)
+2026-06-13 13:55:26.989 [WARN] ISSUE: [Reports] calibration_20260522_150547.json - FILE_TROPPO_GRANDE: calibration_20260522_150547.json ha 2804 linee (>2000)
+2026-06-13 13:55:27.009 [WARN] ISSUE: [Reports] calibration_20260522_150548.json - FILE_TROPPO_GRANDE: calibration_20260522_150548.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.021 [WARN] ISSUE: [Reports] calibration_20260522_152541.json - FILE_TROPPO_GRANDE: calibration_20260522_152541.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.055 [WARN] ISSUE: [Reports] calibration_20260522_162803.json - FILE_TROPPO_GRANDE: calibration_20260522_162803.json ha 2804 linee (>2000)
+2026-06-13 13:55:27.071 [WARN] ISSUE: [Reports] calibration_20260522_162804.json - FILE_TROPPO_GRANDE: calibration_20260522_162804.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.084 [WARN] ISSUE: [Reports] calibration_20260522_163121.json - FILE_TROPPO_GRANDE: calibration_20260522_163121.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.102 [WARN] ISSUE: [Reports] calibration_20260522_163434.json - FILE_TROPPO_GRANDE: calibration_20260522_163434.json ha 2804 linee (>2000)
+2026-06-13 13:55:27.133 [WARN] ISSUE: [Reports] calibration_20260522_163435.json - FILE_TROPPO_GRANDE: calibration_20260522_163435.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.148 [WARN] ISSUE: [Reports] calibration_20260522_163551.json - FILE_TROPPO_GRANDE: calibration_20260522_163551.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.165 [WARN] ISSUE: [Reports] calibration_20260522_164145.json - FILE_TROPPO_GRANDE: calibration_20260522_164145.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.180 [WARN] ISSUE: [Reports] calibration_20260522_164146.json - FILE_TROPPO_GRANDE: calibration_20260522_164146.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.196 [WARN] ISSUE: [Reports] calibration_20260522_164157.json - FILE_TROPPO_GRANDE: calibration_20260522_164157.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.212 [WARN] ISSUE: [Reports] calibration_20260522_164158.json - FILE_TROPPO_GRANDE: calibration_20260522_164158.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.321 [WARN] ISSUE: [Reports] calibration_20260522_164355.json - FILE_TROPPO_GRANDE: calibration_20260522_164355.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.321 [WARN] ISSUE: [Reports] calibration_20260522_164356.json - FILE_TROPPO_GRANDE: calibration_20260522_164356.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.337 [WARN] ISSUE: [Reports] calibration_20260522_172728.json - FILE_TROPPO_GRANDE: calibration_20260522_172728.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.368 [WARN] ISSUE: [Reports] calibration_20260522_172729.json - FILE_TROPPO_GRANDE: calibration_20260522_172729.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.390 [WARN] ISSUE: [Reports] calibration_20260522_172831.json - FILE_TROPPO_GRANDE: calibration_20260522_172831.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.400 [WARN] ISSUE: [Reports] calibration_20260522_172832.json - FILE_TROPPO_GRANDE: calibration_20260522_172832.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.415 [WARN] ISSUE: [Reports] calibration_20260522_172951.json - FILE_TROPPO_GRANDE: calibration_20260522_172951.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.446 [WARN] ISSUE: [Reports] calibration_20260522_175403.json - FILE_TROPPO_GRANDE: calibration_20260522_175403.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.446 [WARN] ISSUE: [Reports] calibration_20260522_175404.json - FILE_TROPPO_GRANDE: calibration_20260522_175404.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.462 [WARN] ISSUE: [Reports] calibration_20260522_175651.json - FILE_TROPPO_GRANDE: calibration_20260522_175651.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.493 [WARN] ISSUE: [Reports] calibration_20260522_175652.json - FILE_TROPPO_GRANDE: calibration_20260522_175652.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.509 [WARN] ISSUE: [Reports] calibration_20260522_175859.json - FILE_TROPPO_GRANDE: calibration_20260522_175859.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.535 [WARN] ISSUE: [Reports] calibration_20260522_175900.json - FILE_TROPPO_GRANDE: calibration_20260522_175900.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.540 [WARN] ISSUE: [Reports] calibration_20260522_180234.json - FILE_TROPPO_GRANDE: calibration_20260522_180234.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.571 [WARN] ISSUE: [Reports] calibration_20260522_200442.json - FILE_TROPPO_GRANDE: calibration_20260522_200442.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.587 [WARN] ISSUE: [Reports] calibration_20260522_200629.json - FILE_TROPPO_GRANDE: calibration_20260522_200629.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.649 [WARN] ISSUE: [Reports] calibration_20260522_200630.json - FILE_TROPPO_GRANDE: calibration_20260522_200630.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.667 [WARN] ISSUE: [Reports] calibration_20260524_174454.json - FILE_TROPPO_GRANDE: calibration_20260524_174454.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.705 [WARN] ISSUE: [Reports] calibration_20260524_175729.json - FILE_TROPPO_GRANDE: calibration_20260524_175729.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.727 [WARN] ISSUE: [Reports] calibration_20260524_175730.json - FILE_TROPPO_GRANDE: calibration_20260524_175730.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.729 [WARN] ISSUE: [Reports] calibration_20260525_090925.json - FILE_TROPPO_GRANDE: calibration_20260525_090925.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.759 [WARN] ISSUE: [Reports] calibration_20260525_091027.json - FILE_TROPPO_GRANDE: calibration_20260525_091027.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.774 [WARN] ISSUE: [Reports] calibration_20260525_091028.json - FILE_TROPPO_GRANDE: calibration_20260525_091028.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.792 [WARN] ISSUE: [Reports] calibration_20260525_091654.json - FILE_TROPPO_GRANDE: calibration_20260525_091654.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.808 [WARN] ISSUE: [Reports] calibration_20260528_092819.json - FILE_TROPPO_GRANDE: calibration_20260528_092819.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.824 [WARN] ISSUE: [Reports] calibration_20260603_134833.json - FILE_TROPPO_GRANDE: calibration_20260603_134833.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.848 [WARN] ISSUE: [Reports] calibration_20260603_135336.json - FILE_TROPPO_GRANDE: calibration_20260603_135336.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.884 [WARN] ISSUE: [Reports] calibration_20260603_135337.json - FILE_TROPPO_GRANDE: calibration_20260603_135337.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.907 [WARN] ISSUE: [Reports] calibration_20260603_135411.json - FILE_TROPPO_GRANDE: calibration_20260603_135411.json ha 2821 linee (>2000)
+2026-06-13 13:55:27.929 [WARN] ISSUE: [Reports] calibration_20260603_135412.json - FILE_TROPPO_GRANDE: calibration_20260603_135412.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.941 [WARN] ISSUE: [Reports] calibration_20260603_140425.json - FILE_TROPPO_GRANDE: calibration_20260603_140425.json ha 2090 linee (>2000)
+2026-06-13 13:55:27.959 [WARN] ISSUE: [Reports] calibration_20260603_140506.json - FILE_TROPPO_GRANDE: calibration_20260603_140506.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.044 [WARN] ISSUE: [Reports] calibration_20260603_141518.json - FILE_TROPPO_GRANDE: calibration_20260603_141518.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.078 [WARN] ISSUE: [Reports] calibration_20260603_141519.json - FILE_TROPPO_GRANDE: calibration_20260603_141519.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.112 [WARN] ISSUE: [Reports] calibration_20260603_142531.json - FILE_TROPPO_GRANDE: calibration_20260603_142531.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.136 [WARN] ISSUE: [Reports] calibration_20260603_142532.json - FILE_TROPPO_GRANDE: calibration_20260603_142532.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.158 [WARN] ISSUE: [Reports] calibration_20260603_143545.json - FILE_TROPPO_GRANDE: calibration_20260603_143545.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.173 [WARN] ISSUE: [Reports] calibration_20260603_143546.json - FILE_TROPPO_GRANDE: calibration_20260603_143546.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.215 [WARN] ISSUE: [Reports] calibration_20260603_153336.json - FILE_TROPPO_GRANDE: calibration_20260603_153336.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.253 [WARN] ISSUE: [Reports] calibration_20260603_153849.json - FILE_TROPPO_GRANDE: calibration_20260603_153849.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.272 [WARN] ISSUE: [Reports] calibration_20260603_153850.json - FILE_TROPPO_GRANDE: calibration_20260603_153850.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.282 [WARN] ISSUE: [Reports] calibration_20260603_154351.json - FILE_TROPPO_GRANDE: calibration_20260603_154351.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.312 [WARN] ISSUE: [Reports] calibration_20260603_224852.json - FILE_TROPPO_GRANDE: calibration_20260603_224852.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.338 [WARN] ISSUE: [Reports] calibration_20260603_224853.json - FILE_TROPPO_GRANDE: calibration_20260603_224853.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.362 [WARN] ISSUE: [Reports] calibration_20260603_230350.json - FILE_TROPPO_GRANDE: calibration_20260603_230350.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.380 [WARN] ISSUE: [Reports] calibration_20260603_230351.json - FILE_TROPPO_GRANDE: calibration_20260603_230351.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.404 [WARN] ISSUE: [Reports] calibration_20260603_230839.json - FILE_TROPPO_GRANDE: calibration_20260603_230839.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.417 [WARN] ISSUE: [Reports] calibration_20260603_230840.json - FILE_TROPPO_GRANDE: calibration_20260603_230840.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.531 [WARN] ISSUE: [Reports] calibration_20260604_090715.json - FILE_TROPPO_GRANDE: calibration_20260604_090715.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.550 [WARN] ISSUE: [Reports] calibration_20260604_090716.json - FILE_TROPPO_GRANDE: calibration_20260604_090716.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.568 [WARN] ISSUE: [Reports] calibration_20260604_092914.json - FILE_TROPPO_GRANDE: calibration_20260604_092914.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.583 [WARN] ISSUE: [Reports] calibration_20260604_092915.json - FILE_TROPPO_GRANDE: calibration_20260604_092915.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.602 [WARN] ISSUE: [Reports] calibration_20260604_132412.json - FILE_TROPPO_GRANDE: calibration_20260604_132412.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.629 [WARN] ISSUE: [Reports] calibration_20260604_141002.json - FILE_TROPPO_GRANDE: calibration_20260604_141002.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.646 [WARN] ISSUE: [Reports] calibration_20260605_085333.json - FILE_TROPPO_GRANDE: calibration_20260605_085333.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.684 [WARN] ISSUE: [Reports] calibration_20260605_085336.json - FILE_TROPPO_GRANDE: calibration_20260605_085336.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.722 [WARN] ISSUE: [Reports] calibration_20260605_085622.json - FILE_TROPPO_GRANDE: calibration_20260605_085622.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.743 [WARN] ISSUE: [Reports] calibration_20260605_085625.json - FILE_TROPPO_GRANDE: calibration_20260605_085625.json ha 2090 linee (>2000)
+2026-06-13 13:55:28.779 [WARN] ISSUE: [Reports] calibration_20260605_123607.json - FILE_TROPPO_GRANDE: calibration_20260605_123607.json ha 2821 linee (>2000)
+2026-06-13 13:55:28.795 [WARN] ISSUE: [Reports] calibration_20260605_123612.json - FILE_TROPPO_GRANDE: calibration_20260605_123612.json ha 2090 linee (>2000)

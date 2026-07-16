@@ -1,0 +1,11 @@
+{
+  "running": true,
+  "cycles_completed": 1,
+  "cycle_interval": 300,
+  "auto_fix": true,
+  "dry_run": false,
+  "last_health_score": 0.9942,
+  "history_size": 1,
+  "last_cycle_id": "ido-8dcb82ca",
+  "last_report_dir": "C:\\cellular_speace\\data\\loop\\reports\\ido_20260614_124851"
+}

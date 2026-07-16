@@ -1,0 +1,171 @@
+{
+  "analysis_timestamp": "2026-06-05T08:45:00Z",
+  "engine": "FewShotProgramInductionEngine",
+  "total_tasks_tested": 10,
+  "correct": 1,
+  "failed": 9,
+  "accuracy": 0.1,
+  "root_cause": "Primitive library insufficient - _generate_primitive_hypotheses produces primitives that dont validate to 100% match on training pairs. Only fractal_self_replicate produced a perfect match.",
+  "failures": [
+    {
+      "task_id": "00d62c1b",
+      "train_examples": 5,
+      "primitives_generated": 3,
+      "primitives": [
+        "color_map",
+        "cascade_shapes",
+        "fill_background"
+      ],
+      "best_match": 0,
+      "grid_sizes": "[(6,6), (10,10), (10,10), (10,10), (20,20)]",
+      "error_class": "no_matching_primitive",
+      "recovery": "Add rotate_and_copy, pattern_mirror primitives"
+    },
+    {
+      "task_id": "017c7c7b",
+      "train_examples": 3,
+      "primitives_generated": 6,
+      "primitives": [
+        "color_map",
+        "parametric_color_shift",
+        "pad",
+        "invert_colors",
+        "remove_objects_by_size",
+        "copy_object"
+      ],
+      "best_match": 0,
+      "grid_sizes": "[(6,3), (6,3), (6,3)]",
+      "error_class": "no_matching_primitive",
+      "recovery": "Add selective_color_map, object_highlight primitives"
+    },
+    {
+      "task_id": "025d127b",
+      "train_examples": 2,
+      "primitives_generated": 3,
+      "primitives": [
+        "translate",
+        "cascade_shapes",
+        "extend_to_boundary"
+      ],
+      "best_match": 0,
+      "grid_sizes": "[(14,9), (8,9)]",
+      "error_class": "no_matching_primitive",
+      "recovery": "Add border_detect, flood_fill primitives"
+    },
+    {
+      "task_id": "045e512c",
+      "train_examples": 3,
+      "primitives_generated": 2,
+      "primitives": [
+        "cascade_shapes",
+        "remove_objects_by_size"
+      ],
+      "best_match": 0,
+      "grid_sizes": "[(21,21), (21,21), (21,21)]",
+      "error_class": "no_matching_primitive",
+      "recovery": "Add shape_morphology, connected_component primitives"
+    },
+    {
+      "task_id": "0520fde7",
+      "train_examples": 3,
+      "primitives_generated": "N/A",
+      "primitives": "N/A",
+      "best_match": 0,
+      "error_class": "no_matching_primitive",
+      "recovery": "investigate_and_add_primitive"
+    },
+    {
+      "task_id": "05269061",
+      "train_examples": 3,
+      "primitives_generated": "N/A",
+      "best_match": 0,
+      "error_class": "no_matching_primitive",
+      "recovery": "investigate_and_add_primitive"
+    },
+    {
+      "task_id": "05f2a901",
+      "train_examples": 3,
+      "best_match": 0,
+      "error_class": "no_matching_primitive",
+      "recovery": "investigate_and_add_primitive"
+    },
+    {
+      "task_id": "06df4c85",
+      "train_examples": 3,
+      "best_match": 0,
+      "error_class": "no_matching_primitive",
+      "recovery": "investigate_and_add_primitive"
+    },
+    {
+      "task_id": "08ed6ac7",
+      "train_examples": 2,
+      "best_match": 0,
+      "error_class": "no_matching_primitive",
+      "recovery": "investigate_and_add_primitive"
+    }
+  ],
+  "system_issues": [
+    {
+      "type": "permission",
+      "detail": "not_admin",
+      "impact": "System assimilation cannot access protected processes/services. Defender exclusion cannot be added.",
+      "recovery": "Run scripts/start_as_admin.ps1 as Administrator"
+    },
+    {
+      "type": "antivirus",
+      "detail": "Windows Defender real-time protection active",
+      "impact": "May scan/interfere with VFS file access. Uses 275MB RAM.",
+      "recovery": "Add C:\\cellular_speace exclusion (requires admin)"
+    },
+    {
+      "type": "arc_primitive_library",
+      "detail": "Insufficient transformation primitives",
+      "impact": "ARC-AGI accuracy only 10%. Only fractal_self_replicate pattern works.",
+      "recovery": "Extend _generate_primitive_hypotheses with new primitives"
+    }
+  ],
+  "corrective_tasks": [
+    {
+      "id": "C001",
+      "priority": "high",
+      "area": "system",
+      "action": "Run start_as_admin.ps1 as Administrator",
+      "expected_outcome": "Full system access, Defender exclusion"
+    },
+    {
+      "id": "C002",
+      "priority": "medium",
+      "area": "arc_agi",
+      "action": "Add rotate_and_copy transformation primitive to FewShotProgramInductionEngine",
+      "expected_outcome": "Improved pattern matching for shape rotation tasks"
+    },
+    {
+      "id": "C003",
+      "priority": "medium",
+      "area": "arc_agi",
+      "action": "Add pattern_mirror and flood_fill primitives",
+      "expected_outcome": "Better coverage of spatial transformation patterns"
+    },
+    {
+      "id": "C004",
+      "priority": "low",
+      "area": "arc_agi",
+      "action": "Implement meta-learning composer to combine multiple primitives",
+      "expected_outcome": "Complex task coverage through composition"
+    },
+    {
+      "id": "C005",
+      "priority": "medium",
+      "area": "cognitive",
+      "action": "Enable global_workspace and embodiment in genome defaults",
+      "expected_outcome": "Activate higher cognitive functions at startup"
+    },
+    {
+      "id": "C006",
+      "priority": "high",
+      "area": "stability",
+      "action": "Run full integration test suite after each change",
+      "expected_outcome": "Verify no regressions"
+    }
+  ]
+}

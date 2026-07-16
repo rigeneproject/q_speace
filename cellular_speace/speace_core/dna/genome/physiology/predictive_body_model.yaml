@@ -1,0 +1,80 @@
+# Predictive Body Model
+# Parameters for the PBM — a generative predictive model of physiology.
+# Version: 1.0.0
+
+predictive_body_model:
+  update_interval: 10                    # ticks between predict → observe → learn cycles
+
+  # Tracked signals (all constitutional streams + meta-signals)
+  tracked_signals:
+    streams:
+      - energy
+      - nutrition
+      - fatigue
+      - repair
+      - growth
+      - stress
+      - threat
+      - safety
+      - inflammation
+      - damage
+      - plasticity
+      - curiosity
+      - coherence
+      - entropy
+      - synchronization
+      - temperature
+      - hydration
+    meta:
+      - meta_wellbeing
+      - meta_stress
+      - meta_fatigue
+      - meta_inflammation
+      - meta_resilience
+      - meta_homeostatic_reserve
+      - meta_prediction_stability
+
+  # Transition model (learned weights)
+  learning:
+    initial_model: decay_only           # start with simple decay predictions
+    learning_rate:
+      base: 0.05
+      min: 0.01
+      max: 0.10
+      adaptive: true                    # higher LR when prediction error is large
+      confidence_gate: 0.3             # if confidence < this, increase LR
+    regularization: 0.001              # L2 penalty on W matrix
+    window_size: 100                   # ticks over which to compute error statistics
+
+  # Prediction
+  prediction:
+    horizon_ticks: 1                    # predict 1 tick ahead (can extend)
+    decay_fallback: true               # use decay-based prediction when model is naive
+
+  # State estimates (outputs)
+  estimates:
+    systemic_stability:
+      formula: "1.0 - norm(prediction_error_vector)"
+      range: [0.0, 1.0]
+      description: "Overall system equilibrium"
+    recovery_capacity:
+      formula: "ewma(meta_homeostatic_reserve, alpha=0.1) * (1 - meta_fatigue)"
+      range: [0.0, 1.0]
+      description: "Ability to return to homeostasis"
+    systemic_risk:
+      formula: "sigmoid(meta_repair_need * 0.4 + meta_threat_level * 0.3 + norm(prediction_error) * 0.3)"
+      range: [0.0, 1.0]
+      description: "Probability of critical failure"
+    resource_reserve:
+      formula: "meta_resource_availability - current_metabolic_demand"
+      range: [-1.0, 1.0]
+      description: "Sustainable operational margin"
+    cognitive_headroom:
+      formula: "max(0, resource_reserve * (1 - meta_stress) * plasticity)"
+      range: [0.0, 1.0]
+      description: "Available capacity for higher cognition"
+
+  # Output
+  output:
+    bus: endocrine
+    prefix: "estimate_"                # e.g., estimate_systemic_stability

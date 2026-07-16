@@ -1,0 +1,46 @@
+INFO:     Started server process [7236]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8687 (Press CTRL+C to quit)
+
+==================================================
+  SPEACE AGI TEAM - Dashboard & Chat
+  URL: http://127.0.0.1:8687
+  Modello: minimax-m3:cloud
+  Agenti: 0 (6 supervisor + 10 tecnici)
+==================================================
+
+[AGI Team] 20 agenti inizializzati con modello minimax-m3:cloud
+[AGI Team] Orchestrator avviato — auto-analisi e monitor attivi
+INFO:     127.0.0.1:59656 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59657 - "POST /api/plan/task/T6/execute HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59663 - "POST /api/plan/task/T7/execute HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59669 - "POST /api/agents/brain_supervisor/research HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59675 - "POST /api/agents/neuron_tech/research HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59681 - "GET /api/agents/brain_supervisor/research-history?n=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59683 - "POST /api/broadcast HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:59684 - "POST /api/broadcast HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59694 - "POST /api/broadcast HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59739 - "GET /api/orchestrator/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59740 - "GET /api/orchestrator/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59741 - "GET /api/orchestrator/load HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56052 - "POST /api/orchestrator/tick HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56058 - "GET /api/orchestrator/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56059 - "GET /api/auto-analysis/recent?n=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56061 - "GET /api/health/alerts?n=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56064 - "POST /api/agents/chief_architect/chat HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:56065 - "POST /api/agents/runtime_tech/analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56068 - "GET /api/plan HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56069 - "POST /api/agents/chief_architect/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56072 - "POST /api/agents/embodied_cognition_supervisor/research HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56079 - "POST /api/plan/task/T8/execute HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56087 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56088 - "GET /api/orchestrator/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56089 - "GET /api/orchestrator/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56090 - "GET /api/plan HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56091 - "GET /api/plan/tasks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56092 - "GET /api/agents/brain_supervisor/research-history?n=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56093 - "GET /api/agents/neuron_tech/research-history?n=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56094 - "GET /api/agents/embodied_cognition_supervisor/research-history?n=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56095 - "GET /api/health/alerts?n=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56096 - "GET /api/auto-analysis/recent?n=100 HTTP/1.1" 200 OK

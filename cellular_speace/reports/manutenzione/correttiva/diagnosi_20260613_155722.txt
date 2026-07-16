@@ -1,0 +1,15 @@
+﻿Diagnosi non serializzabile.
+
+Name                           Value                                                                                   
+----                           -----                                                                                   
+Timestamp                      2026-06-13 15:57:02.895                                                                 
+Raccomandazioni                {[ALTO] Runtime: Verificare processo SPEACE, riavviare se necessario, [CRITICO] Log: ...
+AutoRepair                     True                                                                                    
+Focus                          all                                                                                     
+AzioniCorrettive               {}                                                                                      
+Esito                          CRITICO                                                                                 
+Diagnosi                       {}                                                                                      
+Anomalie                       {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hasht...
+
+
+

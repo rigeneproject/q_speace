@@ -1,0 +1,55 @@
+2026-06-13 13:09:25.867 [OK] Avvio Ispettore | mode=local chat=False once=True
+2026-06-13 13:09:25.868 [INFO] ===== INIZIO CICLO #1 | Modalita local =====
+2026-06-13 13:09:28.006 [INFO] File da scansionare: 13885
+2026-06-13 13:09:28.480 [WARN] [reports\manutenzione\preventiva\report_20260613_130927.json] 1 issue
+2026-06-13 13:09:28.481 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130921.json] 1 issue
+2026-06-13 13:09:28.485 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130920.json] 1 issue
+2026-06-13 13:09:28.486 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130917.json] 1 issue
+2026-06-13 13:09:28.489 [WARN] [reports\manutenzione\preventiva\report_20260613_130920.json] 1 issue
+2026-06-13 13:09:28.490 [WARN] [reports\manutenzione\preventiva\report_20260613_130918.json] 1 issue
+2026-06-13 13:09:28.493 [WARN] [reports\manutenzione\preventiva\report_20260613_130917.json] 1 issue
+2026-06-13 13:09:28.494 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130915.json] 1 issue
+2026-06-13 13:09:28.495 [WARN] [reports\manutenzione\preventiva\report_20260613_130915.json] 1 issue
+2026-06-13 13:09:28.496 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130914.json] 1 issue
+2026-06-13 13:09:28.497 [WARN] [reports\manutenzione\preventiva\report_20260613_130914.json] 1 issue
+2026-06-13 13:09:28.498 [WARN] [reports\manutenzione\preventiva\report_20260613_130913.json] 1 issue
+2026-06-13 13:09:28.499 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130912.json] 1 issue
+2026-06-13 13:09:28.500 [WARN] [reports\manutenzione\preventiva\report_20260613_130912.json] 1 issue
+2026-06-13 13:09:28.501 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130910.json] 1 issue
+2026-06-13 13:09:28.501 [WARN] [reports\manutenzione\preventiva\report_20260613_130909.json] 1 issue
+2026-06-13 13:09:28.502 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130909.json] 1 issue
+2026-06-13 13:09:28.502 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130908.json] 1 issue
+2026-06-13 13:09:28.503 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130900.json] 1 issue
+2026-06-13 13:09:28.504 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130857.json] 1 issue
+2026-06-13 13:09:28.505 [WARN] [reports\manutenzione\preventiva\report_20260613_130900.json] 1 issue
+2026-06-13 13:09:28.506 [WARN] [reports\manutenzione\preventiva\report_20260613_130857.json] 1 issue
+2026-06-13 13:09:28.506 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130856.json] 1 issue
+2026-06-13 13:09:28.507 [WARN] [reports\manutenzione\preventiva\report_20260613_130856.json] 1 issue
+2026-06-13 13:09:28.507 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130854.json] 1 issue
+2026-06-13 13:09:28.508 [WARN] [reports\manutenzione\preventiva\report_20260613_130854.json] 1 issue
+2026-06-13 13:09:28.509 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130853.json] 1 issue
+2026-06-13 13:09:28.510 [WARN] [reports\manutenzione\preventiva\report_20260613_130853.json] 1 issue
+2026-06-13 13:09:28.511 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130851.json] 1 issue
+2026-06-13 13:09:28.512 [WARN] [reports\manutenzione\preventiva\report_20260613_130851.json] 1 issue
+2026-06-13 13:09:28.513 [WARN] [reports\manutenzione\preventiva\report_20260613_130850.json] 1 issue
+2026-06-13 13:09:28.515 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130842.json] 1 issue
+2026-06-13 13:09:28.516 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130841.json] 1 issue
+2026-06-13 13:09:28.516 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130848.json] 1 issue
+2026-06-13 13:09:28.517 [WARN] [reports\manutenzione\preventiva\report_20260613_130848.json] 1 issue
+2026-06-13 13:09:28.518 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130839.json] 1 issue
+2026-06-13 13:09:28.520 [WARN] [reports\manutenzione\preventiva\report_20260613_130842.json] 1 issue
+2026-06-13 13:09:28.521 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130840.json] 1 issue
+2026-06-13 13:09:28.522 [WARN] [reports\manutenzione\preventiva\report_20260613_130840.json] 1 issue
+2026-06-13 13:09:28.524 [WARN] [reports\manutenzione\preventiva\report_20260613_130839.json] 1 issue
+2026-06-13 13:09:28.525 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130835.json] 1 issue
+2026-06-13 13:09:28.526 [WARN] [reports\manutenzione\preventiva\report_20260613_130838.json] 1 issue
+2026-06-13 13:09:28.528 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130829.json] 1 issue
+2026-06-13 13:09:28.530 [WARN] [reports\manutenzione\preventiva\report_20260613_130835.json] 1 issue
+2026-06-13 13:09:28.531 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130834.json] 1 issue
+2026-06-13 13:09:28.533 [WARN] [reports\manutenzione\preventiva\report_20260613_130833.json] 1 issue
+2026-06-13 13:09:28.534 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130830.json] 1 issue
+2026-06-13 13:09:28.536 [WARN] [reports\manutenzione\preventiva\report_20260613_130830.json] 1 issue
+2026-06-13 13:09:28.537 [WARN] [reports\manutenzione\correttiva\diagnosi_20260613_130828.json] 1 issue
+2026-06-13 13:09:28.539 [WARN] [reports\manutenzione\preventiva\report_20260613_130828.json] 1 issue
+2026-06-13 13:09:28.540 [DIAG] Analisi LLM: [LLM disabilitato per questo ciclo]...
+2026-06-13 13:09:28.543 [OK] Report salvato: C:\cellular_speace\reports\ispettore\report_scan_20260613_130928.md

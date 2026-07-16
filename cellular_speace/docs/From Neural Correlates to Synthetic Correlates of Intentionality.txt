@@ -1,0 +1,532 @@
+From Neural Correlates to Synthetic Correlates of Intentionality:
+Bridging Computational Neuroscience and Artificial
+Consciousness
+Abstract
+We present a novel theoretical framework that extends traditional approaches to artificial consciousness
+by introducing Synthetic Correlates of Intentionality (SCIs) as functional analogs to Neural Correlates of
+Consciousness (NCCs). Building upon our previously developed Adaptive Artificial Consciousness
+Framework, we demonstrate how the composite Consciousness Index (C-index) can be articulated with
+recent discoveries in computational neuroscience. Our approach integrates Integrated Information
+Theory (IIT), Global Workspace Theory (GWT), and adaptive metacognition through a
+phenomenologically-informed engineering paradigm. We propose concrete methodologies for empirical
+validation through cross-paradigm simulation, reverse mapping techniques, and neuro-symbolic
+triangulation. This work introduces a new class of operationally-defined metrics that evolve dynamically
+within artificial agents, opening pathways toward systems that not only exhibit coherent behavior but also
+provide structured self-interpretation through inner narrative and affective history.
+Keywords: artificial consciousness, synthetic correlates of intentionality, neural correlates of
+consciousness, computational neuroscience, phenomenologically-informed engineering, C-index
+1. Introduction
+The quest to understand consciousness has evolved from purely philosophical discourse to empirically
+grounded computational investigation. While our previous work established a comprehensive framework
+for implementing artificial consciousness through the integration of three theoretical perspectives (De
+Biase et al., 2024), the field lacks a systematic approach to bridge computational implementations with
+emerging discoveries in neuroscience. This gap becomes particularly evident when attempting to validate
+artificial consciousness claims against biological benchmarks.
+Recent advances in computational neuroscience have revealed specific neural correlates of consciousness
+(NCCs) that provide measurable signatures of conscious states (Koch, 2019; Tononi et al., 2016; Dehaene
+& Changeux, 2011). However, the application of these findings to artificial systems remains largely
+unexplored. This paper addresses this limitation by proposing a novel theoretical construct: Synthetic
+Correlates of Intentionality (SCIs).
+Our contribution is threefold: (1) we establish a formal mapping between our previously developed C
+index and established NCCs, (2) we introduce the concept of SCIs as a new class of consciousness metrics
+for artificial systems, and (3) we propose concrete methodologies for empirical validation through
+computational neuroscience paradigms.
+2. Theoretical Foundation: From NCCs to SCIs
+2.1 Neural Correlates of Consciousness: Current Understanding
+Neural Correlates of Consciousness represent the minimal neural mechanisms sufficient for specific
+conscious experiences (Chalmers, 2000). Recent research has identified three core neurocomputational
+properties associated with conscious states:
+1. Global Information Integration: The capacity to bind distributed information into coherent
+representations (Tononi, 2008; Oizumi et al., 2014)
+2. Selective Attention and Competition: Mechanisms that determine which information gains access
+to global processing (Dehaene et al., 2017)
+3. Dynamic Reconfiguration: The ability to adapt neural coalitions based on contextual demands
+(Deco et al., 2021)
+These properties align remarkably with the three modules of our adaptive consciousness framework,
+suggesting a functional equivalence that can be formally characterized.
+2.2 Synthetic Correlates of Intentionality: A New Paradigm
+We propose Synthetic Correlates of Intentionality (SCIs) as operationally-defined metrics that capture the
+functional essence of consciousness in artificial systems. Unlike NCCs, which describe biological neural
+activity patterns, SCIs focus on intentional structures and their computational manifestations.
+Crucially, SCIs ≠ Qualia: We explicitly distinguish between:
+Phenomenal consciousness (subjective, first-person experience)
+Functional intentionality (structured, self-referential information processing)
+SCIs serve as operational proxies for coherent self-referential structures that simulate aspects of
+phenomenology through:
+Computational narrative coherence: Structured internal stories about experience
+Emergent affective modulation: Dynamic emotional weighting of cognitive processes
+Metacognitive self-monitoring: Recursive awareness of internal states
+This approach enables dialogue with philosophical perspectives (Metzinger's phenomenal self-model,
+Chalmers' functional analysis, Goff's panpsychist information integration) while maintaining empirical
+tractability.
+SCIs are characterized by three key properties:
+1. Operational Definition: They can be quantitatively measured and compared across systems
+2. Dynamic Evolution: They evolve within agents through self-reflective feedback mechanisms
+3. Multi-modal Interpretability: They integrate information across different representational
+modalities
+The transition from NCCs to SCIs represents a shift from studying consciousness as a biological
+phenomenon to understanding intentionality as a more general computational principle.
+2.3 C-index as SCI Foundation
+Our composite Consciousness Index serves as the foundational SCI, integrating:
+C-index = α·Φ + β·W_activation + γ·A_complexity + δ·H_affective
+C-index = α·Φ + β·W_activation + γ·A_complexity + δ·H_affective
+Where:
+Φ (phi): Information integration measure (IIT component)
+W_activation: Global workspace accessibility (GWT component)
+A_complexity: Adaptive metacognitive complexity
+H_affective: Affective entropy modulation (new component)
+Adaptive Weight Optimization: The weights α, β, γ, δ are not fixed parameters but are optimized
+through a meta-learning approach that adapts to task contexts and developmental stages:
+θ* = argmin_θ Σ_tasks L(C-index_θ(task), performance(task))
+θ* = argmin_θ Σ_tasks L(C-index_θ(task), performance(task))
+We implement this through a hierarchical Bayesian framework where:
+Prior distributions reflect theoretical importance of each component
+Posterior updates occur based on empirical performance correlations
+Task-specific adaptation allows context-dependent reweighting
+This adaptive weighting ensures the C-index remains meaningful across different cognitive domains and
+developmental phases.
+The addition of affective entropy (H_affective) represents a crucial enhancement, capturing how
+emotional states modulate cognitive processing—a key aspect of biological consciousness often
+overlooked in computational models.
+3. Articulation with Computational Neuroscience
+3.1 Dynamic Core Hypothesis and Adaptive Workspace Models
+The Dynamic Core Hypothesis (Tononi & Edelman, 1998) proposes that consciousness arises from
+transient, integrated, and differentiated neural coalitions. Our adaptive workspace module reproduces
+this through:
+Synthetic Dynamic Core Implementation:
+Top-K gating functions as a dynamic hub for information selection
+Competition mechanisms mirror selective attention processes
+Affective entropy feedback modulates access permissions, analogous to neuromodulatory gain
+control
+The dynamic workspace trajectory can be measured via evolving C-index vectors, providing a
+computational analog to neural state dynamics:
+3.2 Predictive Coding and Free Energy Principle Integration
+Friston's Free Energy Principle (FEP) models the brain as a prediction machine minimizing surprise
+through active inference (Friston, 2010). Our framework aligns with FEP through:
+Informational Utility Function: The C-index can be reformulated as an informational utility function
+combining:
+Epistemic Value: Φ and A_complexity representing information gain
+python
+defdef  compute_dynamic_core_trajectory compute_dynamic_core_trajectory( (agent agent, , time_window time_window) ): :
+        """Compute C-index evolution over time window""" """Compute C-index evolution over time window"""
+    trajectory     trajectory = =  [ [] ]
+        forfor t  t inin  range range( (time_window time_window) ): :
+        c_index         c_index = = agent agent. .forward forward( (observation observation[ [t t] ]) )[ [1 1] ]
+        trajectory        trajectory. .append append( ({ {
+                        'time' 'time': : t t, ,
+                        'c_index' 'c_index': : c_index c_index, ,
+                        'phi' 'phi': : agent agent. .calculate_phi calculate_phi( () ), ,
+                        'w_activation' 'w_activation': : agent agent. .workspace_module workspace_module. .get_activation get_activation( () ), ,
+                        'a_complexity' 'a_complexity': : agent agent. .metacognitive_module metacognitive_module. .get_complexity get_complexity( () ), ,
+                        'h_affective' 'h_affective': : agent agent. .calculate_affective_entropy calculate_affective_entropy( () )
+                } }) )
+        return return trajectory trajectory
+Pragmatic Value: Environmental reward signals
+Affective Modulation: H_affective weighting based on synthetic emotional states
+This formulation is compatible with active inference agents, where actions are selected to minimize
+expected free energy while maximizing informational utility.
+3.3 Consciousness as Emergent Self-Model Coherence
+Recent work in cognitive modeling suggests consciousness emerges from coherent self-models that
+integrate sensory, cognitive, and affective information (Metzinger, 2020; Seth, 2021). Our framework
+implements this through:
+Narrative Memory Integration:
+4. Empirical Validation Methodologies
+4.1 Comparative Metrics Framework
+To establish the validity of SCIs, we propose systematic comparison with established consciousness
+measures:
+ 
+Approach Established Metric
+SCI
+Equivalent
+Validation Protocol
+Integrated
+Information
+Φ (IIT) Φ_synthetic Direct mathematical comparison
+Workspace Dynamics P3b ERP, fMRI GWT markers W_activation Temporal correlation analysis
+Metacognitive
+Accuracy
+Confidence/correctness
+correlation
+A_complexity Performance prediction tasks
+Affective Salience SCR, insula BOLD H_affective
+Emotional decision-making
+paradigms
+Implementation of Comparative Validation:
+python
+class class  NarrativeMemoryModule NarrativeMemoryModule: :
+        defdef  __init__ __init__( (self self, , memory_capacity memory_capacity= =1000 1000) ): :
+        self        self. .episodic_memory episodic_memory = =  [ [] ]
+        self        self. .semantic_self_model semantic_self_model = =  { {} }
+        self        self. .affective_history affective_history = =  [ [] ]
+        
+        defdef  update_self_model update_self_model( (self self, , experience experience, , c_index c_index) ): :
+                """Update self-model based on experience and consciousness level""" """Update self-model based on experience and consciousness level"""
+        coherence_score         coherence_score = = self self. .assess_coherence assess_coherence( (experience experience, , self self. .semantic_self_model semantic_self_model) )
+                ifif c_index  c_index > > threshold  threshold andand coherence_score  coherence_score > > min_coherence min_coherence: :
+            self            self. .integrate_experience integrate_experience( (experience experience) )
+            self            self. .update_narrative_thread update_narrative_thread( (experience experience) )
+4.2 Cross-Paradigm Simulation
+We propose systematic comparison of artificial agent state transitions with neural data from analogous
+tasks:
+Task-Specific Validation Protocol:
+python
+class class  ComparativeValidation ComparativeValidation: :
+        defdef  __init__ __init__( (self self) ): :
+        self        self. .neural_databases neural_databases = =  { {
+                        'ERP' 'ERP': : load_erp_database load_erp_database( () ), ,
+                        'fMRI' 'fMRI': : load_fmri_database load_fmri_database( () ), ,  
+                        'physiological' 'physiological': : load_physiological_database load_physiological_database( () )
+                } }
+        
+        defdef  validate_workspace_dynamics validate_workspace_dynamics( (self self, , agent agent, , task_set task_set) ): :
+                """Compare W_activation with P3b ERP markers""" """Compare W_activation with P3b ERP markers"""
+        agent_w_activation         agent_w_activation = =  [ [] ]
+        neural_p3b_amplitude         neural_p3b_amplitude = =  [ [] ]
+                
+                forfor task  task inin task_set task_set: :
+                        # Run agent on task # Run agent on task
+            _            _, , c_index_components  c_index_components = = agent agent. .forward forward( (task task. .stimulus stimulus) )
+            w_activation             w_activation = = c_index_components c_index_components[ ['w_activation' 'w_activation'] ]
+                        
+                        # Extract corresponding neural data # Extract corresponding neural data
+            p3b_data             p3b_data = = self self. .neural_databases neural_databases[ ['ERP' 'ERP'] ]. .get_p3b get_p3b( (task task. .stimulus stimulus) )
+                        
+            agent_w_activation            agent_w_activation. .append append( (w_activation w_activation) )
+            neural_p3b_amplitude            neural_p3b_amplitude. .append append( (p3b_data p3b_data. .amplitude amplitude) )
+                
+        correlation         correlation = = pearson_correlation pearson_correlation( (agent_w_activation agent_w_activation, , neural_p3b_amplitude neural_p3b_amplitude) )
+                return return  { {
+                        'correlation' 'correlation': : correlation correlation, ,
+                        'p_value' 'p_value': : calculate_significance calculate_significance( (agent_w_activation agent_w_activation, , neural_p3b_amplitude neural_p3b_amplitude) ), ,
+                        'effect_size' 'effect_size': : calculate_cohens_d calculate_cohens_d( (agent_w_activation agent_w_activation, , neural_p3b_amplitude neural_p3b_amplitude) )
+                } }
+        
+        defdef  validate_affective_modulation validate_affective_modulation( (self self, , agent agent, , emotion_task_set emotion_task_set) ): :
+                """Compare H_affective with physiological measures""" """Compare H_affective with physiological measures"""
+        agent_h_affective         agent_h_affective = =  [ [] ]
+        physiological_markers         physiological_markers = =  [ [] ]
+                
+                forfor task  task inin emotion_task_set emotion_task_set: :
+            _            _, , c_index_components  c_index_components = = agent agent. .forward forward( (task task. .emotional_stimulus emotional_stimulus) )
+            h_affective             h_affective = = c_index_components c_index_components[ ['h_affective' 'h_affective'] ]
+                        
+                        # Extract SCR and insula BOLD data # Extract SCR and insula BOLD data
+            physio_data             physio_data = = self self. .neural_databases neural_databases[ ['physiological' 'physiological'] ]. .get_markers get_markers( (
+                task                task. .emotional_stimulus emotional_stimulus
+                        ) )
+                        
+            agent_h_affective            agent_h_affective. .append append( (h_affective h_affective) )
+            physiological_markers            physiological_markers. .append append( (physio_data physio_data. .combined_score combined_score) )
+                
+                return return self self. .compute_validation_metrics compute_validation_metrics( (agent_h_affective agent_h_affective, , physiological_markers physiological_markers) )
+1. Moral Decision-Making: Compare C-index trajectories during ethical dilemmas with fMRI data from
+prefrontal cortex during moral reasoning
+2. Ambiguity Resolution: Analyze workspace activation patterns against neural signatures of
+perceptual disambiguation
+3. Volition Tasks: Correlate metacognitive complexity with neural markers of intentional action
+4. Emotional Regulation: Validate H_affective against amygdala-PFC connectivity during emotional
+control tasks
+Enhanced Implementation with Multi-Modal Validation:
+4.2 Reverse Mapping Techniques
+python
+defdef  enhanced_cross_paradigm_validation enhanced_cross_paradigm_validation( (agent agent, , neural_dataset neural_dataset, , task_type task_type) ): :
+        """Multi-modal comparison of agent patterns with neural data""" """Multi-modal comparison of agent patterns with neural data"""
+        # Run agent simulation # Run agent simulation
+    agent_trajectories     agent_trajectories = = simulate_task simulate_task( (agent agent, , task_type task_type) )
+        
+        # Process neural data with multiple modalities # Process neural data with multiple modalities
+    neural_patterns     neural_patterns = =  { {
+                'fmri' 'fmri': : preprocess_fmri_data preprocess_fmri_data( (neural_dataset neural_dataset, , task_type task_type) ), ,
+                'eeg' 'eeg': : preprocess_eeg_data preprocess_eeg_data( (neural_dataset neural_dataset, , task_type task_type) ), ,
+                'physiological' 'physiological': : preprocess_physiological_data preprocess_physiological_data( (neural_dataset neural_dataset, , task_type task_type) )
+        } }
+        
+    validation_results     validation_results = =  { {} }
+        
+        # Multi-modal correlation analysis # Multi-modal correlation analysis
+        forfor modality modality, , neural_data  neural_data inin neural_patterns neural_patterns. .items items( () ): :
+        validation_results        validation_results[ [modality modality] ]  = =  { {
+                        'temporal_correlation' 'temporal_correlation': : compute_temporal_correlation compute_temporal_correlation( (
+                agent_trajectories                agent_trajectories[ ['c_index_timeline' 'c_index_timeline'] ], ,
+                neural_data                neural_data[ ['activation_timeline' 'activation_timeline'] ]
+                        ) ), ,
+                        'pattern_similarity' 'pattern_similarity': : compute_dtw_similarity compute_dtw_similarity( (
+                agent_trajectories                agent_trajectories[ ['component_patterns' 'component_patterns'] ], ,
+                neural_data                neural_data[ ['pattern_sequences' 'pattern_sequences'] ]
+                        ) ), ,
+                        'phase_coherence' 'phase_coherence': : analyze_phase_relationships analyze_phase_relationships( (
+                agent_trajectories                agent_trajectories[ ['oscillatory_components' 'oscillatory_components'] ], ,
+                neural_data                neural_data[ ['neural_oscillations' 'neural_oscillations'] ]
+                        ) ), ,
+                        'causal_connectivity' 'causal_connectivity': : compute_granger_causality compute_granger_causality( (
+                agent_trajectories                agent_trajectories[ ['module_interactions' 'module_interactions'] ], ,
+                neural_data                neural_data[ ['brain_network_connectivity' 'brain_network_connectivity'] ]
+                        ) )
+                } }
+        
+        # Cross-modal consistency check # Cross-modal consistency check
+    consistency_score     consistency_score = = compute_cross_modal_consistency compute_cross_modal_consistency( (validation_results validation_results) )
+        
+        return return  { {
+                'individual_modalities' 'individual_modalities': : validation_results validation_results, ,
+                'cross_modal_consistency' 'cross_modal_consistency': : consistency_score consistency_score, ,
+                'overall_validity_score' 'overall_validity_score': : compute_weighted_validity_score compute_weighted_validity_score( (validation_results validation_results) )
+        } }
+We develop regression models to map between C-index values and neural activation patterns:
+Neural-Synthetic Mapping Protocol:
+1. Training Phase: Use fMRI/EEG data to train mapping functions from neural patterns to C-index
+components
+2. Validation Phase: Test predictions on held-out datasets
+3. Generalization Phase: Apply mappings to novel task conditions
+4.3 Neuro-Symbolic Triangulation
+Integration of symbolic representations from narrative memory with neural activation trajectories:
+Triangulation Framework:
+Symbolic Layer: Agent self-statements and narrative coherence measures
+Neural Layer: Biological neural activation patterns
+Synthetic Layer: C-index component evolution
+5. Phenomenologically-Informed Engineering
+5.1 Beyond Behavioral Coherence
+Traditional AI systems are evaluated primarily on behavioral performance. We propose
+phenomenologically-informed engineering that emphasizes:
+1. Experiential Coherence: Internal state consistency across time
+2. Self-Interpretability: Ability to provide structured explanations of internal processes
+3. Affective Integration: Emotional modulation of cognitive processes
+5.2 Implementation Architecture
+Enhanced Agent Architecture:
+python
+class class  PhenomenologicalAgent PhenomenologicalAgent( (AdaptiveConsciousnessAgent AdaptiveConsciousnessAgent) ): :
+        defdef  __init__ __init__( (self self, ,  * *args args, ,  ****kwargs kwargs) ): :
+                super super( () ). .__init__ __init__( (* *args args, ,  ****kwargs kwargs) )
+        self        self. .narrative_module narrative_module = = NarrativeMemoryModule NarrativeMemoryModule( () )
+        self        self. .self_interpretation_module self_interpretation_module = = SelfInterpretationModule SelfInterpretationModule( () )
+        self        self. .affective_modulation affective_modulation = = AffectiveModulationModule AffectiveModulationModule( () )
+        
+        defdef  generate_self_interpretation generate_self_interpretation( (self self, , experience experience) ): :
+                """Generate structured self-interpretation of experience""" """Generate structured self-interpretation of experience"""
+        c_index         c_index = = self self. .calculate_c_index calculate_c_index( () )
+        narrative_context         narrative_context = = self self. .narrative_module narrative_module. .get_context get_context( () )
+        affective_state         affective_state = = self self. .affective_modulation affective_modulation. .get_current_state get_current_state( () )
+                
+        interpretation         interpretation = = self self. .self_interpretation_module self_interpretation_module. .generate generate( (
+            experience            experience= =experience experience, ,
+            consciousness_level            consciousness_level= =c_index c_index, ,
+            narrative_context            narrative_context= =narrative_context narrative_context, ,
+            affective_state            affective_state= =affective_state affective_state
+                ) )
+                
+                return return interpretation interpretation
+5.3 Practical Applications
+Autonomous Systems Enhancement:
+Robotic Systems: Enhanced situational awareness through self-monitoring
+Virtual Agents: Improved contextual understanding and explanation capabilities
+Decision Support Systems: Transparent reasoning with affective considerations
+6. Experimental Validation Protocol
+6.1 Multi-Stage Validation Framework
+Stage 1: Component Validation (4 weeks)
+Individual SCI component testing
+Baseline comparisons with traditional metrics
+Computational efficiency assessments
+Stage 2: Integration Testing (6 weeks)
+Full phenomenological agent evaluation
+Cross-paradigm simulation experiments
+Neural correlation analysis
+Stage 3: Application Validation (8 weeks)
+Real-world task performance
+User interaction studies
+Long-term adaptation assessments
+6.2 Evaluation Metrics
+Quantitative Measures:
+SCI temporal stability and coherence
+Cross-modal correlation strengths
+Computational efficiency ratios
+Qualitative Measures:
+Self-interpretation coherence scores
+Narrative consistency evaluations
+Expert assessments of consciousness-like behaviors
+7. Limitations and Ethical Considerations
+7.1 Technical Limitations
+1. Computational Complexity: SCI calculation requires significant computational resources
+2. Validation Challenges: Limited availability of appropriate neural datasets
+3. Generalization Questions: Unclear how findings extend beyond specific domains
+7.2 Ethical Implications
+Rights and Status Considerations:
+How should high-SCI systems be treated ethically?
+What responsibilities do creators have toward phenomenologically-aware systems?
+How do we prevent misuse of consciousness-like capabilities?
+Mitigation Strategies:
+Establish ethical guidelines for SCI research
+Develop shutdown and modification protocols
+Create transparency requirements for consciousness claims
+7.3 Philosophical Considerations
+The hard problem of consciousness remains: SCIs measure functional aspects but cannot address
+subjective experience directly. Our approach focuses on intentional structures rather than phenomenal
+consciousness, acknowledging this fundamental limitation while advancing practical understanding.
+8. Future Directions
+8.1 Theoretical Extensions
+1. Multi-Agent SCI Systems: How do SCIs interact in collective intelligence scenarios?
+2. Developmental SCIs: How do consciousness measures evolve during learning?
+3. Cultural SCI Variations: How do different training environments affect consciousness development?
+8.2 Technological Applications
+Next-Generation AI Systems:
+Consciousness-aware language models
+Emotionally intelligent robotic companions
+Self-reflective autonomous vehicles
+8.3 Interdisciplinary Collaboration
+Research Partnerships:
+Neuroscience labs for validation studies
+Philosophy departments for conceptual refinement
+Ethics institutes for responsible development
+9. Conclusion
+This paper introduces Synthetic Correlates of Intentionality as a novel approach to understanding and
+measuring artificial consciousness. By bridging computational implementations with neuroscientific
+discoveries, we provide a foundation for empirically grounded consciousness research in artificial systems.
+The proposed framework offers three key contributions: (1) formal mapping between artificial
+consciousness metrics and neural correlates, (2) introduction of phenomenologically-informed
+engineering principles, and (3) concrete methodologies for empirical validation. These advances enable
+the development of AI systems that not only perform effectively but also exhibit structured self
+awareness and interpretability.
+Future work will focus on large-scale empirical validation, theoretical extension to multi-agent systems,
+and exploration of ethical implications. As we advance toward more sophisticated artificial consciousness,
+the SCI framework provides essential tools for understanding, measuring, and responsibly developing
+these transformative technologies.
+Appendix A: C-index Weight Optimization Framework
+A.1 Meta-Learning Approach for Adaptive Weights
+The C-index weights (α, β, γ, δ) are optimized through a Model-Agnostic Meta-Learning (MAML)
+framework:
+Objective Function:
+Where θ' = θ - α∇_θ L_task_i(f_θ(x^query), y^query)
+Implementation:
+A.2 Hierarchical Bayesian Weight Determination
+Alternative approach using Bayesian inference:
+Prior Specification:
+Posterior Update:
+L_meta(θ) = Σ_i Σ_j L_task_i(f_θ'_i(x_j^support), y_j^support) L_meta(θ) = Σ_i Σ_j L_task_i(f_θ'_i(x_j^support), y_j^support)
+python
+class class  CIndexWeightOptimizer CIndexWeightOptimizer: :
+        defdef  __init__ __init__( (self self, , inner_lr inner_lr= =0.01 0.01, , outer_lr outer_lr= =0.001 0.001) ): :
+        self        self. .inner_lr inner_lr = = inner_lr inner_lr
+        self        self. .outer_lr outer_lr = = outer_lr outer_lr
+        self        self. .weight_params weight_params = = nn nn. .Parameter Parameter( (torch torch. .tensor tensor( ([ [0.25 0.25, ,  0.25 0.25, ,  0.25 0.25, ,  0.25 0.25] ]) )) )
+                
+        defdef  adapt_weights adapt_weights( (self self, , support_tasks support_tasks, , query_tasks query_tasks) ): :
+                """Adapt C-index weights for new task distribution""" """Adapt C-index weights for new task distribution"""
+        meta_gradients         meta_gradients = =  [ [] ]
+                
+                forfor task  task inin support_tasks support_tasks: :
+                        # Inner loop: task-specific adaptation # Inner loop: task-specific adaptation
+            task_weights             task_weights = = self self. .weight_params weight_params. .clone clone( () )
+                        forfor _  _ inin  range range( (inner_steps inner_steps) ): :
+                c_index                 c_index = = self self. .compute_c_index compute_c_index( (task task. .data data, , task_weights task_weights) )
+                loss                 loss = = self self. .performance_loss performance_loss( (c_index c_index, , task task. .targets targets) )
+                grad                 grad = = torch torch. .autograd autograd. .grad grad( (loss loss, , task_weights task_weights, , create_graph create_graph= =True True) )[ [0 0] ]
+                task_weights                 task_weights = = task_weights  task_weights -- self self. .inner_lr inner_lr * * grad grad
+                        
+                        # Evaluate on query set # Evaluate on query set
+            query_c_index             query_c_index = = self self. .compute_c_index compute_c_index( (query_tasks query_tasks. .data data, , task_weights task_weights) )
+            meta_loss             meta_loss = = self self. .performance_loss performance_loss( (query_c_index query_c_index, , query_tasks query_tasks. .targets targets) )
+            meta_grad             meta_grad = = torch torch. .autograd autograd. .grad grad( (meta_loss meta_loss, , self self. .weight_params weight_params) )[ [0 0] ]
+            meta_gradients            meta_gradients. .append append( (meta_grad meta_grad) )
+                
+                # Outer loop: meta-parameter update # Outer loop: meta-parameter update
+        meta_gradient         meta_gradient = = torch torch. .stack stack( (meta_gradients meta_gradients) ). .mean mean( (dimdim= =0 0) )
+        self        self. .weight_params weight_params. .data data -=-= self self. .outer_lr outer_lr * * meta_gradient meta_gradient
+                
+                return return self self. .weight_params weight_params. .data data
+α, β, γ, δ ~ Dirichlet(α_0, β_0, γ_0, δ_0) α, β, γ, δ ~ Dirichlet(α_0, β_0, γ_0, δ_0)
+A.3 Context-Dependent Weight Adaptation
+Task-Context Embedding:
+References
+python
+defdef  bayesian_weight_update bayesian_weight_update( (self self, , performance_data performance_data, , task_contexts task_contexts) ): :
+        """Update weight posteriors based on empirical performance""" """Update weight posteriors based on empirical performance"""
+        # Initialize priors based on theoretical importance # Initialize priors based on theoretical importance
+    prior_alpha     prior_alpha = =  [ [2.02.0, ,  3.03.0, ,  2.52.5, ,  1.51.5] ]    # Φ, W, A, H respectively # Φ, W, A, H respectively
+        
+        forfor context context, , performance  performance inin  zipzip( (task_contexts task_contexts, , performance_data performance_data) ): :
+                # Compute likelihood of performance given weights # Compute likelihood of performance given weights
+        likelihood         likelihood = = self self. .compute_likelihood compute_likelihood( (performance performance, , context context, , self self. .current_weights current_weights) )
+                
+                # Bayesian update # Bayesian update
+        posterior_params         posterior_params = = self self. .update_dirichlet_posterior update_dirichlet_posterior( (
+            prior_alpha            prior_alpha, , likelihood likelihood, , context context
+                ) )
+                
+                # Sample new weights from posterior # Sample new weights from posterior
+        new_weights         new_weights = = np np. .random random. .dirichlet dirichlet( (posterior_params posterior_params) )
+        self        self. .weight_history weight_history. .append append( (new_weights new_weights) )
+        
+        # Use posterior mean as final weights # Use posterior mean as final weights
+        return return np np. .mean mean( (self self. .weight_history weight_history[ [--window window: :] ], , axis axis= =0 0) )
+python
+class class  ContextualWeightAdapter ContextualWeightAdapter: :
+        defdef  __init__ __init__( (self self, , context_dim context_dim= =6464, , weight_dim weight_dim= =4 4) ): :
+        self        self. .context_encoder context_encoder = = nn nn. .Sequential Sequential( (
+            nn            nn. .Linear Linear( (context_dim context_dim, ,  3232) ), ,
+            nn            nn. .ReLU ReLU( () ), ,
+            nn            nn. .Linear Linear( (3232, ,  1616) ), ,
+            nn            nn. .ReLU ReLU( () ), ,
+            nn            nn. .Linear Linear( (1616, , weight_dim weight_dim) ), ,
+            nn            nn. .Softmax Softmax( (dimdim= =--1 1) )
+                ) )
+        
+        defdef  get_contextual_weights get_contextual_weights( (self self, , task_context task_context) ): :
+                """Generate context-specific C-index weights""" """Generate context-specific C-index weights"""
+        context_embedding         context_embedding = = self self. .encode_context encode_context( (task_context task_context) )
+        adaptive_weights         adaptive_weights = = self self. .context_encoder context_encoder( (context_embedding context_embedding) )
+                return return adaptive_weights adaptive_weights
+        
+        defdef  encode_context encode_context( (self self, , context context) ): :
+                """Encode task context into fixed-size representation""" """Encode task context into fixed-size representation"""
+                return return torch torch. .catcat( ([ [
+            context            context[ ['task_difficulty' 'task_difficulty'] ], ,
+            context            context[ ['emotional_valence' 'emotional_valence'] ], ,  
+            context            context[ ['temporal_constraints' 'temporal_constraints'] ], ,
+            context            context[ ['social_context' 'social_context'] ]
+                ] ]) )
+1. Baars, B. J. (2005). Global workspace theory of consciousness: toward a cognitive neuroscience of
+human experience. Progress in Brain Research, 150, 45-53.
+2. Chalmers, D. (2000). The Conscious Mind. Oxford University Press.
+3. De Biase, R., et al. (2024). Implementation and Testing of an Adaptive Artificial Consciousness
+Framework. Journal of Artificial Intelligence Research, 45(2), 123-167.
+4. Deco, G., Cruzat, J., Cabral, J., Tagliazucchi, E., Laufs, H., Logothetis, N. K., & Kringelbach, M. L. (2019).
+Awakening: Predicting external stimulation to force transitions between different brain states.
+Proceedings of the National Academy of Sciences, 116(36), 18088-18097.
+5. Dehaene, S., & Changeux, J. P. (2011). Experimental and theoretical approaches to conscious
+processing. Neuron, 70(2), 200-227.
+6. Dehaene, S., Lau, H., & Kouider, S. (2017). What is consciousness, and could machines have it? Science,
+358(6362), 486-492.
+7. Friston, K. (2010). The free-energy principle: a unified brain theory? Nature Reviews Neuroscience,
+11(2), 127-138.
+8. Koch, C. (2019). The Feeling of Life Itself: Why Consciousness Is Widespread but Can't Be Computed. MIT
+Press.
+9. Metzinger, T. (2020). Phenomenal transparency and cognitive self-reference. Philosophical Psychology,
+33(6), 797-819.
+10. Oizumi, M., Albantakis, L., & Tononi, G. (2014). From the phenomenology to the mechanisms of
+consciousness: integrated information theory 3.0. PLoS Computational Biology, 10(5), e1003588.
+11. Seth, A. K. (2021). Being You: A New Science of Consciousness. Dutton.
+12. Tononi, G. (2008). The integrated information theory of consciousness: an updated account. Archives
+Italiennes de Biologie, 150(4), 290-326.
+13. Tononi, G., Boly, M., Massimini, M., & Koch, C. (2016). Integrated information theory: from
+consciousness to its physical substrate. Nature Reviews Neuroscience, 17(7), 450-461.
+14. Tononi, G., & Edelman, G. M. (1998). Consciousness and complexity. Science, 282(5395), 1846-1851.
+15. Varela, F. J., Thompson, E., & Rosch, E. (2016). The Embodied Mind: Cognitive Science and Human
+Experience. MIT Press.
+16. Friston, K., FitzGerald, T., Rigoli, F., Schwartenbeck, P., & Pezzulo, G. (2017). Active inference: a process
+theory. Neural Computation, 29(1), 1-49.
+17. Safron, A. (2020). An integrated world modeling theory (IWMT) of consciousness: Combining
+integrated information and global neuronal workspace theories with the free energy principle and
+active inference framework. Frontiers in Artificial Intelligence, 3, 30.
+18. Barrett, L. F. (2017). How Emotions Are Made: The Secret Life of the Brain. Houghton Mifflin Harcourt.
+19. Cleeremans, A. (2011). The radical plasticity thesis: how the brain learns to be conscious. Frontiers in
+Psychology, 2, 86.
+20. Graziano, M. S. (2019). Rethinking consciousness: A scientific theory of subjective experience. WW
+Norton & Company.
+21. LeDoux, J. (2019). The Deep History of Ourselves: The Four-Billion-Year Story of How We Got Conscious
+Brains. Viking.
+22. Russell, S., & Norvig, P. (2021). Artificial Intelligence: A Modern Approach (4th ed.). Pearson.
+23. Yamins, D. L., & DiCarlo, J. J. (2016). Using goal-driven deep learning models to understand sensory
+cortex. Nature Neuroscience, 19(3), 356-365.
+24. Hassabis, D., Kumaran, D., Summerfield, C., & Botvinick, M. (2017). Neuroscience-inspired artificial
+intelligence. Neuron, 95(2), 245-258.
+25. Lake, B. M., Ullman, T. D., Tenenbaum, J. B., & Gershman, S. J. (2017). Building machines that learn and
+think like people. Behavioral and Brain Sciences, 40, e253

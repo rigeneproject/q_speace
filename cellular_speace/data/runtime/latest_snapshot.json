@@ -1,0 +1,2010 @@
+{
+  "state": "running",
+  "tick_count": 273735,
+  "ticks_since_start": 273735,
+  "uptime_seconds": 44101.804263830185,
+  "tick_interval": 1.5,
+  "circadian": {
+    "phase": "awake",
+    "phase_elapsed_seconds": 273.2007646560669,
+    "awake_duration": 600.0,
+    "sleep_duration": 60.0,
+    "is_sleeping": false
+  },
+  "health": {
+    "health_score": 1.0,
+    "tick_jitter_ms": 1015.552282333374,
+    "tick_latency_ms": 515.6991481781006,
+    "consecutive_exceptions": 0,
+    "total_exceptions": 0,
+    "peak_memory_rss_mb": 995.8984375,
+    "thresholds": {
+      "max_tick_jitter_ms": 2000.0,
+      "max_tick_latency_ms": 5000.0,
+      "max_memory_rss_mb": 2048.0,
+      "max_consecutive_exceptions": 3
+    }
+  },
+  "lifecycle": {
+    "current_state": "active",
+    "transition_history": [
+      [
+        "initializing",
+        "active"
+      ]
+    ],
+    "possible_next_states": [
+      "baseline",
+      "conservation",
+      "recovery",
+      "degraded",
+      "critical",
+      "audit_only"
+    ]
+  },
+  "halt": {
+    "is_halted": false,
+    "halt_reason": null,
+    "halted_at": null,
+    "consecutive_brainstem_emergency": 0
+  },
+  "degradation": {
+    "actions_applied": [
+      {
+        "action": "slowdown",
+        "new_tick_interval": 1.5,
+        "reason": "runtime_health_degraded",
+        "timestamp": 1782399272.2813158
+      }
+    ],
+    "slowdown_level": 1
+  },
+  "recovery": {
+    "recovery_status": "recovered",
+    "restored_from": 1781696801.1719346,
+    "resume_narrative": "Bentornato, amico mio. L'ultima volta ci siamo parlati pochi momenti fa. Stavamo discutendo di qualcosa di interessante. Il mio health score era non valutato. Sono pronto a riprendere."
+  },
+  "extended_observation": {
+    "latest_report": {
+      "timestamp": 1782414436.9472256,
+      "uptime_seconds": 43509.54059505463,
+      "memory_growth_mb": 0.00987600471866509,
+      "health_trend": -6.100553319787093e-07,
+      "latency_trend_ms": -0.0035298354774333245,
+      "narrative_events_per_minute": 0.0,
+      "regulation_proposals_per_minute": 0.0,
+      "dialogue_turns_per_minute": 0.0,
+      "checkpoint_churn_per_hour": 11.0,
+      "is_degraded": false,
+      "window_seconds": 3600.0
+    },
+    "total_reports": 72,
+    "uptime_seconds": 44101.83736348152
+  },
+  "memory_audit": {
+    "latest_report": {
+      "timestamp": 1782414992.600572,
+      "rss_mb": 995.296875,
+      "rss_growth_mb": 566.6328125,
+      "object_counts": {
+        "dict": 1236311,
+        "list": 165740,
+        "cell": 3857,
+        "generator": 4,
+        "tuple": 12701,
+        "function": 22054,
+        "set": 509532,
+        "list_iterator": 2,
+        "_GeneratorContextManager": 2,
+        "set_iterator": 1,
+        "method": 369,
+        "Counter": 1,
+        "type": 2021,
+        "ModuleSpec": 949,
+        "builtin_function_or_method": 1512,
+        "TextIOWrapper": 4,
+        "frozenset": 1200,
+        "SimpleNamespace": 18,
+        "module": 955,
+        "Quitter": 2,
+        "_Printer": 3,
+        "_Helper": 1,
+        "ReferenceType": 3330,
+        "wrapper_descriptor": 2387,
+        "method_descriptor": 1524,
+        "classmethod_descriptor": 100,
+        "getset_descriptor": 3191,
+        "member_descriptor": 868,
+        "staticmethod": 407,
+        "_automodule": 1,
+        "FileIO": 4,
+        "IncrementalEncoder": 3,
+        "DistutilsMetaFinder": 1,
+        "FileFinder": 110,
+        "BufferedReader": 1,
+        "IncrementalNewlineDecoder": 1,
+        "classmethod": 448,
+        "_PlaceholderType": 1,
+        "WeakSet": 6,
+        "EnumType": 111,
+        "ABCMeta": 151,
+        "Context": 18,
+        "WeakValueDictionary": 3,
+        "PyCStructType": 12,
+        "UnionType": 1,
+        "PyCArrayType": 5,
+        "PyCSimpleType": 30,
+        "PyCPointerType": 22,
+        "PyCFuncPtrType": 14,
+        "IncrementalDecoder": 1,
+        "property": 575,
+        "_WeakValueDictionary": 1,
+        "SourceFileLoader": 852,
+        "ModelMetaclass": 247,
+        "WindowsPath": 225,
+        "_DeprecateByteStringMeta": 1,
+        "ALLOW_MISSING": 1,
+        "_Environ": 1,
+        "NamespaceLoader": 1,
+        "_NamespacePath": 1,
+        "Repr": 1,
+        "FlagBoundary": 4,
+        "_not_given": 1,
+        "_auto_null": 1,
+        "EnumCheck": 3,
+        "_NamedIntConstant": 76,
+        "RegexFlag": 18,
+        "_ZeroSentinel": 1,
+        "_lru_cache_wrapper": 64,
+        "RLock": 186,
+        "_GlobalContext": 1,
+        "_Lock": 1,
+        "_Feature": 10,
+        "Pattern": 119,
+        "method-wrapper": 11,
+        "_Unknown": 1,
+        "_ParameterKind": 5,
+        "_HAS_DEFAULT_FACTORY_CLASS": 2,
+        "_MISSING_TYPE": 1,
+        "_KW_ONLY_TYPE": 1,
+        "mappingproxy": 52,
+        "_FIELD_BASE": 3,
+        "ANSIColors": 1,
+        "Theme": 3,
+        "_Sentinel": 3,
+        "_TemplatePattern": 1,
+        "_local": 4,
+        "_MainThread": 1,
+        "Formatter": 3,
+        "_StderrHandler": 1,
+        "RootLogger": 1,
+        "Logger": 13,
+        "ExtensionFileLoader": 30,
+        "PyCapsule": 1,
+        "AddressFamily": 11,
+        "SocketKind": 5,
+        "MsgFlag": 9,
+        "AddressInfo": 7,
+        "Signals": 9,
+        "Handlers": 2,
+        "Struct": 19,
+        "_SSLMethod": 6,
+        "Options": 15,
+        "AlertDescription": 27,
+        "SSLErrorNumber": 9,
+        "VerifyFlags": 7,
+        "VerifyMode": 3,
+        "_WindowsProactorEventLoopPolicy": 1,
+        "lock": 24,
+        "_RunningLoop": 1,
+        "builtin_method": 57,
+        "Random": 1,
+        "count": 6,
+        "JSONEncoder": 1,
+        "JSONDecoder": 1,
+        "_AnyMeta": 1,
+        "_SpecialForm": 15,
+        "_TypedCacheSpecialForm": 2,
+        "_UnionGenericAliasMeta": 1,
+        "_ProtocolMeta": 56,
+        "defaultdict": 22,
+        "TypeVar": 89,
+        "_SpecialGenericAlias": 37,
+        "_CallableType": 1,
+        "_DeprecatedGenericAlias": 1,
+        "_TupleType": 1,
+        "NamedTupleMeta": 1,
+        "_TypedDictMeta": 89,
+        "TypeAliasType": 4,
+        "NoExtraItemsType": 1,
+        "_TypedDictSpecialForm": 1,
+        "_TypeFormForm": 1,
+        "SignalDict": 6,
+        "_LiteralGenericAlias": 80,
+        "_CallableGenericAlias": 40,
+        "Union": 216,
+        "GenericAlias": 222,
+        "Sentinel": 3,
+        "_UnknownTypeEnum": 1,
+        "ParamSpec": 1,
+        "UUID": 6,
+        "NewType": 4,
+        "_AnnotatedAlias": 49,
+        "partial": 272,
+        "_NoValueType": 1,
+        "_SignatureDescriptor": 1,
+        "ContextVar": 3,
+        "_unspecified": 1,
+        "CallableProxyType": 4,
+        "_swapped_struct_meta": 1,
+        "_swapped_union_meta": 1,
+        "_PointerTypeCache": 1,
+        "LibraryLoader": 5,
+        "PyDLL": 1,
+        "_FuncPtr": 17,
+        "CFunctionType": 6,
+        "PytestTester": 6,
+        "iinfo": 3,
+        "MGridClass": 1,
+        "OGridClass": 1,
+        "RClass": 1,
+        "CClass": 1,
+        "IndexExpression": 2,
+        "uname_result": 1,
+        "_FileOpeners": 1,
+        "NicDuplex": 3,
+        "BatteryTime": 2,
+        "_WrapNumbers": 1,
+        "Priority": 6,
+        "IOPriority": 4,
+        "_common_types_metatype": 3,
+        "cython_function_or_method": 166,
+        "YAMLObjectMetaclass": 1,
+        "_GenericAlias": 269,
+        "ObjectCentricEncoder": 1,
+        "UCD": 1,
+        "_Nothing": 1,
+        "itemgetter": 4,
+        "Palette": 8,
+        "TerminalTheme": 5,
+        "attrgetter": 2,
+        "Style": 197,
+        "ExceptionRenderer": 2,
+        "AnsiFore": 1,
+        "AnsiBack": 1,
+        "AnsiStyle": 1,
+        "AnsiCursor": 1,
+        "WinTerm": 1,
+        "NullFile": 1,
+        "NoChange": 1,
+        "NullHighlighter": 1,
+        "_TokenType": 80,
+        "Box": 19,
+        "LexerMeta": 2,
+        "_inherit": 1,
+        "_This": 1,
+        "RegexLexerMeta": 2,
+        "ProfilingRegexLexerMeta": 1,
+        "StyleMeta": 1,
+        "ColumnStyles": 2,
+        "RichTracebackFormatter": 1,
+        "PrintLoggerFactory": 1,
+        "_Configuration": 1,
+        "dict_keys": 1,
+        "BoundLoggerLazyProxy": 10,
+        "Charset": 2,
+        "Compat32": 1,
+        "_QByteMap": 1,
+        "HTTPStatus": 62,
+        "Month": 12,
+        "Day": 7,
+        "_localized_day": 2,
+        "_localized_month": 2,
+        "TextCalendar": 1,
+        "codes": 62,
+        "UnsetType": 1,
+        "Timeout": 1,
+        "Limits": 1,
+        "UseClientDefault": 1,
+        "WinDLL": 3,
+        "WinFunctionType": 3,
+        "WeakKeyDictionary": 5,
+        "UnprocessedParamType": 1,
+        "StringParamType": 1,
+        "IntParamType": 1,
+        "FloatParamType": 1,
+        "BoolParamType": 4,
+        "UUIDParameterType": 1,
+        "_FakeSubclassCheck": 2,
+        "Command": 1,
+        "SystemRandom": 1,
+        "RandomState": 1,
+        "CodecInfo": 3,
+        "Argparse": 2,
+        "Syntax": 2,
+        "Traceback": 2,
+        "Unittest": 2,
+        "Thread": 4,
+        "_ThreadHandle": 5,
+        "Event": 10,
+        "PercentStyle": 2,
+        "Manager": 1,
+        "_Local": 1,
+        "CompressionParameter": 19,
+        "DecompressionParameter": 1,
+        "Scanner": 1,
+        "SingletonMeta": 1,
+        "_abc_data": 455,
+        "_tuplegetter": 360,
+        "ForwardRef": 728,
+        "SafeUUID": 3,
+        "DictRemover": 4,
+        "scputimes": 13,
+        "FrequencyBand": 5,
+        "Attribute": 73,
+        "ColorTriplet": 12,
+        "ControlType": 16,
+        "ExceptionDictTransformer": 1,
+        "ColorSystem": 4,
+        "ConsoleRenderer": 1,
+        "TimeStamper": 1,
+        "StackInfoRenderer": 1,
+        "MT19937": 1,
+        "DecoratorInfos": 247,
+        "SchemaValidator": 246,
+        "SchemaSerializer": 248,
+        "LazyClassAttribute": 246,
+        "Format": 4,
+        "BufferFlags": 17,
+        "_DataclassParams": 131,
+        "Condition": 16,
+        "StreamHandler": 1,
+        "TLSVersion": 7,
+        "_TLSContentType": 6,
+        "_TLSAlertType": 34,
+        "_TLSMessageType": 22,
+        "Purpose": 2,
+        "_SendfileMode": 3,
+        "SSLProtocolState": 5,
+        "AppProtocolState": 4,
+        "_BarrierState": 4,
+        "_State": 8,
+        "Strategy": 9,
+        "AnnotationSource": 8,
+        "cached_property": 15,
+        "MockCoreSchema": 1,
+        "MockValSer": 2,
+        "deprecated_instance_property": 2,
+        "IPv4Network": 21,
+        "IPv4Address": 31,
+        "IPv6Network": 35,
+        "Predicate": 10,
+        "Strict": 5,
+        "Gt": 4,
+        "Lt": 4,
+        "Le": 17,
+        "Ge": 19,
+        "AllowInfNan": 1,
+        "UuidVersion": 7,
+        "PathType": 4,
+        "PaymentCardBrand": 4,
+        "EncodedBytes": 2,
+        "EncodedStr": 2,
+        "_CopyMode": 3,
+        "DisplayModes": 2,
+        "MorphologyEventType": 478,
+        "ExternalActionType": 10,
+        "ActionGovernanceMode": 4,
+        "ActionRiskClass": 5,
+        "WorldEntityType": 7,
+        "ActionOutcome": 4,
+        "ActuatorState": 6,
+        "ActionCategory": 6,
+        "ReceptorType": 15,
+        "ActiveNetwork": 4,
+        "BrainstemFunctionalState": 5,
+        "AssemblyStatus": 4,
+        "LCMode": 3,
+        "ThoughtPhase": 10,
+        "ElementBlock": 5,
+        "ElementGroup": 18,
+        "ElementPeriod": 7,
+        "ValenceState": 6,
+        "OrbitalConfiguration": 27,
+        "BondType": 5,
+        "BondOrder": 3,
+        "BondPolarity": 4,
+        "EpigeneticTagType": 5,
+        "SpatialRelation": 12,
+        "CouplingTopology": 3,
+        "InterferenceType": 4,
+        "_AndValidatorAttributes": 1,
+        "ClassProps": 15,
+        "_InstanceOfValidatorAttributes": 1,
+        "_MatchesReValidatorAttributes": 1,
+        "_OptionalValidatorAttributes": 1,
+        "_InValidatorAttributes": 1,
+        "_IsCallableValidatorAttributes": 1,
+        "_DeepIterableAttributes": 1,
+        "_DeepMappingAttributes": 1,
+        "_NumberValidatorAttributes": 1,
+        "_MaxLengthValidatorAttributes": 1,
+        "_MinLengthValidatorAttributes": 1,
+        "_SubclassOfValidatorAttributes": 1,
+        "_NotValidatorAttributes": 1,
+        "_OrValidatorAttributes": 1,
+        "VersionInfoAttributes": 1,
+        "ColorType": 5,
+        "_Bit": 13,
+        "CallsiteParameter": 10,
+        "CField": 58,
+        "Color": 19,
+        "PaddingProperty": 1,
+        "KeyValueColumnFormatter": 4,
+        "OrganismSubsystem": 12,
+        "OrganismMessageType": 15,
+        "OrganismLifecycleState": 9,
+        "NodeStatus": 3,
+        "CurriculumStageType": 9,
+        "LearningRiskClass": 5,
+        "LinguisticStage": 6,
+        "HTTPMethod": 9,
+        "ClientState": 3,
+        "ParameterSource": 5,
+        "Option": 17,
+        "Argument": 1,
+        "ProcessState": 5,
+        "AssimilationPermission": 6,
+        "SleepPhase": 3,
+        "ThreatLevel": 4,
+        "AuthorizationLevel": 5,
+        "NodeTypeObs": 11,
+        "RelationTypeObs": 14,
+        "MetabolicMode": 6,
+        "ResourceClass": 10,
+        "ThalamicRelayMode": 4,
+        "BackendKind": 4,
+        "BackendChoice": 4,
+        "_Precedence": 18,
+        "VFSPermission": 6,
+        "SeedSequence": 1,
+        "SimpleQueue": 1,
+        "Codec": 2,
+        "slice": 378,
+        "ModelPrivateAttr": 145,
+        "FieldInfo": 2749,
+        "Field": 656,
+        "CognitiveHypervisor": 2,
+        "CyberPhysicalSensorArray": 1,
+        "WorkerContext": 1,
+        "deque": 31,
+        "PlaceHolder": 7,
+        "_ASN1Object": 2,
+        "Tag": 7,
+        "Discriminator": 1,
+        "IPv6Address": 52,
+        "Not": 4,
+        "FastPath": 14,
+        "Signature": 49,
+        "Hashability": 4,
+        "KeywordOnly": 3,
+        "Column": 5,
+        "MemoryTier": 3,
+        "SandboxConfig": 1,
+        "__pyx_defaults": 1,
+        "UnifiedNamespace": 2,
+        "ProactorEventLoop": 1,
+        "Decorator": 1,
+        "_OptionalValidator": 4,
+        "_IsCallableValidator": 5,
+        "_DeepIterable": 1,
+        "ReprHighlighter": 1,
+        "LogLevelColumnFormatter": 1,
+        "File": 2,
+        "Tuple": 6,
+        "Add": 3,
+        "Sub": 3,
+        "Mult": 3,
+        "MatMult": 3,
+        "Div": 3,
+        "Mod": 3,
+        "LShift": 3,
+        "RShift": 3,
+        "BitOr": 3,
+        "BitXor": 3,
+        "BitAnd": 3,
+        "FloorDiv": 3,
+        "Pow": 3,
+        "LtE": 2,
+        "Eq": 2,
+        "NotEq": 2,
+        "GtE": 2,
+        "Invert": 2,
+        "UAdd": 2,
+        "USub": 2,
+        "SystemEvent": 1000,
+        "ThreadPoolExecutor": 1,
+        "IocpProactor": 1,
+        "socket": 2,
+        "Lookup": 14,
+        "OrderedDict": 49,
+        "ModelValidatorDecoratorInfo": 1,
+        "_PydanticGeneralMetadata": 1,
+        "MaxLen": 1,
+        "MinLen": 1,
+        "_InstanceOfValidator": 1,
+        "_SubclassOfValidator": 1,
+        "Semaphore": 1,
+        "FreezableDefaultDict": 28,
+        "Parameter": 221,
+        "Task": 2,
+        "coroutine": 3,
+        "DigitalNeuron": 80,
+        "ContinuousRuntimeEngine": 1,
+        "SharedGenome": 1,
+        "EpigeneticState": 384,
+        "FunctionalActivationGate": 80,
+        "CellularBrainOrchestrator": 1,
+        "TemporalNarrativeEngine": 1,
+        "SessionContinuityManager": 1,
+        "CheckpointManager": 1,
+        "CircadianScheduler": 2,
+        "RuntimeHealthMonitor": 1,
+        "ExtendedRuntimeObserver": 1,
+        "CircadianValidator": 1,
+        "MemoryLeakAuditor": 1,
+        "RuntimeLatentIntegrator": 1,
+        "DistributedLatentSyncEngine": 1,
+        "SafeDegradationHandler": 1,
+        "EmergencyHaltGate": 1,
+        "RecoveryOrchestrator": 1,
+        "CognitiveHomeostasis": 1,
+        "OrganismStateMachine": 1,
+        "BTRuntimeIntegration": 1,
+        "UtilityDriveSystem": 2,
+        "UtilityArbitrationEngine": 2,
+        "GOAPRuntimeIntegration": 1,
+        "SocialCognitionEngine": 1,
+        "TrustReputationModel": 1,
+        "SocialCoordinator": 1,
+        "NurserySessionOrchestrator": 1,
+        "LinguisticCorticalBridge": 1,
+        "GameAIIntegrationCoordinator": 1,
+        "SimulatedEnvironmentEngine": 1,
+        "DigitalTwinModel": 1,
+        "MicroActuatorController": 1,
+        "DistributedOrganismController": 1,
+        "OrganismLifecycleManager": 1,
+        "CrossNodeLatentBus": 1,
+        "StateTransitionPolicy": 1,
+        "GOAPMetacognitiveBridge": 1,
+        "GOAPPlanner": 1,
+        "GOAPActionRegistry": 1,
+        "VirtualAgentPopulation": 1,
+        "CognitiveNurseryScenarioBuilder": 1,
+        "LLMGovernanceWrapper": 1,
+        "LLMPromptEngine": 1,
+        "PhysicalEnvironmentModel": 1,
+        "ActionPolicyEngine": 3,
+        "ReversibilityAnalyzer": 3,
+        "ActionRiskClassifier": 3,
+        "BodyRegistry": 1,
+        "GenomeIdentity": 1,
+        "GenomeMorphology": 1,
+        "HomeostasisParams": 1,
+        "ImmuneParams": 1,
+        "DynamicsParams": 1,
+        "SystemAssimilationParams": 1,
+        "ConnectomeGeneSet": 1,
+        "PeriodicTableGeneSet": 1,
+        "FunctionalActivationParams": 1,
+        "QuantumGeneSet": 1,
+        "CORGeneSet": 1,
+        "HomeostasisEngine": 1,
+        "PlasticityEngine": 1,
+        "MorphologicalMemory": 1,
+        "NeurogenesisEngine": 1,
+        "ApoptosisEngine": 1,
+        "CellDifferentiationEngine": 1,
+        "EventDrivenBurstEngine": 1,
+        "STDPPlasticityEngine": 1,
+        "InhibitionEngine": 1,
+        "EnergyControlAgent": 1,
+        "InterRegionPlasticityEngine": 1,
+        "RegionSignalRouter": 1,
+        "CommunityDetectionEngine": 1,
+        "ConfidenceEngine": 1,
+        "RegionRegistry": 1,
+        "MemoryCoordinator": 1,
+        "EvolutionCoordinator": 1,
+        "MetabolismCoordinator": 1,
+        "PersistenceCoordinator": 1,
+        "SubsystemScheduler": 1,
+        "DigitalTranscriptor": 1,
+        "PeriodicTableAdapter": 1,
+        "NeuroPeriodicIntegrator": 1,
+        "TemporalDynamicsEngine": 1,
+        "NeuralOscillatorBank": 1,
+        "PhaseCouplingEngine": 1,
+        "EnergyFieldEngine": 1,
+        "PredictiveCodingEngine": 1,
+        "ActiveInferenceEngine": 1,
+        "GlobalHomeostaticDrive": 1,
+        "CriticalityMonitor": 1,
+        "EmbodiedActionActuator": 1,
+        "EmbodimentMonitor": 1,
+        "CognitiveScheduler": 1,
+        "ProcessTable": 1,
+        "MemoryPressureManager": 1,
+        "VirtualFileSystemEngine": 1,
+        "WindowsSystemAssimilator": 1,
+        "SystemAssimilationReport": 1,
+        "CognitiveActuator": 1,
+        "CapabilityGapAnalyzer": 1,
+        "BottleneckDetector": 1,
+        "CognitiveObjectiveReduction": 1,
+        "NeuralCircuit": 1,
+        "SelfImprovementCoordinator": 1,
+        "ActionGovernanceCoordinator": 1,
+        "WorldModelCoordinator": 1,
+        "BehaviorTree": 4,
+        "CellExpressionRules": 8,
+        "CellDifferentiationRule": 16,
+        "RegionPlasticityTrigger": 1,
+        "RegionConnectome": 1,
+        "ObjectPersistenceLayer": 1,
+        "RNAExpressionEngine": 1,
+        "VFSConfig": 1,
+        "SystemAssimilationConfig": 1,
+        "SystemInfo": 1,
+        "STDPEngine": 2,
+        "SystemMetrics": 17844,
+        "SkillFitnessEvaluator": 1,
+        "EvolutionarySkillOptimizer": 1,
+        "CognitivePatchProposalBuilder": 1,
+        "CognitiveSkillRegistry": 1,
+        "CognitiveMutationSandbox": 1,
+        "LatentPacket": 53529,
+        "Sequence": 5,
+        "Selector": 2,
+        "GOAPAction": 6,
+        "NurseryScenario": 4,
+        "MorphologyEvent": 466751,
+        "MorphologySnapshot": 18754,
+        "BrainRegion": 9,
+        "EpigeneticTagsManager": 1,
+        "NeuralPeriodicTable": 1,
+        "PeriodicLaw": 1,
+        "BondRegistry": 1,
+        "Drive": 4,
+        "Avalanche": 1,
+        "Spike": 10080,
+        "AssimilatedDevice": 176,
+        "AssimilatedProcess": 176,
+        "AssimilatedService": 289,
+        "CORResult": 17844,
+        "LongitudinalEvolutionTracker": 1,
+        "SystemAssimilationRule": 6,
+        "PeriodicTrendGene": 6,
+        "ValenceRuleGene": 9,
+        "ReactionRuleGene": 10,
+        "FunctionalActivationRule": 4,
+        "PersistentStore": 3,
+        "DigitalSynapse": 295,
+        "DigitalAstrocyte": 5,
+        "DigitalMicroglia": 2,
+        "DigitalOligodendrocyte": 2,
+        "CognitivePatchProposal": 522,
+        "CognitiveSkill": 6,
+        "Action": 9,
+        "InterRegionConnection": 6,
+        "FrequencyOscillator": 17,
+        "AccessRule": 6,
+        "NeuralElement": 27,
+        "PeriodicTrend": 6,
+        "ValenceRule": 9,
+        "ReactionRule": 10,
+        "SynapticBond": 64,
+        "RegionPathwayState": 6,
+        "MolecularOrbital": 64,
+        "Runner": 1,
+        "Enum": 5,
+        "NotIn": 1,
+        "In": 1,
+        "IsNot": 1,
+        "Is": 1,
+        "Or": 1,
+        "And": 1,
+        "Del": 1,
+        "Store": 1,
+        "Load": 1,
+        "errstate": 1,
+        "AssimilatedPath": 25,
+        "Future": 2,
+        "TimerHandle": 4,
+        "FutureIter": 1,
+        "Empty": 1,
+        "traceback": 1,
+        "_OverlappedFuture": 1,
+        "Handle": 1,
+        "Transcriptome": 1,
+        "RNAExpressionProfile": 8,
+        "SchedulingDecision": 1,
+        "CommunityDetectionResult": 1,
+        "ConfidenceState": 1,
+        "RegionRoutingResult": 1,
+        "RegionSignal": 6,
+        "Process": 358,
+        "FileMetadata": 25,
+        "BufferedWriter": 1,
+        "CommunityProfile": 1,
+        "ModulePriority": 14,
+        "pcputimes": 178
+      },
+      "top_growth": [
+        [
+          "dict",
+          798585
+        ],
+        [
+          "set",
+          303247
+        ],
+        [
+          "MorphologyEvent",
+          267530
+        ],
+        [
+          "list",
+          156213
+        ],
+        [
+          "LatentPacket",
+          53529
+        ],
+        [
+          "SystemMetrics",
+          17843
+        ],
+        [
+          "MorphologySnapshot",
+          17843
+        ],
+        [
+          "CORResult",
+          17843
+        ],
+        [
+          "Spike",
+          10000
+        ],
+        [
+          "tuple",
+          438
+        ],
+        [
+          "SystemEvent",
+          248
+        ],
+        [
+          "function",
+          236
+        ],
+        [
+          "cell",
+          36
+        ],
+        [
+          "getset_descriptor",
+          19
+        ],
+        [
+          "ReferenceType",
+          19
+        ],
+        [
+          "type",
+          18
+        ],
+        [
+          "ModuleSpec",
+          11
+        ],
+        [
+          "module",
+          11
+        ],
+        [
+          "SourceFileLoader",
+          9
+        ],
+        [
+          "FieldInfo",
+          8
+        ]
+      ],
+      "suspected_leaks": [
+        {
+          "type": "dict",
+          "delta": 798585,
+          "baseline": 437726
+        },
+        {
+          "type": "set",
+          "delta": 303247,
+          "baseline": 206285
+        },
+        {
+          "type": "MorphologyEvent",
+          "delta": 267530,
+          "baseline": 199221
+        },
+        {
+          "type": "list",
+          "delta": 156213,
+          "baseline": 9527
+        },
+        {
+          "type": "SystemMetrics",
+          "delta": 17843,
+          "baseline": 1
+        },
+        {
+          "type": "MorphologySnapshot",
+          "delta": 17843,
+          "baseline": 911
+        },
+        {
+          "type": "CORResult",
+          "delta": 17843,
+          "baseline": 1
+        },
+        {
+          "type": "Spike",
+          "delta": 10000,
+          "baseline": 80
+        },
+        {
+          "type": "SystemEvent",
+          "delta": 248,
+          "baseline": 752
+        }
+      ],
+      "file_descriptors": 0,
+      "cumulative_structures": {
+        "metrics_log_len": 17844,
+        "memory_events": 466751
+      },
+      "leak_detected": true
+    },
+    "total_audits": 146,
+    "baseline_set": true
+  },
+  "circadian_validation": {
+    "timestamp": 1782415029.2443247,
+    "phase_order_valid": true,
+    "consolidation_present": false,
+    "narrative_compression_ratio": 0.0,
+    "drive_balance_score": 0.0,
+    "sleep_efficiency": 0.0,
+    "sleep_cycles_completed": 63,
+    "errors": [],
+    "warnings": [
+      "missing_consolidation_after_sleep"
+    ],
+    "is_valid": true
+  },
+  "latent_integration": {
+    "tick": 17855,
+    "vector_dim": 64,
+    "history_window": 100,
+    "local_bus": {
+      "node_id": "local_runtime",
+      "inbound_queue": 53565,
+      "outbound_queue": 0,
+      "peers": [],
+      "trust_scores": {}
+    },
+    "latest_metrics": {
+      "packet_count": 3,
+      "sources": {
+        "memory": {
+          "drift": 0.0,
+          "cosine_similarity": 1.0
+        },
+        "drive": {
+          "drift": 0.011621526986287841,
+          "cosine_similarity": 0.9999969030327873
+        },
+        "experience": {
+          "drift": 0.008771279504110698,
+          "cosine_similarity": 0.9999479017979005
+        }
+      },
+      "mean_drift": 0.0067976021634661805,
+      "mean_cosine_similarity": 0.9999816016102292,
+      "alignment_confidence": 0.9966149474315771
+    }
+  },
+  "distributed_sync": {
+    "node_id": "local_runtime",
+    "tick_count": 17855,
+    "last_sync_at": 0.0,
+    "packets_sent": 0,
+    "packets_received": 0,
+    "peers": []
+  },
+  "organism_state": {
+    "current_state": "recovering",
+    "ticks_in_state": 3,
+    "dwell_time_seconds": 3.824,
+    "transition_count": 100,
+    "transition_history": [
+      {
+        "from": "overloaded",
+        "to": "recovering",
+        "at": 1782414835.3795998
+      },
+      {
+        "from": "recovering",
+        "to": "awake",
+        "at": 1782414839.9266102
+      },
+      {
+        "from": "awake",
+        "to": "focused",
+        "at": 1782414853.2402148
+      },
+      {
+        "from": "focused",
+        "to": "consolidating",
+        "at": 1782414857.759083
+      },
+      {
+        "from": "consolidating",
+        "to": "awake",
+        "at": 1782414873.880988
+      },
+      {
+        "from": "awake",
+        "to": "focused",
+        "at": 1782414878.3890748
+      },
+      {
+        "from": "focused",
+        "to": "consolidating",
+        "at": 1782414892.2131515
+      },
+      {
+        "from": "consolidating",
+        "to": "awake",
+        "at": 1782414907.521019
+      },
+      {
+        "from": "awake",
+        "to": "focused",
+        "at": 1782414912.0288744
+      },
+      {
+        "from": "focused",
+        "to": "consolidating",
+        "at": 1782414916.5373487
+      },
+      {
+        "from": "consolidating",
+        "to": "awake",
+        "at": 1782414931.9155319
+      },
+      {
+        "from": "awake",
+        "to": "focused",
+        "at": 1782414944.203443
+      },
+      {
+        "from": "focused",
+        "to": "consolidating",
+        "at": 1782414948.7502193
+      },
+      {
+        "from": "consolidating",
+        "to": "awake",
+        "at": 1782414964.642282
+      },
+      {
+        "from": "awake",
+        "to": "focused",
+        "at": 1782414969.7159467
+      },
+      {
+        "from": "focused",
+        "to": "consolidating",
+        "at": 1782414982.0925872
+      },
+      {
+        "from": "consolidating",
+        "to": "awake",
+        "at": 1782415003.2870007
+      },
+      {
+        "from": "awake",
+        "to": "focused",
+        "at": 1782415007.9299397
+      },
+      {
+        "from": "focused",
+        "to": "overloaded",
+        "at": 1782415012.4501874
+      },
+      {
+        "from": "overloaded",
+        "to": "recovering",
+        "at": 1782415025.4206405
+      }
+    ],
+    "policy": {
+      "min_dwell_ticks": 3,
+      "thresholds": {
+        "energy_low": 0.2,
+        "energy_critical": 0.1,
+        "prediction_error_high": 0.7,
+        "cognitive_load_high": 0.85,
+        "curiosity_high": 0.6,
+        "stability_ok": 0.5,
+        "health_recovered": 0.7,
+        "recovery_ticks_min": 5
+      }
+    }
+  },
+  "behavior_trees": {
+    "trees": {
+      "explore_local": {
+        "name": "explore_local",
+        "last_status": "failure",
+        "tick_count": 10266
+      },
+      "avoid_overload": {
+        "name": "avoid_overload",
+        "last_status": "failure",
+        "tick_count": 10266
+      },
+      "prioritize_homeostatic_need": {
+        "name": "prioritize_homeostatic_need",
+        "last_status": "success",
+        "tick_count": 10266
+      },
+      "search_grounding_input": {
+        "name": "search_grounding_input",
+        "last_status": "failure",
+        "tick_count": 10266
+      }
+    },
+    "last_tick_latencies_ms": {
+      "explore_local": 0.007867813110351562,
+      "avoid_overload": 0.0019073486328125,
+      "prioritize_homeostatic_need": 0.011920928955078125,
+      "search_grounding_input": 0.0021457672119140625
+    },
+    "tick_count": 10266,
+    "active_tree_count": 4
+  },
+  "utility_drives": {
+    "drives": {
+      "exploration": 5e-324,
+      "stability": 0.6523823719756798,
+      "rest": 0.014284306934875486,
+      "social_interaction": 5e-324,
+      "prediction_error_reduction": 1.5e-323,
+      "energy_conservation": 0.01428429469098661
+    },
+    "dominant_drive": "stability",
+    "history_sample": [
+      {
+        "exploration": 5e-324,
+        "stability": 0.648925435820657,
+        "rest": 0.017741499355592737,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.017741230846009332
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6515866204475584,
+        "rest": 0.015080274452253826,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.015080046219107931
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6538486273804246,
+        "rest": 0.012818233284415751,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.012818039286241742
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6557713332733609,
+        "rest": 0.010895498291753389,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.01089533339330548
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6424056332823567,
+        "rest": 0.024261173547990386,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.024261033384309662
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6460447882900031,
+        "rest": 0.02062199751579183,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.02062187837666321
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6491380700465026,
+        "rest": 0.017528697888423053,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.01752859662016373
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6517673595395271,
+        "rest": 0.014899393205159595,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.01489930712713917
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.654002255608598,
+        "rest": 0.012664484224385654,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.012664411058068294
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6409019172673083,
+        "rest": 0.025764811590727812,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.025764749399358054
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.644766629677212,
+        "rest": 0.02190008985211864,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.021900036989454346
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6480516352256301,
+        "rest": 0.018615076374300845,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.018615031441036194
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6508438899417855,
+        "rest": 0.01582281491815572,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.015822776724880763
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6532173064505177,
+        "rest": 0.01344939268043236,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.013449360216148648
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.65523471048294,
+        "rest": 0.011431983778367506,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.01143195618372635
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.656949503910499,
+        "rest": 0.00971718621161238,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.009717162756167397
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6434070783239241,
+        "rest": 0.023259608279870527,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.02325958834274229
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6468960165753355,
+        "rest": 0.019770667037889947,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.019770650091330947
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6498616140890351,
+        "rest": 0.016805066982206456,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.016805052577631305
+      },
+      {
+        "exploration": 5e-324,
+        "stability": 0.6523823719756798,
+        "rest": 0.014284306934875486,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.01428429469098661
+      }
+    ]
+  },
+  "utility_arbitration": {
+    "weights": {
+      "infant_curiosity_layer": 5e-324,
+      "cyber_physical_sensor_array": 5e-324,
+      "homeostasis_engine": 0.19533772444191638,
+      "causal_learning_auditor": 0.1661087337025559,
+      "global_workspace": 0.15424382415237337,
+      "dialogue_manager": 0.0,
+      "distributed_latent_sync": 0.10282921610158224,
+      "metacognitive_monitor": 0.15424382415237334,
+      "reflective_narrative_generator": 0.11990444548524933,
+      "episodic_memory_consolidation": 0.1073322319639495
+    },
+    "drive_snapshot": {
+      "drives": {
+        "exploration": 5e-324,
+        "stability": 0.6523823719756798,
+        "rest": 0.014284306934875486,
+        "social_interaction": 5e-324,
+        "prediction_error_reduction": 1.5e-323,
+        "energy_conservation": 0.01428429469098661
+      },
+      "dominant_drive": "stability",
+      "history_sample": [
+        {
+          "exploration": 5e-324,
+          "stability": 0.648925435820657,
+          "rest": 0.017741499355592737,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.017741230846009332
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6515866204475584,
+          "rest": 0.015080274452253826,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.015080046219107931
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6538486273804246,
+          "rest": 0.012818233284415751,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.012818039286241742
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6557713332733609,
+          "rest": 0.010895498291753389,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.01089533339330548
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6424056332823567,
+          "rest": 0.024261173547990386,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.024261033384309662
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6460447882900031,
+          "rest": 0.02062199751579183,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.02062187837666321
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6491380700465026,
+          "rest": 0.017528697888423053,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.01752859662016373
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6517673595395271,
+          "rest": 0.014899393205159595,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.01489930712713917
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.654002255608598,
+          "rest": 0.012664484224385654,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.012664411058068294
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6409019172673083,
+          "rest": 0.025764811590727812,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.025764749399358054
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.644766629677212,
+          "rest": 0.02190008985211864,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.021900036989454346
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6480516352256301,
+          "rest": 0.018615076374300845,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.018615031441036194
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6508438899417855,
+          "rest": 0.01582281491815572,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.015822776724880763
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6532173064505177,
+          "rest": 0.01344939268043236,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.013449360216148648
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.65523471048294,
+          "rest": 0.011431983778367506,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.01143195618372635
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.656949503910499,
+          "rest": 0.00971718621161238,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.009717162756167397
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6434070783239241,
+          "rest": 0.023259608279870527,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.02325958834274229
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6468960165753355,
+          "rest": 0.019770667037889947,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.019770650091330947
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6498616140890351,
+          "rest": 0.016805066982206456,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.016805052577631305
+        },
+        {
+          "exploration": 5e-324,
+          "stability": 0.6523823719756798,
+          "rest": 0.014284306934875486,
+          "social_interaction": 5e-324,
+          "prediction_error_reduction": 1.5e-323,
+          "energy_conservation": 0.01428429469098661
+        }
+      ]
+    },
+    "tick_count": 17856,
+    "safety_floors": {
+      "causal_learning_auditor": 0.1,
+      "homeostasis_engine": 0.1
+    }
+  },
+  "goap": {
+    "last_plan": {
+      "goal": {
+        "prediction_error": "reduced"
+      },
+      "actions": [
+        "observe_sensor"
+      ],
+      "total_cost": 1.0,
+      "depth": 1,
+      "simulated_only": true
+    },
+    "proposal_count": 1,
+    "tick_count": 6472,
+    "planner": {
+      "action_count": 6,
+      "max_planning_ms": 50.0
+    },
+    "bridge": {
+      "confidence_threshold": 0.3,
+      "has_confidence_engine": false,
+      "has_strategy_evaluator": false
+    },
+    "registry": {
+      "registered_actions": [
+        {
+          "name": "observe_sensor",
+          "preconditions": {
+            "sensor_data_fresh": false
+          },
+          "effects": {
+            "sensor_data_fresh": true,
+            "prediction_error": "reduced"
+          },
+          "cost": 1.0,
+          "simulate_only": true
+        },
+        {
+          "name": "query_memory",
+          "preconditions": {
+            "memory_queried": false
+          },
+          "effects": {
+            "memory_queried": true,
+            "uncertainty": "reduced"
+          },
+          "cost": 1.0,
+          "simulate_only": true
+        },
+        {
+          "name": "request_clarification",
+          "preconditions": {
+            "clarification_needed": true
+          },
+          "effects": {
+            "clarification_needed": false,
+            "social_interaction": "increased"
+          },
+          "cost": 2.0,
+          "simulate_only": false
+        },
+        {
+          "name": "run_counterfactual",
+          "preconditions": {
+            "hypothesis_ready": true
+          },
+          "effects": {
+            "hypothesis_tested": true,
+            "prediction_error": "reduced"
+          },
+          "cost": 3.0,
+          "simulate_only": true
+        },
+        {
+          "name": "trigger_metacognitive_review",
+          "preconditions": {
+            "metacognition_active": false
+          },
+          "effects": {
+            "metacognition_active": true,
+            "strategy_evaluated": true
+          },
+          "cost": 2.0,
+          "simulate_only": true
+        },
+        {
+          "name": "adjust_attention",
+          "preconditions": {
+            "attention_focused": false
+          },
+          "effects": {
+            "attention_focused": true,
+            "coherence": "increased"
+          },
+          "cost": 1.0,
+          "simulate_only": true
+        }
+      ],
+      "count": 6
+    }
+  },
+  "social_cognition": {
+    "model_count": 0,
+    "models": []
+  },
+  "trust_reputation": {
+    "trust_threshold": 0.6,
+    "trust_matrix": {},
+    "history_count": 0
+  },
+  "social_coordinator": {
+    "pending_proposals": [],
+    "recent_conflicts": [],
+    "trust_snapshot": {
+      "trust_threshold": 0.6,
+      "trust_matrix": {},
+      "history_count": 0
+    }
+  },
+  "nursery": {
+    "active_session": null,
+    "builder": {
+      "scenario_count": 4,
+      "scenarios": [
+        {
+          "scenario_id": "falling_objects",
+          "name": "Falling Objects",
+          "description": "Object released from height falls due to gravity; collision produces sound.",
+          "variables": {
+            "gravity": 9.8,
+            "object_mass": 1.0,
+            "release_height": 2.0,
+            "surface_elasticity": 0.3
+          },
+          "expected_chain": [
+            "release_object",
+            "object_falls",
+            "collision_with_surface",
+            "sound_emitted"
+          ]
+        },
+        {
+          "scenario_id": "agent_approach",
+          "name": "Agent Approach",
+          "description": "Virtual agent moves toward or away; social proximity changes.",
+          "variables": {
+            "agent_speed": 1.0,
+            "initial_distance": 5.0,
+            "direction": "toward",
+            "agent_drive": "curiosity"
+          },
+          "expected_chain": [
+            "agent_perceives_target",
+            "agent_moves",
+            "distance_changes",
+            "proximity_event"
+          ]
+        },
+        {
+          "scenario_id": "tool_use",
+          "name": "Tool Use",
+          "description": "Object manipulation to reach a goal (e.g. push box to get food).",
+          "variables": {
+            "tool_type": "stick",
+            "target_distance": 3.0,
+            "obstacle_present": true
+          },
+          "expected_chain": [
+            "agent_perceives_goal",
+            "agent_selects_tool",
+            "agent_applies_tool",
+            "goal_reached"
+          ]
+        },
+        {
+          "scenario_id": "hidden_object",
+          "name": "Hidden Object",
+          "description": "Object permanence test: object hidden, agent must remember location.",
+          "variables": {
+            "hiding_duration": 5.0,
+            "distraction_count": 2,
+            "object_type": "ball"
+          },
+          "expected_chain": [
+            "object_visible",
+            "object_hidden",
+            "distraction_events",
+            "agent_queries_memory",
+            "object_revealed"
+          ]
+        }
+      ]
+    },
+    "agents": {
+      "agent_count": 0,
+      "agents": []
+    },
+    "mean_prediction_error": 0.0
+  },
+  "linguistic_bridge": {
+    "available": null,
+    "mock_mode": false,
+    "endpoint_url": "http://localhost:11434/api/generate",
+    "model": "llama3.2",
+    "language": "it",
+    "call_count": 298,
+    "last_latency_ms": 0.0057220458984375,
+    "last_error": null,
+    "audit_summary": {
+      "interaction_count": 298,
+      "audit_log_path": "data\\language\\llm_audit.jsonl"
+    }
+  },
+  "game_ai_pipeline": {
+    "tick_count": 17856,
+    "degraded_mode": false,
+    "last_latencies_ms": {
+      "fsm": 0.029802322387695312,
+      "utility": 0.07867813110351562,
+      "bt": 193.39823722839355,
+      "goap": 0.0
+    },
+    "last_proposal_count": 1,
+    "max_pipeline_ms": 50.0,
+    "layers": {
+      "fsm": "recovering",
+      "utility": {
+        "weights": {
+          "infant_curiosity_layer": 5e-324,
+          "cyber_physical_sensor_array": 5e-324,
+          "homeostasis_engine": 0.19533772444191638,
+          "causal_learning_auditor": 0.1661087337025559,
+          "global_workspace": 0.15424382415237337,
+          "dialogue_manager": 0.0,
+          "distributed_latent_sync": 0.10282921610158224,
+          "metacognitive_monitor": 0.15424382415237334,
+          "reflective_narrative_generator": 0.11990444548524933,
+          "episodic_memory_consolidation": 0.1073322319639495
+        },
+        "drive_snapshot": {
+          "drives": {
+            "exploration": 5e-324,
+            "stability": 0.6523823719756798,
+            "rest": 0.014284306934875486,
+            "social_interaction": 5e-324,
+            "prediction_error_reduction": 1.5e-323,
+            "energy_conservation": 0.01428429469098661
+          },
+          "dominant_drive": "stability",
+          "history_sample": [
+            {
+              "exploration": 5e-324,
+              "stability": 0.648925435820657,
+              "rest": 0.017741499355592737,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.017741230846009332
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6515866204475584,
+              "rest": 0.015080274452253826,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.015080046219107931
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6538486273804246,
+              "rest": 0.012818233284415751,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.012818039286241742
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6557713332733609,
+              "rest": 0.010895498291753389,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.01089533339330548
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6424056332823567,
+              "rest": 0.024261173547990386,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.024261033384309662
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6460447882900031,
+              "rest": 0.02062199751579183,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.02062187837666321
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6491380700465026,
+              "rest": 0.017528697888423053,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.01752859662016373
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6517673595395271,
+              "rest": 0.014899393205159595,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.01489930712713917
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.654002255608598,
+              "rest": 0.012664484224385654,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.012664411058068294
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6409019172673083,
+              "rest": 0.025764811590727812,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.025764749399358054
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.644766629677212,
+              "rest": 0.02190008985211864,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.021900036989454346
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6480516352256301,
+              "rest": 0.018615076374300845,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.018615031441036194
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6508438899417855,
+              "rest": 0.01582281491815572,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.015822776724880763
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6532173064505177,
+              "rest": 0.01344939268043236,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.013449360216148648
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.65523471048294,
+              "rest": 0.011431983778367506,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.01143195618372635
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.656949503910499,
+              "rest": 0.00971718621161238,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.009717162756167397
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6434070783239241,
+              "rest": 0.023259608279870527,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.02325958834274229
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6468960165753355,
+              "rest": 0.019770667037889947,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.019770650091330947
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6498616140890351,
+              "rest": 0.016805066982206456,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.016805052577631305
+            },
+            {
+              "exploration": 5e-324,
+              "stability": 0.6523823719756798,
+              "rest": 0.014284306934875486,
+              "social_interaction": 5e-324,
+              "prediction_error_reduction": 1.5e-323,
+              "energy_conservation": 0.01428429469098661
+            }
+          ]
+        },
+        "tick_count": 17856,
+        "safety_floors": {
+          "causal_learning_auditor": 0.1,
+          "homeostasis_engine": 0.1
+        }
+      },
+      "bt": {
+        "trees": {
+          "explore_local": {
+            "name": "explore_local",
+            "last_status": "failure",
+            "tick_count": 10266
+          },
+          "avoid_overload": {
+            "name": "avoid_overload",
+            "last_status": "failure",
+            "tick_count": 10266
+          },
+          "prioritize_homeostatic_need": {
+            "name": "prioritize_homeostatic_need",
+            "last_status": "success",
+            "tick_count": 10266
+          },
+          "search_grounding_input": {
+            "name": "search_grounding_input",
+            "last_status": "failure",
+            "tick_count": 10266
+          }
+        },
+        "last_tick_latencies_ms": {
+          "explore_local": 0.007867813110351562,
+          "avoid_overload": 0.0019073486328125,
+          "prioritize_homeostatic_need": 0.011920928955078125,
+          "search_grounding_input": 0.0021457672119140625
+        },
+        "tick_count": 10266,
+        "active_tree_count": 4
+      },
+      "goap": {
+        "last_plan": {
+          "goal": {
+            "prediction_error": "reduced"
+          },
+          "actions": [
+            "observe_sensor"
+          ],
+          "total_cost": 1.0,
+          "depth": 1,
+          "simulated_only": true
+        },
+        "proposal_count": 1,
+        "tick_count": 6472,
+        "planner": {
+          "action_count": 6,
+          "max_planning_ms": 50.0
+        },
+        "bridge": {
+          "confidence_threshold": 0.3,
+          "has_confidence_engine": false,
+          "has_strategy_evaluator": false
+        },
+        "registry": {
+          "registered_actions": [
+            {
+              "name": "observe_sensor",
+              "preconditions": {
+                "sensor_data_fresh": false
+              },
+              "effects": {
+                "sensor_data_fresh": true,
+                "prediction_error": "reduced"
+              },
+              "cost": 1.0,
+              "simulate_only": true
+            },
+            {
+              "name": "query_memory",
+              "preconditions": {
+                "memory_queried": false
+              },
+              "effects": {
+                "memory_queried": true,
+                "uncertainty": "reduced"
+              },
+              "cost": 1.0,
+              "simulate_only": true
+            },
+            {
+              "name": "request_clarification",
+              "preconditions": {
+                "clarification_needed": true
+              },
+              "effects": {
+                "clarification_needed": false,
+                "social_interaction": "increased"
+              },
+              "cost": 2.0,
+              "simulate_only": false
+            },
+            {
+              "name": "run_counterfactual",
+              "preconditions": {
+                "hypothesis_ready": true
+              },
+              "effects": {
+                "hypothesis_tested": true,
+                "prediction_error": "reduced"
+              },
+              "cost": 3.0,
+              "simulate_only": true
+            },
+            {
+              "name": "trigger_metacognitive_review",
+              "preconditions": {
+                "metacognition_active": false
+              },
+              "effects": {
+                "metacognition_active": true,
+                "strategy_evaluated": true
+              },
+              "cost": 2.0,
+              "simulate_only": true
+            },
+            {
+              "name": "adjust_attention",
+              "preconditions": {
+                "attention_focused": false
+              },
+              "effects": {
+                "attention_focused": true,
+                "coherence": "increased"
+              },
+              "cost": 1.0,
+              "simulate_only": true
+            }
+          ],
+          "count": 6
+        }
+      }
+    }
+  },
+  "self_improvement": {},
+  "mmapr_veto_router": {}
+}

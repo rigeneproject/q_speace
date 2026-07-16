@@ -1,0 +1,50 @@
+# PSN Configuration
+# Bus-level parameters for the Physiological Signal Network.
+# Version: 1.0.0
+
+psn:
+  # History
+  history_depth: 1000                    # number of snapshots retained
+  snapshot_interval: 1                   # snapshot every tick
+
+  # Neural Bus
+  neural:
+    default_clearance: 1.0               # reuptake after 1 tick
+    max_synapses_per_source: 50
+    max_synapses_per_target: 200
+
+  # Endocrine Bus
+  endocrine:
+    min_clearance_rate: 0.80
+    max_clearance_rate: 0.99
+    default_delay_ticks: 2
+    max_delay_ticks: 10
+    eviction_threshold: 0.01             # concentration below this → evicted
+    max_silent_ticks: 20                 # no secretion → stale warning
+
+  # Stream parameters
+  stream:
+    drift_enabled: true                  # streams drift towards baseline
+    drift_clamp: true                    # clamp value to [0, max] after drift
+
+  # Event parameters
+  event:
+    max_active_events: 100               # concurrent events cap
+    default_duration: 1
+    default_decay: 0.80
+
+  # Validation
+  validation:
+    enforce_range: true
+    enforce_molecule: true                # only registered molecules
+    enforce_receptor: true               # receptor must exist on target
+    reject_nan: true
+    reject_inf: true
+
+  # Logging
+  logging:
+    log_conflicts: true
+    log_stale_signals: true
+    log_budget_violations: true
+    log_masking: true
+    max_log_entries_per_tick: 50

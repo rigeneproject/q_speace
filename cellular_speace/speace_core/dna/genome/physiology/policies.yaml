@@ -1,0 +1,125 @@
+# Physiological Policies
+# Strategies for how the organism manages its physiology.
+# Policies can be adapted by epigenetics and experience without DNA changes.
+# Version: 1.0.0
+
+policies:
+  # ── Energy Allocation ─────────────────────────────────────────
+  energy_allocation:
+    type: distribution                    # sum of parts = 1.0
+    update_interval: 50                   # ticks between policy re-evaluation
+    default:
+      cognitive: 0.35
+      immune: 0.20
+      enteric: 0.10
+      endocrine: 0.10
+      autonomic: 0.10
+      metabolic: 0.15
+    modulation:
+      - factor: "stress"
+        function: "shift(from=cognitive, to=immune, gain=0.3)"
+        description: "Under stress, reallocate cognitive budget to immune"
+      - factor: "fatigue"
+        function: "shift(from=all, to=metabolic, gain=0.2)"
+        description: "When fatigued, prioritise metabolic recovery"
+      - factor: "threat"
+        function: "shift(from=cognitive, to=autonomic, gain=0.4)"
+        description: "Under threat, prioritise autonomic readiness"
+      - factor: "inflammation"
+        function: "shift(from=cognitive, to=immune, gain=0.5)"
+        description: "During inflammation, boost immune budget"
+      - factor: "damage"
+        function: "shift(from=cognitive, to=immune, gain=0.3)"
+        description: "When damaged, boost repair capacity"
+
+  # ── Explore vs Conserve ───────────────────────────────────────
+  explore_vs_conserve:
+    type: threshold
+    update_interval: 30
+    default:
+      threshold_energy: 0.3              # below this → conserve mode
+      threshold_safety: 0.3              # below this → conserve mode
+      threshold_curiosity: 0.5           # above this → explore mode
+    modulation:
+      - factor: "meta_threat_level"
+        function: "raise_threshold(energy=0.2, safety=0.2)"
+        description: "Higher threat raises conservation thresholds"
+      - factor: "meta_plasticity"
+        function: "lower_threshold(curiosity=0.2)"
+        description: "Higher plasticity lowers curiosity threshold"
+
+  # ── Recovery Rate ─────────────────────────────────────────────
+  recovery_rate:
+    type: scalar
+    update_interval: 100
+    default: 0.05                          # base recovery per tick
+    modulation:
+      - factor: "meta_homeostatic_reserve"
+        function: "linear(base, 0.5, 2.0)"
+        description: "Higher reserve → faster recovery"
+      - factor: "energy"
+        function: "linear(base, 0.5, 1.5)"
+        description: "More energy → faster recovery"
+      - factor: "meta_fatigue"
+        function: "inverse_linear(base, 0.5, 1.5)"
+        description: "More fatigue → slower recovery"
+
+  # ── Stress Sensitivity ────────────────────────────────────────
+  stress_sensitivity:
+    type: scalar
+    update_interval: 100
+    default: 1.0                           # gain from cortisol to behavioural inhibition
+    modulation:
+      - factor: "meta_resilience"
+        function: "inverse_linear(1.0, 0.3, 1.5)"
+        description: "Higher resilience → lower stress sensitivity"
+      - factor: "age"
+        function: "linear(1.0, 0.8, 1.3)"
+        description: "Age increases stress sensitivity"
+      - factor: "cumulative_trauma"
+        function: "linear(1.0, 1.0, 2.0)"
+        description: "Past trauma increases sensitivity"
+
+  # ── Risk Tolerance ────────────────────────────────────────────
+  risk_tolerance:
+    type: threshold
+    update_interval: 50
+    default: 0.6                           # threat level above this → avoidance
+    modulation:
+      - factor: "meta_resource_availability"
+        function: "linear(0.6, 0.8, 1.2)"
+        description: "More resources → higher risk tolerance"
+      - factor: "meta_social_readiness"
+        function: "linear(0.6, 0.9, 1.1)"
+        description: "Social readiness slightly boosts risk tolerance"
+      - factor: "damage"
+        function: "inverse_linear(0.6, 0.5, 1.0)"
+        description: "Accumulated damage lowers risk tolerance"
+
+  # ── Plasticity Schedule ───────────────────────────────────────
+  plasticity_schedule:
+    type: decay_function
+    update_interval: 1000                 # slow-changing
+    default:
+      decay_per_tick: 0.9995
+      min_plasticity: 0.1
+    modulation:
+      - factor: "novelty_events"
+        function: "reset_to(0.5, duration=200)"
+        description: "Novelty bursts temporarily restore plasticity"
+      - factor: "meta_wellbeing"
+        function: "linear(decay, 0.8, 1.0)"
+        description: "Low wellbeing accelerates plasticity decay"
+
+  # ── Social Threshold ──────────────────────────────────────────
+  social_threshold:
+    type: threshold
+    update_interval: 50
+    default: 0.4                           # minimum safety for social behaviour
+    modulation:
+      - factor: "meta_stress"
+        function: "raise(0.2)"
+        description: "Stress raises the social threshold"
+      - factor: "oxytocin"
+        function: "lower(0.15)"
+        description: "Oxytocin lowers the social threshold"

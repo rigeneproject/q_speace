@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(update-config)",
+      "PowerShell(pytest *)",
+      "PowerShell(python -m pytest tests/agi_readiness/ -q)",
+      "Bash(python *)",
+      "PowerShell(python -m pytest tests/agi_readiness/ -q --no-cov)",
+      "PowerShell(python scripts/measure_agi_readiness.py --iteration 0 --no-pytest)",
+      "PowerShell(python scripts/measure_agi_readiness.py --iteration 0 --compare)",
+      "PowerShell(python -m pytest tests/runtime/test_autonomous_cognitive_loop.py -q --no-cov)",
+      "PowerShell(python scripts/run_autonomous_loop.py --ticks 50 --seed 42)",
+      "PowerShell(python -m pytest tests/agi_readiness/ tests/runtime/test_autonomous_cognitive_loop.py -q --no-cov)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "skipDangerousModePermissionPrompt": true
+}

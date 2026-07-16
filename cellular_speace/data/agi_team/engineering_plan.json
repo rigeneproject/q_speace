@@ -1,0 +1,207 @@
+{
+  "milestones": [
+    {
+      "id": "M0",
+      "title": "Foundation: Runtime & Brain Active",
+      "description": "Cervello digitale sempre attivo, runtime stabile, neuroni e sinapsi funzionanti",
+      "status": "in_progress",
+      "progress": 0.65,
+      "agents": [
+        "runtime_tech",
+        "neuron_tech",
+        "synapse_tech"
+      ]
+    },
+    {
+      "id": "M1",
+      "title": "Regional Brain Architecture",
+      "description": "8 regioni cerebrali funzionanti con routing e plasticit\u00e0 inter-regionale",
+      "status": "in_progress",
+      "progress": 0.5,
+      "agents": [
+        "region_tech",
+        "brain_supervisor"
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Genome & Evolution Pipeline",
+      "description": "DNA digitale completo, mutazioni, crossover, epigenetica operativa",
+      "status": "in_progress",
+      "progress": 0.4,
+      "agents": [
+        "genome_tech",
+        "evolution_tech",
+        "dna_supervisor"
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "Memory Systems Integration",
+      "description": "Memoria morfologica, episodica, semantica e associativa integrate",
+      "status": "in_progress",
+      "progress": 0.35,
+      "agents": [
+        "memory_tech",
+        "memory_supervisor"
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "Self-Improvement Loop",
+      "description": "Ciclo completo di auto-miglioramento con limitation detection e outcome tracking",
+      "status": "planned",
+      "progress": 0.15,
+      "agents": [
+        "evolution_tech",
+        "selfimprovement_supervisor"
+      ]
+    },
+    {
+      "id": "M5",
+      "title": "Organism Homeostasis & Immune",
+      "description": "Metabolismo energetico, immunit\u00e0, embodiment e omeostasi globale",
+      "status": "planned",
+      "progress": 0.2,
+      "agents": [
+        "defense_tech",
+        "embodiment_tech",
+        "organism_supervisor"
+      ]
+    },
+    {
+      "id": "M6",
+      "title": "Ecosystem & External Integration",
+      "description": "Ecosistema esterno, trust governor, assimilazione e rete distribuita",
+      "status": "planned",
+      "progress": 0.1,
+      "agents": [
+        "network_tech",
+        "organism_supervisor"
+      ]
+    },
+    {
+      "id": "M7",
+      "title": "Cognitive Architecture & Global Workspace",
+      "description": "Global workspace, linguaggio, metacognizione, coscienza operativa",
+      "status": "planned",
+      "progress": 0.05,
+      "agents": [
+        "memory_tech",
+        "brain_supervisor",
+        "chief_architect"
+      ]
+    },
+    {
+      "id": "M8",
+      "title": "AGI Emergence",
+      "description": "Auto-riprogettazione completa, AGI operativa, auto-coscienza, auto-miglioramento ricorsivo",
+      "status": "planned",
+      "progress": 0.0,
+      "agents": [
+        "chief_architect"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "M0-T1: Bootstrap Neuroni Digitali",
+      "description": "Crea e attiva i primi neuroni digitali. Usa DigitalNeuronCell per creare almeno 10 neuroni in stato active=True. Chiama bootstrap() sul brain region di riferimento.",
+      "agent_id": "runtime_tech",
+      "milestone_id": "M0",
+      "priority": "high",
+      "status": "completed",
+      "created_at": 1780776783.870319,
+      "completed_at": 1780776962.6179378
+    },
+    {
+      "id": "T2",
+      "title": "M0-T2: Attiva Sinapsi",
+      "description": "Crea sinapsi tra i neuroni digitali creati in T1. Usa SynapseConnection per connettere i neuroni con weight iniziale 0.5. Almeno 15 sinapsi.",
+      "agent_id": "runtime_tech",
+      "milestone_id": "M0",
+      "priority": "high",
+      "status": "pending",
+      "created_at": 1780776792.071567,
+      "completed_at": null
+    },
+    {
+      "id": "T3",
+      "title": "M0-T3: Avvia Runtime Continuo",
+      "description": "Avvia ContinuousRuntimeEngine con runtime_mode=simulated. Assicura che il loop principale non sia bloccato e che il tick avanzi.",
+      "agent_id": "runtime_tech",
+      "milestone_id": "M0",
+      "priority": "high",
+      "status": "completed",
+      "created_at": 1780776803.7881334,
+      "completed_at": 1780777317.2767093
+    },
+    {
+      "id": "T4",
+      "title": "M3-T1: Inizializza Sistemi di Memoria",
+      "description": "Attiva i sistemi di memoria (morfologica, episodica, semantica) integrandoli nel CausalModelEngine.",
+      "agent_id": "memory_tech",
+      "milestone_id": "M3",
+      "priority": "high",
+      "status": "pending",
+      "created_at": 1780776803.8730743,
+      "completed_at": null
+    },
+    {
+      "id": "T5",
+      "title": "M1-T1: Setup 8 Regioni Cerebrali",
+      "description": "Inizializza le 8 brain_regions con routing e plasticita interregionale",
+      "agent_id": "region_tech",
+      "milestone_id": "M1",
+      "priority": "high",
+      "status": "pending",
+      "created_at": 1780776811.4409595,
+      "completed_at": null
+    }
+  ],
+  "objectives": [],
+  "history": [
+    {
+      "type": "task_created",
+      "task_id": "T1",
+      "timestamp": 1780776783.8703215
+    },
+    {
+      "type": "task_created",
+      "task_id": "T2",
+      "timestamp": 1780776792.0715702
+    },
+    {
+      "type": "task_created",
+      "task_id": "T3",
+      "timestamp": 1780776803.7881343
+    },
+    {
+      "type": "task_created",
+      "task_id": "T4",
+      "timestamp": 1780776803.8730757
+    },
+    {
+      "type": "task_created",
+      "task_id": "T5",
+      "timestamp": 1780776811.440961
+    },
+    {
+      "type": "task_success",
+      "task_id": "T1",
+      "timestamp": 1780776962.6179461
+    },
+    {
+      "type": "task_failed",
+      "task_id": "T3",
+      "timestamp": 1780777167.2043598
+    },
+    {
+      "type": "task_success",
+      "task_id": "T3",
+      "timestamp": 1780777317.2767107
+    }
+  ],
+  "updated_at": 1780777317.2769315
+}

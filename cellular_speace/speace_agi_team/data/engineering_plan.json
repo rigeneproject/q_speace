@@ -1,0 +1,284 @@
+{
+  "milestones": [
+    {
+      "id": "M0",
+      "title": "Foundation: Runtime & Brain Active",
+      "description": "Cervello digitale sempre attivo, runtime stabile, neuroni e sinapsi funzionanti",
+      "status": "in_progress",
+      "progress": 0.65,
+      "agents": [
+        "runtime_tech",
+        "neuron_tech",
+        "synapse_tech"
+      ]
+    },
+    {
+      "id": "M1",
+      "title": "Regional Brain Architecture",
+      "description": "8 regioni cerebrali funzionanti con routing e plasticit\u00e0 inter-regionale",
+      "status": "in_progress",
+      "progress": 0.5,
+      "agents": [
+        "region_tech",
+        "brain_supervisor"
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Genome & Evolution Pipeline",
+      "description": "DNA digitale completo, mutazioni, crossover, epigenetica operativa",
+      "status": "in_progress",
+      "progress": 0.4,
+      "agents": [
+        "genome_tech",
+        "evolution_tech",
+        "dna_supervisor"
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "Memory Systems Integration",
+      "description": "Memoria morfologica, episodica, semantica e associativa integrate",
+      "status": "in_progress",
+      "progress": 0.35,
+      "agents": [
+        "memory_tech",
+        "memory_supervisor"
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "Self-Improvement Loop",
+      "description": "Ciclo completo di auto-miglioramento con limitation detection e outcome tracking",
+      "status": "planned",
+      "progress": 0.15,
+      "agents": [
+        "evolution_tech",
+        "selfimprovement_supervisor"
+      ]
+    },
+    {
+      "id": "M5",
+      "title": "Organism Homeostasis & Immune",
+      "description": "Metabolismo energetico, immunit\u00e0, embodiment e omeostasi globale",
+      "status": "planned",
+      "progress": 0.2,
+      "agents": [
+        "defense_tech",
+        "embodiment_tech",
+        "organism_supervisor"
+      ]
+    },
+    {
+      "id": "M6",
+      "title": "Ecosystem & External Integration",
+      "description": "Ecosistema esterno, trust governor, assimilazione e rete distribuita",
+      "status": "planned",
+      "progress": 0.1,
+      "agents": [
+        "network_tech",
+        "organism_supervisor"
+      ]
+    },
+    {
+      "id": "M7",
+      "title": "Cognitive Architecture & Global Workspace",
+      "description": "Global workspace, linguaggio, metacognizione, coscienza operativa",
+      "status": "planned",
+      "progress": 0.05,
+      "agents": [
+        "memory_tech",
+        "brain_supervisor",
+        "chief_architect"
+      ]
+    },
+    {
+      "id": "M8",
+      "title": "AGI Emergence",
+      "description": "Auto-riprogettazione completa, AGI operativa, auto-coscienza, auto-miglioramento ricorsivo",
+      "status": "planned",
+      "progress": 0.0,
+      "agents": [
+        "chief_architect"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Verificare limitation detector",
+      "description": "Il supervisor selfimprovement_supervisor deve analizzare lo stato del limitation detector e proporre miglioramenti.",
+      "agent_id": "selfimprovement_supervisor",
+      "milestone_id": "M4",
+      "priority": "high",
+      "status": "pending",
+      "created_at": 1780734720.9965324,
+      "completed_at": null
+    },
+    {
+      "id": "T2",
+      "title": "Test task automatico",
+      "description": "Task creato dal sistema di test per validare il flusso end-to-end.",
+      "agent_id": "chief_architect",
+      "milestone_id": "M0",
+      "priority": "high",
+      "status": "pending",
+      "created_at": 1780735393.7383132,
+      "completed_at": null
+    },
+    {
+      "id": "T3",
+      "title": "Verifica coerenze cervello digitale",
+      "description": "Analisi del cervello per trovare pattern anomali",
+      "agent_id": "neuron_tech",
+      "milestone_id": "M0",
+      "priority": "high",
+      "status": "completed",
+      "created_at": 1780737588.500881,
+      "completed_at": 1780737703.610857
+    },
+    {
+      "id": "T4",
+      "title": "Analisi routing inter-regionale",
+      "description": "Verifica routing segnali tra le 8 regioni cerebrali, identifica colli di bottiglia nel pathway plasticity, e proponi ottimizzazioni per bilanciare il carico tra regioni.",
+      "agent_id": "region_tech",
+      "milestone_id": "M1",
+      "priority": "high",
+      "status": "failed",
+      "created_at": 1780745922.5338311,
+      "completed_at": 1780746085.4489634
+    },
+    {
+      "id": "T5",
+      "title": "Ottimizzazione consolidamento mnemonico",
+      "description": "Verifica il ciclo di consolidamento delle memorie morfologiche, episodiche e semantiche. Identifica pattern di regressione e proponi miglioramenti al pattern completion.",
+      "agent_id": "memory_tech",
+      "milestone_id": "M3",
+      "priority": "medium",
+      "status": "failed",
+      "created_at": 1780745922.6610422,
+      "completed_at": 1780746290.0772495
+    },
+    {
+      "id": "T6",
+      "title": "Ciclo di auto-miglioramento",
+      "description": "Il tecnico evolution_tech deve valutare lo stato del SelfImprovementLoop, del EDDCVTEvolutionaryKernel e del MultiCycleEvolutionRunner, e proporre patch architetturali.",
+      "agent_id": "evolution_tech",
+      "milestone_id": "M4",
+      "priority": "high",
+      "status": "failed",
+      "created_at": 1780745922.7263978,
+      "completed_at": 1780746518.8078926
+    },
+    {
+      "id": "T7",
+      "title": "Verifica difesa cellulare",
+      "description": "Verifica lo stato del sistema immunitario digitale, del CellularDefenseEngine e del CellularRepairEngine. Identifica pattern di stress cellulare anomalo.",
+      "agent_id": "defense_tech",
+      "milestone_id": "M5",
+      "priority": "medium",
+      "status": "completed",
+      "created_at": 1780745922.7870119,
+      "completed_at": 1780746682.8945532
+    },
+    {
+      "id": "T8",
+      "title": "Test load balancing automatico",
+      "description": "Questo task deve essere auto-assegnato dal sistema al tecnico meno carico della milestone M7.",
+      "agent_id": "memory_tech",
+      "milestone_id": "M7",
+      "priority": "high",
+      "status": "failed",
+      "created_at": 1780745922.8491776,
+      "completed_at": 1780747720.8763084
+    }
+  ],
+  "objectives": [],
+  "history": [
+    {
+      "type": "task_created",
+      "task_id": "T1",
+      "timestamp": 1780734720.9965363
+    },
+    {
+      "type": "task_created",
+      "task_id": "T2",
+      "timestamp": 1780735393.7383163
+    },
+    {
+      "type": "milestone_updated",
+      "milestone_id": "M8",
+      "progress": 0.05,
+      "status": "planned",
+      "timestamp": 1780735394.0587745
+    },
+    {
+      "type": "milestone_updated",
+      "milestone_id": "M8",
+      "progress": 0.0,
+      "status": "planned",
+      "timestamp": 1780735403.3224645
+    },
+    {
+      "type": "task_created",
+      "task_id": "T3",
+      "timestamp": 1780737588.5008826
+    },
+    {
+      "type": "task_success",
+      "task_id": "T3",
+      "timestamp": 1780737703.610862
+    },
+    {
+      "type": "task_created",
+      "task_id": "T4",
+      "timestamp": 1780745922.5338337
+    },
+    {
+      "type": "task_created",
+      "task_id": "T5",
+      "timestamp": 1780745922.661045
+    },
+    {
+      "type": "task_created",
+      "task_id": "T6",
+      "timestamp": 1780745922.7263994
+    },
+    {
+      "type": "task_created",
+      "task_id": "T7",
+      "timestamp": 1780745922.787013
+    },
+    {
+      "type": "task_created",
+      "task_id": "T8",
+      "timestamp": 1780745922.8491788
+    },
+    {
+      "type": "task_failed",
+      "task_id": "T4",
+      "timestamp": 1780746085.4489694
+    },
+    {
+      "type": "task_failed",
+      "task_id": "T5",
+      "timestamp": 1780746290.077253
+    },
+    {
+      "type": "task_failed",
+      "task_id": "T6",
+      "timestamp": 1780746518.8078985
+    },
+    {
+      "type": "task_success",
+      "task_id": "T7",
+      "timestamp": 1780746682.894559
+    },
+    {
+      "type": "task_failed",
+      "task_id": "T8",
+      "timestamp": 1780747720.8763125
+    }
+  ],
+  "updated_at": 1780747720.8770893
+}

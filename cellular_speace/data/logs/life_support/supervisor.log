@@ -1,0 +1,12 @@
+﻿2026-06-16 21:35:25.485 [INFO] Environment caricato da C:\cellular_speace\.env
+2026-06-16 21:35:27.847 [INFO] Life support avviato. ProjectRoot=C:\cellular_speace
+2026-06-16 21:36:31.486 [INFO] Environment caricato da C:\cellular_speace\.env
+2026-06-16 21:36:33.843 [INFO] Life support avviato. ProjectRoot=C:\cellular_speace
+2026-06-16 21:36:33.882 [ERROR] Errore avvio SPEACE live: Impossibile eseguire il comando perché "RedirectStandardOutput" e "RedirectStandardError" sono uguali. Specificare input diversi ed eseguire di nuovo il comando.
+2026-06-16 21:37:31.736 [INFO] Environment caricato da C:\cellular_speace\.env
+2026-06-16 21:37:34.068 [INFO] Life support avviato. ProjectRoot=C:\cellular_speace
+2026-06-16 21:37:34.099 [INFO] SPEACE live avviato PID 12536
+2026-06-16 21:37:34.120 [INFO] SPEACE Anemos avviato PID 15232 sulla porta 8788
+2026-06-16 21:38:34.210 [WARN] SPEACE live terminato con codice . Riavvio...
+2026-06-16 21:38:34.219 [INFO] SPEACE live avviato PID 14976
+2026-06-16 21:42:19.003 [INFO] Environment caricato da C:\cellular_speace\.env

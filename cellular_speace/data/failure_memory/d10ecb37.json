@@ -1,0 +1,17 @@
+[
+  {
+    "task_id": "d10ecb37",
+    "failure_pattern": "prediction_mismatch",
+    "failure_cause": "candidato trovato ma prediczione test non corrisponde",
+    "failed_hypothesis": "Program (0 matches, conf=0.50): fractal_self_replicate",
+    "corrective_strategy": "raffinare la composizione o aumentare profondit\u00e0 ricerca",
+    "match_score": 0.0,
+    "candidates_explored": 1,
+    "train_examples": 3,
+    "test_examples": 1,
+    "input_shape": "4x8",
+    "output_shape": "2x2",
+    "timestamp": "2026-06-11T22:11:58Z",
+    "metadata": {}
+  }
+]
