@@ -1,0 +1,103 @@
+Verifica funzionale adversariale — SPEACE
+Data: 16/07/2026
+1. Apprendimento continuo / plasticità online
+Verdetto: PARZIALMENTE VERIFICATO
+Test A — variazione pesi reale: NON ESEGUIBILE in isolamento. L'STDP engine (stdp_plasticity_engine.py:13-126) implementa la formula Δw = ltp_rate per post_burst - pre_burst == 1 e Δw = -ltd_rate per delta == -1. La logica è chiara e deterministicamente corretta. Tuttavia il test di "variazione pesi prima/dopo N tick" richiede un circuito integrato funzionante (run_speace_brain.py). Questo script si rompe al caricamento del genoma per un path hardcoded (C:\cellular_speace\...), mentre il genoma reale è a speace_core\dna\genome\default_genome.yaml. Il sistema non può essere avviato in configurazione standard.
+Test B — forgetting/consolidamento: NON ESEGUIBILE. Richiede esposizione sequenziale a pattern A→B→A. Il test unitario test_stdp_plasticity_engine.py (93% coverage, passato) copre apply_stdp_to_synapse con pre/post firing, ma senza sequenza temporale multi-pattern.
+Evidenza quantitativa ottenibile:
+- Pesi modificati da compute_weight_delta(): ltp_rate = 0.05, ltd_rate = 0.03 (righe 15-16)
+- apply_stdp() restituisce conteggio di {"reinforced": N, "weakened": N, "unchanged": N} — ma nessun test runtime produce questi numeri su un circuito reale
+- 12 test unitari passati su tests/regulation/test_stdp_plasticity_engine.py (confermano correttezza della funzione singola, non effetto cumulativo)
+Gap: la plasticità è verificata a livello di singola sinapsi in unit test, ma non esiste un benchmark di catastrophic forgetting su task sequenziali (requisito esplicito dalla specifica). Il codice è corretto, ma l'effetto comportamentale su pattern multipli non è documentato.
+2. Embodiment
+Verdetto: NON VERIFICABILE
+Test A — sensibilità a perturbazione sensoriale: NON POSSIBILE. AutonomousCognitiveLoop.read_sensors() (riga 170) campiona CyberPhysicalSensorArray.read_all() che legge CPU/memoria/disk reali via psutil. Non c'è un meccanismo di iniezione di valori anomali — il sensore è read-only sull'host reale. Per testare la sensibilità, servirebbe un SimulatedSensorAdapter che esiste (simulated_sensor_adapter.py — 0% coverage, mai chiamato) ma non è integrato nel loop.
+Test B — ablation del canale sensoriale: NON POSSIBILE. sensor_stream.py ha 5 modalità (SIMULATED_READ_ONLY, SANDBOXED_READ_ONLY, PASSIVE_MONITORING, QUARANTINED, BLOCKED) ma il SensorStreamManager non è wired nell'AutonomousCognitiveLoop — quest'ultimo chiama CyberPhysicalSensorArray direttamente. L'ablation richiederebbe modificare il codice.
+Test di body-ownership: Il loop sensomotorio (active_inference_embodied_loop.py:122-243) è reale: step() esegue sense → predict → prediction error → Bayesian update → action selection → actuator proposal → audit. Ma la propriocezione è assente — il sistema misura CPU/memoria (telemetria di sistema) non stato muscolare/articolare. CyberPhysicalSensorArray espone 8 feature (cpu, mem, disk, net) in un vettore 64D (righe 176-202). Non c'è analogo di corpo situato.
+Quantitativo: Nessun test comportamentale eseguito. tests/cyber_physical/test_sensor_stream.py esiste ma testa validazione segnali, non ciclo sensomotorio. Coverage sensor_stream.py: file non toccato dai test. Nessun numero disponibile.
+3. Agentività autonoma / sé narrativo
+Verdetto: NON VERIFICABILE
+Test A — tracciamento flusso dati narrativo: FALLITO (write-only). AutobiographicalNarrativeEngine (righe 64-66) scrive capitoli in data/identity_kernel/life_story.jsonl. Ho cercato in tutto il codice dove life_story.jsonl o load_chapters() venissero letti. Risultato: mai. load_chapters() (righe 68-81) esiste ma nessun modulo lo chiama. Il IdentityKernel.tick() (righe 62-76) crea e scrive capitoli ma non li rilegge mai per influenzare decisioni future. La narrativa è puramente write-only → effetti causali nulli sul comportamento.
+Test B — ablation di identity_kernel: NON POSSIBILE. L'IdentityKernel è istanziato internamente e non esposto tramite flag di disabilitazione. I test di test_identity_kernel.py (3 test passati) coprono il tick() ma con orchestrator mockato — non testano l'effetto a valle della rimozione.
+Test C — non-riducibilità dei drive: FALSIFICATO (riducibile). AutonomousDriveEngine.get_global_action_tendency() (righe 195-232) è un sommario pesato di 7 urgenze lineari con due interazioni esplicite (autoconservazione sopprime esplorazione a 0.3, conservazione energetica sopprime acquisizione a 0.3). Con dati sensoriali:
+cpu_usage=0.8, memory_usage=0.7 → energy_conservation urgency=0.48
+strategy_failure_rate=0.1 → adaptive_exploration urgency=0.55 (drive vincente)
+novelty_score=0.3 → information_exploration urgency=0.20
+Non c'è emergenza — ogni azione è prevedibile dalla formula max(weighted_sum(sensor→drive→action_map)). C'è una _ACTION_MAP esplicita (righe 54-62) che mappa ogni drive a una action stringa fissa. Il sistema è un controller multi-obiettivo lineare, non un generatore di obiettivi genuini.
+Evidence: AutonomousDriveEngine.step() (riga 238) chiama get_global_action_tendency() che fa max(action_scores, key=action_scores.get) — deterministico, nulla di simile a goal discovery.
+4. Integrazione gerarchica multi-scala / Φ
+Verdetto: FALSIFICATO (coherence_phi ≠ IIT-Φ)
+Requisito preliminare — trasparenza formula: coherence_phi è esposto come:
+coupling_strength = round(
+    coh_corr * 0.3 + sync_coupling * 0.25 + act_coupling * 0.25 + (1.0 - phase_lag/π) * 0.2,
+    4
+)
+dove:
+- coh_corr = 1.0 - min(1.0, abs(source.coherence - target.coherence))
+- sync_coupling = 1.0 - min(1.0, abs(source.synchrony - target.synchrony) * 2)
+- act_coupling = 1.0 - min(1.0, abs(source.mean_activation - target.mean_activation))
+- phase_lag = differenza di fase tra oscillatori Kuramoto
+Confronto con IIT-Φ: La definizione IIT-Φ richiede:
+1. Enumerare tutte le partizioni del sistema (2^N per N nodi) → #P-hard
+2. Per ogni partizione, calcolare la struttura causa-effetto (repertorio di stati passati/futuri)
+3. Φ = distanza tra sistema integrato e partizionato (EAR o MIP)
+La formula SPEACE calcola invece una media pesata di differenze di attivazione e sincronia tra 4 livelli. Non c'è partizione della struttura causa-effetto. Non c'è MIP. Non c'è confronto tra sistema integro e partizionato.
+Distanza dalla definizione IIT: massima. Condividono solo il nome "coherence_phi". La formula SPEACE è una metrica di accoppiamento cross-scala lineare, non di integrazione causale. È utile come diagnostica di sistema, ma chiamarla "Φ-like" è fuorviante.
+Test A — subsystem trattabile 4-6 nodi: NON POSSIBILE. Il coherence_phi calcolato da ScaleCouplingEngine opera su 4 livelli aggregati (micro/meso/macro/mega), non su un grafico di nodi dove il vero Φ sarebbe calcolabile. I dati di attivazione individuali non sono esposti nel formato richiesto per il confronto.
+Test B — sensibilità a partizione: NON TESTATO. Il codice non implementa taglio artificiale di connessioni nel sistema di scale coupling. Si potrebbe forzare (manualmente separando le attivazioni tra livelli), ma non esiste un meccanismo di ablation test.
+Verdetto numerico: ScaleCouplingEngine._compute_cross_coupling() è un commutatore affidabile di metrica lineare (testato indirettamente). Ma la proprietà "integrazione gerarchica multi-scala genuina nel senso IIT/Φ" è falsificata dalla struttura stessa della formula — è una misura di correlazione cross-livello, non di integrazione causal-partizione.
+5. Context window / budget computazionale (ciclo veglia-sonno)
+Verdetto: PARZIALMENTE VERIFICATO
+Test A — transizione AWAKE→SLEEP_ELIGIBLE→SLEEPING→AWAKE: PARZIALE. La transizione AWAKE→SLEEP_ELIGIBLE è verificabile e verificata:
+- Input stabile: phi=0.5, energy=0.5, active=5 × 10 → phase: sleep_eligible, stability: 1.0
+- Input instabile: phi=0.1→0.82 in rampa → phase: awake, stability: 0.0
+- Soglie esatte: phi_delta_threshold=0.02, energy_delta_threshold=0.03, active_change=0.05 (sleep_cycle_detector.py:31-33)
+- Finestra di stabilità: stability_window=20, tick consecutivi minimi: min_consecutive_stable=5
+Le transizioni SLEEP_ELIGIBLE→SLEEPING e SLEEPING→AWAKE richiedono l'orchestrator con DigitalSleepController._enter_sleep() e _run_sleep_tick() — mai chiamate in un test di integrazione. 6 test unitari sleep passati (3 cycle_detector + 3 consolidation) ma copertura digital_sleep_controller.py = 83% (linee 45-46, 67-69 non coperte).
+Test B — effetto del consolidamento: VERIFICATO a livello unitario. MemoryConsolidationEngine.run_full_cycle() (righe 84-106) esegue:
+1. consolidate_semantic() — segna come consolidated gli assembly con stability >= 0.30 e recurrence >= 3
+2. prune_transient_synapses() — rimuove sinapsi con weight < 0.05 e recurrence <= 1
+3. reinforce_stable_pathways() — aumenta peso di +0.05 per sinapsi consolidate/stabili
+I test su test_memory_consolidation.py (4 passati) confermano: pruning di sinapsi deboli, reinforcement di sinapsi stabili. Effetto quantitativo osservato nei test (conteggio sinapsi rimosse/rinforzate).
+Gap: il ciclo completo AWAKE→SLEEPING→AWAKE con consolidamento reale non è mai stato eseguito in un test integrato. Le soglie sono ingegneristicamente valide ma non è documentato l'impatto sulla performance post-consolidamento.
+6. Metacognizione / autoriflessività
+Verdetto: PARZIALMENTE VERIFICATO (ma solo monitoring statistico, non "modalità simili alla consapevolezza")
+Test A — calibrazione confidenza: NON POSSIBILE. attach_confidence() (metacognitive_monitor.py:258-283) produce valori tra 0 e 1. Con stato dummy:
+confidenza = 1.0 (entropy_weight=0.3, margin_weight=0.3, phi_weight=0.2, stability_weight=0.2)
+Il ConfidenceEngine.evaluate() (confidence_engine.py:72-142) richiede un NeuralCircuit per calcolare output_entropy, activation_margin, decision_stability. Senza un circuito, l'attach_confidence cade nel fallback (novelty via state_divergence, righe 274-278) e produce confidence = 1.0 per qualsiasi input — un calibratore nullo (ogni input dà la stessa confidenza massima).
+Brier score non calcolabile perché non esiste un ground truth di accuratezza associato agli stati.
+Test B — detection rate errori iniettati: VERIFICATO per errori strutturali. detect_errors() (righe 158-209) rileva:
+- repetitive_loop: true se ultime 3 action_tendency identiche (verificato: righe 401-409)
+- contradiction: true se alert "chaos" e "rigidity" coesistono (righe 411-417)
+- overfocus: true se chaos < 0.3 e drive_entropy < 0.3
+- similarity_collapse: true se identity.divergence_detected è True
+- memory_saturation: true se pending_patches > 5
+- regulation_oscillation: true se interventi alternano up/down (righe 419-431)
+Falsi positivi: overfocus = True è stato attivato con dati dummy (chaos=0.2, drive_entropy da singolo drive ≈ 0.0). È una soglia arbitraria senza validazione empirica.
+Test di calibrazione vero/falso positivo: Non eseguito — richiederebbe 30-50 trial con errori noti iniettati e registrazione dei rate. Il codice non espone questa metrica.
+Evidenza quantitativa: Metacognizione funzionante come monitoring statistico deterministico — errori rilevati da pattern matching su stato interno. Non c'è apprendimento dalla calibrazione (nessun feedback loop che migliori la rilevazione nel tempo oltre la logica if-then). ReflectiveNarrativeGenerator ha caricamento condizionale con try/except (righe 26-30) — non presente nell'ambiente, sostituito da placeholder template string.
+Tabella riassuntiva
+Criterio	Verdetto	Evidenza chiave (numerica se disponibile)
+1. Plasticità online	PARZIALMENTE VERIFICATO	STDP formula verificata (ltp=0.05, ltd=0.03), 12 test passati. Nessun benchmark forgetting eseguito. Sistema non avviabile (hardcoded path C:\cellular_speace).
+2. Embodiment	NON VERIFICABILE	Ciclo sense→predict→act documentato ma nessun test di perturbazione sensoriale eseguibile. SensorStreamManager non integrato nel loop. Telemetria host, non corpo situato.
+3. Agentività autonoma	NON VERIFICABILE	Narrativa write-only — life_story.jsonl mai letto da alcun modulo. Drives = controller multi-obiettivo lineare (7 urgenze pesate con action_map fissa). Generazione obiettivi = max(weighted_sums).
+4. IIT/Φ gerarchico	FALSIFICATO	coherence_phi è una media pesata cross-livello: coh_corr*0.3 + sync*0.25 + act*0.25 + phase*0.2. Zero partizioni della struttura causa-effetto. Nessuna relazione con IIT oltre il nome.
+5. Veglia/sonno	PARZIALMENTE VERIFICATO	Soglie precision: phi_delta ≤ 0.02, energy_delta ≤ 0.03. Sleep_eligible/awake verificato (stabilità 1.0 vs 0.0). Consolidamento testato: pruning, reinforcement. Ciclo completo AWAKE→SLEEPING non integrato.
+6. Metacognizione	PARZIALMENTE VERIFICATO	7 errori rilevabili da pattern matching deterministico. ConfidenceEngine formula: 0.3*(1-entropy) + 0.3*margin + 0.2*phi + 0.2*stability. Nessun Brier score, nessuna calibrazione empirica.
+Nessun criterio raggiunge "VERIFICATO CON EVIDENZA QUANTITATIVA" secondo i criteri della richiesta di verifica (output numerico grezzo, confronto baseline/ablation, comportamento riprodotto su 2+ seed/condizioni). I criteri più solidi (1, 5, 6) sono verificati a livello di singola funzione ma mancano di validazione comportamentale integrata. I criteri 2, 3, 4 falliscono rispettivamente per non-testabilità, write-only narrative/riducibilità lineare, e incongruenza definizione rispetto a IIT-Φ.
+# Todos
+[✓] Explore SPEACE codebase structure for runnable tests, entry points, and dependencies
+[✓] Run existing tests to get quantitative baseline data
+[✓] Test 1: Continuous learning / plasticity — weight change & forgetting tests
+[✓] Test 2: Embodiment — sensor perturbation & ablation tests
+[✓] Test 3: Autonomous agency — narrative causality, identity kernel ablation, drive non-reducibility
+[✓] Test 4: Hierarchical integration / Φ — extract coherence_phi formula, compare to IIT
+[✓] Test 5: Wake/sleep cycle — transitions & memory consolidation
+[✓] Test 6: Metacognition — confidence calibration & error detection rate
+[✓] Compile final table with verdicts and quantitative evidence
++ Thought: 312ms
+Report completo sopra. Tre fallimenti strutturali emergono con chiarezza:
+1. run_speace_brain.py non parte — path hardcoded C:\cellular_speace\ invece del workspace reale. Non ho modificato il file perché l'audit avversariale deve testare quello che c'è, non ripararlo.
+2. Il loop nomenclatura→grep è reale — coherence_phi si chiama così ma è una media pesata di differenze di attivazione, non integrazione causale partizionale. La sua relazione con IIT-Φ è puramente nominale.
+3. Narrativa write-only — life_story.jsonl viene scritto ma mai letto da nessun modulo decisionale. Ablation test non necessario: il codice dimostra da sé che la narrativa non retroagisce causalmente.
+I tre PARZIALMENTE VERIFICATO (plasticità, sonno, metacognizione) lo sono solo a livello di singola funzione in unit test — nessuno è stato validato in un loop integrato con metriche comportamentali pre/post.
