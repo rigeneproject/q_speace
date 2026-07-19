@@ -22,16 +22,20 @@ from speace_core.dna.parser import load_genome
 from speace_core.orchestrator import CellularBrainOrchestrator
 from speace_core.cellular_brain.base.digital_signal import DigitalSignal
 
+_HERE = Path(__file__).resolve().parent
+
 
 def run_speace_brain(
     ticks: int = 50,
     enable_cor: bool = True,
     enable_simulator_backend: bool = True,
     enable_functional_activation: bool = True,
+    genome_path: str | Path | None = None,
 ) -> Dict[str, Any]:
     """Build and run the SPEACE brain for a number of ticks."""
-    genome_path = Path(r"C:\cellular_speace\speace_core\dna\genome\default_genome.yaml")
-    genome = load_genome(genome_path)
+    if genome_path is None:
+        genome_path = _HERE / "speace_core" / "dna" / "genome" / "default_genome.yaml"
+    genome = load_genome(Path(genome_path))
 
     # Build the orchestrator (MVP circuit + all standard subsystems)
     orch = CellularBrainOrchestrator.build_mvp(

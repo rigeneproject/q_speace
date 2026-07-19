@@ -1,0 +1,6 @@
+Per attivare il cervello quantistico
+cd q_speace
+pip install -e .          # già fatto
+qspace quantum run        # backend numpy (locale, funziona subito)
+pip install qiskit qiskit-aer   # per simulazione più performante
+qspace quantum run --backend qiskit

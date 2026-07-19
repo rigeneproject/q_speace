@@ -176,16 +176,28 @@ class QuantumState:
         return np.abs(self.amplitudes) ** 2
 
     def is_entangled_with(self, other: "QuantumState") -> bool:
-        """Heuristic: two separable states are not entangled.
+        """Check entanglement via Schmidt rank.
 
-        We use Schmidt-rank: the state of the joint system |a,b> is
-        separable iff its density matrix has Schmidt rank 1, i.e.
-        ranks to 1.
+        Treats self as the joint state of a bipartite system where
+        self has (n_a + n_b) qubits and other.num_qubits = n_b.
+        Reshapes the state vector into a (2**n_a x 2**n_b) matrix
+        and performs SVD; rank > 1 indicates entanglement.
         """
-        joint = np.kron(self.amplitudes, other.amplitudes)
-        rho = np.outer(joint, joint.conj())
-        # numerical threshold for rank
-        sv = np.linalg.svd(rho, compute_uv=False)
+        total = self.num_qubits
+        n_b = other.num_qubits
+        n_a = total - n_b
+        if n_a < 1 or n_b < 1:
+            return False
+        dim_a = 1 << n_a
+        dim_b = 1 << n_b
+        if self.amplitudes.shape[0] != dim_a * dim_b:
+            joint = np.kron(self.amplitudes, other.amplitudes)
+            if joint.shape[0] != dim_a * dim_b:
+                return False
+            psi = joint.reshape(dim_a, dim_b)
+        else:
+            psi = self.amplitudes.reshape(dim_a, dim_b)
+        sv = np.linalg.svd(psi, compute_uv=False)
         tol = 1e-6
         rank = int(np.sum(sv > tol * sv.max()))
         return rank > 1

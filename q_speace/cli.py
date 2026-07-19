@@ -1,8 +1,12 @@
 """Q-SPEACE command-line interface (task T16).
 
-Group: ``qspace quantum ...``
+Groups:
+  - ``qspace quantum ...`` — quantum experiments and tools
+  - ``qspace sia ...`` — self-improvement cortex controls
 """
 from __future__ import annotations
+
+import json
 
 import typer
 
@@ -13,10 +17,13 @@ from .genome import QuantumGeneSet
 from .orchestrator import QuantumOrchestrator
 from .quantum.backends import to_cqasm
 from .schumann import run_schumann, schumann_circuit
+from .self_improvement_cortex import SelfImprovementCortex
 
 app = typer.Typer(help="Q-SPEACE quantum layer CLI")
 quantum_app = typer.Typer(help="Quantum experiments and tools")
+sia_app = typer.Typer(help="Self-Improvement Cortex (SIA)")
 app.add_typer(quantum_app, name="quantum")
+app.add_typer(sia_app, name="sia")
 
 
 @quantum_app.command("run")
@@ -104,6 +111,74 @@ def quantum_cross_scale(
         "[green]cross-scale emergence:[/green]"
         f" {'YES' if noisy > base else 'NO'}"
     )
+
+
+@sia_app.command("run")
+def sia_run(
+    ticks: int = typer.Option(10, "--ticks", "-t"),
+    verbose: bool = typer.Option(False, "--verbose", "-v"),
+) -> None:
+    """Run the Self-Improvement Cortex for N ticks."""
+    cortex = SelfImprovementCortex()
+    for i in range(ticks):
+        report = cortex.tick({"coherence_phi": 0.7, "plasticity_index": 0.5})
+        if verbose:
+            print(f"tick={i}: proposals={report.proposals} selected={report.selected} "
+                  f"mutations={report.mutations_applied} rollbacks={report.rollbacks}")
+    print(cortex.report())
+
+
+@sia_app.command("status")
+def sia_status() -> None:
+    """Print current SIA status summary."""
+    cortex = SelfImprovementCortex()
+    report = cortex.report()
+    for k, v in report.items():
+        print(f"  {k}: {v}")
+
+
+@sia_app.command("dna")
+def sia_dna(
+    limit: int = typer.Option(10, "--limit", "-l"),
+) -> None:
+    """List recent DNA mutation records."""
+    cortex = SelfImprovementCortex()
+    records = cortex.dna.recent(limit)
+    print(f"DNA mutation records (last {len(records)}):")
+    for r in records:
+        print(f"  [{r.mutation_id}] level={r.level} target={r.target} "
+              f"confidence={r.confidence:.2f} active={r.active}")
+
+
+@sia_app.command("benchmark")
+def sia_benchmark(
+    min_qubits: int = typer.Option(4, "--min-qubits", "-q"),
+    max_qubits: int = typer.Option(20, "--max-qubits", "-Q"),
+    trials: int = typer.Option(2, "--trials", "-t"),
+) -> None:
+    """Benchmark QEE entanglement simulation (GPU if available)."""
+    from .self_improvement_cortex.benchmark import benchmark_gpu, print_report
+
+    res = benchmark_gpu(min_qubits=min_qubits, max_qubits=max_qubits, trials=trials)
+    print_report(res)
+
+
+@quantum_app.command("qee")
+def quantum_qee(
+    strategies: str = typer.Option(
+        '[{"id":"a","expected_impact":0.8,"risk":0.2,"confidence":0.7,"energy_cost":0.1,"novelty":0.3},{"id":"b","expected_impact":0.5,"risk":0.5,"confidence":0.6,"energy_cost":0.3,"novelty":0.1}]',
+        "--strategies", "-s",
+    ),
+) -> None:
+    """Test the Quantum Evolution Engine with sample strategies."""
+    from .self_improvement_cortex import QuantumEvolutionEngine
+
+    parsed = json.loads(strategies)
+    engine = QuantumEvolutionEngine()
+    results = engine.propose_candidates(parsed, {})
+    print(f"QEE proposed {len(results)} candidates:")
+    for r in results:
+        print(f"  [{r.method}] id={r.candidate_id} score={r.score:.3f} confidence={r.confidence:.3f}")
 
 
 @app.command()

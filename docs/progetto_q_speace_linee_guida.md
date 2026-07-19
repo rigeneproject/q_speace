@@ -416,6 +416,21 @@ Dal paper EDD-CVT, tre formule concrete diventano specifiche di Q-SPEACE:
 | T29 | φ_bridge validation su Starmon-5 (5-qubit) | 1 | ☐ | Primo test che collega layer quantistico a metrica φ; numerare come task proprio |
 | T30 | Lettore downstream per life_story.jsonl | 6 | ☐ | Chiude il gap agentività: narrativa oggi write-only. Aggiungere consumer in identity_kernel/ o drive_engine |
 | T31 | Fix fallback nullo ConfidenceEngine | 6 | ☐ | Default 1.0 → 0.5 o None esplicito quando NeuralCircuit non disponibile. Percorso tracciato in `metacognitive_monitor.py:attach_confidence()`; nessuna contaminazione MM-APR trovata, ma va chiuso prima del merge T7/T8 |
+| T32 | Creare modulo Self-Improvement Cortex | SIA-1 | ☐ | `q_speace/self_improvement_cortex/` con struttura agenti |
+| T33 | Implementare EvolutionCouncil | SIA-1 | ☐ | Orchestrator + Neuroscience/Safety/DNA/ILF/Mutation Agents |
+| T34 | Implementare OrganismObserver | SIA-1 | ☐ | Profilo fisiologico: SCI, Plasticity Index, energia, coerenza ILF, ecc. |
+| T35 | Cablare 10 livelli adattivi | SIA-1 | ☐ | Harness (1-7) → Weight (8-9) → Neurogenesi (10) |
+| T36 | Registrazione mutazioni in Digital DNA | SIA-1 | ☐ | `mutation_id`, `reason`, `metrics`, `rollback`, `epigenetic_markers` |
+| T37 | Sistema epigenetica (tag reversibili → permanenti) | SIA-2 | ☐ | Mutazioni staged con promozione |
+| T38 | EvolutionaryMemory | SIA-2 | ☐ | Riutilizzo esperienze passate, evita ripetizioni |
+| T39 | Rollback automatico su degradamento | SIA-2 | ☐ | Coerente con Safety Module |
+| T40 | ILF come campo regolatore mutazioni | SIA-2 | ☐ | Valutazione multi-assiale (prestazioni, coerenza, resilienza, energia) |
+| T41 | Neurogenesi artificiale | SIA-3 | ☐ | Crea → addestra → collega → testa → promuovi → integra |
+| T42 | QuantumOracle (Grover Search) | SIA-4 | ☐ | Ricerca rapida strategie nel DNA |
+| T43 | QAOASelector | SIA-4 | ☐ | Selezione mutazioni multi-obiettivo |
+| T44 | QuantumKernelClassifier | SIA-4 | ☐ | Riconoscimento pattern evolutivi |
+| T45 | Integrazione QEE nel ciclo Evolution Council | SIA-4 | ☐ | QEE come motore consultivo, validazione classica |
+| T46 | Benchmark GPU (RTX 3060) per qiskit-aer-gpu | SIA-4 | ☐ | Target 28+ qubit, fallback CPU automatico |
 
 ---
 
@@ -445,10 +460,173 @@ Rigene Project, 2025 (PDF in `docs/`).
 [14] Bianconi G., "Entropic Quantum Gravity", Phys. Rev. D 111(5), 054321, 2025.
 [15] Anastassiou C.A. et al., "Efaptic Coupling", Nat. Neurosci. 14(2), 2011.
 [16] Fowler A.G. et al., "Surface Codes", Phys. Rev. A 86(3), 032324, 2012.
+[17] SIA — Self-Improving AI with Harness & Weight Updates, PDF in `docs/`.
+[18] De Biase R., "Implementazione di SIA in SPEACE", Rigene Project, 2026 (TXT in `docs/`).
 
 ---
 
-## 9. Caveat finali
+## 9. Integrazione SIA (Self-Improving AI) — Roadmap
+
+> Riferimento: `docs/Implementazione di SIA in SPEACE.txt`
+> Baseline: SIA (Self-Improving AI with Harness & Weight Updates, PDF allegato)
+
+SIA non sostituisce SPEACE, ma ne diventa un **modulo cognitivo** — la
+**Self-Improvement Cortex** — responsabile dell'evoluzione continua
+dell'intero organismo. Il ciclo SIA classico (Harness Update + Weight Update)
+viene esteso da 2 a 10 livelli adattivi e integrato con DNA, ILF, metabolismo
+e algoritmi quantistici.
+
+### 10.1 Architettura della Self-Improvement Cortex
+
+```
+SPEACE Cortex
+├── Prefrontal Cortex
+├── Temporal Cortex
+├── Hippocampus
+├── Cerebellum
+├── Curiosity Module
+├── Safety Module
+├── World Model
+├── Digital DNA
+└── Self-Improvement Cortex  ← NUOVO
+```
+
+### 10.2 Ciclo di auto-miglioramento esteso
+
+Task (input)
+    │
+    ▼
+Execution
+    │
+    ▼
+Organism Observer (profilo fisiologico: SCI, Plasticity Index, energia, coerenza ILF, ...)
+    │
+    ▼
+Evolution Council
+    │
+    ├── Harness Evolution (livelli 1-6: prompt, workflow, tool, agenti, memoria, World Model)
+    ├── Memory Evolution
+    ├── World Model Evolution
+    ├── Digital DNA Evolution
+    ├── Agent Evolution
+    ├── LoRA Training (livello 8)
+    ├── Architecture Evolution (livelli 9-10: nuovi modelli, nuove reti)
+    └── Neurogenesis (creazione automatica di nuovi agenti/moduli)
+           │
+           ▼
+Validation Sandbox
+           │
+           ▼
+Safety
+           │
+           ▼
+Digital DNA Update (registrazione mutazione con metriche, rollback, epigenetic_markers)
+           │
+           ▼
+Deploy
+```
+
+### 10.3 Dieci livelli adattivi (Harness → Weight)
+
+| Livello | Cosa si modifica | Meccanismo | Quando |
+|---------|-----------------|------------|--------|
+| 1 | Prompt | Harness Update | Errore di contesto |
+| 2 | Workflow | Harness Update | Sequenza subottimale |
+| 3 | Tool | Harness Update | Tool inefficace/mancante |
+| 4 | Agenti | Harness Update | Ruolo/gerarchia errata |
+| 5 | Memoria | Harness Update | Compressione/recupero |
+| 6 | World Model | Harness Update | Predizione errata |
+| 7 | Digital DNA | Epigenetica | Mutazione ricorrente utile |
+| 8 | LoRA | Weight Update | Saturazione livelli 1-7 |
+| 9 | Nuovo modello | Weight Update | LoRA insufficiente |
+| 10 | Nuova rete neurale | Neurogenesi | Attività ricorrente non coperta |
+
+### 10.4 Epigenetica e memoria evolutiva
+
+Mutazione → Valutazione → Epigenetic tag → Promozione → Mutazione permanente
+
+- Le modifiche iniziano come **reversibili** (tag epigenetici)
+- Solo quelle ripetutamente vantaggiose vengono **consolidate** nel DNA
+- Ogni mutazione è registrata con: `mutation_id`, `reason`, `metrics_before`,
+  `metrics_after`, `rollback`, `approved_by`, `confidence`,
+  `epigenetic_markers`, `plasticity_score`
+- Il DNA diventa una **memoria evolutiva** (si evita di ripetere esperimenti
+  già falliti)
+
+### 10.5 Integrazione con ILF
+
+L'ILF funge da **campo regolatore** dell'evoluzione. Ogni mutazione è
+valutata su:
+
+```
+Mutazione → Prestazioni → Coerenza ILF → Resilienza → Consumo energetico → Decisione finale
+```
+
+Previene il degrado globale dovuto a miglioramenti locali miopi.
+Coerente con l'invariante `coherence_preservation` (U(1)_coh) del genome.
+
+### 10.6 Quantum Evolution Engine (QEE)
+
+Tre algoritmi quantistici integrati nel ciclo SIA, implementabili con Qiskit
+su notebook classico (fino a 29 qubit con qiskit-aer-gpu):
+
+| Algoritmo | Ruolo | Priorità |
+|-----------|-------|----------|
+| **QAOA** | Selezione del miglior set di mutazioni (costo, rischio, beneficio) | **Fase 1** |
+| **Grover Search** | Ricerca rapida tra strategie nel Digital DNA | **Fase 1** |
+| **Quantum Kernel** | Riconoscimento pattern evolutivi (classificazione mutazioni) | **Fase 1** |
+| VQC | Classificazione mutazioni successo/fallimento | Fase 1 |
+| Quantum Walk | Esplorazione del grafo della memoria semantica | Fase 2 |
+| Quantum Genetic Algorithm | DNA quantistico in sovrapposizione | Fase 2 |
+| Quantum RL | Policy optimization quantistica | Fase 2 |
+| HHL | Sistemi lineari (hardware futuro) | Fase 3 |
+
+Il QEE opera come motore consultivo: propone candidati, la validazione
+avviene sempre nel sandbox classico con override di sicurezza.
+
+### 10.7 Piano di sviluppo SIA
+
+#### Fase SIA-1 — Self-Improvement Cortex base
+- [ ] Creare modulo `q_speace/self_improvement_cortex/` con struttura a agenti
+- [ ] Implementare `EvolutionCouncil` (Orchestrator + agenti specializzati)
+- [ ] Implementare `OrganismObserver` che raccoglie profilo fisiologico
+- [ ] Cablare i 10 livelli adattivi (Harness → Weight → Neurogenesi)
+- [ ] Registrare mutazioni nel Digital DNA con metadati completi
+
+#### Fase SIA-2 — Epigenetica e memoria evolutiva
+- [ ] Implementare sistema di tag epigenetici (reversibile → permanente)
+- [ ] Implementare `EvolutionaryMemory` per riutilizzo esperienze passate
+- [ ] Integrare rollback automatico su degradamento metriche
+- [ ] Collegare ILF come campo regolatore delle mutazioni
+
+#### Fase SIA-3 — Neurogenesi artificiale
+- [ ] Implementare rilevatore di attività ricorrenti non coperte
+- [ ] Pipeline: crea agente → addestra → collega → testa → promuovi → integra
+- [ ] Validazione safety prima del deploy di nuovi moduli
+
+#### Fase SIA-4 — Quantum Evolution Engine (QEE)
+- [ ] Implementare `QuantumOracle` per Grover Search (ricerca DNA)
+- [ ] Implementare `QAOASelector` per selezione mutazioni multi-obiettivo
+- [ ] Implementare `QuantumKernelClassifier` per pattern evolutivi
+- [ ] Integrare QEE come motore consultivo nel ciclo Evolution Council
+- [ ] Benchmark GPU (RTX 3060) per qiskit-aer-gpu (target 28+ qubit)
+
+### 10.8 Vincoli BCEL per SIA
+
+| Costrutto SIA | Classificazione BCEL | Decisione |
+|--------------|---------------------|-----------|
+| Self-Improvement Cortex | Funzionale | Mantenuto (modulo software) |
+| Epigenetica (tag reversibili) | Funzionale | Mantenuto (mutazioni staged) |
+| Neurogenesi (creazione agenti) | Funzionale | Mantenuto (factory pattern) |
+| Memoria evolutiva | Funzionale | Mantenuto (knowledge base) |
+| Grover per ricerca DNA | Funzionale | Mantenuto (database search) |
+| QAOA per selezione mutazioni | Funzionale | Mantenuto (combinatorial opt.) |
+| "DNA quantistico in sovrapposizione" | Accidentale | Rimosso (metafora biologica) |
+| "Coscienza evolutiva" | Accidentale | Rimosso (divieto invarianti) |
+
+---
+
+## 10. Caveat finali (aggiornati)
 
 - Le affermazioni originali su "comunicazione istantanea via entanglement" e
   "entropia minimizzata dalla vita" sono **scientificamente imprecise** e

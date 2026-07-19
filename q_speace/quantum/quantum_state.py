@@ -224,9 +224,21 @@ class QuantumState:
         return float(max(0.0, s_a + s_b - s_ab))
 
     def is_entangled_with(self, other: QuantumState) -> bool:
-        joint = np.kron(self.amplitudes, other.amplitudes)
-        rho = np.outer(joint, joint.conj())
-        sv = np.linalg.svd(rho, compute_uv=False)
+        total = self.num_qubits
+        n_b = other.num_qubits
+        n_a = total - n_b
+        if n_a < 1 or n_b < 1:
+            return False
+        dim_a = 1 << n_a
+        dim_b = 1 << n_b
+        if self.amplitudes.shape[0] != dim_a * dim_b:
+            joint = np.kron(self.amplitudes, other.amplitudes)
+            if joint.shape[0] != dim_a * dim_b:
+                return False
+            psi = joint.reshape(dim_a, dim_b)
+        else:
+            psi = self.amplitudes.reshape(dim_a, dim_b)
+        sv = np.linalg.svd(psi, compute_uv=False)
         tol = 1e-6
         rank = int(np.sum(sv > tol * sv.max()))
         return rank > 1
