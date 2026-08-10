@@ -37,19 +37,29 @@ class QuantumCostModel:
     W_PER_DECOHERENCE_UNIT: float = 0.1
     W_PER_SPIKE: float = 0.001
 
+    # Calibration factor derived from T205-C (64 prompt × Qwen2.5-3B NF4
+    # on RTX 3060 6 GB — see docs/T205_status.md). Median ratio
+    # pred/meas over 64 valid rows was 0.0323 → 1/0.0323 ≈ 30.94. This
+    # factor rescales the absolute magnitude of every term uniformly,
+    # preserving the functional form (slope log-log ≈ 1 was confirmed
+    # with resid_std = 0.086). To restore the original T10/T22/T23
+    # presetting, set RICALIBRATION_FACTOR = 1.0.
+    RICALIBRATION_FACTOR: float = 30.94
+
     def energy_watts(self, op: QuantumOperation) -> float:
         """Instantaneous power draw estimate for the operation.
 
         Decoherence budget increases the cost: a higher budget means the
         system must expend more energy to maintain the desired fidelity.
         """
-        return (
+        base = (
             op.num_qubits * self.W_PER_QUBIT
             + op.num_gates * self.W_PER_GATE
             + op.entanglement_depth * self.W_PER_ENTANGLEMENT_DEPTH
             + op.decoherence_budget * self.W_PER_DECOHERENCE_UNIT
             + max(op.num_spikes, 0) * self.W_PER_SPIKE
         )
+        return base * self.RICALIBRATION_FACTOR
 
     def energy_joules(self, op: QuantumOperation, duration_s: float = 1.0) -> float:
         return self.energy_watts(op) * duration_s
