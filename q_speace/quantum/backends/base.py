@@ -6,6 +6,7 @@ Quantum Inspire backend is lazy-loaded and requires an account token
 (human action) plus the QI SDK. This keeps cloud access optional and
 gated, never a hard dependency.
 """
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -17,9 +18,7 @@ class QuantumBackend(ABC):
     name: str = "abstract"
 
     @abstractmethod
-    def run(
-        self, circuit, shots: int = 1024
-    ) -> list[tuple[str, str]]:
+    def run(self, circuit, shots: int = 1024) -> list[tuple[str, str]]:
         """Run the circuit and return [(role, bit), ...] for all qubits."""
         raise NotImplementedError
 

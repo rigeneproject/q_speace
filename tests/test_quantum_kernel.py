@@ -1,8 +1,8 @@
 """Tests for the Q-SPEACE quantum kernel."""
+
 from __future__ import annotations
 
 import numpy as np
-import pytest
 
 from q_speace.quantum import (
     EntanglementRegistry,
@@ -31,8 +31,8 @@ def test_from_amplitudes():
 
 
 def test_hadamard_is_unitary_and_self_inverse():
-    U = QuantumGates.single_qubit(GateType.H, 2, 0)
-    assert np.max(np.abs(U.conj().T @ U - np.eye(4, dtype=complex))) < 1e-6
+    unitary = QuantumGates.single_qubit(GateType.H, 2, 0)
+    assert np.max(np.abs(unitary.conj().T @ unitary - np.eye(4, dtype=complex))) < 1e-6
     s = QuantumState(num_qubits=1)
     s.apply_unitary(QuantumGates.single_qubit(GateType.H, 1, 0))
     s.apply_unitary(QuantumGates.single_qubit(GateType.H, 1, 0))
@@ -78,7 +78,9 @@ def test_quantum_neural_bridge():
 
 def test_brain_simulator_bell():
     sim = QuantumBrainSimulator()
-    circ = __import__("q_speace.quantum", fromlist=["BrainQuantumCircuit"]).BrainQuantumCircuit("bell")
+    circ = __import__("q_speace.quantum", fromlist=["BrainQuantumCircuit"]).BrainQuantumCircuit(
+        "bell"
+    )
     circ.add_qubit("a")
     circ.add_qubit("b")
     circ.add_gate(GateType.H, target="a")

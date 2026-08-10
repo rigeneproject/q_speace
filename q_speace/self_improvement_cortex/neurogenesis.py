@@ -1,4 +1,5 @@
 """NeurogenesisPipeline — automatic creation of new agents/modules (T41)."""
+
 from __future__ import annotations
 
 import time
@@ -50,11 +51,13 @@ class NeurogenesisPipeline:
         self._min_novelty = min_novelty
 
     def observe_activity(self, activity_type: str, context: dict) -> None:
-        self._activity_log.append({
-            "type": activity_type,
-            "context": context,
-            "timestamp": time.time(),
-        })
+        self._activity_log.append(
+            {
+                "type": activity_type,
+                "context": context,
+                "timestamp": time.time(),
+            }
+        )
         if len(self._activity_log) > 1000:
             self._activity_log.pop(0)
 
@@ -64,7 +67,8 @@ class NeurogenesisPipeline:
             t = entry["type"]
             counts[t] = counts.get(t, 0) + 1
         return [
-            (act, count) for act, count in counts.items()
+            (act, count)
+            for act, count in counts.items()
             if count >= self._min_occurrences
             and not any(m.activity_pattern == act for m in self._modules if m.is_active)
         ]

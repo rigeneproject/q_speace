@@ -4,6 +4,7 @@ Usage:
     python -m q_speace.self_improvement_cortex.benchmark
     python -m q_speace.self_improvement_cortex.benchmark --min-qubits 4 --max-qubits 28
 """
+
 from __future__ import annotations
 
 import math
@@ -28,6 +29,7 @@ def benchmark_gpu(
     try:
         from qiskit import QuantumCircuit
         from qiskit_aer import AerSimulator
+
         qiskit_available = True
     except ImportError:
         qiskit_available = False
@@ -85,7 +87,9 @@ def _simulate_numpy_entanglement(n: int) -> None:
             for k in range(step):
                 a = j + k
                 b = a + step
-                state[a], state[b] = (state[a] + state[b]) / math.sqrt(2), (state[a] - state[b]) / math.sqrt(2)
+                state[a], state[b] = (state[a] + state[b]) / math.sqrt(2), (
+                    state[a] - state[b]
+                ) / math.sqrt(2)
     _ = np.abs(state) ** 2
 
 
@@ -97,7 +101,9 @@ def print_report(results: dict) -> None:
         dim = 1 << n
         print(f"{n:>6} | {dim:>10} | {t:>10.4f} | {d:>14}")
 
-    gpu_times = [t for t, d in zip(results["time_s"], results["device"], strict=False) if d == "gpu"]
+    gpu_times = [
+        t for t, d in zip(results["time_s"], results["device"], strict=False) if d == "gpu"
+    ]
     if gpu_times:
         print(f"\nGPU available and used for {len(gpu_times)} data points.")
     else:
@@ -106,6 +112,7 @@ def print_report(results: dict) -> None:
 
 if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser(description="QEE GPU Benchmark")
     parser.add_argument("--min-qubits", type=int, default=4)
     parser.add_argument("--max-qubits", type=int, default=28)

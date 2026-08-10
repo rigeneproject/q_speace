@@ -10,6 +10,7 @@ This is the classical sparsifying layer placed *before* the quantum kernel
 (T202 P2). The quantum layer never sees the neural model — only the sparse
 integer representation.
 """
+
 from __future__ import annotations
 
 import numpy as np

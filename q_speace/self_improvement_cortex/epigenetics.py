@@ -1,4 +1,5 @@
 """Epigenetic tag system — reversible -> permanent mutations (T37)."""
+
 from __future__ import annotations
 
 import time
@@ -41,18 +42,11 @@ class EpigeneticState:
 
     @property
     def ready_for_consolidation(self) -> bool:
-        return (
-            self.promotion_count >= 3
-            and self.stability_ratio >= 0.7
-            and not self.consolidated
-        )
+        return self.promotion_count >= 3 and self.stability_ratio >= 0.7 and not self.consolidated
 
     @property
     def ready_for_rollback(self) -> bool:
-        return (
-            self.suppression_count >= 2
-            and self.stability_ratio < 0.3
-        )
+        return self.suppression_count >= 2 and self.stability_ratio < 0.3
 
 
 class EpigeneticEngine:
@@ -89,7 +83,9 @@ class EpigeneticEngine:
         self._check_consolidation(state)
         return tag
 
-    def suppress(self, mutation_id: str, confidence: float = 0.0, source: str = "") -> EpigeneticTag:
+    def suppress(
+        self, mutation_id: str, confidence: float = 0.0, source: str = ""
+    ) -> EpigeneticTag:
         state = self._states.setdefault(
             mutation_id,
             EpigeneticState(mutation_id=mutation_id, created_at=time.time()),

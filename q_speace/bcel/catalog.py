@@ -6,6 +6,7 @@ carbon chemistry, removed in silicon) or *functional* (emergent
 stabilizer, kept as a mathematical rule). Mirrors cellular speace's
 ``speace_core/bcel/`` catalogue.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -51,6 +52,143 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "functional",
         "Keep as coherence_phi metric and adaptive clock r(t)=10/sqrt(S_info).",
     ),
+    BCELEquivalence(
+        "Radio wavefront as biological tissue",
+        "accidental",
+        "Replaced by wavefront_modulator: EM field is an engineered information "
+        "carrier, not a living tissue.",
+    ),
+    BCELEquivalence(
+        "Metasurface as artificial skin",
+        "functional",
+        "Keep as programmable beamforming / interference-pattern controller "
+        "(MetasurfaceController).",
+    ),
+    BCELEquivalence(
+        "SDR as artificial cochlea / vocal cords",
+        "functional",
+        "Keep as software-defined transceiver (SDRFrontend) — the functional "
+        "equivalent of sense/transmit in the EM domain.",
+    ),
+    BCELEquivalence(
+        "Cognitive radio as neural adaptation",
+        "functional",
+        "Keep as SpectrumSensor + adaptive frequency hopping based on "
+        "environment MAP — a mathematical optimisation, not cognition.",
+    ),
+    BCELEquivalence(
+        "Regulatory compliance as immune system",
+        "functional",
+        "Keep as ComplianceFilter / RadioEmulator — a hard gate that rejects "
+        "non-compliant transmissions before they reach the antenna.",
+    ),
+    BCELEquivalence(
+        "Biological confidence / introspection",
+        "accidental",
+        "Removed: no subjective uncertainty or consciousness claim is made.",
+    ),
+    BCELEquivalence(
+        "Calibrated predictive confidence",
+        "functional",
+        "Keep as Brier-score and expected-calibration-error evaluation against "
+        "labelled outcomes; it is a measurable forecast, not metacognition.",
+    ),
+    BCELEquivalence(
+        "Conversation as cognitive agency",
+        "accidental",
+        "Removed: generated text is untrusted; only Sevo/coherence-gated "
+        "belief updates may influence the organism.",
+    ),
+    # --- T202: pseudo-spiking layer (BICLab/SpikingBrain-7B,
+    #     arXiv:2509.05276, dynamic_spikes, SpikePlasticity, correlation)
+    BCELEquivalence(
+        "Spike firing (biological action potential)",
+        "accidental",
+        "Removed; only the integer-quantization rule "
+        "vth = mean(|x|)/k survives as the dynamic_spikes() primitive. "
+        "No claim of true neuromorphic firing on silicon.",
+    ),
+    BCELEquivalence(
+        "Spike-timing correlation → entanglement fidelity",
+        "functional",
+        "Keep as classical software-binding metric: Pearson correlation of "
+        "spike trains (rows = neurons) feeds the EntanglementRegistry as a "
+        "fidelity-proxy. This is NOT a quantum-state fidelity measurement: "
+        "the registry stores a label and a scalar, never fabricates an "
+        "entangled state. The no-communication theorem is preserved by "
+        "construction (no physical channel is implied by the binding).",
+    ),
+    BCELEquivalence(
+        "Event-driven neural energy",
+        "functional",
+        "Keep as E = E_base + N_spike · W_PER_SPIKE in the cost model; "
+        "sparse activity lowers the cognitive cost passed to the Sevo gate.",
+    ),
+    BCELEquivalence(
+        "Frequency-based plasticity (STDP-like)",
+        "functional",
+        "Keep as exponential-moving-average decay rule "
+        "ema_i = decay·ema_i + (1-decay)·rate_i, coefficients normalized "
+        "to [0, 1]. No online backpropagation, no spike-timing-dependent "
+        "weight update.",
+    ),
+    BCELEquivalence(
+        "ILF-modulated spiking threshold",
+        "functional",
+        "Keep as vth = mean(|x|) / (k · (1 + β·coherence_phi)); the ILF "
+        "field attenuates the dynamic-spike threshold as a metacognitive "
+        "modulator, not a biological mechanism.",
+    ),
+    # --- T205: SpikingBrain satellite — language-model binding layer
+    BCELEquivalence(
+        "MoBA top-k sparse softmax attention",
+        "functional",
+        "Keep as the top-k softmax routing pattern over chunks "
+        "(moba_chunk_size, moba_topk). The biological metaphor of "
+        "selective attention is kept as a mathematical sparsity rule, not "
+        "as a mechanism of cortical attention.",
+    ),
+    BCELEquivalence(
+        "GLA / linear attention recurrence",
+        "functional",
+        "Keep as the gated-linear-attention recurrence (gla / gdn with "
+        "SSE sparse state expansion). The RNN-like memory is a "
+        "mathematical primitive for long-context efficiency, not a "
+        "biologically grounded working-memory model.",
+    ),
+    BCELEquivalence(
+        "DSSA dual-path activation coding (SpB2.0)",
+        "functional",
+        "Keep as the FP8/int8 dual-path computation pattern: high "
+        "confidence responses may use the FP8 path, low confidence may "
+        "fall back to the INT8-spike path. This is a computational "
+        "metacognition signal, not a biological one. Note: the actual "
+        "checkpoint is not publicly available as of August 2026; the "
+        "StubSpikingBrainV2 backend only mimics the flatter belief "
+        "distribution and faster plasticity decay, it does not run the "
+        "real dual-path kernel.",
+    ),
+    BCELEquivalence(
+        "Brain area as cognitive subdivision",
+        "functional",
+        "Keep the SpikingBrainCortex as one cognitive area (think / "
+        "reason / verbalize / metacognize), with the ILF + Sevo + cost "
+        "gate as the thalamic-style mediator. The biological metaphor of "
+        "cortical specialization is preserved as a software binding "
+        "topology; no claim of neurological correspondence is made.",
+    ),
+    BCELEquivalence(
+        "SpikingBrain-7B / SpB2.0 model identity",
+        "accidental",
+        "Removed: the model identity (BICLab/SpikingBrain-7B base, "
+        "SpB2.0-5B base/instruct/think, etc.) is a software artefact of "
+        "the HuggingFace/ModelScope ecosystem. SPEACE uses the "
+        "mathematical primitives (dynamic_spikes, MoBA, GLA, DSSA) and "
+        "does not depend on running the original model. On the RTX 3060 "
+        "Laptop 6 GB the original 7B cannot run with usable quality; "
+        "Qwen2.5-3B-Instruct (NF4) is the operative backend, sharing "
+        "only the HTTP /think contract.",
+    ),
 ]
 
 
@@ -58,9 +196,7 @@ class BCELCatalog:
     """Queryable catalog of quantum BCEL equivalences."""
 
     def __init__(self) -> None:
-        self._entries: dict[str, BCELEquivalence] = {
-            e.concept: e for e in _QUANTUM_EQUIVALENCES
-        }
+        self._entries: dict[str, BCELEquivalence] = {e.concept: e for e in _QUANTUM_EQUIVALENCES}
 
     def all(self) -> list[BCELEquivalence]:
         return list(self._entries.values())

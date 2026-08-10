@@ -4,6 +4,7 @@ Quantum layer for the SPEACE organism: numpy quantum kernel, EDD-CVT
 (ILF + Cosmic Viruses), fractal QCA, earth-signal feed, energy cost model
 and a quantum orchestrator. See progetto_q_speace_linee_guida.md.
 """
+
 from __future__ import annotations
 
 from .bcel import BCELCatalog
@@ -30,6 +31,22 @@ from .quantum import (
     QuantumGates,
     QuantumNeuralBridge,
     QuantumState,
+)
+from .radio import (
+    BeamformingConfig,
+    ComplianceFilter,
+    ComplianceResult,
+    DigitalTwinRF,
+    DigitalTwinRFConfig,
+    MetasurfaceConfig,
+    MetasurfaceController,
+    NullSDR,
+    RadioEmulator,
+    RegulatoryLimits,
+    RFComponentModel,
+    SDRFrontend,
+    SpectrumSensor,
+    WavefrontModulator,
 )
 from .schumann import run_schumann, schumann_circuit
 from .self_improvement_cortex import (
@@ -70,8 +87,32 @@ from .self_improvement_cortex import (
     SoftwareArchitect,
     WeightUpdate,
 )
+from .spiking_brain import (
+    CortexReport,
+    HTTPSpikingBrainClient,
+    SpikingBrainCortex,
+    StubSpikingBrain,
+    StubSpikingBrainV2,
+    ThinkResult,
+    make_spiking_brain,
+)
 
 __all__ = [
+    "SDRFrontend",
+    "NullSDR",
+    "WavefrontModulator",
+    "SpectrumSensor",
+    "MetasurfaceController",
+    "MetasurfaceConfig",
+    "BeamformingConfig",
+    "ComplianceFilter",
+    "ComplianceResult",
+    "RegulatoryLimits",
+    "RadioEmulator",
+    "DigitalTwinRF",
+    "DigitalTwinRFConfig",
+    "RFComponentModel",
+    "QuantumState",
     "QuantumState",
     "QuantumGates",
     "GateType",
@@ -136,4 +177,11 @@ __all__ = [
     "QuantumOracle",
     "QAOASelector",
     "QuantumKernelClassifier",
+    "SpikingBrainCortex",
+    "CortexReport",
+    "ThinkResult",
+    "StubSpikingBrain",
+    "StubSpikingBrainV2",
+    "HTTPSpikingBrainClient",
+    "make_spiking_brain",
 ]

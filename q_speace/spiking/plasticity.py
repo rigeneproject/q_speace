@@ -10,6 +10,7 @@ exponential moving-average decay rule survives in silicon:
 Coefficients can scale entanglement fidelity (T202 P3), modulate spike
 energy or bridge weights — without any online backpropagation.
 """
+
 from __future__ import annotations
 
 import math
@@ -32,10 +33,7 @@ class SpikePlasticity:
 
     def _rates(self, spikes: np.ndarray) -> np.ndarray:
         s = np.asarray(spikes, dtype=float)
-        if s.ndim == 1:
-            rate = np.abs(s)
-        else:
-            rate = np.abs(s).sum(axis=-1)
+        rate = np.abs(s) if s.ndim == 1 else np.abs(s).sum(axis=-1)
         if rate.size != self.num_units:
             raise ValueError(f"spike activity must yield {self.num_units} units, got {rate.size}")
         return rate

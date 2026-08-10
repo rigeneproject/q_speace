@@ -4,6 +4,7 @@ Mirrors ``cellular_speace/.../entanglement_registry.py``. Entanglement is
 used in Q-SPEACE as a *computational resource for information binding*
 (not as a communication channel — see the no-communication theorem).
 """
+
 from __future__ import annotations
 
 import time
@@ -86,9 +87,7 @@ class EntanglementRegistry:
         return len(self._by_entity.get(entity_id, []))
 
     def is_entangled(self, entity_a: str, entity_b: str) -> bool:
-        return any(
-            {p.entity_a, p.entity_b} == {entity_a, entity_b} for p in self._pairs
-        )
+        return any({p.entity_a, p.entity_b} == {entity_a, entity_b} for p in self._pairs)
 
     def all_pairs(self) -> list[EntangledPair]:
         return list(self._pairs)

@@ -3,6 +3,7 @@
 All gates are returned as dense 2^n x 2^n complex matrices. Mirrors the
 API of ``cellular_speace/.../quantum_gates.py``.
 """
+
 from __future__ import annotations
 
 import math

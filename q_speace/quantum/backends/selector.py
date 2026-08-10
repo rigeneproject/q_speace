@@ -1,4 +1,5 @@
 """Backend selector for Q-SPEACE (mirrors cellular_speace BackendSelector)."""
+
 from __future__ import annotations
 
 import os
@@ -20,6 +21,7 @@ def _quantum_inspire_configured() -> bool:
     try:
         import quantum_inspire.api  # noqa: F401
         import quantum_inspire.credentials  # noqa: F401
+
         return True
     except ImportError:
         return False
@@ -29,6 +31,7 @@ def _qiskit_configured() -> bool:
     try:
         import qiskit  # noqa: F401
         import qiskit_aer  # noqa: F401
+
         return True
     except ImportError:
         return False

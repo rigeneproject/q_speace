@@ -6,6 +6,7 @@ classical **fidelity-proxy**. The stored fidelity is a software binding
 metric, NOT quantum state fidelity — no physical entanglement is created
 and the no-communication theorem is untouched (BCEL catalog, T202).
 """
+
 from __future__ import annotations
 
 import numpy as np

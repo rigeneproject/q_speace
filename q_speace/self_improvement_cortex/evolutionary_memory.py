@@ -1,4 +1,5 @@
 """EvolutionaryMemory — stores and retrieves past mutation outcomes (T38)."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -37,10 +38,7 @@ class EvolutionaryMemory:
             self._entries.pop(0)
 
     def find_similar(self, context_signature: str, top_k: int = 5) -> list[MemoryEntry]:
-        candidates = [
-            e for e in self._entries
-            if e.context_signature == context_signature
-        ]
+        candidates = [e for e in self._entries if e.context_signature == context_signature]
         candidates.sort(key=lambda e: abs(e.outcome), reverse=True)
         return candidates[:top_k]
 
@@ -51,9 +49,7 @@ class EvolutionaryMemory:
 
     def has_failed_before(self, context_signature: str, target: str) -> bool:
         return any(
-            e.context_signature == context_signature
-            and e.target == target
-            and e.net_impact < 0
+            e.context_signature == context_signature and e.target == target and e.net_impact < 0
             for e in self._entries
         )
 

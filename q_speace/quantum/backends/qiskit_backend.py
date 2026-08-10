@@ -5,6 +5,7 @@ via AerSimulator (statevector or shot-based). The SDK is lazy-imported so
 the rest of Q-SPEACE keeps working without it; if Qiskit is unavailable the
 backend raises a clear install message.
 """
+
 from __future__ import annotations
 
 from .base import QuantumBackend

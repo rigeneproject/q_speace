@@ -13,6 +13,7 @@ Optional ILF modulation of the threshold (T202 spec section 5):
 The firing of biological neurons is *accidental* (BCEL gate); only the
 integer quantization rule survives in silicon.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass

@@ -10,6 +10,7 @@ Implements the A+B framework agreed for Q-SPEACE:
     architecture). Bottom-up = lower-level *variance* (noise) feeds the
     higher level; top-down = higher-level coherence seeds the lower level.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass

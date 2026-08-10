@@ -7,6 +7,7 @@ sees the neural model (separation of levels). Two encodings:
   - rotation encoding: per-cell spike counts -> RY angles pi * rate
     (same idiom as earth_feed's EarthSignals.rotation_angles)
 """
+
 from __future__ import annotations
 
 import math
@@ -54,10 +55,7 @@ class SpikeQuantumBridge:
         active cell maps to pi, silent cells to 0.0.
         """
         s = np.asarray(spikes, dtype=float)
-        if s.ndim > 1:
-            counts = np.abs(s).sum(axis=-1)
-        else:
-            counts = np.abs(s)
+        counts = np.abs(s).sum(axis=-1) if s.ndim > 1 else np.abs(s)
         if num_cells is not None:
             if num_cells < 1:
                 raise ValueError("num_cells must be >= 1")

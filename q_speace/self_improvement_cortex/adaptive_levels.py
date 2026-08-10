@@ -1,4 +1,5 @@
 """10 adaptive levels — Harness Update to Weight Update to Neurogenesis (T35)."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

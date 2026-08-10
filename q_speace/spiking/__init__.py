@@ -6,6 +6,7 @@ event-driven energy, plasticity coefficients, classical spike-correlation
 binding and spike-entropy gradients. Pseudo-spiking at tensor level only;
 numpy-only, no torch, no neuromorphic hardware.
 """
+
 from __future__ import annotations
 
 from .bridge import SpikeQuantumBridge
@@ -14,7 +15,7 @@ from .correlation import (
     spike_correlation,
     spike_entropy_gradient,
 )
-from .encoder import SpikeEncodingResult, dynamic_spikes, spike_count, spike_rate, sparsity
+from .encoder import SpikeEncodingResult, dynamic_spikes, sparsity, spike_count, spike_rate
 from .linear import SpikeEncodedLinear
 from .plasticity import SpikePlasticity
 

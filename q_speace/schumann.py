@@ -5,6 +5,7 @@ Builds a small quantum register, entangles it (Hadamard + CNOT as the
 real Earth signals, and measures whether stable fractal patterns emerge
 or the state collapses into chaos (tracked via coherence_phi).
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -54,7 +55,7 @@ def run_schumann(
         probs = state.probabilities()
         nz = probs[probs > 0]
         entropy = float(-np.sum(nz * np.log(nz)))
-        max_ent = math.log(2 ** num_qubits)
+        max_ent = math.log(2**num_qubits)
         coherence = 1.0 - (entropy / max_ent if max_ent > 0 else 0.0)
         coherence_trace.append(float(coherence))
         last_measurements = measurements

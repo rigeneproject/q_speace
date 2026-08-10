@@ -8,6 +8,7 @@ CV acts as a stochastic-resonance perturbation that drives continuous
 self-optimization. It is a *functional* biological analogy (kept as a
 mathematical rule by the BCEL gate), not a literal virus.
 """
+
 from __future__ import annotations
 
 from collections.abc import Callable

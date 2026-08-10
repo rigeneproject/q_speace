@@ -1,4 +1,5 @@
 """Quantum package public API."""
+
 from __future__ import annotations
 
 from .entanglement_registry import EntangledPair, EntanglementRegistry

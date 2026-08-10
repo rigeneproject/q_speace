@@ -6,6 +6,7 @@ a *deterministic modulation* of computation parameters, not "planetary
 perception" (see guidelines §4). Network access is best-effort; a
 deterministic synthetic fallback keeps the system reproducible offline.
 """
+
 from __future__ import annotations
 
 import math

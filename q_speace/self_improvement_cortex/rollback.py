@@ -1,4 +1,5 @@
 """RollbackManager — automatic rollback on metric degradation (T39)."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -38,7 +39,9 @@ class RollbackManager:
             "resilience": -0.15,
         }
 
-    def evaluate(self, mutation: DNAMutationRecord, current_metrics: dict[str, float]) -> RollbackPlan | None:
+    def evaluate(
+        self, mutation: DNAMutationRecord, current_metrics: dict[str, float]
+    ) -> RollbackPlan | None:
         degraded = {}
         for metric, threshold in self._thresholds.items():
             before = mutation.metrics_before.get(metric)

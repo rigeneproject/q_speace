@@ -3,6 +3,7 @@
 A circuit maps logical roles (e.g. "memory", "decision") to qubit
 indices, applies single/two-qubit gates, and measures at the end.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -62,9 +63,7 @@ class QuantumBrainSimulator:
     def __init__(self, seed: int | None = None) -> None:
         self._seed = seed
 
-    def run(
-        self, circuit: BrainQuantumCircuit, measure_all: bool = True
-    ) -> list[tuple[str, str]]:
+    def run(self, circuit: BrainQuantumCircuit, measure_all: bool = True) -> list[tuple[str, str]]:
         n = circuit.num_qubits
         if n == 0:
             return []
@@ -91,8 +90,11 @@ class QuantumBrainSimulator:
         for op in circuit.gates():
             if op.control is not None:
                 u = QuantumGates.two_qubit(
-                    op.gate, n, circuit._role_index[op.control],
-                    circuit._role_index[op.target], angle=op.angle,
+                    op.gate,
+                    n,
+                    circuit._role_index[op.control],
+                    circuit._role_index[op.target],
+                    angle=op.angle,
                 )
             else:
                 u = QuantumGates.single_qubit(

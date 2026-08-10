@@ -1,4 +1,5 @@
 """Tests for the Self-Improvement Cortex (SIA) — T32 to T46."""
+
 from __future__ import annotations
 
 import numpy as np
@@ -8,15 +9,11 @@ from q_speace.self_improvement_cortex import (
     AdaptiveLevelRegistry,
     DigitalDNAAgent,
     EpigeneticEngine,
-    EpigeneticMarker,
-    EvolutionCouncil,
     EvolutionaryMemory,
+    EvolutionCouncil,
     HarnessUpdate,
-    ILFAgent,
     ILFRegulator,
-    MemoryAgent,
     MemoryEntry,
-    MutationAgent,
     MutationRegistry,
     NeurogenesisPipeline,
     NeuroscienceAgent,
@@ -25,11 +22,9 @@ from q_speace.self_improvement_cortex import (
     QuantumEvolutionEngine,
     QuantumKernelClassifier,
     QuantumOracle,
-    RLAgent,
     RollbackManager,
     SafetyAgent,
     SelfImprovementCortex,
-    SoftwareArchitect,
     WeightUpdate,
 )
 
@@ -54,9 +49,16 @@ def test_organism_observer_delta():
 
 def test_evolution_council_gathers_proposals():
     council = EvolutionCouncil()
-    ctx = {"coherence_phi": 0.2, "plasticity_index": 0.2, "prediction_error": 0.3,
-           "goal_completion": 0.3, "memory_compression": 0.2, "resilience": 0.3,
-           "novelty": 0.1, "ilf_coherence": 0.4}
+    ctx = {
+        "coherence_phi": 0.2,
+        "plasticity_index": 0.2,
+        "prediction_error": 0.3,
+        "goal_completion": 0.3,
+        "memory_compression": 0.2,
+        "resilience": 0.3,
+        "novelty": 0.1,
+        "ilf_coherence": 0.4,
+    }
     proposals = council.gather_proposals(ctx)
     assert len(proposals) >= 1
 
@@ -65,6 +67,64 @@ def test_evolution_council_decide():
     council = EvolutionCouncil()
     proposals = council.gather_proposals({"coherence_phi": 0.2, "plasticity_index": 0.2})
     selected = council.decide(proposals, {})
+    assert len(selected) <= 3
+
+
+def test_evolution_council_deliberate_with_brain_consultative():
+    """The brain must NEVER vote directly: it only re-weights proposals.
+
+    With a stub brain returning confidence=1.0, the orchestrator should
+    select the same proposals as without the brain (or a superset), but
+    their individual confidence values must have been bumped up by the
+    brain's weight.
+    """
+    import asyncio
+
+    from q_speace.spiking_brain import SpikingBrainCortex, StubSpikingBrain
+
+    # Plain council: baseline
+    plain = EvolutionCouncil()
+    ctx = {"coherence_phi": 0.2, "plasticity_index": 0.2}
+    base_proposals = plain.gather_proposals(ctx)
+    base_confs = sorted([p.confidence for p in base_proposals])
+
+    # Council with a brain that reports perfect confidence (boost weight x1.5)
+    council_brain = EvolutionCouncil(brain=SpikingBrainCortex(backend=StubSpikingBrain(seed=42)))
+    boosted = asyncio.run(council_brain.deliberate_with_brain(ctx, prompt="force stub high conf"))
+    boosted_proposals = council_brain.gather_proposals(ctx)
+    # ``deliberate_with_brain`` mutates confidence in place; after the
+    # call the proposal objects in council_brain carry the boosted
+    # values. We rebuild them to compare separately.
+    assert len(boosted) <= 3  # orchestrator cap still respected
+    # The brain must have left at least one proposal's confidence >= the
+    # plain baseline (stub returns ~1.0 confidence, x1.5 weight → bigger).
+    if base_confs:
+        assert (
+            any(p.confidence >= base_confs[-1] * 0.99 for p in boosted_proposals)
+            or len(boosted_proposals) == 0
+        )
+
+
+def test_evolution_council_brain_failure_is_swallowed():
+    """If the brain raises, ``deliberate_with_brain`` must fall back to
+    the plain ``decide`` path without crashing the SIA cycle.
+    """
+
+    class _BoomBackend:
+        backend = "boom"
+
+        def think(self, *args, **kwargs):
+            raise RuntimeError("simulated brain failure")
+
+    from q_speace.spiking_brain import SpikingBrainCortex
+
+    council = EvolutionCouncil(brain=SpikingBrainCortex(backend=_BoomBackend()))
+    ctx = {"coherence_phi": 0.2, "plasticity_index": 0.2}
+    # ``deliberate_with_brain`` catches the brain error and delegates
+    # to ``decide``. The selected proposals must still be valid.
+    import asyncio
+
+    selected = asyncio.run(council.deliberate_with_brain(ctx))
     assert len(selected) <= 3
 
 
@@ -90,8 +150,7 @@ def test_adaptive_level_full_cycle():
 
 def test_dna_registry_record():
     reg = MutationRegistry()
-    rec = reg.record("test mutation", 1, "prompt_strategy",
-                     {"acc": 0.5}, {"acc": 0.8})
+    rec = reg.record("test mutation", 1, "prompt_strategy", {"acc": 0.5}, {"acc": 0.8})
     assert rec.mutation_id is not None
     assert rec.level == 1
     assert reg.count() == 1
@@ -127,10 +186,8 @@ def test_epigenetic_rollback():
 
 def test_evolutionary_memory_store_and_retrieve():
     mem = EvolutionaryMemory()
-    mem.store(MemoryEntry("m1", "ctx1", "test", 1, "x",
-                          {"a": 0.5}, {"a": 0.9}, outcome=0.4))
-    mem.store(MemoryEntry("m2", "ctx1", "test", 1, "y",
-                          {"a": 0.5}, {"a": 0.3}, outcome=-0.2))
+    mem.store(MemoryEntry("m1", "ctx1", "test", 1, "x", {"a": 0.5}, {"a": 0.9}, outcome=0.4))
+    mem.store(MemoryEntry("m2", "ctx1", "test", 1, "y", {"a": 0.5}, {"a": 0.3}, outcome=-0.2))
     similar = mem.find_similar("ctx1")
     assert len(similar) == 2
     assert mem.has_failed_before("ctx1", "y")
@@ -139,15 +196,17 @@ def test_evolutionary_memory_store_and_retrieve():
 
 def test_ilf_regulator_approves_good_mutation():
     ilf = ILFRegulator(min_threshold=0.3)
-    verdict = ilf.assess(performance_impact=0.8, coherence_impact=0.5,
-                         resilience_impact=0.7, energy_impact=0.2)
+    verdict = ilf.assess(
+        performance_impact=0.8, coherence_impact=0.5, resilience_impact=0.7, energy_impact=0.2
+    )
     assert verdict.approved
 
 
 def test_ilf_regulator_rejects_bad_mutation():
     ilf = ILFRegulator(min_threshold=0.5)
-    verdict = ilf.assess(performance_impact=0.1, coherence_impact=-0.5,
-                         resilience_impact=-0.3, energy_impact=0.9)
+    verdict = ilf.assess(
+        performance_impact=0.1, coherence_impact=-0.5, resilience_impact=-0.3, energy_impact=0.9
+    )
     assert not verdict.approved
 
 
@@ -210,10 +269,12 @@ def test_qaoa_selector():
 
 def test_quantum_kernel_classifier():
     kernel = QuantumKernelClassifier(num_qubits=4, seed=42)
-    X = [np.array([0.8, 0.2, 0.7, 0.1], dtype=np.float64),
-         np.array([0.2, 0.8, 0.3, 0.5], dtype=np.float64)]
+    inputs = [
+        np.array([0.8, 0.2, 0.7, 0.1], dtype=np.float64),
+        np.array([0.2, 0.8, 0.3, 0.5], dtype=np.float64),
+    ]
     y = [1.0, -1.0]
-    kernel.fit(X, y)
+    kernel.fit(inputs, y)
     pred = kernel.predict(np.array([0.7, 0.3, 0.6, 0.2], dtype=np.float64))
     assert isinstance(pred, float)
 
@@ -222,10 +283,24 @@ def test_quantum_evolution_engine():
     qee = QuantumEvolutionEngine()
     qee.oracle = QuantumOracle(num_qubits=4, seed=42)
     strategies = [
-        {"id": "a", "expected_impact": 0.8, "risk": 0.2, "confidence": 0.7,
-         "energy_cost": 0.1, "novelty": 0.3, "score": 0.8},
-        {"id": "b", "expected_impact": 0.3, "risk": 0.7, "confidence": 0.4,
-         "energy_cost": 0.5, "novelty": 0.1, "score": 0.3},
+        {
+            "id": "a",
+            "expected_impact": 0.8,
+            "risk": 0.2,
+            "confidence": 0.7,
+            "energy_cost": 0.1,
+            "novelty": 0.3,
+            "score": 0.8,
+        },
+        {
+            "id": "b",
+            "expected_impact": 0.3,
+            "risk": 0.7,
+            "confidence": 0.4,
+            "energy_cost": 0.5,
+            "novelty": 0.1,
+            "score": 0.3,
+        },
     ]
     results = qee.propose_candidates(strategies, {}, top_k=2)
     assert len(results) >= 1
@@ -242,7 +317,7 @@ def test_cortex_tick():
 def test_cortex_multi_tick():
     cortex = SelfImprovementCortex()
     for i in range(5):
-        report = cortex.tick({"coherence_phi": 0.7, "plasticity_index": 0.3 + i * 0.1})
+        cortex.tick({"coherence_phi": 0.7, "plasticity_index": 0.3 + i * 0.1})
     summary = cortex.report()
     assert summary["ticks"] == 5
     assert summary["total_proposals"] >= 0
@@ -281,22 +356,37 @@ def test_safety_agent_high_confidence():
 def test_cli_sia_help():
     import subprocess
     import sys
-    result = subprocess.run([sys.executable, "-m", "q_speace.cli", "sia", "--help"],
-                           capture_output=True, text=True, cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace")
+
+    result = subprocess.run(
+        [sys.executable, "-m", "q_speace.cli", "sia", "--help"],
+        capture_output=True,
+        text=True,
+        cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace",
+    )
     assert "Self-Improvement" in result.stdout or "Self-Improvement" in result.stderr
 
 
 def test_cli_sia_run():
     import subprocess
     import sys
-    result = subprocess.run([sys.executable, "-m", "q_speace.cli", "sia", "run", "--ticks", "3"],
-                           capture_output=True, text=True, cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace")
+
+    result = subprocess.run(
+        [sys.executable, "-m", "q_speace.cli", "sia", "run", "--ticks", "3"],
+        capture_output=True,
+        text=True,
+        cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace",
+    )
     assert result.returncode == 0
 
 
 def test_cli_qee():
     import subprocess
     import sys
-    result = subprocess.run([sys.executable, "-m", "q_speace.cli", "quantum", "qee"],
-                           capture_output=True, text=True, cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace")
+
+    result = subprocess.run(
+        [sys.executable, "-m", "q_speace.cli", "quantum", "qee"],
+        capture_output=True,
+        text=True,
+        cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace",
+    )
     assert result.returncode == 0

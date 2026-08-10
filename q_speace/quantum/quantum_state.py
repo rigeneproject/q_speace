@@ -5,6 +5,7 @@ quantum-inspired neural computation in Q-SPEACE. Mirrors the API of
 ``cellular_speace/speace_core/cellular_brain/quantum/quantum_state.py``
 so that Q-SPEACE can run standalone or be merged upstream.
 """
+
 from __future__ import annotations
 
 import math
@@ -81,9 +82,7 @@ class QuantumState:
         return obj
 
     @classmethod
-    def equal_superposition(
-        cls, num_qubits: int, seed: int | None = None
-    ) -> QuantumState:
+    def equal_superposition(cls, num_qubits: int, seed: int | None = None) -> QuantumState:
         zero = np.array([1.0, 1.0], dtype=np.complex128) / math.sqrt(2.0)
         amps = zero.copy()
         for _ in range(num_qubits - 1):
@@ -203,16 +202,12 @@ class QuantumState:
         k = max(1, min(k, n - 1))
         dim_a = 1 << k
         dim_b = 1 << (n - k)
-        rho = np.outer(self.amplitudes, self.amplitudes.conj()).reshape(
-            dim_a, dim_b, dim_a, dim_b
-        )
+        rho = np.outer(self.amplitudes, self.amplitudes.conj()).reshape(dim_a, dim_b, dim_a, dim_b)
         rho_a = np.trace(rho, axis1=1, axis2=3)
         rho_b = np.trace(rho, axis1=0, axis2=2)
         evals_a = np.linalg.eigvalsh(rho_a)
         evals_b = np.linalg.eigvalsh(rho_b)
-        evals_ab = np.linalg.eigvalsh(
-            np.outer(self.amplitudes, self.amplitudes.conj())
-        )
+        evals_ab = np.linalg.eigvalsh(np.outer(self.amplitudes, self.amplitudes.conj()))
 
         def entropy(evals):
             clipped = np.maximum(np.real(evals), 1e-12)

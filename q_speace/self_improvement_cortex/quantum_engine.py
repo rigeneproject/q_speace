@@ -1,4 +1,5 @@
 """Quantum Evolution Engine — Grover, QAOA, Quantum Kernel (T42-T45)."""
+
 # ruff: noqa: N806, N803 — standard physics notation (H, X, U for operators)
 from __future__ import annotations
 
@@ -30,7 +31,9 @@ class QuantumOracle:
         self.num_qubits = min(num_qubits, 12)
         self._rng = np.random.default_rng(seed)
 
-    def mark_good_states(self, state: QuantumState, items: list[float], threshold: float) -> QuantumState:
+    def mark_good_states(
+        self, state: QuantumState, items: list[float], threshold: float
+    ) -> QuantumState:
         n = self.num_qubits
         dim = 1 << n
         new_amps = state.amplitudes.copy()
@@ -203,7 +206,9 @@ class QuantumEvolutionEngine:
 
     oracle: QuantumOracle = field(default_factory=lambda: QuantumOracle(num_qubits=8))
     qaoa: QAOASelector = field(default_factory=lambda: QAOASelector(num_qubits=8))
-    kernel: QuantumKernelClassifier = field(default_factory=lambda: QuantumKernelClassifier(num_qubits=6))
+    kernel: QuantumKernelClassifier = field(
+        default_factory=lambda: QuantumKernelClassifier(num_qubits=6)
+    )
     enabled: bool = True
 
     def propose_candidates(
@@ -221,36 +226,42 @@ class QuantumEvolutionEngine:
         threshold = float(np.mean(scores) if scores else 0.5)
         idx, grover_score = self.oracle.search(scores, threshold)
         if idx >= 0:
-            results.append(QEEResult(
-                candidate_id=strategy_id(strategies, idx),
-                score=grover_score,
-                confidence=min(1.0, grover_score),
-                method="grover",
-            ))
+            results.append(
+                QEEResult(
+                    candidate_id=strategy_id(strategies, idx),
+                    score=grover_score,
+                    confidence=min(1.0, grover_score),
+                    method="grover",
+                )
+            )
 
         qaoa_selected = self.qaoa.select(strategies, num_selected=top_k)
         for i in qaoa_selected:
             if i < len(strategies):
                 s = strategies[i]
-                results.append(QEEResult(
-                    candidate_id=s.get("id", str(i)),
-                    score=s.get("expected_impact", 0.5),
-                    confidence=1.0 - s.get("risk", 0.5),
-                    method="qaoa",
-                    details={"energy_cost": s.get("energy_cost", 0.1)},
-                ))
+                results.append(
+                    QEEResult(
+                        candidate_id=s.get("id", str(i)),
+                        score=s.get("expected_impact", 0.5),
+                        confidence=1.0 - s.get("risk", 0.5),
+                        method="qaoa",
+                        details={"energy_cost": s.get("energy_cost", 0.1)},
+                    )
+                )
 
         if self.kernel._trained and strategies:
             for i, s in enumerate(strategies[:top_k]):
                 features = _strategy_to_features(s)
                 prob = self.kernel.predict_proba(features)
                 if prob > 0.6:
-                    results.append(QEEResult(
-                        candidate_id=s.get("id", str(i)),
-                        score=float(prob),
-                        confidence=float(prob),
-                        method="quantum_kernel",
-                    ))
+                    results.append(
+                        QEEResult(
+                            candidate_id=s.get("id", str(i)),
+                            score=float(prob),
+                            confidence=float(prob),
+                            method="quantum_kernel",
+                        )
+                    )
 
         results.sort(key=lambda r: r.score, reverse=True)
         return results[:top_k]
@@ -266,10 +277,13 @@ def strategy_id(strategies: list[dict], idx: int) -> str:
 
 
 def _strategy_to_features(s: dict) -> np.ndarray:
-    return np.array([
-        s.get("expected_impact", 0.5),
-        1.0 - s.get("risk", 0.5),
-        s.get("confidence", 0.5),
-        s.get("energy_cost", 0.1),
-        s.get("novelty", 0.0),
-    ], dtype=np.float64)
+    return np.array(
+        [
+            s.get("expected_impact", 0.5),
+            1.0 - s.get("risk", 0.5),
+            s.get("confidence", 0.5),
+            s.get("energy_cost", 0.1),
+            s.get("novelty", 0.0),
+        ],
+        dtype=np.float64,
+    )

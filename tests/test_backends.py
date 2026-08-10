@@ -1,4 +1,5 @@
 """Tests for the backend abstraction and Quantum Inspire cQASM serialization."""
+
 from __future__ import annotations
 
 from q_speace.quantum import BrainQuantumCircuit, GateType
@@ -75,7 +76,7 @@ def test_quantum_inspire_requires_token(monkeypatch):
     bi = QuantumInspireBackend()
     try:
         bi.run(_bell())
-        assert False, "expected RuntimeError without token"
+        raise AssertionError("expected RuntimeError without token")
     except RuntimeError as exc:
         assert "QI_TOKEN" in str(exc)
 
@@ -98,6 +99,6 @@ def test_qiskit_backend_raises_without_sdk():
     bk = QiskitBackend()
     try:
         bk.run(_bell())
-        assert False, "expected RuntimeError without qiskit"
+        raise AssertionError("expected RuntimeError without qiskit")
     except RuntimeError as exc:
         assert "qiskit" in str(exc).lower()

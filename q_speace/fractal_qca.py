@@ -8,6 +8,7 @@ Goal: macroscopic stability emerges from local rules, measured via
 coherence_phi. The "fractality" is *functional* (a scaling rule) and is
 kept by the BCEL gate; the biological fractal *shape* is accidental.
 """
+
 from __future__ import annotations
 
 import math
@@ -120,9 +121,7 @@ class FractalQCA:
     def seed_from(self, coherence_phi: float, rate: float = 0.1) -> None:
         """Top-down seeding: nudge weights toward a higher-level coherence."""
         target = min(max(coherence_phi, 0.0), 1.0)
-        self.weights = np.clip(
-            self.weights + rate * (target - self.weights), 0.0, 1.0
-        )
+        self.weights = np.clip(self.weights + rate * (target - self.weights), 0.0, 1.0)
 
     def run(self, ticks: int = 10) -> list[QCAStepResult]:
         results: list[QCAStepResult] = []

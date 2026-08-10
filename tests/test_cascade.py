@@ -1,13 +1,11 @@
 """Tests for the Fractal QCA cascade (A+B framework, RG signatures)."""
-from __future__ import annotations
 
-import numpy as np
+from __future__ import annotations
 
 from q_speace.fractal_qca import FractalQCA
 from q_speace.fractal_qca_cascade import (
     FractalQCACascade,
     LevelSignature,
-    MacroLevel,
     experiment_cross_scale,
     qi_bridge_cqasm,
 )

@@ -1,10 +1,11 @@
 """Tests for the pseudo-spiking layer (task T202)."""
+
 from __future__ import annotations
 
 import numpy as np
 import pytest
 
-from q_speace.edd_cvt import CVConfig, CosmicVirusOptimizer
+from q_speace.edd_cvt import CosmicVirusOptimizer, CVConfig
 from q_speace.metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
 from q_speace.quantum import QuantumNeuralBridge
 from q_speace.spiking import (
@@ -13,10 +14,10 @@ from q_speace.spiking import (
     SpikeQuantumBridge,
     dynamic_spikes,
     entangle_by_correlation,
+    sparsity,
     spike_correlation,
     spike_count,
     spike_entropy_gradient,
-    sparsity,
 )
 
 
@@ -112,9 +113,7 @@ def test_plasticity_ema_coefficients_in_unit_range():
 
 
 def test_plasticity_decayed_rate_formula():
-    assert SpikePlasticity.decayed_rate(3.0, dt=5.0, lam=0.1) == pytest.approx(
-        3.0 * np.exp(-0.5)
-    )
+    assert SpikePlasticity.decayed_rate(3.0, dt=5.0, lam=0.1) == pytest.approx(3.0 * np.exp(-0.5))
 
 
 def test_spike_correlation_matrix():

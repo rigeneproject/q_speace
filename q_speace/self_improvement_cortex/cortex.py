@@ -1,4 +1,5 @@
 """SelfImprovementCortex — main orchestrator of the SIA cycle (T32)."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -107,16 +108,18 @@ class SelfImprovementCortex:
             if verdict.approved:
                 mutations_applied += 1
                 self.levels.escalate()
-                self.evo_memory.store(MemoryEntry(
-                    mutation_id=record.mutation_id,
-                    context_signature=str(ctx.get("coherence_phi", 0)),
-                    reason=proposal.reason,
-                    level=proposal.level,
-                    target=proposal.target,
-                    metrics_before=metrics_before,
-                    metrics_after={},
-                    outcome=proposal.expected_impact,
-                ))
+                self.evo_memory.store(
+                    MemoryEntry(
+                        mutation_id=record.mutation_id,
+                        context_signature=str(ctx.get("coherence_phi", 0)),
+                        reason=proposal.reason,
+                        level=proposal.level,
+                        target=proposal.target,
+                        metrics_before=metrics_before,
+                        metrics_after={},
+                        outcome=proposal.expected_impact,
+                    )
+                )
             else:
                 self.epigenetics.suppress(record.mutation_id, source="ilf_regulator")
 

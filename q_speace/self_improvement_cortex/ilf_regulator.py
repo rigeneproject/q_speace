@@ -1,4 +1,5 @@
 """ILFRegulator — evaluates mutations against global coherence (T40)."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -65,5 +66,9 @@ class ILFRegulator:
             resilience_delta=resilience_impact,
             energy_delta=energy_impact,
             overall_score=score,
-            reason="approved" if approved else f"score {score:.3f} below threshold {self._min_threshold}",
+            reason=(
+                "approved"
+                if approved
+                else f"score {score:.3f} below threshold {self._min_threshold}"
+            ),
         )

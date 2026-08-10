@@ -4,6 +4,7 @@ Provides the SelfImprovementCortex, EvolutionCouncil, OrganismObserver,
 10-level adaptive hierarchy, epigenetic memory, neurogenesis, and the
 Quantum Evolution Engine (QEE). See docs/progetto_q_speace_linee_guida.md §9.
 """
+
 from __future__ import annotations
 
 from .adaptive_levels import AdaptiveLevel, AdaptiveLevelRegistry, HarnessUpdate, WeightUpdate

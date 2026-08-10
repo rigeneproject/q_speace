@@ -1,12 +1,13 @@
 """Tests for Q-SPEACE EDD-CVT, metabolism, fractal QCA and orchestrator."""
+
 from __future__ import annotations
 
 import numpy as np
 
-from q_speace.metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
 from q_speace.edd_cvt import CosmicVirusOptimizer, InformationalLogicalField
 from q_speace.fractal_qca import FractalQCA
 from q_speace.genome import QuantumGeneSet
+from q_speace.metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
 from q_speace.orchestrator import QuantumOrchestrator
 from q_speace.schumann import run_schumann
 
@@ -55,9 +56,7 @@ def test_fractal_qca_runs():
 
 def test_orchestrator_run():
     genome = QuantumGeneSet(enabled=True)
-    orch = QuantumOrchestrator(
-        genome=genome, neurons=[f"n{i}" for i in range(4)]
-    )
+    orch = QuantumOrchestrator(genome=genome, neurons=[f"n{i}" for i in range(4)])
     orch.enable_qca(num_cells=8)
     report = orch.run(ticks=5)
     assert len(report) == 5
@@ -83,6 +82,26 @@ def test_orchestrator_energy_gate_blocks():
     )
     report = orch.run(ticks=3)
     assert sum(1 for r in report if r.gate_blocked) > 0
+
+
+def test_ilf_q_star_computation():
+    ilf = InformationalLogicalField()
+    ilf.register_agent("a", weight=2.0)
+    ilf.register_agent("b", weight=1.0)
+    ilf.set_belief("a", np.array([0.9, 0.1]))
+    ilf.set_belief("b", np.array([0.3, 0.7]))
+    q = ilf.compute_q_star()
+    assert abs(sum(q) - 1.0) < 1e-6
+    assert q[0] > q[1]
+
+
+def test_ilf_q_star_single_agent():
+    ilf = InformationalLogicalField()
+    ilf.register_agent("x")
+    ilf.set_belief("x", np.array([0.2, 0.8]))
+    q = ilf.compute_q_star()
+    assert abs(q[0] - 0.2) < 1e-6
+    assert abs(q[1] - 0.8) < 1e-6
 
 
 def test_schumann_experiment():

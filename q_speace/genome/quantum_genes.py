@@ -3,6 +3,7 @@
 Extends the ``QuantumGeneSet`` concept from cellular speace with real-backend
 parameters (backend name, shots, noise model) as required by task T4.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

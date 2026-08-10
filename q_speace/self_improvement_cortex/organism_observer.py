@@ -1,4 +1,5 @@
 """OrganismObserver — collects the full physiological profile (T34)."""
+
 from __future__ import annotations
 
 import time
@@ -29,7 +30,8 @@ class PhysiologicalProfile:
 
     def to_dict(self) -> dict[str, float]:
         base = {
-            k: float(v) for k, v in self.__dict__.items()
+            k: float(v)
+            for k, v in self.__dict__.items()
             if isinstance(v, (int, float)) and k != "extra"
         }
         base.update(self.extra)

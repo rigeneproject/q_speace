@@ -1,4 +1,5 @@
 """DNA Mutation Registry — records every evolutionary change (T36)."""
+
 from __future__ import annotations
 
 import time

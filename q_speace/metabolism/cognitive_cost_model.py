@@ -7,6 +7,7 @@ Implements two specs from the EDD-CVT paper:
 Q-SPEACE operations are priced by qubit count, gate count, entanglement
 depth and decoherence budget, so they can be gated by an energy controller.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -20,6 +21,7 @@ class QuantumOperation:
     num_gates: int
     entanglement_depth: int = 0
     decoherence_budget: float = 0.0  # expected coherence loss [0,1]
+    num_spikes: int = 0  # sparse event count; zero preserves T10 behaviour
 
 
 class QuantumCostModel:
@@ -33,6 +35,7 @@ class QuantumCostModel:
     W_PER_ENTANGLEMENT_DEPTH: float = 0.01
     # Decoherence penalty (extra power to maintain fidelity).
     W_PER_DECOHERENCE_UNIT: float = 0.1
+    W_PER_SPIKE: float = 0.001
 
     def energy_watts(self, op: QuantumOperation) -> float:
         """Instantaneous power draw estimate for the operation.
@@ -45,6 +48,7 @@ class QuantumCostModel:
             + op.num_gates * self.W_PER_GATE
             + op.entanglement_depth * self.W_PER_ENTANGLEMENT_DEPTH
             + op.decoherence_budget * self.W_PER_DECOHERENCE_UNIT
+            + max(op.num_spikes, 0) * self.W_PER_SPIKE
         )
 
     def energy_joules(self, op: QuantumOperation, duration_s: float = 1.0) -> float:
@@ -62,5 +66,7 @@ class QuantumCostModel:
         return delta_utility / delta_entropy_info
 
     @staticmethod
-    def passes_sevo(delta_utility: float, delta_entropy_info: float, threshold: float = 1.5) -> bool:
+    def passes_sevo(
+        delta_utility: float, delta_entropy_info: float, threshold: float = 1.5
+    ) -> bool:
         return QuantumCostModel.sevo(delta_utility, delta_entropy_info) > threshold

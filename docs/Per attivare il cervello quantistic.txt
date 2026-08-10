@@ -4,3 +4,11 @@ pip install -e .          # già fatto
 qspace quantum run        # backend numpy (locale, funziona subito)
 pip install qiskit qiskit-aer   # per simulazione più performante
 qspace quantum run --backend qiskit
+
+CLI aggiunta (qspace sia ...)
+Comando	Descrizione
+qspace sia run --ticks 10	Esegue il ciclo di auto-miglioramento
+qspace sia status	Mostra riepilogo metrics
+qspace sia dna --limit 10	Elenca mutazioni recenti nel DNA
+qspace sia benchmark	Benchmark GPU per entanglement simulation
+qspace quantum qee	Testa Quantum Evolution Engine con strategie di esempio
