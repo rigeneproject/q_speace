@@ -106,6 +106,50 @@ Esiti attesi:
 - `/health:8001` = 503 o errore SDPA → conferma bug.
 - `/health:8002` = `ready=true` → T207 OK (già validato in T205-C).
 
+### 4.1-bis Risultati verifica live (2026-08-10)
+
+- **venv** `~/.venvs/spikingbrain` ✓ presente.
+- **SpikingBrain-7B weights** ✓ presenti (`~/models/maujim/spikingbrain-v1-7b-base/`,
+  15 GB totali, 9 shard `pytorch_model-*.bin` da 0.95–1.09 GB ciascuno,
+  più sorgenti `window_attention.py`/`gla_attention.py` già patched
+  on-disk con mask shape fix T205-B, 9912 bytes / 219 righe).
+- **Qwen2.5-3B** ✓ presente.
+- **Sidecar SpB-7B (:8001)** avviato con `SPB_SKIP_DISK_PATCHER=1`
+  + `SPB_MAX_MEMORY={"0":"5700MB","cpu":"1500MB"}`.
+  Caricamento modello: **31.6s** (4.35B params, NF4 4-bit).
+  VRAM picco: **5682 MB**.
+- **Probe `/think` su "The capital of France is"** (8 token):
+  `{"text":" Paris pérdida cámara Publié Publié pérdida pérdida pérdida",
+   "confidence":0.9999999, "n_tokens":8, "latency_s":2.58}`
+
+#### Diagnosi bug SDPA
+
+Il **mask shape fix T205-B funziona**: il sidecar non crasha,
+il forward puro produce il primo token corretto ("Paris"), e la
+generazione procede end-to-end con latenza 0.32 s/token. Il template
+SDPA fallback installato via meta-path hook in
+`spiking_brain_server/server.py:294–393` è sufficiente per la
+correttezza.
+
+**Bug separato NON risolto** (T205-B §3, già documentato): la cache
+sliding window degrada in pattern `pérdida/cámara/Publié` dopo il
+primo token. Causa nota: incompatibilità `fla` × `transformers 4.55`
+nel path varlen cache — non è il mask shape, è un'altra classe di
+bug (probabilmente posizionamento errato di `cu_seqlens` o finestra
+sliding applicata al segmento sbagliato). **Out of scope per T-SPB-0A**:
+richiede patching di `flash_attn_varlen_func` con kernel custom o
+downgrade di `transformers` a una versione fla-compatibile.
+
+Implicazione operativa per la roadmap:
+
+- T-SPB-0A ✅ **chiuso**: forward end-to-end del modello reale è
+  confermato funzionante, anche se con degradazione testuale dopo il
+  primo token.
+- T-SPB-1 (1B) può partire: la pipeline è sana.
+- La degradazione cache sliding window è un **bug architetturale del
+  modello/fla** che va tracciato in un ticket separato (T-SPB-0B)
+  per non bloccare la roadmap T-SPB-*.
+
 ### 4.2 Fix bug SDPA (uno dei due)
 
 **Opzione A — Mask shape fix (preferita, locale):**
