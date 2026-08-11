@@ -72,18 +72,27 @@ Specifico:
 ## 6. Opzioni di fix proposte (da valutare)
 
 ### Opzione A — Downgrade transformers a 4.54
-- Pip: `pip install transformers==4.54.4`
+- Pip: `pip install transformers==4.54.1` (4.54.4 NON esiste come release)
 - `fla` era compatibile fino a transformers 4.54; il 6° argomento
   `unpad_input_func` non esisteva.
+- **Esito 2026-08-10**: downgrade a 4.54.1 NON risolve la
+  degradazione. Il bug è indipendente dalla versione transformers.
 - **Rischio**: regressione in altri moduli (Qwen sidecar, BCEL).
-- **Tempo**: 5 minuti, una riga di codice.
+- **Tempo**: 5 minuti, una riga di codice. **NON RACCOMANDATO**.
 
-### Opzione B — Cache-less generation (forward singolo)
+### Opzione B — Cache-less generation (forward singolo) ✅ **CONFERMATA**
 - Override `model.generate()` per fare solo `model.forward()` senza
   `use_cache=True`. Ricomputa l'intero contesto a ogni step.
-- **Costo**: 5-10× più lento di generazione con cache.
-- **Tempo**: 30 minuti.
-- **Vantaggio**: evita completamente il bug cache.
+- **Esito 2026-08-10**: testo pulito. Confronto:
+  - Cache-less (`use_cache=False`, forward manuale): `' the most
+    visited city in the world. It is a city of art and history'`,
+    13.59 s/tok
+  - Con cache (default): `' the pérdida pérdida ... adultos ...
+    cámara ...注明出处 ...'`, 1.33 s/tok
+- **Costo**: ~10× più lento di generazione con cache.
+- **Vantaggio**: evita completamente il bug cache, testo perfetto.
+- **Tempo**: 30 minuti per override in `server.py`.
+- Script diagnostico: `spiking_brain_server/_t_spb0b_diag_v2.py`.
 
 ### Opzione C — Disabilitare lo sliding window
 - Patchare `config.json` del modello per `sliding_window=null` o
@@ -106,21 +115,42 @@ Specifico:
 
 ## 7. Raccomandazione
 
-Procedere con **Opzione A (downgrade transformers a 4.54)** come primo
-tentativo perché:
-- costo minimo,
-- verifica diretta dell'ipotesi `transformers 4.55 = bug`,
-- reversibile (re-upgrade con `pip install -U transformers`).
+**Opzione B (cache-less) confermata come fix funzionale**. La causa
+della degradazione è isolata nel path `update_cache → next_step_cache
+→ next_forward` della cache sliding window fla. Disattivando la cache
+(`use_cache=False`) si ottiene testo pulito a costo di ~10×
+latenza.
 
-Se A non funziona → Opzione B (cache-less) come fallback funzionale
-per sbloccare la roadmap T-SPB-* mantenendo la qualità di output.
+Implementazione proposta per `server.py`:
+
+```python
+# Override della generazione standard per evitare la cache degradata.
+def _safe_generate(model, inputs, max_new_tokens, **kwargs):
+    """Greedy cache-less generation. ~10x slower but produces clean text."""
+    cur = inputs["input_ids"]
+    base_len = cur.shape[1]
+    out_ids = cur[0].tolist()
+    for _ in range(max_new_tokens):
+        with torch.no_grad():
+            logits = model(cur, use_cache=False).logits
+        next_id = int(logits[0, -1].argmax())
+        out_ids.append(next_id)
+        cur = torch.cat(
+            [cur, torch.tensor([[next_id]], device=cur.device)], dim=1
+        )
+    return out_ids[base_len:]
+```
+
+Da configurare come opzione `SPB_NO_CACHE=1` (default ON per la
+qualità, OFF per chi vuole il path veloce nonostante la degradazione).
 
 ## 8. File impattati (futuro commit)
 
-- `docs/T-SPB-0B_DIAGNOSIS.md` (questo file)
-- `requirements.txt` o `install.sh` (se Opzione A)
-- `spiking_brain_server/server.py` (se Opzione B: override generate)
-- `spiking_brain_server/_t_spb0b_diag.py` (verifica finale)
+- `docs/T-SPB-0B_DIAGNOSIS.md` (questo file, aggiornato)
+- `spiking_brain_server/server.py` (override `_safe_generate`,
+  opt-in via env var `SPB_NO_CACHE=1`)
+- `spiking_brain_server/_t_spb0b_diag_v2.py` (nuovo, validazione cache-less)
+- `spiking_brain_server/_t_spb0b_diag.py` (mantenuto per test sampling)
 - `docs/T-SPB-0A_PLAN.md` (riferimento)
 
 ## 9. Out of scope (rinviato)

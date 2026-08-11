@@ -25,6 +25,7 @@ import numpy as np
 
 from ..spiking import SpikePlasticity, dynamic_spikes
 from ..spiking.encoder import SpikeEncodingResult
+from .interface import LifecycleState, SpikingBrainUnavailableError
 from .types import ThinkResult
 
 # Default ILF classes: index 0 = "agree with current belief",
@@ -83,10 +84,38 @@ class StubSpikingBrain:
         self.plasticity = SpikePlasticity(num_units=n_classes, decay=plasticity_decay, seed=seed)
         self._rng = np.random.default_rng(seed)
         self._call_count = 0
+        # T-SPB-4 lifecycle state. Stubs default to READY (no I/O).
+        self._lifecycle: LifecycleState = LifecycleState.READY
+
+    # --- T-SPB-4: protocol surface ---
+
+    backend_name: str = "stub"
+    supports_async: bool = False
+    supports_streaming: bool = False
+    supports_tool: bool = False
+    supports_retrieval: bool = False
+
+    def lifecycle_state(self) -> LifecycleState:
+        return self._lifecycle
+
+    async def load(self) -> None:
+        """Stubs are stateless — load is a no-op."""
+        self._lifecycle = LifecycleState.READY
+
+    async def shutdown(self) -> None:
+        """Stubs have no resources to release."""
+        self._lifecycle = LifecycleState.SHUTDOWN
+
+    @property
+    def memory(self):  # type: ignore[override]
+        return None  # stubs are intentionally stateless for tests.
+
+    # --- legacy aliases ---
 
     @property
     def backend(self) -> str:
-        return "stub"
+        """Backward-compatible alias for ``backend_name``."""
+        return self.backend_name
 
     def think(
         self,
@@ -103,6 +132,10 @@ class StubSpikingBrain:
         """
         if not isinstance(prompt, str):
             raise TypeError("prompt must be a str")
+        if self._lifecycle == LifecycleState.SHUTDOWN:
+            raise SpikingBrainUnavailableError(
+                "StubSpikingBrain is shut down"
+            )
 
         # 1. ILF belief: deterministic prior mixed with coherence_phi.
         prior = _stable_unit_hash(prompt, self.n_classes, seed=self._call_count)
@@ -204,10 +237,34 @@ class StubSpikingBrainV2:
         self.plasticity = SpikePlasticity(num_units=n_classes, decay=plasticity_decay, seed=seed)
         self._rng = np.random.default_rng(seed)
         self._call_count = 0
+        # T-SPB-4 lifecycle state. Stubs default to READY (no I/O).
+        self._lifecycle: LifecycleState = LifecycleState.READY
+
+    # --- T-SPB-4: protocol surface (V2) ---
+
+    backend_name: str = "stub-v2"
+    supports_async: bool = False
+    supports_streaming: bool = False
+    supports_tool: bool = False
+    supports_retrieval: bool = False
+
+    def lifecycle_state(self) -> LifecycleState:
+        return self._lifecycle
+
+    async def load(self) -> None:
+        self._lifecycle = LifecycleState.READY
+
+    async def shutdown(self) -> None:
+        self._lifecycle = LifecycleState.SHUTDOWN
+
+    @property
+    def memory(self):  # type: ignore[override]
+        return None
 
     @property
     def backend(self) -> str:
-        return "stub-v2"
+        """Backward-compatible alias for ``backend_name``."""
+        return self.backend_name
 
     def think(
         self,
@@ -218,6 +275,10 @@ class StubSpikingBrainV2:
     ) -> ThinkResult:
         if not isinstance(prompt, str):
             raise TypeError("prompt must be a str")
+        if self._lifecycle == LifecycleState.SHUTDOWN:
+            raise SpikingBrainUnavailableError(
+                "StubSpikingBrainV2 is shut down"
+            )
 
         prior = _stable_unit_hash(prompt, self.n_classes, seed=self._call_count)
         # V2: temperature is always 1.0 (softer than v1's 1-coherence mapping).

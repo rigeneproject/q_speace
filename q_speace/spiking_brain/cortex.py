@@ -14,12 +14,21 @@ Owns one backend (stub or HTTP), costs each think call via the
 The cortex is **not** an LLM wrapper. It is the binding layer between
 language-model output and the SPEACE-native representational stack
 (belief vector + spike pattern + plasticity coefficients).
+
+T-SPB-4 additions:
+
+- Optional :class:`Memory` injection (default ``WorkingMemory(64)``).
+- Delegates ``lifecycle_state``, ``load``, ``shutdown`` to the
+  backend when present (with graceful fallback for duck-typed
+  backends that pre-date the formal Protocol).
+- ``aclose`` retained as a deprecated alias of ``shutdown``.
 """
 
 from __future__ import annotations
 
 import asyncio
 import inspect
+import warnings
 from collections.abc import Sequence
 from dataclasses import dataclass, field
 from typing import Any, cast
@@ -28,6 +37,7 @@ import numpy as np
 
 from ..edd_cvt.ilf import InformationalLogicalField
 from ..metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
+from .memory import Memory, WorkingMemory
 from .stub import StubSpikingBrain
 from .types import ThinkResult
 
@@ -66,6 +76,7 @@ class SpikingBrainCortex:
         sevo_threshold: float = SEVO_THRESHOLD,
         min_coherence_phi: float = 0.05,
         min_confidence: float = 0.05,
+        memory: Memory | None = None,
     ) -> None:
         if backend is None:
             from .factory import make_spiking_brain
@@ -77,12 +88,19 @@ class SpikingBrainCortex:
         self.sevo_threshold = sevo_threshold
         self.min_coherence_phi = min_coherence_phi
         self.min_confidence = min_confidence
+        # T-SPB-4: default in-memory working memory (capacity 64).
+        self.memory: Memory = memory if memory is not None else WorkingMemory()
         self._history: list[ThinkResult] = []
         self._reports: list[CortexReport] = []
 
+
     @property
     def backend_name(self) -> str:
-        return getattr(self.backend, "backend", type(self.backend).__name__)
+        # Prefer new ``backend_name`` (T-SPB-4 protocol attr); fall back
+        # to legacy ``.backend`` string used by duck-typed backends.
+        return getattr(self.backend, "backend_name", None) or getattr(
+            self.backend, "backend", type(self.backend).__name__
+        )
 
     # --- async / sync shim ---
 
@@ -109,12 +127,21 @@ class SpikingBrainCortex:
         n_tokens: int = 32,
         history: Sequence[ThinkResult] | None = None,
     ) -> ThinkResult:
-        """Run a single think call, updating the local history."""
+        """Run a single think call, updating the local history.
+
+        T-SPB-4: also writes the result to ``self.memory`` (default
+        :class:`WorkingMemory`) so other components can retrieve recent
+        thoughts via ``get_relevant``.
+        """
         coherence_phi = float(self.ilf.coherence_phi)
         result = await self._think_async(prompt, coherence_phi, n_tokens, history)
         self._history.append(result)
         if len(self._history) > 64:
             self._history = self._history[-64:]
+        # T-SPB-4: persist to memory subsystem (no-op for backends
+        # that don't expose memory, e.g. stubs return None).
+        if self.memory is not None:
+            await self.memory.put(result)
         return result
 
     def think_sync(
@@ -253,8 +280,54 @@ class SpikingBrainCortex:
         }
 
     async def aclose(self) -> None:
+        """Deprecated alias for :meth:`shutdown`.
+
+        Kept for backward compatibility with T205 callers (CLI,
+        EvolutionCouncil). Emits a :class:`DeprecationWarning` if the
+        caller passes through the public API.
+        """
+        warnings.warn(
+            "SpikingBrainCortex.aclose() is deprecated; use shutdown()",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        await self.shutdown()
+
+    async def shutdown(self) -> None:
+        """Release backend resources.
+
+        Delegates to ``backend.shutdown()`` if present (T-SPB-4
+        protocol); falls back to ``backend.aclose()`` for legacy
+        backends; no-op if neither exists.
+        """
+        shutdown = getattr(self.backend, "shutdown", None)
         aclose = getattr(self.backend, "aclose", None)
-        if aclose is not None:
-            out = aclose()
+        target = shutdown if callable(shutdown) else aclose
+        if target is not None:
+            out = target()
+            if inspect.isawaitable(out):
+                await out
+
+    def lifecycle_state(self):
+        """Return the backend's lifecycle state.
+
+        Delegates to ``backend.lifecycle_state()`` if present (T-SPB-4);
+        otherwise infers ``READY`` (the legacy implicit state).
+        """
+        state = getattr(self.backend, "lifecycle_state", None)
+        if callable(state):
+            return state()
+        from .interface import LifecycleState
+
+        return LifecycleState.READY
+
+    async def load(self) -> None:
+        """Initialise the backend (no-op for legacy backends).
+
+        Delegates to ``backend.load()`` if present (T-SPB-4).
+        """
+        load = getattr(self.backend, "load", None)
+        if callable(load):
+            out = load()
             if inspect.isawaitable(out):
                 await out

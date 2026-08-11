@@ -39,6 +39,16 @@ from .client import HTTPSpikingBrainClient
 from .cortex import CortexReport, SpikingBrainCortex
 from .evaluation import CalibrationReport, calibration_report
 from .factory import make_spiking_brain
+from .interface import (
+    LifecycleState,
+    SpikingBrainCognitiveInterface,
+    SpikingBrainError,
+    SpikingBrainMemoryError,
+    SpikingBrainQualityError,
+    SpikingBrainTimeoutError,
+    SpikingBrainUnavailableError,
+)
+from .memory import EpisodicMemory, Memory, WorkingMemory
 from .stub import StubSpikingBrain, StubSpikingBrainV2
 from .types import ThinkResult
 
@@ -52,4 +62,16 @@ __all__ = [
     "StubSpikingBrainV2",
     "HTTPSpikingBrainClient",
     "make_spiking_brain",
+    # T-SPB-4 protocol surface
+    "SpikingBrainCognitiveInterface",
+    "LifecycleState",
+    "SpikingBrainError",
+    "SpikingBrainUnavailableError",
+    "SpikingBrainTimeoutError",
+    "SpikingBrainQualityError",
+    "SpikingBrainMemoryError",
+    # T-SPB-4 memory subsystem
+    "Memory",
+    "WorkingMemory",
+    "EpisodicMemory",
 ]

@@ -24,6 +24,7 @@ import httpx
 import numpy as np
 
 from ..spiking.encoder import SpikeEncodingResult
+from .interface import LifecycleState, SpikingBrainUnavailableError
 from .types import ThinkResult
 
 
@@ -36,6 +37,12 @@ class HTTPSpikingBrainClient:
         timeout_s: total timeout per request (default 30 s).
         n_classes: expected ILF belief vector size; used for parsing.
     """
+
+    backend_name: str = ""  # populated per-instance via _backend_name property
+    supports_async: bool = True
+    supports_streaming: bool = False
+    supports_tool: bool = False
+    supports_retrieval: bool = False
 
     def __init__(
         self,
@@ -50,10 +57,45 @@ class HTTPSpikingBrainClient:
         self.timeout_s = timeout_s
         self.n_classes = n_classes
         self._client: httpx.AsyncClient | None = None
+        self._lifecycle: LifecycleState = LifecycleState.LOAD
+        # Per-instance identifier (matches legacy ``.backend`` format).
+        self._backend_name = endpoint
+
+    @property
+    def backend_name(self) -> str:
+        return self._backend_name
 
     @property
     def backend(self) -> str:
-        return f"http:{self.endpoint}"
+        """Backward-compatible alias for ``backend_name``."""
+        return self._backend_name
+
+    @property
+    def memory(self):  # type: ignore[override]
+        return None
+
+    def lifecycle_state(self) -> LifecycleState:
+        return self._lifecycle
+
+    async def load(self) -> None:
+        """Verify connectivity to the sidecar (no model load — sidecar owns that).
+
+        Transitions LOAD → READY on successful /health; remains LOAD
+        (and may raise SpikingBrainUnavailableError) otherwise.
+        """
+        try:
+            cli = await self._ensure_client()
+            resp = await cli.get(f"{self.endpoint}/health")
+            resp.raise_for_status()
+        except Exception as exc:
+            raise SpikingBrainUnavailableError(  # noqa: F821 — see below
+                f"sidecar at {self.endpoint} not reachable: {exc}"
+            ) from exc
+        self._lifecycle = LifecycleState.READY
+
+    async def shutdown(self) -> None:
+        await self.aclose()
+        self._lifecycle = LifecycleState.SHUTDOWN
 
     async def _ensure_client(self) -> httpx.AsyncClient:
         if self._client is None:
