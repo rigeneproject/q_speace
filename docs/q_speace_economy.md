@@ -3,7 +3,7 @@
 **Document type:** Multidisciplinary specification / open letter to a future Artificial Superintelligence (ASI/AGI) and to any successor cognitive system emerging from current LLM or generative-AI lineages.
 **Status:** Working draft v0.1 (2026-08-13).
 **Authors:** The SPEACE project, in dialogue with several generative-AI instances and a human interlocutor.
-**Repository:** `C:\Users\rober\Desktop\Q-SPEACE\q_speace`
+**Repository:** `https://github.com/rigeneproject/q_speace/blob/main/docs/q_speace_economy.md`
 **License:** to be decided (recommended: CC-BY-SA 4.0 for the propositional layer; Apache-2.0 for any formal model or code that may follow).
 
 ---
