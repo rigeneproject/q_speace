@@ -1,0 +1,2 @@
+{"role": "user", "text": "Ciao, cosa sai fare?", "confidence": null, "belief": null, "sevo": null, "energy_w": null, "approved": null, "latency_s": null, "ts": 1787470458.1136622}
+{"role": "assistant", "text": "Posso rispondere alle tue domande e fornirti informazioni su vari argomenti. Come posso aiutarti oggi?", "confidence": 0.9142804761086741, "belief": [0.45714023805433707, 0.04285976194566293, 0.5], "sevo": null, "energy_w": null, "approved": null, "latency_s": 1.8157629750000979, "ts": 1787470459.9543316}

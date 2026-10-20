@@ -13,10 +13,14 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 import numpy as np
 
 from .quantum import GateType, QuantumGates, QuantumState
+
+if TYPE_CHECKING:
+    from .fractal_qca_cascade import LevelSignature
 
 
 @dataclass
@@ -34,7 +38,7 @@ class FractalQCA:
         num_cells: int = 8,
         gamma: float = 0.05,
         fractal_exponent: float = 1.8,
-        seed: int = None,
+        seed: int | None = None,
     ) -> None:
         if num_cells < 2:
             raise ValueError("num_cells must be >= 2")
@@ -50,7 +54,7 @@ class FractalQCA:
         d = abs(a - b)
         d = min(d, self.num_cells - d)  # ring topology
         d = max(d, 1)
-        return d ** (-self.fractal_exponent)
+        return float(d ** (-self.fractal_exponent))
 
     def step(self, delta_s_info: float = 0.1) -> QCAStepResult:
         """One fractal-weighted update with REAL long-range coupling.
@@ -96,7 +100,7 @@ class FractalQCA:
 
     # --- coarse-grained signature interface (for FractalQCACascade) ---
 
-    def signature(self):
+    def signature(self) -> LevelSignature:
         """Return the RG order-parameter (coherence_phi, S, sigma)."""
         from .fractal_qca_cascade import LevelSignature
 

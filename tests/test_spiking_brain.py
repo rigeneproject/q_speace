@@ -166,6 +166,169 @@ def test_cortex_apply_to_ilf_updates_q_star() -> None:
     assert ilf.q_star.shape == ilf.compute_q_star().shape
 
 
+def test_cortex_multi_tick_with_ilf_ema_keeps_coherence() -> None:
+    """Regression for T-SPB-3-A: with ILF EMA on, 5 ticks must keep φ ≥ 0.05.
+
+    Without EMA, the stub's near-uniform beliefs would drop φ below
+    min_coherence_phi after the first apply, blocking subsequent ticks.
+    """
+    ilf = InformationalLogicalField(coherence_phi=1.0, q_star_ema=0.5, coherence_phi_ema=0.5)
+    cortex = SpikingBrainCortex(
+        backend=StubSpikingBrain(seed=0),
+        ilf=ilf,
+        min_coherence_phi=0.05,
+    )
+    approved_count = 0
+    for i in range(5):
+        report = asyncio.run(cortex.tick(f"prompt-{i}", n_tokens=8))
+        if report.approved:
+            approved_count += 1
+    assert ilf.coherence_phi >= 0.05, f"φ collapsed to {ilf.coherence_phi}"
+    assert approved_count >= 3, f"only {approved_count}/5 ticks approved"
+
+
+def test_cortex_backend_phi_floor_breaks_loop() -> None:
+    """Regression for T-SPB-3-A-bis: backend sees clamped φ, gate sees real.
+
+    With ``backend_coherence_phi_floor=0.7`` (the default) and an ILF
+    whose φ has collapsed to 0.10 (e.g. after a weak apply), the cortex
+    must:
+      - pass the coherence gate if min_coherence_phi ≤ 0.10 (real φ)
+      - send φ=0.7 to the backend (no attenuation feedback loop)
+    """
+    ilf = InformationalLogicalField(
+        coherence_phi=0.10,  # low: simulates post-apply collapse
+        q_star_ema=0.5,
+        coherence_phi_ema=0.5,
+    )
+    captured: dict[str, float] = {}
+
+    class _ProbeBackend:
+        backend_name = "probe"
+        supports_async = False
+
+        def think(self, prompt, coherence_phi, n_tokens, history):
+            captured["phi"] = float(coherence_phi)
+            import numpy as np
+
+            from q_speace.spiking.encoder import SpikeEncodingResult
+            from q_speace.spiking_brain.types import ThinkResult
+
+            return ThinkResult(
+                text="probe",
+                confidence=0.8,
+                belief=np.array([0.5, 0.2, 0.3]),
+                spikes=SpikeEncodingResult(
+                    spikes=np.array([1.0, 0.0, 1.0]),
+                    vth=np.array([1.0]),
+                    num_spikes=2,
+                    sparsity=0.33,
+                    rate=2.0,
+                ),
+                plasticity=np.array([0.5, 0.5, 0.5]),
+                n_tokens=8,
+                latency_s=0.001,
+                metadata={"backend": "probe"},
+            )
+
+    cortex = SpikingBrainCortex(
+        backend=_ProbeBackend(),
+        ilf=ilf,
+        min_coherence_phi=0.05,  # real φ=0.10 passes
+        backend_coherence_phi_floor=0.7,
+    )
+    report = asyncio.run(cortex.tick("test", n_tokens=8))
+    assert report.approved, f"real-φ gate should pass: {report.reason}"
+    assert captured["phi"] == 0.7, f"backend got φ={captured['phi']}, expected 0.7"
+
+
+def test_cortex_backend_phi_floor_defaults_to_safe_value() -> None:
+    """Default backend_coherence_phi_floor is 0.7 (chosen for sevo>1.5)."""
+    cortex = SpikingBrainCortex(backend=StubSpikingBrain(seed=0))
+    assert cortex.backend_coherence_phi_floor == 0.7
+
+
+def test_cortex_apply_to_ilf_writes_audit_record(tmp_path) -> None:
+    """Regression for T-SPB-3-C: each apply writes one JSONL record."""
+    from q_speace.spiking_brain.audit import BrainAuditLog
+
+    audit = BrainAuditLog(path=tmp_path / "audit.jsonl")
+    cortex = SpikingBrainCortex(
+        backend=StubSpikingBrain(seed=0),
+        brain_audit_log=audit,
+    )
+    r = cortex.think_sync("hello")
+    cortex.apply_to_ilf(
+        r,
+        agent_id="brain",
+        prompt="hello",
+        sevo=4.0,
+        energy_w=66.0,
+        approved=True,
+        reason="approved",
+    )
+    audit.close()
+    lines = (tmp_path / "audit.jsonl").read_text(encoding="utf-8").strip().split("\n")
+    assert len(lines) == 1
+    import json
+
+    rec = json.loads(lines[0])
+    assert rec["agent_id"] == "brain"
+    assert rec["approved"] is True
+    assert rec["sevo"] == 4.0
+    assert rec["energy_w"] == 66.0
+    assert "coherence_phi_pre" in rec and "coherence_phi_post" in rec
+    assert rec["prompt_hash"]  # 16 hex chars
+    assert rec["backend"] == "stub"
+
+
+def test_cortex_tick_audit_record_includes_provenance(tmp_path) -> None:
+    """A full cortex.tick() writes an audit line with sevo + approved + φ pre/post.
+
+    The stub's confidence is seed-dependent; we use ``apply_to_ilf``
+    directly to guarantee the audit path is exercised regardless of
+    whether the Sevo gate happens to approve.
+    """
+    from q_speace.spiking_brain.audit import BrainAuditLog
+
+    audit = BrainAuditLog(path=tmp_path / "audit.jsonl")
+    cortex = SpikingBrainCortex(
+        backend=StubSpikingBrain(seed=0),
+        ilf=InformationalLogicalField(coherence_phi=1.0, q_star_ema=0.5, coherence_phi_ema=0.5),
+        brain_audit_log=audit,
+    )
+    r = cortex.think_sync("audit-this")
+    cortex.apply_to_ilf(
+        r,
+        agent_id="spiking_brain",
+        prompt="audit-this",
+        sevo=4.0,
+        energy_w=66.0,
+        approved=True,
+        reason="approved",
+    )
+    audit.close()
+    lines = (tmp_path / "audit.jsonl").read_text(encoding="utf-8").strip().split("\n")
+    assert len(lines) == 1
+    import json
+
+    rec = json.loads(lines[0])
+    assert rec["approved"] is True
+    assert rec["coherence_phi_pre"] >= 0.5
+    assert rec["sevo"] == 4.0
+    assert rec["energy_w"] == 66.0
+    assert rec["prompt_excerpt"] == "audit-this"
+    assert rec["agent_id"] == "spiking_brain"
+
+
+def test_cortex_audit_log_disabled_by_default(tmp_path) -> None:
+    """When brain_audit_log=None, no audit file is written."""
+    cortex = SpikingBrainCortex(backend=StubSpikingBrain(seed=0))
+    assert cortex.brain_audit_log is None
+    r = cortex.think_sync("noop")
+    cortex.apply_to_ilf(r)  # no audit, no raise
+
+
 def test_cortex_report_aggregates() -> None:
     cortex = SpikingBrainCortex(backend=StubSpikingBrain(seed=0))
     for _ in range(3):
@@ -225,6 +388,31 @@ def test_http_client_think_parses_payload() -> None:
     assert np.allclose(r.belief, [0.2, 0.5, 0.3])
     assert r.spikes.num_spikes == 2
     assert np.allclose(r.plasticity, [0.1, 0.7, 0.2])
+
+
+def test_http_client_think_default_n_tokens_in_zero_on_legacy_sidecar() -> None:
+    """Older sidecars (pre-T-SPB-2 fix) do not write n_tokens_in;
+    the parser must default to 0 rather than KeyError. This guards
+    the T205-C measurement harness against server/client version skew.
+    """
+    payload = _sample_payload()  # no n_tokens_in key
+    client = _make_mock_client([payload])
+    r = asyncio.run(client.think("hi"))
+    assert r.metadata["n_tokens_in"] == 0
+
+
+def test_http_client_think_preserves_n_tokens_in_from_metadata() -> None:
+    """Newer sidecars (post-T-SPB-2 fix) write n_tokens_in; the parser
+    must surface it unchanged so _t205_measure.py can compute
+    E_per_token_J correctly.
+    """
+    payload = _sample_payload()
+    payload["metadata"]["n_tokens_in"] = 7
+    payload["metadata"]["cache_less"] = True
+    client = _make_mock_client([payload])
+    r = asyncio.run(client.think("hi"))
+    assert r.metadata["n_tokens_in"] == 7
+    assert r.metadata["cache_less"] is True
 
 
 def test_http_client_health() -> None:

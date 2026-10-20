@@ -7,9 +7,9 @@ Tre esperimenti:
 """
 from __future__ import annotations
 
+import site
 import time
 from pathlib import Path
-import site
 
 # patch fla-bitnet (idempotente)
 for p in site.getsitepackages():
@@ -104,11 +104,11 @@ with torch.no_grad():
     print(f"[probe] forward {time.time()-t0:.1f}s")
     logits = out.logits[0, -1, :]  # ultimo token
     top5 = torch.topk(logits, 5)
-    print(f"[probe] top-5 logits (no softmax):")
+    print("[probe] top-5 logits (no softmax):")
     for rank, (val, idx) in enumerate(zip(top5.values.tolist(), top5.indices.tolist())):
         print(f"  rank {rank+1}: idx={idx} val={val:.3f}  tok={tok.decode([idx])!r}")
     top5_prob = torch.topk(torch.softmax(logits.float(), -1), 5)
-    print(f"[probe] top-5 probs:")
+    print("[probe] top-5 probs:")
     for rank, (val, idx) in enumerate(zip(top5_prob.values.tolist(), top5_prob.indices.tolist())):
         print(f"  rank {rank+1}: p={val:.4f}  tok={tok.decode([idx])!r}")
 

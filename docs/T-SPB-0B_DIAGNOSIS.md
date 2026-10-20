@@ -5,6 +5,12 @@
 **Predecessore**: T-SPB-0A (forward end-to-end confermato)
 **Sidecar test**: `spiking_brain_server/_t_spb0b_diag.py`
 
+> **Epistemic note (2026-08-12).** La diagnosi e il fix cache-less
+> proposto si applicano al checkpoint reale SpikingBrain-7B in
+> `fla`/transformers. Nessun confronto con Qwen 3B o stub: il bug
+> riguarda specificamente lo stack GLA/SWA di `flash-linear-attention`
+> in combinazione con `transformers>=4.55`.
+
 ## 1. Scopo
 
 Confermare o escludere `do_sample=True` (T=0.7, p=0.9) come causa della

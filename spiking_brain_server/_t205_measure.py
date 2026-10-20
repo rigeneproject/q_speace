@@ -30,13 +30,11 @@ from __future__ import annotations
 import argparse
 import csv
 import math
-import os
 import statistics
 import subprocess
 import sys
 import threading
 import time
-from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -48,8 +46,10 @@ import numpy as np
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
-from q_speace.metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation  # noqa: E402
-
+from q_speace.metabolism.cognitive_cost_model import (  # noqa: E402
+    QuantumCostModel,
+    QuantumOperation,
+)
 
 SIDE = "http://127.0.0.1:8002"
 PROMPTS_PATH = REPO_ROOT / "docs" / "T205C_prompts.txt"

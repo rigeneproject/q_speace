@@ -27,9 +27,11 @@ app = typer.Typer(help="Q-SPEACE quantum layer CLI")
 quantum_app = typer.Typer(help="Quantum experiments and tools")
 sia_app = typer.Typer(help="Self-Improvement Cortex (SIA)")
 brain_app = typer.Typer(help="SpikingBrain satellite (T205)")
+economy_app = typer.Typer(help="q_speace_economy primitives (T6.*)")
 app.add_typer(quantum_app, name="quantum")
 app.add_typer(sia_app, name="sia")
 app.add_typer(brain_app, name="brain")
+app.add_typer(economy_app, name="economy")
 
 
 @quantum_app.command("run")
@@ -377,6 +379,65 @@ def brain_chat(
 
 def main() -> None:
     app()
+
+
+# ----------------------------------------------------------------------
+# q_speace_economy primitives (T6.*)
+# ----------------------------------------------------------------------
+
+
+@economy_app.command("validate-schema")
+def economy_validate_schema(
+    schema: str = typer.Argument("all", help="Schema name (j_c/v/cme/dat) or 'all'."),
+) -> None:
+    """Validate the q_speace_economy JSON schemas against Draft 2020-12."""
+    import json
+    from pathlib import Path
+
+    from jsonschema import Draft202012Validator
+
+    base = Path(__file__).parent / "economy" / "schemas"
+    targets = ["j_c", "v", "cme", "dat"] if schema == "all" else [schema]
+    for name in targets:
+        path = base / f"{name}.schema.json"
+        with path.open(encoding="utf-8") as f:
+            doc = json.load(f)
+        Draft202012Validator.check_schema(doc)
+        typer.echo(f"[green]{name}[/green] OK")
+
+
+@economy_app.command("jc-from-telemetry")
+def economy_jc_from_telemetry(
+    j: float = typer.Option(..., "--J", help="Useful exergy (J)."),
+    delta_s: float = typer.Option(..., "--delta-S", help="Entropy produced (<=0)."),
+    delta_i_c: float = typer.Option(..., "--delta-I-c", help="Catalytic info flux (bits)."),
+    r_b: float = typer.Option(..., "--R-b", help="Regenerative budget in [0,1]."),
+    delta_c: float = typer.Option(..., "--delta-C", help="Net capacity change in [-1,1]."),
+    measured: int = typer.Option(5, "--measured", help="Components actually measured."),
+    total: int = typer.Option(5, "--total", help="Total components."),
+) -> None:
+    """Build a J_c 5-tuple from telemetry and print it as JSON."""
+    from .economy.primitives import J_c
+
+    jc = J_c.from_telemetry(
+        J=j,
+        delta_S=delta_s,
+        delta_I_c=delta_i_c,
+        R_b=r_b,
+        delta_C=delta_c,
+        measured_components=measured,
+        total_components=total,
+    )
+    typer.echo(json.dumps(jc.to_dict(), indent=2))
+
+
+@economy_app.command("mcp-self-test")
+def economy_mcp_self_test() -> None:
+    """Run the MCP server self-test (all 7 tools)."""
+    from .economy.mcp_server import main as mcp_main
+
+    rc = mcp_main(["--self-test"])
+    raise typer.Exit(rc)
 
 
 if __name__ == "__main__":

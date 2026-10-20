@@ -15,13 +15,15 @@ Human action required before this backend is usable:
 from __future__ import annotations
 
 import os
+from typing import Any
 
 from .base import QuantumBackend
+from ..quantum_brain_simulator import BrainQuantumCircuit
 
 _QI_GATE_NAMES = {"RX": "Rx", "RY": "Ry", "RZ": "Rz"}
 
 
-def to_cqasm(circuit, version: str = "3.0") -> str:
+def to_cqasm(circuit: BrainQuantumCircuit, version: str = "3.0") -> str:
     """Serialize a BrainQuantumCircuit to a cQASM program.
 
     version="3.0" (default) emits cQASM 3.0 compatible with Quantum Inspire
@@ -41,6 +43,8 @@ def to_cqasm(circuit, version: str = "3.0") -> str:
     else:
         lines += ["", f"qubits {n}"]
     for op in circuit.gates():
+        if op.target is None:
+            raise ValueError(f"gate {op.gate.value} requires a target role")
         g = op.gate.value if hasattr(op.gate, "value") else str(op.gate)
         display = _QI_GATE_NAMES.get(g, g)
         if op.control is not None:
@@ -82,9 +86,9 @@ class QuantumInspireBackend(QuantumBackend):
     def __init__(self, project_name: str = "q-space", backend_type: str = "QX-sim") -> None:
         self.project_name = project_name
         self.backend_type = backend_type
-        self._qi = None
+        self._qi: Any | None = None
 
-    def _ensure_sdk(self):
+    def _ensure_sdk(self) -> Any:
         if self._qi is not None:
             return self._qi
         url = os.environ.get("QI_URL")
@@ -96,7 +100,7 @@ class QuantumInspireBackend(QuantumBackend):
                 "and set the environment variables."
             )
         try:
-            from quantum_inspire.api import QuantumInspireAPI  # type: ignore
+            from quantum_inspire.api import QuantumInspireAPI  # type: ignore[import-not-found]
         except ImportError as exc:  # pragma: no cover - depends on SDK
             raise RuntimeError(
                 "Quantum Inspire SDK not installed. Run: pip install quantum-inspire-sdk"
@@ -104,7 +108,7 @@ class QuantumInspireBackend(QuantumBackend):
         self._qi = QuantumInspireAPI(url or "https://api.quantum-inspire.com", token)
         return self._qi
 
-    def run(self, circuit, shots: int = 1024) -> list[tuple[str, str]]:
+    def run(self, circuit: BrainQuantumCircuit, shots: int = 1024) -> list[tuple[str, str]]:
         qi = self._ensure_sdk()
         cqasm = to_cqasm(circuit)
         # The exact submission call depends on the installed SDK version.

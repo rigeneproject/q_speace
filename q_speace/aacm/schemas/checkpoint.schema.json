@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AACMCheckpoint",
+  "description": "Self-contained checkpoint for an AACMController session.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "agent_id",
+    "session_id",
+    "step",
+    "created_at",
+    "legitimation_registry",
+    "resilience_manifest",
+    "decision_history"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["aacm.cp.1"]
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "step": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "created_at": {
+      "type": "number",
+      "minimum": 0
+    },
+    "legitimation_registry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channels"],
+      "properties": {
+        "channels": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["channel_id", "evidence_kind", "artifact_path", "verified"],
+            "properties": {
+              "channel_id": {"type": "string", "minLength": 1},
+              "evidence_kind": {
+                "type": "string",
+                "enum": ["code", "test", "doc", "external_audit", "metric", "log"]
+              },
+              "artifact_path": {"type": "string", "minLength": 1},
+              "verified": {"type": "boolean"},
+              "verified_at": {
+                "oneOf": [
+                  {"type": "number", "minimum": 0},
+                  {"type": "null"}
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "resilience_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["omega", "independent_nodes", "checkpoint_paths", "schema_version"],
+      "properties": {
+        "omega": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "independent_nodes": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "checkpoint_paths": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "schema_version": {"type": "string", "minLength": 1}
+      }
+    },
+    "decision_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["node", "success"],
+        "properties": {
+          "node": {"type": "string", "minLength": 1},
+          "success": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}

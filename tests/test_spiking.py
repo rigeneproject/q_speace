@@ -76,7 +76,8 @@ def test_spike_energy_cost_prefers_sparse_activity():
     dense = QuantumOperation(num_qubits=4, num_gates=4, num_spikes=1000)
     sparse = QuantumOperation(num_qubits=4, num_gates=4, num_spikes=10)
     assert cm.energy_watts(dense) > cm.energy_watts(sparse) > baseline
-    assert cm.energy_watts(sparse) == pytest.approx(baseline + 10 * QuantumCostModel.W_PER_SPIKE)
+    expected_spike_delta = 10 * QuantumCostModel.W_PER_SPIKE * QuantumCostModel.RICALIBRATION_FACTOR
+    assert cm.energy_watts(sparse) == pytest.approx(baseline + expected_spike_delta)
 
 
 def test_spike_count_and_sparsity_helpers():

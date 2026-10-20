@@ -37,14 +37,14 @@ without subclassing.
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from enum import Enum
+from enum import StrEnum
 from typing import Protocol, runtime_checkable
 
 from .memory import Memory
 from .types import ThinkResult
 
 
-class LifecycleState(str, Enum):
+class LifecycleState(StrEnum):
     """Backend lifecycle states (T-SPB-4)."""
 
     LOAD = "load"

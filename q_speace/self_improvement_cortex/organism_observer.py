@@ -62,8 +62,13 @@ class OrganismObserver:
             timestamp=time.time(),
             coherence_phi=coherence_phi,
             mean_energy_w=mean_energy_w,
-            **extra,
         )
+        profile_fields = set(PhysiologicalProfile.__dataclass_fields__) - {"extra"}
+        for metric, value in extra.items():
+            if metric in profile_fields:
+                setattr(profile, metric, value)
+            else:
+                profile.extra[metric] = value
         self._history.append(profile)
         if len(self._history) > self._history_size:
             self._history.pop(0)

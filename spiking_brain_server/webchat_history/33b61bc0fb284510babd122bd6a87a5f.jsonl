@@ -1,0 +1,4 @@
+{"role": "user", "text": "Il mio nome è Roberto.", "confidence": null, "belief": null, "sevo": null, "energy_w": null, "approved": null, "latency_s": null, "ts": 1787470492.8683405}
+{"role": "assistant", "text": "Capisco, il tuo nome è Roberto.", "confidence": 0.8735838145017624, "belief": [0.4367919072508812, 0.06320809274911882, 0.5], "sevo": null, "energy_w": null, "approved": null, "latency_s": 0.8460124759999417, "ts": 1787470493.7361662}
+{"role": "user", "text": "Come mi chiamo?", "confidence": null, "belief": null, "sevo": null, "energy_w": null, "approved": null, "latency_s": null, "ts": 1787470493.7487795}
+{"role": "assistant", "text": "Mi sembra che tu siate stato chiamato Roberto.", "confidence": 0.693535175706659, "belief": [0.3467675878533295, 0.1532324121466705, 0.5], "sevo": null, "energy_w": null, "approved": null, "latency_s": 0.8122164199999133, "ts": 1787470494.5821686}

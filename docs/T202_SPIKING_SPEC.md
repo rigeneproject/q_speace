@@ -5,6 +5,14 @@
 the BICLab/SpikingBrain-7B dynamic spike encoding (arXiv:2509.05276, TMLR 2026)
 **Author**: Q-SPEACE (integration review approved)
 
+> **Epistemic note (2026-08-12).** T202 implementa la primitiva
+> `dynamic_spikes(x)` (`vth = mean(|x|)/k`) identica a
+> `W8ASpike/quant_linear.py` di SpikingBrain-7B, **ma non importa il
+> modello**. La regola di spike è una primitiva matematica standalone
+> (numpy), non vincolata a un particolare checkpoint. Le misurazioni
+> T202 (sparsity, rate, energia per spike) si applicano
+> uniformemente a stub, Qwen 3B e SpB-7B.
+
 ## 1. Purpose
 
 Incorporate, selectively, the strongest computational principles of

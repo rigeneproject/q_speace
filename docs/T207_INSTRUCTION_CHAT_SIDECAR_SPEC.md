@@ -2,6 +2,13 @@
 
 **Status:** agentic (production)
 
+> **Epistemic note (2026-08-12).** T207 definisce esplicitamente un
+> **backend alternativo** (`Qwen/Qwen2.5-3B-Instruct` NF4) al posto
+> di SpikingBrain-7B. Il sidecar mantiene lo stesso contratto HTTP, ma
+> le misurazioni T205-C e T206 su Qwen 3B **non** sono trasferibili
+> alla qualità/comportamento di SpikingBrain-7B nativo, che resta
+> soggetto a Gap-2 (T-SPB-2) per la caratterizzazione su RTX 3060.
+
 ## Purpose
 
 Provide an instruction-tuned language interface for written dialogue on the

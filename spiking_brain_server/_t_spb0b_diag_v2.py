@@ -18,6 +18,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO_ROOT, "spiking_brain_server"))
 
 import server  # noqa: E402
+
 server._install_window_attention_patcher()
 server._evict_cached_window_attention()
 

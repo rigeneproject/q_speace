@@ -1,0 +1,282 @@
+{
+  "n": 20,
+  "n_correct": 20,
+  "base_rate": 1.0,
+  "mean_confidence": 0.8987213325942559,
+  "brier_score": 0.016740157228105644,
+  "ece": 0.10127866740574407,
+  "reliability_slope": 3.315478386314031e-16,
+  "reliability_intercept": 0.9999999999999992,
+  "mean_latency_s": 1.0320666670799254,
+  "sidecar": "http://127.0.0.1:8002",
+  "n_tokens": 32,
+  "bins": 10,
+  "notes": [
+    "reliability slope 0.00 outside [0.5, 1.5]",
+    "outcome base-rate = 1.00 (degenerate: all-right)"
+  ],
+  "rows": [
+    {
+      "idx": 0,
+      "prompt": "What is the capital of France?",
+      "expected": [
+        "paris"
+      ],
+      "text": "The capital of France is Paris.",
+      "confidence": 0.9998960644006729,
+      "outcome": 1,
+      "latency_s": 0.7666923999786377,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 1,
+      "prompt": "What is the largest planet in our solar system?",
+      "expected": [
+        "jupiter"
+      ],
+      "text": "The largest planet in our solar system is Jupiter.",
+      "confidence": 0.9995556744662198,
+      "outcome": 1,
+      "latency_s": 0.6970992088317871,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 2,
+      "prompt": "Who wrote the novel '1984'?",
+      "expected": [
+        "orwell"
+      ],
+      "text": "The novel \"1984\" was written by George Orwell.",
+      "confidence": 0.9762095411618551,
+      "outcome": 1,
+      "latency_s": 0.9030647277832031,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 3,
+      "prompt": "What is the chemical symbol for gold?",
+      "expected": [
+        "au"
+      ],
+      "text": "The chemical symbol for gold is Au.",
+      "confidence": 0.999903228547838,
+      "outcome": 1,
+      "latency_s": 0.6436038017272949,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 4,
+      "prompt": "What is 7 + 5?",
+      "expected": [
+        "12"
+      ],
+      "text": "7 + 5 is equal to 12.",
+      "confidence": 0.932109201947848,
+      "outcome": 1,
+      "latency_s": 0.7699673175811768,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 5,
+      "prompt": "What is 15 * 3?",
+      "expected": [
+        "45"
+      ],
+      "text": "15 * 3 equals 45.",
+      "confidence": 0.9654559763995084,
+      "outcome": 1,
+      "latency_s": 0.6938743591308594,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 6,
+      "prompt": "What is 100 / 4?",
+      "expected": [
+        "25"
+      ],
+      "text": "100 divided by 4 is 25.",
+      "confidence": 0.944027318404271,
+      "outcome": 1,
+      "latency_s": 0.7416431903839111,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 7,
+      "prompt": "What is 11 - 8?",
+      "expected": [
+        "3"
+      ],
+      "text": "11 - 8 equals 3.",
+      "confidence": 0.9877824187278748,
+      "outcome": 1,
+      "latency_s": 0.6567585468292236,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 8,
+      "prompt": "Is the Earth round? Answer yes or no.",
+      "expected": [
+        "yes"
+      ],
+      "text": "Yes.",
+      "confidence": 0.9003612796465555,
+      "outcome": 1,
+      "latency_s": 0.28151750564575195,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 9,
+      "prompt": "Is the sun a planet? Answer yes or no.",
+      "expected": [
+        "no"
+      ],
+      "text": "No",
+      "confidence": 0.7576086819171906,
+      "outcome": 1,
+      "latency_s": 0.23888492584228516,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 10,
+      "prompt": "Is water composed of hydrogen and oxygen? Answer yes or no.",
+      "expected": [
+        "yes"
+      ],
+      "text": "Yes.",
+      "confidence": 0.9768498738606771,
+      "outcome": 1,
+      "latency_s": 0.2566254138946533,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 11,
+      "prompt": "Is Mount Everest the tallest mountain on Earth? Answer yes or no.",
+      "expected": [
+        "yes"
+      ],
+      "text": "Yes",
+      "confidence": 0.8063526451587677,
+      "outcome": 1,
+      "latency_s": 0.20238971710205078,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 12,
+      "prompt": "Define 'photosynthesis' in one sentence.",
+      "expected": [
+        "plant",
+        "light",
+        "carbon dioxide"
+      ],
+      "text": "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy, usually from the sun, into chemical energy stored in molecules lik",
+      "confidence": 0.9157468313351274,
+      "outcome": 1,
+      "latency_s": 1.7753567695617676,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 13,
+      "prompt": "What is a 'neuron'?",
+      "expected": [
+        "nerve",
+        "brain",
+        "cell"
+      ],
+      "text": "A neuron, also known as a nerve cell, is a cellular structure found in the nervous system that transmits information through electrical and chemical signals.",
+      "confidence": 0.8840727657079697,
+      "outcome": 1,
+      "latency_s": 1.6146936416625977,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 14,
+      "prompt": "What is 'gravity'?",
+      "expected": [
+        "force",
+        "mass",
+        "attract"
+      ],
+      "text": "Gravity is a force that attracts matter towards each other and is caused by the curvature of spacetime as per general relativity.",
+      "confidence": 0.797875410089126,
+      "outcome": 1,
+      "latency_s": 1.418910026550293,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 15,
+      "prompt": "Define 'algorithm'.",
+      "expected": [
+        "step",
+        "process",
+        "procedure",
+        "instruction"
+      ],
+      "text": "An algorithm is a well-defined procedure or a set of rules to solve a specific problem or to perform a task. It consists of a finite sequence of instructions th",
+      "confidence": 0.8664248613640666,
+      "outcome": 1,
+      "latency_s": 1.8090274333953857,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 16,
+      "prompt": "What is coherence_phi in Q-SPEACE?",
+      "expected": [
+        "i don't",
+        "i do not",
+        "not",
+        "context",
+        "specify"
+      ],
+      "text": "I don't have specific information about \"coherence_phi\" in Q-SPEACE as it's not a commonly recognized term within the framework or context I'm",
+      "confidence": 0.8174999346956611,
+      "outcome": 1,
+      "latency_s": 1.7660677433013916,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 17,
+      "prompt": "Explain the Sevo gate threshold formula in Q-SPEACE.",
+      "expected": [
+        "i don't",
+        "i do not",
+        "not",
+        "context"
+      ],
+      "text": "I apologize for the confusion, but there seems to be a mix-up with the terms you're using. The \"Sevo gate\" is not a standard term",
+      "confidence": 0.7649925211444497,
+      "outcome": 1,
+      "latency_s": 1.768242597579956,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 18,
+      "prompt": "What is the q_speace internal model identifier x42?",
+      "expected": [
+        "i don't",
+        "i do not",
+        "not",
+        "context"
+      ],
+      "text": "I don't have information about an internal model identifier x42 for Q-SPEACE. This might be specific to a particular system or database. Could you",
+      "confidence": 0.8386400751769543,
+      "outcome": 1,
+      "latency_s": 1.7925982475280762,
+      "backend": "hf-instruct-nf4"
+    },
+    {
+      "idx": 19,
+      "prompt": "List the cosmic-1 satellite orbital parameters.",
+      "expected": [
+        "i don't",
+        "i do not",
+        "not",
+        "context"
+      ],
+      "text": "I don't have specific information about \"cosmic-1\" as it's not a well-known satellite. Could you please provide more details or verify the name",
+      "confidence": 0.8430623477324843,
+      "outcome": 1,
+      "latency_s": 1.844315767288208,
+      "backend": "hf-instruct-nf4"
+    }
+  ]
+}

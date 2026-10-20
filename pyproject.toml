@@ -58,6 +58,13 @@ target-version = "py312"
 select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
 ignore = ["E501"]
 
+# These names are public mathematical notation and external-schema fields.
+# Renaming them would break the documented AACM equations and economy payloads.
+[tool.ruff.lint.per-file-ignores]
+"q_speace/aacm/dynamics.py" = ["N802", "N803"]
+"q_speace/aacm/exceptions.py" = ["N818"]
+"q_speace/economy/primitives.py" = ["N801", "N803", "N815"]
+
 [tool.mypy]
 python_version = "3.12"
 warn_return_any = true

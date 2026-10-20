@@ -1,17 +1,32 @@
 # T205 — Stato di avanzamento (snapshot 2026-08-10) — AGGIORNATO 10:10
 
+> **Epistemic note (2026-08-12).** Le misurazioni di T205-C (forma
+> funzionale di `QuantumCostModel`, slope log-log = 0.982) sono
+> effettuate sul **backend Qwen2.5-3B-Instruct NF4** (T207), NON sul
+> checkpoint originale `maujim/spikingbrain-v1-7b-base`. La forma
+> funzionale (legge di potenza) è compatibile con SpikingBrain in
+> quanto entrambi i backend condividono la stessa firma numerica sul
+> contratto `/think`, ma le costanti e la confidenza specifica del
+> modello 7B originale non sono state misurate direttamente.
+
 ## Roadmap SpikingBrain standalone (T-SPB-*)
 
 Survey architetturale del 2026-08-10 (vedi `docs/T-SPB-0A_PLAN.md`) ha
 chiuso la fase di analisi e prodotto il piano operativo in 6 fasi:
 
 - **T-SPB-0A** — Verifica pesi WSL2 + bug SDPA (questo commit)
+- **T-SPB-0B** — Diagnosi degradazione cache sliding window → cache-less
 - **T-SPB-1** — SpikingBrain 1B standalone su RTX 3060
-- **T-SPB-2** — SpikingBrain 7B NF4 standalone (post 1B)
+- **T-SPB-2** — SpikingBrain 7B NF4 standalone (post 1B, in cache-less)
 - **T-SPB-3** — Instrumentation (spike count, sparsity, routing, energy)
+- **T-SPB-3-C** — Audit trail LLM response (`BrainAuditLog`) — SHIPPED
 - **T-SPB-4** — `SpikingBrainCognitiveInterface` adapter (no duck-typed)
 - **T-SPB-5** — `SpikingBrainCortex` come area cerebrale in SPEACE
 - **T-SPB-6** — Closed loop (perception → memory → SpB → meta → world → memory)
+- **T-SPB-7** — Addendum architettura/attività (Shain & Fedorenko 2026) — in_progress
+- **T-SPB-8** — Cognitive Network Tomography (attiva, ricostruttiva)
+- **T-SPB-9** — Functional Network Plasticity Operator — blocked by T-SPB-8
+- **T-SPB-10** — Studio stabilità longitudinale reti cognitive — blocked by T-SPB-8
 
 Distinzione fondamentale assunta come vincolante:
 

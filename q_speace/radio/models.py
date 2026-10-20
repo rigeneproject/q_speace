@@ -40,7 +40,7 @@ class Waveform:
 
     @property
     def power_watts(self) -> float:
-        return 10.0 ** ((self.power_dbm - 30.0) / 10.0)
+        return float(10.0 ** ((self.power_dbm - 30.0) / 10.0))
 
     def normalized(self) -> Waveform:
         max_amp = float(np.max(np.abs(self.iq_samples))) or 1.0

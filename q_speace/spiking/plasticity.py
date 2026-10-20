@@ -36,13 +36,15 @@ class SpikePlasticity:
         rate = np.abs(s) if s.ndim == 1 else np.abs(s).sum(axis=-1)
         if rate.size != self.num_units:
             raise ValueError(f"spike activity must yield {self.num_units} units, got {rate.size}")
-        return rate
+        rate_typed: np.ndarray = rate
+        return rate_typed
 
     def update(self, spikes: np.ndarray) -> np.ndarray:
         """Update the EMA from a spike array; returns the new raw EMA."""
-        rate = self._rates(spikes)
+        rate: np.ndarray = self._rates(spikes)
         self._ema = self.decay * self._ema + (1.0 - self.decay) * rate
-        return self._ema.copy()
+        out: np.ndarray = self._ema.copy()
+        return out
 
     def coefficients(self) -> np.ndarray:
         """Plasticity coefficients in [0, 1], normalized across units."""

@@ -38,7 +38,7 @@ class HTTPSpikingBrainClient:
         n_classes: expected ILF belief vector size; used for parsing.
     """
 
-    backend_name: str = ""  # populated per-instance via _backend_name property
+    _default_timeout: float = 30.0
     supports_async: bool = True
     supports_streaming: bool = False
     supports_tool: bool = False
@@ -71,7 +71,7 @@ class HTTPSpikingBrainClient:
         return self._backend_name
 
     @property
-    def memory(self):  # type: ignore[override]
+    def memory(self) -> None:  # type: ignore[override]
         return None
 
     def lifecycle_state(self) -> LifecycleState:
@@ -170,6 +170,9 @@ def _parse_think_result(body: dict[str, Any], default_n_classes: int) -> ThinkRe
     n_tokens = int(body.get("n_tokens", 0))
     latency = float(body.get("latency_s", 0.0))
     metadata = dict(body.get("metadata", {}))
+    # T-SPB-2 fix: ensure n_tokens_in is always present even on older
+    # sidecars that didn't write it. Default to 0 (caller can detect).
+    metadata.setdefault("n_tokens_in", 0)
 
     belief = np.asarray(body.get("belief", [1.0] * default_n_classes), dtype=float)
     if belief.ndim != 1:

@@ -27,8 +27,8 @@ def benchmark_gpu(
     qiskit_available = False
 
     try:
-        from qiskit import QuantumCircuit
-        from qiskit_aer import AerSimulator
+        from qiskit import QuantumCircuit  # type: ignore[import-not-found]
+        from qiskit_aer import AerSimulator  # type: ignore[import-not-found]
 
         qiskit_available = True
     except ImportError:

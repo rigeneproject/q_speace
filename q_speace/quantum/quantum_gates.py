@@ -49,7 +49,7 @@ class QuantumGates:
         mats[target] = base
         result = mats[0]
         for m in mats[1:]:
-            result = np.kron(result, m)
+            result = np.asarray(np.kron(result, m), dtype=np.complex128)
         return result
 
     @staticmethod
@@ -136,7 +136,7 @@ class QuantumGates:
     def _swap(num_qubits: int, a: int, b: int) -> np.ndarray:
         c1 = QuantumGates._cnot(num_qubits, a, b)
         c2 = QuantumGates._cnot(num_qubits, b, a)
-        return c1 @ c2 @ c1
+        return np.asarray(c1 @ c2 @ c1, dtype=np.complex128)
 
     @staticmethod
     def _controlled_rotation(

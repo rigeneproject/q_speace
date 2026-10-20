@@ -1,10 +1,14 @@
 from __future__ import annotations
-import os, sys
+
+import os
+import sys
+
 sys.path.insert(0, "/mnt/c/Users/rober/Desktop/Q-SPEACE/q_speace")
 os.chdir("/mnt/c/Users/rober/Desktop/Q-SPEACE/q_speace")
 
 # Patch N_PROMPTS to 3 for smoke
 import spiking_brain_server._t205_measure as m
+
 m.N_PROMPTS = 3
 m._default_prompts_orig = m._default_prompts
 

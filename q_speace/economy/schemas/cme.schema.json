@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://q-speace.dev/schemas/cme.schema.json",
+  "title": "CME — 12-dimensional Capital-Multi-vector Extension (q_speace_economy §4.5)",
+  "description": "Registry of 12 non-fungible capital dimensions tracked by the SPEACE economy. Each component is dimensionless and bounded per its physical meaning.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "energy",
+    "matter",
+    "information",
+    "time",
+    "ecology",
+    "resilience",
+    "wellbeing",
+    "innovation",
+    "reversibility",
+    "distribution",
+    "coherence",
+    "regeneration"
+  ],
+  "properties": {
+    "energy":            { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Available energy stock in [0,1]." },
+    "matter":            { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Material cycles availability in [0,1]." },
+    "information":       { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Informational diversity in [0,1]." },
+    "time":              { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Available human-time budget in [0,1]." },
+    "ecology":           { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Ecological integrity in [0,1]." },
+    "resilience":        { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Shock resilience in [0,1]." },
+    "wellbeing":         { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Subjective wellbeing indicator (measured, not claimed). In [0,1]." },
+    "innovation":        { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Capacity for novel solutions in [0,1]." },
+    "reversibility":     { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Reversibility margin of recent decisions in [0,1]." },
+    "distribution":      { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Fairness of outcome distribution in [0,1]." },
+    "coherence":         { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Internal coherence phi in [0,1]." },
+    "regeneration":      { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Regenerative capacity in [0,1]." }
+  }
+}

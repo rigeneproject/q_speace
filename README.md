@@ -58,3 +58,13 @@ mapping), T24 (Evolve_DNA placeholder via CV).
 Not yet implemented: T5 (real Qiskit backend), T7/T8 (merge into SPEACE
 orchestrator), T11 (gate quantum via EnergyControlAgent), T12/T13 (live
 earth API wiring), T21 (surface-code error correction), T25 (IIT Φ proxy).
+
+## SpikingBrain integration status
+
+- **T-SPB-0A / 0B** ✅ — verification + sliding-window cache diagnosis
+- **T-SPB-4** ✅ — formal `SpikingBrainCognitiveInterface` Protocol
+- **T-SPB-2 (real SpB-7B NF4)** — pending RTX 3060 cache-less run
+- **T-SPB-7 (real SpB 2.0)** — pending HuggingFace public release
+
+Monthly HF monitor: see `docs/spb2_monitor.md` (run `curl ... | jq` on
+the first of every month against `https://huggingface.co/api/models?author=BICLab`).

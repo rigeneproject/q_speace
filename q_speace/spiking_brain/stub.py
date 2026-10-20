@@ -107,7 +107,7 @@ class StubSpikingBrain:
         self._lifecycle = LifecycleState.SHUTDOWN
 
     @property
-    def memory(self):  # type: ignore[override]
+    def memory(self) -> None:  # type: ignore[override]
         return None  # stubs are intentionally stateless for tests.
 
     # --- legacy aliases ---
@@ -133,9 +133,7 @@ class StubSpikingBrain:
         if not isinstance(prompt, str):
             raise TypeError("prompt must be a str")
         if self._lifecycle == LifecycleState.SHUTDOWN:
-            raise SpikingBrainUnavailableError(
-                "StubSpikingBrain is shut down"
-            )
+            raise SpikingBrainUnavailableError("StubSpikingBrain is shut down")
 
         # 1. ILF belief: deterministic prior mixed with coherence_phi.
         prior = _stable_unit_hash(prompt, self.n_classes, seed=self._call_count)
@@ -258,7 +256,7 @@ class StubSpikingBrainV2:
         self._lifecycle = LifecycleState.SHUTDOWN
 
     @property
-    def memory(self):  # type: ignore[override]
+    def memory(self) -> None:  # type: ignore[override]
         return None
 
     @property
@@ -276,9 +274,7 @@ class StubSpikingBrainV2:
         if not isinstance(prompt, str):
             raise TypeError("prompt must be a str")
         if self._lifecycle == LifecycleState.SHUTDOWN:
-            raise SpikingBrainUnavailableError(
-                "StubSpikingBrainV2 is shut down"
-            )
+            raise SpikingBrainUnavailableError("StubSpikingBrainV2 is shut down")
 
         prior = _stable_unit_hash(prompt, self.n_classes, seed=self._call_count)
         # V2: temperature is always 1.0 (softer than v1's 1-coherence mapping).

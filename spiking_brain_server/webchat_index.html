@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Q-SPEACE brain · chat</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --panel: #ffffff;
+    --ink: #1d1d1f;
+    --muted: #6e6e73;
+    --accent: #0a7c5a;
+    --accent-soft: #d4f0e2;
+    --user-bubble: #e8f0fe;
+    --assistant-bubble: #f0f0f0;
+    --border: #e3e3e3;
+    --warn: #c14a3a;
+    --good: #0a7c5a;
+    --code-bg: #f4f4f4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15171a;
+      --panel: #1d2024;
+      --ink: #ececec;
+      --muted: #8a8a8e;
+      --accent: #5dd6a8;
+      --accent-soft: #1f3a30;
+      --user-bubble: #1e2a44;
+      --assistant-bubble: #25292e;
+      --border: #2c3035;
+      --warn: #ff7563;
+      --good: #5dd6a8;
+      --code-bg: #1a1d21;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body { display: flex; flex-direction: column; height: 100vh; }
+  header {
+    flex: 0 0 auto;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+    display: flex; align-items: center; gap: 16px;
+  }
+  header h1 { font-size: 16px; margin: 0; font-weight: 600; }
+  header .pill { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  header .status { font-size: 11px; color: var(--muted); margin-left: auto; }
+  #chat {
+    flex: 1 1 auto; overflow-y: auto; padding: 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .msg { max-width: 78%; padding: 10px 14px; border-radius: 12px; line-height: 1.5; word-wrap: break-word; }
+  .msg.user { align-self: flex-end; background: var(--user-bubble); }
+  .msg.assistant { align-self: flex-start; background: var(--assistant-bubble); }
+  .msg .text { white-space: pre-wrap; }
+  .msg .meta {
+    font-size: 11px; color: var(--muted); margin-top: 6px;
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .msg .meta span { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .msg .meta .conf-good { color: var(--good); }
+  .msg .meta .conf-warn { color: var(--warn); }
+  .msg .belief-bar {
+    margin-top: 6px; height: 6px; background: var(--border); border-radius: 3px;
+    overflow: hidden; display: flex;
+  }
+  .msg .belief-bar > span { display: block; height: 100%; }
+  .msg .belief-legend { font-size: 10px; color: var(--muted); margin-top: 2px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  #controls {
+    flex: 0 0 auto; padding: 12px 18px;
+    border-top: 1px solid var(--border); background: var(--panel);
+    display: flex; gap: 8px; align-items: flex-end;
+  }
+  #input { flex: 1; resize: vertical; min-height: 40px; max-height: 200px;
+    padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--ink); font: inherit;
+  }
+  #input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  #send, #reset {
+    padding: 10px 18px; border-radius: 8px; border: none; cursor: pointer;
+    font-weight: 600; font: inherit;
+  }
+  #send { background: var(--accent); color: white; }
+  #send:disabled { opacity: 0.5; cursor: not-allowed; }
+  #reset { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  #think-options {
+    display: flex; gap: 12px; font-size: 11px; color: var(--muted);
+    margin-bottom: 6px; align-items: center;
+  }
+  #think-options label { display: flex; align-items: center; gap: 4px; }
+  #think-options input[type="number"] { width: 56px; padding: 2px 4px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--ink); }
+  .loading { display: inline-block; width: 12px; height: 12px; border: 2px solid var(--muted); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error { color: var(--warn); font-style: italic; padding: 8px 14px; }
+  .legend {
+    font-size: 10px; color: var(--muted);
+    padding: 4px 18px; border-top: 1px solid var(--border); background: var(--panel);
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+  .legend code { background: var(--code-bg); padding: 1px 4px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Q-SPEACE brain · chat</h1>
+  <span class="pill">stub or Qwen2.5-3B NF4</span>
+  <span class="status" id="status">checking…</span>
+</header>
+<div id="chat"></div>
+<div id="controls">
+  <div style="flex:1;">
+    <div id="think-options">
+      <label>n_tokens <input type="number" id="n-tokens" value="64" min="8" max="512"></label>
+      <label>coherence_phi <input type="number" id="coherence" value="1.0" min="0" max="1" step="0.05"></label>
+      <span>session <code id="session-id">—</code></span>
+    </div>
+    <textarea id="input" placeholder="Scrape qualcosa al cervello…" rows="2"></textarea>
+  </div>
+  <button id="reset" title="Reset session">↺</button>
+  <button id="send">Send</button>
+</div>
+<div class="legend">
+  <span><code>conf</code> = mean greedy token prob</span>
+  <span><code>belief</code> = softmax over 3 ILF classes</span>
+  <span><code>sevo</code> = cost-model gate (1.5 threshold)</span>
+  <span><code>approved</code> requires φ ≥ 0.05 + conf ≥ 0.05 + sevo &gt; 1.5</span>
+</div>
+<script>
+const chatEl = document.getElementById('chat');
+const inputEl = document.getElementById('input');
+const sendBtn = document.getElementById('send');
+const resetBtn = document.getElementById('reset');
+const statusEl = document.getElementById('status');
+const sessionEl = document.getElementById('session-id');
+const nTokensEl = document.getElementById('n-tokens');
+const coherenceEl = document.getElementById('coherence');
+
+let sessionId = null;
+let busy = false;
+
+const BELIEF_COLORS = ['#0a7c5a', '#0a6cb8', '#c14a3a', '#8a5dd0', '#c98a16', '#5dd6a8', '#c14a8e', '#3a8a8a', '#a3a3a3'];
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.style.color = kind === 'bad' ? 'var(--warn)' : 'var(--muted)';
+}
+
+function addUserMsg(text) {
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  const t = document.createElement('div');
+  t.className = 'text';
+  t.textContent = text;
+  div.appendChild(t);
+  chatEl.appendChild(div);
+  chatEl.scrollTop = chatEl.scrollHeight;
+}
+
+function addAssistantMsg(payload) {
+  const div = document.createElement('div');
+  div.className = 'msg assistant';
+  const t = document.createElement('div');
+  t.className = 'text';
+  t.textContent = payload.text;
+  div.appendChild(t);
+
+  // meta line
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  const conf = payload.confidence ?? 0;
+  const confSpan = document.createElement('span');
+  confSpan.textContent = `conf=${conf.toFixed(3)}`;
+  confSpan.className = conf >= 0.7 ? 'conf-good' : (conf < 0.3 ? 'conf-warn' : '');
+  meta.appendChild(confSpan);
+  if (payload.latency_s != null) {
+    const lat = document.createElement('span');
+    lat.textContent = `${payload.latency_s.toFixed(2)}s`;
+    meta.appendChild(lat);
+  }
+  if (payload.sevo != null) {
+    const sev = document.createElement('span');
+    sev.textContent = `sevo=${payload.sevo.toFixed(2)}`;
+    meta.appendChild(sev);
+  }
+  if (payload.approved != null) {
+    const ap = document.createElement('span');
+    ap.textContent = payload.approved ? '✓ approved' : '✗ rejected';
+    ap.style.color = payload.approved ? 'var(--good)' : 'var(--warn)';
+    meta.appendChild(ap);
+  }
+  div.appendChild(meta);
+
+  // belief bar
+  if (Array.isArray(payload.belief) && payload.belief.length) {
+    const bar = document.createElement('div');
+    bar.className = 'belief-bar';
+    let i = 0;
+    for (const v of payload.belief) {
+      const s = document.createElement('span');
+      s.style.width = (Math.max(v, 0) * 100).toFixed(1) + '%';
+      s.style.background = BELIEF_COLORS[i % BELIEF_COLORS.length];
+      bar.appendChild(s);
+      i++;
+    }
+    div.appendChild(bar);
+    const legend = document.createElement('div');
+    legend.className = 'belief-legend';
+    legend.textContent = payload.belief.map((v, i) => `c${i}:${v.toFixed(2)}`).join('  ');
+    div.appendChild(legend);
+  }
+  chatEl.appendChild(div);
+  chatEl.scrollTop = chatEl.scrollHeight;
+}
+
+function addError(text) {
+  const div = document.createElement('div');
+  div.className = 'error';
+  div.textContent = text;
+  chatEl.appendChild(div);
+  chatEl.scrollTop = chatEl.scrollHeight;
+}
+
+async function checkHealth() {
+  try {
+    const r = await fetch('/api/health');
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    const m = d.sidecar?.model || d.sidecar?.backend || '?';
+    const vram = d.sidecar?.vram_mb ? ` · ${d.sidecar.vram_mb} MiB` : '';
+    setStatus(`sidecar: ${m}${vram}`, 'ok');
+  } catch (e) {
+    setStatus(`sidecar unreachable (${e.message})`, 'bad');
+  }
+}
+
+async function send() {
+  if (busy) return;
+  const text = inputEl.value.trim();
+  if (!text) return;
+  busy = true;
+  sendBtn.disabled = true;
+  addUserMsg(text);
+  inputEl.value = '';
+
+  try {
+    const r = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        session_id: sessionId,
+        message: text,
+        n_tokens: parseInt(nTokensEl.value, 10) || 64,
+        coherence_phi: parseFloat(coherenceEl.value) || 1.0,
+      }),
+    });
+    if (!r.ok) {
+      const err = await r.text();
+      addError(`HTTP ${r.status}: ${err}`);
+      return;
+    }
+    const d = await r.json();
+    sessionId = d.session_id;
+    sessionEl.textContent = sessionId.slice(0, 8);
+    addAssistantMsg(d.assistant);
+  } catch (e) {
+    addError(`network: ${e.message}`);
+  } finally {
+    busy = false;
+    sendBtn.disabled = false;
+    inputEl.focus();
+  }
+}
+
+async function reset() {
+  if (!sessionId) return;
+  try { await fetch('/api/reset', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({session_id: sessionId}) }); } catch {}
+  sessionId = null;
+  sessionEl.textContent = '—';
+  chatEl.innerHTML = '';
+}
+
+sendBtn.addEventListener('click', send);
+resetBtn.addEventListener('click', reset);
+inputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); send(); }
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+});
+
+checkHealth();
+setInterval(checkHealth, 30000);
+</script>
+</body>
+</html>

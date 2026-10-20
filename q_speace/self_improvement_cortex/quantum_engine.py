@@ -67,7 +67,7 @@ class QuantumOracle:
             return (-1, 0.0)
         if num_iterations is None:
             num_iterations = max(1, int((math.pi / 4) * math.sqrt(dim / target_size)))
-        state = QuantumState.equal_superposition(n, seed=self._rng.integers(0, 2**31))
+        state = QuantumState.equal_superposition(n, seed=int(self._rng.integers(0, 2**31)))
         for _ in range(num_iterations):
             state = self.mark_good_states(state, items, threshold)
             state = self.diffusion(state)
@@ -109,7 +109,10 @@ class QAOASelector:
         for k in range(min(num_nodes, self.num_qubits)):
             op = np.array([1.0], dtype=np.float64)
             for i in range(min(num_nodes, self.num_qubits)):
-                op = np.kron(op, X if i == k else np.eye(2, dtype=np.float64))
+                op = np.asarray(
+                    np.kron(op, X if i == k else np.eye(2, dtype=np.float64)),
+                    dtype=np.float64,
+                )
             H += op.reshape(dim, dim)
         return H
 
@@ -135,7 +138,7 @@ class QAOASelector:
                 energy = float(np.real(np.vdot(psi, Hc @ psi)))
                 if energy < best_energy:
                     best_energy = energy
-                    best_state = np.argmax(np.abs(psi))
+                    best_state = int(np.argmax(np.abs(psi)))
 
         selected = []
         for i in range(num_nodes):
@@ -159,7 +162,7 @@ class QuantumKernelClassifier:
         self._trained = False
 
     def _feature_map(self, x: np.ndarray, n: int) -> QuantumState:
-        state = QuantumState(num_qubits=n, seed=self._rng.integers(0, 2**31))
+        state = QuantumState(num_qubits=n, seed=int(self._rng.integers(0, 2**31)))
         for i in range(min(len(x), n)):
             angle = float(x[i]) * math.pi
             u = QuantumGates.single_qubit(GateType.RY, n, i, angle)
@@ -272,7 +275,7 @@ class QuantumEvolutionEngine:
 
 def strategy_id(strategies: list[dict], idx: int) -> str:
     if 0 <= idx < len(strategies):
-        return strategies[idx].get("id", str(idx))
+        return str(strategies[idx].get("id", str(idx)))
     return str(idx)
 
 

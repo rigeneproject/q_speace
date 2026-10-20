@@ -8,7 +8,10 @@ backend raises a clear install message.
 
 from __future__ import annotations
 
+from typing import Any
+
 from .base import QuantumBackend
+from ..quantum_brain_simulator import BrainQuantumCircuit
 
 
 class QiskitBackend(QuantumBackend):
@@ -17,19 +20,20 @@ class QiskitBackend(QuantumBackend):
     name = "qiskit"
 
     def __init__(
-        self, shots: int = 1024, backend_type: str = "aer_simulator", seed: int = None
+        self, shots: int = 1024, backend_type: str = "aer_simulator", seed: int | None = None
     ) -> None:
         self._shots = shots
         self._backend_type = backend_type
         self._seed = seed
-        self._aer = None
+        self._aer: Any | None = None
+        self._QKCircuit: Any | None = None
 
-    def _ensure_qiskit(self):
+    def _ensure_qiskit(self) -> Any:
         if self._aer is not None:
             return self._aer
         try:
-            from qiskit import QuantumCircuit as QKCircuit  # type: ignore
-            from qiskit_aer import AerSimulator  # type: ignore
+            from qiskit import QuantumCircuit as QKCircuit  # type: ignore[import-not-found]
+            from qiskit_aer import AerSimulator  # type: ignore[import-not-found]
         except ImportError as exc:
             raise RuntimeError(
                 "Qiskit backend requires qiskit and qiskit-aer. "
@@ -39,11 +43,14 @@ class QiskitBackend(QuantumBackend):
         self._aer = AerSimulator(method="statevector", seed_simulator=self._seed)
         return self._aer
 
-    def _to_qiskit_circuit(self, circuit):
+    def _to_qiskit_circuit(self, circuit: BrainQuantumCircuit) -> Any:
         self._ensure_qiskit()
+        assert self._QKCircuit is not None
         n = circuit.num_qubits
         qc = self._QKCircuit(n, n)
         for op in circuit.gates():
+            if op.target is None:
+                raise ValueError(f"gate {op.gate.value} requires a target role")
             g = op.gate.value if hasattr(op.gate, "value") else str(op.gate)
             if op.control is not None:
                 c = circuit._role_index[op.control]
@@ -80,7 +87,7 @@ class QiskitBackend(QuantumBackend):
             qc.measure(i, i)
         return qc
 
-    def run(self, circuit, shots: int = 1024) -> list[tuple[str, str]]:
+    def run(self, circuit: BrainQuantumCircuit, shots: int = 1024) -> list[tuple[str, str]]:
         aer = self._ensure_qiskit()
         qc = self._to_qiskit_circuit(circuit)
         result = aer.run(qc, shots=shots or self._shots).result()

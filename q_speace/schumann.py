@@ -14,7 +14,9 @@ from .earth_feed import EarthFeed, EarthSignals
 from .quantum import BrainQuantumCircuit, GateType, QuantumBrainSimulator
 
 
-def schumann_circuit(num_qubits: int = 4, angles: dict[str, float] = None) -> BrainQuantumCircuit:
+def schumann_circuit(
+    num_qubits: int = 4, angles: dict[str, float] | None = None
+) -> BrainQuantumCircuit:
     """Create the Schumann-resonance circuit: H + CNOT lattice + rotations."""
     angles = angles or {}
     circ = BrainQuantumCircuit(name="schumann_resonance")
@@ -37,7 +39,7 @@ def schumann_circuit(num_qubits: int = 4, angles: dict[str, float] = None) -> Br
 
 
 def run_schumann(
-    num_qubits: int = 4, ticks: int = 10, use_network: bool = False, seed: int = None
+    num_qubits: int = 4, ticks: int = 10, use_network: bool = False, seed: int | None = None
 ) -> dict[str, object]:
     """Run the Schumann experiment across ticks; return measurements + metrics."""
     feed = EarthFeed(use_network=use_network, seed=seed)

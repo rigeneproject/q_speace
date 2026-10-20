@@ -189,6 +189,51 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Qwen2.5-3B-Instruct (NF4) is the operative backend, sharing "
         "only the HTTP /think contract.",
     ),
+    # ----- q_speace_economy primitives (T6.*) -----
+    BCELEquivalence(
+        "J_c 5-tuple (T6.5 cognitive measurement)",
+        "accidental",
+        "Removed: the 'joule-consciousness 5-tuple' analogy is biological "
+        "metaphor over a structured measurement tuple. The math "
+        "(J, delta_S, delta_I_c, R_b, delta_C) survives as 5 "
+        "independently measurable physical quantities; the "
+        "'metabolic intentionality' framing does not.",
+    ),
+    BCELEquivalence(
+        "Coherence gain in N-agent simulation (T6.7)",
+        "functional",
+        "Keep: 'coherence gain' is the measured increase in the agent's "
+        "CME minimum axis or VTEC objective under the SPEACE policy, "
+        "compared to a scalar-monetary baseline. It is a metric, not a "
+        "conscious-state assertion.",
+    ),
+    BCELEquivalence(
+        "DAT bound destination (T6.11 routing key)",
+        "functional",
+        "Keep: the DAT 'bound_to' field is a routing key that scopes "
+        "where a token may be spent (e.g. 'positive-exergy-processes'). "
+        "It is a routing rule, not an identity claim or a value system.",
+    ),
+    # --- T-SPB-3-B: declarative event router ---
+    BCELEquivalence(
+        "Cognitive area dispatch (language/quantum/spiking/native)",
+        "functional",
+        "Keep as the EventRouter in q_speace.routing: a pure, declarative "
+        "first-match dispatcher that routes text_input → SpikingBrainCortex "
+        "(language area), quantum_state/spike_train → native primitives, "
+        "everything else → native orchestrator tick. The LLM is consulted "
+        "only for events with non-empty text, not for every stimulus — "
+        "this preserves the BCEL rule that 'generated text is untrusted; "
+        "only Sevo/coherence-gated belief updates may influence the "
+        "organism'.",
+    ),
+    BCELEquivalence(
+        "Proof of Coherence admission (T6.22)",
+        "functional",
+        "Keep: admission control is a mechanical inequality on a 12-dim "
+        "CME vector plus a cardinality check on the reference set. It "
+        "is not a self-certification of identity, nor a moral judgement.",
+    ),
 ]
 
 

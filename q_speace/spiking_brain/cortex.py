@@ -37,6 +37,8 @@ import numpy as np
 
 from ..edd_cvt.ilf import InformationalLogicalField
 from ..metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
+from .audit import BrainAuditLog
+from .interface import LifecycleState
 from .memory import Memory, WorkingMemory
 from .stub import StubSpikingBrain
 from .types import ThinkResult
@@ -77,30 +79,56 @@ class SpikingBrainCortex:
         min_coherence_phi: float = 0.05,
         min_confidence: float = 0.05,
         memory: Memory | None = None,
+        q_star_ema: float = 0.5,
+        coherence_phi_ema: float = 0.5,
+        backend_coherence_phi_floor: float = 0.7,
+        brain_audit_log: BrainAuditLog | None = None,
     ) -> None:
         if backend is None:
             from .factory import make_spiking_brain
 
             backend = make_spiking_brain()
         self.backend = backend
-        self.ilf = ilf or InformationalLogicalField(coherence_phi=1.0)
+        # T-SPB-3-A: when no ILF is supplied, fall back to one with EMA
+        # blending enabled so multi-turn `apply_to_ilf` does not collapse
+        # coherence_phi on the second tick. Callers passing their own ILF
+        # control the EMA coefficients themselves (defaults preserved).
+        self.ilf = ilf or InformationalLogicalField(
+            coherence_phi=1.0,
+            q_star_ema=q_star_ema,
+            coherence_phi_ema=coherence_phi_ema,
+        )
         self.cost = cost or QuantumCostModel()
         self.sevo_threshold = sevo_threshold
         self.min_coherence_phi = min_coherence_phi
         self.min_confidence = min_confidence
+        # T-SPB-3-A-bis: floor for the coherence_phi value propagated to
+        # the backend's ``think()``. Prevents the coupled loop where a
+        # low ILF φ attenuates the backend's reported confidence, which
+        # then drives sevo below threshold. The coherence gate inside
+        # ``tick()`` still sees the real φ, so this does not bypass
+        # the SPEACE-side quality control. Default 0.7 — at this level
+        # the backend's ``confidence *= (0.5 + 0.5 * φ)`` keeps
+        # attenuated_conf ≥ 0.65 · (0.5+0.5·0.7) = 0.62, which gives
+        # sevo ≥ 1.6 for any incoming base confidence ≥ 0.65.
+        if not (0.0 <= backend_coherence_phi_floor <= 1.0):
+            raise ValueError("backend_coherence_phi_floor must be in [0, 1]")
+        self.backend_coherence_phi_floor = float(backend_coherence_phi_floor)
         # T-SPB-4: default in-memory working memory (capacity 64).
         self.memory: Memory = memory if memory is not None else WorkingMemory()
+        # T-SPB-3-C: optional persistent audit trail for apply events.
+        self.brain_audit_log: BrainAuditLog | None = brain_audit_log
         self._history: list[ThinkResult] = []
         self._reports: list[CortexReport] = []
-
 
     @property
     def backend_name(self) -> str:
         # Prefer new ``backend_name`` (T-SPB-4 protocol attr); fall back
         # to legacy ``.backend`` string used by duck-typed backends.
-        return getattr(self.backend, "backend_name", None) or getattr(
+        name = getattr(self.backend, "backend_name", None) or getattr(
             self.backend, "backend", type(self.backend).__name__
         )
+        return str(name) if name is not None else type(self.backend).__name__
 
     # --- async / sync shim ---
 
@@ -132,8 +160,13 @@ class SpikingBrainCortex:
         T-SPB-4: also writes the result to ``self.memory`` (default
         :class:`WorkingMemory`) so other components can retrieve recent
         thoughts via ``get_relevant``.
+
+        T-SPB-3-A-bis: ``coherence_phi`` propagated to the backend is
+        clamped at ``self.backend_coherence_phi_floor``. The internal
+        coherence gate still sees the unclamped value.
         """
-        coherence_phi = float(self.ilf.coherence_phi)
+        ilf_phi = float(self.ilf.coherence_phi)
+        coherence_phi = max(ilf_phi, self.backend_coherence_phi_floor)
         result = await self._think_async(prompt, coherence_phi, n_tokens, history)
         self._history.append(result)
         if len(self._history) > 64:
@@ -219,7 +252,15 @@ class SpikingBrainCortex:
             reason = "approved"
 
         if approved:
-            self.apply_to_ilf(result, agent_id=agent_id)
+            self.apply_to_ilf(
+                result,
+                agent_id=agent_id,
+                prompt=prompt,
+                sevo=sevo,
+                energy_w=energy,
+                approved=approved,
+                reason=reason,
+            )
 
         report = CortexReport(
             backend=self.backend_name,
@@ -237,12 +278,29 @@ class SpikingBrainCortex:
             self._reports = self._reports[-64:]
         return report
 
-    def apply_to_ilf(self, result: ThinkResult, agent_id: str = "spiking_brain") -> None:
+    def apply_to_ilf(
+        self,
+        result: ThinkResult,
+        agent_id: str = "spiking_brain",
+        *,
+        prompt: str = "",
+        sevo: float = 0.0,
+        energy_w: float = 0.0,
+        approved: bool = True,
+        reason: str = "apply",
+    ) -> None:
         """Inject the ThinkResult into the ILF as an agent belief.
 
         The plasticity coefficients scale the agent weight (recent,
         confident thoughts have more influence).
+
+        T-SPB-3-C: when ``self.brain_audit_log`` is set, this method
+        also writes one JSONL record with full provenance (backend,
+        model, pre/post coherence_phi, sevo, energy_w, approved flag).
+        Best-effort: a failure to write the audit line is logged to
+        stderr but never raised.
         """
+        coherence_phi_pre = float(self.ilf.coherence_phi)
         weight = float(np.mean(result.plasticity)) if result.plasticity.size else 1.0
         weight = max(weight, 0.01)
         # Ensure the agent is registered.
@@ -251,6 +309,30 @@ class SpikingBrainCortex:
         self.ilf.set_weight(agent_id, weight)
         # Recompute q_star so coherence_phi reflects the new belief.
         self.ilf.compute_q_star()
+        coherence_phi_post = float(self.ilf.coherence_phi)
+
+        if self.brain_audit_log is not None:
+            from .audit import make_apply_record
+
+            backend_meta = dict(result.metadata or {})
+            backend_meta.setdefault("cortex_backend", self.backend_name)
+            rec = make_apply_record(
+                agent_id=agent_id,
+                backend=self.backend_name,
+                backend_meta=backend_meta,
+                prompt=prompt or "",
+                result_text=result.text or "",
+                result_confidence=float(result.confidence),
+                result_belief=np.asarray(result.belief, dtype=float),
+                n_tokens=int(result.n_tokens),
+                coherence_phi_pre=coherence_phi_pre,
+                coherence_phi_post=coherence_phi_post,
+                sevo=sevo,
+                energy_w=energy_w,
+                approved=approved,
+                reason=reason,
+            )
+            self.brain_audit_log.write(rec)
 
     async def health(self) -> dict[str, Any]:
         backend_health = getattr(self.backend, "health", None)
@@ -308,7 +390,7 @@ class SpikingBrainCortex:
             if inspect.isawaitable(out):
                 await out
 
-    def lifecycle_state(self):
+    def lifecycle_state(self) -> LifecycleState:
         """Return the backend's lifecycle state.
 
         Delegates to ``backend.lifecycle_state()`` if present (T-SPB-4);
@@ -316,9 +398,9 @@ class SpikingBrainCortex:
         """
         state = getattr(self.backend, "lifecycle_state", None)
         if callable(state):
-            return state()
-        from .interface import LifecycleState
-
+            out = state()
+            if isinstance(out, LifecycleState):
+                return out
         return LifecycleState.READY
 
     async def load(self) -> None:

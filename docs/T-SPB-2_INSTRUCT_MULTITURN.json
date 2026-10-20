@@ -1,0 +1,415 @@
+{
+  "summaries": [
+    {
+      "scenario": "focused",
+      "n_turns": 6,
+      "n_approved": 4,
+      "approval_rate": 0.6666666666666666,
+      "initial_coherence_phi": 1.0,
+      "final_coherence_phi": 0.041877579523373204,
+      "delta_coherence_phi": -0.9581224204766268,
+      "mean_confidence": 0.671412865470888,
+      "mean_sevo": 2.2751290830144058,
+      "trace": [
+        {
+          "idx": 0,
+          "prompt": "What is the ILF (Informational Logical Field) in Q-SPEACE?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.8000213411119249,
+          "belief": [
+            0.40001067055596246,
+            0.09998932944403754,
+            0.5
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.5820480943486602,
+            0.8218038478018033
+          ],
+          "coherence_phi": 0.10210035985151733,
+          "sevo": 4.000533584734581,
+          "energy_w": 67.57289397059971,
+          "latency_s": 2.0779937759980385,
+          "text_excerpt": "In Q-SPEACE, the ILF (Informational Logical Field) refers to a conceptual framework that organizes and structures inform"
+        },
+        {
+          "idx": 1,
+          "prompt": "How does the ILF track belief across multiple agents?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.609251538120831,
+          "belief": [
+            0.3583832577181359,
+            0.22985203639951118,
+            0.4117647058823529
+          ],
+          "spikes": 9,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.588607560613711,
+            0.8614566132882386
+          ],
+          "coherence_phi": 0.07568287130620166,
+          "sevo": 1.5591911358802215,
+          "energy_w": 68.16313574105416,
+          "latency_s": 2.195943012000498,
+          "text_excerpt": "The Interleaved Learning Framework (ILF) tracks belief across multiple agents by allowing each agent to update its belie"
+        },
+        {
+          "idx": 2,
+          "prompt": "What is the role of the Sevo gate in approving ILF updates?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.6557410961482674,
+          "belief": [
+            0.38573005655780435,
+            0.20250523755984273,
+            0.4117647058823529
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.5794799591072399,
+            0.8757281812729938
+          ],
+          "coherence_phi": 0.05637375212539503,
+          "sevo": 1.9047905190294967,
+          "energy_w": 68.01929704851727,
+          "latency_s": 2.0117851689974486,
+          "text_excerpt": "The Sevo gate's role in approving ILF (In-Flight Load File) updates is to ensure that these changes meet safety and oper"
+        },
+        {
+          "idx": 3,
+          "prompt": "How does coherence_phi change after an approved Sevo gate?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.6206374865025281,
+          "belief": [
+            0.3650808744132519,
+            0.2231544197043952,
+            0.4117647058823529
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.5713171884440925,
+            0.8884911767193311
+          ],
+          "coherence_phi": 0.041877579523373204,
+          "sevo": 1.6360010924133235,
+          "energy_w": 68.12790761676118,
+          "latency_s": 1.988737828000012,
+          "text_excerpt": "I need more specific information about the context and system you're referring to. \"Coherence_phi\" could be related to q"
+        },
+        {
+          "idx": 4,
+          "prompt": "Why does a low-confidence belief not raise coherence_phi?",
+          "approved": false,
+          "reason": "coherence_phi 0.042<0.05",
+          "coherence_phi": 0.041877579523373204,
+          "sevo": 1.688696194916987,
+          "energy_w": 68.10490362281959
+        },
+        {
+          "idx": 5,
+          "prompt": "Summarise the relationship between ILF, Sevo, and coherence_phi.",
+          "approved": false,
+          "reason": "coherence_phi 0.042<0.05",
+          "coherence_phi": 0.041877579523373204,
+          "sevo": 2.0291798218055854,
+          "energy_w": 67.97555859038009
+        }
+      ]
+    },
+    {
+      "scenario": "scattered",
+      "n_turns": 6,
+      "n_approved": 6,
+      "approval_rate": 1.0,
+      "initial_coherence_phi": 1.0,
+      "final_coherence_phi": 0.09171155903250545,
+      "delta_coherence_phi": -0.9082884409674945,
+      "mean_confidence": 0.8214111170524525,
+      "mean_sevo": 169.96783965254448,
+      "trace": [
+        {
+          "idx": 0,
+          "prompt": "What is the capital of France?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.9998960644006729,
+          "belief": [
+            0.49994803220033646,
+            5.19677996635437e-05,
+            0.5
+          ],
+          "spikes": 10,
+          "sparsity": 0.33333333333333337,
+          "plasticity": [
+            1.0,
+            0.4881910048956964,
+            0.9213068368596801
+          ],
+          "coherence_phi": 0.36666392756895294,
+          "sevo": 999.8960644006729,
+          "energy_w": 66.95448157674433,
+          "latency_s": 0.41899585999999545,
+          "text_excerpt": "The capital of France is Paris."
+        },
+        {
+          "idx": 1,
+          "prompt": "Compute 17 * 23.",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.8161704868078231,
+          "belief": [
+            0.48010028635754304,
+            0.10813500776010405,
+            0.4117647058823529
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.45322441490028215,
+            0.9065885203402307
+          ],
+          "coherence_phi": 0.274117073296026,
+          "sevo": 4.439822924160126,
+          "energy_w": 67.5229285138166,
+          "latency_s": 0.7707815320027294,
+          "text_excerpt": "The result of 17 * 23 is 391."
+        },
+        {
+          "idx": 2,
+          "prompt": "Define 'photosynthesis'.",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.7397486510997018,
+          "belief": [
+            0.43514626535276574,
+            0.1530890287648813,
+            0.4117647058823529
+          ],
+          "spikes": 9,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.4334403631703215,
+            0.9156821991025381
+          ],
+          "coherence_phi": 0.18837205173193225,
+          "sevo": 2.8424392581461624,
+          "energy_w": 67.75937767349754,
+          "latency_s": 1.9718424800012144,
+          "text_excerpt": "Photosynthesis is the process by which plants, some bacteria, and algae convert light energy into chemical energy to fue"
+        },
+        {
+          "idx": 3,
+          "prompt": "Is Mount Everest in Asia?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.8391726864708795,
+          "belief": [
+            0.49363099204169386,
+            0.09460430207595323,
+            0.4117647058823529
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.40563639163676374,
+            0.9019038424931476
+          ],
+          "coherence_phi": 0.14492929011713535,
+          "sevo": 5.217849307163445,
+          "energy_w": 67.4517597080591,
+          "latency_s": 0.4565279080015898,
+          "text_excerpt": "Yes, Mount Everest is in Asia."
+        },
+        {
+          "idx": 4,
+          "prompt": "What year did WWII end?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.8362942325572172,
+          "belief": [
+            0.4919377838571866,
+            0.09629751026046045,
+            0.4117647058823529
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.38160317932849275,
+            0.8899940989785247
+          ],
+          "coherence_phi": 0.12191587718061184,
+          "sevo": 5.1085202776958525,
+          "energy_w": 67.46066564446798,
+          "latency_s": 0.574891543998092,
+          "text_excerpt": "World War II ended in 1945."
+        },
+        {
+          "idx": 5,
+          "prompt": "Tell me a joke about robots.",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.6971845809784201,
+          "belief": [
+            0.41010857704612946,
+            0.17812671707151762,
+            0.4117647058823529
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.3927454813019465,
+            0.9003467331209896
+          ],
+          "coherence_phi": 0.09171155903250545,
+          "sevo": 2.3023417474284416,
+          "energy_w": 67.89107090645277,
+          "latency_s": 0.8115206749971549,
+          "text_excerpt": "Why did the robot break up with its significant other? Because it found someone binary."
+        }
+      ]
+    },
+    {
+      "scenario": "mixed",
+      "n_turns": 6,
+      "n_approved": 4,
+      "approval_rate": 0.6666666666666666,
+      "initial_coherence_phi": 1.0,
+      "final_coherence_phi": 0.07222246484649765,
+      "delta_coherence_phi": -0.9277775351535024,
+      "mean_confidence": 0.7739050886809717,
+      "mean_sevo": 3.984082494365656,
+      "trace": [
+        {
+          "idx": 0,
+          "prompt": "What is coherence_phi in Q-SPEACE?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.8437735953678688,
+          "belief": [
+            0.4218867976839344,
+            0.07811320231606561,
+            0.5
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.3792321353573597,
+            0.9334475045982759
+          ],
+          "coherence_phi": 0.12107266152689655,
+          "sevo": 5.4009666122363615,
+          "energy_w": 67.43752449593183,
+          "latency_s": 1.985907361999125,
+          "text_excerpt": "I don't have specific information about \"coherence_phi\" in Q-SPEACE as it's not a commonly recognized term within the fr"
+        },
+        {
+          "idx": 1,
+          "prompt": "What is the capital of Japan?",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.84983104839921,
+          "belief": [
+            0.49990061670541763,
+            0.08833467741222943,
+            0.4117647058823529
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.35840468739702613,
+            0.9179404028616628
+          ],
+          "coherence_phi": 0.11626657140867841,
+          "sevo": 5.659166154788145,
+          "energy_w": 67.41878273625285,
+          "latency_s": 0.42083283299871255,
+          "text_excerpt": "The capital of Japan is Tokyo."
+        },
+        {
+          "idx": 2,
+          "prompt": "How does the Sevo gate work?",
+          "approved": false,
+          "reason": "sevo 1.35<=1.5",
+          "coherence_phi": 0.11626657140867841,
+          "sevo": 1.349541873327763,
+          "energy_w": 68.27101246180263
+        },
+        {
+          "idx": 3,
+          "prompt": "Compute 144 / 12.",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.6516934206088384,
+          "belief": [
+            0.38334907094637555,
+            0.20488622317127153,
+            0.4117647058823529
+          ],
+          "spikes": 10,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.39206538508875466,
+            0.9528311256235464
+          ],
+          "coherence_phi": 0.0870554788018745,
+          "sevo": 1.8710339085411354,
+          "energy_w": 68.03182055663626,
+          "latency_s": 0.22283320000133244,
+          "text_excerpt": "12"
+        },
+        {
+          "idx": 4,
+          "prompt": "Why does a uniform belief lower coherence_phi?",
+          "approved": false,
+          "reason": "sevo 1.10<=1.5",
+          "coherence_phi": 0.0870554788018745,
+          "sevo": 1.098127735396121,
+          "energy_w": 68.4288080625575
+        },
+        {
+          "idx": 5,
+          "prompt": "Define 'entropy' in one sentence.",
+          "approved": true,
+          "reason": "approved",
+          "confidence": 0.75032229034797,
+          "belief": [
+            0.44136605314586475,
+            0.14686924097178233,
+            0.4117647058823529
+          ],
+          "spikes": 9,
+          "sparsity": 0.0,
+          "plasticity": [
+            1.0,
+            0.41865671718556835,
+            0.9829625491754288
+          ],
+          "coherence_phi": 0.07222246484649765,
+          "sevo": 3.0051633018969808,
+          "energy_w": 67.72666283366338,
+          "latency_s": 1.0145403889982845,
+          "text_excerpt": "Entropy refers to a measure of disorder or randomness in a system, often used in statistical mechanics and information t"
+        }
+      ]
+    }
+  ]
+}

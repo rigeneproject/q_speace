@@ -44,7 +44,7 @@ class CosmicVirusOptimizer:
         eta = self._rng.normal(0.0, self.config.sigma, size=w.shape)
         cv = eta * grad
         dw = self.config.alpha * cv - self.config.beta * w
-        return w + dt * dw
+        return np.asarray(w + dt * dw, dtype=float)
 
     def optimize(
         self,

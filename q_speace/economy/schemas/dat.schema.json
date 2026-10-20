@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://q-speace.dev/schemas/dat.schema.json",
+  "title": "DAT — Dynamic Allocation Token (q_speace_economy §4.4.3)",
+  "description": "Exponential-decay allocation token. Amount is multiplied by 2**(-(t - mint_time)/decay_half_life). Spending against a non-matching bound raises an error.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["amount", "bound_to", "decay_half_life", "mint_time"],
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "Initial amount at mint time.",
+      "exclusiveMinimum": 0.0
+    },
+    "bound_to": {
+      "type": "string",
+      "description": "Routing key for valid targets (e.g. 'positive-exergy-processes').",
+      "minLength": 1
+    },
+    "decay_half_life": {
+      "type": "number",
+      "description": "Time in seconds for the amount to halve. Must be > 0.",
+      "exclusiveMinimum": 0.0
+    },
+    "mint_time": {
+      "type": "number",
+      "description": "Mint timestamp (Unix seconds, float).",
+      "minimum": 0.0
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

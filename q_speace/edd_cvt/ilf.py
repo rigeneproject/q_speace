@@ -6,11 +6,42 @@ import numpy as np
 
 
 class InformationalLogicalField:
-    def __init__(self, coherence_phi: float = 1.0) -> None:
+    """ILF with optional temporal smoothing (T-SPB-3-A).
+
+    Two opt-in parameters control whether ``compute_q_star`` and the
+    derived ``coherence_phi`` blend with their previous values:
+
+    - ``q_star_ema``: blend coefficient α ∈ [0, 1) for ``q_star``.
+      With α=0 (default) the field is bit-identical to the legacy
+      implementation. With α>0 the freshly-computed q_star is mixed
+      as ``_q_star ← α·prev + (1-α)·fresh`` before normalising.
+    - ``coherence_phi_ema``: separate blend for the scalar φ. With
+      α=0 the φ is the entropy of the raw q_star (legacy); with α>0
+      it is smoothed across consecutive ``compute_q_star`` calls.
+
+    Defaults preserve every existing call site; ``SpikingBrainCortex``
+    opts in with α=0.5 to stabilise multi-turn apply.
+    """
+
+    def __init__(
+        self,
+        coherence_phi: float = 1.0,
+        q_star_ema: float = 0.0,
+        coherence_phi_ema: float = 0.0,
+    ) -> None:
+        if not (0.0 <= q_star_ema < 1.0):
+            raise ValueError("q_star_ema must be in [0, 1)")
+        if not (0.0 <= coherence_phi_ema < 1.0):
+            raise ValueError("coherence_phi_ema must be in [0, 1)")
         self.coherence_phi = float(coherence_phi)
+        self.q_star_ema = float(q_star_ema)
+        self.coherence_phi_ema = float(coherence_phi_ema)
         self._agent_beliefs: dict[str, np.ndarray] = {}
         self._agent_weights: dict[str, float] = {}
         self._q_star: np.ndarray | None = None
+        # Previous values for EMA blending. None on first compute.
+        self._q_star_prev: np.ndarray | None = None
+        self._phi_prev: float | None = None
 
     def register_agent(self, agent_id: str, weight: float = 1.0) -> None:
         self._agent_weights[agent_id] = weight
@@ -31,6 +62,7 @@ class InformationalLogicalField:
     def q_star(self) -> np.ndarray:
         if self._q_star is None:
             self.compute_q_star()
+        assert self._q_star is not None
         return self._q_star
 
     def compute_q_star(self) -> np.ndarray:
@@ -51,14 +83,38 @@ class InformationalLogicalField:
         log_q_shifted = log_q - log_q_max
         q_unorm = np.exp(log_q_shifted)
         total = np.sum(q_unorm)
-        if total > 0:
-            self._q_star = q_unorm / total
+        q_fresh = q_unorm / total if total > 0 else np.ones(dim) / dim
+
+        # T-SPB-3-A: optional EMA blend with previous q_star.
+        if (
+            self.q_star_ema > 0.0
+            and self._q_star_prev is not None
+            and self._q_star_prev.shape == q_fresh.shape
+        ):
+            blended = self.q_star_ema * self._q_star_prev + (1.0 - self.q_star_ema) * q_fresh
+            s = float(np.sum(blended))
+            if s > 0:
+                self._q_star = blended / s
+            else:
+                self._q_star = q_fresh
         else:
-            self._q_star = np.ones(dim) / dim
+            self._q_star = q_fresh
+
         coherence = 1.0 - (
             -np.sum(self._q_star * np.log(np.maximum(self._q_star, 1e-12))) / math.log(max(dim, 2))
         )
-        self.coherence_phi = float(coherence)
+
+        # T-SPB-3-A: optional EMA blend on the scalar coherence_phi.
+        if self.coherence_phi_ema > 0.0 and self._phi_prev is not None:
+            blended_phi = (
+                self.coherence_phi_ema * self._phi_prev + (1.0 - self.coherence_phi_ema) * coherence
+            )
+            self.coherence_phi = float(np.clip(blended_phi, 0.0, 1.0))
+        else:
+            self.coherence_phi = float(coherence)
+
+        self._q_star_prev = self._q_star.copy()
+        self._phi_prev = self.coherence_phi
         return self._q_star
 
     def update(self, state_vector: np.ndarray) -> None:
@@ -82,3 +138,5 @@ class InformationalLogicalField:
     def clear_beliefs(self) -> None:
         self._agent_beliefs.clear()
         self._q_star = None
+        self._q_star_prev = None
+        self._phi_prev = None

@@ -77,4 +77,5 @@ class SpikeEncodedLinear:
             raise ValueError(f"expected last dim {self.in_features}, got {arr.shape[-1]}")
         enc = dynamic_spikes(arr, k=self.k, coherence_phi=coherence_phi, beta=beta)
         x_hat = enc.spikes * enc.vth
-        return x_hat @ self._weight_q.T + self.bias
+        out: np.ndarray = x_hat @ self._weight_q.T + self.bias
+        return out

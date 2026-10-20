@@ -2,6 +2,13 @@
 
 **Status:** agentic (production)
 
+> **Epistemic note (2026-08-12).** T206 è **backend-agnostic**:
+> opera sul contratto `/think` e sul `ThinkResult` indipendentemente
+> dal backend attivo (stub, Qwen 3B NF4, SpikingBrain-7B NF4
+> cache-less). Brier/ECE misurano la calibrazione del *segnale di
+> confidenza* esposto dal backend in uso; qualunque claim specifica
+> sulla metacognizione di SpikingBrain-7B richiede Gap-2 (T-SPB-2).
+
 ## Purpose
 
 Make the existing SpikingBrain satellite internally consistent and safe to

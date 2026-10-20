@@ -67,7 +67,7 @@ class MacroLevel:
 class FractalQCACascade:
     """Multi-scale QCA coupled through coarse-grained signatures (RG)."""
 
-    def __init__(self, level_sizes: tuple[int, ...] = (2, 8), seed: int = None) -> None:
+    def __init__(self, level_sizes: tuple[int, ...] = (2, 8), seed: int | None = None) -> None:
         self.real_levels = [FractalQCA(n, seed=seed) for n in level_sizes]
         self.macro_levels: list[MacroLevel] = []
         self.history: list[list[LevelSignature]] = []
@@ -106,7 +106,7 @@ class FractalQCACascade:
 
 
 def experiment_cross_scale(
-    ticks: int = 20, atom_noise: float = 0.2, seed: int = None
+    ticks: int = 20, atom_noise: float = 0.2, seed: int | None = None
 ) -> tuple[float, float]:
     """Empirical proof of cross-scale emergence (Option A crux).
 

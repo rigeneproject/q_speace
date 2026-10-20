@@ -69,6 +69,8 @@ class QuantumBrainSimulator:
             return []
         state = QuantumState(num_qubits=n, seed=self._seed)
         for op in circuit.gates():
+            if op.target is None:
+                raise ValueError(f"gate {op.gate.value} requires a target role")
             if op.control is not None:
                 c = circuit._role_index[op.control]
                 t = circuit._role_index[op.target]
@@ -88,6 +90,8 @@ class QuantumBrainSimulator:
         n = circuit.num_qubits
         state = QuantumState(num_qubits=n, seed=self._seed)
         for op in circuit.gates():
+            if op.target is None:
+                raise ValueError(f"gate {op.gate.value} requires a target role")
             if op.control is not None:
                 u = QuantumGates.two_qubit(
                     op.gate,

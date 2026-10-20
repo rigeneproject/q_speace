@@ -51,15 +51,10 @@ def test_backward_compat_factor_one_matches_original() -> None:
     original = QuantumCostModel.RICALIBRATION_FACTOR
     QuantumCostModel.RICALIBRATION_FACTOR = 1.0
     try:
-        op = QuantumOperation(num_qubits=4, num_gates=30, entanglement_depth=2,
-                              decoherence_budget=0.15, num_spikes=5)
-        expected = (
-            4 * 0.5
-            + 30 * 0.001
-            + 2 * 0.01
-            + 0.15 * 0.1
-            + 5 * 0.001
+        op = QuantumOperation(
+            num_qubits=4, num_gates=30, entanglement_depth=2, decoherence_budget=0.15, num_spikes=5
         )
+        expected = 4 * 0.5 + 30 * 0.001 + 2 * 0.01 + 0.15 * 0.1 + 5 * 0.001
         assert math.isclose(model.energy_watts(op), expected, rel_tol=1e-9)
     finally:
         QuantumCostModel.RICALIBRATION_FACTOR = original

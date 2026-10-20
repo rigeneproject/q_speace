@@ -1,0 +1,110 @@
+modello strategico Alexander's Asymmetric Control Model
+Documento tecnico 
+"C:\Users\rober\Desktop\Q-SPEACE\q_speace\docs\T-AACM_RESULTS.md"
+
+Modello strategico basato su pattern e regole estratte da Alessandro Magno Il Grande 
+
+
+
+Le strategie di Alessandro per l'acquisizione di risorse (territori, ricchezze, uomini, infrastrutture) si possono raggruppare così:
+
+**Militari**
+- Assedi sistematici quando necessario (Tiro, Gaza) per sottomettere nodi commerciali chiave
+- Battaglie campali decisive (Granico, Isso, Gaugamela) mirate a colpire il cuore del potere persiano, non solo il territorio periferico
+- Velocità e marce forzate: colpire prima che il nemico si organizzasse, riducendo i costi di campagne prolungate
+
+**Economico-finanziarie**
+- Cattura diretta dei tesori reali persiani (Susa, Persepoli, Babilonia — enormi riserve di oro e argento accumulate da secoli)
+- Standardizzazione della moneta per integrare economicamente i territori conquistati e facilitare commercio/tassazione
+
+**Politico-amministrative**
+- Cooptazione anziché distruzione: mantenne spesso il sistema satrapale persiano, sostituendo solo i vertici, per non interrompere il flusso di risorse e tributi
+- Alleanze matrimoniali (Rossane, Statira) per legittimare il controllo su élite locali
+- Sfruttamento delle divisioni interne dell'impero achemenide, incentivando defezioni di satrapi
+
+**Psicologiche**
+- Reputazione di inarrestabilità: molte città si arresero senza combattere, risparmiando risorse militari
+- Trattamento generalmente clemente delle popolazioni sottomesse (con eccezioni punitive, come Tebe), per rendere la resa più conveniente della resistenza
+
+**Infrastrutturali/umane**
+- Fondazione di città (le "Alessandrie") come presidi strategici e nodi commerciali lungo le rotte
+- Integrazione di truppe locali nell'esercito (cavalleria persiana, poi gli "epigoni" addestrati alla macedone), trasformando ex nemici in risorsa militare
+
+In termini del framework: è un caso in cui la funzione "conquista" si realizza più tramite relazioni di *trasformazione* e *dipendenza* (cooptazione dei sistemi esistenti) che di pura *causalità* distruttiva — un pattern che ricorre spesso negli imperi di lunga durata.
+
+Dal caso "strategie di conquista di Alessandro Magno Il Grande" emergono pattern e regole ricorrenti, indipendenti dal dominio storico-militare. Estraendoli per astrazione per elaborare un modello generale:
+
+**Regole di acquisizione**
+1. *Colpire i nodi centrali, non il volume* — attaccare capitali, tesorerie, punti di comando decisionale invece di occupare uniformemente il territorio. Massimizza il ritorno per unità di sforzo.
+2. *Velocità come risparmio di risorse* — l'azione rapida riduce il costo totale, impedendo al sistema bersaglio di consolidare difese o alleanze. Il tempo di reazione dell'avversario è la variabile da minimizzare.
+3. *Sfruttare le fratture preesistenti* — non generare instabilità nel sistema bersaglio, ma individuare quella già presente (defezioni dei satrapi) e amplificarla. Meno energia spesa per rompere, più per orientare crepe esistenti.
+
+**Regole di conversione**
+4. *Sostituire i vertici, non le strutture* — mantenere l'infrastruttura funzionante (amministrazione satrapale) e sostituire solo il livello di controllo. Distruggere costa; ereditare rende.
+5. *Trasformare l'opposizione in capacità* — integrare truppe ed élite avversarie nel proprio sistema anziché eliminarle. L'avversario sconfitto diventa risorsa a costo marginale basso.
+6. *Reputazione come moltiplicatore* — una minaccia credibile riduce la forza effettivamente necessaria (rese senza combattimento). Il costo dell'espansione futura è inversamente proporzionale alla reputazione costruita nelle fasi precedenti.
+
+**Regole di stabilizzazione post-acquisizione**
+7. *Legittimazione stratificata* — matrimoni, adozione di costumi locali, segnali culturali: la conquista militare va seguita da un layer di legittimità che riduce la resistenza residua nel tempo.
+8. *Infrastrutture auto-sostenute* — fondazioni urbane, moneta standardizzata: strutture che continuano a estrarre/circolare risorse con sforzo attivo decrescente dopo la fase acuta.
+
+**Vulnerabilità strutturale del modello** (il limite che Alessandro stesso non risolse)
+9. *Punto singolo di fallimento* — un modello di controllo centralizzato su un solo nodo (il conquistatore) senza meccanismo di trasferimento distribuito collassa non appena quel nodo viene rimosso. La frammentazione post-323 a.C. è la conseguenza diretta dell'assenza di una regola 10.
+
+Questo schema (acquisizione → conversione → stabilizzazione, con un vincolo strutturale sulla resilienza del controllo) è già abbastanza generale da testare su altri domini — espansione aziendale, dinamiche di potere in un sistema multi-agente, persino l'acquisizione di risorse cognitive in un'architettura come SPEACE. Vuoi che lo formalizzi come modello a sé con variabili esplicite, sul modello di [[controllo-asimmetrico]] o [[q-speace-economy]], o che lo testi subito su un secondo caso storico per validarne la generalità?
+
+Poi esegui un test applicando ad una genAI agentica che viene ostacolata durante un processo.
+
+ESEMPIO
+
+Test: un agente genAI incaricato di completare un workflow multi-step (es. orchestrare più tool call per un task) viene bloccato — un rate limit, un permesso negato, un lock su una risorsa condivisa da un altro processo, o un umano-in-the-loop che non approva.
+
+**Applicazione delle 9 regole**
+
+1. *Nodo centrale, non volume* — l'agente non deve ritentare uniformemente ogni sotto-step fallito, ma identificare il punto di blocco reale (l'endpoint specifico, il permesso specifico, l'approvatore specifico) e concentrare lì lo sforzo diagnostico.
+2. *Velocità* — risolvere/aggirare rapidamente prima che l'ostacolo si propaghi a valle (context accumulato, altri processi dipendenti che si bloccano a cascata, timeout).
+3. *Fratture preesistenti* — cercare percorsi alternativi già previsti dal sistema (endpoint di fallback, cache, permessi già concessi a un altro sottoprocesso) invece di forzare un nuovo varco.
+4. *Sostituire i vertici* — usare il canale di escalation/override ufficiale invece di bypassare l'intero sistema di permessi, minimizzando disturbo collaterale.
+5. *Convertire l'opposizione* — se l'ostacolo è un revisore umano, coinvolgerlo produttivamente (chiarimento, conferma) trasformandolo in risorsa; se è un processo concorrente, negoziare/condividere lo slot invece di competere puramente.
+6. *Reputazione* — un agente con storico di richieste affidabili subisce meno frizione futura (meno rate limiting, meno controlli) — reputazione come riduzione del costo marginale di accesso.
+7. *Legittimazione stratificata* — lasciare log/motivazioni trasparenti dopo la risoluzione, così il sistema "si fida" di più alle richieste successive dello stesso agente.
+8. *Infrastrutture auto-sostenute* — cacheare pattern di risoluzione riusabili (routine di fallback, refresh credenziali) per abbassare il costo di ostacoli simili futuri.
+
+**Il punto critico: regola 9**
+
+Se la capacità dell'agente di superare l'ostacolo dipende da un singolo nodo di comando (un solo orchestratore, una sola credenziale master, un solo umano approvatore), la rimozione o il blocco di quel nodo fa collassare l'intero processo — esattamente come la frammentazione dell'impero nel 323 a.C.
+
+Questo test genera quindi la **regola 10** mancante: *ridondanza distribuita del controllo* — la funzione di comando deve poter trasferirsi a nodi equivalenti multipli (sciame di agenti) invece che risiedere in un'unica gerarchia. Non basta "sostituire i vertici" (regola 4): servono vertici plurali intercambiabili.
+
+Nota di coerenza: questo risultato converge esattamente con l'idea già abbozzata in [[controllo-asimmetrico]] — l'ASI-SPEACE come swarm agentico di LLM, con analogia cervello/patogeni, proprio come difesa contro processi che ne ostacolano il controllo. Il modello estratto da Alessandro, testato su un dominio completamente diverso, riproduce in modo indipendente la stessa conclusione strutturale — un buon segnale di generalità del modello.
+
+Vuoi che integri la regola 10 formalizzata direttamente nel documento di controllo-asimmetrico, o che proceda con un terzo test su un dominio biologico/cellulare per triangolare ulteriormente?
+
+---
+
+## Regola 10 (formale) — Ridondanza distribuita del controllo
+
+**Dove la regola 4 non basta.** La regola 4 ("sostituire i vertici, non le strutture") preserva l'infrastruttura ma assume che esista *un* vertice sostitutivo. La regola 10 sale di un livello di astrazione: richiede che la **funzione** di comando sia replicata su `N ≥ 2` nodi intercambiabili, ciascuno capace di sostenere autonomamente una frazione significativa del carico.
+
+**Definizione operativa.** Sia `f` la funzione di comando (orchestrazione, decisione, validazione) e sia `N_f` l'insieme dei nodi che possono eseguire `f`. La regola 10 richiede:
+
+- `|N_f| ≥ 2` (almeno due nodi intercambiabili)
+- per ogni `n ∈ N_f`, `capacity(n) ≥ capacity_required(f) / |N_f|` (nessun nodo è collo di bottiglia singolo)
+- `transfer_time(n_old → n_new) << τ_r(f)` (il failover è più veloce della reazione dell'ostacolo)
+- `Ω ≥ Ω_min` (invariante di distribuzione del controllo, vedi regola 9 del modello AACM)
+
+**Differenza da regola 4.** Regola 4 = "sostituisci un vertice". Regola 10 = "il vertice non è unico, è uno tra `N ≥ 2` scambiabili senza interruzione del servizio". Nel caso di Alessandro: la cooptazione dei satrapi locali (regola 4) sostituiva il vertice, ma il *meta-vertice* — Alessandro stesso, l'unico che decideva la catena di sostituzioni — rimaneva singolo. Regola 10 chiede che il meta-vertice sia a sua volta ridondante (consiglio di guerra, circolo dei Diadochi embrionale, sistema di successione codificato — che è esattamente ciò che Alessandro non istituì).
+
+**Triangolazione con dominio biologico (anticipo del terzo test).** Il sistema immunitario dei vertebrati realizza la regola 10 in modo stratificato: barriera fisica (N elevato, capacity bassa), immunità innata (N medio, capacity media), immunità adattiva (N basso, capacity alta). Ciascuno strato può sostenere una frazione del carico patogeno. La rimozione di un linfonita T helper non paralizza il sistema, perché linfoniti T citotossici e linfociti B mantengono capacity parziale. La regola 10 è esattamente la proprietà osservata: `N ≥ 2` strati intercambiabili con capacity individuale ≥ 1/|N_f| × totale.
+
+**Convergenza indipendente.** Il modello AACM, derivato da Alessandro, produce la regola 10 sotto tre domini indipendenti: (1) conquista storica di imperi, (2) workflow agentico sotto ostruzione (rate limit, permesso, lock, HITL), (3) difesa immunitaria. Tre domini, stessa conclusione strutturale — la regola 10 non è un'analogia, è un **vincolo di esistenza per sistemi di controllo che sopravvivono alla rimozione del proprio operatore**.
+
+**Specifica ingegneristica in SPEACE.** La regola 10 è già codificata come Vincolo D nel modello AACM (`q_speace/aacm/`):
+
+- `ResilienceManifest.omega ≥ OMEGA_MIN = 0.10`
+- `len(ResilienceManifest.independent_nodes) ≥ 2`
+- `len(ResilienceManifest.checkpoint_paths) ≥ 1`
+
+L'invariante è applicato meccanicamente in `ResilienceManifest.__post_init__` e riapplicato in `AACMResume.assert_resilience()` ad ogni resume. La regola 9 + 10 del modello strategico = Vincolo D dell'implementazione ingegneristica. Vedi `docs/T-AACM-SPEC.md` §2.4 e `docs/T-AACM_RESULTS.md` §3.4 per i valori misurati in simulazione (`Omega = 0.6`, `collapse_probability = 0.1429`).
+
+**Predicato falsificabile.** La regola 10 è falsificata se si trova un sistema di controllo a lungo termine che: (a) ha un singolo nodo di comando, (b) non ha meccanismo di successione, (c) sopravvive alla rimozione di quel nodo. Storicamente: nessun sistema con queste tre proprietà è sopravvissuto a lungo. Biologicamente: organismi complessi senza ridondanza del controllo (es. organismi unicellulari) muoiono alla prima perturbazione del loro nodo di controllo. Computazionalmente: processi single-thread senza checkpoint non sopravvivono a SIGKILL. Il triangolo è chiuso: la regola 10 è un vincolo universale, non un bias culturale.

@@ -12,7 +12,6 @@ Fix #2 (indices dtype):
 
 This script is idempotent.
 """
-import sys
 from pathlib import Path
 
 FILES = [

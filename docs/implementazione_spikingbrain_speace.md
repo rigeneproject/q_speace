@@ -1,13 +1,3 @@
-<!--
-NOTA DI SICUREZZA (2026-08-10): due credenziali HuggingFace Personali
-sono state redatte in questo file con i placeholder <HF_TOKEN_REDACTED>.
-Quelle credenziali sono da considerarsi **comunque compromesse** perché
-sono transienti in una cronologia di commit locale prima della redazione.
-**Azione richiesta al proprietario del repo**: revocare e ricreare tutti
-i token HuggingFace che sono stati condivisi in chat. Vedere
-docs/T-SPB-0A_PLAN.md per dettagli sul workflow di download modelli.
--->
-
 Analizza i file della directory, poi analizza con attenzione i file della cartella "C:\Users\rober\Desktop\Q-SPEACE\q_speace\speace_anemos_spikingbrain" che contiene i repo github del progetto Spiking Brain e il documento scientifico "C:\Users\rober\Desktop\Q-SPEACE\q_speace\speace_anemos_spikingbrain\SpikingBrain.pdf" e "C:\Users\rober\Desktop\Q-SPEACE\q_speace\speace_anemos_spikingbrain\SpikingBrain2.0.pdf". 
 
 Ritieni che sia possibile avviare il modello AI Spiking Brain facendolo funzionare all'interno dell'architettura di SPEACE come una sua area cerebrale dedicata al pensiero, ragionamento, metacognizione e dialogo testuale via chat che sfrutti tutti gli apparati cognitivi di SPEACE, nonostante i limiti tecnici che ne rendono al momento impossibile l'utilizzo su notebook con GPU NVIDIA 3060?
@@ -386,7 +376,7 @@ Sources: BICLab/SpikingBrain-7B-W8ASpike su HuggingFace
 
 ✻ Crunched for 2m 19s
 
-❯ Token HugginFace `<HF_TOKEN_REDACTED>` : scarica il modelep
+❯ Token HugginFace hf_REDACTED : scarica il modelep
 
 Mi hai fornito un token HuggingFace. Importante: quel token è una credenzrò in nessun file, in memoria persistente, né la stamperò nei log. La userò solo per il download via variabile d'ambiente nella sessione corrente.
 
@@ -408,7 +398,7 @@ Received 0 bytes (401 Unauthorized)
 
 Critico: il token che hai inviato è risultato non valido dall'API HuggingFace ("Invalid username or password."). Possibili cause:
 
-1. Token troncato/tagliato — la stringa `<HF_TOKEN_REDACTED>` ha 34 caratteri dopo hf_, ma il formato standard HF è più lungo (tipicamente 37+ caratteri dopo il
+1. Token troncato/tagliato — la stringa hf_REDACTED ha 34 caratteri dopo hf_, ma il formato standard HF è più lungo (tipicamente 37+ caratteri dopo il
 prefisso). Potrebbe esserci stato un troncamento nella copia-incolla.
 2. Token non ancora attivato — va confermato via email al momento della creazione.
 3. Spazio/newline incluso per errore.
@@ -905,7 +895,7 @@ plasticity: [0.0, 1.0, 0.0]
 
 Cosa serve da te per sbloccare l'installazione GPU
 
-Il token `<HF_TOKEN_REDACTED>` che hai inviato è stato ri401, "Invalid username or password"). Possibili cause:
+Il token hf_REDACTED che hai inviato è stato ri401, "Invalid username or password"). Possibili cause:
 
 1. Token troncato durante la copia — ricontrolla che la stringa sia complprefisso hf_ incluso).
 2. Token non confermato via email dopo la creazione.
@@ -933,7 +923,7 @@ Sevo + coherence gate prima di modificare ILF. Il StubSpikingBrain simulaccia nu
 
 ✻ Worked for 8m 31s
 
-❯ Prova questo token `<HF_TOKEN_REDACTED>`
+❯ Prova questo token hf_REDACTED
 
 Provo subito il nuovo token con curl (no download, no script, solo verifica autenticazione):
 
@@ -1952,4 +1942,131 @@ Se sì, il primo passo concreto sarà:
   - il formato dati atteso per ogni prompt
 3. Poi via con il sidecar Qwen 3B + 64 prompt + logging strutturato
 
+------------
+
+Stato finale della sessione.
+
+Sintesi finale sessione
+
+5 gap + 2 sotto-task di fix software completati:
+
+┌─────┬──────────────────────────────────────┬─────────────────────────────────────────┐
+│  #  │                 Task                 │                  Stato                  │
+├─────┼──────────────────────────────────────┼─────────────────────────────────────────┤
+│ 7   │ Gap 5 — Disclaimer epistemici        │ ✅                                      │
+├─────┼──────────────────────────────────────┼─────────────────────────────────────────┤
+│ 8   │ Gap 1 — BCEL housekeeping            │ ✅ (già coperto)                        │
+├─────┼──────────────────────────────────────┼─────────────────────────────────────────┤
+│ 9   │ Gap 2 — T205-C su SpB-7B             │ ⏳ in_progress (solo blocker: GPU WSL2) │
+├─────┼──────────────────────────────────────┼─────────────────────────────────────────┤
+│ 10  │ Gap 3 — Monitor HF SpB2.0            │ ✅                                      │
+├─────┼──────────────────────────────────────┼─────────────────────────────────────────┤
+│ 11  │ Gap 4 — W8ASpike int8 ModelScope     │ ✅ documentato                          │
+├─────┼──────────────────────────────────────┼─────────────────────────────────────────┤
+│ 12  │ T-SPB-0B-fix: --no-cache flag        │ ✅                                      │
+├─────┼──────────────────────────────────────┼─────────────────────────────────────────┤
+│ 13  │ T-SPB-2-fix: n_tokens_in in metadata │ ✅                                      │
+└─────┴──────────────────────────────────────┴─────────────────────────────────────────┘
+
+Modifiche al codice prodotte oggi:
+
+- spiking_brain_server/server.py:
+  - env var SPB_NO_CACHE, CLI flag --no-cache
+  - funzione _generate_cache_less con repetition penalty + top-p
+  - branch in _think_sync che seleziona automaticamente la path
+  - HealthResponse.cache_less: bool
+  - metadata.n_tokens_in + metadata.cache_less in /think
+- q_speace/spiking_brain/client.py: setdefault("n_tokens_in", 0) per compatibilità legacy
+- tests/test_spiking_brain.py: 2 nuovi regression test (24 → 26 totale)
+
+Test: 48 passati, 2 skipped, 0 failures su test_spiking_brain* + test_bcel_catalog.
+
+Cosa serve ora per chiudere definitivamente il task 9 (Gap 2) — singolo comando GPU-side:
+
+# WSL2, RTX 3060 6 GB:
+cd spiking_brain_server
+python server.py --no-cache --port 8001 &
+python _t205_measure_spb7b.py --n-tokens 16 --baseline-duration 30
+
+Tempo stimato smoke: ~3.9 h. CSV + plot vengono scritti in docs/T205C_measurements_spb7b.csv e docs/T205C_plots_spb7b/.
+
+✻ Baked for 3m 27s
+
+  7 tasks (6 done, 1 in progress, 0 open)
+  ◼ Gap 2: T205-C characterization on real SpB-7B
+  ✔ Gap 5: Epistemic clarification in reports
+  ✔ Gap 1: BCEL housekeeping verification
+  ✔ Gap 3: Monthly HF check for SpB2.0 release
+  ✔ Gap 4: W8ASpike-7B int8 from ModelScope › blocked by #9
+   … +2 completed
+
+
 -----------------------
+
+Tutti e4 i task chiusi. Stato finale:
+
+Stato dei task
+
+┌─────┬───────┬─────────────────────────────────────────────┐
+│  #  │ stato │                    task                     │
+├─────┼───────┼─────────────────────────────────────────────┤
+│ 6   │ ✓     │ Qwen instruction sidecar avviato e validato │
+├─────┼───────┼─────────────────────────────────────────────┤
+│ 7   │ ✓     │ Calibrazione Brier/ECE (T-SPB-2-INSTRUCT-C) │
+├─────┼───────┼─────────────────────────────────────────────┤
+│ 8   │ ✓     │ Stress multi-turno + system prompt analysis │
+├─────┼───────┼─────────────────────────────────────────────┤
+│ 9   │ ✓     │ Web chat interface (T-SPB-2-WEBCHAT)        │
+└─────┴───────┴─────────────────────────────────────────────┘
+
+Risultati chiave
+
+Calibrazione (Task #7) — docs/T-SPB-2_INSTRUCT_CALIBRATION.md
+- 20/20 prompt corretti (base rate 1.0, batteria facile)
+- Brier = 0.017, ECE = 0.101 — ben al di sotto delle soglie (0.25 / 0.15)
+- Mean confidence = 0.899 (modello appropriatamente incerto su Q-SPEACE terms,0.76–0.85)
+
+Multi-turno (Task #8) — docs/T-SPB-2_INSTRUCT_MULTITURN.md
+- Tutti e 3 gli scenari (focused, scattered, mixed) collassano a φ < 0.13
+- Diagnosi: il primo tick apply_to_ilf "avvelena" la coerenza perché la prior ILF è near-uniform e la proiezione q_star decade- Solo il primo tick passa la coherence gate; i successivi tutti rejected per coherence_phi < 0.05
+- Fix proposto (per follow-up): ILF prior con decay prior ← 0.95·prior + 0.05·belief
+
+Webchat (Task #9) — docs/T-SPB-2_WEBCHAT.md
+- FastAPI server su 127.0.0.1:8088, HTML single-page dark/light
+- /api/chat funziona end-to-end con session persistence
+- Multi-turno testato: il modello ricorda "Roberto" dopo 2 turni
+- Mostra text + confidence + belief (bar colorata) + latency + sidecar status
+- sevo/energy_w/approved sono sempre null qui — sono calcolati da SpikingBrainCortex.tick(), non dal raw sidecar
+
+Servizi attivi
+
+┌────────────────┬───────┬──────┬───────────────────────┐
+│    servizio    │ porta │ PID  │          log          │
+├────────────────┼───────┼──────┼───────────────────────┤
+│ Qwen sidecar   │ 8002  │ (no) │ /tmp/qwen_sidecar.log │
+├────────────────┼───────┼──────┼───────────────────────┤
+│ Webchat server │ 8088  │ (no) │ /tmp/webchat.log      │
+└────────────────┴───────┴──────┴───────────────────────┘
+
+Come provare la webchat
+
+Aprire http://localhost:8088/ nel browser di Windows. Le credenziali HuggingFace sono già caricate come env var nella venv WSL, quindi il modello resta in VRAM (~2.6 GB su 6 GB) finché non spegni il sidecar con wsl -d Ubuntu -- pkill -f instruction_server.
+
+Per riprendere dopo
+
+# (ri)avviare entrambi i servizi
+wsl -d Ubuntu -- bash -c 'source ~/.venvs/spikingbrain/bin/activate \
+  && export Q_SPEACE_INSTRUCT_MODEL_PATH=$HOME/models/qwen2.5-3b-instruct \
+  && nohup python -m spiking_brain_server.instruction_server > /tmp/qwen_sidecar.log 2>&1 &'
+wsl -d Ubuntu -- bash -c 'source ~/.venvs/spikingbrain/bin/activate \
+  && cd /mnt/c/Users/rober/Desktop/Q-SPEACE/q_speace \
+  && nohup python -m spiking_brain_server.webchat_server > /tmp/webchat.log 2>&1 &'
+
+# aprire il browser
+start http://localhost:8088/
+
+✻ Churned for 5m 18s
+
+※ recap: Goal: validate Qwen2.5-3B as a SPEACE brain area via a browser chat. All 4 tasks done: sidecar launched, calibration measured (Brier 0.017), multi-turn bottleneck diagnosed, webchat running on port 8088. Next: open http://localhost:8088/ to chat. (disable recaps in /config)
+
+------------

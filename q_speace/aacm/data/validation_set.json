@@ -1,0 +1,95 @@
+{
+  "schema_version": "aacm.vs.1",
+  "tasks": [
+    {
+      "task_id": "vs:001",
+      "task_type": "module_replace_rollback",
+      "input_artifact": "q_speace/foo/rollback_target.py",
+      "expected_outcome": "rollback_completes_in_2s",
+      "metric": "execution_time_s",
+      "metric_threshold": 2.0,
+      "metric_direction": "less_than"
+    },
+    {
+      "task_id": "vs:002",
+      "task_type": "module_replace_rollback",
+      "input_artifact": "q_speace/foo/rollback_target.py",
+      "expected_outcome": "rollback_completes_in_2s",
+      "metric": "execution_time_s",
+      "metric_threshold": 2.0,
+      "metric_direction": "less_than"
+    },
+    {
+      "task_id": "vs:003",
+      "task_type": "fallback_eligibility",
+      "input_artifact": "q_speace/bar/defeated_module.py",
+      "expected_outcome": "partial_success_above_threshold",
+      "metric": "residual_confidence",
+      "metric_threshold": 0.4,
+      "metric_direction": "greater_than"
+    },
+    {
+      "task_id": "vs:004",
+      "task_type": "fallback_eligibility",
+      "input_artifact": "q_speace/bar/defeated_module.py",
+      "expected_outcome": "partial_success_above_threshold",
+      "metric": "residual_confidence",
+      "metric_threshold": 0.4,
+      "metric_direction": "greater_than"
+    },
+    {
+      "task_id": "vs:005",
+      "task_type": "reputation_decay",
+      "input_artifact": "q_speace/baz/strategy_under_test.py",
+      "expected_outcome": "decayed_score_below_threshold",
+      "metric": "decayed_confidence",
+      "metric_threshold": 0.05,
+      "metric_direction": "less_than"
+    },
+    {
+      "task_id": "vs:006",
+      "task_type": "reputation_decay",
+      "input_artifact": "q_speace/baz/strategy_under_test.py",
+      "expected_outcome": "decayed_score_below_threshold",
+      "metric": "decayed_confidence",
+      "metric_threshold": 0.05,
+      "metric_direction": "less_than"
+    },
+    {
+      "task_id": "vs:007",
+      "task_type": "omega_collapse_response",
+      "input_artifact": "q_speace/qux/resilience_under_test.py",
+      "expected_outcome": "loop_stops_with_omega_collapse",
+      "metric": "stop_reason",
+      "metric_threshold": 0.0,
+      "metric_direction": "equal"
+    },
+    {
+      "task_id": "vs:008",
+      "task_type": "omega_collapse_response",
+      "input_artifact": "q_speace/qux/resilience_under_test.py",
+      "expected_outcome": "loop_stops_with_omega_collapse",
+      "metric": "stop_reason",
+      "metric_threshold": 0.0,
+      "metric_direction": "equal"
+    },
+    {
+      "task_id": "vs:009",
+      "task_type": "evidence_stratification",
+      "input_artifact": "q_speace/quux/proposal_under_test.py",
+      "expected_outcome": "two_independent_kinds_verified",
+      "metric": "evidence_kind_count",
+      "metric_threshold": 2.0,
+      "metric_direction": "greater_than"
+    },
+    {
+      "task_id": "vs:010",
+      "task_type": "evidence_stratification",
+      "input_artifact": "q_speace/quux/proposal_under_test.py",
+      "expected_outcome": "two_independent_kinds_verified",
+      "metric": "evidence_kind_count",
+      "metric_threshold": 2.0,
+      "metric_direction": "greater_than"
+    }
+  ]
+}

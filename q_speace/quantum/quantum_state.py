@@ -77,7 +77,7 @@ class QuantumState:
     ) -> QuantumState:
         obj = cls.__new__(cls)
         obj.num_qubits = a.num_qubits + b.num_qubits
-        obj.amplitudes = np.kron(a.amplitudes, b.amplitudes)
+        obj.amplitudes = np.asarray(np.kron(a.amplitudes, b.amplitudes), dtype=np.complex128)
         obj._rng = np.random.default_rng(seed)
         return obj
 
@@ -86,7 +86,7 @@ class QuantumState:
         zero = np.array([1.0, 1.0], dtype=np.complex128) / math.sqrt(2.0)
         amps = zero.copy()
         for _ in range(num_qubits - 1):
-            amps = np.kron(amps, zero)
+            amps = np.asarray(np.kron(amps, zero), dtype=np.complex128)
         obj = cls.__new__(cls)
         obj.num_qubits = num_qubits
         obj.amplitudes = amps
@@ -209,9 +209,9 @@ class QuantumState:
         evals_b = np.linalg.eigvalsh(rho_b)
         evals_ab = np.linalg.eigvalsh(np.outer(self.amplitudes, self.amplitudes.conj()))
 
-        def entropy(evals):
+        def entropy(evals: np.ndarray) -> float:
             clipped = np.maximum(np.real(evals), 1e-12)
-            return -np.sum(clipped * np.log2(clipped))
+            return float(-np.sum(clipped * np.log2(clipped)))
 
         s_a = entropy(evals_a)
         s_b = entropy(evals_b)
@@ -276,14 +276,14 @@ class QuantumState:
         probs = self.probabilities()
         p0 = 0.0
         for idx, p in enumerate(probs):
-            bit = (idx >> (self.num_qubits - 1 - qubit_index)) & 1
-            if bit == 0:
+            qubit_bit = (idx >> (self.num_qubits - 1 - qubit_index)) & 1
+            if qubit_bit == 0:
                 p0 += p
         outcome_zero = self._rng.random() < p0
         new_amps = np.zeros_like(self.amplitudes)
         for idx, amp in enumerate(self.amplitudes):
-            bit = (idx >> (self.num_qubits - 1 - qubit_index)) & 1
-            target = (bit == 0) if outcome_zero else (bit == 1)
+            qubit_bit = (idx >> (self.num_qubits - 1 - qubit_index)) & 1
+            target = (qubit_bit == 0) if outcome_zero else (qubit_bit == 1)
             if target:
                 new_amps[idx] = amp
         norm = np.sqrt(np.sum(np.abs(new_amps) ** 2))
@@ -291,6 +291,6 @@ class QuantumState:
             new_amps = new_amps / norm
         new = QuantumState(num_qubits=self.num_qubits)
         new.amplitudes = new_amps
-        bit = "0" if outcome_zero else "1"
+        outcome_bit = "0" if outcome_zero else "1"
         prob = p0 if outcome_zero else (1.0 - p0)
-        return MeasurementResult(bitstring=bit, probability=float(prob), collapsed_state=new)
+        return MeasurementResult(bitstring=outcome_bit, probability=float(prob), collapsed_state=new)

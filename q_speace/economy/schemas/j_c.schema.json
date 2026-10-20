@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://q-speace.dev/schemas/j_c.schema.json",
+  "title": "J_c — Cognitive 5-tuple (q_speace_economy §4.2)",
+  "description": "Structured measurement tuple (J, ΔS, ΔI_c, R_b, ΔC) used to evaluate the cognitive contribution of an action. None of the components is a consciousness claim; all are independently measurable physical quantities.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["J", "delta_S", "delta_I_c", "R_b", "delta_C", "confidence"],
+  "properties": {
+    "J": {
+      "type": "number",
+      "description": "Total useful exergy produced or conserved by the action, in joules.",
+      "minimum": 0.0
+    },
+    "delta_S": {
+      "type": "number",
+      "description": "Entropy produced (>=0) or destroyed (<=0) by the action, in joules per kelvin.",
+      "maximum": 0.0
+    },
+    "delta_I_c": {
+      "type": "number",
+      "description": "Change in catalytic information content (Kolmogorov-style structural complexity), in bits.",
+      "minimum": 0.0
+    },
+    "R_b": {
+      "type": "number",
+      "description": "Regenerative budget remaining after the action, dimensionless in [0,1].",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "delta_C": {
+      "type": "number",
+      "description": "Net change in catalytic capacity (positive = capacity gained, negative = dissipated), dimensionless.",
+      "minimum": -1.0,
+      "maximum": 1.0
+    },
+    "confidence": {
+      "type": "number",
+      "description": "Measurement confidence in [0,1]; reflects telemetry completeness, not subjective belief.",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Free-form annotations: agent id, source, timestamp, units override.",
+      "additionalProperties": true
+    }
+  }
+}

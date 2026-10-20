@@ -57,7 +57,6 @@ import numpy as np
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-
 # ----------------------------------------------------------------------
 # Make q_speace importable for the shared belief/spike/plasticity math
 # ----------------------------------------------------------------------
@@ -106,7 +105,6 @@ def _lazy_import_runtime():
 from q_speace.spiking.encoder import dynamic_spikes  # noqa: E402
 from q_speace.spiking.plasticity import SpikePlasticity  # noqa: E402
 
-
 # ----------------------------------------------------------------------
 # Configuration
 # ----------------------------------------------------------------------
@@ -134,7 +132,7 @@ MAX_MODEL_LEN = _env_int("SPB_MAX_MODEL_LEN", 512)
 QUANT_BITS = _env_int("SPB_QUANT_BITS", 4)
 
 
-def _resolve_device_map(raw: str) -> "str | dict":
+def _resolve_device_map(raw: str) -> str | dict:
     """Resolve ``SPB_DEVICE_MAP``.
 
     ``transformers`` strictly type-checks the ``device_map`` kwarg: a
@@ -152,6 +150,11 @@ def _resolve_device_map(raw: str) -> "str | dict":
 
 DEVICE_MAP = _resolve_device_map(os.environ.get("SPB_DEVICE_MAP", "auto"))
 MAX_NEW_TOKENS_CAP = _env_int("SPB_MAX_NEW_TOKENS_CAP", 256)
+# T-SPB-0B fix: cache-less mode forces forward singles (no
+# past_key_values). ~10x slower but avoids the cache sliding window
+# degradation observed in fla × transformers 4.55. Set via
+# SPB_NO_CACHE=1 or --no-cache on the CLI.
+CACHE_LESS = _env_bool("SPB_NO_CACHE", False)
 DEFAULT_MODEL_PATH = os.path.expanduser(
     os.environ.get(
         "SPB_MODEL_PATH", "~/models/maujim/spikingbrain-v1-7b-base"
@@ -169,13 +172,13 @@ model_ready: bool = False
 model_lock: asyncio.Lock = asyncio.Lock()
 
 
-def _compute_dtype() -> "torch.dtype":
+def _compute_dtype() -> torch.dtype:
     import torch
 
     return torch.bfloat16 if _env_bool("SPB_BF16", True) else torch.float16
 
 
-def _make_bnb_config(compute_dtype: "torch.dtype"):
+def _make_bnb_config(compute_dtype: torch.dtype):
     from transformers import BitsAndBytesConfig
 
     if QUANT_BITS == 4:
@@ -674,7 +677,7 @@ def _evict_cached_window_attention() -> None:
         "            if causal: mask = mask & (qi >= ki)\n"
         "            if win_left >= 0: mask = mask & ((qi - ki) <= win_left)\n"
         "            if win_right >= 0: mask = mask & ((ki - qi) <= win_right)\n"
-        "            attn_mask = torch.zeros_like(q_b, dtype=q.dtype).masked_fill(~mask, float('-inf'))\n"
+        "            attn_mask = torch.zeros((q_b.shape[0], q_b.shape[1], q_b.shape[2], k_b.shape[2]), dtype=q.dtype, device=q.device).masked_fill(~mask, float('-inf'))\n"
         "        out_b = F.scaled_dot_product_attention(q_b, k_b, v_b, attn_mask=attn_mask, dropout_p=dropout_p if dropout_p > 0 else 0.0, is_causal=False, scale=softmax_scale)\n"
         "        return _q_speace_batched_to_varlen(out_b.transpose(1, 2), cu_seqlens_q)\n"
         "    def flash_attn_func(q, k, v, dropout_p=0.0, softmax_scale=None, causal=True, window_size=(-1, -1)):\n"
@@ -691,7 +694,7 @@ def _evict_cached_window_attention() -> None:
         "            if causal: mask = mask & (qi >= ki)\n"
         "            if win_left >= 0: mask = mask & ((qi - ki) <= win_left)\n"
         "            if win_right >= 0: mask = mask & ((ki - qi) <= win_right)\n"
-        "            attn_mask = torch.zeros_like(q_, dtype=q.dtype).masked_fill(~mask, float('-inf'))\n"
+        "            attn_mask = torch.zeros((q_.shape[0], q_.shape[1], q_.shape[2], k_.shape[2]), dtype=q.dtype, device=q.device).masked_fill(~mask, float('-inf'))\n"
         "        out_ = F.scaled_dot_product_attention(q_, k_, v_, attn_mask=attn_mask, dropout_p=dropout_p if dropout_p > 0 else 0.0, is_causal=False, scale=softmax_scale)\n"
         "        return out_.transpose(1, 2).contiguous()\n"
         "    def pad_input(hidden_states, indices, batch, seqlen):\n"
@@ -721,7 +724,7 @@ def _evict_cached_window_attention() -> None:
     for target_path in candidate_paths:
         if not os.path.exists(target_path):
             continue
-        with open(target_path, "r", encoding="utf-8") as f:
+        with open(target_path, encoding="utf-8") as f:
             src = f.read()
         if UPAD_MARKER in src and FLASH_MARKER in src:
             print(
@@ -773,7 +776,6 @@ def _load_model() -> None:
         return
 
     _lazy_import_runtime()
-    import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     print(
@@ -861,6 +863,7 @@ class HealthResponse(BaseModel):
     vram_mb: int
     backend: str
     quantization: str
+    cache_less: bool = False  # T-SPB-0B flag
     pid: int | None = None
 
 
@@ -913,6 +916,101 @@ def _build_prompt(req: ThinkRequest) -> str:
     return "\n".join(parts)
 
 
+def _generate_cache_less(
+    model: Any,
+    tokenizer: Any,
+    inputs: dict,
+    n_tokens: int,
+    coherence: float,
+) -> torch.Tensor:
+    """Generate ``n_tokens`` tokens via single forward passes (no cache).
+
+    T-SPB-0B fix: ``flash-linear-attention`` × ``transformers>=4.55``
+    corrupts the SWA cache across steps, producing garbage tokens after
+    the first one. Re-tokenizing the growing sequence each step and
+    throwing away the cache sidesteps the bug at ~10x cost in latency.
+
+    Sampling parameters mirror the cached path:
+    temperature = max(0.1, 0.7 * coherence + 0.1), top_p = 0.9,
+    repetition_penalty = 1.1, do_sample = True.
+    """
+    import torch
+    import torch.nn.functional as F
+
+    eos_id = tokenizer.eos_token_id
+    if eos_id is None:
+        eos_id = tokenizer.pad_token_id
+    pad_id = tokenizer.pad_token_id
+    if pad_id is None:
+        pad_id = eos_id if eos_id is not None else 0
+
+    temperature = max(0.1, 0.7 * coherence + 0.1)
+    rep_penalty = 1.1
+    top_p = 0.9
+
+    # Track generated ids + attention mask of the *original* prompt
+    # (used for repetition_penalty).
+    prompt_ids = inputs["input_ids"][0].tolist()
+    generated: list[int] = []
+    cur = {k: v.clone() for k, v in inputs.items()}
+
+    for _ in range(n_tokens):
+        with torch.no_grad():
+            logits = model_obj_forward(model, cur)
+        next_logits = logits[:, -1, :].float()
+        # Repetition penalty (basic implementation matching generate()
+        # default: divide logits of already-seen tokens by rep_penalty).
+        seen = set(prompt_ids + generated)
+        if seen:
+            penalty_mask = torch.zeros_like(next_logits, dtype=torch.bool)
+            for tok in seen:
+                if 0 <= tok < next_logits.shape[-1]:
+                    penalty_mask[0, tok] = True
+            next_logits = torch.where(
+                penalty_mask & (next_logits > 0),
+                next_logits / rep_penalty,
+                next_logits,
+            )
+            next_logits = torch.where(
+                penalty_mask & (next_logits <= 0),
+                next_logits * rep_penalty,
+                next_logits,
+            )
+        next_logits = next_logits / temperature
+        # top-p (nucleus) sampling.
+        sorted_logits, sorted_idx = torch.sort(next_logits, descending=True, dim=-1)
+        probs = F.softmax(sorted_logits, dim=-1)
+        cum = torch.cumsum(probs, dim=-1)
+        keep = cum <= top_p
+        keep[..., 0] = True
+        sorted_logits = torch.where(keep, sorted_logits, torch.full_like(sorted_logits, float("-inf")))
+        probs = F.softmax(sorted_logits, dim=-1)
+        next_id = int(sorted_idx[0, torch.multinomial(probs[0], num_samples=1)].item())
+        generated.append(next_id)
+        if next_id == eos_id:
+            break
+        # Extend the sequence for the next forward pass.
+        next_t = torch.tensor([[next_id]], device=cur["input_ids"].device, dtype=cur["input_ids"].dtype)
+        cur["input_ids"] = torch.cat([cur["input_ids"], next_t], dim=1)
+        if "attention_mask" in cur:
+            cur["attention_mask"] = torch.cat(
+                [cur["attention_mask"], torch.ones_like(next_t)], dim=1
+            )
+
+    return torch.tensor([generated], dtype=cur["input_ids"].dtype, device=cur["input_ids"].device)
+
+
+def model_obj_forward(model: Any, inputs: dict) -> torch.Tensor:
+    """Single forward returning last-token logits. No cache.
+
+    Helper extracted so the cache-less loop stays readable and the
+    flag ``use_cache=False`` is set in exactly one place. Forward
+    returns ``logits`` directly; we read ``logits[:, -1, :]`` in the
+    caller.
+    """
+    return model(**inputs, use_cache=False).logits
+
+
 def _think_sync(req: ThinkRequest, n_classes: int) -> ThinkResponse:
     """Run the model once and convert output into the SPEACE-native triplet.
 
@@ -941,21 +1039,31 @@ def _think_sync(req: ThinkRequest, n_classes: int) -> ThinkResponse:
     in_len = int(inputs["input_ids"].shape[1])
 
     t0 = time.time()
-    with torch.no_grad():
-        out = model_obj.generate(
-            **inputs,
-            max_new_tokens=n_tokens,
-            do_sample=True,
-            temperature=max(0.1, 0.7 * coherence + 0.1),
-            top_p=0.9,
-            repetition_penalty=1.1,
-            return_dict_in_generate=True,
-            output_scores=True,
+    if CACHE_LESS:
+        # T-SPB-0B fix: avoid past_key_values. Run forward singles and
+        # re-tokenize the growing sequence each step. ~10x slower but
+        # text is clean (no pérdida/adultes/Publié degradation observed
+        # with the fla × transformers 4.55 cache sliding window).
+        new_ids = _generate_cache_less(
+            model_obj, tokenizer_obj, inputs, n_tokens, coherence
         )
-    latency = time.time() - t0
+        latency = time.time() - t0
+    else:
+        with torch.no_grad():
+            out = model_obj.generate(
+                **inputs,
+                max_new_tokens=n_tokens,
+                do_sample=True,
+                temperature=max(0.1, 0.7 * coherence + 0.1),
+                top_p=0.9,
+                repetition_penalty=1.1,
+                return_dict_in_generate=True,
+                output_scores=True,
+            )
+        latency = time.time() - t0
+        seq = out.sequences[0]
+        new_ids = seq[in_len:]
 
-    seq = out.sequences[0]
-    new_ids = seq[in_len:]
     text = tokenizer_obj.decode(new_ids, skip_special_tokens=True)
     used_tokens = int(new_ids.shape[0])
 
@@ -968,7 +1076,7 @@ def _think_sync(req: ThinkRequest, n_classes: int) -> ThinkResponse:
     chunks: list[float] = []
     counter = 0
     while len(chunks) < n_classes:
-        h = hashlib.sha256(f"{counter}:{text}".encode("utf-8")).digest()
+        h = hashlib.sha256(f"{counter}:{text}".encode()).digest()
         for i in range(0, len(h), 4):
             if len(chunks) >= n_classes:
                 break
@@ -1014,6 +1122,9 @@ def _think_sync(req: ThinkRequest, n_classes: int) -> ThinkResponse:
             "quantization": "nf4-4bit" if QUANT_BITS == 4 else "int8-8bit",
             "model_path": DEFAULT_MODEL_PATH,
             "device": str(device),
+            # T-SPB-2 fix: prompt token count for energy-per-token math.
+            "n_tokens_in": in_len,
+            "cache_less": CACHE_LESS,
         },
     )
 
@@ -1093,6 +1204,7 @@ async def health() -> HealthResponse:
         vram_mb=_vram_mb(),
         backend="hf-transformers-bnb4bit",
         quantization="nf4-4bit" if QUANT_BITS == 4 else "int8-8bit",
+        cache_less=CACHE_LESS,
         pid=os.getpid(),
     )
 
@@ -1127,12 +1239,34 @@ async def think(req: ThinkRequest) -> ThinkResponse:
 
 
 def main() -> None:
+    import argparse
+
     import uvicorn
+
+    global CACHE_LESS
+
+    ap = argparse.ArgumentParser(
+        prog="spiking_brain_server",
+        description=(
+            "FastAPI sidecar for SpikingBrain-7B on RTX 3060 6 GB. "
+            "Use --no-cache to force forward-singles generation (T-SPB-0B fix): "
+            "avoids the cache sliding window degradation at ~10x cost in latency."
+        ),
+    )
+    ap.add_argument("--host", default="127.0.0.1", help="bind host (default 127.0.0.1)")
+    ap.add_argument("--port", type=int, default=SIDECAR_PORT,
+                    help=f"bind port (default {SIDECAR_PORT}; env SPB_SIDECAR_PORT)")
+    ap.add_argument("--no-cache", dest="no_cache", action="store_true",
+                    help="force cache-less generation (single forward per token)")
+    args = ap.parse_args()
+
+    if args.no_cache:
+        CACHE_LESS = True
 
     uvicorn.run(
         "spiking_brain_server.server:app",
-        host="127.0.0.1",
-        port=SIDECAR_PORT,
+        host=args.host,
+        port=args.port,
         log_level="info",
     )
 

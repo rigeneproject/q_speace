@@ -46,6 +46,14 @@ class TickReport:
     spectrum: object | None = None
     num_spikes: int = 0
     sparsity: float = 1.0
+    # AACM extension (T-AACM-SPEC §4.1): strategy tag emitted by an
+    # optional :class:`q_speace.aacm.AACMController`. ``"default"`` when
+    # no controller is attached. ``aacm_omega`` mirrors the controller's
+    # resilience distribution; ``aacm_central_node`` is the top
+    # betweenness node when strategy is ``central_hit``.
+    aacm_strategy: str = "default"
+    aacm_omega: float = 1.0
+    aacm_central_node: str | None = None
 
 
 class QuantumOrchestrator:
@@ -98,6 +106,39 @@ class QuantumOrchestrator:
         for nid in self._neuron_ids:
             self._bridge.register(nid)
             self._ilf.register_agent(nid, weight=1.0)
+        # AACM extension (T-AACM-SPEC §4.1): an optional controller
+        # that emits a strategy tag for each tick. ``None`` means
+        # the orchestrator runs without AACM, and the TickReport
+        # falls back to ``aacm_strategy="default"``.
+        self._aacm_controller: object | None = None
+        # T-AACM-LOOP §C2: optional AACMLoop reference. The loop is
+        # NOT auto-invoked; the orchestrator only EXPOSES the
+        # ``attached_loop`` property so external code (CLI, tests)
+        # can ask "is there a loop on this orchestrator?" and
+        # optionally drive it. This is opt-in and side-effect-free
+        # at construction time.
+        self._attached_loop: object | None = None
+
+    def attach_loop(self, loop: object) -> None:
+        """Attach an :class:`q_speace.aacm.AACMLoop` for observation.
+
+        The orchestrator does NOT invoke the loop. The loop must be
+        driven externally (e.g. ``python -m q_speace.aacm.loop`` or
+        ``loop.run()``). The orchestrator just holds the reference
+        so other components can ask whether a loop is attached.
+        """
+        self._attached_loop = loop
+
+    def detach_loop(self) -> object | None:
+        """Detach the loop, returning the previous reference (or None)."""
+        prev = self._attached_loop
+        self._attached_loop = None
+        return prev
+
+    @property
+    def attached_loop(self) -> object | None:
+        """The loop attached via :meth:`attach_loop`, or None."""
+        return self._attached_loop
 
     @property
     def quantum_enabled(self) -> bool:
@@ -105,6 +146,79 @@ class QuantumOrchestrator:
 
     def enable_qca(self, num_cells: int = 8) -> None:
         self._qca = FractalQCA(num_cells=num_cells, seed=self._seed or 0)
+
+    def attach_aacm(self, controller: object) -> None:
+        """Attach an :class:`q_speace.aacm.AACMController`.
+
+        The controller is queried at every tick to produce a strategy
+        tag. Attaching ``None`` is a no-op (and the default state).
+        The argument is typed as ``object`` to avoid a hard import
+        dependency from the orchestrator module.
+        """
+        self._aacm_controller = controller
+
+    def detach_aacm(self) -> None:
+        """Remove any attached AACM controller."""
+        self._aacm_controller = None
+
+    def _aacm_tick(self, report: TickReport) -> object:
+        """Run one AACM decision for the current tick.
+
+        Builds a :class:`q_speace.aacm.CentralityGraph` over the
+        orchestrator's instrument nodes and a :class:`FractureMap`
+        from the current EM / coherence state, then asks the
+        controller for a decision. Returns a
+        :class:`q_speace.aacm.StepDecision`.
+        """
+        # Local import to keep the orchestrator importable without
+        # the AACM package (numpy-only invariant).
+        from .aacm import (
+            AACMStrategy,
+            CentralityGraph,
+            FractureMap,
+            StepDecision,
+        )
+
+        nodes = ("sensor", "modulator", "sdr", "metasurface", "qca", "bridge")
+        # Edges encode the call graph of _run_quantum_step.
+        edges = (
+            ("sensor", "modulator", 0.8),
+            ("modulator", "sdr", 0.7),
+            ("modulator", "metasurface", 0.5),
+            ("bridge", "qca", 0.6),
+            ("qca", "modulator", 0.4),
+            ("bridge", "sensor", 0.3),
+        )
+        graph = CentralityGraph(
+            nodes=nodes,
+            edges=edges,
+            controlled_share=report.coherence_phi,
+            timestamp=float(report.tick),
+        )
+        # FractureMap proxy: low spectrum quality = high fracture
+        # magnitude on the EM axis.
+        spectrum_quality = float(getattr(report.spectrum, "quality_index", 1.0))
+        em_fracture = max(0.0, 1.0 - spectrum_quality)
+        fracture_map = FractureMap(
+            magnitudes={
+                "EM_quality": em_fracture,
+                "coherence_phi": max(0.0, 1.0 - report.coherence_phi),
+            },
+            leverage_multiplier=1.5 if em_fracture > 0.5 else 1.0,
+        )
+        decision = self._aacm_controller.step(graph, fracture_map)  # type: ignore[union-attr]
+        # Defensive: if a foreign controller returns a plain dict, wrap it.
+        if not isinstance(decision, StepDecision):
+            return StepDecision(
+                strategy=AACMStrategy.DEFAULT,
+                central_node=None,
+                aacm_omega=getattr(self._aacm_controller, "resilience", None)
+                and float(self._aacm_controller.resilience.omega)
+                or 1.0,
+                recommended_redirect=None,
+                notes={"foreign_decision": str(decision)},
+            )
+        return decision
 
     def _refresh_activity(self, tick: int) -> np.ndarray:
         """Provide deterministic classical activity for opt-in spike costing."""
@@ -225,6 +339,14 @@ class QuantumOrchestrator:
             num_spikes=num_spikes,
             sparsity=activity_sparsity,
         )
+        # AACM: if a controller is attached, query it for a strategy
+        # tag. The controller does not perform any action; it only
+        # describes the strategic posture of this tick.
+        if self._aacm_controller is not None:
+            aacm_decision = self._aacm_tick(report)
+            report.aacm_strategy = aacm_decision.strategy.value
+            report.aacm_omega = aacm_decision.aacm_omega
+            report.aacm_central_node = aacm_decision.central_node
         self._history.append(report)
         self._tick_count += 1
         return report

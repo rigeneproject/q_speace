@@ -5,6 +5,12 @@
 **Predecessore**: T205-C completato (`docs/T205_status.md`)
 **Successore previsto**: T-SPB-1 (SpikingBrain 1B standalone)
 
+> **Epistemic note (2026-08-12).** Questo ticket misura **il checkpoint
+> reale** `maujim/spikingbrain-v1-7b-base` in NF4 4-bit su WSL2 + RTX
+> 3060 6 GB. I risultati di qualità testuale (perdita/adulti/Publié) si
+> riferiscono esclusivamente a questo backend e alla modalità
+> cache-less, non a Qwen 3B o allo stub.
+
 ## 1. Scopo
 
 Prima di scrivere qualsiasi nuova integrazione, **verificare cosa è

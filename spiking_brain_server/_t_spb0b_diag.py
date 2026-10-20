@@ -19,6 +19,7 @@ sys.path.insert(0, os.path.join(REPO_ROOT, "spiking_brain_server"))
 
 # Install the in-memory patcher BEFORE transformers loads window_attention
 import server  # noqa: E402  (sidecar module)
+
 server._install_window_attention_patcher()
 server._evict_cached_window_attention()
 

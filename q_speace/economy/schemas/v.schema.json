@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://q-speace.dev/schemas/v.schema.json",
+  "title": "V — Multi-domain value vector (q_speace_economy §4.4.1)",
+  "description": "4-component value vector (E_x, S_gen, I_c, R_b) plus optional 5th coherence component. The vector is the input to the VTEC controller.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["E_x", "S_gen", "I_c", "R_b"],
+  "properties": {
+    "E_x": {
+      "type": "number",
+      "description": "Exergy extracted per unit time (watts).",
+      "minimum": 0.0
+    },
+    "S_gen": {
+      "type": "number",
+      "description": "Entropy generation per unit time (watts per kelvin).",
+      "minimum": 0.0
+    },
+    "I_c": {
+      "type": "number",
+      "description": "Catalytic information flux (bits per second).",
+      "minimum": 0.0
+    },
+    "R_b": {
+      "type": "number",
+      "description": "Regenerative budget fraction in [0,1].",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "coherence_phi": {
+      "type": "number",
+      "description": "Optional 5th component: global coherence phase in [0,1]; used by VTEC to weight the objective.",
+      "minimum": 0.0,
+      "maximum": 1.0
+    }
+  }
+}

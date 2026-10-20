@@ -68,4 +68,5 @@ class SpikeQuantumBridge:
         peak = float(np.max(counts))
         if peak <= 0.0:
             return np.zeros(counts.size, dtype=float)
-        return np.pi * (counts / peak)
+        out: np.ndarray = np.pi * (counts / peak)
+        return out

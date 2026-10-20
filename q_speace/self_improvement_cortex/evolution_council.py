@@ -236,6 +236,12 @@ class EvolutionCouncil:
     # it only re-weights existing proposals (BCEL gate: functional
     # data path, not decisional agency).
     brain: object | None = None  # SpikingBrainCortex | None — type hint at use site
+    # AACM extension (T-AACM-SPEC §4.2): an optional controller that
+    # applies the AACM gate (B: opposition→capacity, C: legitimation
+    # stratification) to proposals. ``None`` means no AACM gating —
+    # the existing behaviour is preserved.
+    aacm_controller: object | None = None
+    aacm_min_evidence_kinds: int = 2  # K ≥ 2 for stratification (regola 7)
 
     def gather_proposals(self, context: dict) -> list[AgentProposal]:
         all_proposals = []
@@ -249,6 +255,65 @@ class EvolutionCouncil:
 
     def decide(self, proposals: list[AgentProposal], context: dict) -> list[AgentProposal]:
         return self.orchestrator.select(proposals, context)
+
+    def aacm_filter(self, proposals: list[AgentProposal], context: dict) -> list[AgentProposal]:
+        """Apply AACM Fase B+C gates to a list of proposals.
+
+        Without a controller attached, returns the input unchanged
+        (BCEL: do not modify behaviour unless AACM is active).
+
+        With a controller, a proposal is admitted only if its
+        ``payload["evidence_kinds"]`` lists at least
+        ``aacm_min_evidence_kinds`` distinct kinds (regola 7). The
+        controller's ``register_legitimation`` is then called for each
+        admitted proposal, converting the proposal into a
+        stratification channel (Fase C).
+        """
+        if self.aacm_controller is None:
+            return list(proposals)
+        # Local import to keep the cortex importable without AACM.
+        from ..aacm import LegitimationChannel
+
+        admitted: list[AgentProposal] = []
+        for prop in proposals:
+            kinds = prop.payload.get("evidence_kinds", [])
+            if not isinstance(kinds, (list, tuple)):
+                continue
+            unique_kinds = tuple(sorted({str(k) for k in kinds}))
+            if len(unique_kinds) < self.aacm_min_evidence_kinds:
+                continue
+            admitted.append(prop)
+            # Convert opposition into capacity: each admitted
+            # proposal adds ONE new legitimation channel per
+            # distinct evidence kind to the controller's
+            # stratification registry (Fase C, regola 7).
+            for kind in unique_kinds:
+                ch_id = f"leg:{prop.agent_name}:{prop.target}:{kind}"
+                ch_path = str(prop.payload.get("artifact_paths", {}).get(kind, "(unset)"))
+                # Deduplicate: if a channel with the same id and
+                # evidence_kind already exists, do not re-add it.
+                # (The registry itself rejects duplicate
+                # evidence_kind across channels; we add at most
+                # one channel per kind per proposal.)
+                existing = {
+                    (c.evidence_kind,) for c in self.aacm_controller.legitimation.channels  # type: ignore[union-attr]
+                }
+                if (kind,) in existing:
+                    continue
+                self.aacm_controller.register_legitimation(  # type: ignore[union-attr]
+                    LegitimationChannel(
+                        channel_id=ch_id,
+                        evidence_kind=kind,
+                        artifact_path=ch_path,
+                        verified=bool(prop.payload.get("verified", False)),
+                        verified_at=(
+                            float(prop.payload["verified_at"])
+                            if prop.payload.get("verified_at") is not None
+                            else None
+                        ),
+                    )
+                )
+        return admitted
 
     async def deliberate_with_brain(
         self,

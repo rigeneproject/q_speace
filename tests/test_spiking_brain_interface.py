@@ -24,7 +24,6 @@ from q_speace.spiking_brain import (
     HTTPSpikingBrainClient,
     LifecycleState,
     Memory,
-    SpikingBrainCognitiveInterface,
     SpikingBrainCortex,
     SpikingBrainError,
     SpikingBrainMemoryError,
@@ -35,7 +34,6 @@ from q_speace.spiking_brain import (
     StubSpikingBrainV2,
     WorkingMemory,
 )
-
 
 # --- helpers ---
 

@@ -31,7 +31,8 @@ def spike_correlation(activity: np.ndarray) -> np.ndarray:
     corr = (normalized @ normalized.T) / max(a.shape[1] - 1, 1)
     corr = np.nan_to_num(corr, nan=0.0, posinf=0.0, neginf=0.0)
     np.fill_diagonal(corr, 1.0)
-    return np.clip(corr, -1.0, 1.0)
+    out: np.ndarray = np.clip(corr, -1.0, 1.0)
+    return out
 
 
 def entangle_by_correlation(
@@ -88,7 +89,7 @@ def spike_entropy_gradient(spikes: np.ndarray, eps: float = 1e-12) -> np.ndarray
     """
     s = np.asarray(spikes, dtype=float)
     z = float(np.sum(np.abs(s)))
-    grad = np.zeros_like(s)
+    grad: np.ndarray = np.zeros_like(s)
     if z <= eps:
         return grad
     p = np.abs(s) / z

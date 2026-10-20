@@ -48,9 +48,7 @@ class Memory(Protocol):
         """Return the last ``k`` results, most recent first."""
         ...
 
-    async def get_relevant(
-        self, query: str, k: int = 4
-    ) -> Sequence[ThinkResult]:
+    async def get_relevant(self, query: str, k: int = 4) -> Sequence[ThinkResult]:
         """Return up to ``k`` results relevant to ``query``.
 
         Default contract: substring match on ``result.text``.
@@ -80,9 +78,7 @@ class WorkingMemory:
         # Most recent first.
         return list(self._buf)[-k:][::-1]
 
-    async def get_relevant(
-        self, query: str, k: int = 4
-    ) -> Sequence[ThinkResult]:
+    async def get_relevant(self, query: str, k: int = 4) -> Sequence[ThinkResult]:
         if not query:
             return await self.recent(k)
         q = query.lower()
@@ -125,11 +121,9 @@ class EpisodicMemory:
             return []
         with open(self.path, encoding="utf-8") as f:
             lines = f.readlines()[-k:][::-1]
-        return [_dict_to_minimal_result(json.loads(l)) for l in lines]
+        return [_dict_to_minimal_result(json.loads(line)) for line in lines]
 
-    async def get_relevant(
-        self, query: str, k: int = 4
-    ) -> Sequence[ThinkResult]:
+    async def get_relevant(self, query: str, k: int = 4) -> Sequence[ThinkResult]:
         if not query or not os.path.exists(self.path):
             return []
         q = query.lower()

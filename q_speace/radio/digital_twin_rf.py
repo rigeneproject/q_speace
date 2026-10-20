@@ -46,7 +46,9 @@ class DigitalTwinRF:
     def __init__(self, config: DigitalTwinRFConfig | None = None) -> None:
         self.config = config or DigitalTwinRFConfig()
         c = self.config
-        self._chain = [
+        if c.lna is None or c.mixer is None:
+            raise RuntimeError("DigitalTwinRFConfig must initialize an LNA and mixer")
+        self._chain: list[RFComponentModel] = [
             c.lna,
             c.mixer,
         ]
