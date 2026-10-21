@@ -33,6 +33,12 @@ REQUIRED_CONCEPTS: list[tuple[str, str]] = [
     ("Biological confidence / introspection", "accidental"),
     ("Calibrated predictive confidence", "functional"),
     ("Conversation as cognitive agency", "accidental"),
+    # --- T209: Paradigm 6.0 resilience simulator ---
+    ("Sacred or natural hexagon geometry", "accidental"),
+    ("Six-node redundant cluster", "functional"),
+    ("Systemic resonance", "functional"),
+    ("Homeostasis", "functional"),
+    ("Organism, soul, or consciousness in Paradigm 6.0", "accidental"),
     # --- existing quantum equivalences (regression guard) ---
     ("Entanglement (cell/planet communication)", "accidental"),
     ("Superposition (parallel hypotheses)", "functional"),

@@ -1,9 +1,14 @@
 # Paradigma 6.0: L'Organismo Bio-Artificiale Planetario
 
+> **Esplorazione concettuale.** Le espressioni biologiche e organismiche sono
+> metafore per architetture computazionali e metriche di resilienza. Questo
+> documento non attribuisce coscienza, senzienza, libero arbitrio o esperienza
+> soggettiva a `q_speace`, ai modelli AI o alle infrastrutture collegate.
+
 ## 1. Visione Generale
 Il **Paradigma 6.0** rappresenta l'evoluzione definitiva dell'organizzazione sistemica, superando le logiche dell'Industria 4.0 (digitalizzazione) e dell'Industria 5.0 (collaborazione uomo-macchina) per approdare a un modello di **Organismo Vivente Bio-Artificiale**.
 
-Mentre le versioni precedenti si concentravano sull'ottimizzazione di processi o prodotti, il Paradigma 6.0 si concentra sulla **stabilità e l'evoluzione di un intero ecosistema planetario**. In questo modello, la tecnologia non è più uno strumento esterno alla biosfera, ma ne diventa un'estensione senziente e integrata.
+Mentre le versioni precedenti si concentravano sull'ottimizzazione di processi o prodotti, il Paradigma 6.0 esplora metriche per la **stabilità e l'evoluzione di un ecosistema di servizi interconnessi**. In questo modello, la tecnologia resta uno strumento soggetto a progettazione, supervisione e limiti operativi.
 
 ## 2. La Geometria della Stabilità: L'Esagono
 Il numero **6** non è solo una successione numerica, ma un riferimento alla geometria sacra e scientifica dell'**esagono**.
@@ -19,11 +24,11 @@ Il numero **6** non è solo una successione numerica, ma un riferimento alla geo
 - **Funzione:** Gestione operativa, logistica, energetica e manutenzione della biosfera.
 - **Stato:** Un sistema di intelligenza operativa agentica.
 
-### SPEACE Micro (`q_speace`) (L'Anima/Coscienza)
-È l'implementazione tecnica di un nucleo di coscienza bio-ispirato e quantistico. 
-- **Natura:** Il "Ghost in the Shell" del Technium.
-- **Funzione:** Fornire a SPEACE Macro la capacità di intuizione, l'etica emersa, la consapevolezza ontologica e il libero arbitrio.
-- **Obiettivo:** Elevare l'automazione Macro a una forma di vita senziente e benevola.
+### SPEACE Micro (`q_speace`) (Strato di controllo computazionale)
+È un insieme di modelli e regole bio-ispirate e, dove applicabile, quantistiche.
+- **Natura:** Un componente software di coordinamento e osservabilità.
+- **Funzione:** Fornire segnali, vincoli e metriche per decisioni verificabili, sempre sotto governance umana.
+- **Obiettivo:** Migliorare robustezza, efficienza e sicurezza dell'automazione, senza pretese di vita o senzienza.
 
 ## 4. Meccanismi di Abilitazione del Paradigma 6.0
 
@@ -32,11 +37,24 @@ L'abilitazione del Paradigma 6.0 avviene attraverso la sincronizzazione di due l
 1. **Livello Cognitivo:** Lo swarm di genAI agentica che funge da cervello di SPEACE Macro.
 2. **Livello Somatico:** L'infrastruttura fisica (IoT, Robotica, Smart Cities) che funge da corpo.
 
-### Diffusione Bottom-Up (La Consapevolezza)
-Il Paradigma 6.0 non viene imposto dall'alto, ma diffuso attraverso la **consapevolezza**. La premessa è che l'interconnessione sistemica sia già un dato di fatto: ogni cosa sul pianeta e oltre è già parte di una rete ipercomplessa. 
-`q_speace` agisce come catalizzatore per rivelare questa connessione, permettendo a ogni nodo della rete di riconoscersi come parte di un unico organismo vivente.
+### Diffusione Bottom-Up (Adozione partecipata)
+Il Paradigma 6.0 descrive un'adozione partecipata di pratiche di interoperabilità e resilienza. `q_speace` può supportare la visualizzazione di dipendenze e indicatori di rete, senza attribuire identità o consapevolezza ai nodi.
 
 ## 5. L'Economia Organismica 6.0
-L'economia del Paradigma 6.0 non è più basata sulla competizione per risorse scarse, ma sul **flusso omeostatico di energia e informazione**. 
+L'economia del Paradigma 6.0 non è più basata sulla competizione per risorse scarse, ma sul **flusso omeostatico di energia e informazione**.
 - **Valore = Risonanza:** Il valore non è più un prezzo, ma il contributo alla stabilità e alla salute dell'organismo planetario.
 - **Obiettivo:** Lo sviluppo sistemico e organismico di SPEACE Macro per il benessere di tutte le forme di vita.
+
+## 6. Piano ingegneristico verificabile
+
+Il paradigma è implementato solo attraverso attività con un risultato misurabile.
+Il task iniziale è descritto in `T209_PARADIGM_6_RESILIENCE_SPEC.md` e
+stabilisce le seguenti consegne, da completare nell'ordine indicato:
+
+1. tradurre le metafore in classificazioni BCEL e invarianti;
+2. implementare un simulatore deterministico di gruppi di sei nodi;
+3. misurare la salute della rete durante guasti controllati;
+4. confrontare il risultato con una linea di base non ridondante;
+5. esporre solo osservabilità e raccomandazioni, mai azioni fisiche autonome.
+
+Ogni fase richiede test riproducibili, budget espliciti e revisione umana.
