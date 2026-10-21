@@ -44,3 +44,17 @@ Il Paradigma 6.0 descrive un'adozione partecipata di pratiche di interoperabilit
 L'economia del Paradigma 6.0 non è più basata sulla competizione per risorse scarse, ma sul **flusso omeostatico di energia e informazione**.
 - **Valore = Risonanza:** Il valore non è più un prezzo, ma il contributo alla stabilità e alla salute dell'organismo planetario.
 - **Obiettivo:** Lo sviluppo sistemico e organismico di SPEACE Macro per il benessere di tutte le forme di vita.
+
+## 6. Piano ingegneristico verificabile
+
+Il paradigma è implementato solo attraverso attività con un risultato misurabile.
+Il task iniziale è descritto in `T209_PARADIGM_6_RESILIENCE_SPEC.md` e
+stabilisce le seguenti consegne, da completare nell'ordine indicato:
+
+1. tradurre le metafore in classificazioni BCEL e invarianti;
+2. implementare un simulatore deterministico di gruppi di sei nodi;
+3. misurare la salute della rete durante guasti controllati;
+4. confrontare il risultato con una linea di base non ridondante;
+5. esporre solo osservabilità e raccomandazioni, mai azioni fisiche autonome.
+
+Ogni fase richiede test riproducibili, budget espliciti e revisione umana.
