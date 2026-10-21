@@ -42,8 +42,8 @@ salute per simulazioni e dashboard, non un comando operativo.
 ## Sequenza di task
 
 - [x] T209.1 — specifica, BCEL e test di classificazione.
-- [ ] T209.2 — motore deterministico e test unitari.
-- [ ] T209.3 — simulazione di guasto e baseline.
+- [x] T209.2 — motore deterministico e test unitari.
+- [x] T209.3 — simulazione di guasto e baseline.
 - [ ] T209.4 — report di benchmark e decisione di adozione.
 
 ## Vincoli

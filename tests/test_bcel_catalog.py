@@ -14,7 +14,6 @@ import pytest
 
 from q_speace.bcel import BCELCatalog, BCELEquivalence
 
-
 # Concepts the catalog MUST classify, regardless of classification.
 # Drawn directly from T202 §3, T205/T206/T207 §BCEL tables.
 REQUIRED_CONCEPTS: list[tuple[str, str]] = [
@@ -34,6 +33,11 @@ REQUIRED_CONCEPTS: list[tuple[str, str]] = [
     ("Biological confidence / introspection", "accidental"),
     ("Calibrated predictive confidence", "functional"),
     ("Conversation as cognitive agency", "accidental"),
+    ("Sacred or natural hexagon geometry", "accidental"),
+    ("Six-node redundant cluster", "functional"),
+    ("Systemic resonance", "functional"),
+    ("Homeostasis", "functional"),
+    ("Organism, soul, or consciousness in Paradigm 6.0", "accidental"),
     # --- existing quantum equivalences (regression guard) ---
     ("Entanglement (cell/planet communication)", "accidental"),
     ("Superposition (parallel hypotheses)", "functional"),
@@ -51,9 +55,9 @@ def test_catalog_has_all_required_concepts() -> None:
 def test_catalog_classification(concept: str, expected_class: str) -> None:
     cat = BCELCatalog()
     entry: BCELEquivalence = cat.get(concept)
-    assert entry.classification == expected_class, (
-        f"{concept!r}: expected {expected_class}, got {entry.classification}"
-    )
+    assert (
+        entry.classification == expected_class
+    ), f"{concept!r}: expected {expected_class}, got {entry.classification}"
 
 
 def test_catalog_is_functional_helper_matches_classification() -> None:
@@ -109,6 +113,5 @@ def test_brain_area_entry_mentions_thalamic_mediator() -> None:
     entry = cat.get("Brain area as cognitive subdivision")
     rule = entry.digital_rule.lower()
     assert "ilf" in rule and "sevo" in rule, (
-        "brain-area entry must mention ILF + Sevo as the mediator; "
-        f"got: {entry.digital_rule!r}"
+        "brain-area entry must mention ILF + Sevo as the mediator; " f"got: {entry.digital_rule!r}"
     )

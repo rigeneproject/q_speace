@@ -99,6 +99,36 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Removed: generated text is untrusted; only Sevo/coherence-gated "
         "belief updates may influence the organism.",
     ),
+    BCELEquivalence(
+        "Sacred or natural hexagon geometry",
+        "accidental",
+        "Removed: no physical, social, or computational property follows from "
+        "a sacred-geometry analogy.",
+    ),
+    BCELEquivalence(
+        "Six-node redundant cluster",
+        "functional",
+        "Keep as a fixed-cardinality, classical redundancy window with six "
+        "unique node identifiers; it has no biological interpretation.",
+    ),
+    BCELEquivalence(
+        "Systemic resonance",
+        "functional",
+        "Keep as a deterministic pairwise-affinity score penalized by entropy; "
+        "it is an observability metric, not a conscious state.",
+    ),
+    BCELEquivalence(
+        "Homeostasis",
+        "functional",
+        "Keep as thresholded feedback over measurable load, entropy, and "
+        "tension; it never authorizes physical action.",
+    ),
+    BCELEquivalence(
+        "Organism, soul, or consciousness in Paradigm 6.0",
+        "accidental",
+        "Removed: these are documentation metaphors and must not be represented "
+        "as properties of software, models, or networks.",
+    ),
     # --- T202: pseudo-spiking layer (BICLab/SpikingBrain-7B,
     #     arXiv:2509.05276, dynamic_spikes, SpikePlasticity, correlation)
     BCELEquivalence(
