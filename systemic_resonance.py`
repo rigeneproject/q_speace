@@ -1,0 +1,122 @@
+import numpy as np
+from typing import Dict, List, Optional, Tuple
+from dataclasses import dataclass, field
+import logging
+
+# Configure logging for resonance events
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("SystemicResonance")
+
+@dataclass
+class NodeState:
+    """
+    Represents the internal state of a q_speace module.
+    Instead of just 'active/inactive', we measure tension and entropy.
+    """
+    module_id: str
+    load: float  # 0.0 to 1.0: Computational pressure
+    entropy: float  # 0.0 to 1.0: Degree of disorder/uncertainty in processing
+    tension: float  # 0.0 to 1.0: Internal stress or distance from equilibrium
+    phase: float  # 0.0 to 2*pi: Cyclic state for resonance calculations
+    timestamp: float
+
+    def to_vector(self) -> np.ndarray:
+        return np.array([self.load, self.entropy, self.tension, self.phase])
+
+class ResonanceEngine:
+    """
+    The core engine for Paradigm 6.0.
+    It identifies 'hexagonal clusters' of nodes that reach systemic resonance.
+    """
+    def __init__(self, resonance_threshold: float = 0.85):
+        self.nodes: Dict[str, NodeState] = {}
+        self.resonance_threshold = resonance_threshold
+        self.active_clusters: List[List[str]] = []
+
+    def update_node_state(self, state: NodeState):
+        """Updates the internal state of a module."""
+        self.nodes[state.module_id] = state
+
+    def calculate_resonance(self, node_a: NodeState, node_b: NodeState) -> float:
+        """
+        Calculates the resonance between two nodes.
+        High resonance occurs when phases are aligned and entropy is low.
+        """
+        vec_a = node_a.to_vector()
+        vec_b = node_b.to_vector()
+
+        # Cosine similarity as a proxy for resonance
+        dot_product = np.dot(vec_a, vec_b)
+        norm_a = np.linalg.norm(vec_a)
+        norm_b = np.linalg.norm(vec_b)
+
+        if norm_a == 0 or norm_b == 0:
+            return 0.0
+
+        similarity = dot_product / (norm_a * norm_b)
+
+        # Resonance is penalized by high entropy (disorder)
+        avg_entropy = (node_a.entropy + node_b.entropy) / 2
+        resonance = similarity * (1.0 - avg_entropy)
+
+        return resonance
+
+    def find_hexagonal_clusters(self) -> List[Tuple[List[str], float]]:
+        """
+        Searches for clusters of 6 nodes that exhibit high mutual resonance.
+        This is the technical implementation of the 'Hexagonal Stability' of Paradigm 6.0.
+        """
+        node_ids = list(self.nodes.keys())
+        if len(node_ids) < 6:
+            return []
+
+        clusters = []
+        # Note: In a real macro-system, we would use a more efficient graph-based
+        # search (e.g., community detection). Here we use a prototype search.
+
+        # Simple heuristic: find a seed node and its 5 strongest resonance partners
+        for seed in node_ids:
+            resonances = []
+            for other in node_ids:
+                if seed == other: continue
+                res = self.calculate_resonance(self.nodes[seed], self.nodes[other])
+                resonances.append((other, res))
+
+            # Sort by resonance strength
+            resonances.sort(key=lambda x: x[1], reverse=True)
+
+            # Take top 5
+            top_5 = resonances[:5]
+            cluster_nodes = [seed] + [r[0] for r in top_5]
+
+            # Calculate average resonance of the cluster
+            total_res = 0
+            count = 0
+            for i in range(len(cluster_nodes)):
+                for j in range(i + 1, len(cluster_nodes)):
+                    total_res += self.calculate_resonance(self.nodes[cluster_nodes[i]], self.nodes[cluster_nodes[j]])
+                    count += 1
+
+            avg_resonance = total_res / count if count > 0 else 0
+
+            if avg_resonance >= self.resonance_threshold:
+                clusters.append((cluster_nodes, avg_resonance))
+                logger.info(f"Hexagonal Cluster Found! Nodes: {cluster_nodes} | Resonance: {avg_resonance:.4f}")
+
+        return clusters
+
+    def check_systemic_health(self) -> Dict:
+        """Returns the overall systemic health based on resonance and entropy."""
+        if not self.nodes:
+            return {"status": "empty"}
+
+        avg_entropy = np.mean([n.entropy for n in self.nodes.values()])
+        avg_tension = np.mean([n.tension for n in self.nodes.values()])
+        cluster_count = len(self.find_hexagonal_clusters())
+
+        return {
+            "avg_entropy": avg_entropy,
+            "avg_tension": avg_tension,
+            "clusters": cluster_count,
+            "state": "Resonant" if cluster_count > 0 else "Searching"
+        }
