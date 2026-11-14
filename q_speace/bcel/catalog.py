@@ -264,6 +264,62 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "CME vector plus a cardinality check on the reference set. It "
         "is not a self-certification of identity, nor a moral judgement.",
     ),
+    # ----- Bridge-v0 (T218) -----
+    BCELEquivalence(
+        "Bridge update state machine (T218)",
+        "functional",
+        "Keep as a deterministic finite automaton over signed records "
+        "(journal, idempotency, fencing, two-phase coupled commit). "
+        "'Fencing' is a monotonic epoch counter, not a biological "
+        "immune metaphor.",
+    ),
+    BCELEquivalence(
+        "Admissible-set screening as homeostasis (T218)",
+        "accidental",
+        "Removed: the projection onto P ∩ B_Delta(p^k) is convex "
+        "geometry, not homeostasis. The homeostatic framing is dropped; "
+        "the set-intersection projection and the deterministic "
+        "lexicographic tie-break survive as mathematical rules.",
+    ),
+    BCELEquivalence(
+        "Independent validation as conscience (T218)",
+        "accidental",
+        "Removed: HMAC attestations plus a bounded evaluation budget "
+        "are cryptographic and resource rules. 'Independent "
+        "validation' is an architectural separation of trust domains, "
+        "not a moral or cognitive faculty.",
+    ),
+    BCELEquivalence(
+        "Reachable-tube safety as proprioception (T218)",
+        "accidental",
+        "Removed: interval propagation over the observation-delay tube "
+        "is a conservative numerical over-approximation; the UNKNOWN "
+        "verdict is a first-class outcome. No bodily metaphor is "
+        "load-bearing.",
+    ),
+    BCELEquivalence(
+        "Recoverability guards as healing (T218)",
+        "accidental",
+        "Removed: software restore / controller transition / plant "
+        "recovery are three declared operating procedures with "
+        "hysteresis and integrator-reset guards. Not wound healing.",
+    ),
+    BCELEquivalence(
+        "Reporting score as ethical judgement (T218)",
+        "accidental",
+        "Removed: U = Σαb − Σβh is a linear form with frozen, published "
+        "coefficients — a reporting index with monotonicity at fixed "
+        "coordinates and no multiplicative cancellation. It measures "
+        "nothing ethical and settles no trade-off.",
+    ),
+    BCELEquivalence(
+        "Causal certificate as wealth oracle (T218)",
+        "accidental",
+        "Removed: the lower bound V̂ − ε_total certifies a declared "
+        "in-horizon target under a decomposed error budget; effects "
+        "beyond the horizon are reported unresolved. It is not a "
+        "currency, a wealth measure or a legitimacy proof.",
+    ),
 ]
 
 

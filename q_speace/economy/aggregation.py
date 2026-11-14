@@ -29,6 +29,7 @@ probability vectors onto the simplex.
 from __future__ import annotations
 
 from collections.abc import Sequence
+from dataclasses import dataclass
 
 import numpy as np
 
@@ -154,3 +155,124 @@ def lossless_check(
     bary_kl = float(np.sum(w * np.array([kl(p, barycentre) for p in dists])))
     uni_kl = float(np.sum(w * np.array([kl(p, uniform) for p in dists])))
     return bary_kl <= uni_kl + tol
+
+
+# ---------------------------------------------------------------------- #
+# T218 (SCO-01/02/03): admissible reporting score, additive aggregation
+# and cumulative-harm limits.
+#
+# Resolves review items L4, MAT-M2/M6 and GOV-G4. The score
+#
+#     U = sum_l alpha_l * b_l  -  sum_m beta_m * h_m
+#
+# has *monotonicity at fixed coordinates* and *no multiplicative
+# cancellation* — it does not forbid trade-offs: an action may raise a
+# harm and the total score simultaneously. Non-compensable harms remain
+# constraints outside the scalar.
+#
+# BCEL: the score is a functional linear form with published, frozen
+# coefficients. It is a reporting index, not a measure of value, wealth
+# or ethics.
+# ---------------------------------------------------------------------- #
+
+
+@dataclass(frozen=True)
+class ScorePolicy:
+    """Frozen, versioned score coefficients (L4: policy version is part
+    of every comparison — two different versions are never subtracted)."""
+
+    alpha: tuple[float, ...]
+    beta: tuple[float, ...]
+    version: str
+
+    def __post_init__(self) -> None:
+        if any(a < 0.0 for a in self.alpha):
+            raise ValueError("alpha coefficients must be non-negative")
+        if any(b < 0.0 for b in self.beta):
+            raise ValueError("beta coefficients must be non-negative")
+        if not self.version:
+            raise ValueError("policy version must be recorded")
+
+
+def reporting_score(
+    policy: ScorePolicy,
+    benefits: np.ndarray,
+    harms: np.ndarray,
+) -> float:
+    """Return ``U = Σ α_l b_l − Σ β_m h_m`` (additive, non-cancelling)."""
+    b = np.asarray(benefits, dtype=np.float64)
+    h = np.asarray(harms, dtype=np.float64)
+    if b.shape != (len(policy.alpha),) or h.shape != (len(policy.beta),):
+        raise ValueError("benefits/harms length must match the policy vectors")
+    if np.any(b < 0.0) or np.any(b > 1.0):
+        raise ValueError("benefits must be normalized in [0, 1]")
+    if np.any(h < 0.0):
+        raise ValueError("harms must be non-negative")
+    return float(np.sum(policy.alpha * b) - np.sum(policy.beta * h))
+
+
+def monotonicity_at_fixed_coordinates(
+    policy: ScorePolicy,
+    benefits: np.ndarray,
+    harms: np.ndarray,
+) -> bool:
+    """SCO-01: at fixed coordinates, raising one harm never raises U.
+
+    This tests the *algebraic* property only. A joint change (raising a
+    harm AND a benefit) may legitimately raise the total — that is a
+    trade-off, not a bug (M6).
+    """
+    base = reporting_score(policy, benefits, harms)
+    for m in range(len(policy.beta)):
+        h2 = np.array(harms, dtype=np.float64, copy=True)
+        h2[m] += 0.01
+        if reporting_score(policy, benefits, h2) > base + 1e-15:
+            return False
+    return True
+
+
+def additive_score(
+    densities: np.ndarray,
+    measure: np.ndarray,
+    policy: ScorePolicy,
+) -> float:
+    """SCO-02: integral of the density over an additive measure μ.
+
+    ``densities`` holds benefit-minus-harm densities ``u(z)`` on the
+    reference granularity; ``measure`` holds the μ-measure of each
+    element. The cell score is ``Σ u(z) μ(z)`` — invariant under
+    merging/splitting *by construction* because it is an integral, not
+    a nonlinear normalisation of a local mean.
+    """
+    d = np.asarray(densities, dtype=np.float64)
+    m = np.asarray(measure, dtype=np.float64)
+    if d.shape != m.shape:
+        raise ValueError("densities and measure must share shape")
+    if np.any(m < 0.0):
+        raise ValueError("measure entries must be non-negative")
+    return float(np.sum(d * m))
+
+
+def cumulative_harm_check(
+    cumulative_harm: np.ndarray,
+    cumulative_limits: np.ndarray,
+) -> tuple[bool, str]:
+    """SCO-03: per-group cumulative limits (GOV-G4).
+
+    A sequence of individually-admissible actions that pushes a group's
+    cumulative harm past its declared limit is blocked (or escalated)
+    *independently of the scalar score*.
+
+    Returns ``(ok, reason)`` with ``ok=False`` naming the first violated
+    group index.
+    """
+    c = np.asarray(cumulative_harm, dtype=np.float64)
+    lim = np.asarray(cumulative_limits, dtype=np.float64)
+    if c.shape != lim.shape:
+        raise ValueError("cumulative harm and limits must share shape")
+    if np.any(lim < 0.0):
+        raise ValueError("limits must be non-negative")
+    violated = np.flatnonzero(c > lim)
+    if violated.size > 0:
+        return False, f"cumulative harm limit exceeded for group {int(violated[0])}"
+    return True, "all group cumulative limits respected"

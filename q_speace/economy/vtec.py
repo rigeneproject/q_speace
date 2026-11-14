@@ -251,3 +251,98 @@ def build_allocation_constraints(
         risk_acceptable=risk_acceptable,
         human_agency_min=human_agency_min,
     )
+
+
+# ---------------------------------------------------------------------------
+# T218 (CAU-01): certified causal incremental value
+#
+# Resolves review items R4, MAT-M3 and EXP-M4. The lower-bound
+# certificate of §6.2 of Paradigm_6_0_Revised is defined only against an
+# explicit target quantity V*_{Omega,H}: intervention a (with duration
+# and successor policy), baseline policy, affected set and horizon. The
+# error budget is decomposed into declared, non-overlapping components;
+# ``epsilon_model`` must bound the error on the *incremental*
+# difference, not on each trajectory separately (opposite errors of
+# modulus e give a difference error of 2e).
+#
+# BCEL: the certificate is a functional numerical inequality under
+# declared bounds. It is not a proof of planetary wealth creation.
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class CausalEstimate:
+    """One model-dependent incremental value with its error budget.
+
+    ``epsilon_model`` bounds ``|V̂ − V*_{Omega,H}|`` (the *incremental*
+    quantity). ``epsilon_spatial`` and ``epsilon_temporal`` cover
+    truncation of the affected set and of the horizon; ``epsilon_stat``
+    is a statistical term with confidence level ``confidence_delta``.
+    """
+
+    action: str
+    baseline: str
+    omega: str
+    horizon: int
+    v_hat: float
+    epsilon_model: float
+    epsilon_spatial: float
+    epsilon_temporal: float
+    epsilon_stat: float
+    confidence_delta: float
+    post_horizon_effect_unknown: bool = False
+
+    def __post_init__(self) -> None:
+        for name in (
+            "epsilon_model",
+            "epsilon_spatial",
+            "epsilon_temporal",
+            "epsilon_stat",
+        ):
+            v = getattr(self, name)
+            if v < 0.0:
+                raise ValueError(f"{name} must be >= 0")
+        if not 0.0 < self.confidence_delta < 1.0:
+            raise ValueError("confidence_delta must be in (0, 1)")
+        if self.horizon < 1:
+            raise ValueError("horizon must be >= 1")
+
+    @property
+    def epsilon_total(self) -> float:
+        """Declared non-overlapping error budget."""
+        return self.epsilon_model + self.epsilon_spatial + self.epsilon_temporal + self.epsilon_stat
+
+
+def certified_lower_bound(est: CausalEstimate) -> float:
+    """Return ``V̂ − ε_total`` for the in-horizon target V*_{Ω,H}.
+
+    This is a bound on the *declared in-horizon target only*. Effects
+    beyond the horizon are reported separately by
+    :func:`post_horizon_verdict` and never absorbed into this bound.
+    """
+    return est.v_hat - est.epsilon_total
+
+
+def post_horizon_verdict(est: CausalEstimate) -> str:
+    """Classify effects beyond the horizon (R4: no convenient horizons).
+
+    Returns one of:
+    * ``"NONE_REPORTED"`` — the model reports no non-negligible post-H effect;
+    * ``"OUTSIDE_HORIZON_UNRESOLVED"`` — a potentially significant post-H
+      effect exists and the decision layer must treat the estimate as
+      unresolved, never as positive.
+    """
+    if est.post_horizon_effect_unknown:
+        return "OUTSIDE_HORIZON_UNRESOLVED"
+    return "NONE_REPORTED"
+
+
+def covered_by_certificate(est: CausalEstimate, true_value: float, *, tol: float = 1e-9) -> bool:
+    """Coverage test: true V*_{Ω,H} is not below the declared certificate.
+
+    Use this against ground truth in the simulator. A certificate built
+    from per-trajectory bounds (instead of a bound on the incremental
+    difference) fails this test when the two trajectory errors have
+    opposite signs — the counterexample mandated by review R4/M3.
+    """
+    return bool(true_value >= certified_lower_bound(est) - tol)
