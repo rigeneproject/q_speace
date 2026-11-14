@@ -131,6 +131,11 @@ Any claim of security in this document is relative to this model. Absolute claim
 - Nanodrone swarms for visual/thermal inspection and temporary sensor replacement,
   together with their own security case (spoofing, hijacking, jamming, authentication of
   swarm nodes).
+- Nanodrone swarms as an independent physical-attestation layer for communications
+  attributed to the central multi-cloud GenAI: out-of-band verification of actual sensor
+  and actuator state, with signed telemetry, an independent root of trust, anti-spoofing
+  and anti-jamming measures, and the swarm itself treated as potentially compromised. The
+  swarm attests physical state, not the semantic truth of a GenAI assertion.
 - Stratospheric HAPS as communication relays and coordination nodes.
 - EMP hardening by protection zones: shielding with controlled apertures, port-level
   transient suppression, wide-bandgap semiconductors as a contributing factor, optical
@@ -145,6 +150,7 @@ Any claim of security in this document is relative to this model. Absolute claim
 | Verifiable, non-repudiable ledgers for every command and every human waiver, strengthening accountability | High |
 | Edge AIs in island mode applying predefined safety protocols with explicit decision limits | Medium-high |
 | Nanodrone swarms self-organizing into temporary aerial mesh networks | Medium-low (demonstrated at small scale; resilience and cost unproven) |
+| Nanodrone swarms as independent attestation that communications attributed to the central multi-cloud GenAI match real physical state | Medium-low (physical attestation only, never semantic truth; swarm security, latency, and coverage unproven) |
 | Qualified resistance to a defined class of EMP threats through integrated hardening | Medium (achievable for defined classes, not as generic immunity) |
 | HAPS as emergency compute nodes hosting reduced model copies | Low (limited by payload, power, cooling; current HAPS are largely demonstrators) |
 | Risk reduction of the full chain through PQC plus append-only ledgers | Medium (reduces specific risks; does not make the system inviolable) |
@@ -158,6 +164,9 @@ Any claim of security in this document is relative to this model. Absolute claim
   bandwidth.
 - Effectiveness of nanodrone swarms in autonomy, bandwidth, physical resilience, cost, and
   security.
+- Whether nanodrone swarms can provide trustworthy, independently verifiable attestation
+  of GenAI-originated communications without adding an unacceptable attack surface, and
+  how their attestations should be weighted against other independent controls.
 - Actual EMP resistance of the proposed solutions and their qualification in extreme
   scenarios.
 - Definition of the safety case and target integrity levels (SIL) for each criticality
@@ -198,6 +207,7 @@ rules and which must be dropped in silicon.
 | Entanglement as signaling channel | accidental | Forbidden. Entanglement is a computational resource only (no-communication theorem). |
 | "Inviolable" / "immune" / "100%" security | accidental | Removed. Claims are relative to the threat model and carry residual risk. |
 | EMP / HAPS / nanodrone specifics | accidental (for Q-SPEACE core) | Out of scope until separately specified and gated by the safety case. |
+| "Truthfulness" of GenAI communications verified by nanodrones | accidental | No truth oracle. Only independent, signed physical-state attestation, treated as one untrusted signal. |
 
 ## 6. Relation to Q-SPEACE Invariants
 
@@ -220,3 +230,6 @@ rules and which must be dropped in silicon.
 4. Island-mode autonomy cannot exceed its pre-declared decision limits.
 5. Tests cover prompt injection, forged commands, replay, and authority escalation.
 6. No test or document asserts absolute security, immunity, or quantum consciousness.
+7. No code or document treats nanodrone attestation as proof of the semantic truth of a
+   GenAI proposal; it may only corroborate physical state alongside other independent
+   controls.

@@ -36,3 +36,13 @@ Required for changes to `q_speace/` source, tests, CLI, genome.
 - Weakening the no-consciousness / no-communication invariants.
 - Introducing dependencies without updating `pyproject.toml`.
 - Deleting tests to raise coverage.
+
+## 5. Qualification before host-system assimilation
+
+For work proposing integration into a host system, consult
+`docs/T217_SAFE_ASSIMILATION_LIFECYCLE_SPEC.md` together with T208. Changes intended
+to affect physical infrastructure, economic operations, or ecosystems require
+the documented correction, simulation, isolated replica, confined prototype,
+independent review, and selective integration path before operational promotion.
+The candidate cannot approve itself; missing or inconclusive evidence blocks
+promotion. This documentation does not enable actuation or implement release gates.

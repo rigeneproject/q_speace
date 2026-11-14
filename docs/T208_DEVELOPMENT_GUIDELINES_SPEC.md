@@ -548,3 +548,26 @@ Slice**. Its deliverables are:
 T209 must not add a new quantum, radio, economy, or self-improvement feature.
 Its purpose is to establish the engineering loop that every later subsystem
 must satisfy.
+
+## 11. Qualification before assimilation into a host system
+
+[T217 — Safe assimilation lifecycle](T217_SAFE_ASSIMILATION_LIFECYCLE_SPEC.md)
+specifies the proposed qualification path for integrating Q-SPEACE components into
+a host system: correct the candidate, validate scoped multidomain simulations
+(VR is optional visualization), test an isolated host replica and a confined
+physical or operational prototype, obtain independent evaluation, then integrate
+only qualified components with bounded authority, monitoring, and recovery.
+
+For changes intended to affect physical infrastructure, economic operations, or
+ecosystems, the future release path must meet T217 in addition to this document.
+A simulation score or a code-test pass alone is insufficient. Positive average
+utility cannot compensate for a violated hard safety or distributional limit.
+Unvalidated models, uncertain critical effects, missing evidence, or a mismatch
+between tested and installed artifacts prevent promotion. Candidate code cannot
+authorize its own installation or expand its operating domain.
+
+T217 is a documentation-only proposal: it does not implement these gates or enable
+actuation. Its implementation must follow the specification/BCEL/test workflow
+above. Complete planetary simulation and risk-free deployment are not assumed;
+every claim remains bounded by validated models, observed evidence, and residual
+risk. Existing passive interfaces, including cellular SPEACE T60, remain passive.

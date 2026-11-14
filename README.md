@@ -50,6 +50,15 @@ qspace quantum synthesize   # print BCEL quantum equivalences
 
 ## Roadmap / tasks
 
+### Engineering specifications
+
+- [Evidence-first development guidelines (T208)](docs/T208_DEVELOPMENT_GUIDELINES_SPEC.md).
+- [Safe assimilation lifecycle (T217)](docs/T217_SAFE_ASSIMILATION_LIFECYCLE_SPEC.md):
+  proposed correction, validated simulation, isolated host replica, confined
+  prototype tests, independent review, and selective integration. This is a
+  documentation-only specification; no VR engine, host clone, hardware access,
+  or release gate is implemented by it.
+
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T10/T22/T23 (cost + clock + Sevo),
 T14 (FractalQCA), T15 (BCEL), T16 (CLI), T19 (Schumann), T20 (ILF/CV/DNA
