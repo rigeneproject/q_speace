@@ -273,6 +273,51 @@ Criteri di completamento:
 - Ogni regressione severa attiva rollback.
 - Il sistema apprende quali tipi di patch funzionano.
 
+### Fase 11 - Regolazione organismica e governance verificabile (traccia parallela)
+
+**Obiettivo:** chiudere il circuito omeostatico comportamentale e rendere
+verificabile l'autonomia del sistema quando interagisce con azioni esterne,
+senza estendere l'autorità esecutiva di nessuna fonte di proposta.
+
+Base di evidenza: `docs/QH01_dynamic_verification_2026-11-16.md`
+(omeostasi computazionale operante e reversibile; drive non collegati alla
+selezione azioni; audit non verificabile; ActiveInference inerte nel percorso
+MVP). Analisi differenziale: `../T210_DIFFERENTIAL_REQUIREMENTS_SPEC.md`.
+
+Spec di riferimento (in questa directory):
+
+| Spec | Contenuto | Priorità |
+|---|---|---|
+| `T-HOME-01_HOMEOSTATIC_ACTION_WIRING_SPEC.md` | cablaggio `ActionBias` + `ActiveInferenceEmbodiedLoop` nel percorso produttivo | P0 |
+| `T-GOV-01_DIGITAL_TWIN_PREEXECUTION_GUARDRAIL_SPEC.md` | digital twin come pre-execution check (T210 AC2) | P0 |
+| `T-GOV-03_T210_AC5_ADVERSARIAL_TEST_SUITE_SPEC.md` | suite avversariale: injection, forged, replay, escalation (T210 AC5) | P0 |
+| `T-HOME-02_PSN_DRIVE_INTEGRATION_SPEC.md` | segnali fisiologici PSN → drive, disaccoppiamento confound energetico | P1 |
+| `T-GOV-02_VERIFIABLE_AUDIT_LEDGER_SPEC.md` | hash chain + timestamp monotoni sull'audit (T210 AC3) | P1 |
+| `T-IPRV-01_INDEPENDENT_PHYSICAL_REALITY_VERIFICATION_SPEC.md` | verifica fisica indipendente simulata, indice di discrepanza Δ_t | P1 |
+| `T-HOME-03_PREDICTIVE_EPIGENETIC_HOMEOSTASIS_SPEC.md` | omeostasi predittiva (esperimento QH-01 C-vs-B con ablazioni) | P2 |
+
+Invariante trasversale (da T210-DIFF §2): nessuna fonte di proposta — GenAI,
+drive omeostatici, umani, verificatori indipendenti — modifica l'insieme
+ammissibile `A_safe`; la governance deterministica resta indipendente da ogni
+drive, quorum e attestation.
+
+Criteri di completamento:
+
+- Azioni proposte sensibili allo stato interno, con flip riproducibile su ≥5
+  run e nessun flip con drive disabilitati (ablazione).
+- Nessun percorso che porti una proposta GenAI/omeostatica all'attuazione
+  senza governance deterministica + impact check.
+- Audit verificabile end-to-end (`verify_chain` su log manomesso individua
+  la prima entry corrotta).
+- Suite avversariale T210 AC5 verde end-to-end.
+- IPRV simulata: tasso di rilevamento discrepanze e false positive
+  preregistrati e misurati, processo separato reale.
+
+Vincolo: nessuna promozione a hardware reale senza il percorso T217
+(documentazione → simulazione → replica isolata → prototipo confinato →
+revisione indipendente → integrazione selettiva). Il candidato non approva
+se stesso.
+
 ## 5. Backlog operativo
 
 | ID | Task | Area | Stato | Priorità | Criterio di done |
@@ -337,6 +382,14 @@ Criteri di completamento:
 | AGI-058 | Program Schema Library | Schemi | DONE | Alta | `ProgramSchema` + `ProgramSchemaLibrary` con task signature, Jaccard similarity, persistence JSON, retrieval zero-shot |
 | AGI-059 | Schema Library → ARC-AGI adapter | Integrazione | DONE | Alta | `evaluate_task()` consulta schemi pre-esistenti; memorizza programmi di successo come schemi (threshold ≥ 0.6) |
 | AGI-060 | OCR fix bbox e background inference | Robustness | DONE | Media | `compute_attributes()` bbox da min/max pixels; `_infer_background()` preferisce 0 in caso di parità |
+| AGI-066 | T-HOME-01 wiring omeostatico (ActionBias + AIEL) | Regolazione | TODO | Alta | v. `docs/T-HOME-01_HOMEOSTATIC_ACTION_WIRING_SPEC.md` |
+| AGI-067 | T-GOV-01 twin come pre-execution guardrail | Governance | TODO | Alta | v. `docs/T-GOV-01_DIGITAL_TWIN_PREEXECUTION_GUARDRAIL_SPEC.md` |
+| AGI-068 | T-GOV-03 suite avversariale T210 AC5 | Governance | TODO | Alta | v. `docs/T-GOV-03_T210_AC5_ADVERSARIAL_TEST_SUITE_SPEC.md` |
+| AGI-069 | T-HOME-02 integrazione PSN → drive | Regolazione | TODO | Media | v. `docs/T-HOME-02_PSN_DRIVE_INTEGRATION_SPEC.md` |
+| AGI-070 | T-GOV-02 audit ledger verificabile | Governance | TODO | Media | v. `docs/T-GOV-02_VERIFIABLE_AUDIT_LEDGER_SPEC.md` |
+| AGI-071 | T-IPRV-01 verifica fisica indipendente simulata | Governance | TODO | Media | v. `docs/T-IPRV-01_INDEPENDENT_PHYSICAL_REALITY_VERIFICATION_SPEC.md` |
+| AGI-072 | T-HOME-03 omeostasi predittiva + QH-01 C-vs-B | Regolazione | TODO | Media | v. `docs/T-HOME-03_PREDICTIVE_EPIGENETIC_HOMEOSTASIS_SPEC.md` |
+| AGI-073 | Fix build_mvp su Python 3.12 (`Path.is_file(follow_symlinks=...)`) | Runtime | TODO | Media | `virtual_file_system/vfs_engine.py:220` usa API 3.13+ su runtime dichiarato 3.12; opportunità `follow_symlinks` o guard di versione |
 
 ## 6. Metriche di progresso
 
@@ -411,9 +464,17 @@ Prossimi task:
 | 2026-06-02 | Claude | AGI-035 completato: `evolution_daemon/` con 14 moduli + `loop.py` orchestrator. `data/schemas.py` con `SystemState`, `CapabilityGap`, `Bottleneck`, `CognitiveTask`, `BenchmarkResult`, `PeerReview`, `Mutation`, `IterationRecord` e la formula ARI (8 componenti pesate). ARI storicizzato in `evolution_daemon/data/ari_history.json`. Benchmark sintetici in `benchmark_runner`: grid_invariance, object_counting, sequence_prediction (deterministici, 25 task ciascuno). `arc_runner` con cache del runner reale `scripts/run_arc_agi_benchmark.py` e parser per `arc_agi_report_*.json` con `top1_accuracy/correct/attempted`. ARI iniziale 0.2478. AGI-036 completato: `SpatialSymbolicReasoningLayer.suggest_transformations_from_pairs()` con detection di rotate/flip/color_map/crop/pad/trim_background/gravity + Phase 0.5 in `FewShotProgramInductionEngine.induce()` che inserisce consensus_transformations come candidate programs. AGI-037 completato: `CognitiveNurseryScenarioBuilder.complete_run()` che persiste nursery runs come `Episode` nell'`EpisodicMemory`. AGI-033 completato: `arc_runner` di default split=training limit=20. AGI-038 completato: `CounterfactualArchitectureSandbox.delta_analysis()` con verdict improved/regressed/neutral. AGI-039 completato: `evolution_daemon/dashboard_updater/trend_reporter.py` con confidence/novelty percentiles. Cron ricorrente `956bb159` ogni 2 ore per eseguire automaticamente un'iterazione del loop. | pytest `test_agi_023_perception_to_programs.py` 5 passed; `test_agi_030_nursery_episode_bridge.py` 3 passed; `test_agi_027_delta_analysis.py` 4 passed; `test_agi_026_trend_with_quality.py` 5 passed; cognition+embodiment+self_improvement 606 passed; ARC training 200 task: 10/200 (5.00%); skill library 5→9; ARI 0.2459→0.2548 |
 | 2026-06-02 | Claude | AGI-040 completato: rollback automatico in `evolution_daemon/loop.py` se ARI scende > 5% — snapshot pre-iter di `data/knowledge_graph.json` + `ari_history.json` ripristinati via `restore_snapshot`. AGI-041 completato: ARC evaluation 200 task replicato in due run indipendenti, 1/200 (0.50%) confermato non è outlier. AGI-042 completato: fix fragilità `test_runtime.py` — `ContinuousRuntimeEngine` usa `getattr(orchestrator, "_sensor_array", None)` invece di accesso diretto, 25/25 test runtime passano. AGI-043 completato: `_generate_primitive_hypotheses` ora genera ipotesi consultando TUTTI i train pairs (non solo `train_pairs[0]`) via `suggest_transformations_from_pairs(train_pairs, top_k=6)`, con de-duplicazione sui nomi già ipotizzati. AGI-044 completato: `_rank_key` in `induce()` ora ordina per `match_ratio DESC, confidence DESC, complexity ASC` — candidati che passano tutti i train pairs vengono sempre prima, tie-break su confidenza (consensus over single-pair). AGI-045 completato: `ARCSkillLibrary.coverage_report()` espone `families_covered`, `families_missing`, `coverage_ratio`, `skills_per_family`, `fitness_per_family` (target: geometry/objects/recolor/composition/counting/uncategorized). AGI-046 completato: `EpisodicMemory.retrieve_similar()` con score ibrido `0.6·cosine + 0.3·family_match + 0.1·tag_overlap` (pesi rinormalizzati) su vettore 4-dim [cognitive_delta, phi_delta, energy_delta, outcome_norm]. AGI-047 completato: `SpatialSymbolicReasoningLayer.detect_outliers(scene, top_k)` con `color_rarity = 1/(1+count-1)`, `size_anomaly = |area - mean_area| / mean_area` clipped, `outlier_score = color_rarity * (0.5 + 0.5*size_anomaly)`. AGI-048 completato: `evolution_daemon/dashboard_updater/trend_reporter.regression_check(history, current, z_threshold=1.5, min_history=3)` ritorna `{regression, severity, mean, std, cutoff, delta_from_mean, history_len, insufficient_history}` con severity = (mean - current) / std. AGI-049 completato: `evolution_daemon/bottleneck_detector.latency_profile(timings, top_k=3)` ritorna `{phases, top_k_slowest, total_seconds, phase_count, slowest_phase, bottleneck_ratio}`. AGI-050 completato: `evolution_daemon/task_generator.synthesize_for_missing(skill_library, n_per_family, extra_gain)` consuma `coverage_report()` per creare un `CognitiveTask` (`SYN-<FAM>-<hash>`) per ogni famiglia ARC senza skill, mappata al benchmark sintetico appropriato. ARI stabile 0.2473→0.2503; ARC evaluation 0.50%; cron 956bb159 ancora attivo. | pytest `test_agi_040_rollback.py` 2 passed; `test_agi_043_cross_pair_consensus.py` 2 passed; `test_agi_044_confidence_weighted_voting.py` 3 passed; `test_agi_045_skill_coverage.py` 5 passed; `test_agi_046_hybrid_retrieval.py` 5 passed; `test_agi_047_outlier_detection.py` 6 passed; `test_agi_048_regression_detection.py` 7 passed; `test_agi_049_latency_profile.py` 6 passed; `test_agi_050_synthesize_for_missing.py` 10 passed; runtime 25/25; memory 89/89; cognition 195/195; daemon 23/23; ARI 0.2503 (+0.003 vs baseline) |
 | 2026-06-05 | big-pickle | AGI-056 completato: `ObjectCentricInductionBridge` — genera ipotesi slot-level da scene-graph diff, slot-aware pixel scoring, re-ranking candidati FSPI. AGI-057 completato: 6 slot-level primitive nel `_PRIMITIVE_REGISTRY` (slot_recolor_by_attr, slot_replicate_by_count, slot_move_to, slot_remove_by_predicate, slot_sort_by_attribute, slot_interleave_by_color). AGI-058 completato: `ProgramSchemaLibrary` con task signature, Jaccard similarity, persistence JSON, retrieval zero-shot. AGI-059 completato: Schema Library integrata in ARC-AGI adapter (`evaluate_task()` consulta schemi, memorizza programmi di successo come schemi con soglia ≥0.6). AGI-060 completato: OCR fix bbox computation (`min(pixels)/max(pixels)`) e background inference (preferisce 0 in caso di parità). Fix pre-existing: orchestrator.py constructor args gap analyzer + bottleneck (`directory=` vs `data_dir=`). Piano ingegneristico aggiornato v0.2. Knowledge Graph aggiornato con nuovi moduli. | 42 test nuovi (slot-level: 17, bridge: 9, schema lib: 12, integration: 4); 301+ test esistenti passano; 1 pre-existing failure (`test_run_benchmark`); ARC training 100: 0.00% (da investigare) |
+| 2026-11-16 | opencode | Verifica dinamica QH-01 completata (audit statico + sonde componente e end-to-end): omeostasi computazionale operante e reversibile (deficit forzato → survival +0.96, plasticità 0.538→0.166, ritorno a baseline); `ActionBias`, `ActiveInferenceEmbodiedLoop`, `AutonomousDriveEngine` non cablati in produzione; audit append-only ma non verificabile; digital twin non usato come pre-execution check; suite avversariale T210 AC5 assente. Aggiunta Fase 11 (regolazione organismica e governance verificabile) + task AGI-066..073 con 7 nuove spec (T-HOME-01/02/03, T-GOV-01/02/03, T-IPRV-01) e analisi differenziale T210 (`../T210_DIFFERENTIAL_REQUIREMENTS_SPEC.md`). | `docs/QH01_dynamic_verification_2026-11-16.md`; probe end-to-end 15 tick: polarity corretta, reversibilità confermata; finding ambientale: build_mvp crash su Python 3.12 (`vfs_engine.py:220`, API 3.13+) → AGI-073 |
 
 
 ## 9. Prossima iterazione raccomandata
+
+**Traccia parallela attivata (2026-11-16)**: oltre ai task ARC-AGI sotto
+elencati, la Fase 11 definisce la traccia "regolazione organismica e
+governance verificabile" con priorità P0: **AGI-066** (wiring omeostatico),
+**AGI-067** (twin guardrail), **AGI-068** (suite avversariale). Le due tracce
+sono indipendenti; la Fase 11 ha precedenza operativa perché i suoi task P0
+sono prerequisiti di qualunque promozione oltre la simulazione (T217).
 
 **Stato attuale**: AGI-051–AGI-055 (bridge hybrid retrieval, outlier_score hint, regression_check wiring, latency_profile wiring, generate missing skills) sono ora completati. AGI-056–AGI-060 (Object-Centric Induction Bridge, Slot-Level Primitives, Program Schema Library, integrazione ARC-AGI, OCR fix) completati in questa iterazione.
 
