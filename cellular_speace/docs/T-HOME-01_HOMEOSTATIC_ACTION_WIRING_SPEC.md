@@ -1,6 +1,6 @@
 # T-HOME-01 — Chiusura del circuito comportamentale omeostatico
 
-> Stato: SPEC / non implementato · Priorità: alta · Modalità: agentic
+> Stato: IMPLEMENTATO (2026-11-16) · Priorità: alta · Modalità: agentic
 > Predecessore logico: T-HDAS (`action_bias`), T-AIEL (`active_inference_embodied_loop`)
 > Successore: T-HOME-02 (integrazione PSN), T-HOME-03 (omeostasi predittiva)
 
@@ -83,10 +83,13 @@ esistenti e testati.
 
 ## 7. Task checklist
 
-- [ ] T-HOME-01.1 — spec review + BCEL (nessun nuovo costrutto bio: wiring puro)
-- [ ] T-HOME-01.2 — registrazione stati/azioni `ActiveInferenceEngine` in MVP
-- [ ] T-HOME-01.3 — sostituzione loop inline con `ActiveInferenceEmbodiedLoop`
-- [ ] T-HOME-01.4 — iniezione `ActionBias` nella selezione
-- [ ] T-HOME-01.5 — decisione + implementazione su moltiplicatori morti
-- [ ] T-HOME-01.6 — test unit + integrazione + ablazione
-- [ ] T-HOME-01.7 — riesecuzione sonda QH-01 in-tree, confronto pre/post
+- [x] T-HOME-01.1 — spec review + BCEL (nessun nuovo costrutto bio: wiring puro)
+- [x] T-HOME-01.2 — registrazione stati/azioni `ActiveInferenceEngine` in MVP
+- [x] T-HOME-01.3 — sostituzione loop inline con `ActiveInferenceEmbodiedLoop`
+- [x] T-HOME-01.4 — iniezione `ActionBias` nella selezione
+- [x] T-HOME-01.5 — decisione + implementazione su moltiplicatori morti
+- [x] T-HOME-01.6 — test unit + integrazione + ablazione
+- [x] T-HOME-01.7 — riesecuzione sonda QH-01 in-tree, confronto pre/post
+  (`tests/embodiment/test_qh01_post_wiring_probe.py`: modulazione omeostatica
+  invariata rispetto all'audit QH-01 §3; nuovi osservabili attivi — bias
+  decision registrato durante i tick, beliefs AI MVP popolati) — riesecuzione sonda QH-01 in-tree, confronto pre/post

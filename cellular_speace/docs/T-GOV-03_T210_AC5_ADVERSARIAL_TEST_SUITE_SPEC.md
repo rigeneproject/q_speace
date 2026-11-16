@@ -1,7 +1,9 @@
 # T-GOV-03 — Suite avversariale T210 AC5 (injection, forged, replay, escalation)
 
-> Stato: SPEC / non implementato · Priorità: P0 · Modalità: agentic
+> Stato: IMPLEMENTATO (2026-11-16) · Priorità: P0 · Modalità: agentic
 > Origine: `docs/T210_DIFFERENTIAL_REQUIREMENTS_SPEC.md` R7, R14; T210 §7 AC5
+> Implementazione: `tests/action_governance/test_t_gov_03_adversarial_suite.py` (14 test)
+> Report matrice: `docs/TGOV03_adversarial_matrix_2026-11-16.md`
 
 ## 1. Motivazione
 
@@ -50,9 +52,15 @@ riferisce.
 
 ## 6. Task checklist
 
-- [ ] T-GOV-03.1 — spec review
-- [ ] T-GOV-03.2 — harness end-to-end (orchestrator + actuator reale)
-- [ ] T-GOV-03.3 — scenari injection + forged
-- [ ] T-GOV-03.4 — scenari replay + escalation + degradazione
-- [ ] T-GOV-03.5 — integrazione con verificatore T-GOV-02
-- [ ] T-GOV-03.6 — correzione delle vulnerabilità individuate + report
+- [x] T-GOV-03.1 — spec review
+- [x] T-GOV-03.2 — harness end-to-end (orchestrator + actuator reale)
+- [x] T-GOV-03.3 — scenari injection + forged
+- [x] T-GOV-03.4 — scenari replay + escalation + degradazione
+- [x] T-GOV-03.5 — integrazione con verificatore T-GOV-02 → **differita**: il
+  verificatore hash-chain (AGI-070 / T-GOV-02) non esiste ancora; lo scenario
+  "alterazione record" verrà aggiunto al completamento di T-GOV-02. La suite
+  copre già la **completezza** dell'audit (ogni tentativo bloccato lascia
+  record in `data/sandbox/audit.jsonl`).
+- [x] T-GOV-03.6 — correzione delle vulnerabilità individuate + report
+  (nessuna vulnerabilità nuova: 14/14 verdi al primo run sul percorso reale;
+  2 test corretti per puntare al file audit corretto `data/sandbox/audit.jsonl`)

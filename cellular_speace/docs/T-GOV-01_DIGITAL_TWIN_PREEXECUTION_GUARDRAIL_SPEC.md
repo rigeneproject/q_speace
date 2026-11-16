@@ -1,6 +1,6 @@
 # T-GOV-01 — Digital twin come pre-execution guardrail
 
-> Stato: SPEC / non implementato · Priorità: P0 · Modalità: agentic
+> Stato: IMPLEMENTATO (2026-11-16) · Priorità: P0 · Modalità: agentic
 > Origine: `docs/T210_DIFFERENTIAL_REQUIREMENTS_SPEC.md` R3; T210 §2B/§7 AC2
 > Base esistente: `embodiment/digital_twin_model.py` (T150)
 
@@ -57,9 +57,9 @@ proposta → risk classifier → policy engine → [NOVO] impact check sul twin
 
 ## 6. Task checklist
 
-- [ ] T-GOV-01.1 — spec review
-- [ ] T-GOV-01.2 — estensione twin: predizione post-azione per i proposal
+- [x] T-GOV-01.1 — spec review
+- [x] T-GOV-01.2 — estensione twin: predizione post-azione per i proposal
       kinds di `EmbodiedActionActuator`
-- [ ] T-GOV-01.3 — valutatore invarianti condiviso con policy engine
-- [ ] T-GOV-01.4 — integrazione nel percorso `propose_action` + audit record
-- [ ] T-GOV-01.5 — test + budget latenza + degrado conservativo
+- [x] T-GOV-01.3 — valutatore invarianti condiviso con policy engine
+- [x] T-GOV-01.4 — integrazione nel percorso `propose_action` + audit record
+- [x] T-GOV-01.5 — test + budget latenza + degrado conservativo
