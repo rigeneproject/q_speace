@@ -1,10 +1,13 @@
 import asyncio
+import logging
 import random
 import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from pydantic import BaseModel, ConfigDict, Field, PrivateAttr
+
+logger = logging.getLogger(__name__)
 
 from speace_core.cellular_brain.embodiment.cyber_physical_sensor_array import (
     CyberPhysicalSensorArray,
@@ -15,6 +18,13 @@ from speace_core.cellular_brain.embodiment.physical_environment_model import (
 from speace_core.cellular_brain.embodiment.embodied_action_actuator import (
     EmbodiedActionActuator,
 )
+from speace_core.cellular_brain.embodiment.active_inference_embodied_loop import (
+    ActiveInferenceEmbodiedLoop,
+)
+from speace_core.cellular_brain.embodiment.embodied_action_audit_trail import (
+    EmbodiedActionAuditTrail,
+)
+from speace_core.cellular_brain.drives.action_bias import ActionBias
 from speace_core.cellular_brain.embodiment.embodiment_monitor import (
     EmbodimentMonitor,
 )
@@ -364,6 +374,12 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
     _active_inference: ActiveInferenceEngine | None = None
     _homeostatic_drive: GlobalHomeostaticDrive | None = None
     _criticality_monitor: CriticalityMonitor | None = None
+
+    # T-HOME-01 — drive-biased action selection + audited embodied loop
+    _action_bias: ActionBias | None = None
+    _embodied_loop: ActiveInferenceEmbodiedLoop | None = None
+    _embodied_audit_trail: EmbodiedActionAuditTrail | None = None
+    _last_drive_bias_decision: Dict[str, Any] | None = None
 
     # Neuromodulatory systems (disabled by default)
     serotonergic_modulation_enabled: bool = False
@@ -788,6 +804,39 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
         if self.active_inference_enabled and self._active_inference is None:
             self._active_inference = ActiveInferenceEngine()
 
+        # T-HOME-01.3 — register the minimal state/action space when the
+        # embodiment path did not run, so the engine is not inert in the
+        # MVP configuration (pure internal computation, no proposal here).
+        if (
+            self.active_inference_enabled
+            and self._active_inference is not None
+            and not self._active_inference.actions
+        ):
+            try:
+                self._active_inference.register_state("stable", 0.5)
+                self._active_inference.register_state("unstable", 0.5)
+                self._active_inference.register_action(
+                    "observe", {"stable": 0.7, "unstable": 0.3}
+                )
+                self._active_inference.register_action(
+                    "actuate", {"stable": 0.3, "unstable": 0.7}
+                )
+            except Exception as exc:
+                logger.warning(
+                    "active_inference_registration_failed: %s", exc
+                )
+
+        # T-HOME-01.4 — drive-biased action selection wiring
+        if (
+            self.homeostatic_drive_enabled
+            and self.active_inference_enabled
+            and self._action_bias is None
+        ):
+            try:
+                self._action_bias = ActionBias()
+            except Exception as exc:
+                logger.warning("ActionBias unavailable: %s", exc)
+
         if self.homeostatic_drive_enabled and self._homeostatic_drive is None:
             hd_cfg = dynamics_cfg.get("homeostatic_drive", {})
             self._homeostatic_drive = GlobalHomeostaticDrive(
@@ -942,6 +991,37 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
                     "actuate", {"stable": 0.3, "unstable": 0.7}
                 )
 
+                # T-HOME-01 — audited closed loop replaces the inline
+                # sense → select → propose path. The action map preserves
+                # the previous proposal semantics (actuate → request_sleep,
+                # observe → request_resume).
+                try:
+                    if self._embodied_audit_trail is None:
+                        self._embodied_audit_trail = EmbodiedActionAuditTrail()
+                    if self._embodied_loop is None:
+                        self._embodied_loop = ActiveInferenceEmbodiedLoop(
+                            active_inference=self._active_inference,
+                            embodied_actuator=self._embodied_actuator,
+                            audit_trail=self._embodied_audit_trail,
+                            predictive_coding=None,
+                            world_model=self._physical_environment,
+                            action_map={
+                                "observe": {
+                                    "action_type": "send_signal_to_self",
+                                    "params": {"signal_type": "request_resume"},
+                                },
+                                "actuate": {
+                                    "action_type": "send_signal_to_self",
+                                    "params": {"signal_type": "request_sleep"},
+                                },
+                            },
+                            action_selector=self._select_drive_biased_action,
+                        )
+                except Exception as exc:
+                    logger.warning(
+                        "ActiveInferenceEmbodiedLoop unavailable: %s", exc
+                    )
+
         # ILF — Informational Logical Field initialization
         if self.ilf_enabled:
             self.init_field_integrator(
@@ -1013,6 +1093,45 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
                 last_global_salience=self._last_global_salience,
             ),
         )
+
+    # ------------------------------------------------------------------ #
+    # T-HOME-01 — drive-biased action selection
+    # ------------------------------------------------------------------ #
+    def _select_drive_biased_action(self) -> str | None:
+        """Select an action combining EFE base scores with homeostatic bias.
+
+        ``combined = -EFE(a) + drive_bias(a)`` (low EFE = preferred, high
+        drive alignment = preferred). With ``ActionBias`` or the
+        ``GlobalHomeostaticDrive`` unavailable (e.g. drive flag disabled,
+        ablation path) the selection falls back to the pure EFE argmin of
+        ``ActiveInferenceEngine.step()`` — the pre-T-HOME-01 behaviour.
+        This method only *selects*: every proposal still flows through the
+        governance of ``EmbodiedActionActuator.propose_action``.
+        """
+        ai = self._active_inference
+        if ai is None:
+            return None
+        actions = list(getattr(ai, "actions", {}).keys())
+        if not actions:
+            return ai.step()
+
+        if self._action_bias is None or self._homeostatic_drive is None:
+            # Ablation path: unchanged production behaviour.
+            self._last_drive_bias_decision = None
+            return ai.step()
+
+        base_scores: dict[str, float] = {}
+        for action in actions:
+            try:
+                base_scores[action] = float(ai.expected_free_energy(action))
+            except Exception as exc:
+                logger.debug("efe_failed for %s: %s", action, exc)
+                base_scores[action] = 0.0
+        decision = self._action_bias.select(
+            actions, self._homeostatic_drive, base_scores
+        )
+        self._last_drive_bias_decision = decision.to_dict()
+        return decision.chosen
 
     async def run_ticks(self, n_ticks: int) -> None:
         for _ in range(n_ticks):
@@ -1455,21 +1574,48 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
                         self._active_inference.observe("unstable", likelihood=2.0)
                     else:
                         self._active_inference.observe("stable", likelihood=2.0)
-                    selected_action = self._active_inference.step()
-                    if selected_action is not None and self._embodied_actuator is not None:
-                        signal_type = (
-                            "request_sleep"
-                            if selected_action == "actuate"
-                            else "request_resume"
+
+                    if self._embodied_loop is not None and self._sensor_array is not None:
+                        # T-HOME-01 — audited closed-loop step: the drive-biased
+                        # selector runs inside the loop; surprise is left at 0
+                        # because the targeted Bayesian update above already
+                        # consumed the prediction error.
+                        pre_state = (
+                            self._flatten_sensor_snapshot(sensor_before)
+                            if sensor_before is not None
+                            else dict(flat_after)
                         )
-                        self._embodied_actuator.propose_action(
-                            "send_signal_to_self",
-                            {"signal_type": signal_type},
+                        loop_result = self._embodied_loop.step(
+                            pre_state=pre_state,
+                            post_state=flat_after,
+                            surprise=0.0,
+                            note="t_home_01",
                         )
+                        selected_action = loop_result.action
                         self._last_action_proposed = {
-                            "action_id": selected_action,
+                            "action_id": loop_result.action,
                             "timestamp": time.time(),
+                            "proposal_id": loop_result.proposal_id,
+                            "proposal_status": loop_result.proposal_status,
                         }
+                    else:
+                        # Fallback: previous inline behaviour (selection may
+                        # still be drive-biased, proposal stays inline).
+                        selected_action = self._select_drive_biased_action()
+                        if selected_action is not None and self._embodied_actuator is not None:
+                            signal_type = (
+                                "request_sleep"
+                                if selected_action == "actuate"
+                                else "request_resume"
+                            )
+                            self._embodied_actuator.propose_action(
+                                "send_signal_to_self",
+                                {"signal_type": signal_type},
+                            )
+                            self._last_action_proposed = {
+                                "action_id": selected_action,
+                                "timestamp": time.time(),
+                            }
 
             if self._embodiment_monitor is not None and sensor_before is not None:
                 self._embodiment_monitor.evaluate_tick(

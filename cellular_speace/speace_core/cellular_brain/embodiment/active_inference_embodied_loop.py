@@ -21,7 +21,7 @@ from __future__ import annotations
 import logging
 import time
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 _logger = logging.getLogger(__name__)
 
@@ -99,6 +99,7 @@ class ActiveInferenceEmbodiedLoop:
         predictive_coding: Any = None,
         action_map: Optional[Dict[str, Dict[str, Any]]] = None,
         world_model: Any = None,
+        action_selector: Optional[Callable[[], Optional[str]]] = None,
     ):
         self.active_inference = active_inference
         self.embodied_actuator = embodied_actuator
@@ -108,6 +109,11 @@ class ActiveInferenceEmbodiedLoop:
             action_map or self.DEFAULT_ACTION_MAP
         )
         self.world_model = world_model
+        # T-HOME-01: optional external action selector (e.g. drive-biased
+        # selection combining EFE base scores with homeostatic bias). When
+        # provided it takes precedence over ``active_inference.step()``;
+        # when it fails or returns ``None`` the built-in selection is used.
+        self.action_selector = action_selector
         self._tick: int = 0
         self._last_result: Optional[EmbodiedStepResult] = None
 
@@ -179,7 +185,15 @@ class ActiveInferenceEmbodiedLoop:
 
         # 4) Select action and translate to actuator proposal.
         selected: Optional[str] = None
-        if self.active_inference is not None:
+        if self.action_selector is not None:
+            try:
+                selected = self.action_selector()
+                if selected is not None:
+                    result.notes.append("selector:action_selector")
+            except Exception as exc:  # pragma: no cover
+                result.notes.append(f"selector_failed:{exc}")
+                selected = None
+        if selected is None and self.active_inference is not None:
             try:
                 selected = self.active_inference.step()
             except Exception as exc:  # pragma: no cover

@@ -4,6 +4,7 @@ import os
 import pathlib
 import shutil
 import stat
+import sys
 import time
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
@@ -214,11 +215,15 @@ class VirtualFileSystemEngine:
 
     def _stat_path(self, path: pathlib.Path) -> Optional[FileMetadata]:
         try:
+            # `follow_symlinks` is only accepted by Path.is_file/is_dir on
+            # Python >= 3.13; keep the same semantics on 3.12 by never
+            # following symlinks for the type checks.
+            follow = {"follow_symlinks": False} if sys.version_info >= (3, 13) else {}
             st = path.stat(follow_symlinks=False)
             return FileMetadata(
                 size_bytes=st.st_size,
-                is_file=path.is_file(follow_symlinks=False),
-                is_dir=path.is_dir(follow_symlinks=False),
+                is_file=path.is_file(**follow),
+                is_dir=path.is_dir(**follow),
                 is_symlink=path.is_symlink(),
                 modified_at=datetime.fromtimestamp(st.st_mtime, tz=timezone.utc).isoformat(),
                 created_at=datetime.fromtimestamp(st.st_ctime, tz=timezone.utc).isoformat(),
