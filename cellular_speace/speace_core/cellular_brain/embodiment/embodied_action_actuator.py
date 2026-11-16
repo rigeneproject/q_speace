@@ -98,6 +98,8 @@ class EmbodiedActionActuator:
         project_root: Optional[Path] = None,
         data_root: Optional[str] = None,
         sandbox_profile: Optional[str] = None,
+        impact_checker: Any = None,
+        impact_check_strict: bool = True,
     ) -> None:
         if project_root is None:
             # Four parents up from this file: speace_core/cellular_brain/embodiment/ -> project root
@@ -124,6 +126,11 @@ class EmbodiedActionActuator:
             self._risk_classifier = None
             self._reversibility_analyzer = None
             self._policy_engine = None
+
+        # T-GOV-01 — pre-execution impact check via the digital twin.
+        # Optional: when not provided, propose_action behaves exactly as before.
+        self.impact_checker = impact_checker
+        self.impact_check_strict = bool(impact_check_strict)
 
         # ------------------------------------------------------------------ #
         # Sandbox profile (Stage 2.5 - opt-in via SPEACE_SANDBOX=1)
@@ -588,6 +595,50 @@ class EmbodiedActionActuator:
                         "phase": "propose",
                         "outcome": "blocked",
                         "reason": decision.blocked_reason,
+                    }
+                )
+                return proposal_id
+
+        # T-GOV-01 — pre-execution impact check against the digital twin.
+        # Conservative refusal: reject (or unverifiable in strict mode) blocks
+        # the proposal before it enters the queue. The twin can only shrink
+        # the admissible set, never extend it (T210-DIFF §2).
+        if self.impact_checker is not None:
+            impact_check = self.impact_checker.check_proposal(action_type, params)
+            proposal["impact_check"] = impact_check.to_dict()
+            if impact_check.outcome == "reject" or (
+                impact_check.outcome == "unverifiable" and self.impact_check_strict
+            ):
+                reason = f"impact_check_{impact_check.outcome}:{impact_check.reason}"
+                proposal["status"] = "blocked"
+                self._log_event(
+                    MorphologyEventType.ACTION_BLOCKED,
+                    proposal_id,
+                    {"reason": reason, "action_type": action_type},
+                )
+                self._history.append(
+                    {
+                        "proposal_id": proposal_id,
+                        "action_type": action_type,
+                        "params": params,
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "outcome": ActionOutcome.BLOCKED,
+                        "error": reason,
+                        "reverted": False,
+                    }
+                )
+                self._proposals[proposal_id] = proposal
+                self._log_audit(
+                    {
+                        "action_id": proposal_id,
+                        "action_type": action_type,
+                        "params": params,
+                        "risk_score": risk_score,
+                        "governance_decision": governance_decision_dump,
+                        "impact_check": impact_check.to_dict(),
+                        "phase": "propose",
+                        "outcome": "blocked",
+                        "reason": reason,
                     }
                 )
                 return proposal_id

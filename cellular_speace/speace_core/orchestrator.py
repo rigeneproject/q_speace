@@ -414,6 +414,7 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
     _sensor_array: CyberPhysicalSensorArray | None = None
     _physical_environment: PhysicalEnvironmentModel | None = None
     _embodied_actuator: EmbodiedActionActuator | None = None
+    _impact_checker: Any | None = None
     _embodiment_monitor: EmbodimentMonitor | None = None
     _last_sensor_snapshot: dict | None = None
     _last_predicted_state_dict: dict | None = None
@@ -980,6 +981,28 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
             self._last_sensor_snapshot = first_reading
             self._last_predicted_state_dict = None
             self._last_action_proposed = None
+
+            # T-GOV-01 — wire the digital twin as a pre-execution guardrail
+            # on every embodied proposal. Conservative refusal: if the twin
+            # cannot verify the predicted impact, the proposal is blocked.
+            try:
+                from speace_core.cellular_brain.action_governance.impact_check import (
+                    TwinImpactChecker,
+                )
+                from speace_core.cellular_brain.embodiment.digital_twin_model import (
+                    DigitalTwinModel,
+                )
+
+                if self._impact_checker is None:
+                    twin = DigitalTwinModel(
+                        sensor_array=self._sensor_array,
+                        environment_model=self._physical_environment,
+                        data_root="data/embodiment",
+                    )
+                    self._impact_checker = TwinImpactChecker(twin=twin)
+                    self._embodied_actuator.impact_checker = self._impact_checker
+            except Exception as exc:
+                logger.warning("TwinImpactChecker unavailable: %s", exc)
 
             if self.active_inference_enabled and self._active_inference is not None:
                 self._active_inference.register_state("stable", 0.5)
