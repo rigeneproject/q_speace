@@ -1,6 +1,6 @@
 # T-HOME-02 — Integrazione fisiologica PSN → Drive
 
-> Stato: SPEC / non implementato · Priorità: media · Modalità: agentic
+> Stato: IMPLEMENTATO (2026-11-16) · Priorità: media · Modalità: agentic
 > Predecessore: T-HOME-01 · Successore: T-HOME-03
 
 ## 1. Motivazione
@@ -71,9 +71,9 @@ drive per volta. La mappatura attuale resta il default.
 
 ## 6. Task checklist
 
-- [ ] T-HOME-02.1 — spec review
-- [ ] T-HOME-02.2 — implementazione `PhysioDriveAdapter`
-- [ ] T-HOME-02.3 — policy staleness/hold + test
-- [ ] T-HOME-02.4 — sorgente `survival` disaccoppiata da `mean_energy` (flag)
-- [ ] T-HOME-02.5 — test retrocompatibilità (PSN vuota → output identico)
-- [ ] T-HOME-02.6 — integrazione orchestrator dietro flag dedicato
+- [x] T-HOME-02.1 — spec review
+- [x] T-HOME-02.2 — implementazione `PhysioDriveAdapter`
+- [x] T-HOME-02.3 — policy staleness/hold + test
+- [x] T-HOME-02.4 — sorgente `survival` disaccoppiata da `mean_energy` (flag)
+- [x] T-HOME-02.5 — test retrocompatibilità (PSN vuota → output identico)
+- [x] T-HOME-02.6 — integrazione orchestrator dietro flag dedicato

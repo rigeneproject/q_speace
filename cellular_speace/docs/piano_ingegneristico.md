@@ -385,7 +385,7 @@ se stesso.
 | AGI-066 | T-HOME-01 wiring omeostatico (ActionBias + AIEL) | Regolazione | DONE (2026-11-16) | Alta | v. `docs/T-HOME-01_HOMEOSTATIC_ACTION_WIRING_SPEC.md` |
 | AGI-067 | T-GOV-01 twin come pre-execution guardrail | Governance | DONE (2026-11-16) | Alta | v. `docs/T-GOV-01_DIGITAL_TWIN_PREEXECUTION_GUARDRAIL_SPEC.md` |
 | AGI-068 | T-GOV-03 suite avversariale T210 AC5 | Governance | DONE (2026-11-16) | Alta | v. `docs/T-GOV-03_T210_AC5_ADVERSARIAL_TEST_SUITE_SPEC.md` |
-| AGI-069 | T-HOME-02 integrazione PSN → drive | Regolazione | TODO | Media | v. `docs/T-HOME-02_PSN_DRIVE_INTEGRATION_SPEC.md` |
+| AGI-069 | T-HOME-02 integrazione PSN → drive | Regolazione | DONE (2026-11-16) | Media | v. `docs/T-HOME-02_PSN_DRIVE_INTEGRATION_SPEC.md` |
 | AGI-070 | T-GOV-02 audit ledger verificabile | Governance | TODO | Media | v. `docs/T-GOV-02_VERIFIABLE_AUDIT_LEDGER_SPEC.md` |
 | AGI-071 | T-IPRV-01 verifica fisica indipendente simulata | Governance | TODO | Media | v. `docs/T-IPRV-01_INDEPENDENT_PHYSICAL_REALITY_VERIFICATION_SPEC.md` |
 | AGI-072 | T-HOME-03 omeostasi predittiva + QH-01 C-vs-B | Regolazione | TODO | Media | v. `docs/T-HOME-03_PREDICTIVE_EPIGENETIC_HOMEOSTASIS_SPEC.md` |

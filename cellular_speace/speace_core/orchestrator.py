@@ -361,6 +361,11 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
     predictive_coding_enabled: bool = False
     active_inference_enabled: bool = False
     homeostatic_drive_enabled: bool = False
+
+    # T-HOME-02 — physiological PSN → drive integration
+    physio_drive_enabled: bool = False
+    survival_drive_source: str = "mean_energy"  # mean_energy | psn_damage
+    _physio_drive_adapter: Any | None = None
     criticality_monitor_enabled: bool = False
     # ARC-AGI benchmark
     arc_agi_benchmark_enabled: bool = False
@@ -848,6 +853,25 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
                 survival_suppression_threshold=hd_cfg.get("survival_suppression_threshold", 0.3),
                 efficiency_plasticity_threshold=hd_cfg.get("efficiency_plasticity_threshold", -0.2),
             )
+
+        # T-HOME-02.6 — PSN → drive adapter (secondary, limited-weight inputs)
+        if (
+            self.physio_drive_enabled
+            and self.homeostatic_drive_enabled
+            and self._physio_drive_adapter is None
+            and self._homeostatic_drive is not None
+        ):
+            try:
+                if self._psn_bus is not None:
+                    from speace_core.cellular_brain.regulation.physio_drive_adapter import (
+                        PhysioDriveAdapter,
+                    )
+
+                    self._physio_drive_adapter = PhysioDriveAdapter(
+                        psn=self._psn_bus, drive=self._homeostatic_drive
+                    )
+            except Exception as exc:
+                logger.warning("PhysioDriveAdapter unavailable: %s", exc)
 
         # Neuromodulatory systems initialization
         if self.serotonergic_modulation_enabled and self._serotonergic_modulator is None:
@@ -1341,8 +1365,26 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
         if self.homeostatic_drive_enabled and self._homeostatic_drive is not None:
             self._homeostatic_drive.update_drive("exploration", metrics.noise_level)
             self._homeostatic_drive.update_drive("stability", metrics.coherence_phi)
-            self._homeostatic_drive.update_drive("survival", 1.0 - metrics.mean_energy)
+            # T-HOME-02.4 — survival source decoupled from mean_energy when
+            # configured: damage/injury stream from the PSN, hold on missing.
+            survival_value: float | None = None
+            if self.survival_drive_source == "psn_damage" and self._psn_bus is not None:
+                try:
+                    damage = self._psn_bus.read_stream("damage")
+                except Exception:
+                    damage = None
+                if damage is not None:
+                    survival_value = float(max(0.0, min(1.0, damage)))
+            if survival_value is None:
+                survival_value = 1.0 - metrics.mean_energy
+            self._homeostatic_drive.update_drive("survival", survival_value)
             self._homeostatic_drive.update_drive("efficiency", metrics.mean_energy)
+            # T-HOME-02.6 — secondary PSN inputs (limited weight) before step
+            if self._physio_drive_adapter is not None:
+                try:
+                    self._physio_drive_adapter.sync(self.current_tick)
+                except Exception as exc:
+                    logger.warning("physio_drive_sync_failed: %s", exc)
             modulation = self._homeostatic_drive.step()
             # Apply modulations to circuit parameters
             for n in all_neurons:

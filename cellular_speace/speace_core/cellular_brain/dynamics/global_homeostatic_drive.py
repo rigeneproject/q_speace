@@ -1,6 +1,5 @@
 import math
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from dataclasses import dataclass
 
 
 @dataclass
@@ -33,8 +32,8 @@ class GlobalHomeostaticDrive:
         survival_suppression_threshold: float = 0.3,
         efficiency_plasticity_threshold: float = -0.2,
     ):
-        self._drives: Dict[str, Drive] = {}
-        self._modulation: Dict[str, float] = {
+        self._drives: dict[str, Drive] = {}
+        self._modulation: dict[str, float] = {
             "plasticity_multiplier": 1.0,
             "exploration_multiplier": 1.0,
             "energy_supply_multiplier": 1.0,
@@ -67,6 +66,18 @@ class GlobalHomeostaticDrive:
             raise KeyError(f"Drive '{name}' is not registered")
         self._drives[name].current_value = current_value
 
+    def get_drive_value(self, name: str) -> float:
+        """Return the raw current level of a registered drive."""
+        if name not in self._drives:
+            raise KeyError(f"Drive '{name}' is not registered")
+        return self._drives[name].current_value
+
+    def get_drive_setpoint(self, name: str) -> float:
+        """Return the setpoint of a registered drive."""
+        if name not in self._drives:
+            raise KeyError(f"Drive '{name}' is not registered")
+        return self._drives[name].setpoint
+
     def get_drive_signal(self, name: str) -> float:
         """Return the drive signal: deviation from setpoint multiplied by weight."""
         if name not in self._drives:
@@ -74,7 +85,7 @@ class GlobalHomeostaticDrive:
         drive = self._drives[name]
         return (drive.current_value - drive.setpoint) * drive.weight
 
-    def list_drives(self) -> List[str]:
+    def list_drives(self) -> list[str]:
         """Return names of all registered drives."""
         return list(self._drives.keys())
 
@@ -82,7 +93,7 @@ class GlobalHomeostaticDrive:
     # Modulation computation
     # ------------------------------------------------------------------ #
 
-    def get_global_modulation(self) -> Dict[str, float]:
+    def get_global_modulation(self) -> dict[str, float]:
         """Return the current global modulation multipliers.
 
         Multipliers are derived from drive signals with the following interactions:
@@ -91,7 +102,7 @@ class GlobalHomeostaticDrive:
         """
         return dict(self._modulation)
 
-    def step(self) -> Dict[str, float]:
+    def step(self) -> dict[str, float]:
         """Recalculate all modulations based on current drive levels.
 
         Returns the updated modulation dictionary.
