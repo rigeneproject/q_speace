@@ -58,6 +58,11 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   prototype tests, independent review, and selective integration. This is a
   documentation-only specification; no VR engine, host clone, hardware access,
   or release gate is implemented by it.
+- [NCM coarse-to-fine codec, Phase 0 (T222)](docs/T222_NCM_CODEC_SPEC.md):
+  codec-only experiment with preregistration and deterministic section locking.
+  Includes calibration-only scaffolding; no NCM generator, no held-out run,
+  no DoD claim, and no AACM integration yet. Task registry:
+  [T222_TASKS.md](docs/T222_TASKS.md).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T10/T22/T23 (cost + clock + Sevo),

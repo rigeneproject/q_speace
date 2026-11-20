@@ -17,7 +17,22 @@ from .correlation import (
 )
 from .encoder import SpikeEncodingResult, dynamic_spikes, sparsity, spike_count, spike_rate
 from .linear import SpikeEncodedLinear
+from .ncm_calibration import (
+    CalibrationConfig,
+    CalibrationDataset,
+    CalibrationResult,
+    make_calibration_dataset,
+    max_abs_cohens_d,
+    run_calibration,
+)
+from .ncm_codec import CodecCodes, CodecConfig, ResidualCodec
 from .plasticity import SpikePlasticity
+from .prereg_lock import (
+    canonical_json,
+    compute_lock_sha256,
+    lock_section,
+    verify_lock,
+)
 
 __all__ = [
     "SpikeEncodingResult",
@@ -31,4 +46,17 @@ __all__ = [
     "entangle_by_correlation",
     "spike_entropy_gradient",
     "SpikeQuantumBridge",
+    "CodecConfig",
+    "CodecCodes",
+    "ResidualCodec",
+    "CalibrationConfig",
+    "CalibrationDataset",
+    "CalibrationResult",
+    "make_calibration_dataset",
+    "max_abs_cohens_d",
+    "run_calibration",
+    "canonical_json",
+    "compute_lock_sha256",
+    "lock_section",
+    "verify_lock",
 ]

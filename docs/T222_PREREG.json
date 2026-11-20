@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "spec": "docs/T222_NCM_CODEC_SPEC.md",
+  "task_registry": "docs/T222_TASKS.md",
+  "created": "2026-11-20",
+  "status": "draft: pre_calibration not locked; calibration code available; official run not executed",
+  "rules": {
+    "threshold_origin": "Le soglie definitive derivano dal run di calibrazione e vengono scritte e bloccate in pre_evaluation prima del run di valutazione.",
+    "calibration_doD": "Il run di calibrazione non può soddisfare il DoD e non produce risultati di valutazione.",
+    "heldout_usage": "Lo split held-out non viene mai usato per costruire codebook, normalizzazioni, iperparametri o soglie.",
+    "locking": "Ogni sezione viene bloccata con lock_sha256 prima del run a cui si riferisce; dopo il lock non è modificabile.",
+    "no_retrofit": "Nessuna soglia può essere scelta o modificata dopo aver visto i risultati di valutazione."
+  },
+  "locking_protocol": {
+    "scope": "per top-level section (pre_calibration, pre_evaluation)",
+    "algorithm": "sha256",
+    "encoding": "utf-8 without BOM",
+    "serialization": "json.dumps(sort_keys=true, separators=(',', ':'), ensure_ascii=false, allow_nan=false)",
+    "excluded_fields": ["lock_sha256"],
+    "excluded_scope": "top-level only",
+    "locked_field_participates": true,
+    "procedure": "complete section; set locked=true; write sha256(canonical_json(section)) into lock_sha256",
+    "verification": "remove lock_sha256, re-serialize canonically, recompute sha256, constant-time compare",
+    "heldout_integrity": "heldout.manifest_sha256; not covered by a section hash",
+    "implementation": "q_speace/spiking/prereg_lock.py"
+  },
+  "pre_calibration": {
+    "purpose": "Parametri fissati prima del run di calibrazione.",
+    "locked": false,
+    "lock_sha256": null,
+    "seed_split": 0,
+    "seed_codebook": 0,
+    "split": {
+      "manifest_path": null,
+      "manifest_sha256": null,
+      "n_total": null,
+      "train_fraction": null,
+      "calibration_fraction": null,
+      "heldout_fraction": null,
+      "generators": [],
+      "distribution_notes": null
+    },
+    "codec_grid": {
+      "levels_K": [],
+      "codebook_sizes": [],
+      "residual_rule": "x_k = x_{k-1} - decode(encode(x_{k-1}))",
+      "distance": "l2",
+      "normalization": "fit on train/calibration only"
+    },
+    "configurations": [
+      "spike",
+      "codec",
+      "spike+codec"
+    ],
+    "readouts": {
+      "spike": {
+        "contract": "vettore di statistica spike per canale (rate, conteggi, sparsity)",
+        "reconstructs_original_signal": false
+      },
+      "codec": {
+        "contract": "codici e reconstruction x_hat",
+        "reconstructs_original_signal": true
+      },
+      "spike+codec": {
+        "contract": "codici ottenuti dal codec applicato agli spike",
+        "reconstructs_original_signal": false
+      }
+    },
+    "probe": {
+      "name": null,
+      "metric": null,
+      "input_contract": "stessa forma per tutte le configurazioni o configurazione esclusa come non confrontabile"
+    },
+    "calibration_run": {
+      "run_id": null,
+      "partition": "calibration",
+      "may_use_heldout": false,
+      "code_status": "available: q_speace/spiking/ncm_calibration.py; official run pending pre_calibration lock",
+      "official_run_executed": false
+    },
+    "metrics": {
+      "reconstruction": ["per_level_error", "total_error"],
+      "task": ["probe_metric"],
+      "degradation": ["relative_loss_per_level"],
+      "corruption": ["relative_loss_per_level_and_config"],
+      "cost": ["operations", "wall_time_s", "sevo"],
+      "energy": ["estimated_joules", "measured_joules"],
+      "delta_s_epsilon": 1e-12,
+      "delta_s_nonpositive_cases": "conteggiare e riportare separatamente"
+    }
+  },
+  "pre_evaluation": {
+    "purpose": "Soglie definitive e protocollo fissati dopo la calibrazione e prima del run di valutazione.",
+    "locked": false,
+    "lock_sha256": null,
+    "thresholds": {
+      "probe": {
+        "min_value": null
+      },
+      "degradation": {
+        "max_relative_loss_per_level": null
+      },
+      "cost": {
+        "max_relative_cost_vs_baseline": null
+      },
+      "corruption": {
+        "levels_tested": [],
+        "max_relative_loss": null
+      }
+    },
+    "protocol": {
+      "eval_partition": "heldout",
+      "repeats": null,
+      "aggregation": "media e deviazione standard su seed documentati",
+      "comparability_rule": "escludere o marcare non confrontabile una configurazione senza readout equivalente",
+      "pass_rule": "tutte le soglie rispettate e report ricostruibile",
+      "calibration_can_pass": false
+    },
+    "calibration_result": {
+      "run_id": null,
+      "thresholds_derived": false,
+      "dod_eligible": false
+    },
+    "eval_run_id": null
+  },
+  "heldout": {
+    "version": "heldout-v0",
+    "manifest_path": null,
+    "manifest_sha256": null,
+    "state": "sealed",
+    "used_for_codebook": false,
+    "used_for_threshold_calibration": false,
+    "used_for_evaluation": false,
+    "unseal_run_id": null,
+    "note": "Resta sigillato finche pre_evaluation non è bloccato."
+  },
+  "phase_1_2": {
+    "approved": false,
+    "note": "Generatore gerarchico e integrazione AACM restano future work non approvato."
+  }
+}

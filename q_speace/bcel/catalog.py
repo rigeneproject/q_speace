@@ -315,10 +315,39 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
     BCELEquivalence(
         "Causal certificate as wealth oracle (T218)",
         "accidental",
-        "Removed: the lower bound V̂ − ε_total certifies a declared "
+        "Removed: the lower bound V^ - e_total certifies a declared "
         "in-horizon target under a decomposed error budget; effects "
         "beyond the horizon are reported unresolved. It is not a "
         "currency, a wealth measure or a legitimacy proof.",
+    ),
+    # --- T222: NCM coarse-to-fine codec (Phase 0, codec only) ---
+    BCELEquivalence(
+        "Coarse-to-fine generation as cognition (T222)",
+        "accidental",
+        "Removed: coarse-to-fine is an ordering of granularity, not a "
+        "mental process. No claim of concept formation, understanding, "
+        "or general intelligence follows from level-wise reconstruction.",
+    ),
+    BCELEquivalence(
+        "Multiscale residual quantization (T222)",
+        "functional",
+        "Keep as the digital rule x_k = x_{k-1} - decode(encode(x_{k-1})) "
+        "with one codebook per level; it is a deterministic compression "
+        "hierarchy, not a semantic model.",
+    ),
+    BCELEquivalence(
+        "Learned discrete concept code (T222)",
+        "functional",
+        "Keep, with limits: a code is a learned discrete index that may "
+        "preserve global structure. It is not an idea, a human concept, "
+        "or evidence of comprehension.",
+    ),
+    BCELEquivalence(
+        "Parallel level prediction as thought (T222)",
+        "accidental",
+        "Removed from Phase 0 and not claimed: the NCM generator, parallel "
+        "code prediction, and NFE comparisons are future work, not an "
+        "implemented cognitive faculty.",
     ),
 ]
 
