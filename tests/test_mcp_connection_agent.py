@@ -1,5 +1,7 @@
 """Tests for the Q-SPEACE MCP connection test agent (examples/mcp_connection_agent.py)."""
 
+# Optional HTTP dependencies are checked before importing the implementation.
+# ruff: noqa: E402
 from __future__ import annotations
 
 import asyncio
@@ -10,9 +12,11 @@ import time
 from pathlib import Path
 
 import httpx
-import jwt
 import pytest
-import uvicorn
+
+pytest.importorskip("mcp")
+jwt = pytest.importorskip("jwt")
+uvicorn = pytest.importorskip("uvicorn")
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
