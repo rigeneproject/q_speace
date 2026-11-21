@@ -21,6 +21,23 @@ class BCELEquivalence:
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
     BCELEquivalence(
+        "Remote MCP bounded advisory service (T225)",
+        "functional",
+        "Keep as classical authenticated message passing, per-principal admission, "
+        "isolated sessions, and bounded numeric work. No actuation, self-minting "
+        "budget, consciousness, or quantum communication. Bridge activation "
+        "requires the configured independent attestation verifier.",
+    ),
+    BCELEquivalence(
+        "Client homeostatic scheduling experiment (T224)",
+        "functional",
+        "Keep as explicit feedback from prior error/ambiguity counters to "
+        "bounded sleep, independent pre-action reservations, and local DAT "
+        "receipts. Tokens/DAT and cost operations are synthetic benchmark "
+        "units, not cognition, measured physical energy, or economic authority. "
+        "Compare false stops and completions against an ungated baseline.",
+    ),
+    BCELEquivalence(
         "MCP homeostatic primitive adapter (T223)",
         "functional",
         "Keep as classical JSON-RPC transport for clock proxies, estimated costs "
@@ -377,3 +394,4 @@ class BCELCatalog:
 
     def is_functional(self, concept: str) -> bool:
         return self.get(concept).classification == "functional"
+

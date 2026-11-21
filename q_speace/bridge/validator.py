@@ -117,6 +117,15 @@ class IndependentValidator:
         extra = "ok" if ok else "reject"
         return attestation_digest(proposal, self._key.key, extra=extra)
 
+    def authorize(self, proposal: UpdateProposal, attest: str, epoch: int, fencing: int) -> None:
+        """Mandatory ledger callback; only an acceptance from this generation admits work."""
+        if fencing != self.generation:
+            raise FencingError("activation fencing must match the verifier generation")
+        if epoch != proposal.base_epoch or epoch > proposal.expiry:
+            raise StateError("attestation is outside its policy epoch or expiry")
+        if not self.verify(proposal, attest, expected_ok=True):
+            raise StateError("activation attestation is forged, negative, or stale")
+
     def verify(
         self,
         proposal: UpdateProposal,
@@ -167,3 +176,4 @@ def promote_successor(
     """Promote a successor validator and fence out the current one."""
     ledger.promote_validator(new_key.generation, epoch=epoch)
     return IndependentValidator(new_key)
+

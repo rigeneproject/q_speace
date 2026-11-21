@@ -35,12 +35,18 @@ harness, not the experimental outcome.
 
 from __future__ import annotations
 
+import secrets
 from collections.abc import Callable
 from dataclasses import dataclass, field
 
 import numpy as np
 
-from q_speace.bridge.protocol import UpdateLedger, UpdateProposal, UpdateStatus
+from q_speace.bridge.protocol import (
+    UpdateLedger,
+    UpdateProposal,
+    UpdateStatus,
+    canonical_param_hash,
+)
 from q_speace.bridge.screening import ScreeningOutcome, screen_candidate
 from q_speace.bridge.validator import IndependentValidator, ValidatorKey
 
@@ -281,7 +287,7 @@ def _plant_check_factory(
         # registry by the caller; for the harness we evaluate the
         # declared candidate attached to the ledger proposal payload.
         candidate = _CANDIDATE_STORE.get(proposal.proposal_id)
-        if candidate is None:
+        if candidate is None or canonical_param_hash(candidate) != proposal.param_hash:
             return False
         soc = socs[center]
         unmet_total = 0.0
@@ -307,8 +313,8 @@ def _run_qspeace_v0(script: DisturbanceScript, pp: PlantParams) -> ArmResult:
     socs = {c: CellState() for c in cells}
     metrics = TrajectoryMetrics()
     rng = np.random.default_rng(script.seed)
-    ledger = UpdateLedger()
-    validator = IndependentValidator(ValidatorKey(generation=1, key=b"v0" * 16))
+    validator = IndependentValidator(ValidatorKey(generation=1, key=secrets.token_bytes(32)))
+    ledger = UpdateLedger(activation_authorizer=validator.authorize)
     lower = np.array([pp.p_discharge_min, pp.soc_reserve_lo])
     upper = np.array([pp.p_discharge_max_limit, pp.soc_reserve_hi])
     scale = np.array([1.0, 1.0])
@@ -347,7 +353,7 @@ def _run_qspeace_v0(script: DisturbanceScript, pp: PlantParams) -> ArmResult:
             base_proposal = UpdateProposal(
                 proposal_id=pid,
                 base_epoch=1,
-                param_hash=f"hash-{pid}",
+                param_hash=canonical_param_hash(result.candidate),
                 scope=("cell_centre",),
                 dependencies=(),
                 validation_attest="",
@@ -368,7 +374,7 @@ def _run_qspeace_v0(script: DisturbanceScript, pp: PlantParams) -> ArmResult:
             proposal = UpdateProposal(
                 proposal_id=pid,
                 base_epoch=1,
-                param_hash=f"hash-{pid}",
+                param_hash=canonical_param_hash(result.candidate),
                 scope=("cell_centre",),
                 dependencies=(),
                 validation_attest=attest,
@@ -398,3 +404,4 @@ def run_all_arms(script: DisturbanceScript | None = None) -> list[ArmResult]:
         _run_conventional(s, pp),
         _run_qspeace_v0(s, pp),
     ]
+

@@ -7,6 +7,7 @@ stale-authority (fencing) traces must all produce declared outcomes.
 
 from __future__ import annotations
 
+# State-machine-only tests use an explicit trust stub; see test_t225_bridge_enforcement.
 import pytest
 
 from q_speace.bridge.protocol import (
@@ -43,7 +44,7 @@ def _proposal(
 # lifecycle
 # --------------------------------------------------------------------- #
 def test_submit_is_idempotent_on_same_hash() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     p = _proposal()
     assert led.submit(p, epoch=1) is UpdateStatus.PROPOSED
     assert led.submit(p, epoch=1) is UpdateStatus.PROPOSED  # duplicate message: no-op
@@ -51,7 +52,7 @@ def test_submit_is_idempotent_on_same_hash() -> None:
 
 
 def test_submit_same_id_different_hash_is_a_violation() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     led.submit(_proposal(), epoch=1)
     other = UpdateProposal(
         proposal_id="P1",
@@ -67,14 +68,14 @@ def test_submit_same_id_different_hash_is_a_violation() -> None:
 
 
 def test_activate_requires_validation() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     led.submit(_proposal(), epoch=1)
     with pytest.raises(StateError):
         led.activate("P1", epoch=1, fencing=1)
 
 
 def test_full_lifecycle_to_activation() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     p = _proposal()
     led.submit(p, epoch=1)
     led.mark_validated("P1", epoch=1, fencing=1, attest="attest-1")
@@ -86,7 +87,7 @@ def test_full_lifecycle_to_activation() -> None:
 
 
 def test_expiry_blocks_activation_and_marks_expired() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     led.submit(_proposal(expiry=5), epoch=1)
     led.mark_validated("P1", epoch=1, fencing=1, attest="attest-1")
     with pytest.raises(ExpiryError):
@@ -95,7 +96,7 @@ def test_expiry_blocks_activation_and_marks_expired() -> None:
 
 
 def test_activation_on_wrong_epoch_refused() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     led.submit(_proposal(epoch=1), epoch=1)
     led.mark_validated("P1", epoch=1, fencing=1, attest="attest-1")
     with pytest.raises(StateError):
@@ -106,7 +107,7 @@ def test_activation_on_wrong_epoch_refused() -> None:
 # fencing
 # --------------------------------------------------------------------- #
 def test_stale_validator_cannot_activate_after_promotion() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     led.submit(_proposal(), epoch=1)
     led.mark_validated("P1", epoch=1, fencing=1, attest="attest-1")
     led.promote_validator(2, epoch=1)
@@ -116,7 +117,7 @@ def test_stale_validator_cannot_activate_after_promotion() -> None:
 
 
 def test_promotion_must_be_monotonic() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     led.promote_validator(3, epoch=1)
     with pytest.raises(FencingError):
         led.promote_validator(3, epoch=1)
@@ -129,12 +130,12 @@ def test_promotion_must_be_monotonic() -> None:
 # --------------------------------------------------------------------- #
 def test_crash_recovery_from_journal(tmp_path) -> None:  # type: ignore[no-untyped-def]
     path = tmp_path / "journal.jsonl"
-    led = UpdateLedger(path)
+    led = UpdateLedger(path, activation_authorizer=lambda *_: None)
     led.submit(_proposal(), epoch=1)
     led.mark_validated("P1", epoch=1, fencing=1, attest="attest-1")
     led.activate("P1", epoch=1, fencing=1)
 
-    recovered = UpdateLedger(path)
+    recovered = UpdateLedger(path, activation_authorizer=lambda *_: None)
     assert recovered.status_of("P1") is UpdateStatus.ACTIVATED
     # Activation is at-most-once across recovery: no double apply.
     with pytest.raises(StateError):
@@ -143,9 +144,9 @@ def test_crash_recovery_from_journal(tmp_path) -> None:  # type: ignore[no-untyp
 
 def test_recovery_truncated_journal_allows_resubmit(tmp_path) -> None:  # type: ignore[no-untyped-def]
     path = tmp_path / "journal.jsonl"
-    led = UpdateLedger(path)
+    led = UpdateLedger(path, activation_authorizer=lambda *_: None)
     led.submit(_proposal(), epoch=1)
-    recovered = UpdateLedger(path)
+    recovered = UpdateLedger(path, activation_authorizer=lambda *_: None)
     # Body was persisted in the side file, so recovery is complete.
     p = recovered.proposal_of("P1")
     assert p.param_hash == "hash-P1"
@@ -179,7 +180,7 @@ def _coupled_pair(attest: str = "attest-c") -> list[UpdateProposal]:
 
 
 def test_coupled_proposal_cannot_activate_singly() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     cp1 = _coupled_pair()[0]
     led.submit(cp1, epoch=1)
     led.mark_validated("CP1", epoch=1, fencing=1, attest="attest-c")
@@ -188,7 +189,7 @@ def test_coupled_proposal_cannot_activate_singly() -> None:
 
 
 def test_coupled_commit_all_or_nothing() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     proposals = _coupled_pair()
     cc = CoupledCommit(led, "CC-1")
     assert cc.prepare(proposals, epoch=1, fencing=1, check=lambda ps: True)
@@ -201,7 +202,7 @@ def test_coupled_commit_all_or_nothing() -> None:
 
 
 def test_coupled_commit_failed_joint_check_aborts_all() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     proposals = _coupled_pair()
     cc = CoupledCommit(led, "CC-1")
     assert not cc.prepare(proposals, epoch=1, fencing=1, check=lambda ps: False)
@@ -212,7 +213,7 @@ def test_coupled_commit_failed_joint_check_aborts_all() -> None:
 
 
 def test_journal_records_are_ordered_and_complete() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     p = _proposal()
     led.submit(p, epoch=1)
     led.mark_validated("P1", epoch=1, fencing=1, attest="attest-1")
@@ -220,3 +221,4 @@ def test_journal_records_are_ordered_and_complete() -> None:
     events = [r.event for r in led.records()]
     assert events == ["SUBMITTED", "VALIDATED", "ACTIVATED"]
     assert all(r.param_hash == "hash-P1" for r in led.records())
+

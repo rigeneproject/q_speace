@@ -19,6 +19,7 @@ venv/
 env/
 
 # Secrets (never commit)
+**/.claude/settings.local.json
 .env
 *.token
 
@@ -26,3 +27,7 @@ env/
 .vscode/
 .idea/
 .DS_Store
+
+# Local MCP test signing keys and short-lived tokens
+/.qspeace-dev/
+

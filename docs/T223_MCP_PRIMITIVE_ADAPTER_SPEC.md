@@ -96,3 +96,17 @@ The SDK test verifies initialize, ping, ten-tool discovery, each added primitive
 isError=true for a schema-invalid clock value, and a successful ping and valid
 call afterwards. The stdio parser must remain free of non-protocol stdout.
 This is interoperability evidence, not host-system qualification under T217.
+
+## Proposed remote extension
+
+[T225 - Remote MCP service](T225_REMOTE_MCP_SERVICE_SPEC.md) specifies a separate,
+opt-in Streamable HTTP service with OAuth, principal/session isolation, bounded
+work and audit. An experimental HTTP adapter is now implemented and locally tested; it is not
+a verified public OAuth deployment. Its initial
+remote allowlist contains eight consultative tools and excludes DAT mutation;
+the ten-tool local stdio contract above remains unchanged.
+
+[Manifesto v2.0 errata](PARADIGM_6_0_V2_0_ERRATA.md) corrects the Sevo gate,
+metric semantics and repository mapping before future integration. T224 remains
+an independent experiment with its recorded negative policy result.
+

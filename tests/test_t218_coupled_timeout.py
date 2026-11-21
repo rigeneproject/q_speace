@@ -9,6 +9,7 @@ immediately, without waiting for an external coordinator.
 
 from __future__ import annotations
 
+# State-machine-only tests use an explicit trust stub; see test_t225_bridge_enforcement.
 import pytest
 
 from q_speace.bridge.protocol import (
@@ -44,7 +45,7 @@ def _pair(expiry_1: int = 100, expiry_2: int = 100) -> list[UpdateProposal]:
 
 
 def test_timeout_aborts_whole_prepared_set_and_releases_capacity() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     cc = CoupledCommit(led, "CC-1")
     assert cc.prepare(
         _pair(expiry_1=5),
@@ -65,7 +66,7 @@ def test_timeout_aborts_whole_prepared_set_and_releases_capacity() -> None:
 
 
 def test_timeout_before_expiry_is_a_noop() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     cc = CoupledCommit(led, "CC-1")
     assert cc.prepare(_pair(), epoch=1, fencing=1, check=lambda ps: True)
     assert cc.expire_on_timeout(epoch=5) == []
@@ -74,7 +75,7 @@ def test_timeout_before_expiry_is_a_noop() -> None:
 
 
 def test_timeout_without_members_returns_empty() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     cc = CoupledCommit(led, "CC-1")
     assert cc.expire_on_timeout(epoch=10) == []
 
@@ -82,7 +83,7 @@ def test_timeout_without_members_returns_empty() -> None:
 def test_timeout_refused_after_partial_activation_is_impossible() -> None:
     """Activation of a coupled set is atomic, so a mixed state must not
     exist; if observed, the timeout abort is refused loudly."""
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     cc = CoupledCommit(led, "CC-1")
     assert cc.prepare(_pair(), epoch=1, fencing=1, check=lambda ps: True)
     # simulate a protocol violation by flipping one member to ACTIVATED
@@ -93,10 +94,13 @@ def test_timeout_refused_after_partial_activation_is_impossible() -> None:
 
 
 def test_commit_releases_reservations_on_success() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     cc = CoupledCommit(led, "CC-1")
     assert cc.prepare(
-        _pair(), epoch=1, fencing=1, check=lambda ps: True,
+        _pair(),
+        epoch=1,
+        fencing=1,
+        check=lambda ps: True,
         reservations={"cell_a": 0.05, "cell_b": 0.05},
     )
     activated = cc.commit(epoch=1, fencing=1)
@@ -106,10 +110,11 @@ def test_commit_releases_reservations_on_success() -> None:
 
 def test_timeout_is_reproducible_from_journal(tmp_path) -> None:  # type: ignore[no-untyped-def]
     path = tmp_path / "journal.jsonl"
-    led = UpdateLedger(path)
+    led = UpdateLedger(path, activation_authorizer=lambda *_: None)
     cc = CoupledCommit(led, "CC-1")
     assert cc.prepare(_pair(expiry_1=5), epoch=1, fencing=1, check=lambda ps: True)
     assert sorted(cc.expire_on_timeout(epoch=6)) == ["CP1", "CP2"]
-    recovered = UpdateLedger(path)
+    recovered = UpdateLedger(path, activation_authorizer=lambda *_: None)
     assert recovered.status_of("CP1") is UpdateStatus.ABORTED
     assert recovered.status_of("CP2") is UpdateStatus.ABORTED
+

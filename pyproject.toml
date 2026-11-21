@@ -25,7 +25,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-mcp = ["mcp>=1,<2"]
+mcp = ["mcp>=1.30,<2"]
+http = ["mcp==1.30.0", "PyJWT[crypto]>=2.10,<3", "starlette>=0.52,<2", "uvicorn>=0.31,<1"]
 qiskit = ["qiskit>=1.0", "qiskit-aer>=0.13"]
 quantum-inspire = ["quantum-inspire-sdk>=1.0"]
 dev = [
@@ -70,3 +71,4 @@ ignore = ["E501"]
 python_version = "3.12"
 warn_return_any = true
 disallow_untyped_defs = true
+

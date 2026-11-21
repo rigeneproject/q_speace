@@ -1,0 +1,17 @@
+.git/
+.venv/
+venv/
+.claude/
+**/.claude/
+.qspeace-dev/
+.env*
+**/*.pem
+**/__pycache__/
+**/*.pyc
+cellular_speace/
+speace_anemos_spikingbrain/
+artifacts/
+tmp/
+docs/
+tests/
+

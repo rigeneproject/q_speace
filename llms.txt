@@ -1,0 +1,57 @@
+# Q-SPEACE
+
+> Experimental research software for quantum simulation, numerical feedback,
+> and agent/tool integration. No quantum-consciousness or quantum-advantage claim.
+
+Repository: https://github.com/rigeneproject/q_speace
+
+## Start here
+
+- [Engineering rules](AGENTS.md): specification, BCEL classification, tests and quality gates.
+- [Project overview](README.md): setup and documented entry points.
+- [Evidence-first guidelines](docs/T208_DEVELOPMENT_GUIDELINES_SPEC.md): distinguish implemented, measured, validated and proposed capabilities.
+- [Safe assimilation lifecycle](docs/T217_SAFE_ASSIMILATION_LIFECYCLE_SPEC.md): proposed qualification process; not an implemented release gate.
+- [MCP adapter](docs/T223_MCP_PRIMITIVE_ADAPTER_SPEC.md): local stdio protocol and ten computational/accounting tools.
+- [Remote MCP proposal](docs/T225_REMOTE_MCP_SERVICE_SPEC.md): proposed authenticated HTTP service; no deployment yet.
+- [Manifesto technical errata](docs/PARADIGM_6_0_V2_0_ERRATA.md): corrections and implementation/evidence boundaries.
+
+## Primary code and tests
+
+- q_speace/: main Python package. Search here first for implementation.
+- tests/: tests for the main package; use focused tests before broad checks.
+- docs/: specifications and evidence. Search a named spec before scanning all documents.
+- pyproject.toml: dependencies, optional MCP SDK extra and quality-tool settings.
+- q_speace/economy/mcp_server.py: local stdio server; does not expose GitHub files, branches, issues or pull requests.
+- q_speace/edd_cvt/ilf.py: numerical coherence and adaptive clock-rate primitive; scheduling is a client responsibility.
+- q_speace/metabolism/: cost estimates and Sevo, not general physical-energy telemetry.
+- q_speace/bcel/catalog.py: read-only equivalence classification; not a code sandbox or autonomous approval system.
+- q_speace/quantum/: simulation and optional backend adapters; real execution requires the documented gates and noise configuration.
+
+## Scope searches deliberately
+
+Start with `rg --files q_speace tests docs` or an explicitly named path.
+Avoid repository-wide recursive scans by default.
+
+cellular_speace/ is a separate related codebase with its own AGENTS.md. Enter it
+only when the task explicitly needs it; it includes many tracked files and
+historical worktree copies. speace_anemos_spikingbrain/ contains large upstream
+model/code trees. Neither tree is a default search target for Q-SPEACE tasks.
+Also avoid .git/, .venv/, caches, generated artifacts and temporary worktrees
+unless they are the explicit subject of the task. Do not delete these trees
+merely to reduce context.
+
+## Local configuration and credentials
+
+Never include `.claude/settings.local.json`, tokens or environment secrets in
+responses, commits or diagnostic output. The local settings path is ignored by
+the shared .gitignore. A local file's existence does not establish that it was
+published: verify tracked paths and history without displaying its contents.
+
+## Integration boundaries
+
+The Q-SPEACE stdio MCP adapter supplies internal primitives and simulated DAT
+accounting. GitHub repository access requires a separate authenticated connector
+or repository MCP service. Restrict repository access through service credentials
+and permissions; an agent guidance file is not an authorization boundary.
+Generated text and simulation scores cannot approve operational integration.
+

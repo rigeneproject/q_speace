@@ -1,0 +1,15 @@
+# Template only: applying this file creates an external service.
+# Deploy from the reviewed repository revision, with one instance/process.
+services:
+  - type: web
+    name: q-speace-mcp
+    runtime: docker
+    plan: free
+    dockerfilePath: ./deploy/mcp/Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    autoDeployTrigger: "off"
+    envVars:
+      - key: QSPEACE_HTTP_CONFIG_JSON
+        sync: false
+

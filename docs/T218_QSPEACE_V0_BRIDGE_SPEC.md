@@ -316,3 +316,24 @@ baseline più forte **conta contro** l'architettura aggiunta — è questa la fa
 |---|---|---|
 | 1 | 2026-11-14 | Prima stesura; deriva da Paradigm_6_0_Revised + peer review multilivello; chiude R1–R7/L1–L6 |
 | 1.1 | 2026-11-14 | Quattro perfezionamenti tecnici di basso livello: (R1) canonicalizzazione IEEE 754 di `param_hash` — quantizzazione round(p,9), normalizzazione ±0.0, serializzazione big-endian `>f8` (`canonical_param_hash`); (R2) tie-break lessicografico con banda `ε_tie = 1e-12` su insiemi non convessi (`select_projection_tie_break`); (R3) timeout senza coordinatore nel commit a due fasi con `expire_on_timeout` e rilascio immediato della capacità riservata; (R4) bumpless transfer nel rollback — guardia slew-rate inverter e riallineamento dell'integratore (`bumpless_realignment`) |
+
+
+## 13 Stato verificato e collegamento T225 (2026-11-21)
+
+La specifica non e' interamente soddisfatta dalla presenza dei moduli. Il
+[servizio remoto T225](T225_REMOTE_MCP_SERVICE_SPEC.md#15-matrice-di-riuso-t218-e-correzioni-autorizzate)
+riporta una matrice esplicita di riuso, limiti e test. Il suo catalogo consultivo
+non espone attivazione, commit, rollback o promozione del validatore.
+
+Revisione implementativa 1.2: `UpdateLedger` richiede un activation_authorizer
+per nuove attivazioni; il callback verifica attestazione positiva e generazione.
+Per commit accoppiati tutti i membri sono verificati prima della prima scrittura
+ACTIVATED. I test primitivi della macchina a stati usano stub espliciti;
+i test del confine crittografico usano il verificatore reale. Il dimostratore
+microgrid adotta il callback, hash canonici e chiavi effimere.
+
+Restano distinti dalla correzione: separazione reale del validatore, kill delle
+plant_check bloccate, protocollo distribuito crash-atomic, EKF/stato/frequenze
+completi del nucleo congelato e prove sperimentali/istituzionali non ancora
+eseguite. Nessuna qualifica fisica o autorizzazione operativa viene aggiunta.
+

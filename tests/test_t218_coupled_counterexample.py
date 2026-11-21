@@ -12,6 +12,7 @@ singly activating a coupled proposal is refused by the ledger.
 
 from __future__ import annotations
 
+# State-machine-only tests use an explicit trust stub; see test_t225_bridge_enforcement.
 import pytest
 
 from q_speace.bridge.protocol import (
@@ -55,7 +56,7 @@ def test_independent_checks_pass_but_joint_activation_is_unsafe() -> None:
 
 
 def test_two_phase_commit_rejects_unsafe_joint_state() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     proposals = [
         _increment_proposal("CP1", "cell_a", 0.15),
         _increment_proposal("CP2", "cell_b", 0.15),
@@ -78,7 +79,7 @@ def test_two_phase_commit_rejects_unsafe_joint_state() -> None:
 
 
 def test_coordinated_smaller_increments_activate_together() -> None:
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     proposals = [
         _increment_proposal("CP1", "cell_a", 0.05),
         _increment_proposal("CP2", "cell_b", 0.05),
@@ -100,7 +101,7 @@ def test_coordinated_smaller_increments_activate_together() -> None:
 
 def test_coupled_set_cannot_activate_singly() -> None:
     """Sequential activation of one member of a coupled set is refused."""
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     p = _increment_proposal("CP1", "cell_a", 0.15)
     led.submit(p, epoch=1)
     led.mark_validated("CP1", epoch=1, fencing=1, attest="attest-coupled")
@@ -114,7 +115,7 @@ def test_coupled_set_cannot_activate_singly() -> None:
 
 def test_expiring_member_rolls_back_whole_commit() -> None:
     """If any member expires during commit, the whole set aborts."""
-    led = UpdateLedger()
+    led = UpdateLedger(activation_authorizer=lambda *_: None)
     p1 = UpdateProposal(
         proposal_id="CP1",
         base_epoch=1,
@@ -145,7 +146,7 @@ def test_expiring_member_rolls_back_whole_commit() -> None:
 def test_reproducible_trace_of_rejection(tmp_path) -> None:  # type: ignore[no-untyped-def]
     """The unsafe rejection is reproducible from the persisted journal."""
     path = tmp_path / "journal.jsonl"
-    led = UpdateLedger(path)
+    led = UpdateLedger(path, activation_authorizer=lambda *_: None)
     proposals = [
         _increment_proposal("CP1", "cell_a", 0.15),
         _increment_proposal("CP2", "cell_b", 0.15),
@@ -157,6 +158,7 @@ def test_reproducible_trace_of_rejection(tmp_path) -> None:  # type: ignore[no-u
         fencing=1,
         check=lambda ps: _joint_check(ps, {"CP1": 0.15, "CP2": 0.15}),
     )
-    recovered = UpdateLedger(path)
+    recovered = UpdateLedger(path, activation_authorizer=lambda *_: None)
     assert recovered.status_of("CP1") is UpdateStatus.ABORTED
     assert recovered.status_of("CP2") is UpdateStatus.ABORTED
+

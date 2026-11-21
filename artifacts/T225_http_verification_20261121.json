@@ -1,0 +1,26 @@
+{
+  "profile": "T225 experimental",
+  "transport": "streamable-http",
+  "deployment": "loopback only",
+  "issuer": "local fixture, not an OAuth login server",
+  "official_sdk": "1.30.0",
+  "manual_cli_client": "passed",
+  "handshake": "passed",
+  "ping": "passed",
+  "discovery_tools": 8,
+  "tool_calls": [
+    "bcel_lookup",
+    "adaptive_clock_rate",
+    "metabolism_cost_eval"
+  ],
+  "public_deployment": "not created; real issuer pending",
+  "baseline_T224": "unchanged rejected",
+  "full_suite": {
+    "passed": 610,
+    "skipped": 3
+  },
+  "linux_container_smoke": "passed; 512 MiB, 1 CPU, official SDK 1.30.0",
+  "auth0_issuer": "https://dev-imfska6viiq1ehqw.us.auth0.com/",
+  "oauth_status": "public discovery and JWKS verified; API/client setup pending"
+}
+

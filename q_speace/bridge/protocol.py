@@ -204,7 +204,13 @@ class UpdateLedger:
     recovered by replaying the journal (at-most-once activation).
     """
 
-    def __init__(self, path: str | os.PathLike[str] | None = None) -> None:
+    def __init__(
+        self,
+        path: str | os.PathLike[str] | None = None,
+        *,
+        activation_authorizer: Callable[[UpdateProposal, str, int, int], None] | None = None,
+    ) -> None:
+        self._activation_authorizer = activation_authorizer
         self._path = Path(path) if path is not None else None
         self._records: list[JournalRecord] = []
         self._state: dict[str, _ProposalState] = {}
@@ -366,6 +372,7 @@ class UpdateLedger:
             raise StateError("activation epoch differs from the validated base_epoch")
         if fencing < self._fencing:
             raise FencingError(f"fencing {fencing} < current {self._fencing}: stale authority")
+        self._authorize(proposal, self.latest_attest_of(proposal_id), epoch, fencing)
         self._append(epoch, "ACTIVATED", proposal_id, proposal.param_hash, fencing, "")
         st.status = UpdateStatus.ACTIVATED
         st.activated_in_epoch = epoch
@@ -405,6 +412,11 @@ class UpdateLedger:
     @property
     def fencing(self) -> int:
         return self._fencing
+
+    def _authorize(self, proposal: UpdateProposal, attest: str, epoch: int, fencing: int) -> None:
+        if self._activation_authorizer is None:
+            raise StateError("activation authorizer is not configured")
+        self._activation_authorizer(proposal, attest, epoch, fencing)
 
     def status_of(self, proposal_id: str) -> UpdateStatus:
         return self._require(proposal_id).status
@@ -516,6 +528,12 @@ class CoupledCommit:
             if fencing < self._ledger.fencing:
                 self.rollback(epoch)
                 raise FencingError("stale authority during coupled commit")
+        # Verify every member before the first activation journal write.
+        for pid in self._members:
+            st = self._ledger._require(pid)
+            proposal = self._ledger._proposal_of(st, pid)
+            attest = st.tags.get("latest_attest", proposal.validation_attest)
+            self._ledger._authorize(proposal, attest, epoch, fencing)
         for pid in self._members:
             st = self._ledger._require(pid)
             proposal = self._ledger._proposal_of(st, pid)
@@ -534,9 +552,7 @@ class CoupledCommit:
             proposal = self._ledger._proposal_of(st, pid)
             if st.status is UpdateStatus.ACTIVATED:
                 raise StateError("cannot rollback after activation is recorded")
-            self._ledger._append(
-                epoch, "ABORTED", pid, proposal.param_hash, 0, "coupled rollback"
-            )
+            self._ledger._append(epoch, "ABORTED", pid, proposal.param_hash, 0, "coupled rollback")
             st.status = UpdateStatus.ABORTED
         self._members = []
         self._reservations.clear()  # capacity released immediately
@@ -557,9 +573,7 @@ class CoupledCommit:
         for pid in self._members:
             st = self._ledger._require(pid)
             if st.status is UpdateStatus.ACTIVATED:
-                raise StateError(
-                    "a coupled member is already activated: timeout abort refused"
-                )
+                raise StateError("a coupled member is already activated: timeout abort refused")
         expired = False
         for pid in self._members:
             st = self._ledger._require(pid)
@@ -571,3 +585,4 @@ class CoupledCommit:
         aborted = list(self._members)
         self.rollback(epoch)
         return aborted
+
