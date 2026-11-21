@@ -585,4 +585,3 @@ class CoupledCommit:
         aborted = list(self._members)
         self.rollback(epoch)
         return aborted
-

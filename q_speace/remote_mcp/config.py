@@ -76,4 +76,3 @@ class HTTPConfig(BaseModel):
     @classmethod
     def load(cls, path: Path) -> HTTPConfig:
         return cls.model_validate(json.loads(path.read_text(encoding="utf-8")))
-

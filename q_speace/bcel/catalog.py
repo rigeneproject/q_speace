@@ -394,4 +394,3 @@ class BCELCatalog:
 
     def is_functional(self, concept: str) -> bool:
         return self.get(concept).classification == "functional"
-

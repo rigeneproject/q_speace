@@ -109,4 +109,3 @@ the ten-tool local stdio contract above remains unchanged.
 [Manifesto v2.0 errata](PARADIGM_6_0_V2_0_ERRATA.md) corrects the Sevo gate,
 metric semantics and repository mapping before future integration. T224 remains
 an independent experiment with its recorded negative policy result.
-

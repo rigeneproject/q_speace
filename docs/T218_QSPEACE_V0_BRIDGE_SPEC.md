@@ -336,4 +336,3 @@ Restano distinti dalla correzione: separazione reale del validatore, kill delle
 plant_check bloccate, protocollo distribuito crash-atomic, EKF/stato/frequenze
 completi del nucleo congelato e prove sperimentali/istituzionali non ancora
 eseguite. Nessuna qualifica fisica o autorizzazione operativa viene aggiunta.
-

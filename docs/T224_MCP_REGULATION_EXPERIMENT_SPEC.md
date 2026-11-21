@@ -129,4 +129,3 @@ mypy and py_compile pass. Global Ruff retains the same two pre-existing findings
 in cli.py (F401) and orchestrator.py (B009), outside this intervention. Existing
 unrelated local modifications were preserved. No production integration or
 operational promotion is authorized by these results.
-

@@ -215,4 +215,3 @@ policy di controllo.
 La successiva revisione del PDF deve integrare E01-E12, aggiornare i riferimenti
 di commit e rendere visibili i risultati nulli/negativi. Questa errata non
 rigenera il PDF e non cambia codice, dipendenze, endpoint o permessi.
-

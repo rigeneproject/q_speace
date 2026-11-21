@@ -2,10 +2,75 @@
 
 Date: 2026-11-21. Profile: experimental T225 HTTP adapter.
 
+
+## Provisioned experimental service (2026-11-21)
+
+- Verified using official MCP SDK 1.30.0: initialize, ping, discovery, three
+  tool calls, invalid-argument error and subsequent successful ping.
+- MCP endpoint: `https://q-speace-mcp.onrender.com/mcp`.
+- OAuth issuer: `https://dev-imfska6viiq1ehqw.us.auth0.com/`.
+- API audience: `https://q-speace-mcp.onrender.com/mcp`.
+- Token endpoint: `https://dev-imfska6viiq1ehqw.us.auth0.com/oauth/token`.
+- Client: **Q-SPEACE Experimental Agent**, machine-to-machine, explicitly
+  granted the three documented scopes; access-token lifetime **900 seconds**.
+- Deployment: Render Free, Frankfurt, one process, automatic deployments off.
+  Source branch: `codex/t225-remote-mcp`.
+- Deployed worker wall-time limit: **20 seconds**, one concurrent worker. The
+  five-second default timed out on the Free CPU; timed-out processes are killed.
+
+The existing client's credentials are stored only on the operator's computer in
+`.qspeace-dev/auth0-agent-client.json`, excluded from Git and restricted with a
+Windows ACL. Each external agent should receive its own Auth0 application and
+minimum scope grant. Do not distribute this operator client secret to strangers
+or place it in a browser, repository, prompt, or MCP server configuration.
+
+For an authorized local smoke test, run this from the repository root after
+installing the optional HTTP dependencies. It obtains a fresh access token and
+passes it to the official SDK client without printing or saving the token:
+
+```python
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+import httpx
+
+credentials = json.loads(
+    Path(".qspeace-dev/auth0-agent-client.json").read_text(encoding="utf-8")
+)
+response = httpx.post(
+    "https://dev-imfska6viiq1ehqw.us.auth0.com/oauth/token",
+    json={
+        "grant_type": "client_credentials",
+        "client_id": credentials["client_id"],
+        "client_secret": credentials["client_secret"],
+        "audience": "https://q-speace-mcp.onrender.com/mcp",
+    },
+    timeout=30,
+)
+response.raise_for_status()
+environment = os.environ.copy()
+environment["QSPEACE_ACCESS_TOKEN"] = response.json()["access_token"]
+subprocess.run(
+    [sys.executable, "-m", "examples.mcp_http_client",
+     "--url", "https://q-speace-mcp.onrender.com/mcp"],
+    env=environment,
+    check=True,
+)
+```
+
+An unattended adapter should cache its token until shortly before expiry, then
+request a new one; avoid requesting a token for every tool call. Respect Auth0
+machine-token quotas and Render cold starts. Provision clients through Auth0's
+administrative controls; no dynamic client registration or interactive PKCE
+client has been configured by this deployment.
+
 ## 1. Deployment status and boundaries
 
 The repository contains a tested Streamable HTTP resource-server prototype.
-This guide does **not** assert that a public Q-SPEACE endpoint has been deployed.
+The dated deployment section records the provisioned experimental service.
 Replace `YOUR-SERVICE` and `YOUR-TENANT` only after the corresponding resources
 exist. A local fixture token is not evidence of a working OAuth login service.
 
@@ -293,4 +358,3 @@ acceptance criteria still apply.
 - [Hugging Face current Spaces requirements](https://huggingface.co/docs/hub/spaces-overview).
 - [Auth0 plans](https://auth0.com/pricing).
 - [MCP authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization).
-

@@ -404,4 +404,3 @@ def run_all_arms(script: DisturbanceScript | None = None) -> list[ArmResult]:
         _run_conventional(s, pp),
         _run_qspeace_v0(s, pp),
     ]
-

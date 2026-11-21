@@ -350,10 +350,10 @@ def test_public_config_builder_and_key_rotation(
     )
     main()
     config = HTTPConfig.load(output)
+    assert json.loads(output.read_text())["audit_path"] == "/tmp/qspeace/audit.sqlite"
     assert calls == ["https://issuer.example.test/.well-known/jwks.json"]
     assert list(config.public_keys) == ["rotated-public"]
     assert config.host == "0.0.0.0" and config.total_workers == 1
     assert "PRIVATE KEY" not in output.read_text()
     with pytest.raises(FileExistsError):
         main()
-

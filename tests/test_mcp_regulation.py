@@ -294,4 +294,3 @@ def test_nonfinite_receipt_keeps_failure_log_valid_json() -> None:
     failed = next(row for row in events if row["event"] == "failure")
     assert failed["spend_output"]["rate"] == {"invalid_float": "nan"}
     assert result["stop_reason"] == "mcp_failure"
-

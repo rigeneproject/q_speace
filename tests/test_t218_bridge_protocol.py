@@ -221,4 +221,3 @@ def test_journal_records_are_ordered_and_complete() -> None:
     events = [r.event for r in led.records()]
     assert events == ["SUBMITTED", "VALIDATED", "ACTIVATED"]
     assert all(r.param_hash == "hash-P1" for r in led.records())
-

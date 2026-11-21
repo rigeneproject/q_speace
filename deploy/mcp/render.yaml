@@ -12,4 +12,3 @@ services:
     envVars:
       - key: QSPEACE_HTTP_CONFIG_JSON
         sync: false
-

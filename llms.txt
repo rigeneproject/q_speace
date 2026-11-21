@@ -12,7 +12,7 @@ Repository: https://github.com/rigeneproject/q_speace
 - [Evidence-first guidelines](docs/T208_DEVELOPMENT_GUIDELINES_SPEC.md): distinguish implemented, measured, validated and proposed capabilities.
 - [Safe assimilation lifecycle](docs/T217_SAFE_ASSIMILATION_LIFECYCLE_SPEC.md): proposed qualification process; not an implemented release gate.
 - [MCP adapter](docs/T223_MCP_PRIMITIVE_ADAPTER_SPEC.md): local stdio protocol and ten computational/accounting tools.
-- [Remote MCP proposal](docs/T225_REMOTE_MCP_SERVICE_SPEC.md): proposed authenticated HTTP service; no deployment yet.
+- [Remote MCP service](docs/T225_REMOTE_MCP_SERVICE_SPEC.md): experimental authenticated HTTP adapter; read its deployment status and limits.
 - [Manifesto technical errata](docs/PARADIGM_6_0_V2_0_ERRATA.md): corrections and implementation/evidence boundaries.
 
 ## Primary code and tests
@@ -54,4 +54,3 @@ accounting. GitHub repository access requires a separate authenticated connector
 or repository MCP service. Restrict repository access through service credentials
 and permissions; an agent guidance file is not an authorization boundary.
 Generated text and simulation scores cannot approve operational integration.
-

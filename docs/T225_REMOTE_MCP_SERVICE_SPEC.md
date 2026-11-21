@@ -425,8 +425,8 @@ viene creato da questa specifica.
   handshake, notifiche 202, discovery filtrata, GET 405 e DELETE; SDK ufficiale
   testato anche su socket HTTP reale. Non e' una certificazione di ogni client.
 - T225.3: verifica RS256 su chiavi pubbliche pinnate e controlli issuer,
-  audience, subject, iat, exp e scope; issuer reale, login e registrazione client
-  devono ancora essere predisposti. Il generatore locale e' solo una fixture.
+  audience, subject, iat, exp e scope; issuer Auth0 reale e client M2M configurati e verificati su HTTPS pubblico.
+  Il generatore locale resta solo una fixture; nessun client PKCE/DCR configurato.
 - T225.4: proprieta' delle sessioni e quote per principal in memoria; limiti
   dei worker e loro terminazione osservata su timeout. Nessuna persistenza
   multi-replica o sandbox OS/egress dimostrata.
@@ -453,3 +453,23 @@ SDK nel container (512 MiB, una CPU) sono passati: initialize, ping, otto tool
 e chiamate BCEL, clock e metabolismo. Questo test usa un issuer fittizio locale
 e non dimostra ancora il login OAuth sul servizio pubblico.
 
+
+### 16.1 Verifica pubblica 2026-11-21
+
+Endpoint sperimentale: https://q-speace-mcp.onrender.com/mcp. Issuer Auth0:
+https://dev-imfska6viiq1ehqw.us.auth0.com/. Audience uguale all'endpoint MCP,
+RS256, tre scope espliciti e token M2M da 900 secondi. Render Free Frankfurt,
+un processo e un worker; deadline operativa 20 secondi (il default di cinque
+secondi non basta sulla CPU Free). Audit /tmp/qspeace/audit.sqlite: effimero.
+
+SDK ufficiale 1.30.0: initialize, ping, discovery di otto tool, chiamate BCEL,
+clock e metabolismo passate; argomenti invalidi danno isError=True e il ping
+successivo passa. RPC anonima 401; metadati della risorsa pubblici 200.
+Suite locale: 610 passati, tre saltati; successiva regressione HTTP: sette
+passati. Ruff globale conserva due problemi preesistenti nei file locali
+cli.py/orchestrator.py; i file di questo intervento passano i controlli.
+
+La verifica pubblica non chiude i gap T225.4/.5/.6, non dimostra vantaggi del
+Paradigma e non promuove la proposta a uso operativo. Evidenza in
+[rapporto](../artifacts/T225_http_verification_20261121.json); istruzioni e
+esempi inglesi nella [guida](T225_AGENT_CONNECTION_GUIDE_EN.md).

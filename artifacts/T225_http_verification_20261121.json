@@ -1,8 +1,8 @@
 {
   "profile": "T225 experimental",
   "transport": "streamable-http",
-  "deployment": "loopback only",
-  "issuer": "local fixture, not an OAuth login server",
+  "deployment": "Render Free Frankfurt, single process",
+  "issuer": "https://dev-imfska6viiq1ehqw.us.auth0.com/",
   "official_sdk": "1.30.0",
   "manual_cli_client": "passed",
   "handshake": "passed",
@@ -13,7 +13,7 @@
     "adaptive_clock_rate",
     "metabolism_cost_eval"
   ],
-  "public_deployment": "not created; real issuer pending",
+  "public_deployment": "live; official SDK smoke passed",
   "baseline_T224": "unchanged rejected",
   "full_suite": {
     "passed": 610,
@@ -21,6 +21,17 @@
   },
   "linux_container_smoke": "passed; 512 MiB, 1 CPU, official SDK 1.30.0",
   "auth0_issuer": "https://dev-imfska6viiq1ehqw.us.auth0.com/",
-  "oauth_status": "public discovery and JWKS verified; API/client setup pending"
+  "oauth_status": "Auth0 client_credentials verified; RS256, API audience, three scoped grants, 900-second tokens",
+  "endpoint": "https://q-speace-mcp.onrender.com/mcp",
+  "public_invalid_arguments": "isError=True; subsequent ping passed",
+  "public_unauthenticated_rpc": 401,
+  "protected_resource_metadata": 200,
+  "render_service": "srv-dc0pu7h7lnhs739dljgg",
+  "verified_deploy": "dep-dc0q03u7bikc73bi01jg",
+  "verified_runtime_commit": "a2a2ab7d41ded324dd49b6b25ee60e2f36143093",
+  "worker_wall_seconds": 20,
+  "followup_http_tests": {
+    "passed": 7
+  },
+  "quality_limit": "Global Ruff has two pre-existing findings in unrelated local cli.py/orchestrator.py edits"
 }
-

@@ -9,4 +9,3 @@ USER app
 ENV PORT=7860
 EXPOSE 7860
 CMD ["python", "/app/entrypoint.py"]
-

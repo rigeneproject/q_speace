@@ -117,4 +117,3 @@ def test_timeout_is_reproducible_from_journal(tmp_path) -> None:  # type: ignore
     recovered = UpdateLedger(path, activation_authorizer=lambda *_: None)
     assert recovered.status_of("CP1") is UpdateStatus.ABORTED
     assert recovered.status_of("CP2") is UpdateStatus.ABORTED
-

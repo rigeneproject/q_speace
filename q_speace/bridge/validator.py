@@ -176,4 +176,3 @@ def promote_successor(
     """Promote a successor validator and fence out the current one."""
     ledger.promote_validator(new_key.generation, epoch=epoch)
     return IndependentValidator(new_key)
-

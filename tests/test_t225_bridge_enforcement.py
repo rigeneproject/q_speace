@@ -58,4 +58,3 @@ def test_coupled_invalid_member_never_partly_activates() -> None:
     with pytest.raises(StateError):
         transaction.commit(epoch=1, fencing=1)
     assert not any(r.event == "ACTIVATED" for r in ledger.records())
-

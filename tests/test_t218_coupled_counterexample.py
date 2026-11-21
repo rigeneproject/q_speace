@@ -161,4 +161,3 @@ def test_reproducible_trace_of_rejection(tmp_path) -> None:  # type: ignore[no-u
     recovered = UpdateLedger(path, activation_authorizer=lambda *_: None)
     assert recovered.status_of("CP1") is UpdateStatus.ABORTED
     assert recovered.status_of("CP2") is UpdateStatus.ABORTED
-

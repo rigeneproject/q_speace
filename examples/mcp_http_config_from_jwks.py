@@ -73,11 +73,13 @@ def main() -> None:
         total_workers=1,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(config.model_dump_json(indent=2) + "\n", encoding="utf-8")
+    payload = config.model_dump(mode="json")
+    # The target is Linux even when this helper runs on Windows.
+    payload["audit_path"] = "/tmp/qspeace/audit.sqlite"
+    args.output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print("Saved public verification configuration to", args.output.resolve())
     print("No client secret, access token, or private signing key was requested or stored.")
 
 
 if __name__ == "__main__":
     main()
-
