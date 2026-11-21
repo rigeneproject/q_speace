@@ -1,0 +1,224 @@
+{
+  "all": {
+    "n_independent_pairs": 48,
+    "first_valid": {
+      "A": 0.3125,
+      "B": 1.0,
+      "B_minus_A": 0.6875
+    },
+    "raw_count": {
+      "A": 1.6875,
+      "B": 1.0,
+      "B_minus_A": -0.6875
+    },
+    "verifier_calls": {
+      "A": 1.6875,
+      "B": 1.0,
+      "B_minus_A": -0.6875
+    },
+    "search_s": {
+      "A": 0.00011685416667243469,
+      "B": 6.992916658532522e-05,
+      "B_minus_A": -4.692500008710946e-05
+    },
+    "exhausted": {
+      "A": 0.0,
+      "B": 0.0,
+      "B_minus_A": 0.0
+    },
+    "recovered": {
+      "A": 0.8333333333333334,
+      "B": 0.8333333333333334,
+      "B_minus_A": 0.0
+    },
+    "censored_ticks": {
+      "A": 18.75,
+      "B": 18.75,
+      "B_minus_A": 0.0
+    },
+    "final_tv": {
+      "A": 0.006779768179047696,
+      "B": 0.006779768179047696,
+      "B_minus_A": 0.0
+    },
+    "rollout_s": {
+      "A": 0.005179270833300127,
+      "B": 0.005509429166683806,
+      "B_minus_A": 0.00033015833338367884
+    },
+    "worse_recovery_episodes": []
+  },
+  "step": {
+    "n_independent_pairs": 24,
+    "first_valid": {
+      "A": 0.25,
+      "B": 1.0,
+      "B_minus_A": 0.75
+    },
+    "raw_count": {
+      "A": 1.75,
+      "B": 1.0,
+      "B_minus_A": -0.75
+    },
+    "verifier_calls": {
+      "A": 1.75,
+      "B": 1.0,
+      "B_minus_A": -0.75
+    },
+    "search_s": {
+      "A": 0.00011967083334714819,
+      "B": 6.908749990467793e-05,
+      "B_minus_A": -5.058333344247027e-05
+    },
+    "exhausted": {
+      "A": 0.0,
+      "B": 0.0,
+      "B_minus_A": 0.0
+    },
+    "recovered": {
+      "A": 0.875,
+      "B": 0.875,
+      "B_minus_A": 0.0
+    },
+    "censored_ticks": {
+      "A": 21.541666666666668,
+      "B": 21.541666666666668,
+      "B_minus_A": 0.0
+    },
+    "final_tv": {
+      "A": 0.008953604697181594,
+      "B": 0.008953604697181594,
+      "B_minus_A": 0.0
+    },
+    "rollout_s": {
+      "A": 0.005134699999928216,
+      "B": 0.005318916666681162,
+      "B_minus_A": 0.00018421666675294546
+    },
+    "worse_recovery_episodes": []
+  },
+  "pulse": {
+    "n_independent_pairs": 24,
+    "first_valid": {
+      "A": 0.375,
+      "B": 1.0,
+      "B_minus_A": 0.625
+    },
+    "raw_count": {
+      "A": 1.625,
+      "B": 1.0,
+      "B_minus_A": -0.625
+    },
+    "verifier_calls": {
+      "A": 1.625,
+      "B": 1.0,
+      "B_minus_A": -0.625
+    },
+    "search_s": {
+      "A": 0.00011403749999772117,
+      "B": 7.077083326597251e-05,
+      "B_minus_A": -4.326666673174865e-05
+    },
+    "exhausted": {
+      "A": 0.0,
+      "B": 0.0,
+      "B_minus_A": 0.0
+    },
+    "recovered": {
+      "A": 0.7916666666666666,
+      "B": 0.7916666666666666,
+      "B_minus_A": 0.0
+    },
+    "censored_ticks": {
+      "A": 15.958333333333334,
+      "B": 15.958333333333334,
+      "B_minus_A": 0.0
+    },
+    "final_tv": {
+      "A": 0.004605931660913799,
+      "B": 0.004605931660913799,
+      "B_minus_A": 0.0
+    },
+    "rollout_s": {
+      "A": 0.0052238416666720395,
+      "B": 0.005699941666686452,
+      "B_minus_A": 0.0004761000000144122
+    },
+    "worse_recovery_episodes": []
+  },
+  "new_candidates": {
+    "n_independent_pairs": 48,
+    "first_valid": {
+      "A": 0.3125,
+      "B": 1.0,
+      "B_minus_A": 0.6875
+    },
+    "raw_count": {
+      "A": 1.6875,
+      "B": 1.0,
+      "B_minus_A": -0.6875
+    },
+    "verifier_calls": {
+      "A": 1.6875,
+      "B": 1.0,
+      "B_minus_A": -0.6875
+    },
+    "search_s": {
+      "A": 0.00011685416667243469,
+      "B": 6.992916658532522e-05,
+      "B_minus_A": -4.692500008710946e-05
+    },
+    "exhausted": {
+      "A": 0.0,
+      "B": 0.0,
+      "B_minus_A": 0.0
+    },
+    "recovered": {
+      "A": 0.8333333333333334,
+      "B": 0.8333333333333334,
+      "B_minus_A": 0.0
+    },
+    "censored_ticks": {
+      "A": 18.75,
+      "B": 18.75,
+      "B_minus_A": 0.0
+    },
+    "final_tv": {
+      "A": 0.006779768179047696,
+      "B": 0.006779768179047696,
+      "B_minus_A": 0.0
+    },
+    "rollout_s": {
+      "A": 0.005179270833300127,
+      "B": 0.005509429166683806,
+      "B_minus_A": 0.00033015833338367884
+    },
+    "worse_recovery_episodes": []
+  },
+  "controls": {
+    "default": {
+      "step": {
+        "n": 24,
+        "recovered_rate": 1.0,
+        "censored_ticks": 30.916666666666668
+      },
+      "pulse": {
+        "n": 24,
+        "recovered_rate": 0.0,
+        "censored_ticks": 21.0
+      }
+    },
+    "near_frozen": {
+      "step": {
+        "n": 24,
+        "recovered_rate": 0.0,
+        "censored_ticks": 33.0
+      },
+      "pulse": {
+        "n": 24,
+        "recovered_rate": 1.0,
+        "censored_ticks": 3.0
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "grid": [
+    0.75,
+    0.8,
+    0.9,
+    0.975,
+    0.995
+  ],
+  "certificates": [
+    {
+      "status": "VALIDA",
+      "reason": "Exact affine vertex certificate on x,abs(input) in [0,1]",
+      "witness": null
+    },
+    {
+      "status": "VALIDA",
+      "reason": "Exact affine vertex certificate on x,abs(input) in [0,1]",
+      "witness": null
+    },
+    {
+      "status": "VALIDA",
+      "reason": "Exact affine vertex certificate on x,abs(input) in [0,1]",
+      "witness": null
+    },
+    {
+      "status": "VALIDA",
+      "reason": "Exact affine vertex certificate on x,abs(input) in [0,1]",
+      "witness": null
+    },
+    {
+      "status": "VALIDA",
+      "reason": "Exact affine vertex certificate on x,abs(input) in [0,1]",
+      "witness": null
+    }
+  ],
+  "families": [
+    "rectangle",
+    "triangle"
+  ],
+  "n_development": 64,
+  "n_evaluation": 80,
+  "development_seed_base": 22910000,
+  "evaluation_seed_base": 22920000,
+  "episode_seeds": "base + index; alternate families in listed order",
+  "permutation_seeds": [
+    22941,
+    22942,
+    22943,
+    22944,
+    22945,
+    22946,
+    22947,
+    22948
+  ],
+  "bootstrap_seed": 22977,
+  "bootstrap_reps": 4000,
+  "neighbors": 7,
+  "distance": "absolute difference of prefix population SD / 0.25",
+  "ties": "development row index for neighbors, grid order for coefficients",
+  "metric": "sum(TV(q_star, stationary latent reference)) over 48 ticks",
+  "primary": [
+    "B_minus_C",
+    "Dmean_minus_C"
+  ],
+  "runtime": {
+    "horizon": 48,
+    "prefix_ticks": 8,
+    "prefix_decay": 0.9,
+    "initial_ema": [
+      1.0,
+      0.5
+    ],
+    "baseline": 0.5,
+    "sensor_noise_uniform_half_width": {
+      "precise": 0.02,
+      "noisy": 0.4
+    },
+    "amplitude_uniform": {
+      "precise": [
+        0.3,
+        0.45
+      ],
+      "noisy": [
+        0.005,
+        0.025
+      ]
+    },
+    "duration_uniform_integers": [
+      12,
+      24
+    ],
+    "context": "population std of second sensor during prefix divided by 0.25",
+    "target": "stationary T228 ILF q_star for noiseless latent rates",
+    "recovery_band_tv": 0.01,
+    "recovery_consecutive": 3
+  }
+}

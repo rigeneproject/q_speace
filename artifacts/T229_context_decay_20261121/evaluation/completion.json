@@ -1,0 +1,10 @@
+{
+  "episodes": 80,
+  "decisions": 880,
+  "permutation_setup_s": 0.0008684000003995607,
+  "files_sha256": {
+    "episodes.jsonl": "ac4c1b95569edb3bd9ccc20c6dedeeddcafda32eb7eb48ddb01bfc553dd576cb",
+    "trajectories.jsonl.gz": "43540f3535f97ffda3576b453749e9755c8c052606479e6cae684700638cf0e7",
+    "summary.json": "a1d5483d3f80a1a7a66b5b673f92157b6073fb57050dbfb9ed529aee34e0173d"
+  }
+}

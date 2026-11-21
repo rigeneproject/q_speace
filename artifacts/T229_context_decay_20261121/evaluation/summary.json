@@ -1,0 +1,289 @@
+{
+  "bootstrap": {
+    "replicates": 4000,
+    "seed": 22977,
+    "method": "Paired episode percentile 95%, stratified by perturbation family"
+  },
+  "all": {
+    "n_episodes": 80,
+    "arms": {
+      "A": {
+        "loss": 0.49034717583871235,
+        "prefix_loss": 0.016729408356571968,
+        "perturbation_loss": 0.24682613853742671,
+        "return_loss": 0.22679162894471397,
+        "recovered": 0.9125,
+        "censored_ticks": 10.0125,
+        "lookup_ns": 2342.5
+      },
+      "B": {
+        "loss": 0.385289269616555,
+        "prefix_loss": 0.016729408356571968,
+        "perturbation_loss": 0.18601390779298155,
+        "return_loss": 0.1825459534670014,
+        "recovered": 0.9875,
+        "censored_ticks": 7.575,
+        "lookup_ns": 48125.0
+      },
+      "C": {
+        "loss": 0.30873126133820566,
+        "prefix_loss": 0.016729408356571968,
+        "perturbation_loss": 0.16260793965627549,
+        "return_loss": 0.12939391332535824,
+        "recovered": 0.975,
+        "censored_ticks": 6.6125,
+        "lookup_ns": 33408.75
+      },
+      "D": {
+        "loss": 0.3957965818028123,
+        "prefix_loss": 0.016729408356571968,
+        "perturbation_loss": 0.19839375421474092,
+        "return_loss": 0.18067341923149935,
+        "recovered": 0.9875,
+        "censored_ticks": 7.475,
+        "lookup_ns": 21644.0625
+      }
+    },
+    "contrasts": {
+      "B_minus_C": {
+        "mean": 0.07655800827834927,
+        "ci95": [
+          0.04972496572324766,
+          0.10350979115155534
+        ]
+      },
+      "D_minus_C": {
+        "mean": 0.08706532046460655,
+        "ci95": [
+          0.06139511944529338,
+          0.11329284456847281
+        ]
+      }
+    },
+    "choices": {
+      "C_vs_B": {
+        "n_episodes": 80,
+        "comparisons_per_episode": 1,
+        "fraction_changed": 0.4875,
+        "changed": 39.0,
+        "improved": 34.0,
+        "worsened": 5.0,
+        "tied": 0.0,
+        "unchanged": 41.0,
+        "decision_counts": {
+          "changed": 39,
+          "improved": 34,
+          "worsened": 5,
+          "tied": 0,
+          "unchanged": 41
+        }
+      },
+      "C_vs_D": {
+        "n_episodes": 80,
+        "comparisons_per_episode": 8,
+        "fraction_changed": 0.5125,
+        "changed": 41.0,
+        "improved": 36.0,
+        "worsened": 5.0,
+        "tied": 0.0,
+        "unchanged": 39.0,
+        "decision_counts": {
+          "changed": 328,
+          "improved": 288,
+          "worsened": 40,
+          "tied": 0,
+          "unchanged": 312
+        }
+      }
+    }
+  },
+  "by_family": {
+    "rectangle": {
+      "n_episodes": 40,
+      "arms": {
+        "A": {
+          "loss": 0.5530051543115371,
+          "prefix_loss": 0.016816870846139743,
+          "perturbation_loss": 0.2669900840653086,
+          "return_loss": 0.2691981994000888,
+          "recovered": 0.825,
+          "censored_ticks": 11.425,
+          "lookup_ns": 2582.5
+        },
+        "B": {
+          "loss": 0.3985295944796848,
+          "prefix_loss": 0.016816870846139743,
+          "perturbation_loss": 0.16659924480558239,
+          "return_loss": 0.2151134788279625,
+          "recovered": 1.0,
+          "censored_ticks": 8.775,
+          "lookup_ns": 47897.5
+        },
+        "C": {
+          "loss": 0.32535823514378637,
+          "prefix_loss": 0.016816870846139743,
+          "perturbation_loss": 0.14960394557239212,
+          "return_loss": 0.1589374187252546,
+          "recovered": 0.975,
+          "censored_ticks": 7.525,
+          "lookup_ns": 33570.0
+        },
+        "D": {
+          "loss": 0.41808540622348633,
+          "prefix_loss": 0.016816870846139743,
+          "perturbation_loss": 0.18895272567566757,
+          "return_loss": 0.212315809701679,
+          "recovered": 1.0,
+          "censored_ticks": 8.6125,
+          "lookup_ns": 21715.625
+        }
+      },
+      "contrasts": {
+        "B_minus_C": {
+          "mean": 0.07317135933589829,
+          "ci95": [
+            0.03575238029441759,
+            0.11318585429649668
+          ]
+        },
+        "D_minus_C": {
+          "mean": 0.09272717107969994,
+          "ci95": [
+            0.055733259367887374,
+            0.13163201935004978
+          ]
+        }
+      },
+      "choices": {
+        "C_vs_B": {
+          "n_episodes": 40,
+          "comparisons_per_episode": 1,
+          "fraction_changed": 0.475,
+          "changed": 19.0,
+          "improved": 16.0,
+          "worsened": 3.0,
+          "tied": 0.0,
+          "unchanged": 21.0,
+          "decision_counts": {
+            "changed": 19,
+            "improved": 16,
+            "worsened": 3,
+            "tied": 0,
+            "unchanged": 21
+          }
+        },
+        "C_vs_D": {
+          "n_episodes": 40,
+          "comparisons_per_episode": 8,
+          "fraction_changed": 0.515625,
+          "changed": 20.625,
+          "improved": 17.625,
+          "worsened": 3.0,
+          "tied": 0.0,
+          "unchanged": 19.375,
+          "decision_counts": {
+            "changed": 165,
+            "improved": 141,
+            "worsened": 24,
+            "tied": 0,
+            "unchanged": 155
+          }
+        }
+      }
+    },
+    "triangle": {
+      "n_episodes": 40,
+      "arms": {
+        "A": {
+          "loss": 0.42768919736588823,
+          "prefix_loss": 0.016641945867004203,
+          "perturbation_loss": 0.22666219300954485,
+          "return_loss": 0.18438505848933917,
+          "recovered": 1.0,
+          "censored_ticks": 8.6,
+          "lookup_ns": 2102.5
+        },
+        "B": {
+          "loss": 0.3720489447534253,
+          "prefix_loss": 0.016641945867004203,
+          "perturbation_loss": 0.20542857078038085,
+          "return_loss": 0.1499784281060403,
+          "recovered": 0.975,
+          "censored_ticks": 6.375,
+          "lookup_ns": 48352.5
+        },
+        "C": {
+          "loss": 0.2921042875326252,
+          "prefix_loss": 0.016641945867004203,
+          "perturbation_loss": 0.17561193374015893,
+          "return_loss": 0.09985040792546196,
+          "recovered": 0.975,
+          "censored_ticks": 5.7,
+          "lookup_ns": 33247.5
+        },
+        "D": {
+          "loss": 0.3735077573821382,
+          "prefix_loss": 0.016641945867004203,
+          "perturbation_loss": 0.20783478275381437,
+          "return_loss": 0.1490310287613197,
+          "recovered": 0.975,
+          "censored_ticks": 6.3375,
+          "lookup_ns": 21572.5
+        }
+      },
+      "contrasts": {
+        "B_minus_C": {
+          "mean": 0.07994465722080023,
+          "ci95": [
+            0.046323861374451505,
+            0.11527457989244791
+          ]
+        },
+        "D_minus_C": {
+          "mean": 0.08140346984951319,
+          "ci95": [
+            0.04831425044848235,
+            0.11593731504312173
+          ]
+        }
+      },
+      "choices": {
+        "C_vs_B": {
+          "n_episodes": 40,
+          "comparisons_per_episode": 1,
+          "fraction_changed": 0.5,
+          "changed": 20.0,
+          "improved": 18.0,
+          "worsened": 2.0,
+          "tied": 0.0,
+          "unchanged": 20.0,
+          "decision_counts": {
+            "changed": 20,
+            "improved": 18,
+            "worsened": 2,
+            "tied": 0,
+            "unchanged": 20
+          }
+        },
+        "C_vs_D": {
+          "n_episodes": 40,
+          "comparisons_per_episode": 8,
+          "fraction_changed": 0.509375,
+          "changed": 20.375,
+          "improved": 18.375,
+          "worsened": 2.0,
+          "tied": 0.0,
+          "unchanged": 19.625,
+          "decision_counts": {
+            "changed": 163,
+            "improved": 147,
+            "worsened": 16,
+            "tied": 0,
+            "unchanged": 157
+          }
+        }
+      }
+    }
+  },
+  "both_primary_lower_bounds_positive": true
+}

@@ -1,0 +1,37 @@
+{
+  "band_tv": 0.01,
+  "belief": [
+    0.9,
+    0.1
+  ],
+  "consecutive": 3,
+  "default_decay": 0.9,
+  "domain": "2 units, state and abs(input) in [0,1]",
+  "episodes_per_family": 24,
+  "experience_count": 8,
+  "experience_seed": 22801,
+  "horizon": 32,
+  "metric": "TV(ILF q_star, stationary current-input q_star)",
+  "perturbation_seed": 22803,
+  "proposal_seed": 22802,
+  "pulse_transition": 12,
+  "raw_budget": 2,
+  "raw_proposal_range": [
+    0.25,
+    0.99
+  ],
+  "retrieval": "first-frozen-witness-geometric-repair-v1",
+  "rule_version": "ema-affine-unit-domain-v1",
+  "snapshot": [
+    1.0,
+    1.0
+  ],
+  "split": {
+    "evaluation": [
+      "step",
+      "pulse"
+    ],
+    "experience": "step-extremes"
+  },
+  "step_limit": 0.25
+}

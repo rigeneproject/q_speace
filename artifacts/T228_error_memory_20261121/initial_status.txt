@@ -1,0 +1,11 @@
+ M q_speace/bcel/catalog.py
+ M q_speace/cli.py
+ M q_speace/orchestrator.py
+ M q_speace/self_improvement_cortex/evolution_council.py
+?? artifacts/T227_policy_calibration_20261121/
+?? "docs/Questa \303\250 un'espansione architettura.txt"
+?? "docs/Stato attuale di SPEACE Cosa manca.txt"
+?? docs/T227_T224_BIS_POLICY_CALIBRATION_SPEC.md
+?? "docs/l'Ipotesi di Riemann.txt"
+?? q_speace/experiments/policy_calibration.py
+?? tests/test_t227_policy_calibration.py

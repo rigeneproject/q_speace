@@ -1,0 +1,33 @@
+{
+  "method": "New process per phase, temporary directory outside repository, same local Python environment",
+  "checks": {
+    "config.json": {
+      "identical": true,
+      "original_sha256": "dfde60937d0afeab99677e90bc4cc6baf905f9be543e7eb0b02f0946f9ee22c3",
+      "replica_sha256": "dfde60937d0afeab99677e90bc4cc6baf905f9be543e7eb0b02f0946f9ee22c3"
+    },
+    "archive.json": {
+      "identical": true,
+      "original_sha256": "d638f07c49a367dcc227c2404ace1637a0f1335d6ba3803cfbdaecc348b77c08",
+      "replica_sha256": "d638f07c49a367dcc227c2404ace1637a0f1335d6ba3803cfbdaecc348b77c08"
+    },
+    "development_gate.json": {
+      "identical": true,
+      "original_sha256": "0b5edaba4ee5d213e7b90654324da938ccadbf09e3c4fd1b616c079da1a8aa9e",
+      "replica_sha256": "0b5edaba4ee5d213e7b90654324da938ccadbf09e3c4fd1b616c079da1a8aa9e"
+    },
+    "canonical_episodes_except_decisions_lookup_ns": {
+      "identical": true,
+      "original_sha256": "0c9cc928b59a7df1f3b8d8d873847aad912000a2a6d2af3a276dec8364fdb035",
+      "replica_sha256": "0c9cc928b59a7df1f3b8d8d873847aad912000a2a6d2af3a276dec8364fdb035"
+    },
+    "decompressed_trajectory_bytes": {
+      "identical": true,
+      "original_sha256": "923fe04582e4f4a26bdb44b4c7feb2a8f8aefee71079a1485b68e3a04380d695",
+      "replica_sha256": "923fe04582e4f4a26bdb44b4c7feb2a8f8aefee71079a1485b68e3a04380d695"
+    }
+  },
+  "episodes": 80,
+  "decisions": 880,
+  "distinct_serialized_trajectories": 216
+}

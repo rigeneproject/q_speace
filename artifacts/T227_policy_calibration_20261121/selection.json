@@ -1,0 +1,8 @@
+{
+  "protocol_sha256": "68025245f35079e7747f654f1541ba87d21c3a69c7062fb8ad2c99c304461bac",
+  "policy": {
+    "mapping": "differentiated",
+    "signal": "consecutive_errors",
+    "threshold": 5
+  }
+}

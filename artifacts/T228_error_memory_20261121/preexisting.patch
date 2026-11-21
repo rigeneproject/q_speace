@@ -1,0 +1,163 @@
+diff --git a/q_speace/bcel/catalog.py b/q_speace/bcel/catalog.py
+index 620a3f9f..981d728a 100644
+--- a/q_speace/bcel/catalog.py
++++ b/q_speace/bcel/catalog.py
+@@ -20,6 +20,14 @@ class BCELEquivalence:
+ 
+ 
+ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
++    BCELEquivalence(
++        "Calibrated client feedback experiment (T227)",
++        "functional",
++        "Keep as prior-observation feedback, equal hard reservations, frozen "
++        "calibration selection and constructed verification with counterexamples. "
++        "Clock mapping changes pacing, not scripted task outcomes; finite fixtures "
++        "do not prove general savings, cognition or safe operational promotion.",
++    ),
+     BCELEquivalence(
+         "Bounded diagnostic feedback agent (T226)",
+         "functional",
+diff --git a/q_speace/cli.py b/q_speace/cli.py
+index a136eb45..893ed4d7 100644
+--- a/q_speace/cli.py
++++ b/q_speace/cli.py
+@@ -10,6 +10,8 @@ from __future__ import annotations
+ 
+ import asyncio
+ import json
++from collections.abc import Coroutine
++from typing import Any
+ 
+ import typer
+ 
+@@ -21,7 +23,7 @@ from .orchestrator import QuantumOrchestrator
+ from .quantum.backends import to_cqasm
+ from .schumann import run_schumann, schumann_circuit
+ from .self_improvement_cortex import SelfImprovementCortex
+-from .spiking_brain import SpikingBrainCortex
++from .spiking_brain import SpikingBrainCognitiveInterface, SpikingBrainCortex
+ 
+ app = typer.Typer(help="Q-SPEACE quantum layer CLI")
+ quantum_app = typer.Typer(help="Quantum experiments and tools")
+@@ -58,9 +60,10 @@ def quantum_run(
+     if radio:
+         last = report[-1]
+         print(f"[cyan]Last TX:[/cyan] {last.tx_report}")
+-        print(
+-            f"[cyan]Spectrum:[/cyan] snr={last.spectrum.snr_db:.1f} dB rssi={last.spectrum.rssi_dbm:.1f} dBm"
+-        )
++        spectrum = last.spectrum
++        snr_db = float(getattr(spectrum, "snr_db", float("nan")))
++        rssi_dbm = float(getattr(spectrum, "rssi_dbm", float("nan")))
++        print(f"[cyan]Spectrum:[/cyan] snr={snr_db:.1f} dB rssi={rssi_dbm:.1f} dBm")
+ 
+ 
+ @quantum_app.command("benchmark")
+@@ -216,7 +219,7 @@ def version() -> None:
+ # ----------------------------------------------------------------------
+ 
+ 
+-def _run_coro(coro):  # pragma: no cover — trivial wrapper
++def _run_coro(coro: Coroutine[Any, Any, Any]) -> Any:  # pragma: no cover — trivial wrapper
+     return asyncio.run(coro)
+ 
+ 
+diff --git a/q_speace/orchestrator.py b/q_speace/orchestrator.py
+index 59a18885..65d13e36 100644
+--- a/q_speace/orchestrator.py
++++ b/q_speace/orchestrator.py
+@@ -11,6 +11,7 @@ from __future__ import annotations
+ 
+ from collections import deque
+ from dataclasses import dataclass
++from typing import TYPE_CHECKING
+ 
+ import numpy as np
+ 
+@@ -31,6 +32,9 @@ from .radio import (
+ )
+ from .spiking import dynamic_spikes, sparsity
+ 
++if TYPE_CHECKING:
++    from .aacm import StepDecision
++
+ 
+ @dataclass
+ class TickReport:
+@@ -161,7 +165,7 @@ class QuantumOrchestrator:
+         """Remove any attached AACM controller."""
+         self._aacm_controller = None
+ 
+-    def _aacm_tick(self, report: TickReport) -> object:
++    def _aacm_tick(self, report: TickReport) -> StepDecision:
+         """Run one AACM decision for the current tick.
+ 
+         Builds a :class:`q_speace.aacm.CentralityGraph` over the
+@@ -206,15 +210,16 @@ class QuantumOrchestrator:
+             },
+             leverage_multiplier=1.5 if em_fracture > 0.5 else 1.0,
+         )
+-        decision = self._aacm_controller.step(graph, fracture_map)  # type: ignore[union-attr]
++        controller = self._aacm_controller
++        assert controller is not None
++        decision = getattr(controller, "step")(graph, fracture_map)
+         # Defensive: if a foreign controller returns a plain dict, wrap it.
+         if not isinstance(decision, StepDecision):
++            resilience = getattr(controller, "resilience", None)
+             return StepDecision(
+                 strategy=AACMStrategy.DEFAULT,
+                 central_node=None,
+-                aacm_omega=getattr(self._aacm_controller, "resilience", None)
+-                and float(self._aacm_controller.resilience.omega)
+-                or 1.0,
++                aacm_omega=float(getattr(resilience, "omega", 1.0)),
+                 recommended_redirect=None,
+                 notes={"foreign_decision": str(decision)},
+             )
+diff --git a/q_speace/self_improvement_cortex/evolution_council.py b/q_speace/self_improvement_cortex/evolution_council.py
+index 84f32d9f..0cf29f3c 100644
+--- a/q_speace/self_improvement_cortex/evolution_council.py
++++ b/q_speace/self_improvement_cortex/evolution_council.py
+@@ -3,6 +3,10 @@
+ from __future__ import annotations
+ 
+ from dataclasses import dataclass, field
++from typing import TYPE_CHECKING
++
++if TYPE_CHECKING:
++    from ..aacm import AACMController
+ 
+ 
+ @dataclass
+@@ -240,7 +244,7 @@ class EvolutionCouncil:
+     # applies the AACM gate (B: opposition→capacity, C: legitimation
+     # stratification) to proposals. ``None`` means no AACM gating —
+     # the existing behaviour is preserved.
+-    aacm_controller: object | None = None
++    aacm_controller: AACMController | None = None
+     aacm_min_evidence_kinds: int = 2  # K ≥ 2 for stratification (regola 7)
+ 
+     def gather_proposals(self, context: dict) -> list[AgentProposal]:
+@@ -296,11 +300,11 @@ class EvolutionCouncil:
+                 # evidence_kind across channels; we add at most
+                 # one channel per kind per proposal.)
+                 existing = {
+-                    (c.evidence_kind,) for c in self.aacm_controller.legitimation.channels  # type: ignore[union-attr]
++                    (c.evidence_kind,) for c in self.aacm_controller.legitimation.channels
+                 }
+                 if (kind,) in existing:
+                     continue
+-                self.aacm_controller.register_legitimation(  # type: ignore[union-attr]
++                self.aacm_controller.register_legitimation(
+                     LegitimationChannel(
+                         channel_id=ch_id,
+                         evidence_kind=kind,
+@@ -380,7 +384,7 @@ class EvolutionOrchestrator:
+             score = p.confidence * (1.0 - p.risk) * p.expected_impact
+             scored.append((score, p))
+         scored.sort(key=lambda x: x[0], reverse=True)
+-        selected = []
++        selected: list[AgentProposal] = []
+         for _score, proposal in scored:
+             if proposal.confidence < self.min_confidence:
+                 continue

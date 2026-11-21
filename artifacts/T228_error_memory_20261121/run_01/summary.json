@@ -1,0 +1,224 @@
+{
+  "all": {
+    "censored_ticks": {
+      "A": 18.75,
+      "B": 18.75,
+      "B_minus_A": 0.0
+    },
+    "exhausted": {
+      "A": 0.0,
+      "B": 0.0,
+      "B_minus_A": 0.0
+    },
+    "final_tv": {
+      "A": 0.006779768179047696,
+      "B": 0.006779768179047696,
+      "B_minus_A": 0.0
+    },
+    "first_valid": {
+      "A": 0.3125,
+      "B": 1.0,
+      "B_minus_A": 0.6875
+    },
+    "n_independent_pairs": 48,
+    "raw_count": {
+      "A": 1.6875,
+      "B": 1.0,
+      "B_minus_A": -0.6875
+    },
+    "recovered": {
+      "A": 0.8333333333333334,
+      "B": 0.8333333333333334,
+      "B_minus_A": 0.0
+    },
+    "rollout_s": {
+      "A": 0.004547308333333906,
+      "B": 0.00489041458336222,
+      "B_minus_A": 0.0003431062500283133
+    },
+    "search_s": {
+      "A": 9.95729166769858e-05,
+      "B": 6.0804166650996194e-05,
+      "B_minus_A": -3.87687500259896e-05
+    },
+    "verifier_calls": {
+      "A": 1.6875,
+      "B": 1.0,
+      "B_minus_A": -0.6875
+    },
+    "worse_recovery_episodes": []
+  },
+  "controls": {
+    "default": {
+      "pulse": {
+        "censored_ticks": 21.0,
+        "n": 24,
+        "recovered_rate": 0.0
+      },
+      "step": {
+        "censored_ticks": 30.916666666666668,
+        "n": 24,
+        "recovered_rate": 1.0
+      }
+    },
+    "near_frozen": {
+      "pulse": {
+        "censored_ticks": 3.0,
+        "n": 24,
+        "recovered_rate": 1.0
+      },
+      "step": {
+        "censored_ticks": 33.0,
+        "n": 24,
+        "recovered_rate": 0.0
+      }
+    }
+  },
+  "new_candidates": {
+    "censored_ticks": {
+      "A": 18.75,
+      "B": 18.75,
+      "B_minus_A": 0.0
+    },
+    "exhausted": {
+      "A": 0.0,
+      "B": 0.0,
+      "B_minus_A": 0.0
+    },
+    "final_tv": {
+      "A": 0.006779768179047696,
+      "B": 0.006779768179047696,
+      "B_minus_A": 0.0
+    },
+    "first_valid": {
+      "A": 0.3125,
+      "B": 1.0,
+      "B_minus_A": 0.6875
+    },
+    "n_independent_pairs": 48,
+    "raw_count": {
+      "A": 1.6875,
+      "B": 1.0,
+      "B_minus_A": -0.6875
+    },
+    "recovered": {
+      "A": 0.8333333333333334,
+      "B": 0.8333333333333334,
+      "B_minus_A": 0.0
+    },
+    "rollout_s": {
+      "A": 0.004547308333333906,
+      "B": 0.00489041458336222,
+      "B_minus_A": 0.0003431062500283133
+    },
+    "search_s": {
+      "A": 9.95729166769858e-05,
+      "B": 6.0804166650996194e-05,
+      "B_minus_A": -3.87687500259896e-05
+    },
+    "verifier_calls": {
+      "A": 1.6875,
+      "B": 1.0,
+      "B_minus_A": -0.6875
+    },
+    "worse_recovery_episodes": []
+  },
+  "pulse": {
+    "censored_ticks": {
+      "A": 15.958333333333334,
+      "B": 15.958333333333334,
+      "B_minus_A": 0.0
+    },
+    "exhausted": {
+      "A": 0.0,
+      "B": 0.0,
+      "B_minus_A": 0.0
+    },
+    "final_tv": {
+      "A": 0.004605931660913799,
+      "B": 0.004605931660913799,
+      "B_minus_A": 0.0
+    },
+    "first_valid": {
+      "A": 0.375,
+      "B": 1.0,
+      "B_minus_A": 0.625
+    },
+    "n_independent_pairs": 24,
+    "raw_count": {
+      "A": 1.625,
+      "B": 1.0,
+      "B_minus_A": -0.625
+    },
+    "recovered": {
+      "A": 0.7916666666666666,
+      "B": 0.7916666666666666,
+      "B_minus_A": 0.0
+    },
+    "rollout_s": {
+      "A": 0.005053154166660079,
+      "B": 0.005637216666703655,
+      "B_minus_A": 0.000584062500043577
+    },
+    "search_s": {
+      "A": 0.00010910416671094936,
+      "B": 6.842916667437748e-05,
+      "B_minus_A": -4.067500003657187e-05
+    },
+    "verifier_calls": {
+      "A": 1.625,
+      "B": 1.0,
+      "B_minus_A": -0.625
+    },
+    "worse_recovery_episodes": []
+  },
+  "step": {
+    "censored_ticks": {
+      "A": 21.541666666666668,
+      "B": 21.541666666666668,
+      "B_minus_A": 0.0
+    },
+    "exhausted": {
+      "A": 0.0,
+      "B": 0.0,
+      "B_minus_A": 0.0
+    },
+    "final_tv": {
+      "A": 0.008953604697181594,
+      "B": 0.008953604697181594,
+      "B_minus_A": 0.0
+    },
+    "first_valid": {
+      "A": 0.25,
+      "B": 1.0,
+      "B_minus_A": 0.75
+    },
+    "n_independent_pairs": 24,
+    "raw_count": {
+      "A": 1.75,
+      "B": 1.0,
+      "B_minus_A": -0.75
+    },
+    "recovered": {
+      "A": 0.875,
+      "B": 0.875,
+      "B_minus_A": 0.0
+    },
+    "rollout_s": {
+      "A": 0.004041462500007735,
+      "B": 0.004143612500020784,
+      "B_minus_A": 0.00010215000001304968
+    },
+    "search_s": {
+      "A": 9.004166664302223e-05,
+      "B": 5.3179166627614904e-05,
+      "B_minus_A": -3.686250001540733e-05
+    },
+    "verifier_calls": {
+      "A": 1.75,
+      "B": 1.0,
+      "B_minus_A": -0.75
+    },
+    "worse_recovery_episodes": []
+  }
+}

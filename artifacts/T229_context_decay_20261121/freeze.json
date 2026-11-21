@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-11-21T19:57:57.443992+00:00",
+  "files_sha256": {
+    "config.json": "dfde60937d0afeab99677e90bc4cc6baf905f9be543e7eb0b02f0946f9ee22c3",
+    "archive.json": "d638f07c49a367dcc227c2404ace1637a0f1335d6ba3803cfbdaecc348b77c08",
+    "development.json": "12607b25ad3a2afef88bdf4aa56769b6724a7969778d293e44bb4e82e9561bb2",
+    "development_gate.json": "0b5edaba4ee5d213e7b90654324da938ccadbf09e3c4fd1b616c079da1a8aa9e"
+  },
+  "source_sha256": {
+    "q_speace/experiments/context_decay.py": "e54c4df73a51ef2c08fa9e7ccdabc09e0c5420c0e80b3ef671ec2ff1b83982ee",
+    "q_speace/experiments/context_decay_analysis.py": "826727eb48ba8a3974808ab0ea7c40f063faf3873db9f6a47d1269c0e0904185",
+    "q_speace/experiments/context_decay_memory.py": "b8ccd74e7bbbbb24090fc8146aefd3332f8a013c5784435981f00bd838f573ab",
+    "q_speace/experiments/context_decay_runtime.py": "1f6ac77a8f86c6b503c62c14de5fa7431226dcf633f10d1ff6118725ccbfdde7",
+    "docs/T229_CONTEXT_DECAY_SPEC.md": "758fd8042e0f3d453d932eac8c4b11385e24d27c437a2db36080b9e750472933",
+    "q_speace/experiments/error_memory.py": "5f3113ea77b1cfddbf6cb9a0dec883f8b17134813996f187c88f91b69d799840",
+    "q_speace/experiments/error_memory_verifier.py": "63943d2f256d9e7044005f947118a1e2f5c53967d03082b9e335ffb42b5777e4",
+    "q_speace/spiking/plasticity.py": "417cb75b8034316f4a655037653069b36cf66410a22210a4c34f0ed3f54528f2",
+    "q_speace/spiking_brain/cortex.py": "60b7e203de9a3ff5ef1177eae0ac7e813b82fa08dd44954ab70bf86dac99c036",
+    "q_speace/spiking_brain/types.py": "38fcd36916230db6b04144afb16437ba6ed8e9e7612c064f7475b6e91c927ab3",
+    "q_speace/spiking_brain/memory.py": "605000c8dbbad669f2b9affc57400345ae5de46df95f2caa3f74b861310d8fa8",
+    "q_speace/edd_cvt/ilf.py": "8b8207a93c8275b10606ff5cc427a3aab21f59ba035026e9ee6a2b66ed3a513f",
+    "q_speace/metabolism/cognitive_cost_model.py": "1b873833dce74e2b8769729361d9a7d0d65f7ea5d060a039652accdd0c92a4b1"
+  },
+  "commit": "055717742f7d49f49862a8e104dda08d2e04384c",
+  "dirty_status": " M q_speace/bcel/catalog.py\n M q_speace/cli.py\n M q_speace/orchestrator.py\n M q_speace/self_improvement_cortex/evolution_council.py\n?? artifacts/T227_policy_calibration_20261121/\n?? artifacts/T228_error_memory_20261121/\n?? artifacts/T229_context_decay_20261121/\n?? \"docs/Questa Ã¨ un'espansione architettura.txt\"\n?? \"docs/Stato attuale di SPEACE Cosa manca.txt\"\n?? docs/T227_T224_BIS_POLICY_CALIBRATION_SPEC.md\n?? docs/T228_ERROR_MEMORY_PLASTICITY_REPORT.md\n?? docs/T228_ERROR_MEMORY_PLASTICITY_SPEC.md\n?? docs/T229_CONTEXT_DECAY_SPEC.md\n?? \"docs/l'Ipotesi di Riemann.txt\"\n?? q_speace/experiments/context_decay.py\n?? q_speace/experiments/context_decay_analysis.py\n?? q_speace/experiments/context_decay_memory.py\n?? q_speace/experiments/context_decay_runtime.py\n?? q_speace/experiments/error_memory.py\n?? q_speace/experiments/error_memory_verifier.py\n?? q_speace/experiments/policy_calibration.py\n?? tests/test_t227_policy_calibration.py\n?? tests/test_t228_error_memory.py\n?? tests/test_t229_analysis.py\n?? tests/test_t229_memory.py\n?? tests/test_t229_protocol.py\n?? tests/test_t229_runtime.py",
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.4.4",
+    "system": "Windows-11-10.0.26300-SP0",
+    "backend": "synthetic CPU"
+  },
+  "offline_build_s": 1.2054745000000366,
+  "offline_rollouts": 320,
+  "offline_cortex_ticks": 13312,
+  "open_evaluation": true
+}

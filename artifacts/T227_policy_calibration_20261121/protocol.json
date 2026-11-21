@@ -1,0 +1,528 @@
+{
+  "version": "T227-v1",
+  "implementation_sha256": {
+    "experiments/policy_calibration.py": "0e1d49a1de4fac8f88424850c84e2fcf0c65689f6d5f6928950a908f3294ba48",
+    "experiments/mcp_regulation.py": "8a78d31e7767d9bfbba0a201c45797138006b7ea7afb8a81ae5aa686841d7411",
+    "economy/mcp_server.py": "ae86083f595a22262625ac0827bce11110dc64bde4683f47962366107838680d",
+    "edd_cvt/ilf.py": "8b8207a93c8275b10606ff5cc427a3aab21f59ba035026e9ee6a2b66ed3a513f",
+    "metabolism/cognitive_cost_model.py": "1b873833dce74e2b8769729361d9a7d0d65f7ea5d060a039652accdd0c92a4b1"
+  },
+  "mcp_sdk": "1.30.0",
+  "fixtures": {
+    "calibration": {
+      "clean": [
+        {
+          "status": "evidence",
+          "progress": true,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "transient": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "burst_recovery": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "evidence",
+          "progress": true,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "delayed": [
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "persistent_error": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        }
+      ],
+      "persistent_ambiguity": [
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        }
+      ]
+    },
+    "verification": {
+      "clean_prelude": [
+        {
+          "status": "evidence",
+          "progress": true,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "evidence",
+          "progress": true,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "three_errors": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "four_errors": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "six_ambiguous": [
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "progress_then_delay": [
+        {
+          "status": "evidence",
+          "progress": true,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "persistent_error": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        }
+      ],
+      "persistent_ambiguity": [
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        }
+      ]
+    },
+    "challenge": {
+      "six_errors_recover": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ],
+      "matching_persistent_error": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        }
+      ],
+      "seven_ambiguous": [
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "532",
+          "document_id": "current"
+        }
+      ]
+    }
+  },
+  "fixtures_sha256": "27b90e6d479053998977023ef3520b16515a0ed4d013182252d761bf63982b4b",
+  "grid": [
+    {
+      "mapping": "legacy",
+      "signal": "all_no_progress",
+      "threshold": 3
+    },
+    {
+      "mapping": "legacy",
+      "signal": "all_no_progress",
+      "threshold": 5
+    },
+    {
+      "mapping": "legacy",
+      "signal": "all_no_progress",
+      "threshold": 7
+    },
+    {
+      "mapping": "legacy",
+      "signal": "all_no_progress",
+      "threshold": 8
+    },
+    {
+      "mapping": "legacy",
+      "signal": "consecutive_errors",
+      "threshold": 3
+    },
+    {
+      "mapping": "legacy",
+      "signal": "consecutive_errors",
+      "threshold": 5
+    },
+    {
+      "mapping": "legacy",
+      "signal": "consecutive_errors",
+      "threshold": 7
+    },
+    {
+      "mapping": "legacy",
+      "signal": "consecutive_errors",
+      "threshold": 8
+    },
+    {
+      "mapping": "differentiated",
+      "signal": "all_no_progress",
+      "threshold": 3
+    },
+    {
+      "mapping": "differentiated",
+      "signal": "all_no_progress",
+      "threshold": 5
+    },
+    {
+      "mapping": "differentiated",
+      "signal": "all_no_progress",
+      "threshold": 7
+    },
+    {
+      "mapping": "differentiated",
+      "signal": "all_no_progress",
+      "threshold": 8
+    },
+    {
+      "mapping": "differentiated",
+      "signal": "consecutive_errors",
+      "threshold": 3
+    },
+    {
+      "mapping": "differentiated",
+      "signal": "consecutive_errors",
+      "threshold": 5
+    },
+    {
+      "mapping": "differentiated",
+      "signal": "consecutive_errors",
+      "threshold": 7
+    },
+    {
+      "mapping": "differentiated",
+      "signal": "consecutive_errors",
+      "threshold": 8
+    }
+  ],
+  "documents": {
+    "current": "Reference laser wavelength: 532 nm.",
+    "archive": "Retired: 450 nm."
+  },
+  "hard_caps": {
+    "steps": 8,
+    "synthetic_tokens": 160,
+    "local_dat": 8,
+    "modeled_joules": 1
+  }
+}

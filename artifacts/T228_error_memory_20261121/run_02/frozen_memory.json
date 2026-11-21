@@ -1,0 +1,146 @@
+[
+  {
+    "corrected": 0.8462190950990238,
+    "corrected_verdict": "VALIDA",
+    "decay": 0.3848763803960955,
+    "entry_id": "experience-0",
+    "replayed": {
+      "model_gap": 0.0,
+      "observed": 0.6151236196039045,
+      "violated": true
+    },
+    "rule_version": "ema-affine-unit-domain-v1",
+    "witness": {
+      "expected": 0.6151236196039045,
+      "property": "abs(next-state) <= 1/4",
+      "rate": 1.0,
+      "state": 0.0
+    }
+  },
+  {
+    "corrected": 0.8216983833397764,
+    "corrected_verdict": "VALIDA",
+    "decay": 0.28679353335910585,
+    "entry_id": "experience-1",
+    "replayed": {
+      "model_gap": 0.0,
+      "observed": 0.7132064666408942,
+      "violated": true
+    },
+    "rule_version": "ema-affine-unit-domain-v1",
+    "witness": {
+      "expected": 0.7132064666408942,
+      "property": "abs(next-state) <= 1/4",
+      "rate": 1.0,
+      "state": 0.0
+    }
+  },
+  {
+    "corrected": 0.8449331262112754,
+    "corrected_verdict": "VALIDA",
+    "decay": 0.3797325048451013,
+    "entry_id": "experience-2",
+    "replayed": {
+      "model_gap": 0.0,
+      "observed": 0.6202674951548988,
+      "violated": true
+    },
+    "rule_version": "ema-affine-unit-domain-v1",
+    "witness": {
+      "expected": 0.6202674951548988,
+      "property": "abs(next-state) <= 1/4",
+      "rate": 1.0,
+      "state": 0.0
+    }
+  },
+  {
+    "corrected": 0.853778835862373,
+    "corrected_verdict": "VALIDA",
+    "decay": 0.41511534344949197,
+    "entry_id": "experience-3",
+    "replayed": {
+      "model_gap": 0.0,
+      "observed": 0.584884656550508,
+      "violated": true
+    },
+    "rule_version": "ema-affine-unit-domain-v1",
+    "witness": {
+      "expected": 0.584884656550508,
+      "property": "abs(next-state) <= 1/4",
+      "rate": 1.0,
+      "state": 0.0
+    }
+  },
+  {
+    "corrected": 0.8670756797060661,
+    "corrected_verdict": "VALIDA",
+    "decay": 0.46830271882426433,
+    "entry_id": "experience-4",
+    "replayed": {
+      "model_gap": 0.0,
+      "observed": 0.5316972811757357,
+      "violated": true
+    },
+    "rule_version": "ema-affine-unit-domain-v1",
+    "witness": {
+      "expected": 0.5316972811757357,
+      "property": "abs(next-state) <= 1/4",
+      "rate": 1.0,
+      "state": 0.0
+    }
+  },
+  {
+    "corrected": 0.7607051556445394,
+    "corrected_verdict": "VALIDA",
+    "decay": 0.5214103112890789,
+    "entry_id": "experience-5",
+    "replayed": {
+      "model_gap": 0.0,
+      "observed": 0.4785896887109211,
+      "violated": true
+    },
+    "rule_version": "ema-affine-unit-domain-v1",
+    "witness": {
+      "expected": 0.4785896887109211,
+      "property": "abs(next-state) <= 1/4",
+      "rate": 1.0,
+      "state": 0.0
+    }
+  },
+  {
+    "corrected": 0.8597139280362747,
+    "corrected_verdict": "VALIDA",
+    "decay": 0.43885571214509844,
+    "entry_id": "experience-6",
+    "replayed": {
+      "model_gap": 0.0,
+      "observed": 0.5611442878549016,
+      "violated": true
+    },
+    "rule_version": "ema-affine-unit-domain-v1",
+    "witness": {
+      "expected": 0.5611442878549016,
+      "property": "abs(next-state) <= 1/4",
+      "rate": 1.0,
+      "state": 0.0
+    }
+  },
+  {
+    "corrected": 0.829727450231807,
+    "corrected_verdict": "VALIDA",
+    "decay": 0.318909800927228,
+    "entry_id": "experience-7",
+    "replayed": {
+      "model_gap": 0.0,
+      "observed": 0.681090199072772,
+      "violated": true
+    },
+    "rule_version": "ema-affine-unit-domain-v1",
+    "witness": {
+      "expected": 0.681090199072772,
+      "property": "abs(next-state) <= 1/4",
+      "rate": 1.0,
+      "state": 0.0
+    }
+  }
+]

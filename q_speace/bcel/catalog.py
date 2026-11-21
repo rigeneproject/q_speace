@@ -21,6 +21,36 @@ class BCELEquivalence:
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
     BCELEquivalence(
+        "Contextual error memory for decay selection (T229)",
+        "functional",
+        "Choose one certified EMA decay by past tracking losses for nearby observed "
+        "sensor contexts. Compare global and permuted associations on paired "
+        "synthetic episodes. The measured function is ILF tracking.",
+    ),
+    BCELEquivalence(
+        "Counterexample memory for plasticity (T228)",
+        "functional",
+        "Keep as frozen witnesses that transform new EMA-decay proposals, "
+        "independent affine verification on a bounded input domain, paired "
+        "synthetic cortex ticks and separate functional tracking measurements. "
+        "No general learning, operational promotion or physical guarantee follows.",
+    ),
+    BCELEquivalence(
+        "Error memory as biological neuroplasticity (T228)",
+        "accidental",
+        "Remove the biological or conscious interpretation: an experimental "
+        "proposal repair and a software ILF tracking task do not establish AGI, "
+        "subjective experience or biological recovery.",
+    ),
+    BCELEquivalence(
+        "Calibrated client feedback experiment (T227)",
+        "functional",
+        "Keep as prior-observation feedback, equal hard reservations, frozen "
+        "calibration selection and constructed verification with counterexamples. "
+        "Clock mapping changes pacing, not scripted task outcomes; finite fixtures "
+        "do not prove general savings, cognition or safe operational promotion.",
+    ),
+    BCELEquivalence(
         "Bounded diagnostic feedback agent (T226)",
         "functional",
         "Keep as explicit total-variation agreement, bounded pacing, pre-dispatch "

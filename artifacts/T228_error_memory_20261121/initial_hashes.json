@@ -1,0 +1,22 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "43D6E9EE9E0F72FEF0AF6EDBF71F0DC86A69E012A92F7E0C2D76E95E3DAB19CB",
+    "Path": "C:\\Users\\rober\\Desktop\\Q-SPEACE\\q_speace\\q_speace\\bcel\\catalog.py"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "78B619FB2EADB9C911152A7BE7349D72179A07638016D66BA9F6EBD0AE071E6E",
+    "Path": "C:\\Users\\rober\\Desktop\\Q-SPEACE\\q_speace\\q_speace\\cli.py"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "EAC940AE6365043CAF6B4F1A38EAAFCB4356B43B53BAD8D67BDEB39DBCDFBB24",
+    "Path": "C:\\Users\\rober\\Desktop\\Q-SPEACE\\q_speace\\q_speace\\orchestrator.py"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E1588321CE1272044D9E04B77E182D7525346CEFEEB5602C8A1E684040ACA5A4",
+    "Path": "C:\\Users\\rober\\Desktop\\Q-SPEACE\\q_speace\\q_speace\\self_improvement_cortex\\evolution_council.py"
+  }
+]

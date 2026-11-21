@@ -1,0 +1,28 @@
+{
+  "catalog_preserved_except_two_T228_entries": true,
+  "preexisting_files": {
+    "cli.py": true,
+    "orchestrator.py": true,
+    "evolution_council.py": true
+  },
+  "py_compile": {
+    "exit_code": 0,
+    "output": ""
+  },
+  "ruff_touched": {
+    "exit_code": 0,
+    "output": "All checks passed!\n"
+  },
+  "black_touched": {
+    "exit_code": 0,
+    "output": "All done! \\u2728 \\U0001f370 \\u2728\n4 files would be left unchanged.\n"
+  },
+  "mypy_touched": {
+    "exit_code": 0,
+    "output": "Success: no issues found in 4 source files\n"
+  },
+  "ruff_global": {
+    "exit_code": 1,
+    "output": "F401 [*] `.spiking_brain.SpikingBrainCognitiveInterface` imported but unused\n  --> q_speace\\cli.py:26:28\n   |\n24 | from .schumann import run_schumann, schumann_circuit\n25 | from .self_improvement_cortex import SelfImprovementCortex\n26 | from .spiking_brain import SpikingBrainCognitiveInterface, SpikingBrainCortex\n   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n27 |\n28 | app = typer.Typer(help=\"Q-SPEACE quantum layer CLI\")\n   |\nhelp: Remove unused import: `.spiking_brain.SpikingBrainCognitiveInterface`\n\nB009 [*] Do not call `getattr` with a constant attribute value. It is not any safer than normal property access.\n   --> q_speace\\orchestrator.py:215:20\n    |\n213 |         controller = self._aacm_controller\n214 |         assert controller is not None\n215 |         decision = getattr(controller, \"step\")(graph, fracture_map)\n    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n216 |         # Defensive: if a foreign controller returns a plain dict, wrap it.\n217 |         if not isinstance(decision, StepDecision):\n    |\nhelp: Replace `getattr` with attribute access\n\nFound 2 errors.\n[*] 2 fixable with the `--fix` option.\n"
+  }
+}

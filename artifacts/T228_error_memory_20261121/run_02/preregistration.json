@@ -1,0 +1,26 @@
+{
+  "commit": "055717742f7d49f49862a8e104dda08d2e04384c",
+  "config_sha256": "52c899144d0905a4be414898da35d62f8a2ad84da3ccd273bb374eccd04df68b",
+  "data": "generated synthetic, no reserved task data",
+  "dirty_status": "M q_speace/bcel/catalog.py\n M q_speace/cli.py\n M q_speace/orchestrator.py\n M q_speace/self_improvement_cortex/evolution_council.py\n?? artifacts/T227_policy_calibration_20261121/\n?? artifacts/T228_error_memory_20261121/\n?? \"docs/Questa \\303\\250 un'espansione architettura.txt\"\n?? \"docs/Stato attuale di SPEACE Cosa manca.txt\"\n?? docs/T227_T224_BIS_POLICY_CALIBRATION_SPEC.md\n?? docs/T228_ERROR_MEMORY_PLASTICITY_SPEC.md\n?? \"docs/l'Ipotesi di Riemann.txt\"\n?? q_speace/experiments/error_memory.py\n?? q_speace/experiments/error_memory_verifier.py\n?? q_speace/experiments/policy_calibration.py\n?? tests/test_t227_policy_calibration.py\n?? tests/test_t228_error_memory.py",
+  "energy": "not measured",
+  "evaluation_started": false,
+  "gpu_cuda_model": "not used",
+  "memory_sha256": "ae269a40c418a32551c32703104ba09d331966796ba55e2b36370ed371c29c3c",
+  "packages": {
+    "numpy": "2.4.4",
+    "pydantic": "2.13.3",
+    "pytest": "9.0.3"
+  },
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "sources_sha256": {
+    "docs\\T228_ERROR_MEMORY_PLASTICITY_SPEC.md": "f6d648ffccd5fc4d7c5c518f549b440c7eae31900bcf65b31b31ac14addb35fb",
+    "q_speace\\edd_cvt\\ilf.py": "8b8207a93c8275b10606ff5cc427a3aab21f59ba035026e9ee6a2b66ed3a513f",
+    "q_speace\\experiments\\error_memory.py": "5f3113ea77b1cfddbf6cb9a0dec883f8b17134813996f187c88f91b69d799840",
+    "q_speace\\experiments\\error_memory_verifier.py": "63943d2f256d9e7044005f947118a1e2f5c53967d03082b9e335ffb42b5777e4",
+    "q_speace\\spiking\\plasticity.py": "417cb75b8034316f4a655037653069b36cf66410a22210a4c34f0ed3f54528f2",
+    "q_speace\\spiking_brain\\cortex.py": "60b7e203de9a3ff5ef1177eae0ac7e813b82fa08dd44954ab70bf86dac99c036",
+    "q_speace\\spiking_brain\\types.py": "38fcd36916230db6b04144afb16437ba6ed8e9e7612c064f7475b6e91c927ab3"
+  }
+}

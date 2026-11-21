@@ -1,0 +1,65 @@
+[
+  {
+    "decay": 0.875,
+    "replay": null,
+    "verdict": {
+      "reason": "Exact affine vertex certificate on x,abs(input) in [0,1]",
+      "status": "VALIDA",
+      "witness": null
+    }
+  },
+  {
+    "decay": 0.5,
+    "replay": {
+      "model_gap": 0.0,
+      "observed": 0.5,
+      "violated": true
+    },
+    "verdict": {
+      "reason": "Exact affine vertex violates the declared step bound",
+      "status": "INVALIDA",
+      "witness": {
+        "expected": 0.5,
+        "property": "abs(next-state) <= 1/4",
+        "rate": 1.0,
+        "state": 0.0
+      }
+    }
+  },
+  {
+    "decay": 0.75,
+    "replay": null,
+    "verdict": {
+      "reason": "Exact affine vertex certificate on x,abs(input) in [0,1]",
+      "status": "VALIDA",
+      "witness": null
+    }
+  },
+  {
+    "decay": 0.7499999999999999,
+    "replay": {
+      "model_gap": 0.0,
+      "observed": 0.2500000000000001,
+      "violated": true
+    },
+    "verdict": {
+      "reason": "Exact affine vertex violates the declared step bound",
+      "status": "INVALIDA",
+      "witness": {
+        "expected": 0.2500000000000001,
+        "property": "abs(next-state) <= 1/4",
+        "rate": 1.0,
+        "state": 0.0
+      }
+    }
+  },
+  {
+    "decay": 0.7500000000000001,
+    "replay": null,
+    "verdict": {
+      "reason": "Exact affine vertex certificate on x,abs(input) in [0,1]",
+      "status": "VALIDA",
+      "witness": null
+    }
+  }
+]
