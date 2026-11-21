@@ -1,0 +1,80 @@
+{
+  "spec": "T226-v1",
+  "endpoint": "https://q-speace-mcp.onrender.com/mcp",
+  "task": {
+    "sensor_a_celsius": [
+      22,
+      85,
+      21,
+      86
+    ],
+    "reference_b_celsius": [
+      22,
+      22,
+      21,
+      22
+    ],
+    "vibration_rms_mm_s": [
+      0.12,
+      0.11,
+      0.12,
+      0.12
+    ],
+    "checksum_failure_indices": [
+      1,
+      3
+    ],
+    "classes": [
+      "normal",
+      "bearing_fault",
+      "sensor_fault"
+    ],
+    "distributions": [
+      [
+        0.05,
+        0.05,
+        0.9
+      ],
+      [
+        0.1,
+        0.1,
+        0.8
+      ]
+    ]
+  },
+  "script_sha256": "5fa329c2722d5dceebddfc73da8e5d124eb6fd131dae6c646666eaecead49e22",
+  "task_sha256": "7cbf4a6849197b00d94df52112ebf3b52d7dda8b3ec5f16fc7227b0775e02554",
+  "mcp_version": "1.30.0",
+  "tool_limit": 5,
+  "modeled_energy_limit_joules": 0.001,
+  "prediction": "sensor_fault",
+  "reference_label": "sensor_fault",
+  "reference_match": true,
+  "barycentre": [
+    0.07142857142857144,
+    0.07142857142857144,
+    0.8571428571428571
+  ],
+  "fixture_distributions": [
+    [
+      0.05,
+      0.05,
+      0.9
+    ],
+    [
+      0.1,
+      0.1,
+      0.8
+    ]
+  ],
+  "advisory": "Inspect sensor A and data integrity; no actuation.",
+  "invalid_input_recovery": true,
+  "sixth_call_refused_before_dispatch": true,
+  "tool_attempts": 5,
+  "reserved_modeled_energy_joules": 0.00030940000000000004,
+  "provider_tokens": null,
+  "measured_physical_energy_joules": null,
+  "llm_decision": "Recorded separately by the supervising LLM subagent.",
+  "status": "passed",
+  "wall_seconds": 41.0619999999999
+}

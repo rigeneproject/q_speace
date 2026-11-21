@@ -1,0 +1,21 @@
+{
+  "spec": "T226-v1",
+  "baseline_label": "sensor_fault",
+  "final_label": "sensor_fault",
+  "baseline_reason": "Sensor A high readings coincide with its checksum failures; independent reference B and vibration remain stable. Inspect sensor/data integrity rather than infer a bearing fault.",
+  "final_reason": "The actual MCP BCEL result classifies Homeostasis as functional feedback and explicitly excludes physical authorization. The declared phi=0.9 produced rate=31.6227766016838 and the client recorded 0.031622776601683784 s backoff. The modeled workload cost 0.0003094 J was reserved below its synthetic 0.001 J limit and Sevo=2 passed the declared model threshold. The KL barycentre favors sensor_fault (0.8571428571428571), agreeing with the raw-record diagnosis; this value is mathematical aggregation of predeclared fixture distributions, not calibrated diagnostic confidence or new independent evidence.",
+  "recommendation": "Recommend read-only inspection of sensor A, checksum/data path and wiring by the responsible operator. No actuation, machine stop, bearing replacement or operational promotion is authorized by this simulated record.",
+  "authority": "observe/recommend only",
+  "actual_llm": true,
+  "model_provider_usage": null,
+  "probability_provenance": "Predeclared synthetic distributions in the runner fixture; not generated or calibrated by this LLM agent.",
+  "connection_passed": true,
+  "invalid_input_recovery_passed": true,
+  "budget_refusal_passed": true,
+  "baseline_final_agreement": true,
+  "performance_conclusion": "One synthetic fixture shows interoperability, bounded execution and agreement with the baseline; no improvement in accuracy, resource efficiency, measured energy or LLM cost is established.",
+  "source_files": [
+    "summary.json",
+    "events.jsonl"
+  ]
+}

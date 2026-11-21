@@ -21,6 +21,14 @@ class BCELEquivalence:
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
     BCELEquivalence(
+        "Bounded diagnostic feedback agent (T226)",
+        "functional",
+        "Keep as explicit total-variation agreement, bounded pacing, pre-dispatch "
+        "call and modeled-energy reservations, and independent LLM interpretation "
+        "of synthetic data. Agreement is not correctness or calibrated confidence; "
+        "modeled energy is not measured LLM/server energy. No actuation or self-approval.",
+    ),
+    BCELEquivalence(
         "Remote MCP bounded advisory service (T225)",
         "functional",
         "Keep as classical authenticated message passing, per-principal admission, "
