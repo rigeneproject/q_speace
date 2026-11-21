@@ -21,6 +21,14 @@ class BCELEquivalence:
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
     BCELEquivalence(
+        "Calibrated client feedback experiment (T227)",
+        "functional",
+        "Keep as prior-observation feedback, equal hard reservations, frozen "
+        "calibration selection and constructed verification with counterexamples. "
+        "Clock mapping changes pacing, not scripted task outcomes; finite fixtures "
+        "do not prove general savings, cognition or safe operational promotion.",
+    ),
+    BCELEquivalence(
         "Bounded diagnostic feedback agent (T226)",
         "functional",
         "Keep as explicit total-variation agreement, bounded pacing, pre-dispatch "

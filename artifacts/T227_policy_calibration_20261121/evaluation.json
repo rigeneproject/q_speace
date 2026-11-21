@@ -1,0 +1,98 @@
+{
+  "study": "T227 / T224-bis",
+  "policy": {
+    "mapping": "differentiated",
+    "signal": "consecutive_errors",
+    "threshold": 5
+  },
+  "selection_digest": "38c79d57f85adf5b49f1ae0ed4ea7b7ed223ecb4b30b2d2d888f69b01fdbde90",
+  "calibration": {
+    "baseline_correct": 4,
+    "candidate_correct": 4,
+    "cases": 6,
+    "lost_completions": [],
+    "false_early_stops": [],
+    "baseline_tokens": 680,
+    "candidate_tokens": 620,
+    "saved_tokens": 60,
+    "retained_on_constructed_fixture_only": true,
+    "preventive_stops": 1
+  },
+  "verification": {
+    "baseline_correct": 5,
+    "candidate_correct": 5,
+    "cases": 7,
+    "lost_completions": [],
+    "false_early_stops": [],
+    "baseline_tokens": 840,
+    "candidate_tokens": 780,
+    "saved_tokens": 60,
+    "retained_on_constructed_fixture_only": true,
+    "preventive_stops": 1
+  },
+  "challenge": {
+    "baseline_correct": 2,
+    "candidate_correct": 1,
+    "cases": 3,
+    "lost_completions": [
+      "six_errors_recover"
+    ],
+    "false_early_stops": [
+      "six_errors_recover"
+    ],
+    "baseline_tokens": 460,
+    "candidate_tokens": 360,
+    "saved_tokens": 100,
+    "retained_on_constructed_fixture_only": false,
+    "preventive_stops": 2
+  },
+  "combined": {
+    "baseline_correct": 7,
+    "candidate_correct": 6,
+    "cases": 10,
+    "lost_completions": [
+      "challenge:six_errors_recover"
+    ],
+    "false_early_stops": [
+      "challenge:six_errors_recover"
+    ],
+    "baseline_tokens": 1300,
+    "candidate_tokens": 1140,
+    "saved_tokens": 160,
+    "retained_on_constructed_fixture_only": false,
+    "preventive_stops": 3
+  },
+  "decision": "not_promoted: challenge completion loss; retained only inside the declared constructed verification envelope",
+  "mapping_ablation": {
+    "legacy": {
+      "synthetic_tokens": 620,
+      "correct": 4,
+      "planned_sleep_seconds": 1.51153674711287
+    },
+    "differentiated": {
+      "synthetic_tokens": 620,
+      "correct": 4,
+      "planned_sleep_seconds": 1.1586001832952988
+    }
+  },
+  "quality": {
+    "full_suite_passed": 633,
+    "skipped": 3,
+    "coverage_percent": 82.65,
+    "focused_tests": 7,
+    "touched_black_ruff_mypy_py_compile": "passed",
+    "isolated_publication_candidate": {
+      "passed": 630,
+      "skipped": 3,
+      "coverage_percent": 82.67,
+      "global_ruff": "passed"
+    }
+  },
+  "limitations": [
+    "scripted synthetic task, no LLM",
+    "constructed split, not independently sampled or blinded data",
+    "token and DAT counts are synthetic, no real billing/energy savings",
+    "MCP and sleep increase measured latency",
+    "original T224 negative result and defaults unchanged"
+  ]
+}
