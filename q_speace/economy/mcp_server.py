@@ -1,6 +1,6 @@
 """MCP server wrapper for the q_speace_economy primitives (T6.11).
 
-Exposes the 6 core primitives as Model Context Protocol (MCP) tools:
+Exposes the economic primitives and clock, cost, and BCEL queries as Model Context Protocol (MCP) tools:
 
 - ``compute_jc``       — build a :class:`J_c` 5-tuple from telemetry
 - ``kl_barycentre_aggregate`` — KL-barycentre of N distributions
@@ -15,10 +15,9 @@ The server runs in two modes:
 1. **stdio** (default for MCP) — ``python -m q_speace.economy.mcp_server``
 2. **self-test** — ``python -m q_speace.economy.mcp_server --self-test``
 
-The stdio mode reads newline-delimited JSON-RPC 2.0 messages from
-stdin and writes responses to stdout. The schema is intentionally
-minimal — we implement the JSON-RPC ``method`` / ``params`` / ``result``
-fields only, not the full MCP framing.
+The stdio transport supports MCP 2025-03-26 and 2024-11-05 lifecycle,
+tool schemas and text-content results. Direct method calls remain a legacy
+JSON-RPC interface. DAT balances are process-local simulation state only.
 
 BCEL: the MCP server is *functional*: each tool is a deterministic
 function on the SPEACE primitives. None of the tools is a "decision"
@@ -30,12 +29,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 from collections.abc import Sequence
-from dataclasses import dataclass
-from typing import Any
+from dataclasses import asdict, dataclass
+from typing import Any, Literal
 
 import numpy as np
+from pydantic import ConfigDict, Field, create_model
+
+from q_speace.bcel.catalog import BCELCatalog
+from q_speace.edd_cvt.ilf import InformationalLogicalField
+from q_speace.metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
 
 from .aggregation import aggregate
 from .dat import DAT
@@ -97,7 +102,176 @@ TOOL_REGISTRY: tuple[ToolSpec, ...] = (
         description="ACCEPT/REJECT gate for an external standard. Params: {claim, external, tol?}",
         handler="_handle_elasticity_test",
     ),
+    ToolSpec(
+        "adaptive_clock_rate",
+        "Compute a clock-rate proxy; does not schedule execution.",
+        "_handle_adaptive_clock_rate",
+    ),
+    ToolSpec(
+        "metabolism_cost_eval",
+        "Estimate power, energy and Sevo; not physical telemetry or spending authorization.",
+        "_handle_metabolism_cost_eval",
+    ),
+    ToolSpec(
+        "bcel_lookup",
+        "Read BCEL equivalences; not code verification or release approval.",
+        "_handle_bcel_lookup",
+    ),
 )
+
+
+# Models supply both runtime validation and discovery JSON Schemas.
+_NUMBER = (float, ...)
+_VECTOR = (list[float], ...)
+_CONSTRAINT_FIELDS: dict[str, Any] = dict.fromkeys(
+    (
+        "s_assimilable",
+        "e_available",
+        "m_available",
+        "ecological_threshold",
+        "risk_acceptable",
+        "human_agency_min",
+    ),
+    _NUMBER,
+)
+_ConstraintsInput = create_model(
+    "ConstraintsInput",
+    __config__=ConfigDict(extra="forbid", allow_inf_nan=False),
+    **_CONSTRAINT_FIELDS,
+)
+_ClaimInput = create_model(
+    "ClaimInput",
+    __config__=ConfigDict(extra="forbid", allow_inf_nan=False),
+    claim_id=(str, ...),
+    trajectory=_VECTOR,
+    claim_threshold=_NUMBER,
+)
+_ExternalInput = create_model(
+    "ExternalInput",
+    __config__=ConfigDict(extra="forbid", allow_inf_nan=False),
+    standard_id=(str, ...),
+    trajectory=_VECTOR,
+    threshold=_NUMBER,
+)
+_SCHEMAS: dict[str, dict[str, Any]] = {
+    "compute_jc": {
+        **dict.fromkeys(("J", "delta_S", "delta_I_c", "R_b", "delta_C"), _NUMBER),
+        "measured_components": (int, 5),
+        "total_components": (int, 5),
+        "metadata": (dict[str, Any] | None, None),
+    },
+    "kl_barycentre_aggregate": {
+        "distributions": (list[list[float]], ...),
+        "weights": (list[float] | None, None),
+        "max_iter": (int, Field(default=100, ge=1, le=10000)),
+        "tol": (float, Field(default=1e-8, gt=0)),
+    },
+    "vtec_allocate": {
+        "objective_kind": (Literal["sum", "centered"], "sum"),
+        "u_max": _VECTOR,
+        "constraints": (_ConstraintsInput, ...),
+        "horizon": (tuple[int, int], (50, 50)),
+        "lr": (float, Field(default=0.01, gt=0)),
+        "human_mask": (list[bool] | None, None),
+    },
+    "cme_evaluate": dict.fromkeys(
+        (
+            "energy",
+            "matter",
+            "information",
+            "time",
+            "ecology",
+            "resilience",
+            "wellbeing",
+            "innovation",
+            "reversibility",
+            "distribution",
+            "coherence",
+            "regeneration",
+        ),
+        _NUMBER,
+    ),
+    "dat_mint": {
+        "amount": (float, Field(ge=0)),
+        "bound_to": (str, ...),
+        "decay_half_life": (float, Field(gt=0)),
+        "mint_time": _NUMBER,
+        "token_id": (str | None, None),
+        "metadata": (dict[str, Any] | None, None),
+    },
+    "dat_spend": {
+        "token_id": (str, ...),
+        "amount": (float, Field(ge=0)),
+        "target": (str, ...),
+        "t": _NUMBER,
+    },
+    "elasticity_test": {
+        "claim": (_ClaimInput, ...),
+        "external": (_ExternalInput, ...),
+        "tol": (float, Field(default=0.05, ge=0)),
+    },
+    "adaptive_clock_rate": {"coherence_phi": (float, Field(ge=0, le=1))},
+    "metabolism_cost_eval": {
+        "num_qubits": (int, Field(ge=0, strict=True)),
+        "num_gates": (int, Field(ge=0, strict=True)),
+        "entanglement_depth": (int, Field(default=0, ge=0)),
+        "decoherence_budget": (float, Field(default=0, ge=0, le=1)),
+        "num_spikes": (int, Field(default=0, ge=0)),
+        "duration_s": (float, Field(default=1, ge=0)),
+        "delta_utility": _NUMBER,
+        "delta_entropy_info": _NUMBER,
+        "sevo_threshold": (float, 1.5),
+    },
+    "bcel_lookup": {"concept": (str | None, None)},
+}
+_INPUT_MODELS = {
+    name: create_model(
+        name + "Input", __config__=ConfigDict(extra="forbid", allow_inf_nan=False), **fields
+    )
+    for name, fields in _SCHEMAS.items()
+}
+
+
+def _handle_adaptive_clock_rate(params: dict[str, Any]) -> dict[str, Any]:
+    field = InformationalLogicalField(coherence_phi=params["coherence_phi"])
+    return {
+        "coherence_phi": field.coherence_phi,
+        "s_info": field.s_info,
+        "rate": field.adaptive_clock_rate(),
+    }
+
+
+def _handle_metabolism_cost_eval(params: dict[str, Any]) -> dict[str, Any]:
+    model = QuantumCostModel()
+    op = QuantumOperation(
+        **{
+            key: params.get(key, 0)
+            for key in (
+                "num_qubits",
+                "num_gates",
+                "entanglement_depth",
+                "decoherence_budget",
+                "num_spikes",
+            )
+        }
+    )
+    utility, entropy = params["delta_utility"], params["delta_entropy_info"]
+    sevo = model.sevo(utility, entropy)
+    return {
+        "estimated_power_watts": model.energy_watts(op),
+        "estimated_energy_joules": model.energy_joules(op, params.get("duration_s", 1.0)),
+        "sevo": sevo if math.isfinite(sevo) else None,
+        "sevo_defined": math.isfinite(sevo),
+        "passes_sevo": model.passes_sevo(utility, entropy, params.get("sevo_threshold", 1.5)),
+        "estimate_only": True,
+    }
+
+
+def _handle_bcel_lookup(params: dict[str, Any]) -> dict[str, Any]:
+    catalog = BCELCatalog()
+    concept = params.get("concept")
+    entries = [catalog.get(concept)] if concept is not None else catalog.all()
+    return {"entries": [asdict(entry) for entry in entries]}
 
 
 # ---------------------------------------------------------------------------
@@ -290,9 +464,16 @@ def _dispatch(method: str, params: dict[str, Any]) -> dict[str, Any]:
     raise ValueError(f"unknown method: {method!r}")
 
 
-def list_tools() -> list[dict[str, str]]:
+def list_tools() -> list[dict[str, Any]]:
     """Return the list of registered tools (for MCP discovery)."""
-    return [{"name": s.name, "description": s.description} for s in TOOL_REGISTRY]
+    return [
+        {
+            "name": s.name,
+            "description": s.description,
+            "inputSchema": _INPUT_MODELS[s.name].model_json_schema(),
+        }
+        for s in TOOL_REGISTRY
+    ]
 
 
 # ---------------------------------------------------------------------------
@@ -413,7 +594,16 @@ def _self_test() -> int:
         for f in failures:
             print(f"  FAIL: {f}")
         return 1
-    print("[mcp_server] all 7 tools green")
+    for name, arguments in (
+        ("adaptive_clock_rate", {"coherence_phi": 0.5}),
+        (
+            "metabolism_cost_eval",
+            {"num_qubits": 1, "num_gates": 1, "delta_utility": 2.0, "delta_entropy_info": 1.0},
+        ),
+        ("bcel_lookup", {}),
+    ):
+        _dispatch(name, arguments)
+    print("[mcp_server] all 10 tools green")
     return 0
 
 
@@ -422,61 +612,142 @@ def _self_test() -> int:
 # ---------------------------------------------------------------------------
 
 
+SUPPORTED_PROTOCOL_VERSIONS = ("2025-03-26", "2024-11-05")
+
+
+def _reject_constant(value: str) -> None:
+    raise ValueError(f"Non-JSON numeric constant: {value}")
+
+
 def _stdio_loop() -> int:
-    """Read newline-delimited JSON-RPC 2.0 from stdin, write to stdout."""
+    """Serve one process-local stdio session; stdout contains JSON-RPC only.
+
+    Before initialize, legacy direct calls and discovery remain supported.
+    Once initialize is received, tool operations require initialized notification.
+    """
+    initializing = False
+    ready = False
     for raw in sys.stdin:
-        raw = raw.strip()
-        if not raw:
+        if not raw.strip():
             continue
+        rpc_id: Any = None
         try:
-            msg = json.loads(raw)
-        except json.JSONDecodeError as e:
-            sys.stdout.write(
-                json.dumps(
-                    {
-                        "jsonrpc": "2.0",
-                        "id": None,
-                        "error": {"code": -32700, "message": f"parse error: {e}"},
-                    }
+            msg = json.loads(raw, parse_constant=_reject_constant)
+        except ValueError as exc:
+            response = {
+                "jsonrpc": "2.0",
+                "id": None,
+                "error": {"code": -32700, "message": str(exc)},
+            }
+        else:
+            if (
+                not isinstance(msg, dict)
+                or msg.get("jsonrpc") != "2.0"
+                or not isinstance(msg.get("method"), str)
+                or (
+                    "id" in msg
+                    and (isinstance(msg["id"], bool) or not isinstance(msg["id"], (str, int)))
                 )
-                + "\n"
-            )
-            sys.stdout.flush()
-            continue
-        rpc_id = msg.get("id")
-        method = msg.get("method")
-        params = msg.get("params") or {}
-        try:
-            if method == "tools/list":
-                result: Any = {"tools": list_tools()}
-            elif method == "tools/call":
-                # MCP framing: params = {"name": ..., "arguments": ...}
-                inner_name = params["name"]
-                inner_args = params.get("arguments") or {}
-                result = _dispatch(inner_name, inner_args)
+            ):
+                response = {
+                    "jsonrpc": "2.0",
+                    "id": None,
+                    "error": {"code": -32600, "message": "Invalid request"},
+                }
             else:
-                result = _dispatch(method, params)
-            sys.stdout.write(
-                json.dumps(
-                    {
+                method = msg["method"]
+                # JSON-RPC notifications never receive a response or invoke tools.
+                if "id" not in msg:
+                    if method == "notifications/initialized" and initializing:
+                        ready = True
+                    continue
+                rpc_id = msg["id"]
+                params = msg.get("params", {})
+                code = -32602
+                try:
+                    if not isinstance(params, dict):
+                        raise ValueError("params must be an object")
+                    if method == "initialize":
+                        if initializing:
+                            raise ValueError("Session already initialized")
+                        if (
+                            not isinstance(params.get("protocolVersion"), str)
+                            or not isinstance(params.get("capabilities"), dict)
+                            or not isinstance(params.get("clientInfo"), dict)
+                        ):
+                            raise ValueError(
+                                "initialize requires protocolVersion, capabilities and clientInfo"
+                            )
+                        requested = params["protocolVersion"]
+                        version = (
+                            requested
+                            if requested in SUPPORTED_PROTOCOL_VERSIONS
+                            else SUPPORTED_PROTOCOL_VERSIONS[0]
+                        )
+                        result: Any = {
+                            "protocolVersion": version,
+                            "capabilities": {"tools": {}},
+                            "serverInfo": {"name": "q-speace-mcp", "version": "0.1.0"},
+                        }
+                        initializing = True
+                    elif method == "ping":
+                        result = {}
+                    elif initializing and not ready:
+                        raise ValueError("Awaiting notifications/initialized")
+                    elif method == "tools/list":
+                        if params.get("cursor") is not None:
+                            raise ValueError("No pagination cursors are issued by this server")
+                        result = {"tools": list_tools()}
+                    elif method == "tools/call":
+                        name = params.get("name")
+                        if not isinstance(name, str) or name not in _INPUT_MODELS:
+                            raise ValueError("Unknown tool")
+                        arguments = params.get("arguments", {})
+                        if not isinstance(arguments, dict):
+                            raise ValueError("arguments must be an object")
+                        try:
+                            validated = (
+                                _INPUT_MODELS[name]
+                                .model_validate(arguments)
+                                .model_dump(exclude_unset=True)
+                            )
+                            output = _dispatch(name, validated)
+                            content = json.dumps(output, allow_nan=False)
+                            result = {
+                                "content": [{"type": "text", "text": content}],
+                                "isError": False,
+                            }
+                        except (ValueError, KeyError, TypeError, OverflowError) as exc:
+                            result = {
+                                "content": [{"type": "text", "text": str(exc)}],
+                                "isError": True,
+                            }
+                    elif method in _INPUT_MODELS:
+                        validated = (
+                            _INPUT_MODELS[method]
+                            .model_validate(params)
+                            .model_dump(exclude_unset=True)
+                        )
+                        result = _dispatch(method, validated)
+                    else:
+                        code = -32601
+                        raise ValueError("Method not found")
+                    # Serialize before writing, so invalid outputs cannot break framing.
+                    json.dumps(result, allow_nan=False)
+                    response = {"jsonrpc": "2.0", "id": rpc_id, "result": result}
+                except (ValueError, KeyError, TypeError, OverflowError) as exc:
+                    response = {
                         "jsonrpc": "2.0",
                         "id": rpc_id,
-                        "result": result,
+                        "error": {"code": code, "message": str(exc)},
                     }
-                )
-                + "\n"
-            )
-        except Exception as e:
-            sys.stdout.write(
-                json.dumps(
-                    {
+                except Exception:
+                    response = {
                         "jsonrpc": "2.0",
                         "id": rpc_id,
-                        "error": {"code": -32603, "message": f"{type(e).__name__}: {e}"},
+                        "error": {"code": -32603, "message": "Internal server error"},
                     }
-                )
-                + "\n"
-            )
+        sys.stdout.write(json.dumps(response, allow_nan=False) + "\n")
         sys.stdout.flush()
     return 0
 

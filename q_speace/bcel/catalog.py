@@ -21,6 +21,15 @@ class BCELEquivalence:
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
     BCELEquivalence(
+        "MCP homeostatic primitive adapter (T223)",
+        "functional",
+        "Keep as classical JSON-RPC transport for clock proxies, estimated costs "
+        "and read-only equivalence queries. DAT is process-local simulated "
+        "accounting; scheduling, hard external budgets, and independent release "
+        "approval remain client responsibilities. No consciousness, quantum "
+        "communication, physical energy guarantee, or actuation is implied.",
+    ),
+    BCELEquivalence(
         "Entanglement (cell/planet communication)",
         "accidental",
         "Replaced by explicit message-passing; entanglement is a computational "

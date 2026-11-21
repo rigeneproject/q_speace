@@ -29,7 +29,7 @@ from q_speace.economy.mcp_server import (
 # ---------------------------------------------------------------------------
 
 
-def test_tool_registry_has_seven_tools() -> None:
+def test_tool_registry_has_ten_tools() -> None:
     names = {s.name for s in TOOL_REGISTRY}
     assert names == {
         "compute_jc",
@@ -39,12 +39,15 @@ def test_tool_registry_has_seven_tools() -> None:
         "dat_mint",
         "dat_spend",
         "elasticity_test",
+        "adaptive_clock_rate",
+        "metabolism_cost_eval",
+        "bcel_lookup",
     }
 
 
 def test_list_tools_returns_all() -> None:
     tools = list_tools()
-    assert len(tools) == 7
+    assert len(tools) == 10
     assert all("name" in t and "description" in t for t in tools)
 
 
@@ -236,7 +239,7 @@ def test_stdio_loop_tools_list() -> None:
         sys.stdout = saved_stdout
     response = json.loads(out.strip().split("\n")[-1])
     assert response["id"] == "list"
-    assert len(response["result"]["tools"]) == 7
+    assert len(response["result"]["tools"]) == 10
 
 
 def test_stdio_loop_parse_error() -> None:
@@ -266,7 +269,7 @@ def test_main_self_test_returns_zero(capsys: pytest.CaptureFixture[str]) -> None
     rc = main(["--self-test"])
     captured = capsys.readouterr()
     assert rc == 0
-    assert "all 7 tools green" in captured.out
+    assert "all 10 tools green" in captured.out
 
 
 def test_main_self_test_subprocess() -> None:
@@ -280,4 +283,4 @@ def test_main_self_test_subprocess() -> None:
         timeout=30,
     )
     assert result.returncode == 0, f"stderr={result.stderr}"
-    assert "all 7 tools green" in result.stdout
+    assert "all 10 tools green" in result.stdout

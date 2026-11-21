@@ -25,6 +25,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+mcp = ["mcp>=1,<2"]
 qiskit = ["qiskit>=1.0", "qiskit-aer>=0.13"]
 quantum-inspire = ["quantum-inspire-sdk>=1.0"]
 dev = [
