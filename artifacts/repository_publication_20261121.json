@@ -1,0 +1,354 @@
+{
+  "date": "2026-11-21",
+  "repository": "rigeneproject/q_speace",
+  "candidate_parent": "1b401911af6bf4d7b744f7d753291e55de342e93",
+  "pdf_status": "original v2.0 preserved byte-for-byte; corrections in separate errata and T225",
+  "pdf_sha256": "f585253fe4e81e01a383d3ed0b57a3595708b5ad69dc2fff497aad8254a31149",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "bytes": 194,
+      "local_sha256": "6080b7120039f70c3bc0603d2637027e6b12a094ff35b36bea5ff157106e21f2",
+      "canonical_text_sha256": "0e03aa0390cd959151ea3d7b50a9fd9f6b6fa808405add3dcc44d138cf8e6384"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 409,
+      "local_sha256": "3cb9b394ddc5e2c32a6a16556302a03c0ee95de562caa37eb5cc6840d232a1ff",
+      "canonical_text_sha256": "272cbd519fbb333d7df558bcd286a031b72fb5930fd12165143605a108b6ac13"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5265,
+      "local_sha256": "1186ab6f4aad461a95f798560c906818b249a400a35f766f7dad42b4ef2b3964",
+      "canonical_text_sha256": "5144d88efa5715448a0192b9c5a8c5acc935af75604ad6efab7e7b11fa6c9a91"
+    },
+    {
+      "path": "artifacts/T224_budget_check_20261121/events.jsonl",
+      "bytes": 33742,
+      "local_sha256": "8572e26f65425db0e267cc30c9ff1b7094f1986ac184395f8c616e879b817b58",
+      "canonical_text_sha256": "405f325649f3322b4a5225269c1f2bc11b3f5c1ccdf26366da258857ad6626a6"
+    },
+    {
+      "path": "artifacts/T224_budget_check_20261121/manifest.json",
+      "bytes": 3789,
+      "local_sha256": "845108e81a134f75f701defa510717a164fe449a7b1a98d0968e838d17bbd678",
+      "canonical_text_sha256": "780a0d06b42896bfed8f8c8cf973c2a1ad66b20839ca651837236899d6a635f3"
+    },
+    {
+      "path": "artifacts/T224_budget_check_20261121/summary.json",
+      "bytes": 5673,
+      "local_sha256": "14aa7ebd86ce355d3f47ce434febca78440e471b9330f90a43f62c00ad0281b5",
+      "canonical_text_sha256": "30cb2cbf690f267d24a2ac0e6f3bec9f04ba622135183c208f5ce76f7a1d969e"
+    },
+    {
+      "path": "artifacts/T224_default_20261121/events.jsonl",
+      "bytes": 39338,
+      "local_sha256": "5a833650f178824362ac911d3a86321a3a880de934a42fecea48b77f208a66b3",
+      "canonical_text_sha256": "86971f4ec79aaf918bde294f5abf6a0cc69ec473f5817a3b5ca0a1a2f82da5c4"
+    },
+    {
+      "path": "artifacts/T224_default_20261121/manifest.json",
+      "bytes": 3788,
+      "local_sha256": "76becb9f2c1670de5585cd2a29cae8f582ff978b836f86e57f67eecdcbf1ef6a",
+      "canonical_text_sha256": "2ac658d125c4ed395415d008c3dbc5cd7341fc7f42cbf5e659e62ed6be789efd"
+    },
+    {
+      "path": "artifacts/T224_default_20261121/summary.json",
+      "bytes": 5583,
+      "local_sha256": "d2c4bd4e5eca58458d7da51e291ae2740c7591c81dfcf2f1b0c618d010fe1e87",
+      "canonical_text_sha256": "b0899dc7dac25076e540f581a79331ec6103ddb9478eadac2c2dfdf68fd0527d"
+    },
+    {
+      "path": "artifacts/T224_default_final_20261121/events.jsonl",
+      "bytes": 39337,
+      "local_sha256": "505967b4cd27a7f38542ff9b186b8e4e28cc0169cbb54bbfc1a7e32748f788eb",
+      "canonical_text_sha256": "864940da28e5accff9d9944e70ec025dd2847aa74f7ec0b26a92966a1035f350"
+    },
+    {
+      "path": "artifacts/T224_default_final_20261121/manifest.json",
+      "bytes": 3788,
+      "local_sha256": "7720c20d083273f9be98c0512f48cb5b16abc1fb8e55c168eafb85ec36b541ec",
+      "canonical_text_sha256": "c3c980caca56a405321b5cc96f4f28dae3951504cc51dbc63ce252755c137a5d"
+    },
+    {
+      "path": "artifacts/T224_default_final_20261121/summary.json",
+      "bytes": 5654,
+      "local_sha256": "489a11f60b41fdb9a7db55b4a076747562bda768825e127d9a8f1f4cd6367d26",
+      "canonical_text_sha256": "47a7155aba2360e2140e6cef9b74c4dd42540a97e1a83956a3653ed642ba6bb9"
+    },
+    {
+      "path": "artifacts/T225_http_verification_20261121.json",
+      "bytes": 1420,
+      "local_sha256": "0169ec0626f95af5d10f42deeedd6eb4e7ca52afb1a6f36e4da24f8189d73abc",
+      "canonical_text_sha256": "179ca91b080e9323534fd6dab6d31b7ac894e47236d8e227e3983c4956fdbcb8"
+    },
+    {
+      "path": "artifacts/T226_online_agent_20261121/events.jsonl",
+      "bytes": 2100,
+      "local_sha256": "270e70f756fd398b0cb48b51d54121d1e4dc1841656f0ad684559a5d2135fe33",
+      "canonical_text_sha256": "f3c52c33ec49cd14c32ff43e829c58eb0eca0217af0ab984432f0518302f5837"
+    },
+    {
+      "path": "artifacts/T226_online_agent_20261121/llm_advisory.json",
+      "bytes": 1837,
+      "local_sha256": "a8627384ab11c431e1e85ddb4b69ef0708b262168ec9a987f4fb7d6223a1fc21",
+      "canonical_text_sha256": "da325903eec5b58387f4fd2cdb30f9846b165b45f0043da1557077a4116f1e29"
+    },
+    {
+      "path": "artifacts/T226_online_agent_20261121/summary.json",
+      "bytes": 1694,
+      "local_sha256": "a659d68f67e8cc67a4a8ef0f7cfe1c99a4598b7a4a08385b2ec05768a89c6098",
+      "canonical_text_sha256": "6e83d600af438f73b1018cb3f840e58b978862bd3d6c1f0f8680bfad4161b642"
+    },
+    {
+      "path": "artifacts/github_mcp_connection_20261121.json",
+      "bytes": 1441,
+      "local_sha256": "0eef17a987e746f0d9205276fec083c1206c79aad8e7b01b7b4ac01a8add90b4",
+      "canonical_text_sha256": "6fc579ac21ae992e75c99bdb14a77450446d1b4e8a30d0857e37863a09db86e6"
+    },
+    {
+      "path": "deploy/mcp/Dockerfile",
+      "bytes": 486,
+      "local_sha256": "808a23aa4f18d495dd9315764ca8a0b0737a7868e44c4d868c49b27f125d293c",
+      "canonical_text_sha256": "d98d6b2fe2b0e582121c52284f545ec5b118017552f1bc0f3555535a63c14b26"
+    },
+    {
+      "path": "deploy/mcp/entrypoint.py",
+      "bytes": 862,
+      "local_sha256": "057c4e49a638b045c7b6396f9a2f26807f35e871b6124a423103fe9fd52b775c",
+      "canonical_text_sha256": "057c4e49a638b045c7b6396f9a2f26807f35e871b6124a423103fe9fd52b775c"
+    },
+    {
+      "path": "deploy/mcp/render.yaml",
+      "bytes": 424,
+      "local_sha256": "cc7e192e6130dee9af3356ad286ead503dc161e93ce886f20c347fd3487fb927",
+      "canonical_text_sha256": "2407f8c4a31293087d3da756a542991193c7217986d52fcb1193ed0c5752f1ae"
+    },
+    {
+      "path": "docs/PARADIGM_6_0_V2_0_ERRATA.md",
+      "bytes": 11938,
+      "local_sha256": "04dbf6de25c166bef0769c8607dd5ec4fa6b5c44da187c45fc8811b00cae4a26",
+      "canonical_text_sha256": "2505ad2cc3ba09d6cdd2f54d8f756eb9138d015b67ceb9bdf6620eab39fb3446"
+    },
+    {
+      "path": "docs/Paradigm_6.0_Manifesto_v2.0_Technical_Edition.pdf",
+      "bytes": 198810,
+      "local_sha256": "f585253fe4e81e01a383d3ed0b57a3595708b5ad69dc2fff497aad8254a31149",
+      "canonical_text_sha256": null
+    },
+    {
+      "path": "docs/T218_QSPEACE_V0_BRIDGE_SPEC.md",
+      "bytes": 23952,
+      "local_sha256": "354298b694c90b0746dcc31408a54da1b068901448df5d2f35d9f1a8535ea795",
+      "canonical_text_sha256": "3a3b0b522f79e818293ec3d010abfd062f6974216cea9d724b5e0587889e75b3"
+    },
+    {
+      "path": "docs/T223_MCP_PRIMITIVE_ADAPTER_SPEC.md",
+      "bytes": 6351,
+      "local_sha256": "be8cf9ce1008f2930bd2370902efb6be4abbac5e55cb36e6271e223c7caa95ff",
+      "canonical_text_sha256": "2df128950b2e188127a13d0628b9723b915e98c89eee62d5377a07c313c9c99a"
+    },
+    {
+      "path": "docs/T224_MCP_REGULATION_EXPERIMENT_SPEC.md",
+      "bytes": 7974,
+      "local_sha256": "85a28bd37349e680fa7f1e78b492560bb8e7cdb5a39338e25b26194c74f1f31f",
+      "canonical_text_sha256": "3f4f2598fbb5b603ad6ef97d1532d6ba7a28f7a13fd096826311d9a047a57442"
+    },
+    {
+      "path": "docs/T225_AGENT_CONNECTION_GUIDE_EN.md",
+      "bytes": 16383,
+      "local_sha256": "8ee958b60905a82016a4a0614f5afcc8afcaa6bcdf9fe0ceec9f029efb9c9ebb",
+      "canonical_text_sha256": "bb70e94ff7672f1bc69373cea9e738f1aa6bfd0daf6f9316d23efd9ac969c3f6"
+    },
+    {
+      "path": "docs/T225_REMOTE_MCP_SERVICE_SPEC.md",
+      "bytes": 31938,
+      "local_sha256": "a9aca194cd4e5389f6cd5965fa02cda8ce65eb2f04554cc7c1f074d9a9781ee2",
+      "canonical_text_sha256": "ac27863ed3400cadc5e1afa1237f9c3f8aff0d69028aa45bb1563bbffe756e18"
+    },
+    {
+      "path": "docs/T226_AGENT_MCP_CONNECTION_EXPERIMENT_SPEC.md",
+      "bytes": 6130,
+      "local_sha256": "fff4b7aa3615e3c0dec984174d325072cbfdb97943a767800a2c8b162c8160a0",
+      "canonical_text_sha256": "7d911b6dd4decd065d93cebd8b55a87ffa7c0e85f70534866d3ecec2452137ba"
+    },
+    {
+      "path": "examples/__init__.py",
+      "bytes": 47,
+      "local_sha256": "570b3eff11502ea64c11cfb315e6a183423b129477aa4f20a3ffb8724e1bf26a",
+      "canonical_text_sha256": "0788f52c4408f806bc2b1ca126b71c16b18826f13a9c8c6d2103e327cb905e6a"
+    },
+    {
+      "path": "examples/mcp_http_client.py",
+      "bytes": 2247,
+      "local_sha256": "58dae41eb203e2a06997d3271cb9b0dd0f0a2eb9790ec5b6be6dff626fa0063b",
+      "canonical_text_sha256": "de7aec291f0b7fd4403a165af7eb0cf6a1459ba18901b37f013895833271db3e"
+    },
+    {
+      "path": "examples/mcp_http_config_from_jwks.py",
+      "bytes": 3216,
+      "local_sha256": "f901f594ef19edc8c008844800dce4e140160aaba17e0a9c63d5b4576131561d",
+      "canonical_text_sha256": "81309157f366d11fda111a9a2db21c5c39a98111e0c8bbaf37b13ca2206f4fb4"
+    },
+    {
+      "path": "examples/mcp_http_dev_setup.py",
+      "bytes": 2129,
+      "local_sha256": "cbf6e1d031fa1654d41f00da2a0657d277379064cdcb1b3f92fd9e1ba9332fbe",
+      "canonical_text_sha256": "cbf6e1d031fa1654d41f00da2a0657d277379064cdcb1b3f92fd9e1ba9332fbe"
+    },
+    {
+      "path": "llms.txt",
+      "bytes": 3481,
+      "local_sha256": "d2cafb7e32b652266e9a02c93c20f136c95ba28f39d8f1583c54a0f67b72b43c",
+      "canonical_text_sha256": "51883048dcce9d5f63675996d5007b349d8589121ec1284e3df09ebe4bbcba7a"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 1973,
+      "local_sha256": "9fab4a0e2f745108b20e5e8077db307db9490683af715443ac719abbb375c525",
+      "canonical_text_sha256": "60b657cd3ff92628ac91bc5ecaf03713ed9cec1f61c38bc501c89b48bd3e4cdc"
+    },
+    {
+      "path": "q_speace/bcel/catalog.py",
+      "bytes": 17881,
+      "local_sha256": "3c7c93b22bdcb310326e4a7793e1c850bf513771233cfca3171ec5241e233ac1",
+      "canonical_text_sha256": "8ee7af20c38f194f1816bca823cd1ffb137759dab13b81b17b2dde732c6a3559"
+    },
+    {
+      "path": "q_speace/bridge/microgrid.py",
+      "bytes": 15501,
+      "local_sha256": "f76af34f564a57eca348a6ef79e24298268ffb3fd7f9ef655ca00bf3b04839ee",
+      "canonical_text_sha256": "0c706a492dcaa3a5dfb2979acf2410c3f979c7933b5a58b2f66fb09868edb27e"
+    },
+    {
+      "path": "q_speace/bridge/protocol.py",
+      "bytes": 23414,
+      "local_sha256": "25ec175ce1d40e67b88aa515ed7a1a0eca251d4e9d56e8e59a0ca3b195dc5e0a",
+      "canonical_text_sha256": "6f845bac465f2a9cc30703f52519fb710f99b830b8f5bb6ab6e6d9276afcd900"
+    },
+    {
+      "path": "q_speace/bridge/validator.py",
+      "bytes": 6619,
+      "local_sha256": "1b313beb3a3dd76f60db3321963543287a02f12f8067b0f007079987343ee4e5",
+      "canonical_text_sha256": "29fd21bd3ea9b7f71ef13d92755b18b9c07a293dfc438a5fb46763f749401f75"
+    },
+    {
+      "path": "q_speace/experiments/__init__.py",
+      "bytes": 73,
+      "local_sha256": "a97b1facc4eecb52b68660453b2eff75c5631a9fd4df021b485fee6998ffcae0",
+      "canonical_text_sha256": "fb039b9e675dadbfcb03893c681bc7acaa0a622ccc48e6e2a45dde7cbad83967"
+    },
+    {
+      "path": "q_speace/experiments/mcp_regulation.py",
+      "bytes": 21922,
+      "local_sha256": "8a78d31e7767d9bfbba0a201c45797138006b7ea7afb8a81ae5aa686841d7411",
+      "canonical_text_sha256": "bb0d5d0c9d7fa09bf859fca2a2dd95aa44a3f0eec42601fec3202b4ea993d2c2"
+    },
+    {
+      "path": "q_speace/experiments/online_agent.py",
+      "bytes": 9505,
+      "local_sha256": "5fa329c2722d5dceebddfc73da8e5d124eb6fd131dae6c646666eaecead49e22",
+      "canonical_text_sha256": "22a7b0f62f62eeef53fb01383162a648ccaac09336023c8b4ae0cfddb2c4e9dd"
+    },
+    {
+      "path": "q_speace/quantum/backends/qiskit_backend.py",
+      "bytes": 3896,
+      "local_sha256": "6da6cdfc00d245c835216a19d1d17c7d799f599a26fd684933fc5e89e63893ed",
+      "canonical_text_sha256": "897b9c9df1e94770580971bab3ecf65020e07afe9bcabc8e70efa9dc9e728b19"
+    },
+    {
+      "path": "q_speace/quantum/backends/quantum_inspire_backend.py",
+      "bytes": 5249,
+      "local_sha256": "345f4634f2dec0646cd6e9ad3d66b3deca97e7329571433d32ecebba91c875f0",
+      "canonical_text_sha256": "286a4b0a88663b8bba0818e877adba313acfcc2f70b367ca3735d9e8eefd77c7"
+    },
+    {
+      "path": "q_speace/remote_mcp/__init__.py",
+      "bytes": 66,
+      "local_sha256": "ba4741ee710e476711d76b39ff9ad841806a6cf32246c777614b57e1ac5b5bc7",
+      "canonical_text_sha256": "4e2ac52abdc199d0471161aa852cf9f485af7e555646debfc84c8767ca310663"
+    },
+    {
+      "path": "q_speace/remote_mcp/config.py",
+      "bytes": 2999,
+      "local_sha256": "3e601a15fe621292a27ef73a0ff3495a49096e5f850343fc6ff57a5929095577",
+      "canonical_text_sha256": "3e601a15fe621292a27ef73a0ff3495a49096e5f850343fc6ff57a5929095577"
+    },
+    {
+      "path": "q_speace/remote_mcp/server.py",
+      "bytes": 15872,
+      "local_sha256": "06b526e12d6fd7a352779ff784f19bf87e7e206247d69aae8916b37dbea427a5",
+      "canonical_text_sha256": "87642efb42d65d0c4558d6db486d1c126c17a7af28396b39a08a27ed3377c55d"
+    },
+    {
+      "path": "q_speace/remote_mcp/service.py",
+      "bytes": 4452,
+      "local_sha256": "d67575ee41f9d0bc8ca1fead2d850797fcb265a860c1010b00fd7ab67412d463",
+      "canonical_text_sha256": "69c068176f9711d02e01193caeb13a8f02ae783dbc79cdfbdbd66a18df33073a"
+    },
+    {
+      "path": "q_speace/remote_mcp/worker.py",
+      "bytes": 2899,
+      "local_sha256": "9998fbe8e31fb67ba12d26a42416baf48e165b1a052cbbe425ff26a1d4a8639f",
+      "canonical_text_sha256": "cdc111703969df1016ce84f8df818bf7f5fea99777f03a8d16be62a323803b67"
+    },
+    {
+      "path": "tests/test_mcp_regulation.py",
+      "bytes": 10353,
+      "local_sha256": "08c1d7843c4fa76e3bfb91902464f62579ece076677e6a350ba03775d0c59464",
+      "canonical_text_sha256": "c9628299b99286254dd827d47a52598eeb9c8b3660ea45d8d5127007d84f3fb0"
+    },
+    {
+      "path": "tests/test_t218_bridge_protocol.py",
+      "bytes": 8504,
+      "local_sha256": "f3bb9b3607086639897a1304e077715056b4af1973acc78f622540171bd50e41",
+      "canonical_text_sha256": "6640f3750488b1d17897759ec7bf08bd2447312b369f5ee692d08a984858fd15"
+    },
+    {
+      "path": "tests/test_t218_coupled_counterexample.py",
+      "bytes": 6162,
+      "local_sha256": "64705ff87f8c79ffb28e6359a6ed16d9d758a61dc73a936db2cb9d79652ef990",
+      "canonical_text_sha256": "eda2628364a49e79920b0da7f392b5a050ccec75c25d10bc5b1e8b9e46d99a89"
+    },
+    {
+      "path": "tests/test_t218_coupled_timeout.py",
+      "bytes": 4629,
+      "local_sha256": "826e2da0c582cd19e51ca2588d62615f486d20e47b41880f81c380c8fccc3eea",
+      "canonical_text_sha256": "caf0e7035e2e2d079ee98ac8c29532acae6ac7695a93067453b12197f104fca8"
+    },
+    {
+      "path": "tests/test_t225_bridge_enforcement.py",
+      "bytes": 2491,
+      "local_sha256": "631502b12a5ae5524dfb5179132a6c027043d4040bff48e7189b12149a6ad435",
+      "canonical_text_sha256": "e1fea335fe55a3fbde9f03e028d0d09114b523d9966a7b53ef82462fcad5f284"
+    },
+    {
+      "path": "tests/test_t225_http.py",
+      "bytes": 13150,
+      "local_sha256": "6633091cec5a1eed554b9699c95267036779472198b2fb0bf6e5e0b84e62e48c",
+      "canonical_text_sha256": "435938fcbcbbe1f5556677c7e67a13b2ff04d8282a7ec1c53cb836b7e62653b4"
+    },
+    {
+      "path": "tests/test_t226_online_agent.py",
+      "bytes": 4401,
+      "local_sha256": "d088011df035283c7e8690bf41100befaeb146dae6dde9a039240055c62713ce",
+      "canonical_text_sha256": "190448de9934be59c86b693279297080bb9fb64003be86ef760da317b8519452"
+    }
+  ],
+  "excluded": [
+    ".config/auth0/ (local authentication state)",
+    ".qspeace-dev/ (credentials, fixtures and verification checkout)",
+    "two pre-existing conversational TXT notes under docs/",
+    "unrelated local source edits in cli.py, orchestrator.py and evolution_council.py; pre-existing conversational TXT notes remain local"
+  ],
+  "scope": "Publish current experimental documents, implementations and evidence to main; do not redeploy server.",
+  "verification": {
+    "published_snapshot_pytest_passed": 623,
+    "skipped": 3,
+    "coverage_percent": 82.49,
+    "backend_import_sort_regression_tests": 9,
+    "global_ruff_candidate": "passed after two import-order-only corrections",
+    "deployment": "unchanged"
+  }
+}

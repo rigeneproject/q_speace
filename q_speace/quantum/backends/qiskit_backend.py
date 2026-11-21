@@ -10,8 +10,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from .base import QuantumBackend
 from ..quantum_brain_simulator import BrainQuantumCircuit
+from .base import QuantumBackend
 
 
 class QiskitBackend(QuantumBackend):

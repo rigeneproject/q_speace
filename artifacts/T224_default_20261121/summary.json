@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "policy_version": "T224-v1",
+  "arms": {
+    "baseline": {
+      "cases": 4,
+      "correct": 3,
+      "iterations": 18,
+      "synthetic_tokens": 360,
+      "simulated_dat": 18.0,
+      "wall_seconds": 0.0014744000000064261,
+      "completion_rate": 0.75,
+      "preventive_stop_rate": 0.0
+    },
+    "regulated": {
+      "cases": 4,
+      "correct": 2,
+      "iterations": 11,
+      "synthetic_tokens": 220,
+      "simulated_dat": 11.0,
+      "wall_seconds": 0.41491660000065167,
+      "completion_rate": 0.5,
+      "preventive_stop_rate": 0.5
+    }
+  },
+  "pairs": [
+    {
+      "case_id": "clean",
+      "baseline": {
+        "event": "case_result",
+        "run_id": "clean:baseline",
+        "case_id": "clean",
+        "arm": "baseline",
+        "iterations": 2,
+        "executed_synthetic_tokens": 40,
+        "reserved_tokens": 40,
+        "simulated_dat": 2.0,
+        "estimated_joules": null,
+        "sleep_seconds": 0.0,
+        "wall_seconds": 0.0009479000000283122,
+        "stop_reason": "answer",
+        "correct": true,
+        "preventive_stop": false
+      },
+      "regulated": {
+        "event": "case_result",
+        "run_id": "clean:regulated",
+        "case_id": "clean",
+        "arm": "regulated",
+        "iterations": 2,
+        "executed_synthetic_tokens": 40,
+        "reserved_tokens": 40,
+        "simulated_dat": 2.0,
+        "estimated_joules": 0.0006188000000000001,
+        "sleep_seconds": 0.021992599999975937,
+        "wall_seconds": 0.03642570000010892,
+        "stop_reason": "answer",
+        "correct": true,
+        "preventive_stop": false
+      },
+      "token_delta": 0,
+      "wall_seconds_delta": 0.035477800000080606
+    },
+    {
+      "case_id": "transient_failure",
+      "baseline": {
+        "event": "case_result",
+        "run_id": "transient_failure:baseline",
+        "case_id": "transient_failure",
+        "arm": "baseline",
+        "iterations": 3,
+        "executed_synthetic_tokens": 60,
+        "reserved_tokens": 60,
+        "simulated_dat": 3.0,
+        "estimated_joules": null,
+        "sleep_seconds": 0.0,
+        "wall_seconds": 0.00012319999950705096,
+        "stop_reason": "answer",
+        "correct": true,
+        "preventive_stop": false
+      },
+      "regulated": {
+        "event": "case_result",
+        "run_id": "transient_failure:regulated",
+        "case_id": "transient_failure",
+        "arm": "regulated",
+        "iterations": 3,
+        "executed_synthetic_tokens": 60,
+        "reserved_tokens": 60,
+        "simulated_dat": 3.0,
+        "estimated_joules": 0.0009282000000000001,
+        "sleep_seconds": 0.07493179999983113,
+        "wall_seconds": 0.08006680000016786,
+        "stop_reason": "answer",
+        "correct": true,
+        "preventive_stop": false
+      },
+      "token_delta": 0,
+      "wall_seconds_delta": 0.07994360000066081
+    },
+    {
+      "case_id": "persistent_failure",
+      "baseline": {
+        "event": "case_result",
+        "run_id": "persistent_failure:baseline",
+        "case_id": "persistent_failure",
+        "arm": "baseline",
+        "iterations": 8,
+        "executed_synthetic_tokens": 160,
+        "reserved_tokens": 160,
+        "simulated_dat": 8.0,
+        "estimated_joules": null,
+        "sleep_seconds": 0.0,
+        "wall_seconds": 0.0002877000006265007,
+        "stop_reason": "max_iterations",
+        "correct": false,
+        "preventive_stop": false
+      },
+      "regulated": {
+        "event": "case_result",
+        "run_id": "persistent_failure:regulated",
+        "case_id": "persistent_failure",
+        "arm": "regulated",
+        "iterations": 3,
+        "executed_synthetic_tokens": 60,
+        "reserved_tokens": 60,
+        "simulated_dat": 3.0,
+        "estimated_joules": 0.0009282000000000001,
+        "sleep_seconds": 0.12097210000047198,
+        "wall_seconds": 0.12718580000000657,
+        "stop_reason": "stalled",
+        "correct": false,
+        "preventive_stop": true
+      },
+      "token_delta": -100,
+      "wall_seconds_delta": 0.12689809999938007
+    },
+    {
+      "case_id": "delayed_resolution",
+      "baseline": {
+        "event": "case_result",
+        "run_id": "delayed_resolution:baseline",
+        "case_id": "delayed_resolution",
+        "arm": "baseline",
+        "iterations": 5,
+        "executed_synthetic_tokens": 100,
+        "reserved_tokens": 100,
+        "simulated_dat": 5.0,
+        "estimated_joules": null,
+        "sleep_seconds": 0.0,
+        "wall_seconds": 0.00011559999984456226,
+        "stop_reason": "answer",
+        "correct": true,
+        "preventive_stop": false
+      },
+      "regulated": {
+        "event": "case_result",
+        "run_id": "delayed_resolution:regulated",
+        "case_id": "delayed_resolution",
+        "arm": "regulated",
+        "iterations": 3,
+        "executed_synthetic_tokens": 60,
+        "reserved_tokens": 60,
+        "simulated_dat": 3.0,
+        "estimated_joules": 0.0009282000000000001,
+        "sleep_seconds": 0.16576110000005428,
+        "wall_seconds": 0.17123830000036833,
+        "stop_reason": "stalled",
+        "correct": false,
+        "preventive_stop": true
+      },
+      "token_delta": -40,
+      "wall_seconds_delta": 0.17112270000052376
+    }
+  ],
+  "verdict": "rejected",
+  "infrastructure_failure": false,
+  "limitation": "Deterministic synthetic fixture; no LLM, physical-energy or generality evidence."
+}

@@ -473,3 +473,16 @@ La verifica pubblica non chiude i gap T225.4/.5/.6, non dimostra vantaggi del
 Paradigma e non promuove la proposta a uso operativo. Evidenza in
 [rapporto](../artifacts/T225_http_verification_20261121.json); istruzioni e
 esempi inglesi nella [guida](T225_AGENT_CONNECTION_GUIDE_EN.md).
+
+
+### 16.2 Repository publication verification — 2026-11-21
+
+The historical manifesto PDF is included unchanged, with its original SHA256;
+errata and T218/T223/T224/T225/T226 documents describe corrections and evidence.
+The candidate published snapshot passed 623 tests (three skipped) in an isolated
+checkout without unrelated local working-tree changes. Two pre-existing backend
+import-order findings were corrected without behavioral changes; the nine backend
+tests pass and global Ruff is clean in the publication candidate. This does not
+remove unrelated local cli.py/orchestrator.py/evolution_council.py edits or deploy
+a new server build. Auth0 local state and credentials are excluded from Git and
+Docker context. See artifacts/repository_publication_20261121.json for inventory.

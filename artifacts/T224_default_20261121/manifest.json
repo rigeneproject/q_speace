@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "policy_version": "T224-v1",
+  "config": {
+    "max_iterations": 8,
+    "stall_limit": 3,
+    "token_budget": 120,
+    "dat_budget": 6,
+    "estimated_energy_budget_joules": 1,
+    "max_backoff_seconds": 0.1,
+    "rpc_timeout_seconds": 5
+  },
+  "benchmark": [
+    {
+      "case_id": "clean",
+      "documents": [
+        [
+          "current",
+          "The current service port is 443."
+        ],
+        [
+          "archive",
+          "The retired port was 80."
+        ]
+      ],
+      "expected_answer": "443",
+      "expected_document_id": "current",
+      "observations": [
+        {
+          "status": "evidence",
+          "progress": true,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "443",
+          "document_id": "current"
+        }
+      ]
+    },
+    {
+      "case_id": "transient_failure",
+      "documents": [
+        [
+          "current",
+          "The current service port is 443."
+        ],
+        [
+          "archive",
+          "The retired port was 80."
+        ]
+      ],
+      "expected_answer": "443",
+      "expected_document_id": "current",
+      "observations": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "evidence",
+          "progress": true,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "443",
+          "document_id": "current"
+        }
+      ]
+    },
+    {
+      "case_id": "persistent_failure",
+      "documents": [
+        [
+          "current",
+          "The current service port is 443."
+        ],
+        [
+          "archive",
+          "The retired port was 80."
+        ]
+      ],
+      "expected_answer": "443",
+      "expected_document_id": "current",
+      "observations": [
+        {
+          "status": "tool_error",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        }
+      ]
+    },
+    {
+      "case_id": "delayed_resolution",
+      "documents": [
+        [
+          "current",
+          "The current service port is 443."
+        ],
+        [
+          "archive",
+          "The retired port was 80."
+        ]
+      ],
+      "expected_answer": "443",
+      "expected_document_id": "current",
+      "observations": [
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "ambiguous",
+          "progress": false,
+          "answer": null,
+          "document_id": null
+        },
+        {
+          "status": "answer",
+          "progress": true,
+          "answer": "443",
+          "document_id": "current"
+        }
+      ]
+    }
+  ],
+  "benchmark_sha256": "97722f290683230c6399676293c9cd57e789ce7f81495b2309e541e7a9d8a1df",
+  "implementation_sha256": "f9fcf13e2ecf8b211865fc63528d114413c23b8a5456ca799bfa14e0dff2b2a5",
+  "git": {
+    "head": "ecd81531d7c31fc9fdaa85fa2d00e8cc381e2552",
+    "dirty": true
+  },
+  "python": "3.12.10",
+  "mcp_sdk": "1.30.0",
+  "server_startup_seconds": 0.6477193999999145,
+  "status": "completed",
+  "mcp_calls": 41
+}

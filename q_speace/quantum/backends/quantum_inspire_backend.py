@@ -17,8 +17,8 @@ from __future__ import annotations
 import os
 from typing import Any
 
-from .base import QuantumBackend
 from ..quantum_brain_simulator import BrainQuantumCircuit
+from .base import QuantumBackend
 
 _QI_GATE_NAMES = {"RX": "Rx", "RY": "Ry", "RZ": "Rz"}
 

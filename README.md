@@ -82,3 +82,19 @@ earth API wiring), T21 (surface-code error correction), T25 (IIT Φ proxy).
 
 Monthly HF monitor: see `docs/spb2_monitor.md` (run `curl ... | jq` on
 the first of every month against `https://huggingface.co/api/models?author=BICLab`).
+
+
+## Remote MCP experimental service and Paradigm 6.0
+
+- [English agent connection guide and domain use cases (Wiki)](https://github.com/rigeneproject/q_speace/wiki).
+- [Manifesto v2.0 Technical Edition](docs/Paradigm_6.0_Manifesto_v2.0_Technical_Edition.pdf), preserved original; read with the [technical errata](docs/PARADIGM_6_0_V2_0_ERRATA.md).
+- [T225 HTTP specification and T218 reuse matrix](docs/T225_REMOTE_MCP_SERVICE_SPEC.md).
+- [English technical connection/deployment guide](docs/T225_AGENT_CONNECTION_GUIDE_EN.md).
+- [T226 bounded LLM agent connection experiment and evidence](docs/T226_AGENT_MCP_CONNECTION_EXPERIMENT_SPEC.md).
+
+Endpoint: `https://q-speace-mcp.onrender.com/mcp` (authorized OAuth access required).
+Eight advisory/numerical tools are exposed; no physical actuation or DAT mutation
+is available over HTTP. Free-tier hosting and local ephemeral state make this a
+research prototype. The recorded LLM/MCP test demonstrates interoperability, not
+a diagnostic, energy-efficiency or quantum advantage. Updating this repository
+does not automatically deploy a new server build; auto-deployment is disabled.

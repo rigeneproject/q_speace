@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-21",
+  "repository": "rigeneproject/q_speace",
+  "server_name": "github-official",
+  "distribution": "github/github-mcp-server official Windows binary",
+  "version": "2.2.0",
+  "archive_sha256": "6ecda644e8ea54b26acbc76e80379f4afb6ac1a4c2521366584f2a7f23e3a850",
+  "checksum_verified": true,
+  "transport": "stdio",
+  "read_only": true,
+  "toolsets": [
+    "repos"
+  ],
+  "oauth_scopes": [
+    "public_repo"
+  ],
+  "handshake": "passed",
+  "protocol_version": "2025-11-25",
+  "ping": "passed",
+  "discovered_tools": 13,
+  "authenticated_repository_read": "passed",
+  "remote_http_attempt": {
+    "url": "https://api.githubcopilot.com/mcp/x/repos/readonly",
+    "unauthenticated_status": 401,
+    "codex_oauth_error": "Dynamic client registration not supported"
+  },
+  "notes": [
+    "OAuth token is held only in server process memory; authorization may be required on restart.",
+    "Read-only tools do not restrict the OAuth token to a single repository.",
+    "No access token or password is stored in this report or in the repository."
+  ],
+  "previous_failure": "OAuth context deadline exceeded after 5 minutes; server callback process ended",
+  "oauth_callback_port": 8085,
+  "read_path": "README.md",
+  "read_content_blocks": 2,
+  "oauth_callback": "completed on port 8085",
+  "test_result": "passed: initialize, ping, tools/list, authenticated get_file_contents README.md"
+}
