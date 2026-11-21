@@ -340,7 +340,8 @@
     ".config/auth0/ (local authentication state)",
     ".qspeace-dev/ (credentials, fixtures and verification checkout)",
     "two pre-existing conversational TXT notes under docs/",
-    "unrelated local source edits in cli.py, orchestrator.py and evolution_council.py; pre-existing conversational TXT notes remain local"
+    "unrelated local source edits in cli.py, orchestrator.py and evolution_council.py; pre-existing conversational TXT notes remain local",
+    "examples/mcp_connection_agent.py and tests/test_mcp_connection_agent.py appeared during verification; untracked drafts, three tests passed, Black check not clean; not part of the T226 runner publication"
   ],
   "scope": "Publish current experimental documents, implementations and evidence to main; do not redeploy server.",
   "verification": {
@@ -349,6 +350,12 @@
     "coverage_percent": 82.49,
     "backend_import_sort_regression_tests": 9,
     "global_ruff_candidate": "passed after two import-order-only corrections",
-    "deployment": "unchanged"
+    "deployment": "unchanged",
+    "additional_untracked_draft_tests": {
+      "passed": 3,
+      "ruff": "passed",
+      "mypy": "passed",
+      "black": "requires formatting; drafts not published"
+    }
   }
 }
