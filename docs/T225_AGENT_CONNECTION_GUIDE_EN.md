@@ -1,12 +1,15 @@
 # Connecting an agentic AI client to Q-SPEACE MCP
 
-Date: 2026-11-21. Profile: experimental T225 HTTP adapter.
+Date: 2026-11-22. Profile: experimental T225 HTTP adapter + T234 v1.1 Singularity phase-transition & genetic-epigenetic reference tools.
 
 
-## Provisioned experimental service (2026-11-21)
+## Provisioned experimental service (updated 2026-11-22)
 
-- Verified using official MCP SDK 1.30.0: initialize, ping, discovery, three
-  tool calls, invalid-argument error and subsequent successful ping.
+- Verified live using official MCP SDK 1.30.0 against `https://q-speace-mcp.onrender.com/mcp`:
+  initialize, initialized notification, ping, discovery of **11 advisory tools**,
+  BCEL/clock/metabolism/KL/VTEC calls, all 3 T234 v1.1 Singularity tools (including
+  adversarial DNA write-lock, Track-A smuggling, hallucination-drift, complexity-Sevo,
+  and protective thermal-throttling probes), and invalid-argument recovery.
 - MCP endpoint: `https://q-speace-mcp.onrender.com/mcp`.
 - OAuth issuer: `https://dev-imfska6viiq1ehqw.us.auth0.com/`.
 - API audience: `https://q-speace-mcp.onrender.com/mcp`.
@@ -14,9 +17,12 @@ Date: 2026-11-21. Profile: experimental T225 HTTP adapter.
 - Client: **Q-SPEACE Experimental Agent**, machine-to-machine, explicitly
   granted the three documented scopes; access-token lifetime **900 seconds**.
 - Deployment: Render Free, Frankfurt, one process, automatic deployments off.
-  Source branch: `codex/t225-remote-mcp`.
+  Source branch: `main` (verified runtime built from `6ef2e9a3`).
 - Deployed worker wall-time limit: **20 seconds**, one concurrent worker. The
   five-second default timed out on the Free CPU; timed-out processes are killed.
+- Server hardening included in this build (T231 / Milestone 8): automatic
+  expired-session pruning prior to the per-principal session cap, and strict
+  RFC 8259 rejection of `NaN`/`Infinity` JSON constants at parse time.
 
 The existing client's credentials are stored only on the operator's computer in
 `.qspeace-dev/auth0-agent-client.json`, excluded from Git and restricted with a
@@ -77,14 +83,14 @@ exist. A local fixture token is not evidence of a working OAuth login service.
 The two MCP services have different responsibilities:
 
 - GitHub MCP reads the online repository. It does not run Q-SPEACE computations.
-- Q-SPEACE MCP runs the eight numeric/advisory tools below. It does not grant
+- Q-SPEACE MCP runs the **eleven** numeric/advisory tools below (8 core T225 tools + 3 T234 v1.1 Singularity phase-transition & genetic-epigenetic tools). It does not grant
   permission to change infrastructure, repository files, budgets or policies.
 
 | Tools | Required scope |
 | --- | --- |
-| `bcel_lookup` | `qspeace:catalog.read` |
-| `compute_jc`, `cme_evaluate`, `adaptive_clock_rate`, `metabolism_cost_eval`, `elasticity_test` | `qspeace:compute` |
-| `kl_barycentre_aggregate`, `vtec_allocate` | `qspeace:simulation.compute` |
+| `bcel_lookup`, `singularity_framework_manifest` | `qspeace:catalog.read` |
+| `compute_jc`, `cme_evaluate`, `adaptive_clock_rate`, `metabolism_cost_eval`, `elasticity_test`, `phase_transition_assess` | `qspeace:compute` |
+| `kl_barycentre_aggregate`, `vtec_allocate`, `epigenetic_step_evaluate` | `qspeace:simulation.compute` |
 
 `dat_mint`, `dat_spend`, Bridge activation, rollback and validator promotion are
 not available over HTTP. Unknown or unauthorized tool calls are refused even
@@ -234,19 +240,26 @@ It must advertise the expected resource and authorization server. Check:
 
 - Unauthenticated MCP calls return 401 with the appropriate challenge.
 - A token for another audience/issuer or an expired token is refused.
-- A catalog-only token sees only `bcel_lookup` and cannot call compute tools.
+- A catalog-only token sees only `bcel_lookup` and `singularity_framework_manifest` and cannot call compute tools.
 - A different principal cannot use a session identifier issued to another one.
 - A valid token completes initialize, initialized notification, ping, discovery
   and a successful numeric tool call using the official SDK.
 - Invalid arguments produce `isError=true` without making subsequent valid
   requests unusable. Transport authentication failures are HTTP errors instead.
-- The HTTP catalog has eight tools; no Bridge activation or DAT mutation tools.
+- The HTTP catalog has **eleven** tools; no Bridge activation or DAT mutation tools.
 
 Acquire the correct OAuth token through your client's/provider's supported
 flow, load it into `QSPEACE_ACCESS_TOKEN` without printing it, then run:
 
 ```powershell
 python examples/mcp_http_client.py --url https://YOUR-SERVICE.onrender.com/mcp
+```
+
+Or run the full 14-step connection verification agent (exercises OAuth, discovery,
+core tools, all 3 T234 Singularity tools, and invalid-argument recovery):
+
+```powershell
+python -m examples.mcp_connection_agent --local-demo --apply-delay
 ```
 
 The same bearer-token SDK path is tested over real local HTTP. A real Auth0
@@ -319,6 +332,33 @@ to a device, production budget or external system."
 }
 ```
 
+### Assimilate the T234 Singularity phase-transition & epigenetic framework
+
+Prompt: "Fetch the T234 singularity framework manifest (`section='stages'`), assess
+our measured telemetry with `phase_transition_assess` (checking both `semantic_entropy_drift`
+and `causal_grounding_error`), and test one bounded Track-B `epigenetic_step_evaluate`
+proposal with an independent reviewer. Treat returned `runtime_controls` as advisory
+recommendations only; never self-approve or actuate hardware."
+
+```json
+{
+  "locus": "verification_depth",
+  "delta": 0.10,
+  "proposer_id": "external-agent-1",
+  "reviewer_id": "independent-reviewer-1",
+  "reviewer_approved": true,
+  "semantic_entropy_drift": 0.01,
+  "causal_grounding_error": 0.005,
+  "causal_benchmark_delta": 0.03,
+  "sevo": 2.4,
+  "sevo_window_mean": 2.2,
+  "power_watts": 115.0,
+  "thermal_load_ratio": 0.52,
+  "validation_seed_epoch": 1,
+  "track": "B_sandbox"
+}
+```
+
 Generated text and tool results remain untrusted inputs to a separately
 authorized orchestrator. The HTTP service cannot prevent spending or actions
 that an unconstrained agent performs outside it.
@@ -351,6 +391,8 @@ acceptance criteria still apply.
 ## References
 
 - [T225 specification and T218 reuse matrix](T225_REMOTE_MCP_SERVICE_SPEC.md).
+- [T231 vertical-slice contracts and MCP hardening](T231_VERTICAL_SLICE_AND_MCP_HARDENING_SPEC.md).
+- [T234 Singularity phase-transition & genetic-epigenetic framework](T234_SINGULARITY_PHASE_TRANSITION_AND_EPIGENETIC_FRAMEWORK_SPEC.md).
 - [T218 Bridge contract](T218_QSPEACE_V0_BRIDGE_SPEC.md).
 - [T223 local stdio adapter](T223_MCP_PRIMITIVE_ADAPTER_SPEC.md).
 - [Render Free limitations](https://render.com/docs/free).
