@@ -27,7 +27,10 @@ server._evict_cached_window_attention()
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-MODEL = "/home/roby/models/maujim/spikingbrain-v1-7b-base"
+MODEL = os.environ.get(
+    "Q_SPEACE_SPB_MODEL_PATH",
+    os.path.join(os.path.expanduser("~"), "models", "maujim", "spikingbrain-v1-7b-base"),
+)
 tok = AutoTokenizer.from_pretrained(MODEL, trust_remote_code=True, padding_side="left")
 if tok.pad_token is None:
     tok.pad_token = tok.eos_token

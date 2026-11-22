@@ -12,11 +12,18 @@ Fix #2 (indices dtype):
 
 This script is idempotent.
 """
+import os
 from pathlib import Path
 
+_HOME = Path.home()
+_HF_CACHE = Path(os.environ.get("HF_HOME", str(_HOME / ".cache" / "huggingface")))
+_MODEL_DIR = Path(
+    os.environ.get("Q_SPEACE_SPB_MODEL_PATH", str(_HOME / "models" / "maujim" / "spikingbrain-v1-7b-base"))
+)
+
 FILES = [
-    Path("/home/roby/.cache/huggingface/modules/transformers_modules/spikingbrain-v1-7b-base/window_attention.py"),
-    Path("/home/roby/models/maujim/spikingbrain-v1-7b-base/window_attention.py"),
+    _HF_CACHE / "modules" / "transformers_modules" / "spikingbrain-v1-7b-base" / "window_attention.py",
+    _MODEL_DIR / "window_attention.py",
 ]
 
 # Fix #1: mask shape

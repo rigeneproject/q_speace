@@ -6,6 +6,7 @@ Groups:
   - ``qspace brain ...`` — SpikingBrain satellite (T205)
   - ``qspace economy ...`` — q_speace_economy primitives (T6.*)
   - ``qspace eval ...`` — vertical-slice policy evaluation (T208/T231)
+  - ``qspace singularity ...`` — phase-transition & genetic-epigenetic framework (T234)
 """
 
 from __future__ import annotations
@@ -36,11 +37,13 @@ sia_app = typer.Typer(help="Self-Improvement Cortex (SIA)")
 brain_app = typer.Typer(help="SpikingBrain satellite (T205)")
 economy_app = typer.Typer(help="q_speace_economy primitives (T6.*)")
 eval_app = typer.Typer(help="Vertical-slice policy evaluation (T208/T231)")
+singularity_app = typer.Typer(help="Phase-transition & genetic-epigenetic framework (T234)")
 app.add_typer(quantum_app, name="quantum")
 app.add_typer(sia_app, name="sia")
 app.add_typer(brain_app, name="brain")
 app.add_typer(economy_app, name="economy")
 app.add_typer(eval_app, name="eval")
+app.add_typer(singularity_app, name="singularity")
 
 
 @quantum_app.command("run")
@@ -575,6 +578,62 @@ def eval_compare(
         encoding="utf-8",
     )
     typer.echo(json.dumps(comparison, indent=2))
+
+
+@singularity_app.command("manifest")
+def singularity_manifest(
+    section: str | None = typer.Option(
+        None, "--section", "-s", help="Optional manifest section filter."
+    ),
+) -> None:
+    """Print the canonical T234 v1.1 Singularity phase-transition & epigenetic manifest."""
+    from .singularity import build_singularity_framework_manifest
+
+    try:
+        data = build_singularity_framework_manifest(section=section)
+    except ValueError as exc:
+        typer.echo(f"error: {exc}")
+        raise typer.Exit(2) from None
+    typer.echo(json.dumps(data, indent=2, sort_keys=True, allow_nan=False))
+
+
+@singularity_app.command("drills")
+def singularity_drills() -> None:
+    """Run all 6 T234 Pillar-5 adversarial & rollback verification drills."""
+    from .singularity import run_t234_verification_drills
+
+    report = run_t234_verification_drills()
+    typer.echo(json.dumps(report.to_dict(), indent=2, sort_keys=True, allow_nan=False))
+    if not report.all_passed or report.rollback_pass_rate < 1.0:
+        raise typer.Exit(3)
+
+
+@singularity_app.command("assess")
+def singularity_assess(
+    telemetry_file: Annotated[
+        Path,
+        typer.Option(
+            "--telemetry",
+            "-f",
+            help="Path to JSON file matching PhaseTelemetry / phase_transition_assess schema.",
+        ),
+    ],
+) -> None:
+    """Assess informational phase-transition stage and physical brakes from telemetry JSON."""
+    from .singularity import handle_phase_transition_assess
+
+    if not telemetry_file.exists():
+        typer.echo(f"error: telemetry file not found: {telemetry_file}")
+        raise typer.Exit(2)
+    try:
+        raw = json.loads(telemetry_file.read_text(encoding="utf-8"))
+        if not isinstance(raw, dict):
+            raise ValueError("telemetry JSON must be an object")
+        verdict = handle_phase_transition_assess(raw)
+    except (ValueError, KeyError, TypeError) as exc:
+        typer.echo(f"error: invalid telemetry payload: {exc}")
+        raise typer.Exit(2) from None
+    typer.echo(json.dumps(verdict, indent=2, sort_keys=True, allow_nan=False))
 
 
 if __name__ == "__main__":

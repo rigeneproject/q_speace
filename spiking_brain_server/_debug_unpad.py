@@ -1,10 +1,17 @@
 """Trigger the failing _upad_input call with the actual SpikingBrain model
 and dump the full traceback to find which file + line needs patching.
 """
+import os
 import sys
 import traceback
+from pathlib import Path
 
-sys.path.insert(0, "/home/roby/.venvs/spikingbrain/lib/python3.12/site-packages")
+_VENV_SITE = os.environ.get(
+    "Q_SPEACE_SPB_SITE_PACKAGES",
+    str(Path.home() / ".venvs" / "spikingbrain" / "lib" / "python3.12" / "site-packages"),
+)
+if os.path.isdir(_VENV_SITE):
+    sys.path.insert(0, _VENV_SITE)
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -15,7 +22,10 @@ bnb = BitsAndBytesConfig(
     bnb_4bit_compute_dtype=torch.bfloat16,
     bnb_4bit_use_double_quant=True,
 )
-MODEL = "/home/roby/models/maujim/spikingbrain-v1-7b-base"
+MODEL = os.environ.get(
+    "Q_SPEACE_SPB_MODEL_PATH",
+    str(Path.home() / "models" / "maujim" / "spikingbrain-v1-7b-base"),
+)
 
 print("Loading tokenizer...", flush=True)
 tok = AutoTokenizer.from_pretrained(MODEL, trust_remote_code=True, padding_side="left")

@@ -7,6 +7,7 @@ Tre esperimenti:
 """
 from __future__ import annotations
 
+import os
 import site
 import time
 from pathlib import Path
@@ -33,7 +34,12 @@ for p in site.getsitepackages():
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-MODEL_DIR = Path("/home/roby/models/maujim/spikingbrain-v1-7b-base")
+MODEL_DIR = Path(
+    os.environ.get(
+        "Q_SPEACE_SPB_MODEL_PATH",
+        str(Path.home() / "models" / "maujim" / "spikingbrain-v1-7b-base"),
+    )
+)
 tok = AutoTokenizer.from_pretrained(str(MODEL_DIR), trust_remote_code=True)
 print(f"[probe] tokenizer: vocab={tok.vocab_size}, eos={tok.eos_token_id}, pad={tok.pad_token_id}")
 

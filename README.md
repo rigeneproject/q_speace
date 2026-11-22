@@ -84,6 +84,10 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   `q_speace/singularity/` order-parameter stage evaluator (Stage 1–3 with non-compensable
   allopoietic, semantic-entropy, and thermodynamic/`Sevo` brakes), write-locked
   `genome_epigenome.v1` codec with homeostatic decay, and 3 advisory MCP assimilation tools.
+- [Controlled-rotation unitarity fix, sidecar portability, core coverage & Singularity CLI (T235)](docs/T235_TECH_DEBT_PORTABILITY_AND_COVERAGE_SPEC.md):
+  restored exact unitarity on `CRX`/`CRY`/`CRZ` in `QuantumGates`, removed hardcoded personal
+  paths from `spiking_brain_server/` scripts, added `qspace singularity` (`manifest`/`drills`/`assess`),
+  and recorded sanitized live Render MCP verification evidence (`artifacts/T234_mcp_live_verification_20261122.json`).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

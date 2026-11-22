@@ -26,7 +26,10 @@ server._evict_cached_window_attention()
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-MODEL_PATH = "/home/roby/models/maujim/spikingbrain-v1-7b-base"
+MODEL_PATH = os.environ.get(
+    "Q_SPEACE_SPB_MODEL_PATH",
+    os.path.join(os.path.expanduser("~"), "models", "maujim", "spikingbrain-v1-7b-base"),
+)
 PROMPT = "The capital of France is"
 N_TOKENS = 24
 

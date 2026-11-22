@@ -156,6 +156,7 @@ class QuantumGates:
             if c_bit == 0:
                 mat[idx, idx] = 1.0 + 0j
             else:
+                mat[idx, idx] = base[t_bit, t_bit]
                 row = idx ^ (1 << (num_qubits - 1 - target))
                 mat[row, idx] = base[1 - t_bit, t_bit]
         return mat

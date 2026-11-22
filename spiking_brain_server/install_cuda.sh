@@ -2,9 +2,10 @@
 # Install torch + vllm + fla + flash-attn for the RTX 3060 Laptop (6GB).
 # Run: wsl.exe -d Ubuntu -- bash /path/to/install_cuda.sh
 set -uo pipefail
-export PATH="/home/roby/.local/bin:/usr/bin:/bin"
+REPO_ROOT="${Q_SPEACE_REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+export PATH="${HOME}/.local/bin:/usr/bin:/bin"
 export PIP_BREAK_SYSTEM_PACKAGES=1
-export VIRTUAL_ENV="/home/roby/.venvs/spikingbrain"
+export VIRTUAL_ENV="${Q_SPEACE_SPB_VENV:-${HOME}/.venvs/spikingbrain}"
 
 # Create venv if missing.
 if [[ ! -d "${VIRTUAL_ENV}" ]]; then
@@ -56,7 +57,7 @@ echo "[install_cuda] triton + transformers + utils"
 pipx "triton==3.3.1" "transformers==4.55.2" "scipy" "pyyaml" "decorator" 2>&1 | tail -3
 
 # 5. flash-linear-attention (try local copy first).
-FLA_DIR="/mnt/c/Users/rober/Desktop/Q-SPEACE/q_speace/speace_anemos_spikingbrain/SpikingBrain-7B-main/SpikingBrain-7B-main/vllm_hymeta"
+FLA_DIR="${Q_SPEACE_FLA_DIR:-${REPO_ROOT}/speace_anemos_spikingbrain/SpikingBrain-7B-main/SpikingBrain-7B-main/vllm_hymeta}"
 if [[ -d "${FLA_DIR}" ]]; then
     echo "[install_cuda] installing local vllm_hymeta from ${FLA_DIR}"
     (cd "$(dirname "${FLA_DIR}")" && pipx -e . --no-build-isolation 2>&1 | tail -5) || \
@@ -75,7 +76,7 @@ echo "[install_cuda] fastapi + uvicorn + pydantic + httpx"
 pipx "fastapi>=0.110" "uvicorn[standard]>=0.27" "pydantic>=2.6" "httpx>=0.27" 2>&1 | tail -3
 
 # 8. transformers/fla patch.
-PATCH="/mnt/c/Users/rober/Desktop/Q-SPEACE/q_speace/speace_anemos_spikingbrain/SpikingBrain-7B-main/SpikingBrain-7B-main/docker_build/patch_fla_bitnet.py"
+PATCH="${Q_SPEACE_BITNET_PATCH:-${REPO_ROOT}/speace_anemos_spikingbrain/SpikingBrain-7B-main/SpikingBrain-7B-main/docker_build/patch_fla_bitnet.py}"
 if [[ -f "${PATCH}" ]]; then
     echo "[install_cuda] applying transformers/fla patch"
     python3 "${PATCH}" 2>&1 | tail -5 || \

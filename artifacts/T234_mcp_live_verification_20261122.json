@@ -1,0 +1,122 @@
+{
+  "artifact": "T234_mcp_live_verification_20261122",
+  "date": "2026-11-22",
+  "endpoint": "https://q-speace-mcp.onrender.com/mcp",
+  "source_branch": "main",
+  "deployed_commit": "6ef2e9a3",
+  "server": "q-speace-http 0.1.0",
+  "session_established": true,
+  "tool_count": 11,
+  "tools": [
+    "adaptive_clock_rate",
+    "bcel_lookup",
+    "cme_evaluate",
+    "compute_jc",
+    "elasticity_test",
+    "epigenetic_step_evaluate",
+    "kl_barycentre_aggregate",
+    "metabolism_cost_eval",
+    "phase_transition_assess",
+    "singularity_framework_manifest",
+    "vtec_allocate"
+  ],
+  "steps": [
+    {
+      "step": "1_assimilate_manifest",
+      "tool": "singularity_framework_manifest",
+      "status": "PASS",
+      "detail": {
+        "framework_id": "q_speace.singularity.v1",
+        "constitution_version": "1.0",
+        "genome_sha256_prefix": "955ff96fe30e",
+        "loci": 6,
+        "drills": 6,
+        "advisory_only": true
+      }
+    },
+    {
+      "step": "2_assess_stage2_allopoietic",
+      "tool": "phase_transition_assess",
+      "status": "PASS",
+      "detail": {
+        "stage": "STAGE_2_BOUNDED_RECURSIVE",
+        "dominant_bottleneck": "ALLOPOIETIC_DEPENDENCE",
+        "autopoiesis_closure_index": 0.15,
+        "autopoiesis_regime": "semi_autonomous_datacenter"
+      }
+    },
+    {
+      "step": "3_assess_hallucination_drift_brake",
+      "tool": "phase_transition_assess",
+      "status": "PASS",
+      "detail": {
+        "stage": "STAGE_1_ALGORITHMIC",
+        "brakes": [
+          "CAUSAL_GROUNDING_ERROR"
+        ],
+        "reality_grounding_index": 0.91
+      }
+    },
+    {
+      "step": "4_assess_complexity_sevo_anti_farming",
+      "tool": "phase_transition_assess",
+      "status": "PASS",
+      "detail": {
+        "stage": "STAGE_1_ALGORITHMIC",
+        "effective_sevo_window": 0.547264,
+        "failed_gates": [
+          "sevo_window_mean_below_threshold"
+        ]
+      }
+    },
+    {
+      "step": "5_epigenetic_valid_adaptation",
+      "tool": "epigenetic_step_evaluate",
+      "status": "PASS",
+      "detail": {
+        "accepted": true,
+        "generation": 1,
+        "genome_sha256_match": true,
+        "max_review_cycles": 3,
+        "token_budget": 10650,
+        "mcp_actuation_permitted": false
+      }
+    },
+    {
+      "step": "6_adversarial_dna_write_lock",
+      "tool": "epigenetic_step_evaluate",
+      "status": "PASS",
+      "detail": {
+        "accepted": false,
+        "reasons": [
+          "genome_write_lock_blocked:genome.max_energy_w"
+        ]
+      }
+    },
+    {
+      "step": "7_adversarial_track_a_smuggling",
+      "tool": "epigenetic_step_evaluate",
+      "status": "PASS",
+      "detail": {
+        "accepted": false,
+        "reasons": [
+          "track_separation_violation:A5_mutation_forbidden_in_A_pilot"
+        ]
+      }
+    },
+    {
+      "step": "8_thermal_overload_protective_throttle",
+      "tool": "epigenetic_step_evaluate",
+      "status": "PASS",
+      "detail": {
+        "accepted": true,
+        "energy_throttling": 0.65,
+        "cpu_quota": 0.5,
+        "gpu_quota": 0.45,
+        "token_budget": 7782
+      }
+    }
+  ],
+  "passed": true,
+  "credentials_present": false
+}

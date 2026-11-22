@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import os
 import sys
+from pathlib import Path
 
-sys.path.insert(0, "/mnt/c/Users/rober/Desktop/Q-SPEACE/q_speace")
-os.chdir("/mnt/c/Users/rober/Desktop/Q-SPEACE/q_speace")
+_REPO_ROOT = os.environ.get("Q_SPEACE_REPO_ROOT", str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, _REPO_ROOT)
+os.chdir(_REPO_ROOT)
 
 # Patch N_PROMPTS to 3 for smoke
 import spiking_brain_server._t205_measure as m
