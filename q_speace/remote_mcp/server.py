@@ -233,6 +233,7 @@ class Gateway:
                 )
             if method == "initialize":
                 async with self.initializing:
+                    self._prune_expired_sessions(now)
                     if (
                         sum(e[0] == owner for e in self.sessions.values())
                         >= self.config.sessions_per_principal
@@ -281,6 +282,18 @@ class Gateway:
                 await send(item)
         except ServiceError as exc:
             await self.error(scope, receive, send, exc)
+
+    def _prune_expired_sessions(self, now: float) -> None:
+        expired = [
+            sid
+            for sid, (_, created, last_seen) in self.sessions.items()
+            if (
+                now - last_seen > self.config.session_idle_seconds
+                or now - created > self.config.session_max_seconds
+            )
+        ]
+        for sid in expired:
+            del self.sessions[sid]
 
     def record_session(self, messages: list[Message], owner: str) -> None:
         if not messages or messages[0].get("status") != 200:

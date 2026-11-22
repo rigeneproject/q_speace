@@ -192,7 +192,7 @@ _SCHEMAS: dict[str, dict[str, Any]] = {
         _NUMBER,
     ),
     "dat_mint": {
-        "amount": (float, Field(ge=0)),
+        "amount": (float, Field(gt=0)),
         "bound_to": (str, ...),
         "decay_half_life": (float, Field(gt=0)),
         "mint_time": _NUMBER,
@@ -201,7 +201,7 @@ _SCHEMAS: dict[str, dict[str, Any]] = {
     },
     "dat_spend": {
         "token_id": (str, ...),
-        "amount": (float, Field(ge=0)),
+        "amount": (float, Field(gt=0)),
         "target": (str, ...),
         "t": _NUMBER,
     },

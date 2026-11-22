@@ -66,6 +66,10 @@ qspace quantum synthesize   # print BCEL quantum equivalences
 - [Technical debt remediation and hardening (T230)](docs/T230_TECHNICAL_DEBT_AND_BUGFIX_PLAN_SPEC.md):
   quality-gate/CI recovery, Lindblad MCWF fix, fail-closed numerical validation,
   real-backend `noise_model` + energy/Sevo gate enforcement, and CLI/AACM regression tests.
+- [Vertical-slice telemetry/policy contracts & MCP hardening (T231)](docs/T231_VERTICAL_SLICE_AND_MCP_HARDENING_SPEC.md):
+  T208 Group B typed contracts (`RequestRecord`/`DecisionRecord`/`OutcomeRecord`/`ExperimentManifest`),
+  opt-in gate policies (`qspace eval run` / `qspace eval compare`), offline Brier/ECE/bootstrap evaluator,
+  and T225 MCP expired-session pruning + fail-closed worker hardening.
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

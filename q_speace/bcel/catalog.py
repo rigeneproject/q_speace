@@ -21,6 +21,15 @@ class BCELEquivalence:
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
     BCELEquivalence(
+        "Vertical-slice telemetry and gate policy contracts (T231)",
+        "functional",
+        "Keep as deterministic RequestRecord/DecisionRecord/OutcomeRecord telemetry "
+        "with default SHA-256 hashing, opt-in gate policies (always_answer, "
+        "confidence_gate, energy_gate, combined_gate), and offline Brier/ECE/bootstrap "
+        "evaluation over labelled fixtures. Measures software policy trade-offs only; "
+        "no consciousness, cognition, or unmeasured physical energy claim.",
+    ),
+    BCELEquivalence(
         "Real quantum backend noise-model and energy gate (T230)",
         "functional",
         "Enforce a non-ideal QuantumGeneSet.noise_model and explicit energy/Sevo "

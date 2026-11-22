@@ -5,6 +5,7 @@ Groups:
   - ``qspace sia ...`` — self-improvement cortex controls
   - ``qspace brain ...`` — SpikingBrain satellite (T205)
   - ``qspace economy ...`` — q_speace_economy primitives (T6.*)
+  - ``qspace eval ...`` — vertical-slice policy evaluation (T208/T231)
 """
 
 from __future__ import annotations
@@ -13,7 +14,7 @@ import asyncio
 import json
 from collections.abc import Coroutine
 from pathlib import Path
-from typing import Any
+from typing import Annotated, Any
 
 import typer
 
@@ -34,10 +35,12 @@ quantum_app = typer.Typer(help="Quantum experiments and tools")
 sia_app = typer.Typer(help="Self-Improvement Cortex (SIA)")
 brain_app = typer.Typer(help="SpikingBrain satellite (T205)")
 economy_app = typer.Typer(help="q_speace_economy primitives (T6.*)")
+eval_app = typer.Typer(help="Vertical-slice policy evaluation (T208/T231)")
 app.add_typer(quantum_app, name="quantum")
 app.add_typer(sia_app, name="sia")
 app.add_typer(brain_app, name="brain")
 app.add_typer(economy_app, name="economy")
+app.add_typer(eval_app, name="eval")
 
 
 @quantum_app.command("run")
@@ -444,6 +447,134 @@ def economy_mcp_self_test() -> None:
 
     rc = mcp_main(["--self-test"])
     raise typer.Exit(rc)
+
+
+# ----------------------------------------------------------------------
+# Vertical-slice evaluation (T208 Group B / T231)
+# ----------------------------------------------------------------------
+
+
+@eval_app.command("run")
+def eval_run(
+    output: Annotated[
+        Path,
+        typer.Option("--output", "-o", help="Output directory for traces+manifest."),
+    ],
+    policy: str = typer.Option(
+        "always_answer",
+        "--policy",
+        "-p",
+        help="Policy kind: always_answer | confidence_gate | energy_gate | combined_gate.",
+    ),
+    seed: int = typer.Option(0, "--seed", "-s", help="Deterministic RNG seed."),
+    min_confidence: float = typer.Option(0.60, "--min-confidence", help="Confidence threshold."),
+    max_energy_j: float = typer.Option(80.0, "--max-energy-j", help="Energy budget (J)."),
+    sevo_threshold: float = typer.Option(1.5, "--sevo-threshold", help="Sevo threshold."),
+    include_raw_text: bool = typer.Option(
+        False,
+        "--include-raw-text/--redact-raw-text",
+        help="Opt-in raw prompt/response capture (redacted by default per T208 §4.3).",
+    ),
+) -> None:
+    """Execute one vertical-slice policy run and write privacy-safe JSONL + manifest."""
+    from .vertical_slice import (
+        VALID_POLICY_KINDS,
+        PolicyConfig,
+        VerticalSliceRunner,
+        default_fixture_dataset,
+        evaluate_traces,
+        write_manifest,
+        write_traces_jsonl,
+    )
+
+    if policy not in VALID_POLICY_KINDS:
+        typer.echo(f"error: unknown policy {policy!r}; expected one of {list(VALID_POLICY_KINDS)}")
+        raise typer.Exit(2)
+
+    try:
+        cfg = PolicyConfig(
+            policy_id=f"t209-{policy}",
+            kind=policy,  # type: ignore[arg-type]
+            min_confidence=min_confidence,
+            max_energy_j=max_energy_j,
+            sevo_threshold=sevo_threshold,
+        )
+    except ValueError as exc:
+        typer.echo(f"error: invalid policy configuration: {exc}")
+        raise typer.Exit(2) from None
+
+    dataset = default_fixture_dataset()
+    runner = VerticalSliceRunner(policy=cfg, seed=seed, include_raw_text=include_raw_text)
+    traces, manifest = runner.run_dataset(dataset)
+    evaluation = evaluate_traces(traces, dataset)
+    write_traces_jsonl(output / "traces.jsonl", traces)
+    write_manifest(output / "manifest.json", manifest)
+    (output / "evaluation.json").write_text(
+        json.dumps(evaluation.to_dict(), indent=2, sort_keys=True, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
+    typer.echo(json.dumps(evaluation.to_dict(), indent=2))
+    if evaluation.failed > 0:
+        raise typer.Exit(1)
+
+
+@eval_app.command("compare")
+def eval_compare(
+    output: Annotated[
+        Path,
+        typer.Option("--output", "-o", help="Output directory for comparison."),
+    ],
+    candidate: str = typer.Option(
+        "combined_gate",
+        "--candidate",
+        "-c",
+        help="Candidate policy to compare against always_answer baseline.",
+    ),
+    seed: int = typer.Option(0, "--seed", "-s", help="Deterministic seed."),
+    min_confidence: float = typer.Option(0.60, "--min-confidence"),
+    max_energy_j: float = typer.Option(80.0, "--max-energy-j"),
+) -> None:
+    """Compare a candidate policy against always_answer baseline with paired bootstrap CIs."""
+    from .vertical_slice import (
+        VALID_POLICY_KINDS,
+        PolicyConfig,
+        VerticalSliceRunner,
+        compare_policies,
+        default_fixture_dataset,
+        write_manifest,
+        write_traces_jsonl,
+    )
+
+    if candidate not in VALID_POLICY_KINDS:
+        typer.echo(f"error: unknown candidate policy {candidate!r}")
+        raise typer.Exit(2)
+
+    dataset = default_fixture_dataset()
+    base_cfg = PolicyConfig(policy_id="t209-always_answer", kind="always_answer")
+    cand_cfg = PolicyConfig(
+        policy_id=f"t209-{candidate}",
+        kind=candidate,  # type: ignore[arg-type]
+        min_confidence=min_confidence,
+        max_energy_j=max_energy_j,
+    )
+    base_traces, base_manifest = VerticalSliceRunner(policy=base_cfg, seed=seed).run_dataset(
+        dataset
+    )
+    cand_traces, cand_manifest = VerticalSliceRunner(policy=cand_cfg, seed=seed).run_dataset(
+        dataset
+    )
+    comparison = compare_policies(base_traces, cand_traces, dataset, seed=seed)
+
+    output.mkdir(parents=True, exist_ok=True)
+    write_traces_jsonl(output / "baseline_traces.jsonl", base_traces)
+    write_manifest(output / "baseline_manifest.json", base_manifest)
+    write_traces_jsonl(output / "candidate_traces.jsonl", cand_traces)
+    write_manifest(output / "candidate_manifest.json", cand_manifest)
+    (output / "comparison.json").write_text(
+        json.dumps(comparison, indent=2, sort_keys=True, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
+    typer.echo(json.dumps(comparison, indent=2))
 
 
 if __name__ == "__main__":

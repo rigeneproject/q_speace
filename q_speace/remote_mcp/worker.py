@@ -19,6 +19,10 @@ SCOPES = {
 }
 
 
+def _reject_constant(value: str) -> None:
+    raise ValueError(f"non_json_constant:{value}")
+
+
 def validate(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
     from q_speace.economy.mcp_server import _INPUT_MODELS
 
@@ -26,7 +30,7 @@ def validate(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         raise ValueError("tool_not_available")
     args = (
         _INPUT_MODELS[name]
-        .model_validate_json(json.dumps(arguments), strict=True)
+        .model_validate_json(json.dumps(arguments, allow_nan=False), strict=True)
         .model_dump(exclude_unset=True)
     )
     if name == "kl_barycentre_aggregate":
@@ -64,7 +68,7 @@ def main() -> int:
         raw = sys.stdin.buffer.read(65537)
         if len(raw) > 65536:
             raise ValueError("input_too_large")
-        request = json.loads(raw)
+        request = json.loads(raw, parse_constant=_reject_constant)
         args = validate(request["name"], request["arguments"])
         from q_speace.economy.mcp_server import _dispatch
 
