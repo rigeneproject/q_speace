@@ -454,6 +454,77 @@ class QSpeaceConnectionAgent:
             validator=check_vtec,
         )
 
+        # 6. T234 Singularity Phase-Transition & Genetic-Epigenetic assimilation checks
+        def check_manifest(data: dict[str, Any]) -> dict[str, Any]:
+            if data.get("framework_id") != "q_speace.singularity.v1" or not data.get(
+                "advisory_only"
+            ):
+                raise ValueError(f"unexpected singularity manifest: {data}")
+            return {"framework_id": data["framework_id"]}
+
+        await self._call_if_granted(
+            report,
+            session,
+            granted,
+            "tool_singularity_manifest",
+            "singularity_framework_manifest",
+            {"section": "stages"},
+            validator=check_manifest,
+        )
+
+        def check_phase_assess(data: dict[str, Any]) -> dict[str, Any]:
+            if data.get("stage") != "STAGE_2_BOUNDED_RECURSIVE" or data.get(
+                "physical_actuation_permitted"
+            ):
+                raise ValueError(f"unexpected phase transition assessment: {data}")
+            return {"stage": data["stage"], "dominant_bottleneck": data["dominant_bottleneck"]}
+
+        await self._call_if_granted(
+            report,
+            session,
+            granted,
+            "tool_phase_transition_assess",
+            "phase_transition_assess",
+            {
+                "timescale_decoupling_ratio": 15.0,
+                "autocatalytic_k": 1.4,
+                "independent_validation_rate": 0.98,
+                "semantic_entropy_drift": 0.02,
+                "net_verified_improvement": 0.05,
+                "consecutive_verified_cycles": 4,
+                "allopoietic_dependence": 0.85,
+                "sevo": 2.1,
+                "thermal_load_ratio": 0.55,
+                "independent_review_passed": True,
+            },
+            validator=check_phase_assess,
+        )
+
+        def check_epigenetic(data: dict[str, Any]) -> dict[str, Any]:
+            if not data.get("accepted") or not data.get("genome_write_lock_intact"):
+                raise ValueError(f"expected accepted bounded epigenetic step, got {data}")
+            return {"generation": data["next_profile"]["generation"]}
+
+        await self._call_if_granted(
+            report,
+            session,
+            granted,
+            "tool_epigenetic_step_evaluate",
+            "epigenetic_step_evaluate",
+            {
+                "locus": "verification_depth",
+                "delta": 0.05,
+                "proposer_id": "mcp-agent-1",
+                "reviewer_id": "external-reviewer-1",
+                "reviewer_approved": True,
+                "semantic_entropy_drift": 0.01,
+                "causal_benchmark_delta": 0.03,
+                "sevo": 2.0,
+                "power_watts": 110.0,
+            },
+            validator=check_epigenetic,
+        )
+
     async def _check_invalid_arg_recovery(
         self,
         report: AgentReport,

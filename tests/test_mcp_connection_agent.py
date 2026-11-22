@@ -45,7 +45,7 @@ def test_local_demo_cli_passes_and_writes_clean_evidence(
     summary = json.loads((report_dir / "summary.json").read_text(encoding="utf-8"))
     assert summary["passed"] is True
     assert summary["server_name"] == "q-speace-http"
-    assert len(summary["granted_tools"]) == 8
+    assert len(summary["granted_tools"]) == 11
     assert all(step["status"] == "passed" for step in summary["steps"])
     assert "Bearer " not in (report_dir / "events.jsonl").read_text(encoding="utf-8")
 
@@ -121,9 +121,10 @@ def test_partial_scope_token_skips_ungranted_tools(tmp_path: Path) -> None:
         app.audit.db.close()
 
     assert report.passed is True
-    assert report.granted_tools == ["bcel_lookup"]
+    assert set(report.granted_tools) == {"bcel_lookup", "singularity_framework_manifest"}
     by_step = {s.step: s.status for s in report.steps}
     assert by_step["tool_bcel_lookup"] == "passed"
+    assert by_step["tool_singularity_manifest"] == "passed"
     assert by_step["tool_adaptive_clock_rate"] == "skipped"
     assert by_step["scenario_a_kl_barycentre"] == "skipped"
     assert by_step["invalid_argument_recovery"] == "skipped"

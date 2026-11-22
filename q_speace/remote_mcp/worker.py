@@ -9,13 +9,16 @@ from typing import Any
 
 SCOPES = {
     "bcel_lookup": "qspeace:catalog.read",
+    "singularity_framework_manifest": "qspeace:catalog.read",
     "compute_jc": "qspeace:compute",
     "cme_evaluate": "qspeace:compute",
     "adaptive_clock_rate": "qspeace:compute",
     "metabolism_cost_eval": "qspeace:compute",
     "elasticity_test": "qspeace:compute",
+    "phase_transition_assess": "qspeace:compute",
     "kl_barycentre_aggregate": "qspeace:simulation.compute",
     "vtec_allocate": "qspeace:simulation.compute",
+    "epigenetic_step_evaluate": "qspeace:simulation.compute",
 }
 
 

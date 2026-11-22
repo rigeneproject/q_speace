@@ -80,6 +80,10 @@ qspace quantum synthesize   # print BCEL quantum equivalences
 - [PTAA adversarial red-team hardening & 90-day A/B ignition protocol (T233 / T221-18, T221-29)](docs/T233_PTAA_REDTEAM_AND_AB_IGNITION_PROTOCOL_SPEC.md):
   delegation privilege-escalation/replay/NaN-argument hardening, forensic replica isolation,
   reversibility anti-self-approval, red-team suite, and sandbox-only S0 A/B ignition protocol.
+- [Singularity phase-transition & self-evolving genetic-epigenetic framework (T234)](docs/T234_SINGULARITY_PHASE_TRANSITION_AND_EPIGENETIC_FRAMEWORK_SPEC.md):
+  `q_speace/singularity/` order-parameter stage evaluator (Stage 1–3 with non-compensable
+  allopoietic, semantic-entropy, and thermodynamic/`Sevo` brakes), write-locked
+  `genome_epigenome.v1` codec with homeostatic decay, and 3 advisory MCP assimilation tools.
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,
@@ -112,7 +116,8 @@ the first of every month against `https://huggingface.co/api/models?author=BICLa
 - [T226 bounded LLM agent connection experiment and evidence](docs/T226_AGENT_MCP_CONNECTION_EXPERIMENT_SPEC.md).
 
 Endpoint: `https://q-speace-mcp.onrender.com/mcp` (authorized OAuth access required).
-Eight advisory/numerical tools are exposed; no physical actuation or DAT mutation
+Eleven advisory/numerical tools are exposed (including the T234 phase-transition &
+genetic-epigenetic reference tools); no physical actuation or DAT mutation
 is available over HTTP. Free-tier hosting and local ephemeral state make this a
 research prototype. The recorded LLM/MCP test demonstrates interoperability, not
 a diagnostic, energy-efficiency or quantum advantage. Updating this repository

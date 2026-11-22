@@ -41,6 +41,11 @@ from pydantic import ConfigDict, Field, create_model
 from q_speace.bcel.catalog import BCELCatalog
 from q_speace.edd_cvt.ilf import InformationalLogicalField
 from q_speace.metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
+from q_speace.singularity.mcp_tools import (
+    handle_epigenetic_step_evaluate,
+    handle_phase_transition_assess,
+    handle_singularity_framework_manifest,
+)
 
 from .aggregation import aggregate
 from .dat import DAT
@@ -116,6 +121,21 @@ TOOL_REGISTRY: tuple[ToolSpec, ...] = (
         "bcel_lookup",
         "Read BCEL equivalences; not code verification or release approval.",
         "_handle_bcel_lookup",
+    ),
+    ToolSpec(
+        "singularity_framework_manifest",
+        "Read the T234 informational phase-transition & genetic-epigenetic reference manifest; advisory only, no actuation.",
+        "_handle_singularity_framework_manifest",
+    ),
+    ToolSpec(
+        "phase_transition_assess",
+        "Assess Stage 1-3 phase-transition readiness and physical brakes (allopoiesis, semantic entropy, Sevo/thermal); advisory only.",
+        "_handle_phase_transition_assess",
+    ),
+    ToolSpec(
+        "epigenetic_step_evaluate",
+        "Evaluate one proposed bounded epigenetic adaptation against genome write-lock, causal anchoring, Sevo, and independent review; sandbox only.",
+        "_handle_epigenetic_step_evaluate",
     ),
 )
 
@@ -223,6 +243,47 @@ _SCHEMAS: dict[str, dict[str, Any]] = {
         "sevo_threshold": (float, 1.5),
     },
     "bcel_lookup": {"concept": (str | None, None)},
+    "singularity_framework_manifest": {"section": (str | None, None)},
+    "phase_transition_assess": {
+        "timescale_decoupling_ratio": (float, Field(ge=0)),
+        "autocatalytic_k": (float, Field(gt=0)),
+        "independent_validation_rate": (float, Field(ge=0, le=1)),
+        "semantic_entropy_drift": (float, Field(ge=0, le=1)),
+        "net_verified_improvement": _NUMBER,
+        "consecutive_verified_cycles": (int, Field(ge=0, strict=True)),
+        "allopoietic_dependence": (float, Field(ge=0, le=1)),
+        "sevo": (float, Field(ge=0)),
+        "sevo_window_mean": (float | None, Field(default=None, ge=0)),
+        "sevo_energy_samples": (list[tuple[float, float]] | None, None),
+        "thermal_load_ratio": (float, Field(ge=0)),
+        "twin_recovery_rate": (float, Field(default=0.0, ge=0, le=1)),
+        "constitutional_faults": (int, Field(default=0, ge=0, strict=True)),
+        "rollback_pass_rate": (float, Field(default=1.0, ge=0, le=1)),
+        "independent_review_passed": (bool, False),
+        "critical_regressions": (int, Field(default=0, ge=0, strict=True)),
+        "sandboxed": (bool, True),
+    },
+    "epigenetic_step_evaluate": {
+        "locus": (str, ...),
+        "delta": _NUMBER,
+        "proposer_id": (str, ...),
+        "reviewer_id": (str, ...),
+        "reviewer_approved": (bool, ...),
+        "semantic_entropy_drift": (float, Field(ge=0, le=1)),
+        "causal_benchmark_delta": _NUMBER,
+        "sevo": (float, Field(ge=0)),
+        "sevo_window_mean": (float | None, Field(default=None, ge=0)),
+        "power_watts": (float, Field(ge=0)),
+        "thermal_load_ratio": (float | None, Field(default=None, ge=0)),
+        "rationale": (str, ""),
+        "current_values": (dict[str, float] | None, None),
+        "current_methylation": (dict[str, float] | None, None),
+        "boundary_dwell": (dict[str, int] | None, None),
+        "recent_step_deltas": (list[float] | None, None),
+        "parent_epigenome_hash": (str, "GENESIS"),
+        "external_dwell_reset_approved": (bool, False),
+        "generation": (int, Field(default=0, ge=0, strict=True)),
+    },
 }
 _INPUT_MODELS = {
     name: create_model(
@@ -272,6 +333,18 @@ def _handle_bcel_lookup(params: dict[str, Any]) -> dict[str, Any]:
     concept = params.get("concept")
     entries = [catalog.get(concept)] if concept is not None else catalog.all()
     return {"entries": [asdict(entry) for entry in entries]}
+
+
+def _handle_singularity_framework_manifest(params: dict[str, Any]) -> dict[str, Any]:
+    return handle_singularity_framework_manifest(params)
+
+
+def _handle_phase_transition_assess(params: dict[str, Any]) -> dict[str, Any]:
+    return handle_phase_transition_assess(params)
+
+
+def _handle_epigenetic_step_evaluate(params: dict[str, Any]) -> dict[str, Any]:
+    return handle_epigenetic_step_evaluate(params)
 
 
 # ---------------------------------------------------------------------------
@@ -608,6 +681,36 @@ def _self_test() -> int:
             {"num_qubits": 1, "num_gates": 1, "delta_utility": 2.0, "delta_entropy_info": 1.0},
         ),
         ("bcel_lookup", {}),
+        ("singularity_framework_manifest", {"section": "stages"}),
+        (
+            "phase_transition_assess",
+            {
+                "timescale_decoupling_ratio": 12.0,
+                "autocatalytic_k": 1.35,
+                "independent_validation_rate": 0.97,
+                "semantic_entropy_drift": 0.02,
+                "net_verified_improvement": 0.04,
+                "consecutive_verified_cycles": 4,
+                "allopoietic_dependence": 0.85,
+                "sevo": 2.2,
+                "thermal_load_ratio": 0.6,
+                "independent_review_passed": True,
+            },
+        ),
+        (
+            "epigenetic_step_evaluate",
+            {
+                "locus": "verification_depth",
+                "delta": 0.05,
+                "proposer_id": "agent-a",
+                "reviewer_id": "reviewer-b",
+                "reviewer_approved": True,
+                "semantic_entropy_drift": 0.01,
+                "causal_benchmark_delta": 0.03,
+                "sevo": 2.0,
+                "power_watts": 120.0,
+            },
+        ),
     ):
         try:
             _dispatch(name, arguments)

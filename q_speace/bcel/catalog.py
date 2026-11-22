@@ -508,6 +508,30 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "escalation, replay, NaN argument injection, audit replica isolation, "
         "self-approval rejection, halt anti-tamper, and Track A/B separation).",
     ),
+    # ----- T234: Singularity Phase-Transition & Self-Evolving Genetic-Epigenetic Framework -----
+    BCELEquivalence(
+        "Informational phase-transition order parameters and physical brakes (T234)",
+        "functional",
+        "Keep as measurable stage-readiness inequalities (timescale decoupling, "
+        "diagnostic k, semantic-entropy drift against external causal benchmarks, "
+        "allopoietic dependence D_allo, Sevo and thermal headroom) with non-compensable "
+        "fail-closed brakes. Advisory telemetry only; never enables physical actuation.",
+    ),
+    BCELEquivalence(
+        "Governed self-evolving genetic-epigenetic codec (T234)",
+        "functional",
+        "Keep as a canonical JSON-serializable contract (genome_epigenome.v1) pairing "
+        "a SHA-256 write-locked constitutional genome with bounded, rate-limited, "
+        "homeostatically decaying epigenetic loci gated by causal anchoring, Sevo, "
+        "and independent review (no self-approval).",
+    ),
+    BCELEquivalence(
+        "Monolithic singularity awakening narrative (T234)",
+        "accidental",
+        "Removed: sudden superintelligent awakening, unbounded autonomous evolution, "
+        "and literal biological autopoiesis are anthropomorphic metaphors. Only "
+        "measurable phase-transition telemetry and bounded reversible adaptation survive.",
+    ),
 ]
 
 

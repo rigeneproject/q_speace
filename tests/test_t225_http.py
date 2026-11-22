@@ -111,7 +111,7 @@ def test_http_tools_and_worker(setup: Any) -> None:
         listing = rpc(client, auth, sid, "tools/list")
         assert listing.status_code == 200, listing.text
         names = {tool["name"] for tool in listing.json()["result"]["tools"]}
-        assert len(names) == 8 and "dat_mint" not in names and "activate" not in names
+        assert len(names) == 11 and "dat_mint" not in names and "activate" not in names
         response = rpc(
             client,
             auth,
@@ -145,7 +145,10 @@ def test_http_auth_and_session_ownership(setup: Any) -> None:
         assert rpc(client, token(sub="bob"), sid, "ping").status_code == 404
         limited = token(scopes="qspeace:catalog.read")
         listing = rpc(client, limited, sid, "tools/list").json()["result"]["tools"]
-        assert [tool["name"] for tool in listing] == ["bcel_lookup"]
+        assert {tool["name"] for tool in listing} == {
+            "bcel_lookup",
+            "singularity_framework_manifest",
+        }
         assert (
             rpc(
                 client,
@@ -259,10 +262,11 @@ def test_official_sdk_over_real_http(setup: Any, tmp_path: Path) -> None:
             initialized = await session.initialize()
             assert initialized.serverInfo.name == "q-speace-http"
             await session.send_ping()
-            assert len((await session.list_tools()).tools) == 8
+            assert len((await session.list_tools()).tools) == 11
             assert session_id() is not None
             for name, arguments in (
                 ("bcel_lookup", {"concept": "Homeostasis"}),
+                ("singularity_framework_manifest", {"section": "framing"}),
                 (
                     "metabolism_cost_eval",
                     {
