@@ -36,6 +36,10 @@ from .service import Audit, Execution, ServiceError
 from .worker import SCOPES
 
 
+def _reject_json_constant(token: str) -> Any:
+    raise ValueError(f"non_finite_json_constant:{token}")
+
+
 def bounded(value: Any, depth: int = 0, count: list[int] | None = None) -> None:
     count = [0] if count is None else count
     count[0] += 1
@@ -168,7 +172,7 @@ class Gateway:
                     if len(body) > 65536:
                         raise ServiceError("body_limit", 413)
                 try:
-                    decoded = json.loads(body)
+                    decoded = json.loads(body, parse_constant=_reject_json_constant)
                     bounded(decoded)
                     if not isinstance(decoded, dict):
                         raise ValueError("invalid_message")

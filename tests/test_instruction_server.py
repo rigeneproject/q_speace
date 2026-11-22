@@ -28,16 +28,15 @@ def test_token_confidence_distinguishes_sharp_from_uniform_logits() -> None:
 def test_apply_chat_template_with_local_tokenizer() -> None:
     """Smoke test: load Qwen tokenizer from local path and run apply_chat_template.
 
-    The model is expected to live at the path in Q_SPEACE_INSTRUCT_MODEL_PATH
-    (already downloaded at /home/roby/models/qwen2.5-3b-instruct). If the
-    path does not exist locally, the test is skipped — no network is touched.
+    The model path is supplied via Q_SPEACE_INSTRUCT_MODEL_PATH. If unset or
+    missing locally, the test is skipped — no network is touched.
     """
 
-    model_path = os.environ.get(
-        "Q_SPEACE_INSTRUCT_MODEL_PATH", "/home/roby/models/qwen2.5-3b-instruct"
-    )
-    if not os.path.isdir(model_path):
-        pytest.skip(f"Qwen tokenizer not available at {model_path}")
+    model_path = os.environ.get("Q_SPEACE_INSTRUCT_MODEL_PATH", "")
+    if not model_path or not os.path.isdir(model_path):
+        pytest.skip(
+            f"Local instruct tokenizer not available (Q_SPEACE_INSTRUCT_MODEL_PATH={model_path!r})"
+        )
 
     from transformers import AutoTokenizer  # heavy import, gated by skip
 
