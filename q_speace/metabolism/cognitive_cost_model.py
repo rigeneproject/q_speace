@@ -10,6 +10,7 @@ depth and decoherence budget, so they can be gated by an energy controller.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 
 
@@ -22,6 +23,18 @@ class QuantumOperation:
     entanglement_depth: int = 0
     decoherence_budget: float = 0.0  # expected coherence loss [0,1]
     num_spikes: int = 0  # sparse event count; zero preserves T10 behaviour
+
+    def validate(self) -> None:
+        if self.num_qubits < 0:
+            raise ValueError(f"num_qubits must be >= 0 (got {self.num_qubits})")
+        if self.num_gates < 0:
+            raise ValueError(f"num_gates must be >= 0 (got {self.num_gates})")
+        if self.entanglement_depth < 0:
+            raise ValueError(f"entanglement_depth must be >= 0 (got {self.entanglement_depth})")
+        if not math.isfinite(self.decoherence_budget) or self.decoherence_budget < 0.0:
+            raise ValueError(
+                f"decoherence_budget must be finite and >= 0 (got {self.decoherence_budget})"
+            )
 
 
 class QuantumCostModel:
@@ -52,6 +65,11 @@ class QuantumCostModel:
         Decoherence budget increases the cost: a higher budget means the
         system must expend more energy to maintain the desired fidelity.
         """
+        op.validate()
+        if not math.isfinite(self.RICALIBRATION_FACTOR) or self.RICALIBRATION_FACTOR <= 0.0:
+            raise ValueError(
+                f"RICALIBRATION_FACTOR must be finite and > 0 (got {self.RICALIBRATION_FACTOR})"
+            )
         base = (
             op.num_qubits * self.W_PER_QUBIT
             + op.num_gates * self.W_PER_GATE
@@ -59,24 +77,31 @@ class QuantumCostModel:
             + op.decoherence_budget * self.W_PER_DECOHERENCE_UNIT
             + max(op.num_spikes, 0) * self.W_PER_SPIKE
         )
-        return base * self.RICALIBRATION_FACTOR
+        return float(base * self.RICALIBRATION_FACTOR)
 
     def energy_joules(self, op: QuantumOperation, duration_s: float = 1.0) -> float:
-        return self.energy_watts(op) * duration_s
+        if not math.isfinite(duration_s) or duration_s < 0.0:
+            raise ValueError(f"duration_s must be finite and >= 0 (got {duration_s})")
+        return float(self.energy_watts(op) * duration_s)
 
     @staticmethod
     def sevo(delta_utility: float, delta_entropy_info: float) -> float:
         """Entropic efficiency Sevo = ΔU / ΔS_info (target > 1.5).
 
-        delta_entropy_info must be strictly positive; a collapsing or
-        disordering step yields Sevo <= 0 and is rejected by the controller.
+        delta_entropy_info must be strictly positive; a collapsing,
+        disordering, or non-finite step yields Sevo <= 0 (fail-closed)
+        and is rejected by the controller.
         """
+        if not (math.isfinite(delta_utility) and math.isfinite(delta_entropy_info)):
+            return float("-inf")
         if delta_entropy_info <= 0:
             return float("-inf") if delta_utility > 0 else 0.0
-        return delta_utility / delta_entropy_info
+        return float(delta_utility / delta_entropy_info)
 
     @staticmethod
     def passes_sevo(
         delta_utility: float, delta_entropy_info: float, threshold: float = 1.5
     ) -> bool:
+        if not math.isfinite(threshold):
+            return False
         return QuantumCostModel.sevo(delta_utility, delta_entropy_info) > threshold

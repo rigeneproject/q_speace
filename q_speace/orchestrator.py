@@ -9,8 +9,10 @@ single tick loop with an explicit human/energy gate.
 
 from __future__ import annotations
 
+import math
 from collections import deque
 from dataclasses import dataclass
+from typing import TYPE_CHECKING, Protocol
 
 import numpy as np
 
@@ -30,6 +32,13 @@ from .radio import (
     WavefrontModulator,
 )
 from .spiking import dynamic_spikes, sparsity
+
+if TYPE_CHECKING:
+    from .aacm import CentralityGraph, FractureMap, StepDecision
+
+
+class _AACMControllerProtocol(Protocol):
+    def step(self, graph: CentralityGraph, fracture_map: FractureMap) -> object: ...
 
 
 @dataclass
@@ -65,7 +74,7 @@ class QuantumOrchestrator:
         neurons: list[str] | None = None,
         enable_earth: bool = False,
         seed: int | None = None,
-        max_energy_w: float = 10.0,
+        max_energy_w: float = 250.0,
         coherence_phi_threshold: float = 0.05,
         enable_radio: bool = False,
         enable_metasurface: bool = False,
@@ -73,6 +82,14 @@ class QuantumOrchestrator:
         spike_k: float = 3.0,
         spike_beta: float = 0.0,
     ) -> None:
+        if not math.isfinite(max_energy_w) or max_energy_w < 0.0:
+            raise ValueError(f"max_energy_w must be finite and >= 0 (got {max_energy_w})")
+        if not math.isfinite(coherence_phi_threshold) or not (
+            0.0 <= coherence_phi_threshold <= 1.0
+        ):
+            raise ValueError(
+                f"coherence_phi_threshold must be finite and in [0, 1] (got {coherence_phi_threshold})"
+            )
         self.genome = genome or QuantumGeneSet(enabled=True)
         self.genome.validate()
         self._seed = seed
@@ -110,7 +127,7 @@ class QuantumOrchestrator:
         # that emits a strategy tag for each tick. ``None`` means
         # the orchestrator runs without AACM, and the TickReport
         # falls back to ``aacm_strategy="default"``.
-        self._aacm_controller: object | None = None
+        self._aacm_controller: _AACMControllerProtocol | None = None
         # T-AACM-LOOP §C2: optional AACMLoop reference. The loop is
         # NOT auto-invoked; the orchestrator only EXPOSES the
         # ``attached_loop`` property so external code (CLI, tests)
@@ -147,13 +164,11 @@ class QuantumOrchestrator:
     def enable_qca(self, num_cells: int = 8) -> None:
         self._qca = FractalQCA(num_cells=num_cells, seed=self._seed or 0)
 
-    def attach_aacm(self, controller: object) -> None:
+    def attach_aacm(self, controller: _AACMControllerProtocol | None) -> None:
         """Attach an :class:`q_speace.aacm.AACMController`.
 
         The controller is queried at every tick to produce a strategy
         tag. Attaching ``None`` is a no-op (and the default state).
-        The argument is typed as ``object`` to avoid a hard import
-        dependency from the orchestrator module.
         """
         self._aacm_controller = controller
 
@@ -161,7 +176,7 @@ class QuantumOrchestrator:
         """Remove any attached AACM controller."""
         self._aacm_controller = None
 
-    def _aacm_tick(self, report: TickReport) -> object:
+    def _aacm_tick(self, report: TickReport) -> StepDecision:
         """Run one AACM decision for the current tick.
 
         Builds a :class:`q_speace.aacm.CentralityGraph` over the
@@ -206,15 +221,17 @@ class QuantumOrchestrator:
             },
             leverage_multiplier=1.5 if em_fracture > 0.5 else 1.0,
         )
-        decision = self._aacm_controller.step(graph, fracture_map)  # type: ignore[union-attr]
+        controller = self._aacm_controller
+        if controller is None:
+            raise RuntimeError("AACM tick invoked without an attached controller")
+        decision = controller.step(graph, fracture_map)
         # Defensive: if a foreign controller returns a plain dict, wrap it.
         if not isinstance(decision, StepDecision):
+            resilience = getattr(controller, "resilience", None)
             return StepDecision(
                 strategy=AACMStrategy.DEFAULT,
                 central_node=None,
-                aacm_omega=getattr(self._aacm_controller, "resilience", None)
-                and float(self._aacm_controller.resilience.omega)
-                or 1.0,
+                aacm_omega=float(getattr(resilience, "omega", 1.0)),
                 recommended_redirect=None,
                 notes={"foreign_decision": str(decision)},
             )
@@ -279,10 +296,12 @@ class QuantumOrchestrator:
         delta_s_info = abs(signals.kp - 0.5) + 0.01  # proxy entropy change
         delta_utility = self._ilf.coherence_phi
         sevo = self._cost.sevo(delta_utility, delta_s_info)
+        if not self._cost.passes_sevo(delta_utility, delta_s_info):
+            gate_blocked = True
 
         tx_report: dict[str, object] | None = None
-        # Execute only if gate is open.
-        if not gate_blocked and self._cost.passes_sevo(delta_utility, delta_s_info):
+        # Execute only if gate is open (energy, coherence, and Sevo all passed).
+        if not gate_blocked:
             if self._qca is not None:
                 qca_res = self._qca.step(delta_s_info=delta_s_info)
                 self._ilf.update(np.full(4, qca_res.mean_weight))
@@ -294,30 +313,31 @@ class QuantumOrchestrator:
                     self._ilf.set_weight(nid, weight)
             self._energy_budget_remaining -= power
 
-            # --- Act: transmit Q* via EM (Strato 2/3) ---
-            q_star = self._ilf.compute_q_star()
-            waveform = self._modulator.encode_q_star(
-                q_star, confidence=max(self._ilf.coherence_phi, 0.01)
-            )
-            if self._metasurface is not None and self._metasurface.is_active:
-                waveform = self._metasurface.beamform(
-                    waveform, azimuth_deg=float(self._tick_count % 360)
+            # --- Act: transmit Q* via EM (Strato 2/3) only when radio is enabled ---
+            if self._radio_enabled:
+                q_star = self._ilf.compute_q_star()
+                waveform = self._modulator.encode_q_star(
+                    q_star, confidence=max(self._ilf.coherence_phi, 0.01)
                 )
-            compliance = self._emulator.validate(waveform)
-            if compliance.passed:
-                tx_report_ = self._sdr.transmit(waveform)
-                tx_report = {
-                    "power_dbm": tx_report_.power_dbm,
-                    "frequency_hz": tx_report_.frequency_hz,
-                    "compliance": True,
-                }
-            else:
-                tx_report = {
-                    "power_dbm": 0.0,
-                    "frequency_hz": 0.0,
-                    "compliance": False,
-                    "reason": compliance.message,
-                }
+                if self._metasurface is not None and self._metasurface.is_active:
+                    waveform = self._metasurface.beamform(
+                        waveform, azimuth_deg=float(self._tick_count % 360)
+                    )
+                compliance = self._emulator.validate(waveform)
+                if compliance.passed:
+                    tx_report_ = self._sdr.transmit(waveform)
+                    tx_report = {
+                        "power_dbm": tx_report_.power_dbm,
+                        "frequency_hz": tx_report_.frequency_hz,
+                        "compliance": True,
+                    }
+                else:
+                    tx_report = {
+                        "power_dbm": 0.0,
+                        "frequency_hz": 0.0,
+                        "compliance": False,
+                        "reason": compliance.message,
+                    }
         else:
             # Throttle: energy budget recharges fractionally when blocked.
             self._energy_budget_remaining = min(

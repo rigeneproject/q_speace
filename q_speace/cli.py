@@ -4,12 +4,16 @@ Groups:
   - ``qspace quantum ...`` — quantum experiments and tools
   - ``qspace sia ...`` — self-improvement cortex controls
   - ``qspace brain ...`` — SpikingBrain satellite (T205)
+  - ``qspace economy ...`` — q_speace_economy primitives (T6.*)
 """
 
 from __future__ import annotations
 
 import asyncio
 import json
+from collections.abc import Coroutine
+from pathlib import Path
+from typing import Any
 
 import typer
 
@@ -21,7 +25,9 @@ from .orchestrator import QuantumOrchestrator
 from .quantum.backends import to_cqasm
 from .schumann import run_schumann, schumann_circuit
 from .self_improvement_cortex import SelfImprovementCortex
-from .spiking_brain import SpikingBrainCortex
+from .spiking_brain import CortexReport, SpikingBrainCortex, ThinkResult
+
+_VALID_ECONOMY_SCHEMAS: tuple[str, ...] = ("j_c", "v", "cme", "dat")
 
 app = typer.Typer(help="Q-SPEACE quantum layer CLI")
 quantum_app = typer.Typer(help="Quantum experiments and tools")
@@ -36,8 +42,8 @@ app.add_typer(economy_app, name="economy")
 
 @quantum_app.command("run")
 def quantum_run(
-    ticks: int = typer.Option(10, "--ticks", "-t"),
-    neurons: int = typer.Option(4, "--neurons", "-n"),
+    ticks: int = typer.Option(10, "--ticks", "-t", min=0),
+    neurons: int = typer.Option(4, "--neurons", "-n", min=1),
     earth: bool = typer.Option(False, "--earth/--no-earth"),
     radio: bool = typer.Option(False, "--radio/--no-radio"),
     metasurface: bool = typer.Option(False, "--metasurface/--no-metasurface"),
@@ -53,30 +59,34 @@ def quantum_run(
     )
     orch.enable_qca(num_cells=neurons)
     report = orch.run(ticks=ticks)
-    print(f"[green]Ran {len(report)} ticks[/green]")
-    print(orch.report())
-    if radio:
+    typer.echo(f"Ran {len(report)} ticks")
+    typer.echo(str(orch.report()))
+    if radio and report:
         last = report[-1]
-        print(f"[cyan]Last TX:[/cyan] {last.tx_report}")
-        print(
-            f"[cyan]Spectrum:[/cyan] snr={last.spectrum.snr_db:.1f} dB rssi={last.spectrum.rssi_dbm:.1f} dBm"
-        )
+        typer.echo(f"Last TX: {last.tx_report}")
+        spectrum = last.spectrum
+        snr_db = float(getattr(spectrum, "snr_db", float("nan")))
+        rssi_dbm = float(getattr(spectrum, "rssi_dbm", float("nan")))
+        typer.echo(f"Spectrum: snr={snr_db:.1f} dB rssi={rssi_dbm:.1f} dBm")
 
 
 @quantum_app.command("benchmark")
 def quantum_benchmark(
-    qubits: int = typer.Option(4, "--qubits", "-q"),
-    ticks: int = typer.Option(10, "--ticks", "-t"),
+    qubits: int = typer.Option(4, "--qubits", "-q", min=1),
+    ticks: int = typer.Option(10, "--ticks", "-t", min=1),
     backend: str = typer.Option("numpy", "--backend", "-b"),
 ) -> None:
     """Run the Schumann-resonance benchmark experiment."""
     from .quantum.backends import build
 
-    build(backend)  # validates backend selection / fallback
+    selected = build(backend)  # validates backend selection / fallback
     result = run_schumann(num_qubits=qubits, ticks=ticks)
-    print(f"[cyan]Backend:[/cyan] {backend}")
-    print(f"[cyan]Mean coherence:[/cyan] {result['mean_coherence']:.4f}")
-    print(f"[cyan]Coherence trace:[/cyan] {result['coherence_trace']}")
+    if selected.name != backend:
+        typer.echo(f"Backend: {selected.name} (fallback from {backend})")
+    else:
+        typer.echo(f"Backend: {selected.name}")
+    typer.echo(f"Mean coherence: {result['mean_coherence']:.4f}")
+    typer.echo(f"Coherence trace: {result['coherence_trace']}")
 
 
 @quantum_app.command("synthesize")
@@ -84,13 +94,13 @@ def quantum_synthesize() -> None:
     """List BCEL quantum equivalences (biological->cybernetic)."""
     catalog = BCELCatalog()
     for eq in catalog.all():
-        print(f"[yellow]{eq.concept}[/yellow] -> {eq.classification}")
-        print(f"  {eq.digital_rule}")
+        typer.echo(f"{eq.concept} -> {eq.classification}")
+        typer.echo(f"  {eq.digital_rule}")
 
 
 @quantum_app.command("cqasm")
 def quantum_cqasm(
-    qubits: int = typer.Option(4, "--qubits", "-q"),
+    qubits: int = typer.Option(4, "--qubits", "-q", min=1),
     tick: int = typer.Option(0, "--tick", "-t"),
     version: str = typer.Option("3.0", "--version", "-v"),
     use_network: bool = typer.Option(False, "--earth/--no-earth"),
@@ -103,7 +113,7 @@ def quantum_cqasm(
     feed = EarthFeed(use_network=use_network)
     angles = feed.fetch(tick).rotation_angles()
     circ = schumann_circuit(qubits, angles)
-    print(to_cqasm(circ, version=version))
+    typer.echo(to_cqasm(circ, version=version), nl=False)
 
 
 @quantum_app.command("bridge")
@@ -113,24 +123,24 @@ def quantum_bridge(
     version: str = typer.Option("3.0", "--version", "-v"),
 ) -> None:
     """Print a 5-qubit QI bridge circuit (phi_bridge + cross-scale coupling)."""
-    print(qi_bridge_cqasm(atom_coherence, brain_seed, version=version))
+    typer.echo(qi_bridge_cqasm(atom_coherence, brain_seed, version=version), nl=False)
 
 
 @quantum_app.command("cross-scale")
 def quantum_cross_scale(
-    ticks: int = typer.Option(20, "--ticks", "-t"),
+    ticks: int = typer.Option(20, "--ticks", "-t", min=1),
     atom_noise: float = typer.Option(0.2, "--noise", "-n"),
 ) -> None:
     """Run the cross-scale emergence experiment (bottom-up noise proof)."""
     base, noisy = experiment_cross_scale(ticks=ticks, atom_noise=atom_noise)
-    print(f"[cyan]brain sigma (baseline):[/cyan] {base:.4f}")
-    print(f"[cyan]brain sigma (atom-noise):[/cyan] {noisy:.4f}")
-    print("[green]cross-scale emergence:[/green]" f" {'YES' if noisy > base else 'NO'}")
+    typer.echo(f"brain sigma (baseline): {base:.4f}")
+    typer.echo(f"brain sigma (atom-noise): {noisy:.4f}")
+    typer.echo(f"cross-scale emergence: {'YES' if noisy > base else 'NO'}")
 
 
 @sia_app.command("run")
 def sia_run(
-    ticks: int = typer.Option(10, "--ticks", "-t"),
+    ticks: int = typer.Option(10, "--ticks", "-t", min=0),
     verbose: bool = typer.Option(False, "--verbose", "-v"),
 ) -> None:
     """Run the Self-Improvement Cortex for N ticks."""
@@ -138,11 +148,11 @@ def sia_run(
     for i in range(ticks):
         report = cortex.tick({"coherence_phi": 0.7, "plasticity_index": 0.5})
         if verbose:
-            print(
+            typer.echo(
                 f"tick={i}: proposals={report.proposals} selected={report.selected} "
                 f"mutations={report.mutations_applied} rollbacks={report.rollbacks}"
             )
-    print(cortex.report())
+    typer.echo(str(cortex.report()))
 
 
 @sia_app.command("status")
@@ -151,19 +161,19 @@ def sia_status() -> None:
     cortex = SelfImprovementCortex()
     report = cortex.report()
     for k, v in report.items():
-        print(f"  {k}: {v}")
+        typer.echo(f"  {k}: {v}")
 
 
 @sia_app.command("dna")
 def sia_dna(
-    limit: int = typer.Option(10, "--limit", "-l"),
+    limit: int = typer.Option(10, "--limit", "-l", min=1),
 ) -> None:
     """List recent DNA mutation records."""
     cortex = SelfImprovementCortex()
     records = cortex.dna.recent(limit)
-    print(f"DNA mutation records (last {len(records)}):")
+    typer.echo(f"DNA mutation records (last {len(records)}):")
     for r in records:
-        print(
+        typer.echo(
             f"  [{r.mutation_id}] level={r.level} target={r.target} "
             f"confidence={r.confidence:.2f} active={r.active}"
         )
@@ -171,9 +181,9 @@ def sia_dna(
 
 @sia_app.command("benchmark")
 def sia_benchmark(
-    min_qubits: int = typer.Option(4, "--min-qubits", "-q"),
-    max_qubits: int = typer.Option(20, "--max-qubits", "-Q"),
-    trials: int = typer.Option(2, "--trials", "-t"),
+    min_qubits: int = typer.Option(4, "--min-qubits", "-q", min=1),
+    max_qubits: int = typer.Option(20, "--max-qubits", "-Q", min=1),
+    trials: int = typer.Option(2, "--trials", "-t", min=1),
 ) -> None:
     """Benchmark QEE entanglement simulation (GPU if available)."""
     from .self_improvement_cortex.benchmark import benchmark_gpu, print_report
@@ -196,9 +206,9 @@ def quantum_qee(
     parsed = json.loads(strategies)
     engine = QuantumEvolutionEngine()
     results = engine.propose_candidates(parsed, {})
-    print(f"QEE proposed {len(results)} candidates:")
+    typer.echo(f"QEE proposed {len(results)} candidates:")
     for r in results:
-        print(
+        typer.echo(
             f"  [{r.method}] id={r.candidate_id} score={r.score:.3f} confidence={r.confidence:.3f}"
         )
 
@@ -208,7 +218,7 @@ def version() -> None:
     """Print package version."""
     from importlib.metadata import version as _v
 
-    print(_v("q-speace"))
+    typer.echo(_v("q-speace"))
 
 
 # ----------------------------------------------------------------------
@@ -216,14 +226,14 @@ def version() -> None:
 # ----------------------------------------------------------------------
 
 
-def _run_coro(coro):  # pragma: no cover — trivial wrapper
+def _run_coro[T](coro: Coroutine[Any, Any, T]) -> T:  # pragma: no cover — trivial wrapper
     return asyncio.run(coro)
 
 
 @brain_app.command("think")
 def brain_think(
     prompt: str = typer.Argument(..., help="Prompt for the SpikingBrain area."),
-    tokens: int = typer.Option(32, "--tokens", "-n", help="Max new tokens."),
+    tokens: int = typer.Option(32, "--tokens", "-n", min=1, help="Max new tokens."),
     coherence: float = typer.Option(1.0, "--coherence", "-c", help="Initial ILF coherence_phi."),
     json_out: bool = typer.Option(False, "--json", help="Emit JSON instead of pretty text."),
 ) -> None:
@@ -236,7 +246,7 @@ def brain_think(
     ilf = InformationalLogicalField(coherence_phi=coherence)
     cortex = SpikingBrainCortex(ilf=ilf)
 
-    async def run() -> object:
+    async def run() -> ThinkResult:
         return await cortex.think(prompt, n_tokens=tokens)
 
     result = _run_coro(run())
@@ -258,21 +268,20 @@ def brain_think(
             )
         )
     else:
-        typer.echo(f"[green]backend:[/green] {cortex.backend_name}")
-        typer.echo(f"[cyan]text:[/cyan] {result.text}")
-        typer.echo(f"[cyan]belief:[/cyan] {[round(float(x), 3) for x in result.belief]}")
-        typer.echo(f"[cyan]confidence:[/cyan] {result.confidence:.3f}")
+        typer.echo(f"backend: {cortex.backend_name}")
+        typer.echo(f"text: {result.text}")
+        typer.echo(f"belief: {[round(float(x), 3) for x in result.belief]}")
+        typer.echo(f"confidence: {result.confidence:.3f}")
         typer.echo(
-            f"[cyan]spikes:[/cyan] num={result.spikes.num_spikes} "
-            f"sparsity={result.spikes.sparsity:.2f}"
+            f"spikes: num={result.spikes.num_spikes} " f"sparsity={result.spikes.sparsity:.2f}"
         )
-        typer.echo(f"[cyan]plasticity:[/cyan] {[round(float(x), 3) for x in result.plasticity]}")
+        typer.echo(f"plasticity: {[round(float(x), 3) for x in result.plasticity]}")
 
 
 @brain_app.command("tick")
 def brain_tick(
     prompt: str = typer.Argument(..., help="Prompt for the cognitive step."),
-    tokens: int = typer.Option(32, "--tokens", "-n"),
+    tokens: int = typer.Option(32, "--tokens", "-n", min=1),
     coherence: float = typer.Option(1.0, "--coherence", "-c"),
     verbose: bool = typer.Option(False, "--verbose", "-v"),
 ) -> None:
@@ -282,18 +291,18 @@ def brain_tick(
     ilf = InformationalLogicalField(coherence_phi=coherence)
     cortex = SpikingBrainCortex(ilf=ilf)
 
-    async def run() -> object:
+    async def run() -> CortexReport:
         return await cortex.tick(prompt, n_tokens=tokens)
 
     report = _run_coro(run())
-    typer.echo(f"[green]backend:[/green] {report.backend}")
-    typer.echo(f"[cyan]approved:[/cyan] {report.approved}")
-    typer.echo(f"[cyan]reason:[/cyan] {report.reason}")
-    typer.echo(f"[cyan]sevo:[/cyan] {report.sevo:.3f}")
-    typer.echo(f"[cyan]energy_w:[/cyan] {report.energy_w:.3f}")
-    typer.echo(f"[cyan]confidence:[/cyan] {report.confidence:.3f}")
+    typer.echo(f"backend: {report.backend}")
+    typer.echo(f"approved: {report.approved}")
+    typer.echo(f"reason: {report.reason}")
+    typer.echo(f"sevo: {report.sevo:.3f}")
+    typer.echo(f"energy_w: {report.energy_w:.3f}")
+    typer.echo(f"confidence: {report.confidence:.3f}")
     if verbose and report.result is not None:
-        typer.echo(f"[cyan]text:[/cyan] {report.result.text}")
+        typer.echo(f"text: {report.result.text}")
 
 
 @brain_app.command("health")
@@ -301,7 +310,7 @@ def brain_health() -> None:
     """Check the SpikingBrain satellite health."""
     cortex = SpikingBrainCortex()
 
-    async def run() -> dict:
+    async def run() -> dict[str, Any]:
         return await cortex.health()
 
     h = _run_coro(run())
@@ -312,7 +321,7 @@ def brain_health() -> None:
 def brain_chat(
     coherence: float = typer.Option(1.0, "--coherence", "-c", help="Initial ILF coherence_phi."),
     max_turns: int = typer.Option(
-        16, "--turns", "-t", help="Max turns before the REPL auto-quits."
+        16, "--turns", "-t", min=1, help="Max turns before the REPL auto-quits."
     ),
     backend: str = typer.Option(
         "auto",
@@ -331,15 +340,10 @@ def brain_chat(
     Type ``q``, ``quit`` or ``exit`` (empty input) to end the REPL.
     """
     from .edd_cvt.ilf import InformationalLogicalField
-    from .spiking_brain import make_spiking_brain
+    from .spiking_brain import StubSpikingBrain, make_spiking_brain
 
     ilf = InformationalLogicalField(coherence_phi=coherence)
-    if backend == "stub":
-        from .spiking_brain import StubSpikingBrain
-
-        chosen = StubSpikingBrain()
-    else:
-        chosen = make_spiking_brain()
+    chosen: object = StubSpikingBrain() if backend == "stub" else make_spiking_brain()
     cortex = SpikingBrainCortex(ilf=ilf, backend=chosen)
 
     typer.echo(f"[brain] backend={cortex.backend_name} coherence={coherence:.2f}")
@@ -347,7 +351,7 @@ def brain_chat(
     for i in range(max_turns):
         try:
             prompt = typer.prompt(f"[turn {i + 1}/{max_turns}] you")
-        except (EOFError, KeyboardInterrupt):
+        except (EOFError, KeyboardInterrupt, typer.Abort):
             typer.echo("")
             break
         if prompt.strip().lower() in {"q", "quit", "exit"}:
@@ -356,7 +360,7 @@ def brain_chat(
             break
 
         try:
-            report = _run_coro(cortex.tick(prompt, history=cortex._history or None))
+            report = _run_coro(cortex.tick(prompt, history=cortex.history or None))
         except Exception as exc:  # noqa: BLE001 — REPL should not crash
             typer.echo(f"[brain] error: {exc.__class__.__name__}: {exc}")
             continue
@@ -391,19 +395,21 @@ def economy_validate_schema(
     schema: str = typer.Argument("all", help="Schema name (j_c/v/cme/dat) or 'all'."),
 ) -> None:
     """Validate the q_speace_economy JSON schemas against Draft 2020-12."""
-    import json
-    from pathlib import Path
-
     from jsonschema import Draft202012Validator
 
+    if schema != "all" and schema not in _VALID_ECONOMY_SCHEMAS:
+        raise typer.BadParameter(
+            f"unknown schema {schema!r}; choose 'all' or one of {list(_VALID_ECONOMY_SCHEMAS)}"
+        )
+
     base = Path(__file__).parent / "economy" / "schemas"
-    targets = ["j_c", "v", "cme", "dat"] if schema == "all" else [schema]
+    targets = list(_VALID_ECONOMY_SCHEMAS) if schema == "all" else [schema]
     for name in targets:
         path = base / f"{name}.schema.json"
         with path.open(encoding="utf-8") as f:
             doc = json.load(f)
         Draft202012Validator.check_schema(doc)
-        typer.echo(f"[green]{name}[/green] OK")
+        typer.echo(f"{name} OK")
 
 
 @economy_app.command("jc-from-telemetry")
@@ -433,7 +439,7 @@ def economy_jc_from_telemetry(
 
 @economy_app.command("mcp-self-test")
 def economy_mcp_self_test() -> None:
-    """Run the MCP server self-test (all 7 tools)."""
+    """Run the MCP server self-test (all 10 tools)."""
     from .economy.mcp_server import main as mcp_main
 
     rc = mcp_main(["--self-test"])

@@ -20,6 +20,8 @@ class MemoryEntry:
 
     @property
     def net_impact(self) -> float:
+        if not self.metrics_after:
+            return float(self.outcome)
         avg_before = sum(self.metrics_before.values()) / max(len(self.metrics_before), 1)
         avg_after = sum(self.metrics_after.values()) / max(len(self.metrics_after), 1)
         return avg_after - avg_before

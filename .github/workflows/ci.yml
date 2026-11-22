@@ -23,6 +23,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
       - name: Lint (ruff)
-        run: ruff check q_speace
+        run: ruff check q_speace tests
+      - name: Format (black)
+        run: black --check q_speace tests
+      - name: Type check (mypy)
+        run: mypy q_speace
+      - name: Compile check
+        run: python -m compileall -q q_speace
       - name: Test (pytest)
         run: pytest -q

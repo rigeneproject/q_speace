@@ -11,7 +11,10 @@ mismatch, harmonic leakage, or certify hardware compliance.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
+
+import numpy as np
 
 from .models import FrequencyRange, Waveform
 
@@ -45,9 +48,16 @@ class ComplianceFilter:
         self.limits = limits or RegulatoryLimits()
 
     def check(self, waveform: Waveform) -> ComplianceResult:
-        power_ok = waveform.power_dbm <= self.limits.max_power_dbm
-        band_ok = self._band_allowed(waveform.center_freq_hz)
-        bw_ok = waveform.sample_rate <= self.limits.max_bandwidth_hz
+        power_ok = (
+            math.isfinite(waveform.power_dbm) and waveform.power_dbm <= self.limits.max_power_dbm
+        )
+        band_ok = math.isfinite(waveform.center_freq_hz) and self._band_allowed(
+            waveform.center_freq_hz
+        )
+        bw_ok = (
+            math.isfinite(waveform.sample_rate)
+            and 0.0 < waveform.sample_rate <= self.limits.max_bandwidth_hz
+        )
         spur_ok = self._check_spurious(waveform)
         passed = power_ok and band_ok and bw_ok and spur_ok
         msg = ""
@@ -79,7 +89,10 @@ class ComplianceFilter:
         return any(b.start_hz <= freq_hz <= b.end_hz for b in self.limits.allowed_bands)
 
     def _check_spurious(self, waveform: Waveform) -> bool:
-        return True
+        samples = np.asarray(waveform.iq_samples)
+        if samples.size == 0:
+            return False
+        return bool(np.all(np.isfinite(samples)))
 
 
 class RadioEmulator:

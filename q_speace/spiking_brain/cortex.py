@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import asyncio
 import inspect
+import math
 import warnings
 from collections.abc import Sequence
 from dataclasses import dataclass, field
@@ -83,6 +84,7 @@ class SpikingBrainCortex:
         coherence_phi_ema: float = 0.5,
         backend_coherence_phi_floor: float = 0.7,
         brain_audit_log: BrainAuditLog | None = None,
+        max_energy_w: float | None = None,
     ) -> None:
         if backend is None:
             from .factory import make_spiking_brain
@@ -102,6 +104,9 @@ class SpikingBrainCortex:
         self.sevo_threshold = sevo_threshold
         self.min_coherence_phi = min_coherence_phi
         self.min_confidence = min_confidence
+        if max_energy_w is not None and (not math.isfinite(max_energy_w) or max_energy_w < 0.0):
+            raise ValueError(f"max_energy_w must be finite and >= 0 (got {max_energy_w})")
+        self.max_energy_w: float | None = float(max_energy_w) if max_energy_w is not None else None
         # T-SPB-3-A-bis: floor for the coherence_phi value propagated to
         # the backend's ``think()``. Prevents the coupled loop where a
         # low ILF φ attenuates the backend's reported confidence, which
@@ -129,6 +134,11 @@ class SpikingBrainCortex:
             self.backend, "backend", type(self.backend).__name__
         )
         return str(name) if name is not None else type(self.backend).__name__
+
+    @property
+    def history(self) -> list[ThinkResult]:
+        """Return a shallow copy of the rolling think history."""
+        return list(self._history)
 
     # --- async / sync shim ---
 
@@ -220,33 +230,46 @@ class SpikingBrainCortex:
 
         # 2. Cost the call (no quantum ops — pure classical; treat as one
         #    quantum step sized by token count).
+        conf_valid = math.isfinite(result.confidence) and 0.0 <= result.confidence <= 1.0
+        safe_confidence = float(result.confidence) if conf_valid else 0.0
         op = QuantumOperation(
             num_qubits=self.BRAIN_NUM_QUBITS,
-            num_gates=n_tokens * self.BRAIN_NUM_GATES_PER_TOKEN,
+            num_gates=max(int(n_tokens), 0) * self.BRAIN_NUM_GATES_PER_TOKEN,
             entanglement_depth=self.BRAIN_ENTANGLEMENT_DEPTH,
-            decoherence_budget=max(1.0 - result.confidence, 0.0),
+            decoherence_budget=max(1.0 - safe_confidence, 0.0),
         )
         energy = self.cost.energy_watts(op)
 
-        # 3. Sevo gate: high entropy vs. low utility.
-        delta_utility = result.confidence
-        delta_entropy = float(max(1.0 - result.confidence, 1e-3))
-        sevo = self.cost.sevo(delta_utility, delta_entropy)
-        sevo_ok = sevo > self.sevo_threshold
+        # 3. Sevo gate: high entropy vs. low utility (fail-closed on non-finite confidence).
+        if conf_valid:
+            delta_utility = safe_confidence
+            delta_entropy = float(max(1.0 - safe_confidence, 1e-3))
+            sevo = self.cost.sevo(delta_utility, delta_entropy)
+            sevo_ok = sevo > self.sevo_threshold
+        else:
+            sevo = float("-inf")
+            sevo_ok = False
 
-        # 4. Coherence gate.
-        coherence_ok = coherence_phi >= self.min_coherence_phi
-        confidence_ok = result.confidence >= self.min_confidence
+        # 4. Coherence, confidence, and optional energy gate.
+        coherence_ok = math.isfinite(coherence_phi) and coherence_phi >= self.min_coherence_phi
+        confidence_ok = conf_valid and safe_confidence >= self.min_confidence
+        energy_ok = self.max_energy_w is None or (
+            math.isfinite(energy) and energy <= self.max_energy_w
+        )
 
-        approved = sevo_ok and coherence_ok and confidence_ok
+        approved = sevo_ok and coherence_ok and confidence_ok and energy_ok
         if not approved:
             reasons = []
+            if not conf_valid:
+                reasons.append(f"invalid confidence {result.confidence!r}")
             if not sevo_ok:
                 reasons.append(f"sevo {sevo:.2f}<={self.sevo_threshold}")
             if not coherence_ok:
                 reasons.append(f"coherence_phi {coherence_phi:.3f}<{self.min_coherence_phi}")
-            if not confidence_ok:
-                reasons.append(f"confidence {result.confidence:.3f}<{self.min_confidence}")
+            if not confidence_ok and conf_valid:
+                reasons.append(f"confidence {safe_confidence:.3f}<{self.min_confidence}")
+            if not energy_ok and self.max_energy_w is not None:
+                reasons.append(f"energy_w {energy:.2f}>{self.max_energy_w:.2f}")
             reason = "; ".join(reasons)
         else:
             reason = "approved"
@@ -331,6 +354,7 @@ class SpikingBrainCortex:
                 energy_w=energy_w,
                 approved=approved,
                 reason=reason,
+                include_raw_excerpts=not self.brain_audit_log.redact_raw_text,
             )
             self.brain_audit_log.write(rec)
 
@@ -348,10 +372,10 @@ class SpikingBrainCortex:
         if not self._reports:
             return {"ticks": 0, "approved": 0, "approval_rate": 0.0}
         approved = sum(1 for r in self._reports if r.approved)
-        mean_energy = float(np.mean([r.energy_w for r in self._reports]))
-        mean_sevo = float(
-            np.mean([r.sevo for r in self._reports if r.sevo != float("-inf")]) or 0.0
-        )
+        valid_energy = [r.energy_w for r in self._reports if math.isfinite(r.energy_w)]
+        mean_energy = float(np.mean(valid_energy)) if valid_energy else 0.0
+        valid_sevo = [r.sevo for r in self._reports if math.isfinite(r.sevo)]
+        mean_sevo = float(np.mean(valid_sevo)) if valid_sevo else 0.0
         return {
             "ticks": len(self._reports),
             "approved": approved,

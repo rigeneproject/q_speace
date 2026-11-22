@@ -481,6 +481,11 @@ def list_tools() -> list[dict[str, Any]]:
 # ---------------------------------------------------------------------------
 
 
+def _check_self_test(condition: bool, message: str) -> None:
+    if not condition:
+        raise RuntimeError(message)
+
+
 def _self_test() -> int:
     """Run a minimal smoke test of every tool. Return 0 on success."""
     print(f"[mcp_server] tool registry: {[s.name for s in TOOL_REGISTRY]}")
@@ -496,7 +501,7 @@ def _self_test() -> int:
                 "measured_components": 5,
             }
         )
-        assert j["confidence"] == 1.0
+        _check_self_test(j["confidence"] == 1.0, f"expected confidence 1.0, got {j['confidence']}")
     except Exception as e:
         failures.append(f"compute_jc: {e}")
     try:
@@ -505,7 +510,10 @@ def _self_test() -> int:
                 "distributions": [[0.7, 0.2, 0.1], [0.1, 0.2, 0.7]],
             }
         )
-        assert abs(sum(bary["barycentre"]) - 1.0) < 1e-6
+        _check_self_test(
+            abs(sum(bary["barycentre"]) - 1.0) < 1e-6,
+            f"barycentre sum mismatch: {bary['barycentre']}",
+        )
     except Exception as e:
         failures.append(f"kl_barycentre_aggregate: {e}")
     try:
@@ -523,7 +531,7 @@ def _self_test() -> int:
                 },
             }
         )
-        assert v["feasible"]
+        _check_self_test(bool(v["feasible"]), "vtec_allocate reported infeasible")
     except Exception as e:
         failures.append(f"vtec_allocate: {e}")
     try:
@@ -546,7 +554,7 @@ def _self_test() -> int:
                 0.5,
             )
         )
-        assert len(cme["cme"]) == 12
+        _check_self_test(len(cme["cme"]) == 12, f"expected 12 CME axes, got {len(cme['cme'])}")
     except Exception as e:
         failures.append(f"cme_evaluate: {e}")
     try:
@@ -559,7 +567,7 @@ def _self_test() -> int:
                 "token_id": "self-test",
             }
         )
-        assert m["token_id"] == "self-test"
+        _check_self_test(m["token_id"] == "self-test", f"unexpected token_id: {m['token_id']}")
         s = _handle_dat_spend(
             {
                 "token_id": "self-test",
@@ -568,7 +576,10 @@ def _self_test() -> int:
                 "t": 0.0,
             }
         )
-        assert s["remaining_amount"] == 90.0
+        _check_self_test(
+            s["remaining_amount"] == 90.0,
+            f"expected remaining_amount 90.0, got {s['remaining_amount']}",
+        )
     except Exception as e:
         failures.append(f"dat_mint/spend: {e}")
     try:
@@ -587,13 +598,9 @@ def _self_test() -> int:
                 "tol": 0.05,
             }
         )
-        assert e_test["decision"] == "ACCEPT"
+        _check_self_test(e_test["decision"] == "ACCEPT", f"unexpected decision: {e_test}")
     except Exception as e:
         failures.append(f"elasticity_test: {e}")
-    if failures:
-        for f in failures:
-            print(f"  FAIL: {f}")
-        return 1
     for name, arguments in (
         ("adaptive_clock_rate", {"coherence_phi": 0.5}),
         (
@@ -602,8 +609,15 @@ def _self_test() -> int:
         ),
         ("bcel_lookup", {}),
     ):
-        _dispatch(name, arguments)
-    print("[mcp_server] all 10 tools green")
+        try:
+            _dispatch(name, arguments)
+        except Exception as e:
+            failures.append(f"{name}: {e}")
+    if failures:
+        for f in failures:
+            print(f"  FAIL: {f}")
+        return 1
+    print(f"[mcp_server] all {len(TOOL_REGISTRY)} tools green")
     return 0
 
 

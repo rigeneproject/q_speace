@@ -23,6 +23,13 @@ def benchmark_gpu(
     Measures execution time for Grover circuit across qubit counts.
     Falls back to numpy CPU estimation if Qiskit is unavailable.
     """
+    if min_qubits < 1:
+        raise ValueError(f"min_qubits must be >= 1 (got {min_qubits})")
+    if max_qubits < min_qubits:
+        raise ValueError(f"max_qubits ({max_qubits}) must be >= min_qubits ({min_qubits})")
+    if trials < 1:
+        raise ValueError(f"trials must be >= 1 (got {trials})")
+
     results: dict[str, list] = {"qubits": [], "time_s": [], "device": []}
     qiskit_available = False
 
@@ -43,7 +50,7 @@ def benchmark_gpu(
         for _t in range(trials):
             t0 = time.perf_counter()
             if qiskit_available:
-                qc = QuantumCircuit(n, n)
+                qc = QuantumCircuit(n)
                 for i in range(n):
                     qc.h(i)
                     if i > 0:
@@ -67,7 +74,7 @@ def benchmark_gpu(
                 device_used = "numpy_fallback"
             times.append(time.perf_counter() - t0)
 
-        avg_time = np.mean(times)
+        avg_time = float(np.mean(times))
         results["qubits"].append(n)
         results["time_s"].append(round(avg_time, 4))
         results["device"].append(device_used)

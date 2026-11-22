@@ -63,15 +63,20 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   Includes calibration-only scaffolding; no NCM generator, no held-out run,
   no DoD claim, and no AACM integration yet. Task registry:
   [T222_TASKS.md](docs/T222_TASKS.md).
+- [Technical debt remediation and hardening (T230)](docs/T230_TECHNICAL_DEBT_AND_BUGFIX_PLAN_SPEC.md):
+  quality-gate/CI recovery, Lindblad MCWF fix, fail-closed numerical validation,
+  real-backend `noise_model` + energy/Sevo gate enforcement, and CLI/AACM regression tests.
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
-T3 (kernel), T4 (QuantumGeneSet), T10/T22/T23 (cost + clock + Sevo),
-T14 (FractalQCA), T15 (BCEL), T16 (CLI), T19 (Schumann), T20 (ILF/CV/DNA
-mapping), T24 (Evolve_DNA placeholder via CV).
+T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,
+gated by `noise_model` + energy/Sevo — simulator/advisory only, no hardware qualification),
+T10/T22/T23 (cost + clock + Sevo), T14 (FractalQCA), T15 (BCEL), T16 (CLI),
+T19 (Schumann), T20 (ILF/CV/DNA mapping), T24 (Evolve_DNA placeholder via CV).
 
-Not yet implemented: T5 (real Qiskit backend), T7/T8 (merge into SPEACE
-orchestrator), T11 (gate quantum via EnergyControlAgent), T12/T13 (live
-earth API wiring), T21 (surface-code error correction), T25 (IIT Φ proxy).
+Not yet implemented / deferred: T7/T8 (merge into cellular SPEACE orchestrator),
+T11 (external EnergyControlAgent integration), T12/T13 (production live earth API wiring),
+T21 (surface-code error correction), T25 (exact IIT Φ; only mutual-information `phi_proxy`
+is implemented).
 
 ## SpikingBrain integration status
 

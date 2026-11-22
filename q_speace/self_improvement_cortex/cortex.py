@@ -67,7 +67,7 @@ class SelfImprovementCortex:
         self._history: list[SIAReport] = []
 
     def tick(self, context: dict | None = None) -> SIAReport:
-        ctx = context or {}
+        ctx = dict(context) if context else {}
         profile = self.observer.latest()
         if profile:
             ctx.update(profile.to_dict())
@@ -84,8 +84,10 @@ class SelfImprovementCortex:
             qee_candidates = list(qee_results)
 
         mutations_applied = 0
+        last_verdict: MutationVerdict | None = None
+        context_sig = str(ctx.get("coherence_phi", 0))
         for proposal in selected:
-            if self._should_skip_rollback(proposal):
+            if self._should_skip_rollback(proposal, context_sig):
                 continue
             metrics_before = ctx.copy()
             record = self.dna.record(
@@ -105,13 +107,14 @@ class SelfImprovementCortex:
                 resilience_impact=1.0 - proposal.risk,
                 energy_impact=proposal.risk * 0.5,
             )
+            last_verdict = verdict
             if verdict.approved:
                 mutations_applied += 1
                 self.levels.escalate()
                 self.evo_memory.store(
                     MemoryEntry(
                         mutation_id=record.mutation_id,
-                        context_signature=str(ctx.get("coherence_phi", 0)),
+                        context_signature=context_sig,
                         reason=proposal.reason,
                         level=proposal.level,
                         target=proposal.target,
@@ -122,6 +125,18 @@ class SelfImprovementCortex:
                 )
             else:
                 self.epigenetics.suppress(record.mutation_id, source="ilf_regulator")
+                self.evo_memory.store(
+                    MemoryEntry(
+                        mutation_id=record.mutation_id,
+                        context_signature=context_sig,
+                        reason=proposal.reason,
+                        level=proposal.level,
+                        target=proposal.target,
+                        metrics_before=metrics_before,
+                        metrics_after={},
+                        outcome=-1.0,
+                    )
+                )
 
         rollbacks = 0
         for record in self.dna.recent(10):
@@ -139,12 +154,15 @@ class SelfImprovementCortex:
             rollbacks=rollbacks,
             neurogenesis=len(neuro_modules),
             qee_candidates=len(qee_candidates),
+            verdict=last_verdict,
         )
         self._history.append(report)
         return report
 
-    def _should_skip_rollback(self, proposal: AgentProposal) -> bool:
-        sig = str(proposal.level)
+    def _should_skip_rollback(
+        self, proposal: AgentProposal, context_signature: str | None = None
+    ) -> bool:
+        sig = str(proposal.level) if context_signature is None else context_signature
         return self.evo_memory.has_failed_before(sig, proposal.target)
 
     def _neurogenesis_step(self, ctx: dict) -> list[NewModuleSpec]:

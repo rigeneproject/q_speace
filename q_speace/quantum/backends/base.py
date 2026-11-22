@@ -20,7 +20,7 @@ class QuantumBackend(ABC):
     name: str = "abstract"
 
     @abstractmethod
-    def run(self, circuit: BrainQuantumCircuit, shots: int = 1024) -> list[tuple[str, str]]:
+    def run(self, circuit: BrainQuantumCircuit, shots: int | None = None) -> list[tuple[str, str]]:
         """Run the circuit and return [(role, bit), ...] for all qubits."""
         raise NotImplementedError
 
@@ -33,6 +33,6 @@ class NumpyBackend(QuantumBackend):
     def __init__(self, seed: int | None = None) -> None:
         self._sim = QuantumBrainSimulator(seed=seed)
 
-    def run(self, circuit: BrainQuantumCircuit, shots: int = 1024) -> list[tuple[str, str]]:
+    def run(self, circuit: BrainQuantumCircuit, shots: int | None = None) -> list[tuple[str, str]]:
         # shots is ignored by the deterministic numpy simulator.
         return self._sim.run(circuit)

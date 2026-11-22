@@ -27,6 +27,7 @@ biological analogy does not.
 
 from __future__ import annotations
 
+import math
 from dataclasses import asdict, dataclass, field, fields
 from typing import Any
 
@@ -70,18 +71,20 @@ class J_c:
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
-        if self.J < 0.0:
-            raise ValueError(f"J must be >= 0 (got {self.J})")
-        if self.delta_S > 0.0:
-            raise ValueError(f"delta_S must be <= 0 for a net-bounded action (got {self.delta_S})")
-        if self.delta_I_c < 0.0:
-            raise ValueError(f"delta_I_c must be >= 0 (got {self.delta_I_c})")
-        if not 0.0 <= self.R_b <= 1.0:
-            raise ValueError(f"R_b must be in [0, 1] (got {self.R_b})")
-        if not -1.0 <= self.delta_C <= 1.0:
-            raise ValueError(f"delta_C must be in [-1, 1] (got {self.delta_C})")
-        if not 0.0 <= self.confidence <= 1.0:
-            raise ValueError(f"confidence must be in [0, 1] (got {self.confidence})")
+        if not math.isfinite(self.J) or self.J < 0.0:
+            raise ValueError(f"J must be finite and >= 0 (got {self.J})")
+        if not math.isfinite(self.delta_S) or self.delta_S > 0.0:
+            raise ValueError(
+                f"delta_S must be finite and <= 0 for a net-bounded action (got {self.delta_S})"
+            )
+        if not math.isfinite(self.delta_I_c) or self.delta_I_c < 0.0:
+            raise ValueError(f"delta_I_c must be finite and >= 0 (got {self.delta_I_c})")
+        if not math.isfinite(self.R_b) or not 0.0 <= self.R_b <= 1.0:
+            raise ValueError(f"R_b must be finite and in [0, 1] (got {self.R_b})")
+        if not math.isfinite(self.delta_C) or not -1.0 <= self.delta_C <= 1.0:
+            raise ValueError(f"delta_C must be finite and in [-1, 1] (got {self.delta_C})")
+        if not math.isfinite(self.confidence) or not 0.0 <= self.confidence <= 1.0:
+            raise ValueError(f"confidence must be finite and in [0, 1] (got {self.confidence})")
 
     @classmethod
     def from_telemetry(
@@ -154,16 +157,20 @@ class V:
     coherence_phi: float | None = None
 
     def __post_init__(self) -> None:
-        if self.E_x < 0.0:
-            raise ValueError(f"E_x must be >= 0 (got {self.E_x})")
-        if self.S_gen < 0.0:
-            raise ValueError(f"S_gen must be >= 0 (got {self.S_gen})")
-        if self.I_c < 0.0:
-            raise ValueError(f"I_c must be >= 0 (got {self.I_c})")
-        if not 0.0 <= self.R_b <= 1.0:
-            raise ValueError(f"R_b must be in [0, 1] (got {self.R_b})")
-        if self.coherence_phi is not None and not 0.0 <= self.coherence_phi <= 1.0:
-            raise ValueError(f"coherence_phi must be in [0, 1] (got {self.coherence_phi})")
+        if not math.isfinite(self.E_x) or self.E_x < 0.0:
+            raise ValueError(f"E_x must be finite and >= 0 (got {self.E_x})")
+        if not math.isfinite(self.S_gen) or self.S_gen < 0.0:
+            raise ValueError(f"S_gen must be finite and >= 0 (got {self.S_gen})")
+        if not math.isfinite(self.I_c) or self.I_c < 0.0:
+            raise ValueError(f"I_c must be finite and >= 0 (got {self.I_c})")
+        if not math.isfinite(self.R_b) or not 0.0 <= self.R_b <= 1.0:
+            raise ValueError(f"R_b must be finite and in [0, 1] (got {self.R_b})")
+        if self.coherence_phi is not None and (
+            not math.isfinite(self.coherence_phi) or not 0.0 <= self.coherence_phi <= 1.0
+        ):
+            raise ValueError(
+                f"coherence_phi must be finite and in [0, 1] (got {self.coherence_phi})"
+            )
 
     @property
     def n_components(self) -> int:
@@ -240,8 +247,8 @@ class CME:
     def __post_init__(self) -> None:
         for f in fields(self):
             v = getattr(self, f.name)
-            if not 0.0 <= v <= 1.0:
-                raise ValueError(f"CME.{f.name} must be in [0, 1] (got {v})")
+            if not math.isfinite(v) or not 0.0 <= v <= 1.0:
+                raise ValueError(f"CME.{f.name} must be finite and in [0, 1] (got {v})")
 
     def as_array(self) -> np.ndarray:
         """Return the 12 components as a numpy vector in canonical order."""

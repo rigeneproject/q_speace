@@ -57,14 +57,14 @@ class DAT:
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
-        if self.amount <= 0.0:
-            raise ValueError(f"amount must be > 0 (got {self.amount})")
+        if not math.isfinite(self.amount) or self.amount <= 0.0:
+            raise ValueError(f"amount must be finite and > 0 (got {self.amount})")
         if not self.bound_to:
             raise ValueError("bound_to must be a non-empty string")
-        if self.decay_half_life <= 0.0:
-            raise ValueError(f"decay_half_life must be > 0 (got {self.decay_half_life})")
-        if self.mint_time < 0.0:
-            raise ValueError(f"mint_time must be >= 0 (got {self.mint_time})")
+        if not math.isfinite(self.decay_half_life) or self.decay_half_life <= 0.0:
+            raise ValueError(f"decay_half_life must be finite and > 0 (got {self.decay_half_life})")
+        if not math.isfinite(self.mint_time) or self.mint_time < 0.0:
+            raise ValueError(f"mint_time must be finite and >= 0 (got {self.mint_time})")
 
     # ------------------------------------------------------------------
     # value at time t
@@ -78,16 +78,16 @@ class DAT:
         t : float
             Unix timestamp (seconds, float).
         """
-        if t < self.mint_time:
-            raise ValueError(f"t ({t}) is before mint_time ({self.mint_time})")
+        if not math.isfinite(t) or t < self.mint_time:
+            raise ValueError(f"t ({t}) must be finite and >= mint_time ({self.mint_time})")
         elapsed = (t - self.mint_time) / self.decay_half_life
         v: float = self.amount * (2.0**-elapsed)
         return v
 
     def age(self, t: float) -> float:
         """Return elapsed seconds since mint."""
-        if t < self.mint_time:
-            raise ValueError(f"t ({t}) is before mint_time ({self.mint_time})")
+        if not math.isfinite(t) or t < self.mint_time:
+            raise ValueError(f"t ({t}) must be finite and >= mint_time ({self.mint_time})")
         return t - self.mint_time
 
     def fraction_remaining(self, t: float) -> float:
@@ -95,8 +95,8 @@ class DAT:
 
         The fraction is in (0, 1]; at ``t = mint_time`` it is exactly 1.0.
         """
-        if t < self.mint_time:
-            raise ValueError(f"t ({t}) is before mint_time ({self.mint_time})")
+        if not math.isfinite(t) or t < self.mint_time:
+            raise ValueError(f"t ({t}) must be finite and >= mint_time ({self.mint_time})")
         elapsed = (t - self.mint_time) / self.decay_half_life
         f: float = 2.0**-elapsed
         return f
@@ -113,8 +113,8 @@ class DAT:
         - ``target != bound_to`` (binding violation),
         - ``amount > value_at(t)`` (over-spend).
         """
-        if amount <= 0.0:
-            raise ValueError(f"spend amount must be > 0 (got {amount})")
+        if not math.isfinite(amount) or amount <= 0.0:
+            raise ValueError(f"spend amount must be finite and > 0 (got {amount})")
         if target != self.bound_to:
             raise ValueError(
                 f"bound violation: token is bound to {self.bound_to!r}, "
@@ -154,8 +154,8 @@ class SpendReceipt:
 
     def remaining_value_at(self, t: float) -> float:
         """Value of the post-spend token at a future time ``t``."""
-        if t < self.new_mint_time:
-            raise ValueError(f"t ({t}) is before new_mint_time ({self.new_mint_time})")
+        if not math.isfinite(t) or t < self.new_mint_time:
+            raise ValueError(f"t ({t}) must be finite and >= new_mint_time ({self.new_mint_time})")
         elapsed = (t - self.new_mint_time) / self.decay_half_life
         v: float = self.new_amount * (2.0**-elapsed)
         return v

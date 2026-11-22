@@ -21,6 +21,14 @@ class BCELEquivalence:
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
     BCELEquivalence(
+        "Real quantum backend noise-model and energy gate (T230)",
+        "functional",
+        "Enforce a non-ideal QuantumGeneSet.noise_model and explicit energy/Sevo "
+        "gating before instantiating or executing any non-numpy quantum backend. "
+        "This is a deterministic software safety and resource gate (AGENTS.md §2, "
+        "T208 §3.5), not a claim of physical hardware qualification or quantum advantage.",
+    ),
+    BCELEquivalence(
         "Contextual error memory for decay selection (T229)",
         "functional",
         "Choose one certified EMA decay by past tracking losses for nearby observed "

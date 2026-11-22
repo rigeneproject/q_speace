@@ -9,10 +9,11 @@ deterministic synthetic fallback keeps the system reproducible offline.
 
 from __future__ import annotations
 
+import logging
 import math
 from dataclasses import dataclass
 
-import numpy as np
+_LOGGER = logging.getLogger(__name__)
 
 
 @dataclass
@@ -37,14 +38,14 @@ class EarthFeed:
 
     def __init__(self, use_network: bool = False, seed: int | None = None) -> None:
         self.use_network = use_network
-        self._rng = np.random.default_rng(seed)
+        self._seed = seed
 
     def fetch(self, tick: int = 0) -> EarthSignals:
         if self.use_network:
             try:
                 return self._fetch_real()
-            except Exception:
-                pass
+            except Exception as exc:
+                _LOGGER.debug("EarthFeed network fetch failed, using synthetic fallback: %s", exc)
         return self._synthetic(tick)
 
     def _fetch_real(self) -> EarthSignals:
@@ -55,8 +56,13 @@ class EarthFeed:
             "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json",
             timeout=5.0,
         )
+        resp.raise_for_status()
         rows = resp.json()
+        if not isinstance(rows, list) or not rows or not isinstance(rows[-1], dict):
+            raise ValueError("unexpected NOAA SWPC payload shape")
         latest = float(rows[-1]["Kp"])
+        if not math.isfinite(latest):
+            raise ValueError(f"non-finite Kp value: {latest!r}")
         kp = min(max(latest / 9.0, 0.0), 1.0)
         # Sunspot / tide are not critical; fall back to neutral.
         return EarthSignals(kp=kp, sunspot=0.5, tide=0.5)

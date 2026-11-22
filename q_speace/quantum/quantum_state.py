@@ -58,10 +58,14 @@ class QuantumState:
         amps = np.array(list(amplitudes), dtype=np.complex128)
         if amps.ndim != 1:
             raise ValueError("amplitudes must be 1D")
+        if not np.all(np.isfinite(amps)):
+            raise ValueError("amplitudes must be finite")
         size = amps.shape[0]
-        if size == 0 or (size & (size - 1)) != 0:
-            raise ValueError(f"length {size} is not a power of 2")
+        if size < 2 or (size & (size - 1)) != 0:
+            raise ValueError(f"length {size} is not a power of 2 >= 2")
         n = int(math.log2(size))
+        if n > 16:
+            raise ValueError("num_qubits must be <= 16 for prototype use")
         norm = np.sqrt(np.sum(np.abs(amps) ** 2))
         if norm == 0:
             raise ValueError("zero vector cannot be normalized")
@@ -75,6 +79,8 @@ class QuantumState:
     def tensor_product(
         cls, a: QuantumState, b: QuantumState, seed: int | None = None
     ) -> QuantumState:
+        if a.num_qubits + b.num_qubits > 16:
+            raise ValueError("num_qubits must be <= 16 for prototype use")
         obj = cls.__new__(cls)
         obj.num_qubits = a.num_qubits + b.num_qubits
         obj.amplitudes = np.asarray(np.kron(a.amplitudes, b.amplitudes), dtype=np.complex128)
@@ -83,6 +89,10 @@ class QuantumState:
 
     @classmethod
     def equal_superposition(cls, num_qubits: int, seed: int | None = None) -> QuantumState:
+        if num_qubits < 1:
+            raise ValueError("num_qubits must be >= 1")
+        if num_qubits > 16:
+            raise ValueError("num_qubits must be <= 16 for prototype use")
         zero = np.array([1.0, 1.0], dtype=np.complex128) / math.sqrt(2.0)
         amps = zero.copy()
         for _ in range(num_qubits - 1):
@@ -126,23 +136,28 @@ class QuantumState:
         This reproduces the average Lindblad master equation over many
         trajectories.
         """
+        if not math.isfinite(dt) or dt < 0.0:
+            raise ValueError("dt must be finite and >= 0")
         n = self.num_qubits
         dim = 1 << n
         jump_prob = 0.0
         effective_h = np.zeros((dim, dim), dtype=np.complex128)
 
         def _kron_op(mat_2x2: np.ndarray, qubit: int) -> np.ndarray:
+            if not (0 <= qubit < n):
+                raise ValueError(f"qubit {qubit} out of range [0, {n})")
             op = np.array([1.0], dtype=np.complex128)
             for i in range(n):
                 op = np.kron(op, mat_2x2 if i == qubit else np.eye(2, dtype=np.complex128))
             return op.reshape(dim, dim)
 
         for (q, l_mat), rate in zip(jump_operators, rates, strict=True):
-            if rate <= 0:
+            if not math.isfinite(rate) or rate < 0.0:
+                raise ValueError(f"jump rate must be finite and >= 0 (got {rate})")
+            if rate == 0.0:
                 continue
             l_mat = np.asarray(l_mat, dtype=np.complex128)
             l_dag = l_mat.conj().T
-            l_op = _kron_op(l_mat, q)
             l_dag_l_op = _kron_op(l_dag @ l_mat, q)
 
             exp_val = np.vdot(self.amplitudes, l_dag_l_op @ self.amplitudes)
@@ -153,7 +168,7 @@ class QuantumState:
             r = self._rng.random() * jump_prob
             cumulative = 0.0
             for (q, l_mat), rate in zip(jump_operators, rates, strict=True):
-                if rate <= 0:
+                if rate <= 0.0:
                     continue
                 l_mat = np.asarray(l_mat, dtype=np.complex128)
                 l_op = _kron_op(l_mat, q)
@@ -165,7 +180,8 @@ class QuantumState:
                     break
             self.normalize()
         else:
-            u_eff = np.eye(dim, dtype=np.complex128) + effective_h * dt
+            # Non-Hermitian MCWF no-jump propagator: U = I - i H_eff dt = I - (1/2) Σ γ L†L dt
+            u_eff = np.eye(dim, dtype=np.complex128) - 1j * effective_h * dt
             self.amplitudes = u_eff @ self.amplitudes
             self.normalize()
 
@@ -293,4 +309,6 @@ class QuantumState:
         new.amplitudes = new_amps
         outcome_bit = "0" if outcome_zero else "1"
         prob = p0 if outcome_zero else (1.0 - p0)
-        return MeasurementResult(bitstring=outcome_bit, probability=float(prob), collapsed_state=new)
+        return MeasurementResult(
+            bitstring=outcome_bit, probability=float(prob), collapsed_state=new
+        )

@@ -3,6 +3,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..aacm import AACMController
 
 
 @dataclass
@@ -240,7 +244,7 @@ class EvolutionCouncil:
     # applies the AACM gate (B: opposition→capacity, C: legitimation
     # stratification) to proposals. ``None`` means no AACM gating —
     # the existing behaviour is preserved.
-    aacm_controller: object | None = None
+    aacm_controller: AACMController | None = None
     aacm_min_evidence_kinds: int = 2  # K ≥ 2 for stratification (regola 7)
 
     def gather_proposals(self, context: dict) -> list[AgentProposal]:
@@ -295,12 +299,10 @@ class EvolutionCouncil:
                 # (The registry itself rejects duplicate
                 # evidence_kind across channels; we add at most
                 # one channel per kind per proposal.)
-                existing = {
-                    (c.evidence_kind,) for c in self.aacm_controller.legitimation.channels  # type: ignore[union-attr]
-                }
+                existing = {(c.evidence_kind,) for c in self.aacm_controller.legitimation.channels}
                 if (kind,) in existing:
                     continue
-                self.aacm_controller.register_legitimation(  # type: ignore[union-attr]
+                self.aacm_controller.register_legitimation(
                     LegitimationChannel(
                         channel_id=ch_id,
                         evidence_kind=kind,
@@ -380,7 +382,7 @@ class EvolutionOrchestrator:
             score = p.confidence * (1.0 - p.risk) * p.expected_impact
             scored.append((score, p))
         scored.sort(key=lambda x: x[0], reverse=True)
-        selected = []
+        selected: list[AgentProposal] = []
         for _score, proposal in scored:
             if proposal.confidence < self.min_confidence:
                 continue

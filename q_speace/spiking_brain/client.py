@@ -17,6 +17,7 @@ so callers can swap them via :func:`make_spiking_brain`.
 
 from __future__ import annotations
 
+import math
 from collections.abc import Sequence
 from typing import Any, cast
 
@@ -88,7 +89,7 @@ class HTTPSpikingBrainClient:
             resp = await cli.get(f"{self.endpoint}/health")
             resp.raise_for_status()
         except Exception as exc:
-            raise SpikingBrainUnavailableError(  # noqa: F821 — see below
+            raise SpikingBrainUnavailableError(
                 f"sidecar at {self.endpoint} not reachable: {exc}"
             ) from exc
         self._lifecycle = LifecycleState.READY
@@ -160,16 +161,24 @@ class HTTPSpikingBrainClient:
         return cast(dict[str, Any], resp.json())
 
 
-def _parse_think_result(body: dict[str, Any], default_n_classes: int) -> ThinkResult:
+def _parse_think_result(body: Any, default_n_classes: int) -> ThinkResult:
     """Convert the JSON dict from /think into a ThinkResult.
 
-    Defensive against missing keys and unexpected shapes.
+    Defensive against missing keys, non-dict payloads, and unexpected shapes.
     """
+    if not isinstance(body, dict):
+        raise ValueError(
+            f"sidecar /think response must be a JSON object (got {type(body).__name__})"
+        )
     text = str(body.get("text", ""))
     confidence = float(body.get("confidence", 0.0))
+    if not math.isfinite(confidence):
+        raise ValueError(f"sidecar returned non-finite confidence: {confidence!r}")
     n_tokens = int(body.get("n_tokens", 0))
     latency = float(body.get("latency_s", 0.0))
-    metadata = dict(body.get("metadata", {}))
+    if not math.isfinite(latency):
+        latency = 0.0
+    metadata = dict(body.get("metadata", {}) or {})
     # T-SPB-2 fix: ensure n_tokens_in is always present even on older
     # sidecars that didn't write it. Default to 0 (caller can detect).
     metadata.setdefault("n_tokens_in", 0)

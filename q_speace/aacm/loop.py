@@ -615,11 +615,11 @@ def _read_validation_set(path: Path | None) -> ValidationSet | None:
     return ValidationSet.load(p)
 
 
-def _detect_human_abort(worktree: Path | None) -> bool:
-    """True if a STOP sentinel file is present in the worktree."""
-    if worktree is None:
+def _detect_human_abort(worktree: Path | None, sentinel_name: str = "STOP") -> bool:
+    """True if the human-abort sentinel file is present in the worktree."""
+    if worktree is None or not sentinel_name:
         return False
-    return (Path(worktree) / "STOP").exists()
+    return (Path(worktree) / sentinel_name).exists()
 
 
 def _score_proposal_against_validation(
@@ -710,6 +710,7 @@ class AACMLoop:
     consecutive_failures: int = 0
     recent_validation_scores: list[float] = field(default_factory=list)
     recent_admitted: list[bool] = field(default_factory=list)
+    human_abort_sentinel: str = "STOP"
 
     def __post_init__(self) -> None:
         if self.omega < 0.0:
@@ -771,7 +772,7 @@ class AACMLoop:
 
         for it_id in range(1, self.max_iterations + 1):
             # Human abort sentinel
-            if _detect_human_abort(self.worktree):
+            if _detect_human_abort(self.worktree, self.human_abort_sentinel):
                 result.stop_reason = StopReason.HUMAN_ABORT
                 break
 
@@ -908,7 +909,9 @@ class AACMLoop:
             # first 3 admitted iterations).
             if len(self.recent_validation_scores) >= VALIDATION_OVERFIT_STREAK:
                 score_tail = self.recent_validation_scores[-VALIDATION_OVERFIT_STREAK:]
-                if all(score >= VALIDATION_OVERFIT_THRESHOLD for score in score_tail) and score_tail == sorted(score_tail):
+                if all(
+                    score >= VALIDATION_OVERFIT_THRESHOLD for score in score_tail
+                ) and score_tail == sorted(score_tail):
                     result.stop_reason = StopReason.VALIDATION_OVERFIT_DETECTED
                     break
 

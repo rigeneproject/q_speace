@@ -108,17 +108,36 @@ class QuantumInspireBackend(QuantumBackend):
         self._qi = QuantumInspireAPI(url or "https://api.quantum-inspire.com", token)
         return self._qi
 
-    def run(self, circuit: BrainQuantumCircuit, shots: int = 1024) -> list[tuple[str, str]]:
+    def run(self, circuit: BrainQuantumCircuit, shots: int | None = None) -> list[tuple[str, str]]:
         qi = self._ensure_sdk()
         cqasm = to_cqasm(circuit)
         # The exact submission call depends on the installed SDK version.
         # We expose the program and let the SDK execute it; results are
         # mapped back to (role, bit) pairs.
-        result = qi.execute_qasm(cqasm, backend_type=self.backend_type, number_of_shots=shots)
+        effective_shots = 1024 if shots is None else shots
+        result = qi.execute_qasm(
+            cqasm, backend_type=self.backend_type, number_of_shots=effective_shots
+        )
         counts = result.get("histogram", {}) if isinstance(result, dict) else {}
         # Return the most probable outcome mapped to roles.
         if not counts:
             return [(circuit.role_of(i), "0") for i in range(circuit.num_qubits)]
         top = max(counts, key=lambda k: counts[k])
-        bits = format(int(top), f"0{circuit.num_qubits}b")
+        bits = _decode_qi_histogram_key(top, circuit.num_qubits)
         return [(circuit.role_of(i), bits[i]) for i in range(circuit.num_qubits)]
+
+
+def _decode_qi_histogram_key(key: object, num_qubits: int) -> str:
+    """Decode a Quantum Inspire histogram key to a q[0]..q[n-1] bitstring.
+
+    QI histograms may return either integer-encoded states (where bit i is q[i])
+    or MSB-first binary strings of length ``num_qubits``.
+    """
+    if isinstance(key, str):
+        cleaned = key.strip()
+        if len(cleaned) == num_qubits and set(cleaned) <= {"0", "1"}:
+            return cleaned[::-1]
+        state_int = int(cleaned)
+    else:
+        state_int = int(key)  # type: ignore[call-overload]
+    return "".join(str((state_int >> i) & 1) for i in range(num_qubits))

@@ -29,10 +29,12 @@ class InformationalLogicalField:
         q_star_ema: float = 0.0,
         coherence_phi_ema: float = 0.0,
     ) -> None:
-        if not (0.0 <= q_star_ema < 1.0):
-            raise ValueError("q_star_ema must be in [0, 1)")
-        if not (0.0 <= coherence_phi_ema < 1.0):
-            raise ValueError("coherence_phi_ema must be in [0, 1)")
+        if not math.isfinite(coherence_phi) or not (0.0 <= coherence_phi <= 1.0):
+            raise ValueError("coherence_phi must be finite and in [0, 1]")
+        if not math.isfinite(q_star_ema) or not (0.0 <= q_star_ema < 1.0):
+            raise ValueError("q_star_ema must be finite and in [0, 1)")
+        if not math.isfinite(coherence_phi_ema) or not (0.0 <= coherence_phi_ema < 1.0):
+            raise ValueError("coherence_phi_ema must be finite and in [0, 1)")
         self.coherence_phi = float(coherence_phi)
         self.q_star_ema = float(q_star_ema)
         self.coherence_phi_ema = float(coherence_phi_ema)
@@ -44,10 +46,14 @@ class InformationalLogicalField:
         self._phi_prev: float | None = None
 
     def register_agent(self, agent_id: str, weight: float = 1.0) -> None:
+        if not math.isfinite(weight) or weight < 0.0:
+            raise ValueError("weight must be finite and >= 0")
         self._agent_weights[agent_id] = weight
 
     def set_belief(self, agent_id: str, distribution: np.ndarray) -> None:
         p = np.asarray(distribution, dtype=float).flatten()
+        if p.size == 0 or not np.all(np.isfinite(p)):
+            raise ValueError("belief distribution must be non-empty and finite")
         p = np.abs(p)
         norm = np.sum(p)
         if norm > 0:
@@ -55,14 +61,15 @@ class InformationalLogicalField:
         self._agent_beliefs[agent_id] = p
 
     def set_weight(self, agent_id: str, weight: float) -> None:
+        if not math.isfinite(weight) or weight < 0.0:
+            raise ValueError("weight must be finite and >= 0")
         if agent_id in self._agent_weights:
             self._agent_weights[agent_id] = weight
 
     @property
     def q_star(self) -> np.ndarray:
         if self._q_star is None:
-            self.compute_q_star()
-        assert self._q_star is not None
+            return self.compute_q_star()
         return self._q_star
 
     def compute_q_star(self) -> np.ndarray:
@@ -119,17 +126,23 @@ class InformationalLogicalField:
 
     def update(self, state_vector: np.ndarray) -> None:
         v = np.asarray(state_vector, dtype=float)
-        norm = np.sqrt(np.sum(v**2))
-        if norm > 0:
-            v = v / norm
+        if v.size == 0 or not np.all(np.isfinite(v)):
+            raise ValueError("state_vector must be non-empty and finite")
+        norm = float(np.sqrt(np.sum(v**2)))
+        if norm == 0.0:
+            self.coherence_phi = 0.0
+            return
+        v = v / norm
         probs = v**2
         entropy = -np.sum(probs * np.log(probs + 1e-12))
         max_entropy = math.log(max(len(probs), 2))
-        self.coherence_phi = float(1.0 - entropy / max_entropy)
+        self.coherence_phi = float(np.clip(1.0 - entropy / max_entropy, 0.0, 1.0))
 
     @property
     def s_info(self) -> float:
-        return float(1.0 - self.coherence_phi)
+        if not math.isfinite(self.coherence_phi):
+            return 1.0
+        return float(np.clip(1.0 - self.coherence_phi, 0.0, 1.0))
 
     def adaptive_clock_rate(self) -> float:
         s = max(self.s_info, 1e-6)

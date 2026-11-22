@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import os
 import sys
 import time
@@ -68,8 +69,9 @@ class BrainAuditLog:
     at OS level).
     """
 
-    def __init__(self, path: Path | str | None = None) -> None:
+    def __init__(self, path: Path | str | None = None, *, redact_raw_text: bool = False) -> None:
         self.path: Path = _resolve_path(path)
+        self.redact_raw_text: bool = bool(redact_raw_text)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         # File handle is opened on first write for low overhead; a fresh
         # ``_open()`` is also exposed for tests that want explicit flush.
@@ -87,9 +89,11 @@ class BrainAuditLog:
         """
         try:
             self._open()
-            assert self._fh is not None
-            self._fh.write(json.dumps(record, ensure_ascii=False) + "\n")
-            self._fh.flush()
+            fh = self._fh
+            if fh is None:
+                raise OSError("audit file handle unavailable")
+            fh.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + "\n")
+            fh.flush()
         except (OSError, TypeError, ValueError) as exc:
             print(
                 f"[brain-audit] write failed: {exc.__class__.__name__}: {exc}",
@@ -109,9 +113,9 @@ class BrainAuditLog:
         """Return the last ``k`` records (most recent last).
 
         Reads from disk so it works across restarts. Empty list if the
-        file does not exist.
+        file does not exist or ``k <= 0``.
         """
-        if not self.path.exists():
+        if k <= 0 or not self.path.exists():
             return []
         try:
             with self.path.open("r", encoding="utf-8") as f:
@@ -133,6 +137,11 @@ class BrainAuditLog:
         self.close()
 
 
+def _finite_or_none(value: float) -> float | None:
+    f = float(value)
+    return f if math.isfinite(f) else None
+
+
 def make_apply_record(
     *,
     agent_id: str,
@@ -150,27 +159,30 @@ def make_apply_record(
     approved: bool,
     reason: str,
     extra: dict[str, Any] | None = None,
+    include_raw_excerpts: bool = True,
 ) -> dict[str, Any]:
     """Build one audit record dict. Pure function (testable)."""
-    belief_arr = np.asarray(result_belief, dtype=float).ravel().tolist()
+    belief_arr = [_finite_or_none(x) for x in np.asarray(result_belief, dtype=float).ravel()]
     rec: dict[str, Any] = {
         "ts": time.time(),
         "agent_id": str(agent_id),
         "backend": str(backend),
         "backend_meta": dict(backend_meta or {}),
         "prompt_hash": _short_hash(prompt),
-        "prompt_excerpt": prompt[:120],
-        "result_text_excerpt": result_text[:160],
-        "result_confidence": float(result_confidence),
+        "result_hash": _short_hash(result_text),
+        "result_confidence": _finite_or_none(result_confidence),
         "belief": belief_arr,
         "n_tokens": int(n_tokens),
-        "coherence_phi_pre": float(coherence_phi_pre),
-        "coherence_phi_post": float(coherence_phi_post),
-        "sevo": float(sevo) if sevo != float("-inf") else None,
-        "energy_w": float(energy_w),
+        "coherence_phi_pre": _finite_or_none(coherence_phi_pre),
+        "coherence_phi_post": _finite_or_none(coherence_phi_post),
+        "sevo": _finite_or_none(sevo),
+        "energy_w": _finite_or_none(energy_w),
         "approved": bool(approved),
         "reason": str(reason),
     }
+    if include_raw_excerpts:
+        rec["prompt_excerpt"] = prompt[:120]
+        rec["result_text_excerpt"] = result_text[:160]
     if extra:
         rec["extra"] = dict(extra)
     return rec

@@ -45,7 +45,8 @@ class QiskitBackend(QuantumBackend):
 
     def _to_qiskit_circuit(self, circuit: BrainQuantumCircuit) -> Any:
         self._ensure_qiskit()
-        assert self._QKCircuit is not None
+        if self._QKCircuit is None:
+            raise RuntimeError("Qiskit QuantumCircuit class not initialized")
         n = circuit.num_qubits
         qc = self._QKCircuit(n, n)
         for op in circuit.gates():
@@ -87,12 +88,15 @@ class QiskitBackend(QuantumBackend):
             qc.measure(i, i)
         return qc
 
-    def run(self, circuit: BrainQuantumCircuit, shots: int = 1024) -> list[tuple[str, str]]:
+    def run(self, circuit: BrainQuantumCircuit, shots: int | None = None) -> list[tuple[str, str]]:
         aer = self._ensure_qiskit()
         qc = self._to_qiskit_circuit(circuit)
-        result = aer.run(qc, shots=shots or self._shots).result()
+        effective_shots = self._shots if shots is None else shots
+        result = aer.run(qc, shots=effective_shots).result()
         counts = result.get_counts(qc)
         if not counts:
             return [(circuit.role_of(i), "0") for i in range(circuit.num_qubits)]
-        top = max(counts, key=lambda k: counts[k])
-        return [(circuit.role_of(i), top[i]) for i in range(circuit.num_qubits)]
+        top = max(counts, key=lambda k: counts[k]).replace(" ", "")
+        # Qiskit returns little-endian bitstrings (c_{n-1}...c_0); reverse to align with q[0..n-1].
+        bits = top[::-1].ljust(circuit.num_qubits, "0")
+        return [(circuit.role_of(i), bits[i]) for i in range(circuit.num_qubits)]

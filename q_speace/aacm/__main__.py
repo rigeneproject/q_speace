@@ -129,12 +129,14 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.resume is not None:
         loop = AACMLoop.from_checkpoint(args.resume, omega=args.omega)
+        loop.human_abort_sentinel = args.human_abort_sentinel
     else:
         loop = AACMLoop(
             worktree=args.worktree,
             validation_set_path=(args.validation_set or _default_validation_set_path()),
             checkpoint_path=args.checkpoint,
             omega=args.omega,
+            human_abort_sentinel=args.human_abort_sentinel,
         )
     if args.max_iterations is not None:
         loop.max_iterations = args.max_iterations
@@ -171,8 +173,12 @@ def main(argv: list[str] | None = None) -> int:
             )
 
     # D4: opt-in PR creation. Only if --create-pr-on-success is set,
-    # the run ended cleanly, and a worktree is configured.
-    if args.create_pr_on_success and args.worktree is not None:
+    # the run converged cleanly, and a worktree is configured.
+    if (
+        args.create_pr_on_success
+        and args.worktree is not None
+        and result.stop_reason == StopReason.CONVERGED
+    ):
         from .pr_helper import build_pr_body, create_pr
 
         pr = create_pr(
@@ -193,14 +199,10 @@ def main(argv: list[str] | None = None) -> int:
             )
         )
 
-    # Exit code: 0 on clean stop, 2 on budget/wallclock (expected), 3 on failure
+    # Exit code: 0 on clean/intentional stop, 2 on budget/wallclock, 3 on safety/invariant failure
     if result.stop_reason in {
         StopReason.CONVERGED,
         StopReason.HUMAN_ABORT,
-        StopReason.GATE_BYPASS_ATTEMPTED,
-        StopReason.OMEGA_COLLAPSE,
-        StopReason.VALIDATION_OVERFIT_DETECTED,
-        StopReason.REPUTATION_DRIFT,
     }:
         return 0
     if result.stop_reason in {
