@@ -20,6 +20,29 @@ class BCELEquivalence:
 
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
+    # --- T221 Track B (pipeline/immune/metrics) & Track A (PTAA governance demo) ---
+    BCELEquivalence(
+        "External immune quarantine and constraint-probing monitor (T221-24)",
+        "functional",
+        "Keep as an external fault-pattern counter outside the monitored seed "
+        "triggering halt quarantine and verified snapshot restoration. It is a "
+        "deterministic supervisor, not a biological immune system.",
+    ),
+    BCELEquivalence(
+        "Autocatalytic ratio k as diagnostic metric (T221-25)",
+        "functional",
+        "Keep strictly as a diagnostic ratio of capability-acquisition times "
+        "within hard caps; never used as an optimization target or evidence of "
+        "open-ended autonomy.",
+    ),
+    BCELEquivalence(
+        "PTAA Track-A governance demonstrator (T221-10..17)",
+        "functional",
+        "Keep as deterministic SCC profile validation (classes A1-A4 only), "
+        "signed delegation tokens, dual halt paths, hash-chained replicated "
+        "audit logs, transactional rollback, and simulated cross-jurisdiction "
+        "coordination. Zero A5 leakage and zero physical actuation.",
+    ),
     # --- T220 / T221: SPEACE Seed ignition & constitutional envelope ---
     BCELEquivalence(
         "Genetic-epigenetic dualism (genome/epigenome layers) (T220)",
