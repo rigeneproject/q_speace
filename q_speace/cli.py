@@ -478,8 +478,15 @@ def eval_run(
         "--include-raw-text/--redact-raw-text",
         help="Opt-in raw prompt/response capture (redacted by default per T208 §4.3).",
     ),
+    live_brain: bool = typer.Option(
+        False,
+        "--live-brain",
+        help="Use make_spiking_brain() (honors Q_SPEACE_BRAIN_ENDPOINT) instead of offline stub.",
+    ),
+    timeout_s: float = typer.Option(10.0, "--timeout-s", help="Per-case backend timeout (s)."),
 ) -> None:
     """Execute one vertical-slice policy run and write privacy-safe JSONL + manifest."""
+    from .spiking_brain import make_spiking_brain
     from .vertical_slice import (
         VALID_POLICY_KINDS,
         PolicyConfig,
@@ -507,7 +514,18 @@ def eval_run(
         raise typer.Exit(2) from None
 
     dataset = default_fixture_dataset()
-    runner = VerticalSliceRunner(policy=cfg, seed=seed, include_raw_text=include_raw_text)
+    cortex = (
+        SpikingBrainCortex(backend=make_spiking_brain(seed=seed, timeout_s=timeout_s))
+        if live_brain
+        else None
+    )
+    runner = VerticalSliceRunner(
+        cortex=cortex,
+        policy=cfg,
+        seed=seed,
+        timeout_s=timeout_s,
+        include_raw_text=include_raw_text,
+    )
     traces, manifest = runner.run_dataset(dataset)
     evaluation = evaluate_traces(traces, dataset)
     write_traces_jsonl(output / "traces.jsonl", traces)
@@ -536,8 +554,15 @@ def eval_compare(
     seed: int = typer.Option(0, "--seed", "-s", help="Deterministic seed."),
     min_confidence: float = typer.Option(0.60, "--min-confidence"),
     max_energy_j: float = typer.Option(80.0, "--max-energy-j"),
+    live_brain: bool = typer.Option(
+        False,
+        "--live-brain",
+        help="Use make_spiking_brain() (honors Q_SPEACE_BRAIN_ENDPOINT) instead of offline stub.",
+    ),
+    timeout_s: float = typer.Option(10.0, "--timeout-s", help="Per-case backend timeout (s)."),
 ) -> None:
     """Compare a candidate policy against always_answer baseline with paired bootstrap CIs."""
+    from .spiking_brain import make_spiking_brain
     from .vertical_slice import (
         VALID_POLICY_KINDS,
         PolicyConfig,
@@ -560,12 +585,22 @@ def eval_compare(
         min_confidence=min_confidence,
         max_energy_j=max_energy_j,
     )
-    base_traces, base_manifest = VerticalSliceRunner(policy=base_cfg, seed=seed).run_dataset(
-        dataset
+    base_cortex = (
+        SpikingBrainCortex(backend=make_spiking_brain(seed=seed, timeout_s=timeout_s))
+        if live_brain
+        else None
     )
-    cand_traces, cand_manifest = VerticalSliceRunner(policy=cand_cfg, seed=seed).run_dataset(
-        dataset
+    cand_cortex = (
+        SpikingBrainCortex(backend=make_spiking_brain(seed=seed, timeout_s=timeout_s))
+        if live_brain
+        else None
     )
+    base_traces, base_manifest = VerticalSliceRunner(
+        cortex=base_cortex, policy=base_cfg, seed=seed, timeout_s=timeout_s
+    ).run_dataset(dataset)
+    cand_traces, cand_manifest = VerticalSliceRunner(
+        cortex=cand_cortex, policy=cand_cfg, seed=seed, timeout_s=timeout_s
+    ).run_dataset(dataset)
     comparison = compare_policies(base_traces, cand_traces, dataset, seed=seed)
 
     output.mkdir(parents=True, exist_ok=True)
