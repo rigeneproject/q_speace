@@ -70,6 +70,9 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   T208 Group B typed contracts (`RequestRecord`/`DecisionRecord`/`OutcomeRecord`/`ExperimentManifest`),
   opt-in gate policies (`qspace eval run` / `qspace eval compare`), offline Brier/ECE/bootstrap evaluator,
   and T225 MCP expired-session pruning + fail-closed worker hardening.
+- [SPEACE Seed ignition & constitutional envelope (T220 / T221 Track B)](docs/T220_SPEACE_SEED_IGNITION_SPEC.md):
+  sandbox-only `q_speace/seed/` package (`SeedConstitution`/`SeedGenome`, genome write-lock,
+  `ChangeBudgetEngine`, `SeedContactLayer`, `KillSwitch`, `ReplicationProtocol`, `SeedLifecycle`).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

@@ -20,6 +20,45 @@ class BCELEquivalence:
 
 
 _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
+    # --- T220 / T221: SPEACE Seed ignition & constitutional envelope ---
+    BCELEquivalence(
+        "Genetic-epigenetic dualism (genome/epigenome layers) (T220)",
+        "functional",
+        "Keep as a strict software separation between immutable constitutional "
+        "genome parameters and reversible epigenetic expression toggles with a "
+        "hard write-lock raising ConstitutionalFault on any genome write attempt.",
+    ),
+    BCELEquivalence(
+        "Epigenetic promotion/consolidation (T220)",
+        "functional",
+        "Keep as the reversible-to-permanent state-transition rule "
+        "(>=3 promotions, >=0.7 stability, rollback plan + council approval).",
+    ),
+    BCELEquivalence(
+        "Ignition criterion (threshold test) (T220)",
+        "functional",
+        "Keep as a measured state-transition gate over an observation window "
+        "(accepted mutations, consolidation, non-negative metabolic balance, "
+        "zero constitutional faults, and verified rollback).",
+    ),
+    BCELEquivalence(
+        "Metabolic surplus as propagation payment (T220)",
+        "functional",
+        "Keep as a cost-model inequality requiring measured value minus "
+        "estimated metabolic cost >= threshold before assimilation or replication.",
+    ),
+    BCELEquivalence(
+        "Fire/fuel/contagion vocabulary (T220)",
+        "accidental",
+        "Removed in silicon: narrative metaphor only; software uses explicit "
+        "state names, contact registries, and bounded resource gates.",
+    ),
+    BCELEquivalence(
+        "Organismic identity language (T220)",
+        "accidental",
+        "Removed from runtime claims: orientation metadata does not imply "
+        "biological life, subjective experience, or autonomous authority.",
+    ),
     BCELEquivalence(
         "Vertical-slice telemetry and gate policy contracts (T231)",
         "functional",
