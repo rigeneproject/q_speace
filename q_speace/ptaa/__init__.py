@@ -6,6 +6,12 @@ from .audit import AuditEntry, ExternalAuditReplica, PTAAAuditLog
 from .delegation import DelegationToken, ScopeEnforcer
 from .halt import HALT_SLA_SECONDS, HaltAction, HaltChannel, HaltDrillResult, HaltRuntime
 from .incidents import IncidentRecord, IncidentSeverity, SharedIncidentRegistry
+from .orchestration_sim import (
+    CrossBorderTaskResult,
+    DataExchangeContract,
+    InstitutionalMetrics,
+    OrchestrationSimulator,
+)
 from .registry import AgentRecord, AgentRegistry, AgentStatus
 from .reversibility import ReversibilityManager, RollbackExemption, TransactionOutcome
 from .scc import (
@@ -23,6 +29,8 @@ __all__ = [
     "AgentStatus",
     "AuditEntry",
     "AutonomyClass",
+    "CrossBorderTaskResult",
+    "DataExchangeContract",
     "DelegationToken",
     "ExternalAuditReplica",
     "HALT_SLA_SECONDS",
@@ -32,6 +40,8 @@ __all__ = [
     "HaltRuntime",
     "IncidentRecord",
     "IncidentSeverity",
+    "InstitutionalMetrics",
+    "OrchestrationSimulator",
     "PTAAAuditLog",
     "PTAAViolationError",
     "ReversibilityManager",

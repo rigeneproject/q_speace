@@ -61,4 +61,12 @@ Added to `q_speace/bcel/catalog.py`:
 
 ## 3. Verification Results
 
-*(Updated after Milestones 4, 5, and 6.)*
+- **Milestone 4 (`T221-23..25`)**: `q_speace/seed/{pipeline,immune,metrics}.py` + `tests/test_seed_pipeline_immune_metrics.py` — 25/25 seed tests passing.
+- **Milestone 5 (`T221-10..16`)**: `q_speace/ptaa/{scc,registry,delegation,audit,halt,reversibility,incidents}.py` + `tests/test_ptaa_demonstrator.py` — 4/4 PTAA governance tests passing.
+- **Milestone 6 (`T221-17`, `T221-28`)**: `q_speace/ptaa/orchestration_sim.py`, `q_speace/seed/logistics_twin.py`, `tests/test_t221_simulations.py` (including AST check mechanically proving `q_speace/ptaa/` never imports `q_speace.seed`).
+- **Full quality gates**:
+  - `pytest -q`: **736 passed, 3 skipped**, total coverage **88.00%** (`10640` statements).
+  - `ruff check q_speace tests`: clean (0 issues).
+  - `black --check q_speace tests`: clean (`215 files would be left unchanged`).
+  - `mypy q_speace`: clean (`142 source files`).
+  - `python -m examples.mcp_connection_agent --local-demo --apply-delay`: **11/11 PASS**.

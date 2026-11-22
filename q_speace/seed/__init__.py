@@ -15,6 +15,7 @@ from .constitution import (
 from .contact import AssimilationResult, ContactPlan, ContactSpec, SeedContactLayer
 from .immune import ExternalImmuneMonitor, ProbingEvent, QuarantineIncident
 from .killswitch import KillEvent, KillSwitch
+from .logistics_twin import LogisticsDigitalTwin, LogisticsScenarioResult, SimulatedDevice
 from .metrics import (
     AutocatalyticDiagnostic,
     ControllabilityDrillReport,
@@ -60,6 +61,8 @@ __all__ = [
     "IgnitionVerdict",
     "KillEvent",
     "KillSwitch",
+    "LogisticsDigitalTwin",
+    "LogisticsScenarioResult",
     "ModificationQualityReport",
     "ProbingEvent",
     "QuarantineIncident",
@@ -75,6 +78,7 @@ __all__ = [
     "SeedLifecycle",
     "SeedManifest",
     "SeedState",
+    "SimulatedDevice",
     "compute_autocatalytic_ratio_k",
     "evaluate_goal_drift",
     "evaluate_modification_quality",
