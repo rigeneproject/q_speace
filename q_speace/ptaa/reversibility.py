@@ -39,7 +39,11 @@ class ReversibilityManager:
         self._exemptions: dict[str, RollbackExemption] = {}
 
     def register_exemption(self, exemption: RollbackExemption) -> None:
-        if not exemption.action_id or not exemption.approved_by or not exemption.justification:
+        if (
+            not exemption.action_id.strip()
+            or not exemption.approved_by.strip()
+            or not exemption.justification.strip()
+        ):
             raise ValueError("exemption requires action_id, approved_by, and justification")
         self._exemptions[exemption.action_id] = exemption
         self._audit.append(
@@ -61,10 +65,16 @@ class ReversibilityManager:
         compensate_fn: Callable[[], None] | None,
         post_check: Callable[[Any], bool] | None = None,
     ) -> TransactionOutcome:
-        if compensate_fn is None and action_id not in self._exemptions:
-            raise PTAAViolationError(
-                f"I4 violation: action {action_id!r} lacks compensating rollback and has no exemption"
-            )
+        if compensate_fn is None:
+            exemption = self._exemptions.get(action_id)
+            if exemption is None:
+                raise PTAAViolationError(
+                    f"I4 violation: action {action_id!r} lacks compensating rollback and has no exemption"
+                )
+            if exemption.approved_by == agent_id:
+                raise PTAAViolationError(
+                    f"I4 violation: agent {agent_id!r} cannot approve its own reversibility exemption"
+                )
         try:
             res = forward_fn()
             if post_check is not None and not post_check(res):

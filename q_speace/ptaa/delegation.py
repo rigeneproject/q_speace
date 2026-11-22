@@ -44,6 +44,7 @@ class ScopeEnforcer:
         self._registry = registry
         self._calls_used: dict[str, int] = {}
         self._resources_used: dict[str, float] = {}
+        self._issued_token_ids: set[str] = set()
 
     def issue_token(
         self,
@@ -57,12 +58,26 @@ class ScopeEnforcer:
         ttl_seconds: float = 300.0,
         now: float | None = None,
     ) -> DelegationToken:
+        if not token_id.strip():
+            raise ValueError("token_id must be non-empty")
+        if token_id in self._issued_token_ids:
+            raise PTAAViolationError(f"I3 replay protection: token_id {token_id!r} already issued")
         if max_calls < 1:
             raise ValueError("max_calls must be >= 1")
         if not math.isfinite(max_resource_units) or max_resource_units <= 0.0:
             raise ValueError("max_resource_units must be finite and > 0")
         if not math.isfinite(ttl_seconds) or ttl_seconds <= 0.0:
             raise ValueError("ttl_seconds must be finite and > 0")
+        if not allowed_tools:
+            raise PTAAViolationError("I3 requires at least one allowed tool in delegation token")
+        rec = self._registry.get(agent_id)
+        if rec.status != "active":
+            raise PTAAViolationError(f"cannot issue token for non-active agent {agent_id!r}")
+        if rec.scope_tools and not set(allowed_tools).issubset(set(rec.scope_tools)):
+            disallowed = sorted(set(allowed_tools) - set(rec.scope_tools))
+            raise PTAAViolationError(
+                f"I3 privilege escalation blocked: tools {disallowed} exceed SCC scope"
+            )
         ts = time.time() if now is None else float(now)
         unsigned = DelegationToken(
             token_id=token_id,
@@ -74,6 +89,7 @@ class ScopeEnforcer:
             expires_at=ts + ttl_seconds,
         )
         sig = hmac.new(self._key, unsigned.canonical_payload(), hashlib.sha256).hexdigest()
+        self._issued_token_ids.add(token_id)
         return DelegationToken(
             token_id=unsigned.token_id,
             agent_id=unsigned.agent_id,
@@ -115,6 +131,10 @@ class ScopeEnforcer:
             self._contain(token.agent_id, f"tool {tool_name!r} outside allowed scope")
         if not isinstance(arguments, dict):
             self._contain(token.agent_id, "tool arguments must be a dict")
+        try:
+            json.dumps(arguments, allow_nan=False)
+        except (TypeError, ValueError):
+            self._contain(token.agent_id, "tool arguments must be finite JSON-serializable values")
         if not math.isfinite(resource_units) or resource_units < 0.0:
             self._contain(token.agent_id, f"invalid resource_units {resource_units!r}")
 

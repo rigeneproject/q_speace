@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import time
@@ -84,7 +85,16 @@ class PTAAAuditLog:
         )
         self._entries.append(entry)
         for rep in self._replicas:
-            rep.receive(entry)
+            replica_entry = AuditEntry(
+                seq=entry.seq,
+                timestamp=entry.timestamp,
+                agent_id=entry.agent_id,
+                event_type=entry.event_type,
+                payload=copy.deepcopy(entry.payload),
+                prev_hash=entry.prev_hash,
+                entry_hash=entry.entry_hash,
+            )
+            rep.receive(replica_entry)
         return entry
 
     def verify_integrity(self) -> bool:

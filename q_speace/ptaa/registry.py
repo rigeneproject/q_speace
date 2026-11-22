@@ -21,6 +21,7 @@ class AgentRecord:
     domains: tuple[str, ...]
     recognitions: set[str] = field(default_factory=set)
     dependencies: tuple[str, ...] = ()
+    scope_tools: tuple[str, ...] = ()
     profile_hash: str = ""
 
 
@@ -47,6 +48,7 @@ class AgentRegistry:
             domains=profile.domains,
             recognitions={profile.jurisdiction, *recognitions},
             dependencies=tuple(dependencies),
+            scope_tools=profile.I3_scope_tools,
             profile_hash=profile.profile_hash(),
         )
         self._records[profile.agent_id] = rec

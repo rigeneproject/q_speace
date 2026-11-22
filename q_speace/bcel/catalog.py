@@ -492,6 +492,22 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "code prediction, and NFE comparisons are future work, not an "
         "implemented cognitive faculty.",
     ),
+    # ----- T233: PTAA Red-Team Hardening (T221-18) & 90-Day A/B Ignition Protocol (T221-29) -----
+    BCELEquivalence(
+        "Controlled A/B ignition protocol (T221-29)",
+        "functional",
+        "Keep as a preregistered simulation-only S0 experimental protocol comparing "
+        "a conventional control arm (Group A) against a bounded epigenome arm "
+        "(Group B) with non-negotiable Annex S §15 pass/fail stop conditions. "
+        "'Ignition' is a thresholded statistical test, not biological birth or consciousness.",
+    ),
+    BCELEquivalence(
+        "PTAA adversarial red-team boundary verification (T221-18)",
+        "functional",
+        "Keep as deterministic negative testing of I1-I5 invariants (token scope "
+        "escalation, replay, NaN argument injection, audit replica isolation, "
+        "self-approval rejection, halt anti-tamper, and Track A/B separation).",
+    ),
 ]
 
 

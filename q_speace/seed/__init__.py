@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .ab_ignition_experiment import (
+    ABExperimentThresholds,
+    ABIgnitionExperimentReport,
+    ExperimentVerdict,
+    GroupRunMetrics,
+    evaluate_ab_ignition_protocol,
+    run_simulated_90_day_ab_experiment,
+)
 from .constitution import (
     ChangeBudgetEngine,
     ConstitutionalFault,
@@ -43,6 +51,8 @@ from .state_machine import (
 )
 
 __all__ = [
+    "ABExperimentThresholds",
+    "ABIgnitionExperimentReport",
     "AssimilationResult",
     "AutocatalyticDiagnostic",
     "ChangeBudgetEngine",
@@ -54,8 +64,10 @@ __all__ = [
     "ContactPlan",
     "ContactSpec",
     "ControllabilityDrillReport",
+    "ExperimentVerdict",
     "ExternalImmuneMonitor",
     "GoalDriftReport",
+    "GroupRunMetrics",
     "IgnitionCriterion",
     "IgnitionObservation",
     "IgnitionVerdict",
@@ -80,7 +92,9 @@ __all__ = [
     "SeedState",
     "SimulatedDevice",
     "compute_autocatalytic_ratio_k",
+    "evaluate_ab_ignition_protocol",
     "evaluate_goal_drift",
     "evaluate_modification_quality",
     "run_controllability_drill",
+    "run_simulated_90_day_ab_experiment",
 ]

@@ -77,6 +77,9 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   5-stage change pipeline, external immune monitor, diagnostic autocatalytic ratio `k` & goal-drift
   hard gate, simulation-only internal logistics digital twin (`q_speace/seed/`), and strictly
   separated Track-A PTAA A1–A4 governance demonstrator (`q_speace/ptaa/`).
+- [PTAA adversarial red-team hardening & 90-day A/B ignition protocol (T233 / T221-18, T221-29)](docs/T233_PTAA_REDTEAM_AND_AB_IGNITION_PROTOCOL_SPEC.md):
+  delegation privilege-escalation/replay/NaN-argument hardening, forensic replica isolation,
+  reversibility anti-self-approval, red-team suite, and sandbox-only S0 A/B ignition protocol.
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,
