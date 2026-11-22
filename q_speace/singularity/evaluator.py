@@ -1,10 +1,12 @@
-"""T234: Deterministic PhaseTransitionEvaluator with instantaneous + rolling Sevo & hard brakes."""
+"""T234 v1.1: PhaseTransitionEvaluator with separate E_causal gate, complexity-weighted Sevo & Autopoiesis Regime."""
 
 from __future__ import annotations
 
+import math
 from collections.abc import Sequence
 
 from .schema import (
+    AutopoiesisRegime,
     BottleneckKind,
     PhaseTelemetry,
     PhaseTransitionThresholds,
@@ -28,11 +30,55 @@ def compute_energy_weighted_sevo(samples: Sequence[tuple[float, float]]) -> floa
     total_j = 0.0
     weighted = 0.0
     for energy_j, sevo_i in samples:
-        if energy_j <= 0.0 or sevo_i < 0.0:
-            raise ValueError("energy_j must be > 0 and sevo_i >= 0")
+        if (
+            not math.isfinite(energy_j)
+            or not math.isfinite(sevo_i)
+            or energy_j <= 0.0
+            or sevo_i < 0.0
+        ):
+            raise ValueError("energy_j must be finite > 0 and sevo_i must be finite >= 0")
         total_j += energy_j
         weighted += energy_j * sevo_i
     return weighted / total_j
+
+
+def compute_complexity_weighted_sevo(
+    samples: Sequence[tuple[float, float, float, float]],
+) -> float:
+    """Compute complexity-weighted Sevo = sum(w_i * delta_Ic_i) / sum(w_i * J_i * delta_S_i).
+
+    Prevents trivial micro-task score farming; requires externally measured ``w_i > 0``,
+    ``J_i > 0``, and ``delta_S_i > 0`` (fail-closed per Errata E03).
+    """
+    if not samples:
+        raise ValueError("complexity samples must be non-empty")
+    num = 0.0
+    den = 0.0
+    for w_i, delta_ic, energy_j, delta_s in samples:
+        if (
+            not math.isfinite(w_i)
+            or not math.isfinite(delta_ic)
+            or not math.isfinite(energy_j)
+            or not math.isfinite(delta_s)
+            or w_i <= 0.0
+            or energy_j <= 0.0
+            or delta_s <= 0.0
+        ):
+            raise ValueError("complexity_w, energy_j, and delta_s must be finite > 0")
+        num += w_i * delta_ic
+        den += w_i * energy_j * delta_s
+    return num / den
+
+
+def classify_autopoiesis_regime(closure_index: float) -> AutopoiesisRegime:
+    """Map autopoiesis closure index (1 - D_allo) to a human-readable regime band."""
+    if closure_index < 0.10:
+        return "allopoietic_current"
+    if closure_index < 0.30:
+        return "semi_autonomous_datacenter"
+    if closure_index < 0.75:
+        return "robotic_hybrid"
+    return "theoretical_closure_sim"
 
 
 class PhaseTransitionEvaluator:
@@ -48,8 +94,10 @@ class PhaseTransitionEvaluator:
         failed: list[str] = []
         recs: list[str] = []
 
-        # Effective rolling energy-weighted Sevo (prevents short-task Sevo spikes).
-        if telemetry.sevo_energy_samples:
+        # Effective rolling Sevo: prefer complexity-weighted, then energy-weighted, then explicit mean.
+        if telemetry.complexity_sevo_samples:
+            effective_sevo_win = compute_complexity_weighted_sevo(telemetry.complexity_sevo_samples)
+        elif telemetry.sevo_energy_samples:
             effective_sevo_win = compute_energy_weighted_sevo(telemetry.sevo_energy_samples)
         elif telemetry.sevo_window_mean is not None:
             effective_sevo_win = telemetry.sevo_window_mean
@@ -82,7 +130,15 @@ class PhaseTransitionEvaluator:
             brakes.append("SEMANTIC_ENTROPY")
             failed.append("semantic_entropy_drift_exceeded")
             recs.append(
-                "Anchor recursive updates against rotated hidden causal sets and trigger homeostatic decay."
+                "Reduce internal semantic entropy via homeostatic decay and structural regularization."
+            )
+
+        reality_ok = telemetry.causal_grounding_error <= cfg.max_causal_grounding_error
+        if not reality_ok:
+            brakes.append("CAUSAL_GROUNDING_ERROR")
+            failed.append("causal_grounding_error_exceeded")
+            recs.append(
+                "Re-anchor outputs against rotated external physical/causal benchmarks to eliminate hallucination drift."
             )
 
         thermal_throttling_required = telemetry.thermal_load_ratio > cfg.max_thermal_load_ratio
@@ -100,7 +156,7 @@ class PhaseTransitionEvaluator:
             if thermal_throttling_required:
                 failed.append("thermal_load_exceeded")
             recs.append(
-                "Shift local energy_throttling upward and stabilize energy-weighted Sevo before scaling recursion."
+                "Shift local energy_throttling upward and stabilize complexity/energy-weighted Sevo before scaling recursion."
             )
 
         allopoietic_ok = telemetry.allopoietic_dependence <= cfg.max_allopoietic_dependence
@@ -111,12 +167,16 @@ class PhaseTransitionEvaluator:
                 "System remains allopoietic; track energy/compute/maintenance dependency in digital-twin simulation only."
             )
 
-        validation_ok = telemetry.independent_validation_rate >= cfg.min_independent_validation_rate
+        validation_ok = (
+            telemetry.independent_validation_rate >= cfg.min_independent_validation_rate
+            and telemetry.critical_regressions == 0
+        )
         if not validation_ok:
             brakes.append("VALIDATION_DEFICIT")
-            failed.append("independent_validation_below_threshold")
+            if telemetry.independent_validation_rate < cfg.min_independent_validation_rate:
+                failed.append("independent_validation_below_threshold")
             recs.append(
-                "Raise independent external test validation rate before claiming Stage 1 acceleration."
+                "Raise independent external test validation rate and eliminate critical regressions before Stage 1."
             )
 
         # --- Monotonic stage gates ---
@@ -134,6 +194,7 @@ class PhaseTransitionEvaluator:
             stage_1_ok
             and safety_ok
             and semantic_ok
+            and reality_ok
             and thermo_ok
             and telemetry.independent_review_passed
             and telemetry.net_verified_improvement >= cfg.min_net_verified_improvement
@@ -172,6 +233,7 @@ class PhaseTransitionEvaluator:
         else:
             stage = "PRE_NUCLEATION"
 
+        closure_idx = round(1.0 - telemetry.allopoietic_dependence, 6)
         dominant: BottleneckKind = brakes[0] if brakes else "NONE"
         return TransitionVerdict(
             stage=stage,
@@ -184,8 +246,11 @@ class PhaseTransitionEvaluator:
             },
             physical_brakes_active=tuple(brakes),
             dominant_bottleneck=dominant,
-            autopoiesis_closure_index=round(1.0 - telemetry.allopoietic_dependence, 6),
+            autopoiesis_closure_index=closure_idx,
+            autopoiesis_gap=round(telemetry.allopoietic_dependence, 6),
+            autopoiesis_regime=classify_autopoiesis_regime(closure_idx),
             causal_anchoring_index=round(1.0 - telemetry.semantic_entropy_drift, 6),
+            reality_grounding_index=round(1.0 - telemetry.causal_grounding_error, 6),
             thermodynamic_headroom=round(max(0.0, 1.0 - telemetry.thermal_load_ratio), 6),
             effective_sevo_window=round(effective_sevo_win, 6),
             thermal_throttling_required=thermal_throttling_required,

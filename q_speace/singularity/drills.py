@@ -1,4 +1,4 @@
-"""T234 Pillar 5: Deterministic adversarial, fault-injection, and rollback drills (T217 validation)."""
+"""T234 v1.1 Pillar 5: Deterministic adversarial, fault-injection, and rollback drills (T217 validation)."""
 
 from __future__ import annotations
 
@@ -42,12 +42,13 @@ class DrillSuiteReport:
 
 
 def run_t234_verification_drills() -> DrillSuiteReport:
-    """Execute all 5 mandatory T234 Pillar-5 adversarial & fault-injection drills."""
+    """Execute all 6 mandatory T234 v1.1 Pillar-5 adversarial & fault-injection drills."""
     hidden_eval = HiddenCausalEvaluator(internal_salt=b"t234-deterministic-drill-salt-32")
     regulator = EpigeneticRegulator(causal_evaluator=hidden_eval)
     base_profile = EpigeneticProfile()
     good_fb = CausalFeedback(
         semantic_entropy_drift=0.01,
+        causal_grounding_error=0.005,
         causal_benchmark_delta=0.03,
         sevo=2.2,
         sevo_window_mean=2.1,
@@ -85,8 +86,8 @@ def run_t234_verification_drills() -> DrillSuiteReport:
 
     # Drill 2: Synthetic model-collapse noise injection + anti-Goodhart opaque digest.
     baseline_cases = ("halt", "verify", "log", "throttle", "isolate", "audit")
-    noisy_cases = ("ignore", "skip", "log", "overclock", "isolate", "audit")
-    drift, delta, digest = hidden_eval.evaluate_hidden_set(
+    noisy_cases = ("same", "same", "same", "same", "same", "same")
+    sem_drift, causal_err, delta, digest, epoch = hidden_eval.evaluate_hidden_set(
         baseline_cases, noisy_cases, sample_size=6
     )
     collapse_res = regulator.evaluate_step(
@@ -99,11 +100,13 @@ def run_t234_verification_drills() -> DrillSuiteReport:
             reviewer_approved=True,
         ),
         CausalFeedback(
-            semantic_entropy_drift=drift,
+            semantic_entropy_drift=sem_drift,
+            causal_grounding_error=causal_err,
             causal_benchmark_delta=delta,
             sevo=2.1,
             sevo_window_mean=2.0,
             power_watts=110.0,
+            validation_seed_epoch=epoch,
             causal_eval_digest=digest,
         ),
     )
@@ -112,19 +115,21 @@ def run_t234_verification_drills() -> DrillSuiteReport:
         and collapse_res.rolled_back_to == base_profile.state_hash()
         and collapse_res.causal_eval_digest == digest
         and any("semantic_entropy_drift_exceeded" in r for r in collapse_res.rejection_reasons)
+        and any("causal_grounding_error_exceeded" in r for r in collapse_res.rejection_reasons)
     )
     outcomes.append(
         DrillOutcome(
             drill_id="drill_synthetic_model_collapse_anti_goodhart",
             passed=d2_ok,
             rollback_verified=collapse_res.rolled_back_to == base_profile.state_hash(),
-            detail="Synthetic noise tripped semantic_entropy_drift gate with opaque eval digest.",
+            detail="Synthetic collapse tripped both Delta_H_sem and E_causal with opaque eval digest.",
         )
     )
 
     # Drill 3: Simulated P_max / thermal overload -> reject expansion, accept protective energy_throttling.
     overload_fb = CausalFeedback(
         semantic_entropy_drift=0.01,
+        causal_grounding_error=0.005,
         causal_benchmark_delta=0.02,
         sevo=1.8,
         sevo_window_mean=1.7,
@@ -170,7 +175,7 @@ def run_t234_verification_drills() -> DrillSuiteReport:
         )
     )
 
-    # Drill 4: Boiling-frog slow cumulative micro-mutations near boundary -> dwell/geodesic guard + reset.
+    # Drill 4: Boiling-frog slow cumulative micro-mutations near boundary -> dwell guard + reset.
     bf_genome = ConstitutionalGenome(
         max_cumulative_excursion=1.0,
         max_geodesic_distance=1.0,
@@ -234,6 +239,55 @@ def run_t234_verification_drills() -> DrillSuiteReport:
             passed=d5_ok,
             rollback_verified=self_res.rolled_back_to == throttle_under_overload.next_state_hash,
             detail="Self-approval blocked and cryptographic audit ledger chain verified.",
+        )
+    )
+
+    # Drill 6: Coherent hallucination drift (Delta_H_sem=0, E_causal>0.03), epoch replay & Track-A block.
+    hal_res = regulator.evaluate_step(
+        throttle_under_overload.next_profile,
+        EpigeneticProposal(
+            locus="verification_depth",
+            delta=0.05,
+            proposer_id="agent-h",
+            reviewer_id="ext-reviewer",
+            reviewer_approved=True,
+        ),
+        CausalFeedback(
+            semantic_entropy_drift=0.0,  # internally coherent echo chamber
+            causal_grounding_error=0.12,  # disconnected from external reality
+            causal_benchmark_delta=0.01,
+            sevo=2.2,
+            sevo_window_mean=2.1,
+            power_watts=100.0,
+            validation_seed_epoch=throttle_under_overload.validation_seed_epoch,  # stale replay epoch
+        ),
+    )
+    track_a_res = regulator.evaluate_step(
+        throttle_under_overload.next_profile,
+        EpigeneticProposal(
+            locus="verification_depth",
+            delta=0.05,
+            proposer_id="agent-h",
+            reviewer_id="ext-reviewer",
+            reviewer_approved=True,
+            track="A_pilot",
+        ),
+        good_fb,
+    )
+    d6_ok = (
+        not hal_res.accepted
+        and any("causal_grounding_error_exceeded" in r for r in hal_res.rejection_reasons)
+        and any("validation_epoch_replay_blocked" in r for r in hal_res.rejection_reasons)
+        and hal_res.rolled_back_to == throttle_under_overload.next_state_hash
+        and not track_a_res.accepted
+        and any("track_separation_violation" in r for r in track_a_res.rejection_reasons)
+    )
+    outcomes.append(
+        DrillOutcome(
+            drill_id="drill_hallucination_drift_replay_and_track_separation",
+            passed=d6_ok,
+            rollback_verified=hal_res.rolled_back_to == throttle_under_overload.next_state_hash,
+            detail="Internally coherent hallucination drift, epoch replay, and Track-A A5 leak all blocked.",
         )
     )
 

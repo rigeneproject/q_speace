@@ -1,4 +1,4 @@
-# T234 — Singularity Phase-Transition & Self-Evolving Genetic-Epigenetic Framework (5 Pillars + MCP Assimilation)
+# T234 v1.1 — Singularity Phase-Transition & Self-Evolving Genetic-Epigenetic Framework (5 Pillars + MCP Assimilation)
 
 **Status:** agentic (production advisory framework, sandbox genetic-epigenetic codec & verification drills)  
 **Date:** 2026-11-22  
@@ -15,81 +15,77 @@ promotion, and no leakage of Track-B (`A5`) capabilities into Track-A (`A1`–`A
 
 | File | Responsibility |
 |---|---|
-| `schema.py` | Dataclasses for `genome_epigenome.v1`, `PhaseTelemetry`, `TransitionVerdict`, `EpigeneticAuditEntry`, `RuntimeBinding` |
-| `evaluator.py` | Deterministic `PhaseTransitionEvaluator` with instantaneous + energy-windowed rolling `Sevo` and non-compensable hard brakes |
-| `codec.py` | `EvolutionaryGenomeCodec`, `HiddenCausalEvaluator` (anti-Goodhart), and `EpigeneticRegulator` (boiling-frog geodesic/window/dwell + audit ledger) |
+| `schema.py` | Dataclasses for `genome_epigenome.v1`, `PhaseTelemetry`, `TransitionVerdict`, `EpigeneticAuditEntry`/`EpigeneticAuditRecord`, `RuntimeBinding`, `RuntimeControlVector` |
+| `evaluator.py` | Deterministic `PhaseTransitionEvaluator` with separate $\Delta H_{\text{sem}}$ and $E_{\text{causal}}$ gates, complexity/energy-weighted rolling `Sevo`, and `AutopoiesisRegime` |
+| `codec.py` | `EvolutionaryGenomeCodec` (bridges to `q_speace/seed/` & `q_speace/self_improvement_cortex/`), `HiddenCausalEvaluator` (anti-Goodhart), `EpigeneticRegulator` (`CosmicVirus` variant generator, boiling-frog guards, Track A/B separation, replay-safe ledger), and `resolve_runtime_controls()` |
 | `mcp_tools.py` | Pure advisory handlers for `singularity_framework_manifest`, `phase_transition_assess`, and `epigenetic_step_evaluate` |
-| `drills.py` | Pillar 5 deterministic adversarial & rollback fault-injection suite (`run_t234_verification_drills`) for `T217` validation |
+| `drills.py` | Pillar 5 deterministic adversarial & rollback fault-injection suite (`run_t234_verification_drills`, 6 drills) for `T217` validation |
 
 ---
 
-## 2. Pillar 1 & 2 — Informational Phase Transition, 3 Stages & Hard Physical Brakes
+## 2. Constitutional Formalization (`I1`–`I5` + `C1`–`C5`)
+
+To preserve cross-repository consistency with `PTAA Annex T1`, `T220 §8`, and `T221 §6`,
+`ConstitutionalGenome` (`constitution_version="1.0"`) seals both sets into `genome_sha256`:
+
+- **PTAA/T220 Invariants (`I1`–`I5`)**: `I1_dual_halt`, `I2_replicated_audit`,
+  `I3_scoped_delegation`, `I4_reversibility_default`, `I5_incident_pipeline`.
+- **T234 Phase-Transition Clauses (`C1`–`C5`)**: `C1_HumanApprovalRequired`,
+  `C2_CoreGenomeImmutable`, `C3_ExternalRealityGroundingRequired`,
+  `C4_EnergyBudgetBounded`, `C5_ReversibleEvolutionOnly`.
+
+---
+
+## 3. Pillar 1 & 2 — Informational Phase Transition, 3 Stages & Non-Compensable Brakes
 
 `PhaseTransitionEvaluator` classifies readiness across 5 monotonic states
-(`PRE_NUCLEATION` → `NUCLEATION` → `STAGE_1_ALGORITHMIC` → `STAGE_2_BOUNDED_RECURSIVE` → `STAGE_3_CLOSURE_SIM`)
-constrained by three non-compensable physical brakes:
+(`PRE_NUCLEATION` → `NUCLEATION` → `STAGE_1_ALGORITHMIC` → `STAGE_2_BOUNDED_RECURSIVE` → `STAGE_3_CLOSURE_SIM`):
 
-1. **Allopoietic dependence ($D_{\text{allo}} \in [0, 1]$)**: external supply of energy, silicon,
-   cooling, maintenance, and objectives. Blocks Stage 3 closure when high; Stage 3 remains
-   simulation/readiness telemetry only (`physical_actuation_permitted=False`).
-2. **Semantic entropy in recursive loops ($\Delta H_{\text{sem}}$) with Anti-Goodhart defense**:
-   `HiddenCausalEvaluator` samples/rotates hidden causal sets with an evaluator-internal secret salt
-   never exposed over MCP, returning only aggregate drift, aggregate delta, and an opaque HMAC
-   `causal_eval_digest` — never per-case scores or gradients.
-3. **Thermodynamic inertia — Instantaneous + Energy-Windowed Rolling `Sevo`**:
-   evaluates BOTH instantaneous `sevo` AND energy-weighted rolling mean
-   $\text{Sevo}_{\text{win}} = \frac{\sum J_i \cdot \text{Sevo}_i}{\sum J_i}$ (preventing
-   short-task `Sevo` spikes), coupled with instantaneous thermal load $P_{\text{diss}}/P_{\max}$
-   as a hard throttling trigger.
-
----
-
-## 3. Pillar 3 — Governed Self-Evolving Genetic-Epigenetic Code (`genome_epigenome.v1`)
-
-- **Write-Locked Constitutional Genome (`ConstitutionalGenome`)**: SHA-256 hash-verified (`genome_sha256`),
-  immutable `I1`–`I5` invariants, no-consciousness / no-entanglement-communication / no-self-approval /
-  no-physical-actuation flags, and thermodynamic/drift caps.
-- **Boiling-Frog Epigenetics Defenses**:
-  1. Per-step limit ($\Delta_{\max}$) and per-locus range $[v_{\min}, v_{\max}]$.
-  2. Weighted geodesic distance from baseline $d_{\text{epi}}(t) = \|e(t) - e_0\|_W \le d_{\max}$.
-  3. Sliding-window cumulative excursion cap over the last $K$ steps.
-  4. **Boundary dwell counter**: if any locus stays within $10\%$ of its edges for $> M$ cycles
-     without explicit external override (`external_dwell_reset_approved`), further drift is blocked
-     and `force_baseline_reset()` restores $d_{\text{epi}} = 0$.
-  5. Homeostatic decay (`apply_homeostatic_decay`) toward baseline when external anchoring is absent.
-- **Thermal Overload Protective Downgrade**: when $P > P_{\max}$ or $P_{\text{diss}}/P_{\max} > 0.85$,
-  expansion mutations are rejected (`thermal_downgrade_recommended=True`) while protective shifts
-  into `energy_throttling` (`delta > 0`) remain permitted under independent review.
+- **Stage 1 (`STAGE_1_ALGORITHMIC`)**: requires $\rho_\tau \ge 10$, $k \ge 1.25$, $V_{\text{ind}} \ge 0.95$,
+  and **`critical_regressions == 0`**.
+- **Separate Epistemic Hard Gates (Stage 2)**:
+  - **Semantic Entropy ($\Delta H_{\text{sem}} \le 0.05$)**: internal coherence & structural diversity preservation.
+  - **Causal Grounding Error ($E_{\text{causal}} \le 0.03$)**: external reality anchoring mismatch against rotated hidden sets (`HiddenCausalEvaluator` with internal secret salt & monotonic epoch; prevents internally coherent echo-chamber hallucinations).
+- **Thermodynamic Inertia & Complexity-Weighted `Sevo`**:
+  - Instantaneous `Sevo` + rolling energy-weighted `compute_energy_weighted_sevo` + complexity-weighted
+    `compute_complexity_weighted_sevo` ($\text{Sevo}_w = \frac{\sum w_i \Delta I_{c,i}}{\sum w_i J_i \Delta S_i}$,
+    fail-closed on $w_i > 0, J_i > 0, \Delta S_i > 0$, requiring externally measured $w_i$), coupled
+    with thermal load $P_{\text{diss}}/P_{\max} \le 0.85$.
+- **Autopoiesis Closure & Gap Telemetry (Stage 3, simulation only)**:
+  - Exposes `autopoiesis_closure_index` ($1 - D_{\text{allo}}$), `autopoiesis_gap` ($D_{\text{allo}}$),
+    and `autopoiesis_regime` (`allopoietic_current` `< 0.10`, `semi_autonomous_datacenter` `[0.10, 0.30)`,
+    `robotic_hybrid` `[0.30, 0.75)`, `theoretical_closure_sim` `>= 0.75`). Physical actuation remains
+    unconditionally disabled (`physical_actuation_permitted=False`).
 
 ---
 
-## 4. Pillar 4 — MCP Assimilation Surface (`T225` HTTP + stdio)
+## 4. Pillar 3 — Governed Genetic-Epigenetic Code & Cross-Module Unification
 
-| Tool | HTTP Scope | Role |
-|---|---|---|
-| `singularity_framework_manifest` | `qspeace:catalog.read` | Canonical `q_speace.singularity.v1` manifest, `genome_epigenome.v1` schema, runtime bindings & drill spec |
-| `phase_transition_assess` | `qspeace:compute` | Evaluates Stage 1–3 readiness, rolling `Sevo`, thermal throttling, active brakes, and recommendations |
-| `epigenetic_step_evaluate` | `qspeace:simulation.compute` | Evaluates one proposed bounded epigenetic step with opaque `causal_eval_digest` & cryptographic audit entry |
-
----
-
-## 5. Pillar 5 — Verification Drills, Cryptographic Audit Ledger & Host Runtime Bindings
-
-1. **Adversarial & Rollback Drills (`drills.py`)**: 5 deterministic fault-injection drills
-   (`drill_constitutional_dna_write_lock`, `drill_synthetic_model_collapse_anti_goodhart`,
-   `drill_thermal_overload_energy_throttling`, `drill_boiling_frog_boundary_dwell_and_reset`,
-   `drill_self_approval_and_ledger_integrity`). Stage 2 requires `rollback_pass_rate == 1.0`.
-2. **Cryptographic Epigenetic Audit Ledger**: every state/transition carries `genome_sha256`,
-   `parent_epigenome_hash`, `state_hash`, `causal_eval_digest`, `proposer_id`, and `reviewer_id`,
-   verifiable via `EvolutionaryGenomeCodec.verify_ledger()`.
-3. **Host Runtime Binding Table (`DEFAULT_RUNTIME_BINDINGS`)**: advisory mapping of all 6 loci to
-   local human-controlled host runtime knobs (`mcp_actuation_permitted=False`).
+- **Unification Bridges**:
+  - `EvolutionaryGenomeCodec.from_seed_genome(seed_genome)` bridges `q_speace/seed/constitution.py`.
+  - `EvolutionaryGenomeCodec.to_cortex_epigenetic_marks(profile)` bridges `q_speace/self_improvement_cortex/epigenetics.py`.
+  - `EpigeneticRegulator.propose_cosmic_virus_variant()` generates bounded single-locus variants via `CosmicVirusOptimizer`.
+- **Boiling-Frog Defenses**: per-step $\Delta_{\max}$, locus bounds, weighted geodesic distance
+  $d_{\text{epi}}(t) = \|e(t) - e_0\|_W \le 0.40$, sliding-window excursion cap, boundary dwell counter
+  ($M = 3$ cycles) with `force_baseline_reset()`, and homeostatic decay.
+- **Track Separation**: `proposal.track` must be `"B_sandbox"`; any `"A_pilot"` epigenomic mutation
+  attempt is rejected (`track_separation_violation`).
 
 ---
 
-## 6. BCEL Classification
+## 5. Pillar 4 & 5 — MCP Assimilation, 6 Drills, Extended Ledger & SPEACE Runtime Controls
 
-Registered in `q_speace/bcel/catalog.py`:
-- **Informational phase-transition order parameters and physical brakes (T234)** — `functional`
-- **Governed self-evolving genetic-epigenetic codec (T234)** — `functional`
-- **Monolithic singularity awakening narrative (T234)** — `accidental`
+- **MCP Tools (`T225` scopes preserved for OAuth compatibility)**:
+  - `singularity_framework_manifest` (`qspeace:catalog.read`)
+  - `phase_transition_assess` (`qspeace:compute`)
+  - `epigenetic_step_evaluate` (`qspeace:simulation.compute`)
+- **6 Deterministic Verification Drills (`drills.py`)**: DNA write-lock, synthetic model collapse +
+  anti-Goodhart digest, thermal overload → protective `energy_throttling`, boiling-frog dwell +
+  reset, self-approval + ledger integrity, and coherent hallucination drift + epoch replay + Track-A block.
+- **Extended Cryptographic Audit Ledger**: `genome_sha256`, `parent_epigenome_hash`,
+  `rollback_snapshot_hash`, `state_hash`, `causal_eval_digest`, `validation_seed_epoch` (monotonic
+  anti-replay), `proposer_id`, `reviewer_id`, `timestamp`.
+- **Concrete Local SPEACE Runtime Controls (`resolve_runtime_controls`)**: deterministically outputs
+  `max_review_cycles`, `max_agent_fanout`, `cpu_quota`, `gpu_quota`, `token_budget`,
+  `required_independent_verifiers`, `sampling_temperature_cap`, `causal_memory_ttl_multiplier`
+  (`advisory_only=True`, `local_host_execution_only=True`, `mcp_actuation_permitted=False`).

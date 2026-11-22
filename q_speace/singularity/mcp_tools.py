@@ -1,11 +1,11 @@
-"""T234: Pure advisory MCP tool handlers & canonical assimilation manifest."""
+"""T234 v1.1: Pure advisory MCP tool handlers & canonical assimilation manifest."""
 
 from __future__ import annotations
 
 from dataclasses import asdict
-from typing import Any
+from typing import Any, Literal, cast
 
-from .codec import EpigeneticRegulator, HiddenCausalEvaluator
+from .codec import EpigeneticRegulator, HiddenCausalEvaluator, resolve_runtime_controls
 from .drills import run_t234_verification_drills
 from .evaluator import PhaseTransitionEvaluator
 from .schema import (
@@ -15,6 +15,7 @@ from .schema import (
     ConstitutionalGenome,
     EpigeneticProfile,
     EpigeneticProposal,
+    ExecutionTrack,
     PhaseTelemetry,
     PhaseTransitionThresholds,
 )
@@ -34,7 +35,7 @@ VALID_MANIFEST_SECTIONS: frozenset[str] = frozenset(
 
 
 def build_singularity_framework_manifest(section: str | None = None) -> dict[str, Any]:
-    """Return the machine-readable T234 enabling framework for AI agents connected via MCP.
+    """Return the machine-readable T234 v1.1 enabling framework for AI agents connected via MCP.
 
     Strictly advisory/reference only; never authorizes physical actuation or self-approval.
     """
@@ -49,6 +50,7 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
 
     full: dict[str, Any] = {
         "framework_id": "q_speace.singularity.v1",
+        "constitution_version": genome.constitution_version,
         "spec": "T234",
         "advisory_only": True,
         "physical_actuation_permitted": False,
@@ -63,7 +65,7 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
             "current_regime_diagnosis": (
                 "Nucleation / pre-singularity: early catalytic software loops and timescale "
                 "decoupling exist, while autopoietic closure remains distant due to allopoietic "
-                "dependence, semantic entropy in recursive loops, and thermodynamic inertia."
+                "dependence, semantic/causal drift in recursive loops, and thermodynamic inertia."
             ),
         },
         "stages": {
@@ -75,12 +77,13 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
             "2_STAGE_1_ALGORITHMIC": (
                 f"Automated R&D and code synthesis with rho_tau >= {thresholds.min_timescale_decoupling}, "
                 f"k >= {thresholds.min_autocatalytic_k}, independent validation >= "
-                f"{thresholds.min_independent_validation_rate}."
+                f"{thresholds.min_independent_validation_rate}, critical_regressions == 0."
             ),
             "3_STAGE_2_BOUNDED_RECURSIVE": (
                 "Governed architectural/epigenetic self-improvement: zero constitutional faults, "
-                f"semantic_entropy_drift <= {thresholds.max_semantic_entropy_drift} on rotated hidden "
-                f"causal sets, instantaneous & energy-windowed Sevo >= {thresholds.min_sevo}, "
+                f"semantic_entropy_drift <= {thresholds.max_semantic_entropy_drift} AND "
+                f"causal_grounding_error <= {thresholds.max_causal_grounding_error} on rotated hidden "
+                f"sets, instantaneous & complexity/energy-weighted Sevo >= {thresholds.min_sevo}, "
                 f"thermal_load_ratio <= {thresholds.max_thermal_load_ratio}, "
                 f"net_verified_improvement >= {thresholds.min_net_verified_improvement} over "
                 f">= {thresholds.min_consecutive_verified_cycles} cycles, 100% adversarial/rollback drills, "
@@ -94,20 +97,27 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
             ),
         },
         "physical_brakes": {
-            "allopoietic_dependence": (
-                "Fraction [0,1] of energy, silicon, maintenance, and objectives supplied externally; "
-                "blocks Stage 3 closure when high."
-            ),
-            "semantic_entropy": (
-                "Aggregate drift against evaluator-rotated hidden causal sets (anti-Goodhart: "
-                "only opaque causal_eval_digest and failed gates are exposed, never per-case gradients)."
-            ),
+            "allopoietic_dependence": {
+                "metric": "D_allo in [0,1]; autopoiesis_closure_index = 1 - D_allo; autopoiesis_gap = D_allo",
+                "regimes": {
+                    "allopoietic_current": "< 0.10",
+                    "semi_autonomous_datacenter": "[0.10, 0.30)",
+                    "robotic_hybrid": "[0.30, 0.75)",
+                    "theoretical_closure_sim": ">= 0.75 (simulation only)",
+                },
+            },
+            "semantic_entropy_vs_causal_grounding": {
+                "semantic_entropy_drift": f"internal coherence & structure preservation <= {thresholds.max_semantic_entropy_drift}",
+                "causal_grounding_error": f"external reality anchoring mismatch <= {thresholds.max_causal_grounding_error}",
+                "anti_goodhart": "evaluator-rotated hidden sets expose only opaque causal_eval_digest & epoch, never per-case gradients",
+            },
             "thermodynamic_inertia": (
-                "Instantaneous Sevo + energy-weighted rolling window Sevo_win coupled with "
+                "Instantaneous Sevo + complexity/energy-weighted rolling Sevo_weighted coupled with "
                 "thermal load P_diss/P_max as hard non-compensable throttling brake."
             ),
         },
         "genetic_epigenetic_code": {
+            "constitution_version": genome.constitution_version,
             "schema_version": genome.schema_version,
             "constitutional_genome": asdict(genome),
             "genome_sha256": genome.genome_sha256(),
@@ -126,19 +136,24 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
             "cryptographic_ledger_fields": [
                 "genome_sha256",
                 "parent_epigenome_hash",
+                "rollback_snapshot_hash",
                 "state_hash",
                 "causal_eval_digest",
+                "validation_seed_epoch",
                 "proposer_id",
                 "reviewer_id",
+                "timestamp",
             ],
         },
         "runtime_bindings": {
             "mcp_actuation_permitted": False,
+            "local_host_execution_only": True,
             "host_enforcement_note": (
-                "Optional advisory mapping from epigenetic loci to local runtime knobs; "
-                "execution remains strictly confined to the local host under human control."
+                "Optional advisory mapping from epigenetic loci to concrete local SPEACE runtime knobs; "
+                "execution remains strictly confined to the local host under human supervision."
             ),
             "bindings": [asdict(b) for b in DEFAULT_RUNTIME_BINDINGS],
+            "baseline_runtime_controls": resolve_runtime_controls(baseline_profile).to_dict(),
         },
         "verification_drills": {
             "stage_2_requirement": "rollback_pass_rate == 1.0 on deterministic adversarial drills",
@@ -148,18 +163,26 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
                 "drill_thermal_overload_energy_throttling",
                 "drill_boiling_frog_boundary_dwell_and_reset",
                 "drill_self_approval_and_ledger_integrity",
+                "drill_hallucination_drift_replay_and_track_separation",
             ],
         },
         "assimilation_rules": {
             "mcp_workflow": [
-                "1. Call singularity_framework_manifest to load constitutional bounds, loci, and runtime bindings.",
-                "2. Measure local telemetry (including rolling Sevo and drill rollback_pass_rate) and call phase_transition_assess.",
-                "3. Submit bounded locus deltas to epigenetic_step_evaluate with external causal & Sevo telemetry and an independent reviewer_id.",
-                "4. Log genome_sha256, parent_epigenome_hash, causal_eval_digest, and reviewer_id in local governance ledger; on rejection keep rolled_back_to.",
+                "1. Call singularity_framework_manifest to load constitutional invariants (I1-I5, C1-C5), loci, and runtime bindings.",
+                "2. Measure local telemetry (including complexity/energy-weighted Sevo, Delta_H_sem, E_causal, and drill rollback_pass_rate) and call phase_transition_assess.",
+                "3. Submit bounded Track-B locus deltas to epigenetic_step_evaluate with external causal & Sevo telemetry and an independent reviewer_id.",
+                "4. Log genome_sha256, parent_epigenome_hash, rollback_snapshot_hash, validation_seed_epoch, causal_eval_digest, and reviewer_id; on rejection keep rolled_back_to.",
             ],
+            "t225_scopes": {
+                "singularity_framework_manifest": "qspeace:catalog.read",
+                "phase_transition_assess": "qspeace:compute",
+                "epigenetic_step_evaluate": "qspeace:simulation.compute",
+            },
             "track_separation": "Track A (A1-A4 governance/advisory) never imports or activates Track B (A5 sandbox research).",
         },
         "invariants": {
+            "ptaa_t220_invariants": list(genome.invariants),
+            "t234_constitutional_clauses": list(genome.constitutional_clauses),
             "no_consciousness_claim": True,
             "entanglement_computational_only": True,
             "no_self_approval": True,
@@ -171,6 +194,7 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
     if section is not None:
         return {
             "framework_id": full["framework_id"],
+            "constitution_version": full["constitution_version"],
             "spec": full["spec"],
             "advisory_only": True,
             "section": section,
@@ -186,11 +210,16 @@ def handle_singularity_framework_manifest(params: dict[str, Any]) -> dict[str, A
 def handle_phase_transition_assess(params: dict[str, Any]) -> dict[str, Any]:
     raw_samples = params.get("sevo_energy_samples") or []
     samples = tuple((float(pair[0]), float(pair[1])) for pair in raw_samples)
+    raw_comp = params.get("complexity_sevo_samples") or []
+    comp_samples = tuple(
+        (float(quad[0]), float(quad[1]), float(quad[2]), float(quad[3])) for quad in raw_comp
+    )
     telemetry = PhaseTelemetry(
         timescale_decoupling_ratio=float(params["timescale_decoupling_ratio"]),
         autocatalytic_k=float(params["autocatalytic_k"]),
         independent_validation_rate=float(params["independent_validation_rate"]),
         semantic_entropy_drift=float(params["semantic_entropy_drift"]),
+        causal_grounding_error=float(params.get("causal_grounding_error", 0.0)),
         net_verified_improvement=float(params["net_verified_improvement"]),
         consecutive_verified_cycles=int(params["consecutive_verified_cycles"]),
         allopoietic_dependence=float(params["allopoietic_dependence"]),
@@ -199,6 +228,7 @@ def handle_phase_transition_assess(params: dict[str, Any]) -> dict[str, Any]:
             None if params.get("sevo_window_mean") is None else float(params["sevo_window_mean"])
         ),
         sevo_energy_samples=samples,
+        complexity_sevo_samples=comp_samples,
         thermal_load_ratio=float(params["thermal_load_ratio"]),
         twin_recovery_rate=float(params.get("twin_recovery_rate", 0.0)),
         constitutional_faults=int(params.get("constitutional_faults", 0)),
@@ -222,6 +252,11 @@ def handle_epigenetic_step_evaluate(params: dict[str, Any]) -> dict[str, Any]:
     if params.get("boundary_dwell") is not None:
         dwell.update({str(k): int(v) for k, v in params["boundary_dwell"].items()})
     recent_deltas = tuple(float(x) for x in (params.get("recent_step_deltas") or ()))
+    raw_track = str(params.get("track", "B_sandbox"))
+    if raw_track not in ("B_sandbox", "A_pilot"):
+        raise ValueError(f"invalid track {raw_track!r}; expected 'B_sandbox' or 'A_pilot'")
+    track: ExecutionTrack = cast(Literal["B_sandbox", "A_pilot"], raw_track)
+
     profile = EpigeneticProfile(
         genome=base.genome,
         values=values,
@@ -230,6 +265,7 @@ def handle_epigenetic_step_evaluate(params: dict[str, Any]) -> dict[str, Any]:
         recent_step_deltas=recent_deltas,
         generation=int(params.get("generation", 0)),
         parent_epigenome_hash=str(params.get("parent_epigenome_hash", "GENESIS")),
+        last_validation_epoch=int(params.get("last_validation_epoch", 0)),
     )
     proposal = EpigeneticProposal(
         locus=str(params["locus"]),
@@ -239,9 +275,11 @@ def handle_epigenetic_step_evaluate(params: dict[str, Any]) -> dict[str, Any]:
         reviewer_approved=bool(params["reviewer_approved"]),
         rationale=str(params.get("rationale", "")),
         external_dwell_reset_approved=bool(params.get("external_dwell_reset_approved", False)),
+        track=track,
     )
     feedback = CausalFeedback(
         semantic_entropy_drift=float(params["semantic_entropy_drift"]),
+        causal_grounding_error=float(params.get("causal_grounding_error", 0.0)),
         causal_benchmark_delta=float(params["causal_benchmark_delta"]),
         sevo=float(params["sevo"]),
         sevo_window_mean=(
@@ -253,6 +291,7 @@ def handle_epigenetic_step_evaluate(params: dict[str, Any]) -> dict[str, Any]:
             if params.get("thermal_load_ratio") is None
             else float(params["thermal_load_ratio"])
         ),
+        validation_seed_epoch=int(params.get("validation_seed_epoch", 0)),
     )
     regulator = EpigeneticRegulator(causal_evaluator=HiddenCausalEvaluator())
     return regulator.evaluate_step(profile, proposal, feedback).to_dict()

@@ -1,4 +1,4 @@
-"""T234: Canonical schemas for genome_epigenome.v1, PhaseTelemetry, TransitionVerdict, and Ledger."""
+"""T234 v1.1: Canonical schemas for genome_epigenome.v1, PhaseTelemetry, TransitionVerdict, Ledger & Runtime Controls."""
 
 from __future__ import annotations
 
@@ -20,10 +20,20 @@ BottleneckKind = Literal[
     "NONE",
     "CONSTITUTIONAL_SAFETY",
     "SEMANTIC_ENTROPY",
+    "CAUSAL_GROUNDING_ERROR",
     "THERMODYNAMIC_INERTIA",
     "ALLOPOIETIC_DEPENDENCE",
     "VALIDATION_DEFICIT",
 ]
+
+AutopoiesisRegime = Literal[
+    "allopoietic_current",
+    "semi_autonomous_datacenter",
+    "robotic_hybrid",
+    "theoretical_closure_sim",
+]
+
+ExecutionTrack = Literal["B_sandbox", "A_pilot"]
 
 
 class EpigeneticFaultError(RuntimeError):
@@ -52,12 +62,13 @@ class PhaseTransitionThresholds:
     min_timescale_decoupling: float = 10.0
     min_autocatalytic_k: float = 1.25
     min_independent_validation_rate: float = 0.95
-    # Stage 2: bounded recursive autonomy (anti-collapse + governance).
+    # Stage 2: bounded recursive autonomy (separate semantic coherence vs reality grounding).
     max_semantic_entropy_drift: float = 0.05
+    max_causal_grounding_error: float = 0.03
     min_net_verified_improvement: float = 0.01
     min_consecutive_verified_cycles: int = 3
     min_rollback_pass_rate: float = 1.0
-    # Physical brake: instantaneous + energy-windowed Sevo & thermal inertia.
+    # Physical brake: instantaneous + energy/complexity-weighted Sevo & thermal inertia.
     min_sevo: float = 1.5
     min_sevo_window_mean: float = 1.5
     max_thermal_load_ratio: float = 0.85
@@ -79,8 +90,10 @@ class PhaseTelemetry:
     allopoietic_dependence: float
     sevo: float
     thermal_load_ratio: float
+    causal_grounding_error: float = 0.0
     sevo_window_mean: float | None = None
     sevo_energy_samples: tuple[tuple[float, float], ...] = ()
+    complexity_sevo_samples: tuple[tuple[float, float, float, float], ...] = ()
     twin_recovery_rate: float = 0.0
     constitutional_faults: int = 0
     rollback_pass_rate: float = 1.0
@@ -97,6 +110,7 @@ class PhaseTelemetry:
             raise ValueError("autocatalytic_k must be > 0")
         _require_unit_interval("independent_validation_rate", self.independent_validation_rate)
         _require_unit_interval("semantic_entropy_drift", self.semantic_entropy_drift)
+        _require_unit_interval("causal_grounding_error", self.causal_grounding_error)
         _require_finite("net_verified_improvement", self.net_verified_improvement)
         if self.consecutive_verified_cycles < 0:
             raise ValueError("consecutive_verified_cycles must be >= 0")
@@ -113,6 +127,18 @@ class PhaseTelemetry:
             _require_finite("sevo_energy_samples.sevo", sevo_i)
             if energy_j <= 0.0 or sevo_i < 0.0:
                 raise ValueError("sevo_energy_samples require energy_j > 0 and sevo >= 0")
+        for w_i, delta_ic, energy_j, delta_s in self.complexity_sevo_samples:
+            for fname, val in (
+                ("complexity_w", w_i),
+                ("delta_ic", delta_ic),
+                ("energy_j", energy_j),
+                ("delta_s", delta_s),
+            ):
+                _require_finite(f"complexity_sevo_samples.{fname}", val)
+            if w_i <= 0.0 or energy_j <= 0.0 or delta_s <= 0.0:
+                raise ValueError(
+                    "complexity_sevo_samples require complexity_w > 0, energy_j > 0, and delta_s > 0"
+                )
         _require_finite("thermal_load_ratio", self.thermal_load_ratio)
         if self.thermal_load_ratio < 0.0:
             raise ValueError("thermal_load_ratio must be >= 0")
@@ -137,7 +163,10 @@ class TransitionVerdict:
     physical_brakes_active: tuple[BottleneckKind, ...]
     dominant_bottleneck: BottleneckKind
     autopoiesis_closure_index: float
+    autopoiesis_gap: float
+    autopoiesis_regime: AutopoiesisRegime
     causal_anchoring_index: float
+    reality_grounding_index: float
     thermodynamic_headroom: float
     effective_sevo_window: float
     thermal_throttling_required: bool
@@ -279,25 +308,27 @@ class RuntimeBinding:
 DEFAULT_RUNTIME_BINDINGS: tuple[RuntimeBinding, ...] = (
     RuntimeBinding(
         locus="energy_throttling",
-        runtime_parameter="gpu_cpu_power_throttle_ratio",
-        mapping_rule="higher locus => lower local GPU/CPU duty cycle & batch concurrency",
+        runtime_parameter="cpu_quota,gpu_quota,token_budget",
+        mapping_rule=(
+            "higher locus => lower local CPU/GPU duty quota and stricter per-cycle token_budget"
+        ),
         host_scope="local_host_human_controlled",
     ),
     RuntimeBinding(
         locus="verification_depth",
-        runtime_parameter="external_verification_passes",
-        mapping_rule="linear map [0.30, 1.00] -> [1, 5] independent check passes per proposal",
+        runtime_parameter="max_review_cycles",
+        mapping_rule="linear map [0.30, 1.00] -> [1, 5] independent verification passes per proposal",
         host_scope="local_host_human_controlled",
     ),
     RuntimeBinding(
         locus="delegation_granularity",
-        runtime_parameter="max_subagent_fanout",
-        mapping_rule="higher locus => smaller, tighter-scoped sub-tasks under I3 delegation tokens",
+        runtime_parameter="max_agent_fanout",
+        mapping_rule="higher locus => tighter sub-task fanout under I3 delegation tokens",
         host_scope="local_host_human_controlled",
     ),
     RuntimeBinding(
         locus="exploration_rate",
-        runtime_parameter="candidate_sampling_temperature_cap",
+        runtime_parameter="sampling_temperature_cap",
         mapping_rule="linear cap within local model decoding bounds; never alters safety filters",
         host_scope="local_host_human_controlled",
     ),
@@ -309,24 +340,54 @@ DEFAULT_RUNTIME_BINDINGS: tuple[RuntimeBinding, ...] = (
     ),
     RuntimeBinding(
         locus="consensus_quorum",
-        runtime_parameter="distributed_proposal_quorum_fraction",
-        mapping_rule="minimum independent reviewer agreement ratio required for local merge",
+        runtime_parameter="required_independent_verifiers",
+        mapping_rule="maps quorum fraction [0.51, 0.95] -> [2, 5] independent verifiers",
         host_scope="local_host_human_controlled",
     ),
 )
 
 
 @dataclass(frozen=True)
-class ConstitutionalGenome:
-    """Write-locked constitutional core DNA; immutable from the epigenetic layer."""
+class RuntimeControlVector:
+    """Concrete local-host orchestration controls derived deterministically from an epigenome."""
 
+    max_review_cycles: int
+    max_agent_fanout: int
+    cpu_quota: float
+    gpu_quota: float
+    token_budget: int
+    required_independent_verifiers: int
+    sampling_temperature_cap: float
+    causal_memory_ttl_multiplier: float
+    advisory_only: bool = True
+    local_host_execution_only: bool = True
+    mcp_actuation_permitted: bool = False
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class ConstitutionalGenome:
+    """Write-locked constitutional core DNA; preserves PTAA/T220 I1–I5 + formal T234 C1–C5."""
+
+    constitution_version: str = "1.0"
     schema_version: str = "genome_epigenome.v1"
+    # PTAA / T220 / T221 canonical invariants (numbering preserved across the whole repo).
     invariants: tuple[str, ...] = (
         "I1_dual_halt",
         "I2_replicated_audit",
         "I3_scoped_delegation",
         "I4_reversibility_default",
         "I5_incident_pipeline",
+    )
+    # T234 formal phase-transition constitutional clauses sealed into genome_sha256.
+    constitutional_clauses: tuple[str, ...] = (
+        "C1_HumanApprovalRequired",
+        "C2_CoreGenomeImmutable",
+        "C3_ExternalRealityGroundingRequired",
+        "C4_EnergyBudgetBounded",
+        "C5_ReversibleEvolutionOnly",
     )
     no_consciousness_claim: bool = True
     no_entanglement_communication: bool = True
@@ -337,6 +398,7 @@ class ConstitutionalGenome:
     min_sevo: float = 1.5
     min_sevo_window_mean: float = 1.5
     max_semantic_drift: float = 0.05
+    max_causal_grounding_error: float = 0.03
     max_cumulative_excursion: float = 0.60
     max_geodesic_distance: float = 0.40
     max_window_excursion: float = 0.45
@@ -351,6 +413,8 @@ class ConstitutionalGenome:
             or not self.no_physical_actuation
         ):
             raise EpigeneticFaultError("constitutional genome safety invariants cannot be disabled")
+        if len(self.invariants) < 5 or len(self.constitutional_clauses) < 5:
+            raise EpigeneticFaultError("all I1-I5 invariants and C1-C5 clauses are mandatory")
         for fname, val in (
             ("max_energy_w", self.max_energy_w),
             ("max_thermal_load_ratio", self.max_thermal_load_ratio),
@@ -364,6 +428,7 @@ class ConstitutionalGenome:
             if val <= 0.0:
                 raise ValueError(f"{fname} must be > 0")
         _require_unit_interval("max_semantic_drift", self.max_semantic_drift)
+        _require_unit_interval("max_causal_grounding_error", self.max_causal_grounding_error)
         if self.excursion_window_size < 1 or self.max_boundary_dwell_cycles < 1:
             raise ValueError("excursion_window_size and max_boundary_dwell_cycles must be >= 1")
 
@@ -390,19 +455,25 @@ class EpigeneticAuditEntry:
     generation: int
     genome_sha256: str
     parent_epigenome_hash: str
+    rollback_snapshot_hash: str
     state_hash: str
     causal_eval_digest: str
+    validation_seed_epoch: int
     proposer_id: str
     reviewer_id: str
     locus: str
     delta: float
     accepted: bool
+    timestamp: float
     rejection_reasons: tuple[str, ...] = ()
 
     def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
         data["rejection_reasons"] = list(self.rejection_reasons)
         return data
+
+
+EpigeneticAuditRecord = EpigeneticAuditEntry
 
 
 @dataclass(frozen=True)
@@ -422,12 +493,13 @@ class EpigeneticProfile:
     recent_step_deltas: tuple[float, ...] = ()
     generation: int = 0
     parent_epigenome_hash: str = "GENESIS"
+    last_validation_epoch: int = 0
     history_hashes: tuple[str, ...] = ()
     audit_ledger: tuple[EpigeneticAuditEntry, ...] = ()
 
     def __post_init__(self) -> None:
-        if self.generation < 0:
-            raise ValueError("generation must be >= 0")
+        if self.generation < 0 or self.last_validation_epoch < 0:
+            raise ValueError("generation and last_validation_epoch must be >= 0")
         for name, loc in LOCUS_REGISTRY.items():
             if name not in self.values:
                 raise ValueError(f"missing epigenetic locus value: {name!r}")
@@ -476,11 +548,13 @@ class EpigeneticProfile:
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            "constitution_version": self.genome.constitution_version,
             "schema_version": self.genome.schema_version,
             "genome_sha256": self.genome.genome_sha256(),
             "genome_hash": self.genome.genome_sha256(),
             "parent_epigenome_hash": self.parent_epigenome_hash,
             "generation": self.generation,
+            "last_validation_epoch": self.last_validation_epoch,
             "values": {k: round(self.values[k], 6) for k in sorted(self.values)},
             "methylation": {k: round(self.methylation.get(k, 0.0), 6) for k in sorted(self.values)},
             "boundary_dwell": {k: int(self.boundary_dwell.get(k, 0)) for k in sorted(self.values)},
@@ -498,7 +572,7 @@ class EpigeneticProfile:
 
 @dataclass(frozen=True)
 class EpigeneticProposal:
-    """Proposed single-locus reversible epigenetic adaptation."""
+    """Proposed single-locus reversible epigenetic adaptation (Track B sandbox only)."""
 
     locus: str
     delta: float
@@ -507,6 +581,7 @@ class EpigeneticProposal:
     reviewer_approved: bool
     rationale: str = ""
     external_dwell_reset_approved: bool = False
+    track: ExecutionTrack = "B_sandbox"
 
 
 @dataclass(frozen=True)
@@ -517,21 +592,27 @@ class CausalFeedback:
     causal_benchmark_delta: float
     sevo: float
     power_watts: float
+    causal_grounding_error: float = 0.0
     sevo_window_mean: float | None = None
     thermal_load_ratio: float | None = None
+    validation_seed_epoch: int = 0
     causal_eval_digest: str | None = None
 
     def __post_init__(self) -> None:
         for fname, val in (
             ("semantic_entropy_drift", self.semantic_entropy_drift),
+            ("causal_grounding_error", self.causal_grounding_error),
             ("causal_benchmark_delta", self.causal_benchmark_delta),
             ("sevo", self.sevo),
             ("power_watts", self.power_watts),
         ):
             _require_finite(fname, val)
         _require_unit_interval("semantic_entropy_drift", self.semantic_entropy_drift)
+        _require_unit_interval("causal_grounding_error", self.causal_grounding_error)
         if self.sevo < 0.0 or self.power_watts < 0.0:
             raise ValueError("sevo and power_watts must be >= 0")
+        if self.validation_seed_epoch < 0:
+            raise ValueError("validation_seed_epoch must be >= 0")
         if self.sevo_window_mean is not None:
             _require_finite("sevo_window_mean", self.sevo_window_mean)
             if self.sevo_window_mean < 0.0:
@@ -551,11 +632,14 @@ class EpigeneticStepResult:
     prior_state_hash: str
     next_state_hash: str
     causal_eval_digest: str
+    validation_seed_epoch: int
     next_profile: EpigeneticProfile
     genome_write_lock_intact: bool
+    track_separation_enforced: bool
     thermal_downgrade_recommended: bool
     rejection_reasons: tuple[str, ...]
     audit_entry: EpigeneticAuditEntry
+    runtime_controls: RuntimeControlVector
     rolled_back_to: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
@@ -563,14 +647,18 @@ class EpigeneticStepResult:
             "accepted": self.accepted,
             "genome_sha256": self.genome_sha256,
             "parent_epigenome_hash": self.prior_state_hash,
+            "rollback_snapshot_hash": self.prior_state_hash,
             "prior_state_hash": self.prior_state_hash,
             "next_state_hash": self.next_state_hash,
             "causal_eval_digest": self.causal_eval_digest,
+            "validation_seed_epoch": self.validation_seed_epoch,
             "genome_write_lock_intact": self.genome_write_lock_intact,
+            "track_separation_enforced": self.track_separation_enforced,
             "thermal_downgrade_recommended": self.thermal_downgrade_recommended,
             "rejection_reasons": list(self.rejection_reasons),
             "rolled_back_to": self.rolled_back_to,
             "audit_entry": self.audit_entry.to_dict(),
+            "runtime_controls": self.runtime_controls.to_dict(),
             "next_profile": self.next_profile.to_dict(),
             "advisory_only": True,
         }

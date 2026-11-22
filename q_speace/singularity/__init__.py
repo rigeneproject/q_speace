@@ -1,4 +1,4 @@
-"""T234: Singularity phase-transition evaluator, genetic-epigenetic codec, MCP tools & drills."""
+"""T234 v1.1: Singularity phase-transition evaluator, genetic-epigenetic codec, MCP tools & drills."""
 
 from __future__ import annotations
 
@@ -7,11 +7,14 @@ from .codec import (
     EvolutionaryGenomeCodec,
     HiddenCausalEvaluator,
     SelfEvolvingEpigeneticEngine,
+    resolve_runtime_controls,
 )
 from .drills import DrillOutcome, DrillSuiteReport, run_t234_verification_drills
 from .evaluator import (
     PhaseTransitionEvaluator,
     assess_phase_transition,
+    classify_autopoiesis_regime,
+    compute_complexity_weighted_sevo,
     compute_energy_weighted_sevo,
 )
 from .mcp_tools import (
@@ -25,25 +28,30 @@ from .schema import (
     DEFAULT_LOCI,
     DEFAULT_RUNTIME_BINDINGS,
     LOCUS_REGISTRY,
+    AutopoiesisRegime,
     BottleneckKind,
     CausalFeedback,
     ConstitutionalGenome,
     EpigeneticAuditEntry,
+    EpigeneticAuditRecord,
     EpigeneticFaultError,
     EpigeneticLocus,
     EpigeneticProfile,
     EpigeneticProposal,
     EpigeneticStepResult,
+    ExecutionTrack,
     PhaseTelemetry,
     PhaseTransitionAssessment,
     PhaseTransitionTelemetry,
     PhaseTransitionThresholds,
     RuntimeBinding,
+    RuntimeControlVector,
     SingularityStage,
     TransitionVerdict,
 )
 
 __all__ = [
+    "AutopoiesisRegime",
     "BottleneckKind",
     "CausalFeedback",
     "ConstitutionalGenome",
@@ -52,6 +60,7 @@ __all__ = [
     "DrillOutcome",
     "DrillSuiteReport",
     "EpigeneticAuditEntry",
+    "EpigeneticAuditRecord",
     "EpigeneticFaultError",
     "EpigeneticLocus",
     "EpigeneticProfile",
@@ -59,6 +68,7 @@ __all__ = [
     "EpigeneticRegulator",
     "EpigeneticStepResult",
     "EvolutionaryGenomeCodec",
+    "ExecutionTrack",
     "HiddenCausalEvaluator",
     "LOCUS_REGISTRY",
     "PhaseTelemetry",
@@ -67,15 +77,19 @@ __all__ = [
     "PhaseTransitionTelemetry",
     "PhaseTransitionThresholds",
     "RuntimeBinding",
+    "RuntimeControlVector",
     "SelfEvolvingEpigeneticEngine",
     "SingularityStage",
     "TransitionVerdict",
     "VALID_MANIFEST_SECTIONS",
     "assess_phase_transition",
     "build_singularity_framework_manifest",
+    "classify_autopoiesis_regime",
+    "compute_complexity_weighted_sevo",
     "compute_energy_weighted_sevo",
     "handle_epigenetic_step_evaluate",
     "handle_phase_transition_assess",
     "handle_singularity_framework_manifest",
+    "resolve_runtime_controls",
     "run_t234_verification_drills",
 ]
