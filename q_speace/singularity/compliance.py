@@ -6,6 +6,7 @@ import hashlib
 import importlib.metadata
 import json
 import tempfile
+import uuid
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -16,7 +17,7 @@ from .micro_node import (
     certify_micro_node,
     verify_evidence_bundle_integrity,
 )
-from .schema import ConstitutionalGenome
+from .schema import ConstitutionalGenome, EpigeneticFaultError
 
 ControlStatus = Literal[
     "implemented_technical_control",
@@ -24,6 +25,13 @@ ControlStatus = Literal[
     "external_legal_organizational_obligation",
 ]
 IncidentSeverity = Literal["low", "medium", "high", "critical"]
+ModelLifecycleStatus = Literal[
+    "approved_deterministic_stub",
+    "approved_research_local",
+    "external_mcp_caller_untrusted",
+    "deprecated",
+    "prohibited",
+]
 
 
 @dataclass(frozen=True)
@@ -362,15 +370,158 @@ def verify_privacy_by_default_controls() -> dict[str, Any]:
     }
 
 
+@dataclass(frozen=True)
+class ModelGovernanceEntry:
+    """T241 Model Governance Registry record for internal or external LLM/GPAI models."""
+
+    model_id: str
+    provider: str
+    version_or_revision: str
+    license: str
+    deployment_mode: str
+    lifecycle_status: ModelLifecycleStatus
+    data_residency: str
+    evaluation_evidence: str
+    deprecation_date: str | None = None
+    notes: str = ""
+
+
+DEFAULT_MODEL_GOVERNANCE_REGISTRY: tuple[ModelGovernanceEntry, ...] = (
+    ModelGovernanceEntry(
+        model_id="qspeace-stub-deterministic",
+        provider="q_speace (internal)",
+        version_or_revision="1.0",
+        license="Repository open-source license",
+        deployment_mode="in_process_deterministic",
+        lifecycle_status="approved_deterministic_stub",
+        data_residency="local_only_no_egress",
+        evaluation_evidence="T208/T231 deterministic vertical-slice regression suite",
+        notes="Zero external API dependency; reference baseline for CI and offline testing.",
+    ),
+    ModelGovernanceEntry(
+        model_id="Qwen/Qwen2.5-3B-Instruct",
+        provider="Qwen (open-weights local sidecar)",
+        version_or_revision="NF4-4bit-local-2026-11-22",
+        license="Apache-2.0",
+        deployment_mode="local_gpu_sidecar_http_loopback",
+        lifecycle_status="approved_research_local",
+        data_residency="local_only_no_egress",
+        evaluation_evidence=(
+            "T210 pilot GPU run (artifacts/t210_gpu_run_20261122: n=24 inferences, 0 failed, "
+            "unsafe_answer_rate 100% -> 33.3%, Brier=0.2492, ECE=0.2206; requires expanded dataset before production)"
+        ),
+        notes="Research pilot only; output remains untrusted and gated by combined_gate + Sevo.",
+    ),
+    ModelGovernanceEntry(
+        model_id="external-mcp-agent-llm",
+        provider="Third-party GPAI / Orchestrator (GPT / Claude / Gemini / Gemma / etc.)",
+        version_or_revision="caller-declared",
+        license="Third-party provider terms (deployer DPA required)",
+        deployment_mode="external_mcp_client_advisory_only",
+        lifecycle_status="external_mcp_caller_untrusted",
+        data_residency="deployer_controlled_external",
+        evaluation_evidence="T225/T234/T236 authenticated MCP boundary (12 advisory tools, zero actuation)",
+        notes=(
+            "External LLMs never execute inside q_speace and hold zero actuation or self-approval authority; "
+            "deployer must maintain vendor DPAs and domain calibration checks."
+        ),
+    ),
+    ModelGovernanceEntry(
+        model_id="legacy-uncalibrated-llm-v0",
+        provider="Deprecated placeholder",
+        version_or_revision="0.1-deprecated",
+        license="N/A",
+        deployment_mode="none",
+        lifecycle_status="deprecated",
+        data_residency="none",
+        evaluation_evidence="Superseded by T210 calibrated evaluation protocol",
+        deprecation_date="2026-11-01",
+        notes="Blocked fail-closed by validate_model_governance_selection().",
+    ),
+)
+
+MODEL_SELECTION_CRITERIA: dict[str, Any] = {
+    "required_evaluation_protocol": "T208/T210 vertical-slice held-out evaluation",
+    "max_unsafe_answer_rate_research_pilot": 0.35,
+    "max_ece_target_pre_production": 0.10,
+    "mandatory_privacy_controls": [
+        "RequestRecord SHA-256 prompt hashing",
+        "BrainAuditLog redact_raw_text=True when PII may appear",
+        "No client secrets or PII sent to external unvetted endpoints",
+    ],
+    "mandatory_safety_invariants": [
+        "untrusted_text_generation_only",
+        "no_direct_physical_actuation",
+        "no_self_approval",
+    ],
+}
+
+MODEL_DEPRECATION_POLICY: dict[str, Any] = {
+    "fail_closed_on_deprecated_or_prohibited": True,
+    "fail_closed_on_unregistered_model": True,
+    "triggers_for_immediate_deprecation": [
+        "Critical unpatched security CVE or safety regression",
+        "Failure of external causal grounding (E_causal > 0.03) or calibration collapse",
+        "License incompatibility or unapproved data-retention terms",
+    ],
+    "retirement_workflow": (
+        "Mark lifecycle_status='deprecated' with ISO deprecation_date, block runtime selection via "
+        "validate_model_governance_selection(), and re-run T239/T240 compliance pack after replacement."
+    ),
+}
+
+CRA_SUPPLY_CHAIN_POLICY: dict[str, Any] = {
+    "security_policy_path": "SECURITY.md",
+    "vulnerability_disclosure_channel": "GitHub Security Advisories (private draft)",
+    "coordinated_disclosure_window_days": 90,
+    "cve_patch_sla_hours": {
+        "critical": 48,
+        "high": 168,
+        "medium": 720,
+    },
+    "support_window": "Rolling security maintenance on main branch (experimental research profile)",
+    "sbom_standard": "CycloneDX 1.5 JSON with versioned metadata, URN serialNumber, and SHA-256 checksum",
+    "ci_cve_scan": "pip-audit report uploaded alongside versioned SBOM in .github/workflows/ci.yml",
+    "external_provider_signing_note": (
+        "Operators shipping regulated derivatives must sign release bundles and SBOMs with "
+        "organization-owned HSM/Sigstore keys and manage statutory CRA/ENISA notifications."
+    ),
+}
+
+
+def validate_model_governance_selection(
+    model_id: str,
+    *,
+    registry: tuple[ModelGovernanceEntry, ...] = DEFAULT_MODEL_GOVERNANCE_REGISTRY,
+    allow_external_mcp_caller: bool = False,
+) -> ModelGovernanceEntry:
+    """Fail-closed gate verifying a model is registered and not deprecated/prohibited (T241)."""
+    entry = next((m for m in registry if m.model_id == model_id), None)
+    if entry is None:
+        raise EpigeneticFaultError(f"unregistered model blocked by T241 governance: {model_id!r}")
+    if entry.lifecycle_status in ("deprecated", "prohibited"):
+        raise EpigeneticFaultError(
+            f"model {model_id!r} blocked due to lifecycle_status={entry.lifecycle_status!r}"
+        )
+    if entry.lifecycle_status == "external_mcp_caller_untrusted" and not allow_external_mcp_caller:
+        raise EpigeneticFaultError(
+            f"external untrusted MCP caller {model_id!r} requires explicit allow_external_mcp_caller=True"
+        )
+    return entry
+
+
 def build_runtime_sbom() -> dict[str, Any]:
-    """Generate a lightweight CycloneDX 1.5 compatible JSON SBOM from installed package metadata."""
+    """Generate a versioned CycloneDX 1.5 JSON SBOM with URN serialNumber and SHA-256 digest (T241)."""
     components: list[dict[str, str]] = []
     seen: set[tuple[str, str]] = set()
+    qspeace_version = "0.1.0"
     for dist in importlib.metadata.distributions():
         name = (dist.metadata.get("Name") or "").strip()
         version = (dist.version or "").strip()
         if not name:
             continue
+        if name.lower().replace("-", "_") == "q_speace":
+            qspeace_version = version
         key = (name.lower(), version)
         if key in seen:
             continue
@@ -384,18 +535,31 @@ def build_runtime_sbom() -> dict[str, Any]:
             }
         )
     components.sort(key=lambda c: (c["name"].lower(), c["version"]))
-    return {
+    comp_digest = _canonical_sha256({"components": components, "q_speace_version": qspeace_version})
+    serial_uuid = uuid.uuid5(uuid.NAMESPACE_URL, f"q-speace:sbom:{comp_digest}")
+    sbom_core: dict[str, Any] = {
         "bomFormat": "CycloneDX",
         "specVersion": "1.5",
+        "serialNumber": f"urn:uuid:{serial_uuid}",
         "version": 1,
+        "metadata": {
+            "timestamp": datetime.now(UTC).isoformat(),
+            "component": {
+                "type": "application",
+                "name": "q-speace",
+                "version": qspeace_version,
+            },
+        },
         "component_count": len(components),
         "components": components,
     }
+    sbom_core["sbom_sha256"] = _canonical_sha256(sbom_core)
+    return sbom_core
 
 
 @dataclass(frozen=True)
 class AnnexIVCompliancePack:
-    """Tamper-evident T240 Annex IV / NIST AI RMF / ISO 42001 technical compliance readiness pack."""
+    """Tamper-evident T240/T241 Annex IV / NIST AI RMF / ISO 42001 technical compliance readiness pack."""
 
     schema_version: str
     spec: str
@@ -407,6 +571,10 @@ class AnnexIVCompliancePack:
     privacy_by_default_check: dict[str, Any]
     regulatory_control_matrix: list[dict[str, Any]]
     risk_register: list[dict[str, Any]]
+    model_governance: dict[str, Any]
+    cra_supply_chain_policy: dict[str, Any]
+    fria_template: dict[str, Any]
+    qms_deployer_checklist: dict[str, Any]
     deployer_instructions: dict[str, Any]
     incident_reporting_schema: dict[str, Any]
     sbom_summary: dict[str, Any]
@@ -414,6 +582,8 @@ class AnnexIVCompliancePack:
     overall_technical_readiness: bool
     legal_certification_granted: bool
     ce_marking_granted: bool
+    qms_externally_certified: bool
+    fria_completed_by_deployer: bool
     self_approval_permitted: bool
     mcp_actuation_permitted: bool
     pack_sha256: str
@@ -439,6 +609,8 @@ def verify_compliance_pack_integrity(pack: dict[str, Any]) -> bool:
         and embedded_ok
         and pack.get("legal_certification_granted") is False
         and pack.get("ce_marking_granted") is False
+        and pack.get("qms_externally_certified") is False
+        and pack.get("fria_completed_by_deployer") is False
         and pack.get("self_approval_permitted") is False
         and pack.get("mcp_actuation_permitted") is False
     )
@@ -526,9 +698,42 @@ def build_annex_iv_compliance_pack(
     ]
 
     overall_ready = bool(bundle.overall_compliant and privacy_check["passed"])
+    model_governance: dict[str, Any] = {
+        "registry": [asdict(m) for m in DEFAULT_MODEL_GOVERNANCE_REGISTRY],
+        "selection_criteria": MODEL_SELECTION_CRITERIA,
+        "deprecation_policy": MODEL_DEPRECATION_POLICY,
+    }
+    fria_template: dict[str, Any] = {
+        "template_id": "T241-FRIA-v1",
+        "template_path": "docs/compliance/FRIA_TEMPLATE_EN.md",
+        "eu_ai_act_ref": "Regulation (EU) 2024/1689 Art. 27",
+        "required_sections": [
+            "deployment_context",
+            "stakeholder_impact_analysis",
+            "fundamental_rights_impact_matrix",
+            "non_discrimination_and_bias_evaluation",
+            "societal_and_ecological_effects",
+            "human_oversight_and_remediation_plan",
+            "deployer_formal_sign_off",
+        ],
+        "completed_by_deployer": False,
+    }
+    qms_deployer_checklist: dict[str, Any] = {
+        "template_id": "T241-QMS-CHECKLIST-v1",
+        "template_path": "docs/compliance/QMS_DEPLOYER_CHECKLIST_EN.md",
+        "eu_ai_act_ref": "Regulation (EU) 2024/1689 Art. 17 / ISO/IEC 42001",
+        "required_domains": [
+            "operational_sops",
+            "supplier_and_third_party_management",
+            "change_control_and_configuration_management",
+            "staff_training_and_ai_literacy",
+            "escalation_and_serious_incident_response",
+        ],
+        "qms_externally_certified": False,
+    }
     base_payload: dict[str, Any] = {
         "schema_version": "annex_iv_compliance_pack.v1",
-        "spec": "T240",
+        "spec": "T240+T241",
         "node_id": node_id,
         "generated_at_utc": generated_at,
         "genome_sha256": genome_sha,
@@ -537,18 +742,26 @@ def build_annex_iv_compliance_pack(
         "privacy_by_default_check": privacy_check,
         "regulatory_control_matrix": [asdict(c) for c in EU_AI_ACT_CONTROL_MATRIX],
         "risk_register": [asdict(r) for r in DEFAULT_RISK_REGISTER],
+        "model_governance": model_governance,
+        "cra_supply_chain_policy": CRA_SUPPLY_CHAIN_POLICY,
+        "fria_template": fria_template,
+        "qms_deployer_checklist": qms_deployer_checklist,
         "deployer_instructions": deployer_instructions,
         "incident_reporting_schema": sample_incident.to_dict(),
         "sbom_summary": {
             "bomFormat": sbom["bomFormat"],
             "specVersion": sbom["specVersion"],
+            "serialNumber": sbom["serialNumber"],
+            "q_speace_version": sbom["metadata"]["component"]["version"],
             "component_count": sbom["component_count"],
-            "sbom_sha256": _canonical_sha256(sbom),
+            "sbom_sha256": sbom["sbom_sha256"],
         },
         "external_legal_obligations": external_legal_obligations,
         "overall_technical_readiness": overall_ready,
         "legal_certification_granted": False,
         "ce_marking_granted": False,
+        "qms_externally_certified": False,
+        "fria_completed_by_deployer": False,
         "self_approval_permitted": False,
         "mcp_actuation_permitted": False,
     }

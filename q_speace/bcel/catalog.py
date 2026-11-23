@@ -614,6 +614,21 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "conformity assessment but can never grant legal certification, CE marking, or operational "
         "authorization on their own.",
     ),
+    # ----- T241: Auditor Gap Closure (CRA Policy, Model Governance, FRIA & QMS Templates) -----
+    BCELEquivalence(
+        "Model governance registry, CRA security policy, and FRIA/QMS deployer templates (T241)",
+        "functional",
+        "Keep as explicit fail-closed model selection/deprecation rules, CVE/patch SLA disclosure "
+        "metadata, versioned SHA-256 CycloneDX SBOMs, and structured Art. 27 FRIA / Art. 17 QMS "
+        "templates cleanly separating software evidence from external legal sign-off.",
+    ),
+    BCELEquivalence(
+        "Repository-certified organizational QMS or automated FRIA sign-off (T241)",
+        "accidental",
+        "Removed: shipping FRIA and QMS templates inside a repository accelerates external audit "
+        "readiness but never substitutes for legal Deployer execution, stakeholder consultation, "
+        "or third-party ISO/Notified-Body certification.",
+    ),
 ]
 
 

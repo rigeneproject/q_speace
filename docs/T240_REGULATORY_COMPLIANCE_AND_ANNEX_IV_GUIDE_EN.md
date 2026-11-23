@@ -107,12 +107,36 @@ qspace micro-node verify-bundle --bundle evidence_bundle.json
 qspace micro-node compliance-pack --node-id org-micro-01 --output annex_iv_pack.json
 ```
 
-CI (`.github/workflows/ci.yml`) additionally executes `ruff`, `black --check`, `mypy`, `compileall`, `pytest`, and exports a reproducible CycloneDX-compatible JSON **Software Bill of Materials (SBOM)** from installed package metadata to support EU AI Act Article 15 and EU Cyber Resilience Act supply-chain traceability.
+CI (`.github/workflows/ci.yml`) additionally executes `ruff`, `black --check`, `mypy`, `compileall`, `pytest`, exports a versioned CycloneDX 1.5 JSON **Software Bill of Materials (SBOM)** with a detached SHA-256 checksum, and runs `pip-audit` CVE scanning to support EU AI Act Article 15 and EU Cyber Resilience Act supply-chain traceability.
 
 ---
 
-## 6. BCEL Classification
+## 6. Auditor Gap Closure: CRA Security Policy, Model Governance, FRIA & QMS Templates (T241)
+
+To address the four operational and governance areas typically scrutinized during formal AI compliance audits—while preserving the strict separation between software-verifiable controls and external legal obligations—`q_speace` includes the following T241 extensions embedded directly in the `T240` compliance pack (`annex_iv_compliance_pack.v1`):
+
+### 6.1 Supply-Chain Security & EU Cyber Resilience Act (CRA) Controls
+- **Security & Vulnerability Disclosure Policy (`SECURITY.md`)**: Defines the private disclosure channel (GitHub Security Advisories), safe-harbor scope, **90-day coordinated disclosure** window, and rolling research support window on `main`.
+- **CVE Triage & Patch SLAs**: Targets `<= 48 h` for Critical (`CVSS 9.0–10.0`), `<= 7 days` for High (`7.0–8.9`), and `<= 30 days` for Medium (`4.0–6.9`) vulnerabilities.
+- **Versioned & Hashed CycloneDX 1.5 SBOM**: `build_runtime_sbom()` emits a deterministic `urn:uuid` `serialNumber`, `metadata.timestamp`, `q-speace` application version, full package list, and `sbom_sha256` checksum. CI archives `sbom-cyclonedx.json`, `sbom-cyclonedx.json.sha256`, and a `pip-audit` CVE report on every build. *(External obligation: legal Providers shipping regulated products must additionally sign release artifacts with organization-owned HSM/Sigstore keys and manage statutory ENISA/CSIRT notifications.)*
+
+### 6.2 Model Governance Registry (Internal & External LLM/GPAI Controls)
+- **Authorized Model Registry (`DEFAULT_MODEL_GOVERNANCE_REGISTRY` in `q_speace/singularity/compliance.py`)**: Tracks `model_id`, provider, pinned version/revision, license, deployment mode, data residency, evaluation evidence (`T208`/`T210`), and lifecycle status (`approved_deterministic_stub`, `approved_research_local`, `external_mcp_caller_untrusted`, `deprecated`, `prohibited`).
+- **Selection Criteria (`MODEL_SELECTION_CRITERIA`)**: Mandates `T208`/`T210` held-out calibration evaluation (`Brier`, `ECE`, `unsafe_answer_rate`), privacy-by-default hashing/redaction, and non-actuating untrusted-text framing.
+- **Fail-Closed Deprecation Policy (`validate_model_governance_selection()`)**: Deterministically blocks unregistered, `deprecated`, or `prohibited` models (`EpigeneticFaultError`), and requires explicit opt-in acknowledgment (`allow_external_mcp_caller=True`) for third-party external LLM callers (GPT, Claude, Gemini, Gemma, etc.), whose vendor DPAs and SLAs remain the Deployer's contractual responsibility.
+
+### 6.3 Fundamental Rights Impact Assessment (FRIA — EU AI Act Art. 27)
+- **Structured Deployer Template (`docs/compliance/FRIA_TEMPLATE_EN.md`)**: Covers deployment context, stakeholder impact analysis (including vulnerable groups), EU Charter Fundamental Rights Impact Matrix (human dignity, privacy/GDPR, non-discrimination/bias, health/safety/environment, effective remedy, workers' rights), societal/ecological impact, and formal human sign-off.
+- **Non-Self-Completion Guard**: The `T240+T241` compliance pack references the template and enforces `fria_completed_by_deployer = False` until a legal Deployer completes and signs the contextual assessment externally.
+
+### 6.4 Quality Management System (QMS — EU AI Act Art. 17 / ISO 42001)
+- **Deployer Readiness Checklist (`docs/compliance/QMS_DEPLOYER_CHECKLIST_EN.md`)**: Maps operational SOPs, supplier/vendor management, peer-reviewed change control, staff AI literacy & oversight training (Art. 4 & Art. 14), and L1→L3→Authority escalation workflows.
+- **Non-Self-Certification Guard**: A software repository cannot certify an organizational QMS; the pack enforces `qms_externally_certified = False` alongside `legal_certification_granted = False` and `ce_marking_granted = False`.
+
+---
+
+## 7. BCEL Classification
 
 Recorded in `q_speace/bcel/catalog.py`:
-- **Functional**: `Regulatory compliance mapping, Annex IV technical pack, and incident reporting schema (T240)`.
-- **Accidental**: `Automated self-certification or legal CE-marking by software (T240)`.
+- **Functional**: `Regulatory compliance mapping, Annex IV technical pack, and incident reporting schema (T240)` and `Model governance registry, CRA security policy, and FRIA/QMS deployer templates (T241)`.
+- **Accidental**: `Automated self-certification or legal CE-marking by software (T240)` and `Repository-certified organizational QMS or automated FRIA sign-off (T241)`.

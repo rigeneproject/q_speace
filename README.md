@@ -105,9 +105,11 @@ qspace quantum synthesize   # print BCEL quantum equivalences
 - [Self-Hosted SPEACE Micro Node & Verifiable Evidence Bundle (T239)](docs/T239_SELF_HOSTED_MICRO_NODE_AND_CERTIFICATION_SPEC.md):
   zero-lock-in self-hosted deployment kit (`deploy/micro-node/`), remote-to-local advisory failover
   (`MicroNodeFailoverClient`), and cryptographic audit pack (`qspace micro-node certify` / `verify-bundle`).
-- [Regulatory Compliance Readiness & Annex IV Guide (T240)](docs/T240_REGULATORY_COMPLIANCE_AND_ANNEX_IV_GUIDE_EN.md):
+- [Regulatory Compliance Readiness & Annex IV Guide (T240/T241)](docs/T240_REGULATORY_COMPLIANCE_AND_ANNEX_IV_GUIDE_EN.md):
   EU AI Act / NIST AI RMF 1.0 / ISO 42001 control matrix, Art. 9 risk register, Art. 73 serious-incident
-  schema, privacy-by-default verification, CycloneDX SBOM export, and `qspace micro-node compliance-pack`.
+  schema, privacy-by-default verification, fail-closed **Model Governance Registry**, CRA [SECURITY.md](SECURITY.md)
+  CVE/patch policy, versioned CycloneDX 1.5 SBOM + checksum, Art. 27 FRIA & Art. 17 QMS deployer templates
+  (`docs/compliance/`), and `qspace micro-node compliance-pack`.
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,
