@@ -629,6 +629,13 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "readiness but never substitutes for legal Deployer execution, stakeholder consultation, "
         "or third-party ISO/Notified-Body certification.",
     ),
+    # ----- T242: Tech Debt Hardening & Lowest-Coverage Remediation -----
+    BCELEquivalence(
+        "Fail-closed numeric and RFC 8259 input guards across core and experiment modules (T242)",
+        "functional",
+        "Keep as strict finiteness, range, and JSON constant validation preventing silent NaN/Inf "
+        "bypass across evolutionary memory, spiking bridges, geophysical feed, and online adapters.",
+    ),
 ]
 
 

@@ -40,7 +40,12 @@ class SpikeQuantumBridge:
         The vector is padded with zeros to the next power of 2 (cap 16
         qubits, the statevector limit of the numpy kernel).
         """
-        s = np.abs(np.asarray(spikes, dtype=float)).ravel()
+        raw = np.asarray(spikes, dtype=float).ravel()
+        if raw.size == 0:
+            raise ValueError("spike vector must be non-empty")
+        if not np.all(np.isfinite(raw)):
+            raise ValueError("spike vector must contain only finite values")
+        s = np.abs(raw)
         if s.size > (1 << 16):
             raise ValueError("spike vector too large for the 16-qubit statevector cap")
         n = max(int(math.ceil(math.log2(max(s.size, 2)))), 1)
@@ -55,6 +60,10 @@ class SpikeQuantumBridge:
         active cell maps to pi, silent cells to 0.0.
         """
         s = np.asarray(spikes, dtype=float)
+        if s.size == 0:
+            raise ValueError("spike array must be non-empty")
+        if not np.all(np.isfinite(s)):
+            raise ValueError("spike array must contain only finite values")
         counts = np.abs(s).sum(axis=-1) if s.ndim > 1 else np.abs(s)
         if num_cells is not None:
             if num_cells < 1:

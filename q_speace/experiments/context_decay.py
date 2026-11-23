@@ -74,6 +74,8 @@ def episodes(count: int, start_seed: int) -> Iterator[tuple[int, str, int]]:
 
 def audit_development(archive: tuple[Entry, ...]) -> dict[str, Any]:
     """Compare the global column minimum against two prespecified sensor strata."""
+    if not archive:
+        raise ValueError("archive must be non-empty")
     groups: dict[str, dict[str, Any]] = {}
     for name, rows in (
         ("all", archive),

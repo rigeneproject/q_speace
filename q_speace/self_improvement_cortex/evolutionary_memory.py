@@ -2,7 +2,15 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
+
+
+def _require_finite(name: str, val: float) -> float:
+    fval = float(val)
+    if not math.isfinite(fval):
+        raise ValueError(f"{name} must be finite (got {val!r})")
+    return fval
 
 
 @dataclass
@@ -18,6 +26,14 @@ class MemoryEntry:
     timestamp: float = 0.0
     tags: list[str] = field(default_factory=list)
 
+    def __post_init__(self) -> None:
+        _require_finite("outcome", self.outcome)
+        _require_finite("timestamp", self.timestamp)
+        for k, v in self.metrics_before.items():
+            _require_finite(f"metrics_before[{k!r}]", v)
+        for k, v in self.metrics_after.items():
+            _require_finite(f"metrics_after[{k!r}]", v)
+
     @property
     def net_impact(self) -> float:
         if not self.metrics_after:
@@ -31,6 +47,8 @@ class EvolutionaryMemory:
     """Long-term storage of evolutionary experiments."""
 
     def __init__(self, max_entries: int = 10000) -> None:
+        if max_entries < 1:
+            raise ValueError(f"max_entries must be >= 1 (got {max_entries})")
         self._entries: list[MemoryEntry] = []
         self._max_entries = max_entries
 

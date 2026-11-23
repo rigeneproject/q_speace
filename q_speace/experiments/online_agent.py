@@ -31,12 +31,26 @@ class PolicyRefusalError(Exception):
     """A local pre-dispatch policy limit was reached."""
 
 
+def _reject_json_constant(token: str) -> Any:
+    raise ValueError(f"non_finite_json_constant:{token}")
+
+
 @dataclass
 class Budget:
     tool_limit: int = 5
     energy_limit: float = 0.001
     tool_attempts: int = 0
     reserved_energy: float = 0.0
+
+    def __post_init__(self) -> None:
+        if self.tool_limit < 0:
+            raise ValueError("invalid_tool_limit")
+        if not math.isfinite(self.energy_limit) or self.energy_limit < 0:
+            raise ValueError("invalid_energy_limit")
+        if self.tool_attempts < 0:
+            raise ValueError("invalid_tool_attempts")
+        if not math.isfinite(self.reserved_energy) or self.reserved_energy < 0:
+            raise ValueError("invalid_reserved_energy")
 
     def reserve_call(self) -> None:
         if self.tool_attempts >= self.tool_limit:
@@ -76,7 +90,7 @@ class Adapter:
         blocks = [x.text for x in result.content if x.type == "text"]
         if len(blocks) != 1:
             raise ValueError("unexpected_content")
-        value = json.loads(blocks[0])
+        value = json.loads(blocks[0], parse_constant=_reject_json_constant)
         if not isinstance(value, dict):
             raise ValueError("unexpected_result_type")
         self.events[-1]["result"] = value
@@ -89,7 +103,12 @@ async def diagnose(adapter: Adapter) -> dict[str, Any]:
     if len(entries) != 1 or entries[0].get("classification") != "functional":
         raise PolicyRefusalError("bcel")
     phi = 1 - sum(abs(a - b) for a, b in zip(*DISTRIBUTIONS, strict=True)) / 2
-    clock = await adapter.call("adaptive_clock_rate", {"coherence_phi": phi})
+    try:
+        clock = await adapter.call("adaptive_clock_rate", {"coherence_phi": phi})
+    except ValueError as exc:
+        if str(exc).startswith("non_finite_json_constant:"):
+            raise ValueError("invalid_rate") from exc
+        raise
     rate = float(clock["rate"])
     if not math.isfinite(rate) or rate <= 0:
         raise ValueError("invalid_rate")

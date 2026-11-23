@@ -24,6 +24,12 @@ class EarthSignals:
     sunspot: float  # solar activity
     tide: float  # tidal phase [0, 1]
 
+    def __post_init__(self) -> None:
+        for name, val in (("kp", self.kp), ("sunspot", self.sunspot), ("tide", self.tide)):
+            fval = float(val)
+            if not math.isfinite(fval) or not (0.0 <= fval <= 1.0):
+                raise ValueError(f"{name} must be finite and in [0, 1] (got {val!r})")
+
     def rotation_angles(self) -> dict[str, float]:
         """Map signals to parametric rotation angles (radians)."""
         return {

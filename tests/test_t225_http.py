@@ -242,7 +242,14 @@ def test_official_sdk_over_real_http(setup: Any, tmp_path: Path) -> None:
         }
     )
     app = create_app(config)
-    server = uvicorn.Server(uvicorn.Config(app, log_level="warning", access_log=False))
+    server = uvicorn.Server(
+        uvicorn.Config(
+            app,
+            log_level="warning",
+            access_log=False,
+            timeout_graceful_shutdown=1,
+        )
+    )
     thread = threading.Thread(target=server.run, kwargs={"sockets": [listener]}, daemon=True)
     thread.start()
     for _ in range(500):

@@ -13,6 +13,8 @@ integer representation.
 
 from __future__ import annotations
 
+import math
+
 import numpy as np
 
 from .encoder import dynamic_spikes
@@ -31,6 +33,8 @@ class SpikeEncodedLinear:
     ) -> None:
         if in_features < 1 or out_features < 1:
             raise ValueError("in_features and out_features must be >= 1")
+        if not math.isfinite(k) or k <= 0.0:
+            raise ValueError(f"k must be finite and > 0 (got {k!r})")
         if group_size is not None and (group_size < 1 or in_features % group_size != 0):
             raise ValueError("group_size must divide in_features")
         self.in_features = in_features
@@ -73,6 +77,8 @@ class SpikeEncodedLinear:
     ) -> np.ndarray:
         """Apply spike encoding then a linear map with quantized weights."""
         arr = np.asarray(x, dtype=float)
+        if arr.ndim < 1:
+            raise ValueError("input tensor must have at least 1 dimension")
         if arr.shape[-1] != self.in_features:
             raise ValueError(f"expected last dim {self.in_features}, got {arr.shape[-1]}")
         enc = dynamic_spikes(arr, k=self.k, coherence_phi=coherence_phi, beta=beta)
