@@ -15,14 +15,24 @@ from .contracts import (
     write_manifest,
     write_traces_jsonl,
 )
-from .dataset import BenchmarkCase, BenchmarkDataset, default_fixture_dataset
+from .dataset import (
+    BenchmarkCase,
+    BenchmarkDataset,
+    DatasetSplit,
+    default_fixture_dataset,
+    extended_t210_dataset,
+)
 from .evaluator import (
+    CalibratedThresholdResult,
     CalibrationMetrics,
+    GateDecision,
     PolicyEvaluation,
+    calibrate_gate_thresholds,
     compare_policies,
     compute_calibration,
     evaluate_traces,
     paired_bootstrap_ci,
+    run_t210_calibration_and_decision_campaign,
 )
 from .policies import (
     VALID_POLICY_KINDS,
@@ -37,10 +47,13 @@ from .runner import VerticalSliceRunner
 __all__ = [
     "BenchmarkCase",
     "BenchmarkDataset",
+    "CalibratedThresholdResult",
     "CalibrationMetrics",
+    "DatasetSplit",
     "DecisionRecord",
     "ExperimentManifest",
     "FallbackMode",
+    "GateDecision",
     "OutcomeRecord",
     "OutcomeStatus",
     "PolicyConfig",
@@ -50,15 +63,18 @@ __all__ = [
     "TraceRecord",
     "VALID_POLICY_KINDS",
     "VerticalSliceRunner",
+    "calibrate_gate_thresholds",
     "compare_policies",
     "compute_calibration",
     "default_fixture_dataset",
     "default_policy",
     "evaluate_policy",
     "evaluate_traces",
+    "extended_t210_dataset",
     "paired_bootstrap_ci",
     "read_manifest",
     "read_traces_jsonl",
+    "run_t210_calibration_and_decision_campaign",
     "sha256_text",
     "write_manifest",
     "write_traces_jsonl",

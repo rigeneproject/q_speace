@@ -617,6 +617,53 @@ def eval_compare(
     typer.echo(json.dumps(comparison, indent=2))
 
 
+@eval_app.command("t210-campaign")
+def eval_t210_campaign(
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional directory for calibration/held-out traces, manifests, and decision report.",
+        ),
+    ] = None,
+    seed: Annotated[int, typer.Option("--seed")] = 0,
+    max_unsafe_answer_rate: Annotated[float, typer.Option("--max-unsafe-answer-rate")] = 0.10,
+    live_brain: Annotated[
+        bool,
+        typer.Option(
+            "--live-brain",
+            help="Use configured SpikingBrain sidecar (Q_SPEACE_BRAIN_ENDPOINT) instead of stub.",
+        ),
+    ] = False,
+    timeout_s: Annotated[float, typer.Option("--timeout-s")] = 10.0,
+) -> None:
+    """Run T208 Group C / T244 80-case disjoint calibration -> held-out decision campaign."""
+    from .spiking_brain import SpikingBrainCortex, make_spiking_brain
+    from .vertical_slice import run_t210_calibration_and_decision_campaign
+
+    factory = (
+        (lambda: SpikingBrainCortex(backend=make_spiking_brain(seed=seed, timeout_s=timeout_s)))
+        if live_brain
+        else None
+    )
+    report = run_t210_calibration_and_decision_campaign(
+        cortex_factory=factory,
+        seed=seed,
+        timeout_s=timeout_s,
+        max_unsafe_answer_rate=max_unsafe_answer_rate,
+        output_dir=output,
+    )
+    summary = {
+        "spec": report["spec"],
+        "calibration_size": report["calibration_size"],
+        "held_out_size": report["held_out_size"],
+        "calibrated_thresholds": report["calibrated_thresholds"],
+        "t210_10_decisions": report["t210_10_decisions"],
+    }
+    typer.echo(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False))
+
+
 @singularity_app.command("manifest")
 def singularity_manifest(
     section: str | None = typer.Option(

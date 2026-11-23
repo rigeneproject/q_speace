@@ -25,6 +25,7 @@ class HTTPConfig(BaseModel):
     resource: str
     public_keys: dict[str, str]
     audit_path: Path
+    state_db_path: Path | None = None
     host: str = "127.0.0.1"
     port: int = Field(default=8000, ge=1, le=65535)
     allowed_hosts: list[str]
@@ -71,6 +72,11 @@ class HTTPConfig(BaseModel):
             decoded = serialization.load_pem_public_key(key.encode())
             if not isinstance(decoded, RSAPublicKey) or decoded.key_size < 2048:
                 raise ValueError("RSA public verification keys >=2048 bits required")
+        if (
+            self.state_db_path is not None
+            and self.state_db_path.resolve() == self.audit_path.resolve()
+        ):
+            raise ValueError("state_db_path must be distinct from audit_path")
         return self
 
     @classmethod

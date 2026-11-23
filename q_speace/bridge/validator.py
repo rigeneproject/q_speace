@@ -25,9 +25,12 @@ from __future__ import annotations
 import hashlib
 import hmac
 import json
+import subprocess
+import sys
 import time
 from collections.abc import Callable
 from dataclasses import dataclass
+from typing import Any
 
 from .protocol import FencingError, StateError, UpdateLedger, UpdateProposal
 
@@ -176,3 +179,108 @@ def promote_successor(
     """Promote a successor validator and fence out the current one."""
     ledger.promote_validator(new_key.generation, epoch=epoch)
     return IndependentValidator(new_key)
+
+
+# ---------------------------------------------------------------------------
+# T245: Process-Isolated Preemptive Validator (T218 §13)
+# ---------------------------------------------------------------------------
+
+_ALLOWED_CHECK_MODULE_PREFIXES: tuple[str, ...] = ("q_speace.",)
+
+_WORKER_BOOTSTRAP_CODE = (
+    "import importlib, json, sys; "
+    "req = json.loads(sys.stdin.read()); "
+    "mod = importlib.import_module(req['module']); "
+    "fn = getattr(mod, req['func']); "
+    "ok = bool(fn(req['proposal'])); "
+    "sys.stdout.write(json.dumps({'ok': ok}))"
+)
+
+
+def _demo_plant_ok(_proposal: dict[str, Any]) -> bool:
+    """Reference deterministic admissible plant check for isolated worker verification."""
+    return True
+
+
+def _demo_plant_reject(_proposal: dict[str, Any]) -> bool:
+    """Reference deterministic rejecting plant check for isolated worker verification."""
+    return False
+
+
+def _demo_plant_hang(_proposal: dict[str, Any]) -> bool:
+    """Reference hanging plant check used to verify OS-level preemptive termination."""
+    time.sleep(30.0)
+    return True
+
+
+class ProcessIsolatedValidator(IndependentValidator):
+    """Validator executing untrusted plant checks in a separate OS child process (T245).
+
+    Key security properties:
+      * ``ValidatorKey.key`` never leaves the parent process address space or env.
+      * Hanging plant checks are preemptively terminated by the OS after ``max_eval_seconds``.
+      * Only allowlisted ``q_speace.*`` check targets may be imported in the worker.
+    """
+
+    def attest_isolated(
+        self,
+        proposal: UpdateProposal,
+        *,
+        epoch: int,
+        check_target: str,
+        allowed_prefixes: tuple[str, ...] = _ALLOWED_CHECK_MODULE_PREFIXES,
+    ) -> str:
+        """Run ``check_target`` ('module.path:func_name') in an isolated child process and sign."""
+        if epoch != proposal.base_epoch:
+            raise StateError("candidate must be re-validated on the current policy epoch")
+        if self._evals_used >= self._max_evals:
+            raise ValidationBudgetExhaustedError("call budget exhausted")
+        if ":" not in check_target:
+            raise ValueError(f"check_target must be 'module:func' (got {check_target!r})")
+        module_name, func_name = check_target.split(":", 1)
+        if not module_name or not func_name or not module_name.startswith(allowed_prefixes):
+            raise ValueError(f"check_target module not in allowlist: {module_name!r}")
+
+        payload = json.dumps(
+            {
+                "module": module_name,
+                "func": func_name,
+                "proposal": {
+                    "proposal_id": proposal.proposal_id,
+                    "base_epoch": proposal.base_epoch,
+                    "param_hash": proposal.param_hash,
+                    "scope": list(proposal.scope),
+                    "expiry": proposal.expiry,
+                },
+            },
+            sort_keys=True,
+            allow_nan=False,
+        )
+        self._evals_used += 1
+        try:
+            proc = subprocess.run(
+                [sys.executable, "-c", _WORKER_BOOTSTRAP_CODE],
+                input=payload,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                timeout=self._max_eval_seconds,
+                check=False,
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise ValidationBudgetExhaustedError(
+                f"preemptive timeout: isolated plant check killed after {self._max_eval_seconds:.3f}s"
+            ) from exc
+
+        if proc.returncode != 0:
+            raise StateError(
+                f"isolated validator worker failed (rc={proc.returncode}): {proc.stderr.strip()[:200]}"
+            )
+        try:
+            verdict = json.loads(proc.stdout)
+            ok = bool(verdict["ok"])
+        except (ValueError, KeyError, TypeError) as exc:
+            raise StateError(f"malformed isolated worker verdict: {exc}") from exc
+
+        extra = "ok" if ok else "reject"
+        return attestation_digest(proposal, self._key.key, extra=extra)

@@ -643,6 +643,29 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Keep as deterministic worktree path-containment validation, sys.executable subprocess "
         "invocation, finite-domain checks on AACM equations/primitives, and dict-only audit parsing.",
     ),
+    # ----- T244: T208 Group C Extended T210 Calibration & Decision Campaign -----
+    BCELEquivalence(
+        "Disjoint calibration-to-held-out gate threshold selection and T210 decision report (T244)",
+        "functional",
+        "Keep as an empirical evaluation protocol selecting confidence and energy thresholds "
+        "strictly on a calibration partition and deciding keep/revise/retire from paired "
+        "bootstrap confidence intervals on a disjoint held-out partition.",
+    ),
+    # ----- T245: T218 §13 Bridge-v0 Process Isolation & Crash-Atomic Coupled Commit -----
+    BCELEquivalence(
+        "Process-isolated preemptive Bridge validator and crash-atomic coupled WAL (T245)",
+        "functional",
+        "Keep as OS-level child-process separation (signing key kept strictly in parent), "
+        "preemptive timeout termination of stalled plant checks, and atomic fsync+replace "
+        "write-ahead logging eliminating partial coupled activations after mid-commit crashes.",
+    ),
+    # ----- T246: T225 §16 Remote MCP Persistent State & Audit Checkpoints -----
+    BCELEquivalence(
+        "Persistent SQLite MCP state store and verifiable hash-chained audit checkpoints (T246)",
+        "functional",
+        "Keep as durable write-through session/rate-limit persistence across restarts and "
+        "tamper-evident SHA-256 audit chain and checkpoint verification.",
+    ),
 ]
 
 

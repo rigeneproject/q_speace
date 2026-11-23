@@ -14,28 +14,37 @@ load-bearing here.
 
 from .protocol import (
     CoupledCommit,
+    CrashAtomicCoupledCommit,
     ExpiryError,
     FencingError,
     IdempotencyError,
     JournalRecord,
     ProtocolError,
+    SimulatedCrashError,
     StateError,
     UpdateLedger,
     UpdateProposal,
     UpdateStatus,
     canonical_param_hash,
+    recover_coupled_wal,
 )
+from .validator import ProcessIsolatedValidator, ValidatorKey
 
 __all__ = [
     "CoupledCommit",
+    "CrashAtomicCoupledCommit",
     "ExpiryError",
     "FencingError",
     "IdempotencyError",
     "JournalRecord",
+    "ProcessIsolatedValidator",
     "ProtocolError",
+    "SimulatedCrashError",
     "StateError",
     "UpdateLedger",
     "UpdateProposal",
     "UpdateStatus",
+    "ValidatorKey",
     "canonical_param_hash",
+    "recover_coupled_wal",
 ]

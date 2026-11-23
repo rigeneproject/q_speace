@@ -585,3 +585,187 @@ class CoupledCommit:
         aborted = list(self._members)
         self.rollback(epoch)
         return aborted
+
+
+# ---------------------------------------------------------------------------
+# T245: Crash-Atomic Coupled Commit WAL & Recovery (T218 §13)
+# ---------------------------------------------------------------------------
+
+
+class SimulatedCrashError(RuntimeError):
+    """Injected crash between WAL COMMITTING and WAL COMMITTED (for crash-recovery tests)."""
+
+
+def _atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_suffix(path.suffix + ".tmp")
+    raw = json.dumps(payload, sort_keys=True, allow_nan=False, indent=2) + "\n"
+    with tmp_path.open("w", encoding="utf-8") as fh:
+        fh.write(raw)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp_path, path)
+
+
+class CrashAtomicCoupledCommit(CoupledCommit):
+    """CoupledCommit backed by an fsync+replace Write-Ahead Log (T245).
+
+    Ensures all-or-nothing coupled activation across crashes: if a crash occurs
+    after ``COMMITTING`` is logged and before ``COMMITTED`` is persisted,
+    :func:`recover_coupled_wal` deterministically aborts all members so no
+    partial ``(1, 0)`` or ``(0, 1)`` coupled state survives recovery.
+    """
+
+    def __init__(self, ledger: UpdateLedger, coupled_id: str, wal_path: Path) -> None:
+        super().__init__(ledger, coupled_id)
+        self._wal_path = Path(wal_path)
+
+    @property
+    def wal_path(self) -> Path:
+        return self._wal_path
+
+    def prepare(
+        self,
+        proposals: list[UpdateProposal],
+        *,
+        epoch: int,
+        fencing: int,
+        check: Callable[[list[UpdateProposal]], bool],
+        reservations: dict[str, float] | None = None,
+    ) -> bool:
+        ok = super().prepare(
+            proposals,
+            epoch=epoch,
+            fencing=fencing,
+            check=check,
+            reservations=reservations,
+        )
+        if ok:
+            _atomic_write_json(
+                self._wal_path,
+                {
+                    "state": "PREPARED",
+                    "coupled_id": self._coupled_id,
+                    "members": list(self._members),
+                    "epoch": epoch,
+                    "fencing": fencing,
+                },
+            )
+        return ok
+
+    def commit(
+        self,
+        *,
+        epoch: int,
+        fencing: int,
+        crash_after_member_index: int | None = None,
+    ) -> list[str]:
+        if not self._members:
+            raise StateError(f"coupled commit {self._coupled_id} has no prepared members")
+        for pid in self._members:
+            st = self._ledger._require(pid)
+            proposal = self._ledger._proposal_of(st, pid)
+            if epoch > proposal.expiry:
+                self.rollback(epoch)
+                raise ExpiryError(f"{pid} expired during coupled commit")
+            if fencing < self._ledger.fencing:
+                self.rollback(epoch)
+                raise FencingError("stale authority during coupled commit")
+        # Pre-authorize every member before logging COMMITTING or activating any member.
+        for pid in self._members:
+            st = self._ledger._require(pid)
+            proposal = self._ledger._proposal_of(st, pid)
+            attest = st.tags.get("latest_attest", proposal.validation_attest)
+            self._ledger._authorize(proposal, attest, epoch, fencing)
+
+        _atomic_write_json(
+            self._wal_path,
+            {
+                "state": "COMMITTING",
+                "coupled_id": self._coupled_id,
+                "members": list(self._members),
+                "epoch": epoch,
+                "fencing": fencing,
+            },
+        )
+        activated: list[str] = []
+        for idx, pid in enumerate(self._members):
+            st = self._ledger._require(pid)
+            proposal = self._ledger._proposal_of(st, pid)
+            self._ledger._append(
+                epoch, "ACTIVATED", pid, proposal.param_hash, fencing, self._coupled_id
+            )
+            st.status = UpdateStatus.ACTIVATED
+            st.activated_in_epoch = epoch
+            activated.append(pid)
+            if crash_after_member_index is not None and idx == crash_after_member_index:
+                raise SimulatedCrashError(
+                    f"simulated crash after activating member index {idx} ({pid})"
+                )
+
+        _atomic_write_json(
+            self._wal_path,
+            {
+                "state": "COMMITTED",
+                "coupled_id": self._coupled_id,
+                "members": list(activated),
+                "epoch": epoch,
+                "fencing": fencing,
+            },
+        )
+        self._reservations.clear()
+        return activated
+
+
+def recover_coupled_wal(
+    ledger: UpdateLedger,
+    wal_path: Path,
+    *,
+    epoch: int,
+) -> dict[str, Any]:
+    """Deterministically recover a CrashAtomicCoupledCommit WAL after restart or crash (T245).
+
+    If WAL state is ``PREPARED`` or ``COMMITTING`` (incomplete crash), rolls back
+    all members — including any member partially marked ``ACTIVATED`` prior to the
+    crash — to ``ABORTED`` and writes ``ROLLED_BACK`` atomically to the WAL.
+    """
+    if not wal_path.exists():
+        return {"action": "none", "state": "MISSING", "members": []}
+    wal = json.loads(wal_path.read_text(encoding="utf-8"))
+    state = str(wal.get("state", ""))
+    coupled_id = str(wal.get("coupled_id", ""))
+    members: list[str] = list(wal.get("members", []))
+
+    if state in ("COMMITTED", "ROLLED_BACK"):
+        return {"action": "noop", "state": state, "coupled_id": coupled_id, "members": members}
+
+    if state in ("PREPARED", "COMMITTING"):
+        for pid in members:
+            st = ledger._require(pid)
+            proposal = ledger._proposal_of(st, pid)
+            ledger._append(
+                epoch,
+                "ABORTED",
+                pid,
+                proposal.param_hash,
+                0,
+                f"crash_atomic_wal_recovery:{coupled_id}",
+            )
+            st.status = UpdateStatus.ABORTED
+            st.activated_in_epoch = None
+        _atomic_write_json(
+            wal_path,
+            {
+                "state": "ROLLED_BACK",
+                "coupled_id": coupled_id,
+                "members": members,
+                "recovered_at_epoch": epoch,
+            },
+        )
+        return {
+            "action": "rolled_back",
+            "state": "ROLLED_BACK",
+            "coupled_id": coupled_id,
+            "members": members,
+        }
+    raise StateError(f"unknown coupled WAL state: {state!r}")

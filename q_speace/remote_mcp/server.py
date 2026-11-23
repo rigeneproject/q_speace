@@ -32,7 +32,7 @@ from starlette.types import ASGIApp, Message, Receive, Scope, Send
 from q_speace.economy.mcp_server import list_tools
 
 from .config import HTTPConfig
-from .service import Audit, Execution, ServiceError
+from .service import Audit, Execution, ServiceError, SQLiteStateStore
 from .worker import SCOPES
 
 
@@ -75,14 +75,29 @@ class Endpoint:
 class Gateway:
     """Auth/scope/owner admission is repeated for each HTTP request, not cached by session."""
 
-    def __init__(self, app: ASGIApp, config: HTTPConfig, audit: Audit) -> None:
+    def __init__(
+        self,
+        app: ASGIApp,
+        config: HTTPConfig,
+        audit: Audit,
+        state_store: SQLiteStateStore | None = None,
+    ) -> None:
         self.app, self.config, self.audit = app, config, audit
-        self.sessions: dict[str, tuple[str, float, float]] = {}
-        self.rates: dict[str, tuple[float, float]] = {}
+        self.state_store = state_store
+        if state_store is not None:
+            self.sessions: dict[str, tuple[str, float, float]] = state_store.load_sessions()
+            self.rates: dict[str, tuple[float, float]] = state_store.load_rates()
+            self._prune_expired_sessions(self._now())
+        else:
+            self.sessions = {}
+            self.rates = {}
         self.initializing = asyncio.Lock()
         self.metadata_url = (
             config.resource.removesuffix("/mcp") + "/.well-known/oauth-protected-resource/mcp"
         )
+
+    def _now(self) -> float:
+        return time.time() if self.state_store is not None else time.monotonic()
 
     def identity(self, authorization: str) -> tuple[str, set[str]]:
         if not authorization.startswith("Bearer ") or len(authorization) > 8192:
@@ -116,19 +131,24 @@ class Gateway:
             raise ServiceError("invalid_token", 401) from exc
 
     def rate(self, owner: str) -> None:
-        now = time.monotonic()
+        now = self._now()
         if owner not in self.rates and len(self.rates) >= 4096:
             self.rates = {k: v for k, v in self.rates.items() if now - v[1] < 60}
+            if self.state_store is not None:
+                self.state_store.prune_rates(now - 60)
             if len(self.rates) >= 4096:
                 raise ServiceError("principal_capacity", 503)
         tokens, previous = self.rates.get(owner, (float(self.config.burst), now))
-        tokens = min(
-            self.config.burst, tokens + (now - previous) * self.config.requests_per_minute / 60
-        )
+        elapsed = max(0.0, now - previous)
+        tokens = min(self.config.burst, tokens + elapsed * self.config.requests_per_minute / 60)
         self.rates[owner] = (tokens, now)
+        if self.state_store is not None:
+            self.state_store.put_rate(owner, tokens, now)
         if tokens < 1:
             raise ServiceError("rate_limit", 429)
         self.rates[owner] = (tokens - 1, now)
+        if self.state_store is not None:
+            self.state_store.put_rate(owner, tokens - 1, now)
 
     async def error(self, scope: Scope, receive: Receive, send: Send, error: ServiceError) -> None:
         headers = {"Cache-Control": "no-store"}
@@ -181,7 +201,7 @@ class Gateway:
                     raise ServiceError("invalid_message", 400) from exc
             method = message.get("method", "")
             sid = request.headers.get("mcp-session-id")
-            now = time.monotonic()
+            now = self._now()
             if sid:
                 entry = self.sessions.get(sid)
                 if entry is None or entry[0] != owner:
@@ -191,8 +211,12 @@ class Gateway:
                     or now - entry[1] > self.config.session_max_seconds
                 ):
                     del self.sessions[sid]
+                    if self.state_store is not None:
+                        self.state_store.delete_session(sid)
                     raise ServiceError("unknown_session", 404)
                 self.sessions[sid] = (owner, entry[1], now)
+                if self.state_store is not None:
+                    self.state_store.put_session(sid, owner, entry[1], now)
             elif method != "initialize" and scope["method"] != "GET":
                 raise ServiceError("session_required", 400)
             if method == "initialize" and sid:
@@ -264,6 +288,8 @@ class Gateway:
                 and collected[0].get("status", 500) < 300
             ):
                 self.sessions.pop(sid, None)
+                if self.state_store is not None:
+                    self.state_store.delete_session(sid)
             if call:
                 try:
                     result_body = json.loads(b"".join(item.get("body", b"") for item in collected))
@@ -298,6 +324,8 @@ class Gateway:
         ]
         for sid in expired:
             del self.sessions[sid]
+        if expired and self.state_store is not None:
+            self.state_store.delete_sessions(expired)
 
     def record_session(self, messages: list[Message], owner: str) -> None:
         if not messages or messages[0].get("status") != 200:
@@ -305,8 +333,11 @@ class Gateway:
         headers = dict(messages[0].get("headers", []))
         sid = headers.get(b"mcp-session-id")
         if sid:
-            now = time.monotonic()
-            self.sessions[sid.decode()] = (owner, now, now)
+            now = self._now()
+            sid_str = sid.decode()
+            self.sessions[sid_str] = (owner, now, now)
+            if self.state_store is not None:
+                self.state_store.put_session(sid_str, owner, now, now)
 
 
 def create_app(config: HTTPConfig) -> Gateway:
@@ -365,6 +396,8 @@ def create_app(config: HTTPConfig) -> Gateway:
                 yield
         finally:
             audit.db.close()
+            if state_store is not None:
+                state_store.close()
 
     async def home(request: Request) -> JSONResponse:
         return JSONResponse({"service": "q-speace", "profile": "experimental", "mcp": "/mcp"})
@@ -378,7 +411,10 @@ def create_app(config: HTTPConfig) -> Gateway:
         )
     )
     audit = Audit(config.audit_path)
-    return Gateway(Starlette(routes=routes, lifespan=lifespan), config, audit)
+    state_store = (
+        SQLiteStateStore(config.state_db_path) if config.state_db_path is not None else None
+    )
+    return Gateway(Starlette(routes=routes, lifespan=lifespan), config, audit, state_store)
 
 
 def main() -> None:

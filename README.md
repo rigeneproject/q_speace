@@ -110,6 +110,16 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   schema, privacy-by-default verification, fail-closed **Model Governance Registry**, CRA [SECURITY.md](SECURITY.md)
   CVE/patch policy, versioned CycloneDX 1.5 SBOM + checksum, Art. 27 FRIA & Art. 17 QMS deployer templates
   (`docs/compliance/`), and `qspace micro-node compliance-pack`.
+- [Extended T210 Calibration & Held-Out Vertical Slice Campaign (T244)](docs/T244_T210_EXTENDED_CALIBRATION_AND_DECISION_SPEC.md):
+  disjoint 80-case (`40 calibration` / `40 held_out`) evaluation dataset, calibration-only threshold
+  selection, paired bootstrap `T210.10` decision report (`keep`/`revise`/`retire`), and `qspace eval t210-campaign`.
+- [Bridge-v0 Process Isolation & Crash-Atomic Coupled Commit (T245)](docs/T245_BRIDGE_ISOLATION_AND_CRASH_ATOMIC_SPEC.md):
+  OS-isolated `ProcessIsolatedValidator` with allowlisted targets and preemptive timeout kill, plus
+  `CrashAtomicCoupledCommit` atomic `fsync`+`os.replace` WAL & `recover_coupled_wal` eliminating partial coupled activations.
+- [Remote MCP Persistent State & Replayable Audit Checkpoints (T246)](docs/T246_REMOTE_MCP_PERSISTENCE_AND_AUDIT_CHECKPOINTS_SPEC.md):
+  opt-in `SQLiteStateStore` (`HTTPConfig.state_db_path`) preserving per-principal rate limits and session
+  quotas across restarts, plus `verify_audit_chain`, atomic `export_checkpoint` (optional HMAC-SHA256),
+  and `verify_audit_checkpoint` tamper/truncation detection.
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

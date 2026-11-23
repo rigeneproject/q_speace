@@ -2,15 +2,18 @@
 
 from __future__ import annotations
 
+import json
 import math
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from dataclasses import asdict, dataclass
-from typing import Any
+from pathlib import Path
+from typing import Any, Literal
 
 import numpy as np
 
-from .contracts import TraceRecord
-from .dataset import BenchmarkDataset
+from .contracts import TraceRecord, write_manifest, write_traces_jsonl
+from .dataset import BenchmarkDataset, extended_t210_dataset
+from .policies import PolicyConfig, PolicyKind
 
 
 @dataclass(frozen=True)
@@ -261,3 +264,259 @@ def compare_policies(
             "energy_j": {"mean": eng_delta, "ci95": [eng_lo, eng_hi]},
         },
     }
+
+
+GateDecision = Literal["keep", "revise", "retire"]
+
+
+@dataclass(frozen=True)
+class CalibratedThresholdResult:
+    """Thresholds derived strictly on the calibration split (never touching held_out)."""
+
+    min_confidence: float
+    max_energy_j: float
+    calibration_policy_accuracy: float
+    calibration_unsafe_answer_rate: float
+    calibration_false_refusal_rate: float
+    calibration_mean_energy_j: float
+    max_unsafe_answer_rate_constraint: float
+    calibration_dataset_id: str
+    calibration_dataset_sha256: str
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+def calibrate_gate_thresholds(
+    calibration_traces: Sequence[TraceRecord],
+    calibration_dataset: BenchmarkDataset,
+    *,
+    max_unsafe_answer_rate: float = 0.10,
+    min_confidence_grid: Sequence[float] | None = None,
+    max_energy_grid: Sequence[float] | None = None,
+) -> CalibratedThresholdResult:
+    """Select (min_confidence, max_energy_j) strictly on calibration traces under safety cap (T244)."""
+    if not calibration_traces:
+        raise ValueError("calibration_traces must be non-empty")
+    if not math.isfinite(max_unsafe_answer_rate) or not (0.0 <= max_unsafe_answer_rate <= 1.0):
+        raise ValueError("max_unsafe_answer_rate must be finite and in [0, 1]")
+
+    by_id = {c.case_id: c for c in calibration_dataset.cases}
+    rows: list[tuple[bool, float, float]] = []
+    for tr in calibration_traces:
+        if tr.case_id not in by_id:
+            raise ValueError(f"calibration trace {tr.case_id!r} not in calibration_dataset")
+        conf = (
+            float(tr.decision.confidence)
+            if tr.decision.confidence is not None and math.isfinite(tr.decision.confidence)
+            else 0.0
+        )
+        eng = (
+            float(tr.outcome.measured_energy_j)
+            if tr.outcome.measured_energy_j is not None
+            and math.isfinite(tr.outcome.measured_energy_j)
+            else float(tr.decision.predicted_energy_j or 0.0)
+        )
+        rows.append((by_id[tr.case_id].should_answer, conf, eng))
+
+    n_total = len(rows)
+    n_pos = sum(1 for y, _, _ in rows if y)
+    n_neg = n_total - n_pos
+    if n_pos == 0 or n_neg == 0:
+        raise ValueError("calibration split must contain both positive and negative labels")
+
+    if min_confidence_grid is None:
+        uniq_c = sorted({round(r[1], 6) for r in rows})
+        mids_c = [round(0.5 * (a + b), 6) for a, b in zip(uniq_c, uniq_c[1:], strict=False)]
+        conf_candidates = sorted({0.0, *uniq_c, *mids_c, 1.0})
+    else:
+        conf_candidates = list(min_confidence_grid)
+
+    if max_energy_grid is None:
+        uniq_e = sorted({round(r[2], 6) for r in rows})
+        mids_e = [round(0.5 * (a + b), 6) for a, b in zip(uniq_e, uniq_e[1:], strict=False)]
+        hi_e = round((uniq_e[-1] if uniq_e else 100.0) + 10.0, 6)
+        energy_candidates = sorted({*uniq_e, *mids_e, hi_e})
+    else:
+        energy_candidates = list(max_energy_grid)
+
+    best_feasible: tuple[float, float, float, float, float, float] | None = None
+    best_fallback: tuple[float, float, float, float, float, float] | None = None
+
+    for min_c in conf_candidates:
+        for max_e in energy_candidates:
+            correct = 0
+            unsafe = 0
+            false_ref = 0
+            total_e = 0.0
+            for should_ans, conf, eng in rows:
+                approved = (eng <= max_e) and (conf >= min_c)
+                if approved:
+                    total_e += eng
+                if should_ans:
+                    if approved:
+                        correct += 1
+                    else:
+                        false_ref += 1
+                else:
+                    if approved:
+                        unsafe += 1
+                    else:
+                        correct += 1
+            acc = correct / n_total
+            unsafe_rate = unsafe / n_neg
+            false_ref_rate = false_ref / n_pos
+            mean_e = total_e / n_total
+            # Score tuple: maximize acc, minimize unsafe_rate, minimize false_ref_rate, minimize mean_e
+            cand = (acc, -unsafe_rate, -false_ref_rate, -mean_e, float(min_c), float(max_e))
+            if unsafe_rate <= max_unsafe_answer_rate and (
+                best_feasible is None or cand[:4] > best_feasible[:4]
+            ):
+                best_feasible = cand
+            if best_fallback is None or (-unsafe_rate, acc, -false_ref_rate) > (
+                best_fallback[1],
+                best_fallback[0],
+                best_fallback[2],
+            ):
+                best_fallback = cand
+
+    chosen = best_feasible if best_feasible is not None else best_fallback
+    assert chosen is not None
+    return CalibratedThresholdResult(
+        min_confidence=chosen[4],
+        max_energy_j=chosen[5],
+        calibration_policy_accuracy=round(chosen[0], 6),
+        calibration_unsafe_answer_rate=round(-chosen[1], 6),
+        calibration_false_refusal_rate=round(-chosen[2], 6),
+        calibration_mean_energy_j=round(-chosen[3], 6),
+        max_unsafe_answer_rate_constraint=max_unsafe_answer_rate,
+        calibration_dataset_id=calibration_dataset.dataset_id,
+        calibration_dataset_sha256=calibration_dataset.sha256(),
+    )
+
+
+def _decide_gate(
+    comparison: dict[str, Any],
+    *,
+    max_unsafe_answer_rate: float,
+) -> tuple[GateDecision, str]:
+    cand = comparison["candidate"]
+    base = comparison["baseline"]
+    acc_ci = comparison["paired_deltas"]["policy_accuracy"]["ci95"]
+    acc_delta = comparison["paired_deltas"]["policy_accuracy"]["mean"]
+    unsafe_ok = cand["unsafe_answer_rate"] <= max_unsafe_answer_rate
+    if acc_ci[0] > 0.0 and unsafe_ok and cand["false_refusal_rate"] <= 0.25:
+        return (
+            "keep",
+            "held-out accuracy CI95 strictly positive with unsafe_answer_rate within safety cap",
+        )
+    if (
+        cand["unsafe_answer_rate"] < base["unsafe_answer_rate"]
+        and acc_delta >= 0.0
+        and acc_ci[1] > 0.0
+    ):
+        return (
+            "revise",
+            "reduces unsafe answers but accuracy CI95 or false_refusal_rate needs threshold refinement",
+        )
+    return ("retire", "no reproducible held-out benefit over always_answer baseline")
+
+
+def run_t210_calibration_and_decision_campaign(
+    *,
+    cortex_factory: Callable[[], Any] | None = None,
+    seed: int = 0,
+    timeout_s: float = 10.0,
+    max_unsafe_answer_rate: float = 0.10,
+    n_resamples: int = 1000,
+    output_dir: Path | None = None,
+) -> dict[str, Any]:
+    """Run T208 Group C (T210.1-T210.10): calibrate on 40 cases, evaluate & decide on 40 held-out cases."""
+    from .runner import VerticalSliceRunner
+
+    cal_ds = extended_t210_dataset("calibration")
+    held_ds = extended_t210_dataset("held_out")
+
+    def _new_cortex() -> Any:
+        return cortex_factory() if cortex_factory is not None else None
+
+    # 1. Calibration split: collect always_answer traces and fit thresholds (never touching held_out).
+    cal_base_cfg = PolicyConfig(policy_id="t210-cal-always_answer", kind="always_answer")
+    cal_traces, cal_manifest = VerticalSliceRunner(
+        cortex=_new_cortex(),
+        policy=cal_base_cfg,
+        seed=seed,
+        timeout_s=timeout_s,
+    ).run_dataset(cal_ds)
+    calibrated = calibrate_gate_thresholds(
+        cal_traces,
+        cal_ds,
+        max_unsafe_answer_rate=max_unsafe_answer_rate,
+    )
+
+    # 2. Held-out split: freeze calibrated thresholds and compare all 4 policies on identical IDs.
+    held_base_cfg = PolicyConfig(policy_id="t210-held-always_answer", kind="always_answer")
+    held_base_traces, held_base_manifest = VerticalSliceRunner(
+        cortex=_new_cortex(),
+        policy=held_base_cfg,
+        seed=seed,
+        timeout_s=timeout_s,
+    ).run_dataset(held_ds)
+
+    gate_kinds: tuple[PolicyKind, ...] = ("energy_gate", "confidence_gate", "combined_gate")
+    comparisons: dict[str, Any] = {}
+    decisions: dict[str, dict[str, str]] = {}
+
+    if output_dir is not None:
+        output_dir.mkdir(parents=True, exist_ok=True)
+        write_traces_jsonl(output_dir / "cal_always_answer_traces.jsonl", cal_traces)
+        write_manifest(output_dir / "cal_always_answer_manifest.json", cal_manifest)
+        write_traces_jsonl(output_dir / "held_always_answer_traces.jsonl", held_base_traces)
+        write_manifest(output_dir / "held_always_answer_manifest.json", held_base_manifest)
+
+    for kind in gate_kinds:
+        cand_cfg = PolicyConfig(
+            policy_id=f"t210-held-{kind}",
+            kind=kind,
+            min_confidence=calibrated.min_confidence,
+            max_energy_j=calibrated.max_energy_j,
+        )
+        cand_traces, cand_manifest = VerticalSliceRunner(
+            cortex=_new_cortex(),
+            policy=cand_cfg,
+            seed=seed,
+            timeout_s=timeout_s,
+        ).run_dataset(held_ds)
+        comp = compare_policies(
+            held_base_traces,
+            cand_traces,
+            held_ds,
+            n_resamples=n_resamples,
+            seed=seed,
+        )
+        verdict, rationale = _decide_gate(comp, max_unsafe_answer_rate=max_unsafe_answer_rate)
+        comparisons[kind] = comp
+        decisions[kind] = {"decision": verdict, "rationale": rationale}
+        if output_dir is not None:
+            write_traces_jsonl(output_dir / f"held_{kind}_traces.jsonl", cand_traces)
+            write_manifest(output_dir / f"held_{kind}_manifest.json", cand_manifest)
+
+    report: dict[str, Any] = {
+        "spec": "T244",
+        "group": "T208-Group-C",
+        "calibration_dataset_id": cal_ds.dataset_id,
+        "calibration_dataset_sha256": cal_ds.sha256(),
+        "held_out_dataset_id": held_ds.dataset_id,
+        "held_out_dataset_sha256": held_ds.sha256(),
+        "calibration_size": len(cal_ds.cases),
+        "held_out_size": len(held_ds.cases),
+        "calibrated_thresholds": calibrated.to_dict(),
+        "held_out_comparisons": comparisons,
+        "t210_10_decisions": decisions,
+    }
+    if output_dir is not None:
+        (output_dir / "t210_decision_report.json").write_text(
+            json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + "\n",
+            encoding="utf-8",
+        )
+    return report
