@@ -30,4 +30,5 @@ env/
 
 # Local MCP test signing keys and short-lived tokens
 /.qspeace-dev/
+/.qspeace-micro-node/
 /.config/auth0/

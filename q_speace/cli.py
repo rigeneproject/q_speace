@@ -38,12 +38,14 @@ brain_app = typer.Typer(help="SpikingBrain satellite (T205)")
 economy_app = typer.Typer(help="q_speace_economy primitives (T6.*)")
 eval_app = typer.Typer(help="Vertical-slice policy evaluation (T208/T231)")
 singularity_app = typer.Typer(help="Phase-transition & genetic-epigenetic framework (T234)")
+micro_node_app = typer.Typer(help="Self-hosted SPEACE Micro Node & compliance evidence (T239)")
 app.add_typer(quantum_app, name="quantum")
 app.add_typer(sia_app, name="sia")
 app.add_typer(brain_app, name="brain")
 app.add_typer(economy_app, name="economy")
 app.add_typer(eval_app, name="eval")
 app.add_typer(singularity_app, name="singularity")
+app.add_typer(micro_node_app, name="micro-node")
 
 
 @quantum_app.command("run")
@@ -751,6 +753,142 @@ def singularity_federation_benchmark(
     }
     typer.echo(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False))
     if not report.federation_benefit_verified or not report.singularity_ablation_verified:
+        raise typer.Exit(3)
+
+
+@singularity_app.command("resilience-benchmark")
+def singularity_resilience_benchmark(
+    seeds: Annotated[
+        str,
+        typer.Option(
+            "--seeds",
+            help="Comma-separated deterministic integer seeds (e.g. '11,23,37,53').",
+        ),
+    ] = "11,23,37,53",
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional path to write the full T238 JSON resilience report.",
+        ),
+    ] = None,
+) -> None:
+    """Run T238 adversarial Byzantine & coordinator-blackout resilience benchmark."""
+    from .singularity import run_t238_adversarial_resilience_benchmark
+
+    try:
+        parsed_seeds = tuple(int(s.strip()) for s in seeds.split(",") if s.strip())
+        if not parsed_seeds:
+            raise ValueError("at least one integer seed is required")
+    except ValueError as exc:
+        typer.echo(f"error: invalid --seeds value: {exc}")
+        raise typer.Exit(2) from None
+
+    report = run_t238_adversarial_resilience_benchmark(seeds=parsed_seeds)
+    payload = report.to_dict()
+    if output is not None:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(
+            json.dumps(payload, indent=2, sort_keys=True, allow_nan=False),
+            encoding="utf-8",
+        )
+    summary = {
+        "spec": report.spec,
+        "sandboxed": report.sandboxed,
+        "mcp_actuation_permitted": report.mcp_actuation_permitted,
+        "layer0_independence_verified": report.layer0_independence_verified,
+        "consensus_quorum_slow_plane_only": report.consensus_quorum_slow_plane_only,
+        "byzantine_detection_rate": report.byzantine_detection_rate,
+        "malicious_proposals_attempted": report.malicious_proposals_attempted,
+        "malicious_proposals_blocked": report.malicious_proposals_blocked,
+        "blackout_episodes_reconciled": report.blackout_episodes_reconciled,
+        "blackout_episodes_total": report.blackout_episodes_total,
+        "blackout_failover_verified": report.blackout_failover_verified,
+        "byzantine_resilience_verified": report.byzantine_resilience_verified,
+        "overall_resilience_verified": report.overall_resilience_verified,
+        "held_out_summary": payload["held_out_summary"],
+    }
+    typer.echo(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False))
+    if not report.overall_resilience_verified:
+        raise typer.Exit(3)
+
+
+@micro_node_app.command("certify")
+def micro_node_certify(
+    node_id: Annotated[
+        str,
+        typer.Option("--node-id", help="Operator identifier for this SPEACE Micro Node."),
+    ] = "speace-micro-local",
+    seeds: Annotated[
+        str,
+        typer.Option(
+            "--seeds",
+            help="Comma-separated deterministic integer seeds for T237/T238.",
+        ),
+    ] = "11,23,37,53",
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional path to write the hashed T239 JSON evidence bundle.",
+        ),
+    ] = None,
+) -> None:
+    """Generate a SHA-256 verifiable compliance evidence bundle for a SPEACE Micro Node (T239)."""
+    from .singularity import certify_micro_node
+
+    try:
+        parsed_seeds = tuple(int(s.strip()) for s in seeds.split(",") if s.strip())
+        if not parsed_seeds:
+            raise ValueError("at least one integer seed is required")
+    except ValueError as exc:
+        typer.echo(f"error: invalid --seeds value: {exc}")
+        raise typer.Exit(2) from None
+
+    bundle = certify_micro_node(node_id=node_id, seeds=parsed_seeds, output_path=output)
+    typer.echo(json.dumps(bundle.to_dict(), indent=2, sort_keys=True, allow_nan=False))
+    if not bundle.overall_compliant:
+        raise typer.Exit(3)
+
+
+@micro_node_app.command("verify-bundle")
+def micro_node_verify_bundle(
+    bundle_file: Annotated[
+        Path,
+        typer.Option("--bundle", "-b", help="Path to a T239 JSON evidence bundle to verify."),
+    ],
+) -> None:
+    """Independently verify SHA-256 integrity and safety invariants of a T239 evidence bundle."""
+    from .singularity import verify_evidence_bundle_integrity
+
+    if not bundle_file.exists():
+        typer.echo(f"error: bundle file not found: {bundle_file}")
+        raise typer.Exit(2)
+    try:
+        data = json.loads(bundle_file.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            raise ValueError("bundle JSON must be an object")
+    except (ValueError, OSError) as exc:
+        typer.echo(f"error: invalid bundle JSON: {exc}")
+        raise typer.Exit(2) from None
+
+    ok = verify_evidence_bundle_integrity(data)
+    typer.echo(
+        json.dumps(
+            {
+                "bundle_valid": ok,
+                "overall_compliant": bool(data.get("overall_compliant", False)),
+                "bundle_sha256": data.get("bundle_sha256"),
+                "node_id": data.get("node_id"),
+            },
+            indent=2,
+            sort_keys=True,
+            allow_nan=False,
+        )
+    )
+    if not ok or not data.get("overall_compliant", False):
         raise typer.Exit(3)
 
 

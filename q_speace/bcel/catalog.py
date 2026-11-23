@@ -567,6 +567,38 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "constraints; they do not instantiate biological life, consciousness, or "
         "unconstrained physical autonomy.",
     ),
+    # ----- T238: Adversarial Byzantine & Coordinator-Blackout Federation Resilience -----
+    BCELEquivalence(
+        "Byzantine node isolation and coordinator-blackout failover benchmark (T238)",
+        "functional",
+        "Keep as deterministic fault-injection scenarios verifying inter-node consistency, "
+        "causal grounding quarantine of poisoned telemetry, rejection of unauthorized "
+        "epigenetic proposals via independent DLT quorum, autonomous Layer-0 operation "
+        "during coordinator blackout, and post-recovery hash-chain reconciliation.",
+    ),
+    BCELEquivalence(
+        "Autonomous immune defense against geopolitical cyber-warfare narrative (T238)",
+        "accidental",
+        "Removed: simulated Byzantine and blackout fault drills validate bounded control "
+        "and governance resilience in sandboxed digital twins, not real-world cyber-warfare "
+        "defense or geopolitical narratives.",
+    ),
+    # ----- T239: Self-Hosted SPEACE Micro Node & Verifiable Compliance Bundle -----
+    BCELEquivalence(
+        "Self-hosted SPEACE Micro node and cryptographic compliance evidence bundle (T239)",
+        "functional",
+        "Keep as an operator-owned local/containerized execution profile with remote-to-local "
+        "advisory failover and a canonical SHA-256 evidence bundle aggregating deterministic "
+        "drills, held-out ablation benchmarks, AST track isolation, and slow-plane guards "
+        "for independent third-party audit (zero self-approval).",
+    ),
+    BCELEquivalence(
+        "Sovereign decentralized AI certification authority metaphor (T239)",
+        "accidental",
+        "Removed: a local cryptographic evidence bundle provides reproducible technical "
+        "audit material for human and institutional reviewers under T217; it does not "
+        "constitute legal certification or autonomous operational authorization.",
+    ),
 ]
 
 

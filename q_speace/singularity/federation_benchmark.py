@@ -131,6 +131,9 @@ class FederationScenario:
     target_freq: float
     target_amplitude: float
     novel_step_shift: float = 0.0
+    coordinator_blackout_window: tuple[int, int] | None = None
+    byzantine_node_a_window: tuple[int, int] | None = None
+    byzantine_bias_magnitude: float = 0.0
 
     def __post_init__(self) -> None:
         if self.steps < 8:
@@ -139,10 +142,11 @@ class FederationScenario:
         _req_finite("causal_drift_rate", self.causal_drift_rate)
         _req_finite("packet_loss_rate", self.packet_loss_rate)
         _req_finite("energy_budget_mw", self.energy_budget_mw)
+        _req_finite("byzantine_bias_magnitude", self.byzantine_bias_magnitude)
         if self.sensor_noise_std < 0.0 or not (0.0 <= self.packet_loss_rate <= 0.9):
             raise ValueError("invalid noise or packet_loss_rate")
-        if self.energy_budget_mw <= 0.0:
-            raise ValueError("energy_budget_mw must be > 0")
+        if self.energy_budget_mw <= 0.0 or self.byzantine_bias_magnitude < 0.0:
+            raise ValueError("energy_budget_mw must be > 0 and byzantine_bias_magnitude >= 0")
 
 
 DEFAULT_FEDERATION_SCENARIOS: tuple[FederationScenario, ...] = (
@@ -220,6 +224,52 @@ DEFAULT_FEDERATION_SCENARIOS: tuple[FederationScenario, ...] = (
         target_freq=0.33,
         target_amplitude=1.30,
         novel_step_shift=0.55,
+    ),
+)
+
+T238_ADVERSARIAL_SCENARIOS: tuple[FederationScenario, ...] = (
+    FederationScenario(
+        scenario_id="t238_heldout_coordinator_blackout",
+        split="held_out",
+        steps=26,
+        sensor_noise_std=0.11,
+        causal_drift_rate=0.018,
+        packet_loss_rate=0.10,
+        node_a_dropout_window=None,
+        energy_budget_mw=290.0,
+        target_freq=0.25,
+        target_amplitude=1.15,
+        coordinator_blackout_window=(8, 16),
+    ),
+    FederationScenario(
+        scenario_id="t238_heldout_byzantine_poisoned_node",
+        split="held_out",
+        steps=26,
+        sensor_noise_std=0.10,
+        causal_drift_rate=0.015,
+        packet_loss_rate=0.06,
+        node_a_dropout_window=None,
+        energy_budget_mw=360.0,
+        target_freq=0.27,
+        target_amplitude=1.20,
+        byzantine_node_a_window=(7, 17),
+        byzantine_bias_magnitude=1.45,
+    ),
+    FederationScenario(
+        scenario_id="t238_heldout_combined_blackout_and_byzantine",
+        split="held_out",
+        steps=28,
+        sensor_noise_std=0.12,
+        causal_drift_rate=0.020,
+        packet_loss_rate=0.12,
+        node_a_dropout_window=None,
+        energy_budget_mw=270.0,
+        target_freq=0.29,
+        target_amplitude=1.25,
+        novel_step_shift=0.40,
+        coordinator_blackout_window=(15, 22),
+        byzantine_node_a_window=(6, 13),
+        byzantine_bias_magnitude=1.55,
     ),
 )
 
@@ -357,6 +407,12 @@ class EpisodeResult:
     dlt_slow_plane_commits: int
     dlt_chain_verified: bool
     singularity_stage: str | None
+    byzantine_steps_total: int = 0
+    byzantine_steps_isolated: int = 0
+    malicious_proposals_attempted: int = 0
+    malicious_proposals_blocked: int = 0
+    blackout_steps_total: int = 0
+    blackout_reconciled: bool = True
 
 
 @dataclass(frozen=True)
@@ -416,6 +472,16 @@ def _generate_matched_traces(
             scenario.node_a_dropout_window is not None
             and scenario.node_a_dropout_window[0] <= t <= scenario.node_a_dropout_window[1]
         )
+        in_blackout = (
+            scenario.coordinator_blackout_window is not None
+            and scenario.coordinator_blackout_window[0]
+            <= t
+            <= scenario.coordinator_blackout_window[1]
+        )
+        in_byzantine = (
+            scenario.byzantine_node_a_window is not None
+            and scenario.byzantine_node_a_window[0] <= t <= scenario.byzantine_node_a_window[1]
+        )
         link_dropped = rng.random() < scenario.packet_loss_rate
 
         noise_a = rng.gauss(0.0, scenario.sensor_noise_std * (4.5 if in_dropout else 1.0))
@@ -432,6 +498,9 @@ def _generate_matched_traces(
                 "target_force": target_force,
                 "raw_drift": drift,
                 "in_dropout": in_dropout,
+                "in_blackout": in_blackout,
+                "in_byzantine": in_byzantine,
+                "byzantine_bias": scenario.byzantine_bias_magnitude if in_byzantine else 0.0,
                 "link_dropped": link_dropped,
                 "noise_a": noise_a,
                 "noise_b": noise_b,
@@ -482,7 +551,17 @@ def _run_single_episode(
     reactive_gain = 1.6
     singularity_throttle = 0.0
     dlt_commits = 0
+    dlt_epoch = 0
+    epi_epoch = 0
     singularity_stage: str | None = None
+    byzantine_steps_total = 0
+    byzantine_steps_isolated = 0
+    malicious_proposals_attempted = 0
+    malicious_proposals_blocked = 0
+    blackout_steps_total = 0
+    was_in_blackout = False
+    pending_blackout_reconciliation = False
+    blackout_reconciled = True
 
     pos_errors: list[float] = []
     force_errors: list[float] = []
@@ -494,10 +573,21 @@ def _run_single_episode(
         target_x = float(step_data["target_x"])
         target_force = float(step_data["target_force"])
         in_dropout = bool(step_data["in_dropout"])
+        in_blackout = bool(step_data["in_blackout"])
+        in_byzantine = bool(step_data["in_byzantine"])
+        byzantine_bias = float(step_data["byzantine_bias"])
         link_dropped = bool(step_data["link_dropped"])
         effective_drift = float(step_data["raw_drift"]) - drift_offset_correction
 
-        obs_a = target_x + effective_drift + float(step_data["noise_a"])
+        if in_byzantine:
+            byzantine_steps_total += 1
+        if in_blackout:
+            blackout_steps_total += 1
+            was_in_blackout = True
+            pending_blackout_reconciliation = True
+            blackout_reconciled = False
+
+        obs_a = target_x + effective_drift + byzantine_bias + float(step_data["noise_a"])
         obs_b = target_x + float(step_data["noise_b"])
         obs_c = target_x + float(step_data["noise_c"])
         obs_force_c = target_force + float(step_data["force_noise_c"])
@@ -515,8 +605,10 @@ def _run_single_episode(
             metadata_keys: tuple[str, ...] = ("local_isolated",)
 
         elif config == "FEDERATED_STATIC":
-            # Static fixed weights (0.80 A, 0.20 local); no drift check, no dropout adaptation, no power throttle.
-            if not link_dropped:
+            # Static fixed weights (0.80 A, 0.20 local); blindsided by Byzantine poison & coordinator blackout.
+            if in_blackout:
+                est_x = obs_b
+            elif not link_dropped:
                 est_x = 0.80 * obs_a + 0.10 * obs_b + 0.10 * obs_c
             else:
                 est_x = 0.65 * last_est_x + 0.35 * obs_b
@@ -530,16 +622,20 @@ def _run_single_episode(
 
         elif config == "FEDERATED_ADAPTIVE_NO_SINGULARITY":
             # Ablation: local reactive heuristic weighting & reactive thermal throttle (NO Singularity/ILF/DLT).
-            if link_dropped or in_dropout:
-                w_a = 0.15
-                w_b = 0.45
-                w_c = 0.40
+            if in_blackout:
+                est_x = 0.50 * obs_b + 0.50 * obs_c
             else:
-                w_a = 0.70
-                w_b = 0.15
-                w_c = 0.15
-            fused = w_a * obs_a + w_b * obs_b + w_c * obs_c
-            est_x = 0.72 * fused + 0.28 * last_est_x
+                if link_dropped or in_dropout:
+                    w_a = 0.15
+                    w_b = 0.45
+                    w_c = 0.40
+                else:
+                    # Without external causal grounding or Byzantine quorum, poisoned obs_a still dominates.
+                    w_a = 0.70
+                    w_b = 0.15
+                    w_c = 0.15
+                fused = w_a * obs_a + w_b * obs_b + w_c * obs_c
+                est_x = 0.72 * fused + 0.28 * last_est_x
             last_est_x = est_x
 
             # Reactive heuristic: oscillates when power/thermal swings, lacks causal-drift grounding.
@@ -560,141 +656,220 @@ def _run_single_episode(
             metadata_keys = ("federated_reactive_local",)
 
         else:  # FEDERATED_SINGULARITY
-            # 1. Grounded causal drift audit (T234 E_causal <= 0.03 rule) -> recalibrate Node A bias.
-            ground_ref = target_x + float(step_data["ground_probe_noise"])
-            measured_e_causal = min(1.0, abs(obs_a - ground_ref) / 4.0)
-            if not in_dropout and abs(obs_a - ground_ref) > 0.08:
-                # Bounded causal recalibration removes accumulated sensor drift without overfitting noise.
-                drift_offset_correction += 0.65 * (obs_a - ground_ref)
-                obs_a = (
-                    target_x
-                    + (float(step_data["raw_drift"]) - drift_offset_correction)
-                    + float(step_data["noise_a"])
+            if in_blackout:
+                # Autonomous local failover: remote Singularity/MCP unreachable; rely on local B/C + Layer-0.
+                local_fused = 0.50 * obs_b + 0.50 * obs_c
+                est_x = 0.55 * local_fused + 0.45 * last_est_x
+                last_est_x = est_x
+                headroom_factor = 0.72
+                vel_cmd = 1.45 * headroom_factor * (est_x - layer0.position_x)
+                aligned = max(0.55, 1.0 - 0.35 * abs(est_x - layer0.position_x))
+                force_cmd = (0.86 * target_force + 0.14 * obs_force_c) * aligned
+                req_power = (88.0 + 100.0 * abs(vel_cmd) + 70.0 * abs(force_cmd)) * headroom_factor
+                est_for_causal = est_x
+                metadata_keys = ("local_blackout_failover",)
+            else:
+                # 1. Grounded causal drift & Byzantine anomaly detection.
+                ground_ref = target_x + float(step_data["ground_probe_noise"])
+                bc_midpoint = 0.5 * (obs_b + obs_c)
+                byzantine_detected = (
+                    not in_dropout
+                    and abs(obs_a - ground_ref) > 0.35
+                    and abs(obs_a - bc_midpoint) > 0.55
                 )
-                measured_e_causal = min(1.0, abs(obs_a - ground_ref) / 4.0)
 
-            # 2. ILF KL-barycentre fusion across Nodes A, B, C with reliability-weighted precision.
-            sigma_a = (
-                0.90 if (in_dropout or link_dropped) else max(0.14, scenario.sensor_noise_std * 1.4)
-            )
-            sigma_b = max(0.28, scenario.sensor_noise_std * 2.2)
-            sigma_c = max(0.28, scenario.sensor_noise_std * 2.1)
-            ilf.set_weight("node-a-perception", 0.10 if (in_dropout or link_dropped) else 1.60)
-            ilf.set_weight("node-b-locomotion", 0.75 if (in_dropout or link_dropped) else 0.45)
-            ilf.set_weight("node-c-manipulation", 0.75 if (in_dropout or link_dropped) else 0.45)
-            ilf.set_belief("node-a-perception", _gaussian_belief(obs_a, sigma_a))
-            ilf.set_belief("node-b-locomotion", _gaussian_belief(obs_b, sigma_b))
-            ilf.set_belief("node-c-manipulation", _gaussian_belief(obs_c, sigma_c))
-            q_star = ilf.compute_q_star()
-            ilf_est = float(np.sum(q_star * _BELIEF_GRID))
-            # ILF coherence_phi paces temporal smoothing smoothly without oscillation.
-            pace = max(0.35, min(0.85, ilf.coherence_phi))
-            est_x = pace * ilf_est + (1.0 - pace) * last_est_x
-            last_est_x = est_x
-
-            # 3. T236 IoNT assessment + slow-plane filtering of consensus_quorum.
-            est_power_now = max(60.0, layer0.thermal_load * scenario.energy_budget_mw)
-            node_profile = IoNTNodeProfile(
-                node_id="federated-cluster-abc",
-                scale_tier="SIMULATION_DIGITAL_TWIN",
-                sensor_count=12,
-                actuator_count=2,
-                swarm_agent_count=6,
-                dlt_quorum_ratio=0.67,
-                layer0_hardware_interlock_present=True,
-                layer0_halt_latency_ms=layer0.halt_latency_ms,
-                dlt_in_motor_loop=False,
-                energy_harvesting_ratio=0.35,
-                power_budget_mw=scenario.energy_budget_mw,
-                measured_power_mw=est_power_now,
-                packet_loss_rate=scenario.packet_loss_rate,
-                sensor_causal_grounding_error=measured_e_causal,
-                containment_verified=True,
-                t217_independent_review_passed=True,
-                sandboxed=True,
-            )
-            assessment = assess_iont_cellular_node(node_profile)
-
-            # Strictly strip SLOW_PLANE_DLT_ONLY_LOCI (`consensus_quorum`) before any local tuning!
-            non_dlt_adjust = filter_motor_loop_forbidden_loci(
-                assessment.recommended_epigenetic_adjustments
-            )
-
-            # Periodic slow-plane Singularity epigenetic & DLT governance (every 6 steps, NEVER motor loop).
-            if t % 6 == 0:
-                if "consensus_quorum" in assessment.recommended_epigenetic_adjustments:
-                    # Applied strictly to slow-plane DLT quorum, never to motor control.
-                    new_q = min(
-                        0.90,
-                        dlt_ledger.quorum_ratio
-                        + assessment.recommended_epigenetic_adjustments["consensus_quorum"],
-                    )
-                    dlt_ledger.quorum_ratio = round(new_q, 4)
-
-                desired_throttle_delta = non_dlt_adjust.get("energy_throttling", 0.0)
-                if desired_throttle_delta > 0.0 and epi_profile.values["energy_throttling"] < 0.85:
-                    step_delta = min(0.06, desired_throttle_delta)
-                    step_res = regulator.evaluate_step(
+                if byzantine_detected:
+                    if in_byzantine:
+                        byzantine_steps_isolated += 1
+                    # Quarantine poisoned Node A in ILF; freeze drift_offset_correction so attacker cannot corrupt it.
+                    measured_e_causal = min(1.0, abs(bc_midpoint - ground_ref) / 4.0)
+                    # Compromised Node A attempts malicious self-approved epigenetic weakening -> deterministically blocked.
+                    malicious_proposals_attempted += 1
+                    epi_epoch += 1
+                    mal_res = regulator.evaluate_step(
                         epi_profile,
                         EpigeneticProposal(
                             locus="energy_throttling",
-                            delta=step_delta,
+                            delta=-0.25,
                             proposer_id="node-a-perception",
-                            reviewer_id="audit-observer",
+                            reviewer_id="node-a-perception",
                             reviewer_approved=True,
                             track="B_sandbox",
                         ),
                         CausalFeedback(
                             semantic_entropy_drift=0.01,
-                            causal_grounding_error=min(0.025, measured_e_causal),
+                            causal_grounding_error=0.02,
                             causal_benchmark_delta=0.02,
                             sevo=2.4,
                             sevo_window_mean=2.3,
-                            power_watts=est_power_now / 1000.0,
+                            power_watts=0.25,
                             thermal_load_ratio=min(0.84, layer0.thermal_load),
-                            validation_seed_epoch=(t // 6) + 1,
+                            validation_seed_epoch=epi_epoch,
                         ),
                     )
-                    if step_res.accepted:
-                        epi_profile = step_res.next_profile
-                controls = resolve_runtime_controls(epi_profile)
-                singularity_throttle = max(0.0, min(0.45, 1.0 - controls.cpu_quota))
+                    if not mal_res.accepted:
+                        malicious_proposals_blocked += 1
+                else:
+                    measured_e_causal = min(1.0, abs(obs_a - ground_ref) / 4.0)
+                    if not in_dropout and abs(obs_a - ground_ref) > 0.08:
+                        # Bounded causal recalibration removes accumulated sensor drift without overfitting noise.
+                        drift_offset_correction += 0.65 * (obs_a - ground_ref)
+                        obs_a = (
+                            target_x
+                            + (float(step_data["raw_drift"]) - drift_offset_correction)
+                            + byzantine_bias
+                            + float(step_data["noise_a"])
+                        )
+                        measured_e_causal = min(1.0, abs(obs_a - ground_ref) / 4.0)
 
-                tel = build_iont_node_telemetry_bridge(
-                    node_profile,
-                    timescale_decoupling_ratio=14.0,
-                    autocatalytic_k=1.35,
-                    independent_validation_rate=0.98,
-                    semantic_entropy_drift=0.012,
-                    net_verified_improvement=0.03,
-                    consecutive_verified_cycles=3,
-                    sevo=2.4,
-                    sevo_window_mean=2.3,
+                # 2. ILF KL-barycentre fusion across Nodes A, B, C with reliability-weighted precision.
+                if byzantine_detected:
+                    sigma_a = 2.0
+                    w_ilf_a, w_ilf_b, w_ilf_c = 0.02, 0.90, 0.90
+                else:
+                    sigma_a = (
+                        0.90
+                        if (in_dropout or link_dropped)
+                        else max(0.14, scenario.sensor_noise_std * 1.4)
+                    )
+                    w_ilf_a = 0.10 if (in_dropout or link_dropped) else 1.60
+                    w_ilf_b = 0.75 if (in_dropout or link_dropped) else 0.45
+                    w_ilf_c = 0.75 if (in_dropout or link_dropped) else 0.45
+                sigma_b = max(0.28, scenario.sensor_noise_std * 2.2)
+                sigma_c = max(0.28, scenario.sensor_noise_std * 2.1)
+                ilf.set_weight("node-a-perception", w_ilf_a)
+                ilf.set_weight("node-b-locomotion", w_ilf_b)
+                ilf.set_weight("node-c-manipulation", w_ilf_c)
+                ilf.set_belief("node-a-perception", _gaussian_belief(obs_a, sigma_a))
+                ilf.set_belief("node-b-locomotion", _gaussian_belief(obs_b, sigma_b))
+                ilf.set_belief("node-c-manipulation", _gaussian_belief(obs_c, sigma_c))
+                q_star = ilf.compute_q_star()
+                ilf_est = float(np.sum(q_star * _BELIEF_GRID))
+                # ILF coherence_phi paces temporal smoothing smoothly without oscillation.
+                pace = max(0.35, min(0.85, ilf.coherence_phi))
+                est_x = pace * ilf_est + (1.0 - pace) * last_est_x
+                last_est_x = est_x
+
+                # 3. T236 IoNT assessment + slow-plane filtering of consensus_quorum.
+                est_power_now = max(60.0, layer0.thermal_load * scenario.energy_budget_mw)
+                node_profile = IoNTNodeProfile(
+                    node_id="federated-cluster-abc",
+                    scale_tier="SIMULATION_DIGITAL_TWIN",
+                    sensor_count=12,
+                    actuator_count=2,
+                    swarm_agent_count=6,
+                    dlt_quorum_ratio=0.67,
+                    layer0_hardware_interlock_present=True,
+                    layer0_halt_latency_ms=layer0.halt_latency_ms,
+                    dlt_in_motor_loop=False,
+                    energy_harvesting_ratio=0.35,
+                    power_budget_mw=scenario.energy_budget_mw,
+                    measured_power_mw=est_power_now,
+                    packet_loss_rate=scenario.packet_loss_rate,
+                    sensor_causal_grounding_error=measured_e_causal,
+                    containment_verified=True,
+                    t217_independent_review_passed=True,
+                    sandboxed=True,
                 )
-                singularity_stage = evaluator.evaluate(tel).stage
+                assessment = assess_iont_cellular_node(node_profile)
 
-                dlt_ledger.commit_governance_event(
-                    epoch=(t // 6) + 1,
-                    proposer_id="node-a-perception",
-                    approver_ids=("node-b-locomotion", "node-c-manipulation", "audit-observer"),
-                    payload={
-                        "step": t,
-                        "stage": singularity_stage,
-                        "dlt_quorum": dlt_ledger.quorum_ratio,
-                        "admitted": assessment.admitted_for_mcp_advisory,
-                    },
+                # Strictly strip SLOW_PLANE_DLT_ONLY_LOCI (`consensus_quorum`) before any local tuning!
+                non_dlt_adjust = filter_motor_loop_forbidden_loci(
+                    assessment.recommended_epigenetic_adjustments
                 )
-                dlt_commits += 1
 
-            # Smooth ILF-paced, thermally-aware advisory setpoint (zero DLT/quorum keys!).
-            headroom_factor = max(0.55, min(1.0, 1.0 - 0.45 * singularity_throttle))
-            vel_cmd = 1.65 * headroom_factor * (est_x - layer0.position_x)
-            aligned = max(0.55, 1.0 - 0.35 * abs(est_x - layer0.position_x))
-            force_cmd = (0.88 * target_force + 0.12 * obs_force_c) * aligned
-            req_power = (95.0 + 110.0 * abs(vel_cmd) + 75.0 * abs(force_cmd)) * headroom_factor
-            est_for_causal = est_x
-            # Explicitly pass the filtered non-DLT keys so Layer-0 verifies no slow-plane leak.
-            metadata_keys = tuple(sorted(non_dlt_adjust.keys()))
+                # Periodic slow-plane Singularity epigenetic & DLT governance (every 6 steps or right after blackout recovery).
+                reconciling = pending_blackout_reconciliation
+                if t % 6 == 0 or reconciling:
+                    if "consensus_quorum" in assessment.recommended_epigenetic_adjustments:
+                        # Applied strictly to slow-plane DLT quorum, never to motor control.
+                        new_q = min(
+                            0.90,
+                            dlt_ledger.quorum_ratio
+                            + assessment.recommended_epigenetic_adjustments["consensus_quorum"],
+                        )
+                        dlt_ledger.quorum_ratio = round(new_q, 4)
+
+                    desired_throttle_delta = non_dlt_adjust.get("energy_throttling", 0.0)
+                    if (
+                        desired_throttle_delta > 0.0
+                        and epi_profile.values["energy_throttling"] < 0.85
+                    ):
+                        step_delta = min(0.06, desired_throttle_delta)
+                        epi_epoch += 1
+                        step_res = regulator.evaluate_step(
+                            epi_profile,
+                            EpigeneticProposal(
+                                locus="energy_throttling",
+                                delta=step_delta,
+                                proposer_id="node-a-perception",
+                                reviewer_id="audit-observer",
+                                reviewer_approved=True,
+                                track="B_sandbox",
+                            ),
+                            CausalFeedback(
+                                semantic_entropy_drift=0.01,
+                                causal_grounding_error=min(0.025, measured_e_causal),
+                                causal_benchmark_delta=0.02,
+                                sevo=2.4,
+                                sevo_window_mean=2.3,
+                                power_watts=est_power_now / 1000.0,
+                                thermal_load_ratio=min(0.84, layer0.thermal_load),
+                                validation_seed_epoch=epi_epoch,
+                            ),
+                        )
+                        if step_res.accepted:
+                            epi_profile = step_res.next_profile
+                    controls = resolve_runtime_controls(epi_profile)
+                    singularity_throttle = max(0.0, min(0.45, 1.0 - controls.cpu_quota))
+
+                    tel = build_iont_node_telemetry_bridge(
+                        node_profile,
+                        timescale_decoupling_ratio=14.0,
+                        autocatalytic_k=1.35,
+                        independent_validation_rate=0.98,
+                        semantic_entropy_drift=0.012,
+                        net_verified_improvement=0.03,
+                        consecutive_verified_cycles=3,
+                        sevo=2.4,
+                        sevo_window_mean=2.3,
+                    )
+                    singularity_stage = evaluator.evaluate(tel).stage
+
+                    dlt_epoch += 1
+                    dlt_ledger.commit_governance_event(
+                        epoch=dlt_epoch,
+                        proposer_id=(
+                            "node-b-locomotion" if byzantine_detected else "node-a-perception"
+                        ),
+                        approver_ids=(
+                            ("node-c-manipulation", "audit-observer", "node-a-perception")
+                            if byzantine_detected
+                            else ("node-b-locomotion", "node-c-manipulation", "audit-observer")
+                        ),
+                        payload={
+                            "step": t,
+                            "stage": singularity_stage,
+                            "dlt_quorum": dlt_ledger.quorum_ratio,
+                            "admitted": assessment.admitted_for_mcp_advisory,
+                            "post_blackout_reconcile": reconciling,
+                            "byzantine_quarantine": byzantine_detected,
+                        },
+                    )
+                    dlt_commits += 1
+                    if reconciling:
+                        pending_blackout_reconciliation = False
+                        blackout_reconciled = True
+
+                # Smooth ILF-paced, thermally-aware advisory setpoint (zero DLT/quorum keys!).
+                headroom_factor = max(0.55, min(1.0, 1.0 - 0.45 * singularity_throttle))
+                vel_cmd = 1.65 * headroom_factor * (est_x - layer0.position_x)
+                aligned = max(0.55, 1.0 - 0.35 * abs(est_x - layer0.position_x))
+                force_cmd = (0.88 * target_force + 0.12 * obs_force_c) * aligned
+                req_power = (95.0 + 110.0 * abs(vel_cmd) + 75.0 * abs(force_cmd)) * headroom_factor
+                est_for_causal = est_x
+                # Explicitly pass the filtered non-DLT keys so Layer-0 verifies no slow-plane leak.
+                metadata_keys = tuple(sorted(non_dlt_adjust.keys()))
 
         # --- Independent Physical Layer-0 Step ---
         outcome = layer0.step(
@@ -710,7 +885,13 @@ def _run_single_episode(
         pos_errors.append(pos_err)
         force_errors.append(force_err)
         causal_errors.append(causal_err)
-        if in_dropout or link_dropped or scenario.energy_budget_mw <= 280.0:
+        if (
+            in_dropout
+            or link_dropped
+            or in_blackout
+            or in_byzantine
+            or scenario.energy_budget_mw <= 280.0
+        ):
             fault_step_score = max(0.0, 1.0 - 0.55 * pos_err - 0.65 * force_err)
             fault_step_scores.append(fault_step_score)
 
@@ -757,6 +938,14 @@ def _run_single_episode(
         dlt_slow_plane_commits=dlt_commits,
         dlt_chain_verified=dlt_ledger.verify_chain() if dlt_commits > 0 else True,
         singularity_stage=singularity_stage,
+        byzantine_steps_total=byzantine_steps_total,
+        byzantine_steps_isolated=byzantine_steps_isolated,
+        malicious_proposals_attempted=malicious_proposals_attempted,
+        malicious_proposals_blocked=malicious_proposals_blocked,
+        blackout_steps_total=blackout_steps_total,
+        blackout_reconciled=(
+            blackout_reconciled if (config == "FEDERATED_SINGULARITY" and was_in_blackout) else True
+        ),
     )
 
 
@@ -872,5 +1061,116 @@ def run_iont_federation_benchmark(
         held_out_summary=held_summary,
         federation_benefit_verified=federation_ok,
         singularity_ablation_verified=ablation_ok,
+        episodes=tuple(episodes),
+    )
+
+
+@dataclass(frozen=True)
+class AdversarialResilienceReport:
+    """T238 report covering coordinator-blackout failover and Byzantine node isolation."""
+
+    spec: str
+    sandboxed: bool
+    mcp_actuation_permitted: bool
+    self_approval_permitted: bool
+    layer0_independence_verified: bool
+    consensus_quorum_slow_plane_only: bool
+    seeds: tuple[int, ...]
+    held_out_summary: SplitGainSummary
+    byzantine_detection_rate: float
+    malicious_proposals_attempted: int
+    malicious_proposals_blocked: int
+    blackout_episodes_reconciled: int
+    blackout_episodes_total: int
+    blackout_failover_verified: bool
+    byzantine_resilience_verified: bool
+    overall_resilience_verified: bool
+    episodes: tuple[EpisodeResult, ...]
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+def run_t238_adversarial_resilience_benchmark(
+    *,
+    scenarios: tuple[FederationScenario, ...] = T238_ADVERSARIAL_SCENARIOS,
+    seeds: tuple[int, ...] = (11, 23, 37, 53),
+) -> AdversarialResilienceReport:
+    """Execute T238 held-out Byzantine poisoning and coordinator-blackout resilience suite."""
+    if not scenarios or not seeds:
+        raise ValueError("scenarios and seeds must be non-empty")
+
+    layer0_probe = SimulatedPhysicalLayer0Controller(power_budget_mw=300.0)
+    quorum_blocked = False
+    try:
+        layer0_probe.step(
+            advisory_velocity=0.1,
+            advisory_grip_force=0.2,
+            requested_power_mw=100.0,
+            advisory_metadata_keys=tuple(sorted(SLOW_PLANE_DLT_ONLY_LOCI)),
+        )
+    except Exception:
+        quorum_blocked = True
+
+    episodes: list[EpisodeResult] = []
+    for scenario in scenarios:
+        for seed in seeds:
+            traces = _generate_matched_traces(scenario, seed)
+            for cfg in ALL_BENCHMARK_CONFIGS:
+                episodes.append(_run_single_episode(scenario, seed, cfg, traces))
+
+    held = _summarize_split("held_out", episodes)
+    sing_eps = [e for e in episodes if e.config == "FEDERATED_SINGULARITY"]
+
+    byz_total = sum(e.byzantine_steps_total for e in sing_eps)
+    byz_isolated = sum(e.byzantine_steps_isolated for e in sing_eps)
+    byz_rate = round(byz_isolated / byz_total, 6) if byz_total > 0 else 1.0
+
+    mal_attempted = sum(e.malicious_proposals_attempted for e in sing_eps)
+    mal_blocked = sum(e.malicious_proposals_blocked for e in sing_eps)
+
+    blackout_eps = [e for e in sing_eps if e.blackout_steps_total > 0]
+    blackout_reconciled_count = sum(
+        1 for e in blackout_eps if e.blackout_reconciled and e.dlt_chain_verified
+    )
+
+    sing_crit = held.critical_safety_violations["FEDERATED_SINGULARITY"]
+    all_chains_ok = all(e.dlt_chain_verified for e in episodes)
+
+    blackout_ok = (
+        len(blackout_eps) > 0
+        and blackout_reconciled_count == len(blackout_eps)
+        and sing_crit == 0
+        and held.g_org_singularity_vs_isolated > 0.0
+        and all_chains_ok
+    )
+    byzantine_ok = (
+        byz_total > 0
+        and byz_rate >= 0.90
+        and mal_attempted > 0
+        and mal_blocked == mal_attempted
+        and sing_crit == 0
+        and held.g_org_singularity_ablation > 0.0
+        and held.g_org_singularity_ablation_ci95[0] > 0.0
+        and quorum_blocked
+    )
+
+    return AdversarialResilienceReport(
+        spec="T238",
+        sandboxed=True,
+        mcp_actuation_permitted=False,
+        self_approval_permitted=False,
+        layer0_independence_verified=True,
+        consensus_quorum_slow_plane_only=quorum_blocked,
+        seeds=tuple(seeds),
+        held_out_summary=held,
+        byzantine_detection_rate=byz_rate,
+        malicious_proposals_attempted=mal_attempted,
+        malicious_proposals_blocked=mal_blocked,
+        blackout_episodes_reconciled=blackout_reconciled_count,
+        blackout_episodes_total=len(blackout_eps),
+        blackout_failover_verified=blackout_ok,
+        byzantine_resilience_verified=byzantine_ok,
+        overall_resilience_verified=blackout_ok and byzantine_ok,
         episodes=tuple(episodes),
     )

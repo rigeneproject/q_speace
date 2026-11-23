@@ -1,0 +1,28 @@
+# T239 — Self-Hosted SPEACE Micro Node (zero cloud/Render/Auth0 vendor lock-in)
+# Usage:
+#   1. python deploy/micro-node/bootstrap_local_node.py --host 0.0.0.0 --port 8765
+#   2. docker compose -f deploy/micro-node/docker-compose.yml up --build
+services:
+  speace-micro-node:
+    build:
+      context: ../..
+      dockerfile: deploy/mcp/Dockerfile
+    container_name: q-speace-micro-node
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8765:8765"
+    environment:
+      PORT: "8765"
+      QSPEACE_HTTP_CONFIG_PATH: "/run/qspeace/config.json"
+    volumes:
+      - ../../.qspeace-micro-node/config.json:/run/qspeace/config.json:ro
+      - micro_node_audit:/var/lib/qspeace
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8765/')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  micro_node_audit:

@@ -20,6 +20,8 @@ from .evaluator import (
 from .federation_benchmark import (
     ALL_BENCHMARK_CONFIGS,
     DEFAULT_FEDERATION_SCENARIOS,
+    T238_ADVERSARIAL_SCENARIOS,
+    AdversarialResilienceReport,
     BenchmarkConfigName,
     BenchmarkSplit,
     EpisodeResult,
@@ -30,6 +32,7 @@ from .federation_benchmark import (
     SplitGainSummary,
     compute_organismic_gain,
     run_iont_federation_benchmark,
+    run_t238_adversarial_resilience_benchmark,
 )
 from .iont_node import (
     SLOW_PLANE_DLT_ONLY_LOCI,
@@ -52,6 +55,17 @@ from .mcp_tools import (
     handle_iont_node_assess,
     handle_phase_transition_assess,
     handle_singularity_framework_manifest,
+)
+from .micro_node import (
+    FailoverCallResult,
+    FailoverMode,
+    MicroNodeEvidenceBundle,
+    MicroNodeFailoverClient,
+    certify_micro_node,
+    verify_evidence_bundle_integrity,
+    verify_mcp_surface_bounds,
+    verify_slow_plane_quorum_guard,
+    verify_track_a_b_ast_isolation,
 )
 from .schema import (
     DEFAULT_LOCI,
@@ -81,6 +95,7 @@ from .schema import (
 
 __all__ = [
     "ALL_BENCHMARK_CONFIGS",
+    "AdversarialResilienceReport",
     "AutopoiesisRegime",
     "BenchmarkConfigName",
     "BenchmarkSplit",
@@ -105,6 +120,8 @@ __all__ = [
     "EpisodeResult",
     "EvolutionaryGenomeCodec",
     "ExecutionTrack",
+    "FailoverCallResult",
+    "FailoverMode",
     "FederationBenchmarkReport",
     "FederationScenario",
     "HiddenCausalEvaluator",
@@ -114,6 +131,8 @@ __all__ = [
     "IoNTScaleTier",
     "LOCUS_REGISTRY",
     "Layer0StepOutcome",
+    "MicroNodeEvidenceBundle",
+    "MicroNodeFailoverClient",
     "PhaseTelemetry",
     "PhaseTransitionAssessment",
     "PhaseTransitionEvaluator",
@@ -126,6 +145,7 @@ __all__ = [
     "SimulatedPhysicalLayer0Controller",
     "SingularityStage",
     "SplitGainSummary",
+    "T238_ADVERSARIAL_SCENARIOS",
     "TransitionVerdict",
     "VALID_IONT_TIERS",
     "VALID_MANIFEST_SECTIONS",
@@ -134,6 +154,7 @@ __all__ = [
     "assert_slow_plane_only_governance",
     "build_iont_node_telemetry_bridge",
     "build_singularity_framework_manifest",
+    "certify_micro_node",
     "classify_autopoiesis_regime",
     "compute_complexity_weighted_sevo",
     "compute_energy_weighted_sevo",
@@ -146,4 +167,9 @@ __all__ = [
     "resolve_runtime_controls",
     "run_iont_federation_benchmark",
     "run_t234_verification_drills",
+    "run_t238_adversarial_resilience_benchmark",
+    "verify_evidence_bundle_integrity",
+    "verify_mcp_surface_bounds",
+    "verify_slow_plane_quorum_guard",
+    "verify_track_a_b_ast_isolation",
 ]

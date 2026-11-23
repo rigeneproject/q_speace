@@ -99,6 +99,12 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   `FEDERATED_SINGULARITY`) measuring organismic gain $G_{\mathrm{org}}$ across calibration and held-out
   fault scenarios with independent simulated Layer-0 physical control, slow-plane-only `consensus_quorum`,
   and zero new MCP tools.
+- [Adversarial Byzantine & Coordinator-Blackout Resilience (T238)](docs/T238_ADVERSARIAL_BYZANTINE_AND_BLACKOUT_RESILIENCE_SPEC.md):
+  `qspace singularity resilience-benchmark` extending `T237` with held-out Byzantine sensor poisoning /
+  malicious proposal blocking and autonomous Layer-0 coordinator-blackout failover + slow-plane DLT reconciliation.
+- [Self-Hosted SPEACE Micro Node & Verifiable Evidence Bundle (T239)](docs/T239_SELF_HOSTED_MICRO_NODE_AND_CERTIFICATION_SPEC.md):
+  zero-lock-in self-hosted deployment kit (`deploy/micro-node/`), remote-to-local advisory failover
+  (`MicroNodeFailoverClient`), and cryptographic audit pack (`qspace micro-node certify` / `verify-bundle`).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,
