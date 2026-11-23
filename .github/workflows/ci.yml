@@ -32,3 +32,11 @@ jobs:
         run: python -m compileall -q q_speace
       - name: Test (pytest)
         run: pytest -q
+      - name: Generate CycloneDX SBOM (T240)
+        run: |
+          python -c "import json; from pathlib import Path; from q_speace.singularity import build_runtime_sbom; Path('sbom-cyclonedx.json').write_text(json.dumps(build_runtime_sbom(), indent=2, sort_keys=True), encoding='utf-8')"
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: q-speace-sbom-cyclonedx
+          path: sbom-cyclonedx.json

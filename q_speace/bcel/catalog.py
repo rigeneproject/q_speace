@@ -599,6 +599,21 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "audit material for human and institutional reviewers under T217; it does not "
         "constitute legal certification or autonomous operational authorization.",
     ),
+    # ----- T240: Regulatory Compliance Readiness & Annex IV Technical Pack -----
+    BCELEquivalence(
+        "Regulatory compliance mapping, Annex IV technical pack, and incident reporting schema (T240)",
+        "functional",
+        "Keep as machine-verifiable technical documentation mapping EU AI Act, NIST AI RMF, "
+        "ISO/IEC 42001, and GDPR/CRA controls to concrete software invariants, risk registers, "
+        "privacy-by-default checks, SBOMs, and standardized serious-incident records for human audit.",
+    ),
+    BCELEquivalence(
+        "Automated self-certification or legal CE-marking by software (T240)",
+        "accidental",
+        "Removed: deterministic software compliance packs support independent human and legal "
+        "conformity assessment but can never grant legal certification, CE marking, or operational "
+        "authorization on their own.",
+    ),
 ]
 
 

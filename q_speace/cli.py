@@ -892,5 +892,53 @@ def micro_node_verify_bundle(
         raise typer.Exit(3)
 
 
+@micro_node_app.command("compliance-pack")
+def micro_node_compliance_pack(
+    node_id: Annotated[
+        str,
+        typer.Option("--node-id", help="Operator identifier for this SPEACE Micro Node."),
+    ] = "speace-micro-local",
+    seeds: Annotated[
+        str,
+        typer.Option("--seeds", help="Comma-separated deterministic integer seeds."),
+    ] = "11,23,37,53",
+    output: Annotated[
+        Path | None,
+        typer.Option("--output", "-o", help="Optional path to write the T240 Annex IV JSON pack."),
+    ] = None,
+) -> None:
+    """Export a SHA-256 verifiable T240 Annex IV / NIST / ISO 42001 compliance readiness pack."""
+    from .singularity import build_annex_iv_compliance_pack
+
+    try:
+        parsed_seeds = tuple(int(s.strip()) for s in seeds.split(",") if s.strip())
+        if not parsed_seeds:
+            raise ValueError("at least one integer seed is required")
+    except ValueError as exc:
+        typer.echo(f"error: invalid --seeds value: {exc}")
+        raise typer.Exit(2) from None
+
+    pack = build_annex_iv_compliance_pack(node_id=node_id, seeds=parsed_seeds, output_path=output)
+    summary = {
+        "spec": pack.spec,
+        "schema_version": pack.schema_version,
+        "node_id": pack.node_id,
+        "genome_sha256": pack.genome_sha256,
+        "pack_sha256": pack.pack_sha256,
+        "overall_technical_readiness": pack.overall_technical_readiness,
+        "legal_certification_granted": pack.legal_certification_granted,
+        "ce_marking_granted": pack.ce_marking_granted,
+        "self_approval_permitted": pack.self_approval_permitted,
+        "mcp_actuation_permitted": pack.mcp_actuation_permitted,
+        "control_count": len(pack.regulatory_control_matrix),
+        "risk_count": len(pack.risk_register),
+        "privacy_by_default_check": pack.privacy_by_default_check,
+        "sbom_summary": pack.sbom_summary,
+    }
+    typer.echo(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False))
+    if not pack.overall_technical_readiness:
+        raise typer.Exit(3)
+
+
 if __name__ == "__main__":
     main()
