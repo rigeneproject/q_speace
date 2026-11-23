@@ -636,6 +636,13 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Keep as strict finiteness, range, and JSON constant validation preventing silent NaN/Inf "
         "bypass across evolutionary memory, spiking bridges, geophysical feed, and online adapters.",
     ),
+    # ----- T243: AACM & BrainAuditLog Fail-Closed Hardening -----
+    BCELEquivalence(
+        "AACM worktree containment, finite-domain dynamics, and strict audit-record typing (T243)",
+        "functional",
+        "Keep as deterministic worktree path-containment validation, sys.executable subprocess "
+        "invocation, finite-domain checks on AACM equations/primitives, and dict-only audit parsing.",
+    ),
 ]
 
 

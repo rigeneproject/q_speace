@@ -19,9 +19,11 @@ intent; it applies bytes and measures outcomes.
 
 from __future__ import annotations
 
+import math
 import re
 import shutil
 import subprocess
+import sys
 from contextlib import suppress
 from dataclasses import dataclass
 from pathlib import Path
@@ -124,7 +126,16 @@ class WorktreeExecutor:
             proposal.replacement_diff,
             proposal.target_module,
         )
-        target_abs = self.worktree / target_rel
+        worktree_root = self.worktree.resolve()
+        target_abs = (worktree_root / target_rel).resolve()
+        if not target_abs.is_relative_to(worktree_root):
+            return ExecutionResult(
+                score=0.0,
+                applied=False,
+                rolled_back=False,
+                metric_observations=[],
+                error=f"path_traversal_blocked: {target_rel!r} escapes worktree",
+            )
 
         if not target_abs.exists():
             # Newly-created file path; the diff should add it.
@@ -270,7 +281,7 @@ class WorktreeExecutor:
         error: str | None = None
         try:
             proc = subprocess.run(
-                ["python", str(target)],
+                [sys.executable, str(target)],
                 cwd=str(self.worktree),
                 capture_output=True,
                 text=True,
@@ -312,6 +323,8 @@ class WorktreeExecutor:
         threshold: float,
         direction: str,
     ) -> bool:
+        if not math.isfinite(value) or not math.isfinite(threshold):
+            return False
         if direction == "less_than":
             return value < threshold
         if direction == "greater_than":

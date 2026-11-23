@@ -125,9 +125,11 @@ class BrainAuditLog:
         out: list[dict[str, Any]] = []
         for ln in lines:
             try:
-                out.append(json.loads(ln))
+                parsed = json.loads(ln)
             except json.JSONDecodeError:
                 continue
+            if isinstance(parsed, dict):
+                out.append(parsed)
         return out
 
     def __enter__(self) -> BrainAuditLog:

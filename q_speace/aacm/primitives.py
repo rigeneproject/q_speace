@@ -24,6 +24,7 @@ Neither is a metaphor for an agent's intent.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -66,9 +67,9 @@ class CentralityGraph:
     def __post_init__(self) -> None:
         if not self.nodes:
             raise ValueError("CentralityGraph must have at least 1 node")
-        if not 0.0 <= self.controlled_share <= 1.0:
+        if not math.isfinite(self.controlled_share) or not 0.0 <= self.controlled_share <= 1.0:
             raise ValueError(f"controlled_share must be in [0, 1] (got {self.controlled_share})")
-        if self.timestamp < 0.0:
+        if not math.isfinite(self.timestamp) or self.timestamp < 0.0:
             raise ValueError(f"timestamp must be >= 0 (got {self.timestamp})")
         node_set = set(self.nodes)
         for src, dst, w in self.edges:
@@ -76,7 +77,7 @@ class CentralityGraph:
                 raise ValueError(f"edge source {src!r} not in nodes")
             if dst not in node_set:
                 raise ValueError(f"edge destination {dst!r} not in nodes")
-            if w < 0.0:
+            if not math.isfinite(w) or w < 0.0:
                 raise ValueError(f"edge weight must be >= 0 (got {w})")
 
     def to_dict(self) -> dict[str, Any]:
@@ -195,6 +196,10 @@ class LegitimationChannel:
             raise ValueError("artifact_path must be non-empty")
         if self.verified and self.verified_at is None:
             raise ValueError("verified=True requires verified_at to be set")
+        if self.verified_at is not None and (
+            not math.isfinite(self.verified_at) or self.verified_at < 0.0
+        ):
+            raise ValueError(f"verified_at must be finite and >= 0 (got {self.verified_at})")
         if not self.verified and self.verified_at is not None:
             raise ValueError("verified=False requires verified_at to be None")
 
