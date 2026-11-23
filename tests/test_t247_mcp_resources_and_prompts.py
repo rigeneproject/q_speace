@@ -58,12 +58,21 @@ def test_t247_guidance_unit_validation_and_bcel() -> None:
     assert "advisory_only: true" in loop_res["text"]
     assert "self_approval_permitted: false" in loop_res["text"]
 
-    # Tool workflow JSON covers the exact 12 HTTP tools and scopes.
+    # Tool workflow JSON covers the exact 12 HTTP tools and scopes, AND every example payload
+    # must pass the strict HTTP worker validator + live dispatcher without errors.
+    from q_speace.economy.mcp_server import _dispatch
+    from q_speace.remote_mcp.worker import validate as validate_http_tool
+
     wf_res = read_mcp_resource(RESOURCE_TOOL_WORKFLOWS)
     wf = json.loads(wf_res["text"])
     assert wf["http_tool_count"] == 12
     listed_tools = {t["name"]: t["scope"] for phase in wf["phases"] for t in phase["tools"]}
     assert listed_tools == HTTP_TOOL_SCOPES
+    for phase in wf["phases"]:
+        for spec in phase["tools"]:
+            validated = validate_http_tool(spec["name"], spec["example_arguments"])
+            out = _dispatch(spec["name"], validated)
+            assert isinstance(out, dict)
 
     # Singularity manifest and BCEL catalog resources parse cleanly as strict JSON.
     manifest = json.loads(read_mcp_resource(RESOURCE_SINGULARITY_MANIFEST)["text"])
