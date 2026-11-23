@@ -6,6 +6,7 @@ import hashlib
 import json
 import math
 import time
+from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass
 from typing import Any, Literal
 
@@ -32,6 +33,24 @@ VALID_IONT_TIERS: frozenset[str] = frozenset(
         "NANOSCALE_IONT_RESEARCH",
     }
 )
+
+# Loci strictly confined to the slow-plane DLT/governance layer (prohibited in Layer-0/motor loops).
+SLOW_PLANE_DLT_ONLY_LOCI: frozenset[str] = frozenset({"consensus_quorum"})
+
+
+def assert_slow_plane_only_governance(motor_control_keys: Iterable[str]) -> None:
+    """Fail-closed guard ensuring slow-plane DLT loci (e.g. consensus_quorum) never enter motor loops."""
+    forbidden = sorted(set(motor_control_keys).intersection(SLOW_PLANE_DLT_ONLY_LOCI))
+    if forbidden:
+        raise EpigeneticFaultError(
+            "slow-plane DLT locus prohibited in motor control loop: " + ", ".join(forbidden)
+        )
+
+
+def filter_motor_loop_forbidden_loci(adjustments: Mapping[str, float]) -> dict[str, float]:
+    """Strip slow-plane DLT governance loci before any local non-DLT advisory projection."""
+    return {k: v for k, v in adjustments.items() if k not in SLOW_PLANE_DLT_ONLY_LOCI}
+
 
 # Minimum conservative allopoietic floor per tier (prevents premature autopoiesis claims).
 _TIER_ALLOPOIETIC_FLOOR: dict[IoNTScaleTier, float] = {
@@ -119,11 +138,13 @@ class IoNTNodeAssessment:
     advisory_only: bool = True
     mcp_actuation_permitted: bool = False
     self_approval_permitted: bool = False
+    slow_plane_only_loci: tuple[str, ...] = ("consensus_quorum",)
 
     def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
         data["failed_checks"] = list(self.failed_checks)
         data["recommendations"] = list(self.recommendations)
+        data["slow_plane_only_loci"] = list(self.slow_plane_only_loci)
         return data
 
 

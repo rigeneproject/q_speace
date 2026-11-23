@@ -93,6 +93,12 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   TRL-staged IoNT/Micro-IoT telemetry, Layer-2 slow-plane quorum `DLTSwarmLedger`, Layer-3
   MCP tool `iont_node_assess` & `qspace singularity iont-assess`), sandboxed `IoNTCellularNodeTwin`,
   and 7th adversarial drill.
+- [IoNT Cellular Node Federation & Evolution Benchmark (T237)](docs/T237_IONT_FEDERATION_AND_EVOLUTION_BENCHMARK_SPEC.md):
+  `q_speace/singularity/federation_benchmark.py` & `qspace singularity federation-benchmark`
+  4-configuration ablation benchmark (`ISOLATED`, `FEDERATED_STATIC`, `FEDERATED_ADAPTIVE_NO_SINGULARITY`,
+  `FEDERATED_SINGULARITY`) measuring organismic gain $G_{\mathrm{org}}$ across calibration and held-out
+  fault scenarios with independent simulated Layer-0 physical control, slow-plane-only `consensus_quorum`,
+  and zero new MCP tools.
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

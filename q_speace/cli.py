@@ -701,5 +701,58 @@ def singularity_iont_assess(
         raise typer.Exit(3)
 
 
+@singularity_app.command("federation-benchmark")
+def singularity_federation_benchmark(
+    seeds: Annotated[
+        str,
+        typer.Option(
+            "--seeds",
+            help="Comma-separated deterministic integer seeds (e.g. '11,23,37,53').",
+        ),
+    ] = "11,23,37,53",
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional path to write the full JSON benchmark report.",
+        ),
+    ] = None,
+) -> None:
+    """Run T237 4-configuration IoNT cellular node federation & ablation benchmark."""
+    from .singularity import run_iont_federation_benchmark
+
+    try:
+        parsed_seeds = tuple(int(s.strip()) for s in seeds.split(",") if s.strip())
+        if not parsed_seeds:
+            raise ValueError("at least one integer seed is required")
+    except ValueError as exc:
+        typer.echo(f"error: invalid --seeds value: {exc}")
+        raise typer.Exit(2) from None
+
+    report = run_iont_federation_benchmark(seeds=parsed_seeds)
+    payload = report.to_dict()
+    if output is not None:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(
+            json.dumps(payload, indent=2, sort_keys=True, allow_nan=False),
+            encoding="utf-8",
+        )
+    summary = {
+        "spec": report.spec,
+        "sandboxed": report.sandboxed,
+        "mcp_actuation_permitted": report.mcp_actuation_permitted,
+        "layer0_independence_verified": report.layer0_independence_verified,
+        "consensus_quorum_slow_plane_only": report.consensus_quorum_slow_plane_only,
+        "federation_benefit_verified": report.federation_benefit_verified,
+        "singularity_ablation_verified": report.singularity_ablation_verified,
+        "calibration_summary": payload["calibration_summary"],
+        "held_out_summary": payload["held_out_summary"],
+    }
+    typer.echo(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False))
+    if not report.federation_benefit_verified or not report.singularity_ablation_verified:
+        raise typer.Exit(3)
+
+
 if __name__ == "__main__":
     main()

@@ -341,8 +341,11 @@ DEFAULT_RUNTIME_BINDINGS: tuple[RuntimeBinding, ...] = (
     RuntimeBinding(
         locus="consensus_quorum",
         runtime_parameter="required_independent_verifiers",
-        mapping_rule="maps quorum fraction [0.51, 0.95] -> [2, 5] independent verifiers",
-        host_scope="local_host_human_controlled",
+        mapping_rule=(
+            "slow-plane DLT/governance only (never motor loop): maps quorum fraction "
+            "[0.51, 0.95] -> [2, 5] independent verifiers"
+        ),
+        host_scope="slow_plane_dlt_governance_only",
     ),
 )
 

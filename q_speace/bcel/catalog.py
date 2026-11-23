@@ -548,6 +548,25 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "motor actuation through blockchain consensus or remote MCP calls violates "
         "I1 halt SLAs, Sevo bounds, and T217 physical containment discipline.",
     ),
+    # ----- T237: IoNT Cellular Node Federation and Evolution Benchmark -----
+    BCELEquivalence(
+        "Organismic federation gain and controlled ablation benchmark (T237)",
+        "functional",
+        "Keep as a deterministic, reproducible benchmark comparing four configurations "
+        "(isolated, static federation, adaptive federation without Singularity, and "
+        "federation with q_speace Singularity Core) via G_org = (P_fed - P_base) / "
+        "max(|P_base|, eps) across calibration and held-out perturbation scenarios "
+        "with zero critical safety violations, independent simulated Layer-0 physical "
+        "control, and slow-plane-only consensus_quorum enforcement.",
+    ),
+    BCELEquivalence(
+        "Living multicellular IoNT organism or spontaneous biological evolution (T237)",
+        "accidental",
+        "Removed: federation benchmarks evaluate measurable multi-node coordination, "
+        "fault resilience, energy efficiency, and causal accuracy under strict safety "
+        "constraints; they do not instantiate biological life, consciousness, or "
+        "unconstrained physical autonomy.",
+    ),
 ]
 
 
