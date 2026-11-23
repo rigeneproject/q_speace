@@ -120,6 +120,11 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   opt-in `SQLiteStateStore` (`HTTPConfig.state_db_path`) preserving per-principal rate limits and session
   quotas across restarts, plus `verify_audit_chain`, atomic `export_checkpoint` (optional HMAC-SHA256),
   and `verify_audit_checkpoint` tamper/truncation detection.
+- [MCP Read-Only Resources & Bootstrap Prompts for Agentic Organism-Loop Integration (T247)](docs/T247_MCP_RESOURCES_AND_BOOTSTRAP_PROMPTS_SPEC.md):
+  4 read-only MCP Resources (`qspeace://guide/organism-loop`, `qspeace://guide/tool-workflows`,
+  `qspeace://manifest/singularity`, `qspeace://catalog/bcel`) and 3 session-start bootstrap Prompts
+  (`organism_bootstrap`, `metabolic_action_gate`, `federated_swarm_cycle`) on both stdio and HTTP MCP
+  (`qspeace:catalog.read` scope-gated, audited, zero new tools).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

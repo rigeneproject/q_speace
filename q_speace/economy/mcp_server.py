@@ -41,6 +41,12 @@ from pydantic import ConfigDict, Field, create_model
 from q_speace.bcel.catalog import BCELCatalog
 from q_speace.edd_cvt.ilf import InformationalLogicalField
 from q_speace.metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
+from q_speace.singularity.mcp_guidance import (
+    get_mcp_prompt,
+    list_mcp_prompts,
+    list_mcp_resources,
+    read_mcp_resource,
+)
 from q_speace.singularity.mcp_tools import (
     handle_epigenetic_step_evaluate,
     handle_iont_node_assess,
@@ -778,6 +784,20 @@ def _self_test() -> int:
             _dispatch(name, arguments)
         except Exception as e:
             failures.append(f"{name}: {e}")
+    for res in list_mcp_resources():
+        try:
+            read_mcp_resource(res["uri"])
+        except Exception as e:
+            failures.append(f"resource:{res['uri']}: {e}")
+    for prompt_name, prompt_args in (
+        ("organism_bootstrap", {"agent_role": "self-test", "mode": "single_agent"}),
+        ("metabolic_action_gate", {"action_summary": "self-test action", "coherence_phi": "0.5"}),
+        ("federated_swarm_cycle", {"node_count": "4", "scale_tier": "SIMULATION_DIGITAL_TWIN"}),
+    ):
+        try:
+            get_mcp_prompt(prompt_name, prompt_args)
+        except Exception as e:
+            failures.append(f"prompt:{prompt_name}: {e}")
     if failures:
         for f in failures:
             print(f"  FAIL: {f}")
@@ -865,7 +885,7 @@ def _stdio_loop() -> int:
                         )
                         result: Any = {
                             "protocolVersion": version,
-                            "capabilities": {"tools": {}},
+                            "capabilities": {"tools": {}, "resources": {}, "prompts": {}},
                             "serverInfo": {"name": "q-speace-mcp", "version": "0.1.0"},
                         }
                         initializing = True
@@ -877,6 +897,25 @@ def _stdio_loop() -> int:
                         if params.get("cursor") is not None:
                             raise ValueError("No pagination cursors are issued by this server")
                         result = {"tools": list_tools()}
+                    elif method == "resources/list":
+                        if params.get("cursor") is not None:
+                            raise ValueError("No pagination cursors are issued by this server")
+                        result = {"resources": list_mcp_resources()}
+                    elif method == "resources/read":
+                        uri = params.get("uri")
+                        if not isinstance(uri, str) or not uri:
+                            raise ValueError("resources/read requires non-empty string uri")
+                        result = {"contents": [read_mcp_resource(uri)]}
+                    elif method == "prompts/list":
+                        if params.get("cursor") is not None:
+                            raise ValueError("No pagination cursors are issued by this server")
+                        result = {"prompts": list_mcp_prompts()}
+                    elif method == "prompts/get":
+                        prompt_name = params.get("name")
+                        if not isinstance(prompt_name, str) or not prompt_name:
+                            raise ValueError("prompts/get requires non-empty string name")
+                        prompt_args = params.get("arguments")
+                        result = get_mcp_prompt(prompt_name, prompt_args)
                     elif method == "tools/call":
                         name = params.get("name")
                         if not isinstance(name, str) or name not in _INPUT_MODELS:

@@ -666,6 +666,14 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Keep as durable write-through session/rate-limit persistence across restarts and "
         "tamper-evident SHA-256 audit chain and checkpoint verification.",
     ),
+    # ----- T247: MCP Read-Only Resources & Bootstrap Prompts -----
+    BCELEquivalence(
+        "Read-only MCP organism-loop resources and bootstrap prompt templates (T247)",
+        "functional",
+        "Keep as deterministic, advisory-only protocol documentation and workflow templates "
+        "guiding external agents to compose homeostatic, metabolic, epigenetic, and federated "
+        "consensus tools without mutating state or bypassing invariants.",
+    ),
 ]
 
 

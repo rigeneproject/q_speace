@@ -20,9 +20,10 @@ import jwt
 from mcp import types
 from mcp.server.auth.routes import create_protected_resource_routes
 from mcp.server.lowlevel import Server
+from mcp.server.lowlevel.helper_types import ReadResourceContents
 from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
 from mcp.server.transport_security import TransportSecuritySettings
-from pydantic import AnyHttpUrl
+from pydantic import AnyHttpUrl, AnyUrl
 from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.responses import JSONResponse
@@ -30,6 +31,12 @@ from starlette.routing import Route
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 from q_speace.economy.mcp_server import list_tools
+from q_speace.singularity.mcp_guidance import (
+    get_mcp_prompt,
+    list_mcp_prompts,
+    list_mcp_resources,
+    read_mcp_resource,
+)
 
 from .config import HTTPConfig
 from .service import Audit, Execution, ServiceError, SQLiteStateStore
@@ -225,6 +232,13 @@ class Gateway:
                 await self.error(scope, receive, send, ServiceError("sse_not_offered", 405))
                 return
             call = method == "tools/call"
+            guidance_method = method in (
+                "resources/list",
+                "resources/read",
+                "prompts/list",
+                "prompts/get",
+            )
+            audited_guidance = method in ("resources/read", "prompts/get")
             if call:
                 params = message.get("params")
                 if "id" not in message or not isinstance(params, dict):
@@ -234,6 +248,13 @@ class Gateway:
                     raise ServiceError("tool_not_available", 403)
                 if SCOPES[name] not in scopes:
                     raise ServiceError("scope_required", 403)
+            elif guidance_method:
+                if "qspeace:catalog.read" not in scopes:
+                    raise ServiceError("scope_required", 403)
+                if audited_guidance and (
+                    "id" not in message or not isinstance(message.get("params"), dict)
+                ):
+                    raise ServiceError("invalid_call", 400)
             consumed = False
 
             async def replay() -> Message:
@@ -259,6 +280,22 @@ class Gateway:
                         "input_hash": hashlib.sha256(bytes(body)).hexdigest(),
                     }
                 )
+            elif audited_guidance:
+                target = (
+                    message["params"].get("uri")
+                    if method == "resources/read"
+                    else message["params"].get("name")
+                )
+                self.audit.append(
+                    {
+                        "event": "intent",
+                        "request": trace,
+                        "principal_hash": owner,
+                        "method": method,
+                        "target": str(target) if target is not None else "",
+                        "input_hash": hashlib.sha256(bytes(body)).hexdigest(),
+                    }
+                )
             if method == "initialize":
                 async with self.initializing:
                     self._prune_expired_sessions(now)
@@ -271,7 +308,7 @@ class Gateway:
                     self.record_session(collected, owner)
             else:
                 await self.app(scope, replay, capture)
-            if call:
+            if call or audited_guidance:
                 output = b"".join(m.get("body", b"") for m in collected)
                 self.audit.append(
                     {
@@ -375,6 +412,43 @@ def create_app(config: HTTPConfig) -> Gateway:
             return types.CallToolResult(
                 content=[types.TextContent(type="text", text=exc.code)], isError=True
             )
+
+    @server.list_resources()
+    async def resources() -> list[types.Resource]:
+        request = server.request_context.request
+        if request is None:
+            raise RuntimeError("HTTP request context required")
+        if "qspeace:catalog.read" not in request.scope["qspeace.scopes"]:
+            raise ValueError("scope_required")
+        return [types.Resource.model_validate(item) for item in list_mcp_resources()]
+
+    @server.read_resource()
+    async def read_resource(uri: AnyUrl) -> list[ReadResourceContents]:
+        request = server.request_context.request
+        if request is None:
+            raise RuntimeError("HTTP request context required")
+        if "qspeace:catalog.read" not in request.scope["qspeace.scopes"]:
+            raise ValueError("scope_required")
+        item = read_mcp_resource(str(uri))
+        return [ReadResourceContents(content=item["text"], mime_type=item["mimeType"])]
+
+    @server.list_prompts()
+    async def prompts() -> list[types.Prompt]:
+        request = server.request_context.request
+        if request is None:
+            raise RuntimeError("HTTP request context required")
+        if "qspeace:catalog.read" not in request.scope["qspeace.scopes"]:
+            raise ValueError("scope_required")
+        return [types.Prompt.model_validate(item) for item in list_mcp_prompts()]
+
+    @server.get_prompt()
+    async def get_prompt(name: str, arguments: dict[str, str] | None) -> types.GetPromptResult:
+        request = server.request_context.request
+        if request is None:
+            raise RuntimeError("HTTP request context required")
+        if "qspeace:catalog.read" not in request.scope["qspeace.scopes"]:
+            raise ValueError("scope_required")
+        return types.GetPromptResult.model_validate(get_mcp_prompt(name, arguments))
 
     manager = StreamableHTTPSessionManager(
         server,

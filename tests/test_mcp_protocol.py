@@ -70,7 +70,7 @@ def test_handshake(monkeypatch: pytest.MonkeyPatch, version: str, expected: str)
     assert len(responses) == 3
     assert responses[0]["result"] == {
         "protocolVersion": expected,
-        "capabilities": {"tools": {}},
+        "capabilities": {"tools": {}, "resources": {}, "prompts": {}},
         "serverInfo": {"name": "q-speace-mcp", "version": "0.1.0"},
     }
     assert responses[1] == {"jsonrpc": "2.0", "id": 0, "result": {}}
