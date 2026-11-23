@@ -16,6 +16,7 @@ SCOPES = {
     "metabolism_cost_eval": "qspeace:compute",
     "elasticity_test": "qspeace:compute",
     "phase_transition_assess": "qspeace:compute",
+    "iont_node_assess": "qspeace:compute",
     "kl_barycentre_aggregate": "qspeace:simulation.compute",
     "vtec_allocate": "qspeace:simulation.compute",
     "epigenetic_step_evaluate": "qspeace:simulation.compute",

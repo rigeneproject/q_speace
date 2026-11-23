@@ -75,7 +75,7 @@ def test_handshake(monkeypatch: pytest.MonkeyPatch, version: str, expected: str)
     }
     assert responses[1] == {"jsonrpc": "2.0", "id": 0, "result": {}}
     tools = responses[2]["result"]["tools"]
-    assert len(tools) == 13
+    assert len(tools) == 14
     assert all(tool["inputSchema"]["type"] == "object" for tool in tools)
     clock = next(tool for tool in tools if tool["name"] == "adaptive_clock_rate")
     assert clock["inputSchema"]["required"] == ["coherence_phi"]
@@ -231,7 +231,7 @@ def test_official_sdk_stdio_session() -> None:
             assert result.serverInfo.name == "q-speace-mcp"
             await session.send_ping()
             listing = await session.list_tools()
-            assert len(listing.tools) == 13
+            assert len(listing.tools) == 14
             for name, arguments in (
                 ("adaptive_clock_rate", {"coherence_phi": 0.5}),
                 (

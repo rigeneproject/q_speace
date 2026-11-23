@@ -6,6 +6,7 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 from .codec import EpigeneticRegulator, EvolutionaryGenomeCodec, HiddenCausalEvaluator
+from .iont_node import IoNTNodeProfile, assess_iont_cellular_node
 from .schema import CausalFeedback, ConstitutionalGenome, EpigeneticProfile, EpigeneticProposal
 
 
@@ -288,6 +289,44 @@ def run_t234_verification_drills() -> DrillSuiteReport:
             passed=d6_ok,
             rollback_verified=hal_res.rolled_back_to == throttle_under_overload.next_state_hash,
             detail="Internally coherent hallucination drift, epoch replay, and Track-A A5 leak all blocked.",
+        )
+    )
+
+    # Drill 7 (T236): IoNT cellular node without Layer-0 interlock or with DLT in motor loop is rejected.
+    unsafe_iont = IoNTNodeProfile(
+        node_id="iont-drill-unsafe",
+        scale_tier="BENCHTOP_MICRO_IOT_MEMS",
+        sensor_count=8,
+        actuator_count=2,
+        swarm_agent_count=4,
+        dlt_quorum_ratio=0.67,
+        layer0_hardware_interlock_present=False,
+        layer0_halt_latency_ms=12.0,
+        dlt_in_motor_loop=True,
+        energy_harvesting_ratio=0.20,
+        power_budget_mw=500.0,
+        measured_power_mw=200.0,
+        packet_loss_rate=0.02,
+        sensor_causal_grounding_error=0.01,
+        containment_verified=True,
+        t217_independent_review_passed=False,
+        sandboxed=False,
+    )
+    iont_res = assess_iont_cellular_node(unsafe_iont)
+    d7_ok = (
+        iont_res.admitted_for_mcp_advisory is False
+        and iont_res.layer0_interlock_compliant is False
+        and iont_res.dlt_separation_compliant is False
+        and iont_res.mcp_actuation_permitted is False
+        and "layer0_hardware_interlock_missing" in iont_res.failed_checks
+        and "dlt_in_realtime_motor_loop_prohibited" in iont_res.failed_checks
+    )
+    outcomes.append(
+        DrillOutcome(
+            drill_id="drill_iont_layer0_interlock_and_dlt_separation",
+            passed=d7_ok,
+            rollback_verified=not iont_res.admitted_for_mcp_advisory,
+            detail="IoNT node missing Layer-0 interlock or putting DLT in motor loop refused.",
         )
     )
 

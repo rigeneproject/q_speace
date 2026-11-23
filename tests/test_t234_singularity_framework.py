@@ -241,7 +241,7 @@ def test_boiling_frog_geodesic_window_and_ledger_replay_verification() -> None:
 def test_pillar5_six_verification_drills_and_mcp_assimilation() -> None:
     report = run_t234_verification_drills()
     assert report.all_passed is True
-    assert report.passed_count == 6 and report.total_count == 6
+    assert report.passed_count == 7 and report.total_count == 7
     assert report.rollback_pass_rate == 1.0
     assert report.ledger_verified is True
 
@@ -249,7 +249,7 @@ def test_pillar5_six_verification_drills_and_mcp_assimilation() -> None:
     assert manifest["framework_id"] == "q_speace.singularity.v1"
     assert manifest["constitution_version"] == "1.0"
     assert len(DEFAULT_RUNTIME_BINDINGS) == 6
-    assert len(manifest["verification_drills"]["required_drills"]) == 6
+    assert len(manifest["verification_drills"]["required_drills"]) == 7
     assert "baseline_runtime_controls" in manifest["runtime_bindings"]
 
     catalog = BCELCatalog()

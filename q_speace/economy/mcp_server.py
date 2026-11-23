@@ -43,6 +43,7 @@ from q_speace.edd_cvt.ilf import InformationalLogicalField
 from q_speace.metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
 from q_speace.singularity.mcp_tools import (
     handle_epigenetic_step_evaluate,
+    handle_iont_node_assess,
     handle_phase_transition_assess,
     handle_singularity_framework_manifest,
 )
@@ -136,6 +137,11 @@ TOOL_REGISTRY: tuple[ToolSpec, ...] = (
         "epigenetic_step_evaluate",
         "Evaluate one proposed bounded epigenetic adaptation against genome write-lock, causal anchoring, Sevo, and independent review; sandbox only.",
         "_handle_epigenetic_step_evaluate",
+    ),
+    ToolSpec(
+        "iont_node_assess",
+        "Assess an external IoNT/Micro-IoT cellular node profile against T236 Layer-0 interlock, DLT separation, containment, and D_allo bounds; advisory only, no actuation.",
+        "_handle_iont_node_assess",
     ),
 )
 
@@ -290,6 +296,33 @@ _SCHEMAS: dict[str, dict[str, Any]] = {
         "external_dwell_reset_approved": (bool, False),
         "generation": (int, Field(default=0, ge=0, strict=True)),
     },
+    "iont_node_assess": {
+        "node_id": (str, ...),
+        "scale_tier": (
+            Literal[
+                "SIMULATION_DIGITAL_TWIN",
+                "BENCHTOP_MICRO_IOT_MEMS",
+                "CONFINED_MICROFLUIDIC_LAB",
+                "NANOSCALE_IONT_RESEARCH",
+            ],
+            ...,
+        ),
+        "sensor_count": (int, Field(ge=1, strict=True)),
+        "actuator_count": (int, Field(ge=0, strict=True)),
+        "swarm_agent_count": (int, Field(ge=1, strict=True)),
+        "dlt_quorum_ratio": (float, Field(gt=0.5, le=1.0)),
+        "layer0_hardware_interlock_present": (bool, ...),
+        "layer0_halt_latency_ms": (float, Field(gt=0)),
+        "dlt_in_motor_loop": (bool, False),
+        "energy_harvesting_ratio": (float, Field(ge=0, le=1)),
+        "power_budget_mw": (float, Field(gt=0)),
+        "measured_power_mw": (float, Field(ge=0)),
+        "packet_loss_rate": (float, Field(ge=0, le=1)),
+        "sensor_causal_grounding_error": (float, Field(ge=0, le=1)),
+        "containment_verified": (bool, True),
+        "t217_independent_review_passed": (bool, False),
+        "sandboxed": (bool, True),
+    },
 }
 _INPUT_MODELS = {
     name: create_model(
@@ -351,6 +384,10 @@ def _handle_phase_transition_assess(params: dict[str, Any]) -> dict[str, Any]:
 
 def _handle_epigenetic_step_evaluate(params: dict[str, Any]) -> dict[str, Any]:
     return handle_epigenetic_step_evaluate(params)
+
+
+def _handle_iont_node_assess(params: dict[str, Any]) -> dict[str, Any]:
+    return handle_iont_node_assess(params)
 
 
 # ---------------------------------------------------------------------------
@@ -715,6 +752,25 @@ def _self_test() -> int:
                 "causal_benchmark_delta": 0.03,
                 "sevo": 2.0,
                 "power_watts": 120.0,
+            },
+        ),
+        (
+            "iont_node_assess",
+            {
+                "node_id": "self-test-cell-01",
+                "scale_tier": "SIMULATION_DIGITAL_TWIN",
+                "sensor_count": 12,
+                "actuator_count": 2,
+                "swarm_agent_count": 4,
+                "dlt_quorum_ratio": 0.67,
+                "layer0_hardware_interlock_present": True,
+                "layer0_halt_latency_ms": 2.5,
+                "dlt_in_motor_loop": False,
+                "energy_harvesting_ratio": 0.3,
+                "power_budget_mw": 500.0,
+                "measured_power_mw": 180.0,
+                "packet_loss_rate": 0.02,
+                "sensor_causal_grounding_error": 0.01,
             },
         ),
     ):

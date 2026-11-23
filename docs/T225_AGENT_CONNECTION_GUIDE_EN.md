@@ -1,15 +1,18 @@
 # Connecting an agentic AI client to Q-SPEACE MCP
 
-Date: 2026-11-22. Profile: experimental T225 HTTP adapter + T234 v1.1 Singularity phase-transition & genetic-epigenetic reference tools.
+Date: 2026-11-23. Profile: experimental T225 HTTP adapter + T234 v1.1 Singularity phase-transition & genetic-epigenetic reference tools + T236 IoNT cellular-node advisory assessment.
 
 
-## Provisioned experimental service (updated 2026-11-22)
+## Provisioned experimental service (updated 2026-11-23)
 
 - Verified live using official MCP SDK 1.30.0 against `https://q-speace-mcp.onrender.com/mcp`:
-  initialize, initialized notification, ping, discovery of **11 advisory tools**,
-  BCEL/clock/metabolism/KL/VTEC calls, all 3 T234 v1.1 Singularity tools (including
-  adversarial DNA write-lock, Track-A smuggling, hallucination-drift, complexity-Sevo,
-  and protective thermal-throttling probes), and invalid-argument recovery.
+  initialize, initialized notification, ping, discovery of **11 advisory tools** on the
+  deployed `6ef2e9a3` build (BCEL/clock/metabolism/KL/VTEC calls, all 3 T234 v1.1
+  Singularity tools including adversarial DNA write-lock, Track-A smuggling,
+  hallucination-drift, complexity-Sevo, and protective thermal-throttling probes,
+  and invalid-argument recovery). The `main` branch now adds a **12th advisory tool**
+  (`iont_node_assess`, T236), verified over local HTTP (`15/15 PASS`) and active on
+  Render after the next manual redeploy (`autoDeployTrigger: "off"`).
 - MCP endpoint: `https://q-speace-mcp.onrender.com/mcp`.
 - OAuth issuer: `https://dev-imfska6viiq1ehqw.us.auth0.com/`.
 - API audience: `https://q-speace-mcp.onrender.com/mcp`.
@@ -83,13 +86,13 @@ exist. A local fixture token is not evidence of a working OAuth login service.
 The two MCP services have different responsibilities:
 
 - GitHub MCP reads the online repository. It does not run Q-SPEACE computations.
-- Q-SPEACE MCP runs the **eleven** numeric/advisory tools below (8 core T225 tools + 3 T234 v1.1 Singularity phase-transition & genetic-epigenetic tools). It does not grant
-  permission to change infrastructure, repository files, budgets or policies.
+- Q-SPEACE MCP runs the **twelve** numeric/advisory tools below (8 core T225 tools + 3 T234 v1.1 Singularity phase-transition & genetic-epigenetic tools + 1 T236 IoNT cellular-node advisory tool). It does not grant
+  permission to change infrastructure, repository files, budgets, policies, or physical actuators.
 
 | Tools | Required scope |
 | --- | --- |
 | `bcel_lookup`, `singularity_framework_manifest` | `qspeace:catalog.read` |
-| `compute_jc`, `cme_evaluate`, `adaptive_clock_rate`, `metabolism_cost_eval`, `elasticity_test`, `phase_transition_assess` | `qspeace:compute` |
+| `compute_jc`, `cme_evaluate`, `adaptive_clock_rate`, `metabolism_cost_eval`, `elasticity_test`, `phase_transition_assess`, `iont_node_assess` | `qspeace:compute` |
 | `kl_barycentre_aggregate`, `vtec_allocate`, `epigenetic_step_evaluate` | `qspeace:simulation.compute` |
 
 `dat_mint`, `dat_spend`, Bridge activation, rollback and validator promotion are
@@ -246,7 +249,7 @@ It must advertise the expected resource and authorization server. Check:
   and a successful numeric tool call using the official SDK.
 - Invalid arguments produce `isError=true` without making subsequent valid
   requests unusable. Transport authentication failures are HTTP errors instead.
-- The HTTP catalog has **eleven** tools; no Bridge activation or DAT mutation tools.
+- The HTTP catalog has **twelve** tools (eleven on pre-T236 builds); no Bridge activation, physical actuation, or DAT mutation tools.
 
 Acquire the correct OAuth token through your client's/provider's supported
 flow, load it into `QSPEACE_ACCESS_TOKEN` without printing it, then run:
@@ -255,8 +258,8 @@ flow, load it into `QSPEACE_ACCESS_TOKEN` without printing it, then run:
 python examples/mcp_http_client.py --url https://YOUR-SERVICE.onrender.com/mcp
 ```
 
-Or run the full 14-step connection verification agent (exercises OAuth, discovery,
-core tools, all 3 T234 Singularity tools, and invalid-argument recovery):
+Or run the full 15-step connection verification agent (exercises OAuth, discovery,
+core tools, all 3 T234 Singularity tools, T236 `iont_node_assess`, and invalid-argument recovery):
 
 ```powershell
 python -m examples.mcp_connection_agent --local-demo --apply-delay
@@ -359,6 +362,36 @@ recommendations only; never self-approve or actuate hardware."
 }
 ```
 
+### Assess an external IoNT / Micro-IoT cellular node (`iont_node_assess`, T236)
+
+Prompt: "Assess this external IoNT cellular node profile with `iont_node_assess`.
+Verify Layer-0 hardware interlock compliance (`<5 ms` halt for physical nodes),
+slow-plane DLT separation (`dlt_in_motor_loop=false`), containment, and conservative
+allopoietic-dependence floor. Treat returned epigenetic adjustments as advisory only;
+never issue actuation commands over MCP."
+
+```json
+{
+  "node_id": "cell-node-twin-01",
+  "scale_tier": "SIMULATION_DIGITAL_TWIN",
+  "sensor_count": 16,
+  "actuator_count": 2,
+  "swarm_agent_count": 6,
+  "dlt_quorum_ratio": 0.67,
+  "layer0_hardware_interlock_present": true,
+  "layer0_halt_latency_ms": 2.0,
+  "dlt_in_motor_loop": false,
+  "energy_harvesting_ratio": 0.40,
+  "power_budget_mw": 500.0,
+  "measured_power_mw": 200.0,
+  "packet_loss_rate": 0.02,
+  "sensor_causal_grounding_error": 0.01,
+  "containment_verified": true,
+  "t217_independent_review_passed": true,
+  "sandboxed": true
+}
+```
+
 Generated text and tool results remain untrusted inputs to a separately
 authorized orchestrator. The HTTP service cannot prevent spending or actions
 that an unconstrained agent performs outside it.
@@ -393,6 +426,7 @@ acceptance criteria still apply.
 - [T225 specification and T218 reuse matrix](T225_REMOTE_MCP_SERVICE_SPEC.md).
 - [T231 vertical-slice contracts and MCP hardening](T231_VERTICAL_SLICE_AND_MCP_HARDENING_SPEC.md).
 - [T234 Singularity phase-transition & genetic-epigenetic framework](T234_SINGULARITY_PHASE_TRANSITION_AND_EPIGENETIC_FRAMEWORK_SPEC.md).
+- [T236 IoNT cellular node Singularity & MCP specification](T236_IONT_CELLULAR_NODE_SINGULARITY_MCP_SPEC.md).
 - [T218 Bridge contract](T218_QSPEACE_V0_BRIDGE_SPEC.md).
 - [T223 local stdio adapter](T223_MCP_PRIMITIVE_ADAPTER_SPEC.md).
 - [Render Free limitations](https://render.com/docs/free).

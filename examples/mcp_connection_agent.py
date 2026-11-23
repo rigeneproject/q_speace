@@ -525,6 +525,40 @@ class QSpeaceConnectionAgent:
             validator=check_epigenetic,
         )
 
+        # 7. T236 IoNT Cellular Node advisory readiness check
+        def check_iont(data: dict[str, Any]) -> dict[str, Any]:
+            if not data.get("admitted_for_mcp_advisory") or data.get("mcp_actuation_permitted"):
+                raise ValueError(f"unexpected IoNT node assessment: {data}")
+            return {
+                "node_id": data["node_id"],
+                "estimated_d_allo": data["estimated_allopoietic_dependence"],
+            }
+
+        await self._call_if_granted(
+            report,
+            session,
+            granted,
+            "tool_iont_node_assess",
+            "iont_node_assess",
+            {
+                "node_id": "demo-iont-cell-01",
+                "scale_tier": "SIMULATION_DIGITAL_TWIN",
+                "sensor_count": 12,
+                "actuator_count": 2,
+                "swarm_agent_count": 4,
+                "dlt_quorum_ratio": 0.67,
+                "layer0_hardware_interlock_present": True,
+                "layer0_halt_latency_ms": 2.0,
+                "dlt_in_motor_loop": False,
+                "energy_harvesting_ratio": 0.35,
+                "power_budget_mw": 500.0,
+                "measured_power_mw": 180.0,
+                "packet_loss_rate": 0.02,
+                "sensor_causal_grounding_error": 0.01,
+            },
+            validator=check_iont,
+        )
+
     async def _check_invalid_arg_recovery(
         self,
         report: AgentReport,

@@ -143,4 +143,4 @@ def test_cli_economy_commands() -> None:
 
     res_mcp = runner.invoke(app, ["economy", "mcp-self-test"])
     assert res_mcp.exit_code == 0
-    assert "all 13 tools green" in res_mcp.output
+    assert "all 14 tools green" in res_mcp.output

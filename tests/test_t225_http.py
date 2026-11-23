@@ -111,7 +111,7 @@ def test_http_tools_and_worker(setup: Any) -> None:
         listing = rpc(client, auth, sid, "tools/list")
         assert listing.status_code == 200, listing.text
         names = {tool["name"] for tool in listing.json()["result"]["tools"]}
-        assert len(names) == 11 and "dat_mint" not in names and "activate" not in names
+        assert len(names) == 12 and "dat_mint" not in names and "activate" not in names
         response = rpc(
             client,
             auth,
@@ -262,7 +262,7 @@ def test_official_sdk_over_real_http(setup: Any, tmp_path: Path) -> None:
             initialized = await session.initialize()
             assert initialized.serverInfo.name == "q-speace-http"
             await session.send_ping()
-            assert len((await session.list_tools()).tools) == 11
+            assert len((await session.list_tools()).tools) == 12
             assert session_id() is not None
             for name, arguments in (
                 ("bcel_lookup", {"concept": "Homeostasis"}),

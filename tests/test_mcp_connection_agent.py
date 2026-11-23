@@ -45,7 +45,7 @@ def test_local_demo_cli_passes_and_writes_clean_evidence(
     summary = json.loads((report_dir / "summary.json").read_text(encoding="utf-8"))
     assert summary["passed"] is True
     assert summary["server_name"] == "q-speace-http"
-    assert len(summary["granted_tools"]) == 11
+    assert len(summary["granted_tools"]) == 12
     assert all(step["status"] == "passed" for step in summary["steps"])
     assert "Bearer " not in (report_dir / "events.jsonl").read_text(encoding="utf-8")
 

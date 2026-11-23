@@ -8,6 +8,12 @@ from typing import Any, Literal, cast
 from .codec import EpigeneticRegulator, HiddenCausalEvaluator, resolve_runtime_controls
 from .drills import run_t234_verification_drills
 from .evaluator import PhaseTransitionEvaluator
+from .iont_node import (
+    VALID_IONT_TIERS,
+    IoNTNodeProfile,
+    IoNTScaleTier,
+    assess_iont_cellular_node,
+)
 from .schema import (
     DEFAULT_LOCI,
     DEFAULT_RUNTIME_BINDINGS,
@@ -27,6 +33,7 @@ VALID_MANIFEST_SECTIONS: frozenset[str] = frozenset(
         "physical_brakes",
         "genetic_epigenetic_code",
         "runtime_bindings",
+        "iont_cellular_nodes",
         "verification_drills",
         "assimilation_rules",
         "invariants",
@@ -155,6 +162,18 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
             "bindings": [asdict(b) for b in DEFAULT_RUNTIME_BINDINGS],
             "baseline_runtime_controls": resolve_runtime_controls(baseline_profile).to_dict(),
         },
+        "iont_cellular_nodes": {
+            "spec": "T236",
+            "schema_version": "iont_cellular_node.v1",
+            "mcp_actuation_permitted": False,
+            "four_layer_architecture": {
+                "layer_0_hardware_interlock": "Deterministic local MCU/firmware e-stop (<5ms physical), thermal/force/geo-fence cap; NO LLM, NO DLT, NO MCP.",
+                "layer_1_iont_periphery": "TRL-staged sensors & reversible actuators (energy harvesting, packet loss, physical E_causal <= 0.03).",
+                "layer_2_edge_swarm_dlt": "GenAI edge swarm + lightweight permissioned hash-chained DLT strictly on slow governance plane (provenance, quorum, I3/I5).",
+                "layer_3_qspeace_mcp": "Asynchronous advisory mediation via iont_node_assess, phase_transition_assess, epigenetic_step_evaluate, kl_barycentre_aggregate, vtec_allocate.",
+            },
+            "scale_tiers": sorted(VALID_IONT_TIERS),
+        },
         "verification_drills": {
             "stage_2_requirement": "rollback_pass_rate == 1.0 on deterministic adversarial drills",
             "required_drills": [
@@ -164,6 +183,7 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
                 "drill_boiling_frog_boundary_dwell_and_reset",
                 "drill_self_approval_and_ledger_integrity",
                 "drill_hallucination_drift_replay_and_track_separation",
+                "drill_iont_layer0_interlock_and_dlt_separation",
             ],
         },
         "assimilation_rules": {
@@ -176,6 +196,7 @@ def build_singularity_framework_manifest(section: str | None = None) -> dict[str
             "t225_scopes": {
                 "singularity_framework_manifest": "qspeace:catalog.read",
                 "phase_transition_assess": "qspeace:compute",
+                "iont_node_assess": "qspeace:compute",
                 "epigenetic_step_evaluate": "qspeace:simulation.compute",
             },
             "track_separation": "Track A (A1-A4 governance/advisory) never imports or activates Track B (A5 sandbox research).",
@@ -297,10 +318,46 @@ def handle_epigenetic_step_evaluate(params: dict[str, Any]) -> dict[str, Any]:
     return regulator.evaluate_step(profile, proposal, feedback).to_dict()
 
 
+def handle_iont_node_assess(params: dict[str, Any]) -> dict[str, Any]:
+    raw_tier = str(params["scale_tier"])
+    if raw_tier not in VALID_IONT_TIERS:
+        raise ValueError(f"invalid scale_tier {raw_tier!r}; valid={sorted(VALID_IONT_TIERS)}")
+    tier: IoNTScaleTier = cast(
+        Literal[
+            "SIMULATION_DIGITAL_TWIN",
+            "BENCHTOP_MICRO_IOT_MEMS",
+            "CONFINED_MICROFLUIDIC_LAB",
+            "NANOSCALE_IONT_RESEARCH",
+        ],
+        raw_tier,
+    )
+    profile = IoNTNodeProfile(
+        node_id=str(params["node_id"]),
+        scale_tier=tier,
+        sensor_count=int(params["sensor_count"]),
+        actuator_count=int(params["actuator_count"]),
+        swarm_agent_count=int(params["swarm_agent_count"]),
+        dlt_quorum_ratio=float(params["dlt_quorum_ratio"]),
+        layer0_hardware_interlock_present=bool(params["layer0_hardware_interlock_present"]),
+        layer0_halt_latency_ms=float(params["layer0_halt_latency_ms"]),
+        dlt_in_motor_loop=bool(params.get("dlt_in_motor_loop", False)),
+        energy_harvesting_ratio=float(params["energy_harvesting_ratio"]),
+        power_budget_mw=float(params["power_budget_mw"]),
+        measured_power_mw=float(params["measured_power_mw"]),
+        packet_loss_rate=float(params["packet_loss_rate"]),
+        sensor_causal_grounding_error=float(params["sensor_causal_grounding_error"]),
+        containment_verified=bool(params.get("containment_verified", True)),
+        t217_independent_review_passed=bool(params.get("t217_independent_review_passed", False)),
+        sandboxed=bool(params.get("sandboxed", True)),
+    )
+    return assess_iont_cellular_node(profile).to_dict()
+
+
 __all__ = [
     "VALID_MANIFEST_SECTIONS",
     "build_singularity_framework_manifest",
     "handle_epigenetic_step_evaluate",
+    "handle_iont_node_assess",
     "handle_phase_transition_assess",
     "handle_singularity_framework_manifest",
     "run_t234_verification_drills",

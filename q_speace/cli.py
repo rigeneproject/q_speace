@@ -671,5 +671,35 @@ def singularity_assess(
     typer.echo(json.dumps(verdict, indent=2, sort_keys=True, allow_nan=False))
 
 
+@singularity_app.command("iont-assess")
+def singularity_iont_assess(
+    profile_file: Annotated[
+        Path,
+        typer.Option(
+            "--profile",
+            "-p",
+            help="Path to JSON file matching IoNTNodeProfile / iont_node_assess schema.",
+        ),
+    ],
+) -> None:
+    """Assess an external IoNT/Micro-IoT cellular node against T236 4-layer safety bounds."""
+    from .singularity import handle_iont_node_assess
+
+    if not profile_file.exists():
+        typer.echo(f"error: profile file not found: {profile_file}")
+        raise typer.Exit(2)
+    try:
+        raw = json.loads(profile_file.read_text(encoding="utf-8"))
+        if not isinstance(raw, dict):
+            raise ValueError("profile JSON must be an object")
+        assessment = handle_iont_node_assess(raw)
+    except (ValueError, KeyError, TypeError) as exc:
+        typer.echo(f"error: invalid IoNT profile payload: {exc}")
+        raise typer.Exit(2) from None
+    typer.echo(json.dumps(assessment, indent=2, sort_keys=True, allow_nan=False))
+    if not assessment["admitted_for_mcp_advisory"]:
+        raise typer.Exit(3)
+
+
 if __name__ == "__main__":
     main()

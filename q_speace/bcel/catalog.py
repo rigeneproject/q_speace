@@ -532,6 +532,22 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "and literal biological autopoiesis are anthropomorphic metaphors. Only "
         "measurable phase-transition telemetry and bounded reversible adaptation survive.",
     ),
+    # ----- T236: IoNT Cellular Node ("SPEACE Macro Mini") MCP Integration -----
+    BCELEquivalence(
+        "IoNT cellular node 4-layer advisory architecture (T236)",
+        "functional",
+        "Keep as a scale-staged cyber-physical governance contract separating "
+        "Layer-0 deterministic hardware interlocks, Layer-1 noisy IoNT/Micro-IoT "
+        "telemetry (energy harvesting, E_causal), Layer-2 slow-plane quorum DLT "
+        "provenance, and Layer-3 advisory-only MCP mediation (zero remote actuation).",
+    ),
+    BCELEquivalence(
+        "Biological cellular organism and DLT-driven motor reflex metaphor (T236)",
+        "accidental",
+        "Removed: describing an IoNT swarm as a living cell or routing real-time "
+        "motor actuation through blockchain consensus or remote MCP calls violates "
+        "I1 halt SLAs, Sevo bounds, and T217 physical containment discipline.",
+    ),
 ]
 
 

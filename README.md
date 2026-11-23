@@ -88,6 +88,11 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   restored exact unitarity on `CRX`/`CRY`/`CRZ` in `QuantumGates`, removed hardcoded personal
   paths from `spiking_brain_server/` scripts, added `qspace singularity` (`manifest`/`drills`/`assess`),
   and recorded sanitized live Render MCP verification evidence (`artifacts/T234_mcp_live_verification_20261122.json`).
+- [IoNT Cellular Node ("SPEACE Macro Mini") integration into Singularity & MCP (T236)](docs/T236_IONT_CELLULAR_NODE_SINGULARITY_MCP_SPEC.md):
+  `q_speace/singularity/iont_node.py` 4-layer advisory contract (Layer-0 hardware interlock,
+  TRL-staged IoNT/Micro-IoT telemetry, Layer-2 slow-plane quorum `DLTSwarmLedger`, Layer-3
+  MCP tool `iont_node_assess` & `qspace singularity iont-assess`), sandboxed `IoNTCellularNodeTwin`,
+  and 7th adversarial drill.
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,
@@ -120,8 +125,8 @@ the first of every month against `https://huggingface.co/api/models?author=BICLa
 - [T226 bounded LLM agent connection experiment and evidence](docs/T226_AGENT_MCP_CONNECTION_EXPERIMENT_SPEC.md).
 
 Endpoint: `https://q-speace-mcp.onrender.com/mcp` (authorized OAuth access required).
-Eleven advisory/numerical tools are exposed (including the T234 phase-transition &
-genetic-epigenetic reference tools); no physical actuation or DAT mutation
+Twelve advisory/numerical tools are exposed (including T234 phase-transition/epigenetic
+and T236 IoNT cellular-node assessment tools); no physical actuation or DAT mutation
 is available over HTTP. Free-tier hosting and local ephemeral state make this a
 research prototype. The recorded LLM/MCP test demonstrates interoperability, not
 a diagnostic, energy-efficiency or quantum advantage. Updating this repository
