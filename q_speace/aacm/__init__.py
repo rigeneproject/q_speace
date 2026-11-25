@@ -76,6 +76,14 @@ from .loop_constants import (
     MAX_WALL_CLOCK_S,
     REPUTATION_HALF_LIFE_S,
 )
+from .plasticity import (
+    EdgeGrowthProposal,
+    EntropyBoundedUCB1Gating,
+    GatingPolicy,
+    GraphEdgePruner,
+    ProposalOnlyEdgeGrower,
+    shannon_entropy_bits,
+)
 from .pr_helper import PRResult, build_pr_body, create_pr
 from .primitives import (
     CentralityGraph,
@@ -166,4 +174,11 @@ __all__ = [
     "PRResult",
     "build_pr_body",
     "create_pr",
+    # plasticity & UCB1 gating (T249-02)
+    "EdgeGrowthProposal",
+    "EntropyBoundedUCB1Gating",
+    "GatingPolicy",
+    "GraphEdgePruner",
+    "ProposalOnlyEdgeGrower",
+    "shannon_entropy_bits",
 ]

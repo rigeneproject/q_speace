@@ -28,6 +28,12 @@ from .protocol import (
     canonical_param_hash,
     recover_coupled_wal,
 )
+from .simulated_sensor import (
+    VALID_RUNTIME_MODES,
+    SimulatedSensorAdapter,
+    SimulatedSensorReading,
+    run_coro_isolated,
+)
 from .validator import ProcessIsolatedValidator, ValidatorKey
 
 __all__ = [
@@ -40,11 +46,15 @@ __all__ = [
     "ProcessIsolatedValidator",
     "ProtocolError",
     "SimulatedCrashError",
+    "SimulatedSensorAdapter",
+    "SimulatedSensorReading",
     "StateError",
     "UpdateLedger",
     "UpdateProposal",
     "UpdateStatus",
+    "VALID_RUNTIME_MODES",
     "ValidatorKey",
     "canonical_param_hash",
     "recover_coupled_wal",
+    "run_coro_isolated",
 ]

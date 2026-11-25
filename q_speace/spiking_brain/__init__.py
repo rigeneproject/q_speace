@@ -48,8 +48,26 @@ from .interface import (
     SpikingBrainTimeoutError,
     SpikingBrainUnavailableError,
 )
-from .memory import EpisodicMemory, Memory, WorkingMemory
+from .memory import (
+    EpisodicMemory,
+    Memory,
+    SemanticEpisodicMemory,
+    WorkingMemory,
+    embed_text_hashed,
+)
 from .stub import StubSpikingBrain, StubSpikingBrainV2
+from .truth_engine import (
+    ActionDegradationGate,
+    ActionMode,
+    CycleObservation,
+    CyclePrediction,
+    CycleSurprise,
+    EpistemicAssessment,
+    EpistemicClass,
+    ObservationDigest,
+    StructuralPredictiveCoder,
+    TruthEngine,
+)
 from .types import ThinkResult
 
 __all__ = [
@@ -74,4 +92,17 @@ __all__ = [
     "Memory",
     "WorkingMemory",
     "EpisodicMemory",
+    "SemanticEpisodicMemory",
+    "embed_text_hashed",
+    # T249-03 epistemic provenance & predictive cycle coding
+    "ActionDegradationGate",
+    "ActionMode",
+    "CycleObservation",
+    "CyclePrediction",
+    "CycleSurprise",
+    "EpistemicAssessment",
+    "EpistemicClass",
+    "ObservationDigest",
+    "StructuralPredictiveCoder",
+    "TruthEngine",
 ]

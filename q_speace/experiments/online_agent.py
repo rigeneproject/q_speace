@@ -211,6 +211,13 @@ async def connect(credentials: Path, events: list[dict[str, Any]]) -> dict[str, 
         return await diagnose(Adapter(session, Budget(), events))
 
 
+def _mcp_package_version() -> str:
+    try:
+        return importlib.metadata.version("mcp")
+    except importlib.metadata.PackageNotFoundError:
+        return "unavailable"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
@@ -227,7 +234,7 @@ def main() -> None:
         "task": TASK,
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "task_sha256": hashlib.sha256(json.dumps(TASK, sort_keys=True).encode()).hexdigest(),
-        "mcp_version": importlib.metadata.version("mcp"),
+        "mcp_version": _mcp_package_version(),
         "tool_limit": 5,
         "modeled_energy_limit_joules": 0.001,
     }

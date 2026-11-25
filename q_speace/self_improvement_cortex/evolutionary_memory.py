@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
+
+import numpy as np
 
 
 def _require_finite(name: str, val: float) -> float:
@@ -61,6 +64,47 @@ class EvolutionaryMemory:
         candidates = [e for e in self._entries if e.context_signature == context_signature]
         candidates.sort(key=lambda e: abs(e.outcome), reverse=True)
         return candidates[:top_k]
+
+    def find_similar_metrics(
+        self,
+        metrics: Mapping[str, float],
+        *,
+        tags: Sequence[str] | None = None,
+        top_k: int = 5,
+        min_similarity: float = 0.0,
+    ) -> list[MemoryEntry]:
+        """Continuous metric-cosine + Jaccard tag recall (T248, fixes float-string jitter)."""
+        if top_k < 1:
+            return []
+        if not math.isfinite(min_similarity):
+            raise ValueError("min_similarity must be finite")
+        clean_query: dict[str, float] = {}
+        for k, v in metrics.items():
+            clean_query[k] = _require_finite(f"metrics[{k!r}]", v)
+        query_tags = set(tags) if tags is not None else set()
+
+        scored: list[tuple[float, int, MemoryEntry]] = []
+        for idx, entry in enumerate(self._entries):
+            keys = sorted(set(clean_query.keys()) | set(entry.metrics_before.keys()))
+            cos_sim = 0.0
+            if keys and clean_query and entry.metrics_before:
+                q_vec = np.array([clean_query.get(k, 0.0) for k in keys], dtype=np.float64)
+                e_vec = np.array([entry.metrics_before.get(k, 0.0) for k in keys], dtype=np.float64)
+                denom = float(np.linalg.norm(q_vec) * np.linalg.norm(e_vec))
+                if denom > 1e-12:
+                    cos_sim = float(np.dot(q_vec, e_vec) / denom)
+                elif np.allclose(q_vec, e_vec):
+                    cos_sim = 1.0
+
+            entry_tags = set(entry.tags)
+            union_tags = query_tags | entry_tags
+            jaccard = len(query_tags & entry_tags) / len(union_tags) if union_tags else 0.0
+            sim = (0.75 * max(0.0, cos_sim) + 0.25 * jaccard) if union_tags else max(0.0, cos_sim)
+            if sim >= min_similarity:
+                scored.append((sim, idx, entry))
+
+        scored.sort(key=lambda item: (-item[0], -abs(item[2].outcome), -item[1]))
+        return [item[2] for item in scored[:top_k]]
 
     def best_for_level(self, level: int, top_k: int = 3) -> list[MemoryEntry]:
         candidates = [e for e in self._entries if e.level == level]

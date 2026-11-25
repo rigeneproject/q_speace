@@ -22,6 +22,15 @@ from .dataset import (
     default_fixture_dataset,
     extended_t210_dataset,
 )
+from .diagnostics import (
+    DifferentialErrorRatchet,
+    LeakAuditReport,
+    MemoryLeakAuditor,
+    RatchetVerdict,
+    RegimeFailureSummary,
+    StratifiedDiagnosticReport,
+    StratifiedFailureAnalyzer,
+)
 from .evaluator import (
     CalibratedThresholdResult,
     CalibrationMetrics,
@@ -78,4 +87,11 @@ __all__ = [
     "sha256_text",
     "write_manifest",
     "write_traces_jsonl",
+    "DifferentialErrorRatchet",
+    "LeakAuditReport",
+    "MemoryLeakAuditor",
+    "RatchetVerdict",
+    "RegimeFailureSummary",
+    "StratifiedDiagnosticReport",
+    "StratifiedFailureAnalyzer",
 ]

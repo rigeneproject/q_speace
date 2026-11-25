@@ -1,0 +1,18 @@
+# T249-06 / T217 Stage-2.5 Isolated Replica Profile (zero network, non-root, dropped capabilities)
+services:
+  q-speace-sandbox:
+    build:
+      context: ../..
+      dockerfile: deploy/sandbox/Dockerfile.sandbox
+    network_mode: "none"
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,noexec,nosuid,nodev
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 256
+    mem_limit: 2g
+    cpus: 2.0
+    user: "1001:1001"

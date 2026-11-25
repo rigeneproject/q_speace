@@ -11,6 +11,7 @@ mathematical rule by the BCEL gate), not a literal virus.
 
 from __future__ import annotations
 
+import math
 from collections.abc import Callable
 from dataclasses import dataclass
 
@@ -23,6 +24,14 @@ class CVConfig:
     beta: float = 0.05
     sigma: float = 0.01
     seed: int | None = None
+
+    def __post_init__(self) -> None:
+        if not math.isfinite(self.alpha):
+            raise ValueError("alpha must be finite")
+        if not math.isfinite(self.beta):
+            raise ValueError("beta must be finite")
+        if not math.isfinite(self.sigma) or self.sigma < 0.0:
+            raise ValueError("sigma must be finite and >= 0")
 
 
 class CosmicVirusOptimizer:
@@ -39,8 +48,14 @@ class CosmicVirusOptimizer:
         dt: float = 1.0,
     ) -> np.ndarray:
         """One CV update of the weight matrix W."""
+        if not math.isfinite(dt) or dt < 0.0:
+            raise ValueError("dt must be finite and >= 0")
         w = np.asarray(weights, dtype=float)
         grad = np.asarray(gradient_s_info, dtype=float)
+        if w.shape != grad.shape:
+            raise ValueError(f"weights shape {w.shape} must match gradient shape {grad.shape}")
+        if not np.all(np.isfinite(w)) or not np.all(np.isfinite(grad)):
+            raise ValueError("weights and gradient_s_info must contain only finite values")
         eta = self._rng.normal(0.0, self.config.sigma, size=w.shape)
         cv = eta * grad
         dw = self.config.alpha * cv - self.config.beta * w
@@ -53,7 +68,11 @@ class CosmicVirusOptimizer:
         steps: int = 50,
         dt: float = 1.0,
     ) -> np.ndarray:
+        if steps < 0:
+            raise ValueError("steps must be >= 0")
         w = np.asarray(weights, dtype=float).copy()
+        if not np.all(np.isfinite(w)):
+            raise ValueError("weights must contain only finite values")
         for _ in range(steps):
             w = self.step(w, gradient_fn(w), dt=dt)
         return w

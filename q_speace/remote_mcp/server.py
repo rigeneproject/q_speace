@@ -14,21 +14,9 @@ import secrets
 import time
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-import jwt
-from mcp import types
-from mcp.server.auth.routes import create_protected_resource_routes
-from mcp.server.lowlevel import Server
-from mcp.server.lowlevel.helper_types import ReadResourceContents
-from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
-from mcp.server.transport_security import TransportSecuritySettings
 from pydantic import AnyHttpUrl, AnyUrl
-from starlette.applications import Starlette
-from starlette.requests import Request
-from starlette.responses import JSONResponse
-from starlette.routing import Route
-from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 from q_speace.economy.mcp_server import list_tools
 from q_speace.singularity.mcp_guidance import (
@@ -39,40 +27,59 @@ from q_speace.singularity.mcp_guidance import (
 )
 
 from .config import HTTPConfig
-from .service import Audit, Execution, ServiceError, SQLiteStateStore
+from .service import (
+    Audit,
+    Execution,
+    ServiceError,
+    SQLiteStateStore,
+    _reject_json_constant,
+    bounded,
+)
 from .worker import SCOPES
 
+if TYPE_CHECKING:
+    import jwt
+    from mcp import types
+    from mcp.server.auth.routes import create_protected_resource_routes
+    from mcp.server.lowlevel import Server
+    from mcp.server.lowlevel.helper_types import ReadResourceContents
+    from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
+    from mcp.server.transport_security import TransportSecuritySettings
+    from starlette.applications import Starlette
+    from starlette.requests import Request
+    from starlette.responses import JSONResponse
+    from starlette.routing import Route
+    from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
-def _reject_json_constant(token: str) -> Any:
-    raise ValueError(f"non_finite_json_constant:{token}")
+try:
+    import jwt
+    from mcp import types
+    from mcp.server.auth.routes import create_protected_resource_routes
+    from mcp.server.lowlevel import Server
+    from mcp.server.lowlevel.helper_types import ReadResourceContents
+    from mcp.server.streamable_http_manager import StreamableHTTPSessionManager
+    from mcp.server.transport_security import TransportSecuritySettings
+    from starlette.applications import Starlette
+    from starlette.requests import Request
+    from starlette.responses import JSONResponse
+    from starlette.routing import Route
+
+    _HTTP_DEPS_AVAILABLE = True
+except ImportError:
+    _HTTP_DEPS_AVAILABLE = False
 
 
-def bounded(value: Any, depth: int = 0, count: list[int] | None = None) -> None:
-    count = [0] if count is None else count
-    count[0] += 1
-    if depth > 12 or count[0] > 8192:
-        raise ValueError("input_structure_limit")
-    if isinstance(value, str) and len(value) > 2048:
-        raise ValueError("string_limit")
-    if (
-        isinstance(value, (float, int))
-        and not isinstance(value, bool)
-        and not -1e12 <= value <= 1e12
-    ):
-        raise ValueError("numeric_limit")
-    if isinstance(value, dict):
-        for key, item in value.items():
-            bounded(key, depth + 1, count)
-            bounded(item, depth + 1, count)
-    if isinstance(value, list):
-        if len(value) > 256:
-            raise ValueError("array_limit")
-        for item in value:
-            bounded(item, depth + 1, count)
+def _require_http_deps() -> None:
+    if not _HTTP_DEPS_AVAILABLE:
+        raise RuntimeError(
+            "remote_mcp HTTP server requires optional [http] dependencies "
+            "(pip install -e '.[http]')"
+        )
 
 
 class Endpoint:
     def __init__(self, manager: StreamableHTTPSessionManager) -> None:
+        _require_http_deps()
         self.manager = manager
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
@@ -89,6 +96,7 @@ class Gateway:
         audit: Audit,
         state_store: SQLiteStateStore | None = None,
     ) -> None:
+        _require_http_deps()
         self.app, self.config, self.audit = app, config, audit
         self.state_store = state_store
         if state_store is not None:
@@ -378,6 +386,7 @@ class Gateway:
 
 
 def create_app(config: HTTPConfig) -> Gateway:
+    _require_http_deps()
     server: Server[Any, Any] = Server("q-speace-http", version="0.1.0")
     execution = Execution(config)
 

@@ -252,13 +252,17 @@ async def stage(output: Path, phase: str) -> dict[str, Any]:
     from mcp.client.stdio import stdio_client
 
     hashes = implementation_hashes()
+    try:
+        mcp_sdk_version = importlib.metadata.version("mcp")
+    except importlib.metadata.PackageNotFoundError:
+        mcp_sdk_version = "unavailable"
     if phase == "calibrate":
         output.mkdir(parents=True, exist_ok=False)
         data = fixtures()
         protocol = {
             "version": VERSION,
             "implementation_sha256": hashes,
-            "mcp_sdk": importlib.metadata.version("mcp"),
+            "mcp_sdk": mcp_sdk_version,
             "fixtures": data,
             "fixtures_sha256": digest(data),
             "grid": [asdict(p) for p in GRID],

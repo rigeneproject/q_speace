@@ -8,12 +8,14 @@ Quantum Evolution Engine (QEE). See docs/progetto_q_speace_linee_guida.md §9.
 from __future__ import annotations
 
 from .adaptive_levels import AdaptiveLevel, AdaptiveLevelRegistry, HarnessUpdate, WeightUpdate
-from .cortex import SelfImprovementCortex
+from .cortex import PatchCycleResult, SandboxedPatchCycle, SelfImprovementCortex
 from .dna_registry import DNAMutationRecord, MutationRegistry
 from .epigenetics import EpigeneticEngine, EpigeneticMarker, EpigeneticState, EpigeneticTag
 from .evolution_council import (
     AgentProposal,
     DigitalDNAAgent,
+    EpistemicAuditResult,
+    EpistemicProposalAuditor,
     EvolutionCouncil,
     EvolutionOrchestrator,
     ILFAgent,
@@ -35,6 +37,7 @@ from .quantum_engine import (
     QuantumOracle,
 )
 from .rollback import RollbackManager, RollbackPlan
+from .skill_library import ReconsolidationWindow, ReusableSkill, SkillLibrary
 
 __all__ = [
     "SelfImprovementCortex",
@@ -73,4 +76,11 @@ __all__ = [
     "QuantumOracle",
     "QAOASelector",
     "QuantumKernelClassifier",
+    "PatchCycleResult",
+    "SandboxedPatchCycle",
+    "EpistemicAuditResult",
+    "EpistemicProposalAuditor",
+    "ReusableSkill",
+    "SkillLibrary",
+    "ReconsolidationWindow",
 ]

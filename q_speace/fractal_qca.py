@@ -40,11 +40,16 @@ class FractalQCA:
         fractal_exponent: float = 1.8,
         seed: int | None = None,
     ) -> None:
-        if num_cells < 2:
-            raise ValueError("num_cells must be >= 2")
+        if num_cells < 2 or num_cells > 16:
+            raise ValueError("num_cells must be in [2, 16]")
+        if not math.isfinite(gamma):
+            raise ValueError("gamma must be finite")
+        if not math.isfinite(fractal_exponent) or fractal_exponent <= 0.0:
+            raise ValueError("fractal_exponent must be finite and > 0")
         self.num_cells = num_cells
-        self.gamma = gamma
-        self.fractal_exponent = fractal_exponent
+        self.gamma = float(gamma)
+        self.fractal_exponent = float(fractal_exponent)
+        self._tick = 0
         self._rng = np.random.default_rng(seed)
         # Initialize weights between neighboring cells.
         self.weights = self._rng.uniform(0.4, 0.6, size=num_cells)
@@ -65,6 +70,8 @@ class FractalQCA:
         the weight stays bounded; clipping to [0,1] makes the resulting RY
         angle (pi*weight) bounded in [0, pi] without hard clipping.
         """
+        if not math.isfinite(delta_s_info):
+            raise ValueError("delta_s_info must be finite")
         n = self.num_cells
         new_weights = self.weights.copy()
         for i in range(n):
@@ -72,9 +79,7 @@ class FractalQCA:
             for j in range(n):
                 if i == j:
                     continue
-                d = min(abs(i - j), n - abs(i - j))
-                d = max(d, 1)
-                coupling += self.gamma * (d ** (-self.fractal_exponent)) * delta_s_info
+                coupling += self.gamma * self._distance_weight(i, j) * delta_s_info
             new_weights[i] += coupling
         self.weights = np.clip(new_weights, 0.0, 1.0)
 
@@ -87,13 +92,15 @@ class FractalQCA:
 
         # Coherence proxy from probability concentration.
         probs = state.probabilities()
-        entropy = -np.sum(probs * np.log(probs + 1e-12))
+        entropy = -np.sum(probs * np.log(np.maximum(probs, 1e-12)))
         max_entropy = self.num_cells * math.log(2.0)  # 2**num_cells basis states
-        coherence_phi = float(1.0 - entropy / max_entropy)
+        coherence_phi = float(np.clip(1.0 - entropy / max_entropy, 0.0, 1.0))
 
         self.state = state
+        current_tick = self._tick
+        self._tick += 1
         return QCAStepResult(
-            tick=0,
+            tick=current_tick,
             coherence_phi=coherence_phi,
             mean_weight=float(np.mean(self.weights)),
         )
@@ -105,18 +112,20 @@ class FractalQCA:
         from .fractal_qca_cascade import LevelSignature
 
         probs = self.state.probabilities()
-        entropy = -np.sum(probs * np.log(probs + 1e-12))
+        entropy = -np.sum(probs * np.log(np.maximum(probs, 1e-12)))
         max_entropy = self.num_cells * math.log(2.0)
         return LevelSignature(
             name="level",
             n_qubits=self.num_cells,
-            coherence_phi=float(1.0 - entropy / max_entropy),
-            entropy_s=float(entropy),
+            coherence_phi=float(np.clip(1.0 - entropy / max_entropy, 0.0, 1.0)),
+            entropy_s=float(max(0.0, entropy)),
             sigma=float(np.std(self.weights)),
         )
 
     def inject_noise(self, sigma: float) -> None:
         """Bottom-up noise injection (atomic noise rising to higher levels)."""
+        if not math.isfinite(sigma):
+            raise ValueError("sigma must be finite")
         if sigma <= 0:
             return
         noise = self._rng.normal(0.0, sigma, size=self.num_cells)
@@ -124,6 +133,8 @@ class FractalQCA:
 
     def seed_from(self, coherence_phi: float, rate: float = 0.1) -> None:
         """Top-down seeding: nudge weights toward a higher-level coherence."""
+        if not math.isfinite(coherence_phi) or not math.isfinite(rate) or rate < 0.0:
+            raise ValueError("coherence_phi must be finite and rate must be finite >= 0")
         target = min(max(coherence_phi, 0.0), 1.0)
         self.weights = np.clip(self.weights + rate * (target - self.weights), 0.0, 1.0)
 

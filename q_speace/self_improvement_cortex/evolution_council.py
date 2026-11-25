@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
+
+import numpy as np
 
 if TYPE_CHECKING:
     from ..aacm import AACMController
@@ -390,3 +393,157 @@ class EvolutionOrchestrator:
                 break
             selected.append(proposal)
         return selected
+
+
+@dataclass(frozen=True)
+class EpistemicAuditResult:
+    """Deterministic adversarial & epistemic audit verdict for a proposal (T248)."""
+
+    approved: bool
+    fast_path: bool
+    perturbation_stability: float
+    epistemic_score: float
+    emergent_confidence: float
+    reason: str
+
+
+class EpistemicProposalAuditor:
+    """4-criterion adversarial perturbation & epistemic proposal filter (T248).
+
+    Synthesized via BCEL from ``cellular_speace_docker`` ``MMAPRCouncil``:
+    - Fast-path uncertainty band ``[low_band, high_band)`` avoids audit compute on
+      degenerate proposals (``< low_band`` rejected, ``>= high_band`` with low risk accepted).
+    - Perturbation critic injects ``num_perturbations`` seeded Gaussian perturbations into
+      numeric ``context`` values and verifies whether the originating council still emits
+      the target proposal with ``stability >= min_stability``.
+    - Epistemic auditor discounts over-complex levels and small evidence counts.
+    """
+
+    def __init__(
+        self,
+        *,
+        low_band: float = 0.05,
+        high_band: float = 0.99,
+        num_perturbations: int = 5,
+        noise_sigma: float = 0.03,
+        min_stability: float = 0.6,
+        seed: int = 42,
+    ) -> None:
+        for name, val in (
+            ("low_band", low_band),
+            ("high_band", high_band),
+            ("noise_sigma", noise_sigma),
+            ("min_stability", min_stability),
+        ):
+            if not math.isfinite(val):
+                raise ValueError(f"{name} must be finite")
+        if not (0.0 <= low_band < high_band <= 1.0):
+            raise ValueError("0 <= low_band < high_band <= 1 is required")
+        if num_perturbations < 1:
+            raise ValueError("num_perturbations must be >= 1")
+        if noise_sigma < 0.0 or not (0.0 <= min_stability <= 1.0):
+            raise ValueError("noise_sigma >= 0 and min_stability in [0, 1] required")
+        self.low_band = float(low_band)
+        self.high_band = float(high_band)
+        self.num_perturbations = num_perturbations
+        self.noise_sigma = float(noise_sigma)
+        self.min_stability = float(min_stability)
+        self.seed = seed
+
+    def score_uncertain(self, score: float) -> bool:
+        """Return True iff ``score`` falls inside the deliberation band ``[low_band, high_band)``."""
+        if not math.isfinite(score):
+            raise ValueError("score must be finite")
+        return self.low_band <= score < self.high_band
+
+    def audit(
+        self,
+        proposal: AgentProposal,
+        context: dict[str, object],
+        council: EvolutionCouncil | None = None,
+        evidence_count: int = 3,
+    ) -> EpistemicAuditResult:
+        for name, val in (
+            ("confidence", proposal.confidence),
+            ("expected_impact", proposal.expected_impact),
+            ("risk", proposal.risk),
+        ):
+            if not math.isfinite(val):
+                raise ValueError(f"proposal.{name} must be finite")
+        if evidence_count < 0:
+            raise ValueError("evidence_count must be >= 0")
+
+        base_score = float(proposal.confidence) * (1.0 - max(0.0, min(1.0, float(proposal.risk))))
+        if base_score < self.low_band:
+            return EpistemicAuditResult(
+                approved=False,
+                fast_path=True,
+                perturbation_stability=0.0,
+                epistemic_score=0.0,
+                emergent_confidence=base_score,
+                reason="fast_path_reject_low_score",
+            )
+        if base_score >= self.high_band and proposal.risk <= 0.05:
+            return EpistemicAuditResult(
+                approved=True,
+                fast_path=True,
+                perturbation_stability=1.0,
+                epistemic_score=1.0,
+                emergent_confidence=min(1.0, base_score),
+                reason="fast_path_accept_high_confidence",
+            )
+
+        # Perturbation stability across numeric context keys
+        stability = 1.0
+        if council is not None:
+            rng = np.random.default_rng(self.seed)
+            hits = 0
+            for _ in range(self.num_perturbations):
+                perturbed: dict[str, object] = {}
+                for k, v in context.items():
+                    if isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v):
+                        perturbed[k] = float(
+                            np.clip(float(v) + rng.normal(0.0, self.noise_sigma), 0.0, 1.0)
+                        )
+                    else:
+                        perturbed[k] = v
+                emitted = council.gather_proposals(perturbed)
+                if any(
+                    p.agent_name == proposal.agent_name and p.target == proposal.target
+                    for p in emitted
+                ):
+                    hits += 1
+            stability = hits / self.num_perturbations
+
+        # Epistemic score: sample adequacy + Occam level simplicity + context richness
+        sample_term = min(1.0, evidence_count / 5.0)
+        complexity_term = (
+            1.0 if 1 <= proposal.level <= 3 else max(0.2, 1.0 - 0.12 * max(0, proposal.level - 3))
+        )
+        numeric_signals = sum(
+            1
+            for v in context.values()
+            if isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
+        )
+        diversity_term = min(1.0, numeric_signals / 4.0)
+        epistemic = 0.40 * sample_term + 0.35 * complexity_term + 0.25 * diversity_term
+
+        emergent = 0.40 * base_score + 0.35 * stability + 0.25 * epistemic
+        approved = stability >= self.min_stability and emergent >= 0.45
+        reason = (
+            "approved_council_deliberation"
+            if approved
+            else (
+                "rejected_perturbation_instability"
+                if stability < self.min_stability
+                else "rejected_epistemic_threshold"
+            )
+        )
+        return EpistemicAuditResult(
+            approved=approved,
+            fast_path=False,
+            perturbation_stability=float(stability),
+            epistemic_score=float(epistemic),
+            emergent_confidence=float(emergent),
+            reason=reason,
+        )

@@ -7,7 +7,14 @@ and a quantum orchestrator. See progetto_q_speace_linee_guida.md.
 
 from __future__ import annotations
 
+from .aacm import (
+    EdgeGrowthProposal,
+    EntropyBoundedUCB1Gating,
+    GraphEdgePruner,
+    ProposalOnlyEdgeGrower,
+)
 from .bcel import BCELCatalog
+from .bridge import SimulatedSensorAdapter, SimulatedSensorReading, run_coro_isolated
 from .earth_feed import EarthFeed, EarthSignals
 from .edd_cvt import CosmicVirusOptimizer, CVConfig, InformationalLogicalField
 from .fractal_qca import FractalQCA
@@ -19,7 +26,14 @@ from .fractal_qca_cascade import (
     qi_bridge_cqasm,
 )
 from .genome import QuantumGeneSet
-from .metabolism import QuantumCostModel, QuantumOperation
+from .metabolism import (
+    DiffusiveBudgetAllocator,
+    HomeostaticChannel,
+    HomeostaticODEController,
+    HomeostaticSnapshot,
+    QuantumCostModel,
+    QuantumOperation,
+)
 from .orchestrator import QuantumOrchestrator, TickReport
 from .quantum import (
     BrainQuantumCircuit,
@@ -48,6 +62,15 @@ from .radio import (
     SpectrumSensor,
     WavefrontModulator,
 )
+from .routing import (
+    CostAwareRouter,
+    CostRouteSpec,
+    GOAPAction,
+    GOAPPlanner,
+    HypothesisEntry,
+    HypothesisStack,
+    UtilityDriveSystem,
+)
 from .schumann import run_schumann, schumann_circuit
 from .self_improvement_cortex import (
     AdaptiveLevel,
@@ -59,6 +82,8 @@ from .self_improvement_cortex import (
     EpigeneticMarker,
     EpigeneticState,
     EpigeneticTag,
+    EpistemicAuditResult,
+    EpistemicProposalAuditor,
     EvolutionaryMemory,
     EvolutionCouncil,
     EvolutionOrchestrator,
@@ -74,26 +99,52 @@ from .self_improvement_cortex import (
     NeuroscienceAgent,
     NewModuleSpec,
     OrganismObserver,
+    PatchCycleResult,
     PhysiologicalProfile,
     QAOASelector,
     QuantumEvolutionEngine,
     QuantumKernelClassifier,
     QuantumOracle,
+    ReconsolidationWindow,
+    ReusableSkill,
     RLAgent,
     RollbackManager,
     RollbackPlan,
     SafetyAgent,
+    SandboxedPatchCycle,
     SelfImprovementCortex,
+    SkillLibrary,
     SoftwareArchitect,
     WeightUpdate,
 )
+from .spiking import (
+    CausalEdge,
+    CriticalityController,
+    CriticalityState,
+    RelationEdge,
+    StructuralCausalDAG,
+    SymbolicGraphReasoner,
+    TDMMaintenanceScheduler,
+    TDMScheduleTick,
+    spike_temporal_asymmetry,
+)
 from .spiking_brain import (
+    ActionDegradationGate,
     CortexReport,
+    CycleObservation,
+    CyclePrediction,
+    CycleSurprise,
+    EpistemicAssessment,
     HTTPSpikingBrainClient,
+    ObservationDigest,
+    SemanticEpisodicMemory,
     SpikingBrainCortex,
+    StructuralPredictiveCoder,
     StubSpikingBrain,
     StubSpikingBrainV2,
     ThinkResult,
+    TruthEngine,
+    embed_text_hashed,
     make_spiking_brain,
 )
 
@@ -112,7 +163,6 @@ __all__ = [
     "DigitalTwinRF",
     "DigitalTwinRFConfig",
     "RFComponentModel",
-    "QuantumState",
     "QuantumState",
     "QuantumGates",
     "GateType",
@@ -184,4 +234,48 @@ __all__ = [
     "StubSpikingBrainV2",
     "HTTPSpikingBrainClient",
     "make_spiking_brain",
+    "SemanticEpisodicMemory",
+    "embed_text_hashed",
+    "CriticalityController",
+    "CriticalityState",
+    "CausalEdge",
+    "StructuralCausalDAG",
+    "spike_temporal_asymmetry",
+    "PatchCycleResult",
+    "SandboxedPatchCycle",
+    "EpistemicAuditResult",
+    "EpistemicProposalAuditor",
+    "HomeostaticChannel",
+    "HomeostaticSnapshot",
+    "HomeostaticODEController",
+    "DiffusiveBudgetAllocator",
+    "EdgeGrowthProposal",
+    "EntropyBoundedUCB1Gating",
+    "GraphEdgePruner",
+    "ProposalOnlyEdgeGrower",
+    "TruthEngine",
+    "ObservationDigest",
+    "EpistemicAssessment",
+    "CyclePrediction",
+    "CycleObservation",
+    "CycleSurprise",
+    "StructuralPredictiveCoder",
+    "ActionDegradationGate",
+    "UtilityDriveSystem",
+    "CostRouteSpec",
+    "CostAwareRouter",
+    "GOAPAction",
+    "GOAPPlanner",
+    "HypothesisEntry",
+    "HypothesisStack",
+    "ReusableSkill",
+    "SkillLibrary",
+    "ReconsolidationWindow",
+    "RelationEdge",
+    "SymbolicGraphReasoner",
+    "TDMMaintenanceScheduler",
+    "TDMScheduleTick",
+    "SimulatedSensorAdapter",
+    "SimulatedSensorReading",
+    "run_coro_isolated",
 ]

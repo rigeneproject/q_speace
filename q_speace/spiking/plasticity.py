@@ -33,6 +33,8 @@ class SpikePlasticity:
 
     def _rates(self, spikes: np.ndarray) -> np.ndarray:
         s = np.asarray(spikes, dtype=float)
+        if not np.all(np.isfinite(s)):
+            raise ValueError("spikes must contain only finite values")
         rate = np.abs(s) if s.ndim == 1 else np.abs(s).sum(axis=-1)
         if rate.size != self.num_units:
             raise ValueError(f"spike activity must yield {self.num_units} units, got {rate.size}")
@@ -46,6 +48,30 @@ class SpikePlasticity:
         out: np.ndarray = self._ema.copy()
         return out
 
+    def homeostatic_scale(
+        self,
+        target_mean: float = 0.5,
+        min_scale: float = 0.1,
+        max_scale: float = 10.0,
+    ) -> np.ndarray:
+        """Multiplicative homeostatic scaling keeping population mean EMA near ``target_mean``."""
+        for name, val in (
+            ("target_mean", target_mean),
+            ("min_scale", min_scale),
+            ("max_scale", max_scale),
+        ):
+            if not math.isfinite(val) or val <= 0.0:
+                raise ValueError(f"{name} must be finite and > 0 (got {val!r})")
+        if max_scale < min_scale:
+            raise ValueError("max_scale must be >= min_scale")
+        current_mean = float(np.mean(self._ema))
+        if current_mean <= 1e-12:
+            return self._ema.copy()
+        factor = min(max(target_mean / current_mean, min_scale), max_scale)
+        self._ema = self._ema * factor
+        out: np.ndarray = self._ema.copy()
+        return out
+
     def coefficients(self) -> np.ndarray:
         """Plasticity coefficients in [0, 1], normalized across units."""
         m = float(np.max(self._ema))
@@ -56,4 +82,8 @@ class SpikePlasticity:
     @staticmethod
     def decayed_rate(rate: float, dt: float, lam: float = 0.1) -> float:
         """Static plasticity rule: exp(-lambda * dt) * rate."""
+        if not (math.isfinite(rate) and math.isfinite(dt) and math.isfinite(lam)):
+            raise ValueError("rate, dt, and lam must be finite")
+        if dt < 0.0 or lam < 0.0:
+            raise ValueError("dt and lam must be >= 0")
         return math.exp(-lam * dt) * rate

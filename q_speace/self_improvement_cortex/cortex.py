@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 
+import copy
+import math
+from collections import deque
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
+from typing import Any
 
 from .adaptive_levels import AdaptiveLevelRegistry
 from .dna_registry import MutationRegistry
@@ -16,6 +21,134 @@ from .quantum_engine import (
     QuantumEvolutionEngine,
 )
 from .rollback import RollbackManager
+
+
+@dataclass(frozen=True)
+class PatchCycleResult:
+    """Outcome of a transactional pre/post benchmark patch verification (T248)."""
+
+    committed: bool
+    mean_delta: float
+    improved_keys: tuple[str, ...]
+    worsened_keys: tuple[str, ...]
+    metrics_before: dict[str, float]
+    metrics_after: dict[str, float]
+    reason: str
+
+
+class SandboxedPatchCycle:
+    """Transactional pre/post fixture evaluator with automatic rollback on regression (T248).
+
+    Synthesized via BCEL from ``cellular_speace_ollama`` ``SandboxedPatchCycle``:
+    snapshots mutable ``state``, applies ``patch_fn(state)``, measures ``benchmark_fn(state)``
+    before and after, and restores the pre-patch snapshot on exception, non-finite metric,
+    strict per-fixture regression, or ``mean_delta < min_delta``.
+    """
+
+    def __init__(
+        self,
+        *,
+        min_delta: float = 0.0,
+        allow_key_regression: bool = False,
+        regression_tol: float = 1e-9,
+    ) -> None:
+        if (
+            not math.isfinite(min_delta)
+            or not math.isfinite(regression_tol)
+            or regression_tol < 0.0
+        ):
+            raise ValueError("min_delta must be finite and regression_tol must be finite >= 0")
+        self.min_delta = float(min_delta)
+        self.allow_key_regression = allow_key_regression
+        self.regression_tol = float(regression_tol)
+
+    @staticmethod
+    def _validate_scores(label: str, scores: Mapping[str, float]) -> dict[str, float]:
+        if not scores:
+            raise ValueError(f"{label} benchmark scores must be non-empty")
+        out: dict[str, float] = {}
+        for k, v in scores.items():
+            fval = float(v)
+            if not math.isfinite(fval):
+                raise ValueError(f"{label}[{k!r}] must be finite (got {v!r})")
+            out[k] = fval
+        return out
+
+    def run(
+        self,
+        state: dict[str, Any],
+        patch_fn: Callable[[dict[str, Any]], None],
+        benchmark_fn: Callable[[Mapping[str, Any]], Mapping[str, float]],
+    ) -> PatchCycleResult:
+        snapshot = copy.deepcopy(state)
+        before = self._validate_scores("pre", benchmark_fn(state))
+        try:
+            patch_fn(state)
+            after = self._validate_scores("post", benchmark_fn(state))
+        except Exception as exc:
+            state.clear()
+            state.update(snapshot)
+            return PatchCycleResult(
+                committed=False,
+                mean_delta=0.0,
+                improved_keys=(),
+                worsened_keys=tuple(sorted(before.keys())),
+                metrics_before=before,
+                metrics_after=dict(before),
+                reason=f"patch_exception:{type(exc).__name__}",
+            )
+
+        keys = sorted(set(before.keys()) & set(after.keys()))
+        if not keys:
+            state.clear()
+            state.update(snapshot)
+            return PatchCycleResult(
+                committed=False,
+                mean_delta=0.0,
+                improved_keys=(),
+                worsened_keys=(),
+                metrics_before=before,
+                metrics_after=after,
+                reason="disjoint_benchmark_keys",
+            )
+
+        improved = tuple(k for k in keys if after[k] - before[k] > self.regression_tol)
+        worsened = tuple(k for k in keys if before[k] - after[k] > self.regression_tol)
+        mean_delta = sum(after[k] - before[k] for k in keys) / len(keys)
+
+        if not self.allow_key_regression and worsened:
+            state.clear()
+            state.update(snapshot)
+            return PatchCycleResult(
+                committed=False,
+                mean_delta=float(mean_delta),
+                improved_keys=improved,
+                worsened_keys=worsened,
+                metrics_before=before,
+                metrics_after=after,
+                reason="rolled_back_fixture_regression",
+            )
+        if mean_delta < self.min_delta:
+            state.clear()
+            state.update(snapshot)
+            return PatchCycleResult(
+                committed=False,
+                mean_delta=float(mean_delta),
+                improved_keys=improved,
+                worsened_keys=worsened,
+                metrics_before=before,
+                metrics_after=after,
+                reason="rolled_back_insufficient_delta",
+            )
+        return PatchCycleResult(
+            committed=True,
+            mean_delta=float(mean_delta),
+            improved_keys=improved,
+            worsened_keys=worsened,
+            metrics_before=before,
+            metrics_after=after,
+            reason="committed",
+        )
 
 
 @dataclass
@@ -49,7 +182,10 @@ class SelfImprovementCortex:
         neurogenesis: NeurogenesisPipeline | None = None,
         rollback_manager: RollbackManager | None = None,
         quantum_engine: QuantumEvolutionEngine | None = None,
+        max_history: int = 1024,
     ) -> None:
+        if max_history < 1:
+            raise ValueError(f"max_history must be >= 1 (got {max_history})")
         self.council = council or EvolutionCouncil()
         self.observer = observer or OrganismObserver()
         self.levels = level_registry or AdaptiveLevelRegistry()
@@ -64,7 +200,7 @@ class SelfImprovementCortex:
         )
         self.qee = quantum_engine or QuantumEvolutionEngine()
         self._tick = 0
-        self._history: list[SIAReport] = []
+        self._history: deque[SIAReport] = deque(maxlen=max_history)
 
     def tick(self, context: dict | None = None) -> SIAReport:
         ctx = dict(context) if context else {}

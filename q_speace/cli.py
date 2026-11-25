@@ -65,7 +65,7 @@ def quantum_run(
         enable_radio=radio,
         enable_metasurface=metasurface,
     )
-    orch.enable_qca(num_cells=neurons)
+    orch.enable_qca(num_cells=min(max(neurons, 2), 16))
     report = orch.run(ticks=ticks)
     typer.echo(f"Ran {len(report)} ticks")
     typer.echo(str(orch.report()))
@@ -144,6 +144,41 @@ def quantum_cross_scale(
     typer.echo(f"brain sigma (baseline): {base:.4f}")
     typer.echo(f"brain sigma (atom-noise): {noisy:.4f}")
     typer.echo(f"cross-scale emergence: {'YES' if noisy > base else 'NO'}")
+
+
+@quantum_app.command("memory-audit")
+def quantum_memory_audit(
+    ticks: int = typer.Option(16, "--ticks", "-t", min=2),
+) -> None:
+    """Run T249-06 GC object-growth & bounded-history audit on QuantumOrchestrator + SIA."""
+    from .vertical_slice.diagnostics import MemoryLeakAuditor
+
+    auditor = MemoryLeakAuditor()
+    auditor.capture_baseline()
+    orch = QuantumOrchestrator(
+        genome=QuantumGeneSet(enabled=True),
+        neurons=["n0", "n1", "n2", "n3"],
+        seed=0,
+        enable_spikes=True,
+        enable_criticality=True,
+        enable_homeostasis=True,
+        max_history=32,
+    )
+    orch.enable_qca(num_cells=4)
+    orch.run(ticks=ticks)
+    sia = SelfImprovementCortex(max_history=32)
+    for _ in range(min(ticks, 8)):
+        sia.tick({"coherence_phi": 0.6})
+    audit_res = auditor.audit({"orchestrator": orch, "sia": sia})
+    payload = {
+        "passed": audit_res.passed,
+        "temporal_liveness": orch.temporal_liveness(),
+        "unbounded_containers": list(audit_res.unbounded_containers),
+        "suspected_type_growth": audit_res.suspected_type_growth,
+    }
+    typer.echo(json.dumps(payload, indent=2, sort_keys=True, allow_nan=False))
+    if not audit_res.passed:
+        raise typer.Exit(3)
 
 
 @sia_app.command("run")
@@ -662,6 +697,33 @@ def eval_t210_campaign(
         "t210_10_decisions": report["t210_10_decisions"],
     }
     typer.echo(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False))
+
+
+@eval_app.command("stratify")
+def eval_stratify(
+    policy: Annotated[str, typer.Option("--policy", "-p")] = "combined_gate",
+    seed: Annotated[int, typer.Option("--seed")] = 0,
+) -> None:
+    """Run T249-06 regime-stratified failure taxonomy on the vertical-slice fixture dataset."""
+    from .spiking_brain import StubSpikingBrain
+    from .vertical_slice import (
+        PolicyKind,
+        StratifiedFailureAnalyzer,
+        VerticalSliceRunner,
+        default_fixture_dataset,
+        default_policy,
+    )
+
+    dataset = default_fixture_dataset()
+    cfg = default_policy(policy)  # type: ignore[arg-type]
+    _ = PolicyKind  # keep typing explicit
+    cortex = SpikingBrainCortex(backend=StubSpikingBrain(seed=seed))
+    traces, _manifest = VerticalSliceRunner(cortex=cortex, policy=cfg, seed=seed).run_dataset(
+        dataset
+    )
+    labels = {c.case_id: c.should_answer for c in dataset.cases}
+    diag = StratifiedFailureAnalyzer().analyze(traces, labels)
+    typer.echo(json.dumps(diag.to_dict(), indent=2, sort_keys=True, allow_nan=False))
 
 
 @singularity_app.command("manifest")

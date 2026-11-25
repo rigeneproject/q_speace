@@ -7,6 +7,7 @@ used in Q-SPEACE as a *computational resource for information binding*
 
 from __future__ import annotations
 
+import math
 import time
 from dataclasses import dataclass, field
 
@@ -50,10 +51,13 @@ class EntanglementRegistry:
     ) -> EntangledPair:
         if entity_a == entity_b:
             raise ValueError("cannot entangle an entity with itself")
+        f_val = float(fidelity)
+        if not math.isfinite(f_val):
+            raise ValueError(f"fidelity must be finite (got {fidelity!r})")
         pair = EntangledPair(
             entity_a=entity_a,
             entity_b=entity_b,
-            fidelity=float(fidelity),
+            fidelity=f_val,
             label=label,
             metadata=metadata or {},
         )
@@ -75,6 +79,22 @@ class EntanglementRegistry:
             for j, p in enumerate(self._pairs):
                 self._by_entity.setdefault(p.entity_a, []).append(j)
                 self._by_entity.setdefault(p.entity_b, []).append(j)
+        return removed
+
+    def remove_entity(self, entity_id: str) -> int:
+        """Remove all entangled pairs involving ``entity_id`` and rebuild index."""
+        removed = 0
+        for i in range(len(self._pairs) - 1, -1, -1):
+            if self._pairs[i].involves(entity_id):
+                self._pairs.pop(i)
+                removed += 1
+        if removed:
+            self._by_entity.clear()
+            for j, p in enumerate(self._pairs):
+                self._by_entity.setdefault(p.entity_a, []).append(j)
+                self._by_entity.setdefault(p.entity_b, []).append(j)
+        else:
+            self._by_entity.pop(entity_id, None)
         return removed
 
     def pairs_of(self, entity_id: str) -> list[EntangledPair]:

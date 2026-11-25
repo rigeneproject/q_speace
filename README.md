@@ -125,6 +125,21 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   `qspeace://manifest/singularity`, `qspeace://catalog/bcel`) and 3 session-start bootstrap Prompts
   (`organism_bootstrap`, `metabolic_action_gate`, `federated_swarm_cycle`) on both stdio and HTTP MCP
   (`qspeace:catalog.read` scope-gated, audited, zero new tools).
+- [Cross-Repository BCEL Synthesis & Core Fail-Closed Hardening (T248)](docs/T248_CROSS_REPO_SYNTHESIS_AND_CORE_HARDENING_SPEC.md):
+  bare-`[dev]` CI/mypy decoupling, core numerical/slot/history hardening (`QuantumState`, `QuantumNeuralBridge`,
+  `FractalQCA`, `CosmicVirusOptimizer`, `ResonanceEngine`, `QuantumOrchestrator`), and BCEL-gated synthesis from
+  complementary SPEACE repositories (`CriticalityController` + synaptic scaling, precision-weighted `ILF` +
+  variational free-energy surprise, directed `spike_temporal_asymmetry` + non-destructive `StructuralCausalDAG`,
+  SQLite+`blake2b` `SemanticEpisodicMemory`, continuous/Jaccard `EvolutionaryMemory`, `SandboxedPatchCycle`,
+  and `EpistemicProposalAuditor`).
+- [Complete BCEL Synthesis of Remaining Parallel SPEACE Elements (T249)](docs/T249_COMPLETE_PARALLEL_SYNTHESIS_SPEC.md):
+  sequential synthesis ([T249_TASKS.md](docs/T249_TASKS.md)) completing canonical absorption across parallel SPEACE
+  forks (`HomeostaticODEController` + `DiffusiveBudgetAllocator`, `EntropyBoundedUCB1Gating` + proposal-only
+  `ProposalOnlyEdgeGrower`/`GraphEdgePruner`, `TruthEngine` SHA-256 provenance + `StructuralPredictiveCoder` +
+  `ActionDegradationGate`, `UtilityDriveSystem` + `CostAwareRouter` + `simulate_only` `GOAPPlanner` +
+  `HypothesisStack` + `SkillLibrary`/`ReconsolidationWindow`, `SymbolicGraphReasoner` + `TDMMaintenanceScheduler`,
+  T217 `SimulatedSensorAdapter` + hardened `deploy/sandbox/` profile, `StratifiedFailureAnalyzer`,
+  `MemoryLeakAuditor`, and `DifferentialErrorRatchet`).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

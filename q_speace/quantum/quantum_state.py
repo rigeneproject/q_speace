@@ -113,6 +113,8 @@ class QuantumState:
         u = np.asarray(unitary, dtype=np.complex128)
         if u.shape != (self.amplitudes.shape[0],) * 2:
             raise ValueError("unitary shape incompatible with state size")
+        if not np.all(np.isfinite(u)):
+            raise ValueError("unitary matrix entries must be finite")
         diff = u.conj().T @ u - np.eye(u.shape[0], dtype=np.complex128)
         if np.max(np.abs(diff)) > 1e-6:
             raise ValueError("matrix is not unitary (tolerance 1e-6)")

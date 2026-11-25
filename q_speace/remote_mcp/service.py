@@ -21,6 +21,30 @@ def _reject_json_constant(token: str) -> Any:
     raise ValueError(f"non_finite_json_constant:{token}")
 
 
+def bounded(value: Any, depth: int = 0, count: list[int] | None = None) -> None:
+    count = [0] if count is None else count
+    count[0] += 1
+    if depth > 12 or count[0] > 8192:
+        raise ValueError("input_structure_limit")
+    if isinstance(value, str) and len(value) > 2048:
+        raise ValueError("string_limit")
+    if (
+        isinstance(value, (float, int))
+        and not isinstance(value, bool)
+        and not -1e12 <= value <= 1e12
+    ):
+        raise ValueError("numeric_limit")
+    if isinstance(value, dict):
+        for key, item in value.items():
+            bounded(key, depth + 1, count)
+            bounded(item, depth + 1, count)
+    if isinstance(value, list):
+        if len(value) > 256:
+            raise ValueError("array_limit")
+        for item in value:
+            bounded(item, depth + 1, count)
+
+
 def _atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     serialized = json.dumps(payload, sort_keys=True, indent=2, allow_nan=False).encode("utf-8")

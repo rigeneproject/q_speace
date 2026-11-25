@@ -42,6 +42,10 @@ def run_schumann(
     num_qubits: int = 4, ticks: int = 10, use_network: bool = False, seed: int | None = None
 ) -> dict[str, object]:
     """Run the Schumann experiment across ticks; return measurements + metrics."""
+    if num_qubits < 1 or num_qubits > 16:
+        raise ValueError("num_qubits must be in [1, 16]")
+    if ticks < 1:
+        raise ValueError("ticks must be >= 1")
     feed = EarthFeed(use_network=use_network, seed=seed)
     sim = QuantumBrainSimulator(seed=seed)
     coherence_trace: list[float] = []
@@ -52,15 +56,15 @@ def run_schumann(
     for t in range(ticks):
         signals: EarthSignals = feed.fetch(t)
         circ = schumann_circuit(num_qubits, signals.rotation_angles())
-        measurements = sim.run(circ)
         state = sim.state(circ)
         probs = state.probabilities()
         nz = probs[probs > 0]
         entropy = float(-np.sum(nz * np.log(nz)))
         max_ent = math.log(2**num_qubits)
         coherence = 1.0 - (entropy / max_ent if max_ent > 0 else 0.0)
-        coherence_trace.append(float(coherence))
-        last_measurements = measurements
+        coherence_trace.append(float(np.clip(coherence, 0.0, 1.0)))
+        mr = state.measure()
+        last_measurements = [(circ.role_of(i), bit) for i, bit in enumerate(mr.bitstring)]
 
     return {
         "num_qubits": num_qubits,

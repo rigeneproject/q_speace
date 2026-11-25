@@ -42,6 +42,7 @@ from .audit import BrainAuditLog
 from .interface import LifecycleState
 from .memory import Memory, WorkingMemory
 from .stub import StubSpikingBrain
+from .truth_engine import TruthEngine
 from .types import ThinkResult
 
 
@@ -85,6 +86,7 @@ class SpikingBrainCortex:
         backend_coherence_phi_floor: float = 0.7,
         brain_audit_log: BrainAuditLog | None = None,
         max_energy_w: float | None = None,
+        truth_engine: TruthEngine | None = None,
     ) -> None:
         if backend is None:
             from .factory import make_spiking_brain
@@ -101,9 +103,17 @@ class SpikingBrainCortex:
             coherence_phi_ema=coherence_phi_ema,
         )
         self.cost = cost or QuantumCostModel()
-        self.sevo_threshold = sevo_threshold
-        self.min_coherence_phi = min_coherence_phi
-        self.min_confidence = min_confidence
+        if not math.isfinite(sevo_threshold):
+            raise ValueError(f"sevo_threshold must be finite (got {sevo_threshold})")
+        if not math.isfinite(min_coherence_phi) or not (0.0 <= min_coherence_phi <= 1.0):
+            raise ValueError(
+                f"min_coherence_phi must be finite and in [0, 1] (got {min_coherence_phi})"
+            )
+        if not math.isfinite(min_confidence) or not (0.0 <= min_confidence <= 1.0):
+            raise ValueError(f"min_confidence must be finite and in [0, 1] (got {min_confidence})")
+        self.sevo_threshold = float(sevo_threshold)
+        self.min_coherence_phi = float(min_coherence_phi)
+        self.min_confidence = float(min_confidence)
         if max_energy_w is not None and (not math.isfinite(max_energy_w) or max_energy_w < 0.0):
             raise ValueError(f"max_energy_w must be finite and >= 0 (got {max_energy_w})")
         self.max_energy_w: float | None = float(max_energy_w) if max_energy_w is not None else None
@@ -123,6 +133,7 @@ class SpikingBrainCortex:
         self.memory: Memory = memory if memory is not None else WorkingMemory()
         # T-SPB-3-C: optional persistent audit trail for apply events.
         self.brain_audit_log: BrainAuditLog | None = brain_audit_log
+        self.truth_engine: TruthEngine | None = truth_engine
         self._history: list[ThinkResult] = []
         self._reports: list[CortexReport] = []
 
@@ -257,7 +268,17 @@ class SpikingBrainCortex:
             math.isfinite(energy) and energy <= self.max_energy_w
         )
 
-        approved = sevo_ok and coherence_ok and confidence_ok and energy_ok
+        truth_ok = True
+        truth_reason = ""
+        if self.truth_engine is not None and conf_valid:
+            assessment = self.truth_engine.assess(
+                result.text or "",
+                base_confidence=safe_confidence,
+            )
+            truth_ok = assessment.approved
+            truth_reason = assessment.reason
+
+        approved = sevo_ok and coherence_ok and confidence_ok and energy_ok and truth_ok
         if not approved:
             reasons = []
             if not conf_valid:
@@ -270,6 +291,8 @@ class SpikingBrainCortex:
                 reasons.append(f"confidence {safe_confidence:.3f}<{self.min_confidence}")
             if not energy_ok and self.max_energy_w is not None:
                 reasons.append(f"energy_w {energy:.2f}>{self.max_energy_w:.2f}")
+            if not truth_ok:
+                reasons.append(truth_reason)
             reason = "; ".join(reasons)
         else:
             reason = "approved"

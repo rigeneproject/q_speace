@@ -10,11 +10,13 @@ numpy-only, no torch, no neuromorphic hardware.
 from __future__ import annotations
 
 from .bridge import SpikeQuantumBridge
+from .causal import CausalEdge, StructuralCausalDAG, spike_temporal_asymmetry
 from .correlation import (
     entangle_by_correlation,
     spike_correlation,
     spike_entropy_gradient,
 )
+from .criticality import CriticalityController, CriticalityRegime, CriticalityState
 from .encoder import SpikeEncodingResult, dynamic_spikes, sparsity, spike_count, spike_rate
 from .linear import SpikeEncodedLinear
 from .ncm_calibration import (
@@ -32,6 +34,14 @@ from .prereg_lock import (
     compute_lock_sha256,
     lock_section,
     verify_lock,
+)
+from .reasoning import (
+    RelationEdge,
+    SymbolicGraphReasoner,
+    TDMMaintenanceScheduler,
+    TDMOperatingMode,
+    TDMPhase,
+    TDMScheduleTick,
 )
 
 __all__ = [
@@ -59,4 +69,16 @@ __all__ = [
     "compute_lock_sha256",
     "lock_section",
     "verify_lock",
+    "CriticalityController",
+    "CriticalityRegime",
+    "CriticalityState",
+    "CausalEdge",
+    "StructuralCausalDAG",
+    "spike_temporal_asymmetry",
+    "RelationEdge",
+    "SymbolicGraphReasoner",
+    "TDMMaintenanceScheduler",
+    "TDMOperatingMode",
+    "TDMPhase",
+    "TDMScheduleTick",
 ]

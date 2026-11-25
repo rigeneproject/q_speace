@@ -61,6 +61,7 @@ class ResonanceEngine:
         self,
         resonance_threshold: float = 0.85,
         tension_threshold: float = 0.50,
+        max_nodes: int = 24,
     ) -> None:
         for name, value in (
             ("resonance_threshold", resonance_threshold),
@@ -68,12 +69,17 @@ class ResonanceEngine:
         ):
             if not isfinite(value) or not 0.0 <= value <= 1.0:
                 raise ValueError(f"{name} must be finite and in [0, 1]")
+        if max_nodes < 6:
+            raise ValueError("max_nodes must be >= 6")
         self._nodes: dict[str, NodeState] = {}
         self.resonance_threshold = resonance_threshold
         self.tension_threshold = tension_threshold
+        self.max_nodes = max_nodes
 
     def update_node_state(self, state: NodeState) -> None:
         """Store the latest telemetry for one logical node."""
+        if state.node_id not in self._nodes and len(self._nodes) >= self.max_nodes:
+            raise ValueError(f"max_nodes limit ({self.max_nodes}) reached")
         self._nodes[state.node_id] = state
 
     @staticmethod

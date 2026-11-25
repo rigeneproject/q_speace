@@ -22,6 +22,7 @@ class QuantumNeuralBridge:
         self.num_qubits_per_neuron = num_qubits_per_neuron
         self._seed = seed
         self._slots: dict[str, int] = {}
+        self._next_slot: int = 0
         self._registry = EntanglementRegistry()
         self._activity = np.empty(0, dtype=float)
 
@@ -31,12 +32,14 @@ class QuantumNeuralBridge:
     def register(self, neuron_id: str, initial_state: int = 0) -> int:
         if neuron_id in self._slots:
             return self._slots[neuron_id]
-        idx = len(self._slots) * self.num_qubits_per_neuron
+        idx = self._next_slot
         self._slots[neuron_id] = idx
+        self._next_slot += self.num_qubits_per_neuron
         return idx
 
     def unregister(self, neuron_id: str) -> None:
         self._slots.pop(neuron_id, None)
+        self._registry.remove_entity(neuron_id)
 
     def entangle_neurons(
         self, a: str, b: str, fidelity: float = 1.0, label: str = "neural"
@@ -60,6 +63,8 @@ class QuantumNeuralBridge:
         activity = np.asarray(values, dtype=float).ravel()
         if activity.size != len(self._slots):
             raise ValueError("activity length must match registered neurons")
+        if not np.all(np.isfinite(activity)):
+            raise ValueError("activity must contain only finite values")
         if np.any(activity < 0.0):
             raise ValueError("activity must be non-negative")
         total = float(activity.sum())
@@ -71,10 +76,11 @@ class QuantumNeuralBridge:
         return self._registry.is_entangled(a, b)
 
     def quantum_compatibility(self, a: str, b: str) -> float:
-        """Fidelity-based compatibility placeholder (1.0 if entangled)."""
-        if self.is_entangled(a, b):
-            return 1.0
-        return 0.0
+        """Return clamped entanglement fidelity proxy in [0, 1] for pair (a, b)."""
+        matching = [p.fidelity for p in self._registry.pairs_of(a) if p.involves(b) and a != b]
+        if not matching:
+            return 0.0
+        return float(np.clip(max(matching), 0.0, 1.0))
 
     def total_qubits(self) -> int:
         return len(self._slots) * self.num_qubits_per_neuron

@@ -1,0 +1,21 @@
+# T249-06 / T217 Stage-2.5 Hardened Isolated-Replica Sandbox Container
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+RUN groupadd --gid 1001 qspeace && \
+    useradd --uid 1001 --gid 1001 --create-home --shell /usr/sbin/nologin qspeace
+
+WORKDIR /app
+COPY pyproject.toml README.md LICENSE ./
+COPY q_speace ./q_speace
+
+RUN pip install --no-deps --upgrade pip && \
+    pip install . && \
+    chown -R qspeace:qspeace /app
+
+USER 1001:1001
+
+CMD ["qspace", "quantum", "run", "--ticks", "10", "--neurons", "4"]

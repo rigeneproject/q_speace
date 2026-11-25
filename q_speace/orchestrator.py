@@ -20,7 +20,12 @@ from .earth_feed import EarthFeed, EarthSignals
 from .edd_cvt import InformationalLogicalField
 from .fractal_qca import FractalQCA
 from .genome import QuantumGeneSet
-from .metabolism import QuantumCostModel, QuantumOperation
+from .metabolism import (
+    HomeostaticChannel,
+    HomeostaticODEController,
+    QuantumCostModel,
+    QuantumOperation,
+)
 from .quantum import QuantumNeuralBridge
 from .radio import (
     ComplianceFilter,
@@ -31,7 +36,7 @@ from .radio import (
     SpectrumSensor,
     WavefrontModulator,
 )
-from .spiking import dynamic_spikes, sparsity
+from .spiking import CriticalityController, dynamic_spikes, sparsity
 
 if TYPE_CHECKING:
     from .aacm import CentralityGraph, FractureMap, StepDecision
@@ -63,6 +68,9 @@ class TickReport:
     aacm_strategy: str = "default"
     aacm_omega: float = 1.0
     aacm_central_node: str | None = None
+    criticality_regime: str = "critical"
+    branching_ratio: float = 1.0
+    homeostatic_viability: float = 1.0
 
 
 class QuantumOrchestrator:
@@ -81,6 +89,9 @@ class QuantumOrchestrator:
         enable_spikes: bool = False,
         spike_k: float = 3.0,
         spike_beta: float = 0.0,
+        enable_criticality: bool = False,
+        enable_homeostasis: bool = False,
+        max_history: int = 1024,
     ) -> None:
         if not math.isfinite(max_energy_w) or max_energy_w < 0.0:
             raise ValueError(f"max_energy_w must be finite and >= 0 (got {max_energy_w})")
@@ -90,6 +101,8 @@ class QuantumOrchestrator:
             raise ValueError(
                 f"coherence_phi_threshold must be finite and in [0, 1] (got {coherence_phi_threshold})"
             )
+        if max_history < 1:
+            raise ValueError(f"max_history must be >= 1 (got {max_history})")
         self.genome = genome or QuantumGeneSet(enabled=True)
         self.genome.validate()
         self._seed = seed
@@ -101,7 +114,7 @@ class QuantumOrchestrator:
         )
         self._qca: FractalQCA | None = None
         self._tick_count = 0
-        self._history: list[TickReport] = []
+        self._history: deque[TickReport] = deque(maxlen=max_history)
         self._max_energy_w = max_energy_w
         self._coherence_phi_threshold = coherence_phi_threshold
         self._energy_budget_remaining = max_energy_w
@@ -110,6 +123,20 @@ class QuantumOrchestrator:
         self._spike_k = spike_k
         self._spike_beta = spike_beta
         self._spike_history: deque[int] = deque(maxlen=64)
+        self._criticality: CriticalityController | None = (
+            CriticalityController() if enable_criticality else None
+        )
+        self._homeostasis: HomeostaticODEController | None = (
+            HomeostaticODEController(
+                (
+                    HomeostaticChannel("energy_headroom", setpoint=0.80, deadband=0.05),
+                    HomeostaticChannel("coherence_phi", setpoint=0.75, deadband=0.05),
+                    HomeostaticChannel("em_quality", setpoint=0.80, deadband=0.05),
+                )
+            )
+            if enable_homeostasis
+            else None
+        )
         sdr: SDRFrontend = NullSDR(_seed=seed)
         self._sdr = sdr
         self._sensor = SpectrumSensor(sdr=sdr, seed=seed)
@@ -162,7 +189,8 @@ class QuantumOrchestrator:
         return self.genome.enabled
 
     def enable_qca(self, num_cells: int = 8) -> None:
-        self._qca = FractalQCA(num_cells=num_cells, seed=self._seed or 0)
+        qca_seed = 0 if self._seed is None else self._seed
+        self._qca = FractalQCA(num_cells=num_cells, seed=qca_seed)
 
     def attach_aacm(self, controller: _AACMControllerProtocol | None) -> None:
         """Attach an :class:`q_speace.aacm.AACMController`.
@@ -242,7 +270,8 @@ class QuantumOrchestrator:
         count = len(self._neuron_ids)
         if count == 0:
             return np.empty(0, dtype=float)
-        rng = np.random.default_rng((self._seed or 0) + tick)
+        base_seed = 0 if self._seed is None else self._seed
+        rng = np.random.default_rng(base_seed + tick)
         base = rng.uniform(0.0, 1.0, size=count) ** (1.0 / (1.0 + self._ilf.coherence_phi))
         boost = 1.0 + 0.5 * self._bridge.summary()["num_entanglements"] / count
         activity = base * boost
@@ -263,6 +292,8 @@ class QuantumOrchestrator:
 
         num_spikes = 0
         activity_sparsity = 1.0
+        criticality_regime = "critical"
+        branching_ratio = 1.0
         if self._enable_spikes and self._neuron_ids:
             activity = self._refresh_activity(tick)
             encoded = dynamic_spikes(
@@ -274,6 +305,11 @@ class QuantumOrchestrator:
             num_spikes = encoded.num_spikes
             activity_sparsity = sparsity(encoded.spikes)
             self._spike_history.append(num_spikes)
+            if self._criticality is not None:
+                crit_state = self._criticality.step(num_spikes, self._spike_k)
+                self._spike_k = crit_state.updated_k
+                criticality_regime = crit_state.regime
+                branching_ratio = crit_state.branching_ratio
 
         # Cost the operation before executing (energy gate).
         op = QuantumOperation(
@@ -345,6 +381,23 @@ class QuantumOrchestrator:
                 self._energy_budget_remaining + self._max_energy_w * 0.1,
             )
 
+        homeostatic_viability = 1.0
+        if self._homeostasis is not None:
+            energy_ratio = (
+                min(max(self._energy_budget_remaining / self._max_energy_w, 0.0), 1.0)
+                if self._max_energy_w > 0.0
+                else 0.0
+            )
+            em_qual = min(max(float(getattr(spectrum, "quality_index", 1.0)), 0.0), 1.0)
+            snap = self._homeostasis.step(
+                {
+                    "energy_headroom": energy_ratio,
+                    "coherence_phi": min(max(self._ilf.coherence_phi, 0.0), 1.0),
+                    "em_quality": em_qual,
+                }
+            )
+            homeostatic_viability = snap.viability
+
         report = TickReport(
             tick=tick,
             coherence_phi=self._ilf.coherence_phi,
@@ -358,6 +411,9 @@ class QuantumOrchestrator:
             spectrum=spectrum,
             num_spikes=num_spikes,
             sparsity=activity_sparsity,
+            criticality_regime=criticality_regime,
+            branching_ratio=branching_ratio,
+            homeostatic_viability=homeostatic_viability,
         )
         # AACM: if a controller is attached, query it for a strategy
         # tag. The controller does not perform any action; it only
@@ -378,6 +434,16 @@ class QuantumOrchestrator:
 
     def run(self, ticks: int = 10) -> list[TickReport]:
         return [r for r in (self.tick() for _ in range(ticks)) if r is not None]
+
+    def temporal_liveness(self, min_variance: float = 1e-6) -> bool:
+        """Non-degeneracy check (T248): verify non-zero temporal variance across recorded ticks."""
+        if not math.isfinite(min_variance) or min_variance < 0.0:
+            raise ValueError("min_variance must be finite and >= 0")
+        if len(self._history) < 2:
+            return False
+        phis = np.array([r.coherence_phi for r in self._history], dtype=float)
+        sparsities = np.array([r.sparsity for r in self._history], dtype=float)
+        return bool(float(np.var(phis)) > min_variance or float(np.var(sparsities)) > min_variance)
 
     def report(self) -> dict[str, object]:
         if not self._history:

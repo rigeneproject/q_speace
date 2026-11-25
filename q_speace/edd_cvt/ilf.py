@@ -40,9 +40,11 @@ class InformationalLogicalField:
         self.coherence_phi_ema = float(coherence_phi_ema)
         self._agent_beliefs: dict[str, np.ndarray] = {}
         self._agent_weights: dict[str, float] = {}
+        self._agent_error_var: dict[str, float] = {}
         self._q_star: np.ndarray | None = None
-        # Previous values for EMA blending. None on first compute.
+        # Previous values for EMA blending / KL surprise. None on first compute.
         self._q_star_prev: np.ndarray | None = None
+        self._q_star_prior: np.ndarray | None = None
         self._phi_prev: float | None = None
 
     def register_agent(self, agent_id: str, weight: float = 1.0) -> None:
@@ -120,9 +122,60 @@ class InformationalLogicalField:
         else:
             self.coherence_phi = float(coherence)
 
+        self._q_star_prior = self._q_star_prev.copy() if self._q_star_prev is not None else None
         self._q_star_prev = self._q_star.copy()
         self._phi_prev = self.coherence_phi
         return self._q_star
+
+    def observe_prediction_error(
+        self,
+        agent_id: str,
+        error: float,
+        *,
+        eta: float = 0.2,
+        min_precision: float = 0.1,
+        max_precision: float = 10.0,
+    ) -> float:
+        """Update empirical EMA error variance for ``agent_id`` and set precision weight (T248)."""
+        if not agent_id:
+            raise ValueError("agent_id must be non-empty")
+        if not math.isfinite(error):
+            raise ValueError(f"error must be finite (got {error!r})")
+        if not math.isfinite(eta) or not (0.0 < eta <= 1.0):
+            raise ValueError("eta must be finite and in (0, 1]")
+        if (
+            not math.isfinite(min_precision)
+            or not math.isfinite(max_precision)
+            or min_precision <= 0.0
+            or max_precision < min_precision
+        ):
+            raise ValueError("0 < min_precision <= max_precision is required")
+
+        sq_err = float(error) ** 2
+        prev_var = self._agent_error_var.get(agent_id, sq_err)
+        updated_var = (1.0 - eta) * prev_var + eta * sq_err
+        self._agent_error_var[agent_id] = updated_var
+        precision = float(np.clip(1.0 / (updated_var + 1e-6), min_precision, max_precision))
+        self._agent_weights[agent_id] = precision
+        return precision
+
+    def variational_free_energy(self, kl_weight: float = 1.0) -> float:
+        """Return precision-weighted prediction error + KL surprise D_KL(q*_t || q*_{t-1}) (T248)."""
+        if not math.isfinite(kl_weight) or kl_weight < 0.0:
+            raise ValueError("kl_weight must be finite and >= 0")
+        accuracy_cost = 0.5 * sum(
+            self._agent_weights.get(aid, 1.0) * var for aid, var in self._agent_error_var.items()
+        )
+        kl_div = 0.0
+        if (
+            self._q_star is not None
+            and self._q_star_prior is not None
+            and self._q_star.shape == self._q_star_prior.shape
+        ):
+            q_cur = np.maximum(self._q_star, 1e-12)
+            q_old = np.maximum(self._q_star_prior, 1e-12)
+            kl_div = float(max(0.0, np.sum(q_cur * np.log(q_cur / q_old))))
+        return float(accuracy_cost + kl_weight * kl_div)
 
     def update(self, state_vector: np.ndarray) -> None:
         v = np.asarray(state_vector, dtype=float)
@@ -150,6 +203,8 @@ class InformationalLogicalField:
 
     def clear_beliefs(self) -> None:
         self._agent_beliefs.clear()
+        self._agent_error_var.clear()
         self._q_star = None
         self._q_star_prev = None
+        self._q_star_prior = None
         self._phi_prev = None

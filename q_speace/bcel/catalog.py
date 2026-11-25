@@ -674,6 +674,96 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "guiding external agents to compose homeostatic, metabolic, epigenetic, and federated "
         "consensus tools without mutating state or bypassing invariants.",
     ),
+    # ----- T248: Cross-Repository BCEL Synthesis & Core Fail-Closed Hardening -----
+    BCELEquivalence(
+        "Branching-ratio criticality homeostasis and synaptic scaling (T248)",
+        "functional",
+        "Keep as a closed-loop empirical branching-ratio gain controller regulating "
+        "dynamic_spikes threshold divisor k within [k_min, k_max] and multiplicative "
+        "population EMA scaling; removes cortical avalanche/seizure narratives.",
+    ),
+    BCELEquivalence(
+        "Precision-weighted ILF belief pooling and variational free-energy surprise (T248)",
+        "functional",
+        "Keep as empirical inverse-variance EMA precision weights on ILF agent beliefs "
+        "and precision-weighted prediction error plus KL divergence across q_star updates; "
+        "removes 6-layer cortical laminar anatomy metaphors.",
+    ),
+    BCELEquivalence(
+        "Directed spike-lag causal discovery and non-destructive do-calculus DAG (T248)",
+        "functional",
+        "Keep as directed temporal-precedence asymmetry A_ij and immutable mutilated-DAG "
+        "interventional/counterfactual evaluation, strictly separated from EntanglementRegistry "
+        "to preserve the no-communication theorem.",
+    ),
+    BCELEquivalence(
+        "Hybrid SQLite-FTS5 feature-hashed episodic memory and continuous evolutionary recall (T248)",
+        "functional",
+        "Keep as stdlib SQLite lexical + deterministic blake2b token/trigram cosine retrieval, "
+        "TTL archiving, deduplication, and continuous metric-cosine + Jaccard recall; "
+        "removes hippocampal indexing and biological sleep/dream narratives.",
+    ),
+    BCELEquivalence(
+        "Transactional pre/post sandbox patch verification and epistemic perturbation audit (T248)",
+        "functional",
+        "Keep as paired pre/post fixture delta evaluation with automatic rollback on regression "
+        "and seeded perturbation-stability plus sample/complexity epistemic discounting.",
+    ),
+    BCELEquivalence(
+        "Heuristic IIT Phi consciousness gates and anatomical lobe personas (T248)",
+        "accidental",
+        "Removed in full across external SPEACE forks: partition entropy-asymmetry and "
+        "graph-density surrogates are not IIT Phi and provide zero evidence of consciousness.",
+    ),
+    # ----- T249: Complete BCEL Synthesis of Remaining Parallel SPEACE Elements -----
+    BCELEquivalence(
+        "Restorative homeostatic ODE, convex urgency field, and diffusive budget sharing (T249)",
+        "functional",
+        "Keep as bounded Euler state-space regulation, deadband viability, soft-constraint "
+        "penalties, convex urgency gradients, and graph-diffusive subsystem energy allocation "
+        "under a hard global power cap; removes survival/hunger drives and glial glucose prose.",
+    ),
+    BCELEquivalence(
+        "Entropy-bounded UCB1 stream gating and proposal-only graph plasticity (T249)",
+        "functional",
+        "Keep as multi-stream UCB1 allocation enforcing a minimum Shannon entropy floor "
+        "H(w) >= H_min and conservative edge decay/pruning plus proposal-only EdgeGrowthProposal "
+        "records requiring external approval; removes thalamic spotlight and synaptogenesis prose.",
+    ),
+    BCELEquivalence(
+        "SHA-256 epistemic provenance, structural cycle surprise, and action degradation gate (T249)",
+        "functional",
+        "Keep as canonical SHA-256 tool observation digests, negation-aware anti-overclaim "
+        "screening, module symmetric-difference prediction error, and cost/reversibility "
+        "degradation ('execute' -> 'plan' -> 'refuse'); removes prefrontal/basal-ganglia labels.",
+    ),
+    BCELEquivalence(
+        "Cross-inhibited utility routing, simulate-only GOAP A*, LIFO backtracking, and skill generality pruning (T249)",
+        "functional",
+        "Keep as leaky-integrator control variables with mutual cross-inhibition, Sevo-penalized "
+        "precondition routing, bounded simulate_only=True A* planning, LIFO hypothesis backtracking, "
+        "cross-regime generality pruning, and time-bounded recall retention boost.",
+    ),
+    BCELEquivalence(
+        "Bidirectional BFS graph abduction, 2-hop Jaccard analogy, and TDM idle maintenance (T249)",
+        "functional",
+        "Keep as typed confidence-product forward chaining, O(b^(d/2)) bidirectional BFS "
+        "shortest-path abduction, 2-hop relational Jaccard structural similarity, and "
+        "deterministic active/maintenance time-division scheduling; removes brainwave metaphors.",
+    ),
+    BCELEquivalence(
+        "Fail-closed simulated sensor twin, stratified failure taxonomy, GC leak audit, and error ratchet (T249)",
+        "functional",
+        "Keep as opt-in runtime_mode='simulated' deterministic telemetry with JSONL audit logs, "
+        "capability-dropped container isolation, deadlock-free sync/async bridge isolation, "
+        "regime-stratified failure analysis, GC object-growth checks, and persisted error ratchets.",
+    ),
+    BCELEquivalence(
+        "Autobiographical self-narrative identity and AGI-percentage headline indices (T249)",
+        "accidental",
+        "Removed in full across parallel SPEACE forks: narrative self-diaries and composite "
+        "'AGI % / ARI' headline numbers do not establish general intelligence or agency.",
+    ),
 ]
 
 
