@@ -140,6 +140,11 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   `HypothesisStack` + `SkillLibrary`/`ReconsolidationWindow`, `SymbolicGraphReasoner` + `TDMMaintenanceScheduler`,
   T217 `SimulatedSensorAdapter` + hardened `deploy/sandbox/` profile, `StratifiedFailureAnalyzer`,
   `MemoryLeakAuditor`, and `DifferentialErrorRatchet`).
+- [SPEACE Neural Brain Remediation & A/B Complex Task Benchmark (T250)](docs/T250_NEURAL_BRAIN_REMEDIATION_AND_AB_BENCHMARK_SPEC.md):
+  empirical Round-1 vs Round-2 A/B benchmark (`qspace brain ab-benchmark`), remediation of 9 substrate/genome/bridge
+  defects across `cellular_speace` and `q_speace` (post-spike readout trace, three-factor eligibility plasticity,
+  layered MVP connectome, per-neuron metabolic floor protection, negative-feedback threshold regulation, stationary
+  `SemanticNeuralBackend`), and unified `SPEACENeuralAgent` (`q_speace/neural_agent.py`, T7/T8 bridge).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

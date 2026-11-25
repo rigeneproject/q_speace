@@ -764,6 +764,20 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Removed in full across parallel SPEACE forks: narrative self-diaries and composite "
         "'AGI % / ARI' headline numbers do not establish general intelligence or agency.",
     ),
+    # ----- T250: Neural Brain Substrate Remediation & Unified A/B Benchmark -----
+    BCELEquivalence(
+        "Post-spike readout trace, three-factor eligibility plasticity, and unified neural-quantum agent loop (T250)",
+        "functional",
+        "Keep as exponentially decaying post-spike readout traces, local pre-synaptic eligibility "
+        "credit assignment, per-neuron metabolic floor protection, stationary semantic belief "
+        "encoding, and integrated CellularBrain + ILF + CausalDAG + GOAP + TruthEngine execution.",
+    ),
+    BCELEquivalence(
+        "Uncentered cosine similarity and zero-output MSE reward inflation as intelligence proof (T250)",
+        "accidental",
+        "Removed from assessment claims: positive baseline rewards on orthogonal or silent outputs "
+        "create false-positive capability scores and must be paired with strict Top-1 accuracy.",
+    ),
 ]
 
 

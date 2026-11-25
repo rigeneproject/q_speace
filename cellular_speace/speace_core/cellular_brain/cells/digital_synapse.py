@@ -17,9 +17,11 @@ class DigitalSynapse(DigitalCell):
     stability: float = 0.0
     recurrence_count: int = 0
 
-    # T-STDP — spike timing records for plasticity
+    # T-STDP — spike timing & eligibility records for plasticity
     last_pre_spike_tick: Optional[int] = None
     last_post_spike_tick: Optional[int] = None
+    pre_trace: float = 0.0
+    post_trace: float = 0.0
 
     # T-NPT — Neural Periodic Table identity
     periodic_element_id: Optional[int] = None

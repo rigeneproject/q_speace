@@ -72,14 +72,8 @@ def _merge_tftpsp_catalog(genome_path: pathlib.Path, data: dict) -> None:
             pathlib.Path.cwd() / catalog_path,
             (genome_path.parent / catalog_path).resolve(),
         ]
-        # Also try the genome's parent's parent (the speace_core/dna/
-        # directory) joined with the catalog path.
-        try:
-            candidates.append(
-                (genome_path.parent.parent / catalog_path).resolve()
-            )
-        except Exception:
-            pass
+        for anc in genome_path.resolve().parents:
+            candidates.append((anc / catalog_path).resolve())
         for c in candidates:
             if c.exists():
                 catalog_path = c

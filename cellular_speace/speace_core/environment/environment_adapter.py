@@ -41,9 +41,10 @@ class EnvironmentAdapter:
         simulator_backend_interval: int = 10,
         enable_functional_activation: bool = True,
     ):
-        self.genome_path = genome_path or Path(
-            r"C:\cellular_speace\speace_core\dna\genome\default_genome.yaml"
+        default_genome = (
+            Path(__file__).resolve().parents[1] / "dna" / "genome" / "default_genome.yaml"
         )
+        self.genome_path = Path(genome_path) if genome_path is not None else default_genome
         self.enable_cor = enable_cor
         self.cor_phi_threshold_factor = cor_phi_threshold_factor
         self.enable_simulator_backend = enable_simulator_backend

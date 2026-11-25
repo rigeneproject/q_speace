@@ -117,9 +117,9 @@ class AssociativeRecallEnvironment:
                 pass
 
     def _read_output(self, orchestrator: Any) -> List[float]:
-        """Read output-neuron activations as a prediction vector."""
+        """Read output-neuron readout traces as a prediction vector."""
         outs = orchestrator.circuit.output_neurons
-        return [float(n.activation) for n in outs[: self.output_size]]
+        return [float(getattr(n, "readout", n.activation)) for n in outs[: self.output_size]]
 
     def _top1_accuracy(self, emitted: List[float], target: List[float]) -> float:
         """Return 1.0 if the most active output is the target index, else 0.0."""
@@ -165,19 +165,21 @@ class AssociativeRecallEnvironment:
         self.prime_synapses(orchestrator)
         for _ in range(self.study_repetitions):
             for cue, target in self._pairs:
+                if hasattr(orchestrator.circuit, "reset_transient_state"):
+                    orchestrator.circuit.reset_transient_state()
                 self._inject(orchestrator, cue)
                 collapsed = self._tick_orchestrator(orchestrator)
-                self._settle(orchestrator, n_ticks=3)
                 emitted = self._read_output(orchestrator)
+                # Run local supervised trace rule at peak spike trace before settling decay
+                if hasattr(orchestrator.circuit, "learn_supervised"):
+                    orchestrator.circuit.learn_supervised(target, lr=0.35)
+                self._settle(orchestrator, n_ticks=2)
                 reward, error = self._similarity_reward(emitted, target)
-                # Boost correct output directly during study (teacher signal)
                 target_idx = int(np.argmax(target))
                 orchestrator.circuit.output_neurons[target_idx].activation = max(
                     orchestrator.circuit.output_neurons[target_idx].activation, 0.6
                 )
-                # Reward-based feedback drives STDP + neuromodulation on the
-                # active cue-to-output pathway, replacing hand-tuned Hebbian priming.
-                orchestrator.feedback(reward)
+                orchestrator.feedback(max(0.0, reward - 0.5))
                 step = RecallStep(
                     phase="study",
                     cue=list(cue),
@@ -197,13 +199,16 @@ class AssociativeRecallEnvironment:
         steps: List[RecallStep] = []
         for _ in range(self.test_length):
             cue, target = self._rng.choice(self._pairs)
+            if hasattr(orchestrator.circuit, "reset_transient_state"):
+                orchestrator.circuit.reset_transient_state()
             self._inject(orchestrator, cue)
             collapsed = self._tick_orchestrator(orchestrator)
-            self._settle(orchestrator, n_ticks=3)
             emitted = self._read_output(orchestrator)
+            self._settle(orchestrator, n_ticks=2)
             reward, error = self._similarity_reward(emitted, target)
-            # Feedback-based consolidation also on test trials
-            orchestrator.feedback(reward)
+            # Consolidate only confident recalls during unlabelled test probing
+            if reward > 0.55:
+                orchestrator.feedback(reward - 0.5)
             step = RecallStep(
                 phase="test",
                 cue=list(cue),

@@ -69,12 +69,14 @@ class IntelligenceAssessment:
         summary = self.adapter.run_associative_recall_episode(
             num_pairs=4, study_repetitions=3, test_length=20
         )
+        top1 = float(summary.get("mean_test_top1_accuracy", 0.0))
         return {
             "mean_study_reward": summary["mean_study_reward"],
             "mean_test_reward": summary["mean_test_reward"],
+            "mean_test_top1_accuracy": top1,
             "learning_gain": summary["learning_gain"],
             "cor_collapses": summary["cor_collapses"],
-            "passed": summary["mean_test_reward"] > 0.45,
+            "passed": summary["mean_test_reward"] > 0.55 and top1 >= 0.50,
         }
 
     def run_sequence_prediction(self) -> Dict[str, Any]:
@@ -248,7 +250,7 @@ def main():
     assessment = IntelligenceAssessment(adapter)
     report = assessment.run()
 
-    report_dir = Path(r"C:\cellular_speace\reports\assessment")
+    report_dir = Path(__file__).resolve().parent / "reports" / "assessment"
     report_dir.mkdir(parents=True, exist_ok=True)
     out_path = report_dir / f"capability_assessment_{int(time.time())}.json"
     out_path.write_text(

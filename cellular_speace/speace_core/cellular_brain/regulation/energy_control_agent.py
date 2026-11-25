@@ -233,4 +233,8 @@ class EnergyControlAgent:
             if rate > 0:
                 neuron.energy = min(1.0, neuron.energy + rate)
             elif rate < 0:
-                neuron.energy = max(0.0, neuron.energy + rate)
+                # Never drain active neurons below 0.80 when idle populations inflate mean_energy!
+                if neuron.energy > 0.85:
+                    neuron.energy = max(0.80, neuron.energy + rate)
+                elif neuron.energy < 0.80:
+                    neuron.energy = min(0.85, neuron.energy + max(self.normal_replenish, 0.025))

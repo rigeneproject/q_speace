@@ -34,6 +34,14 @@ from .metabolism import (
     QuantumCostModel,
     QuantumOperation,
 )
+from .neural_agent import (
+    BenchmarkComparisonResult,
+    ClassicalBaselineAgent,
+    SemanticNeuralBackend,
+    SPEACENeuralAgent,
+    build_complex_ab_workload,
+    run_ab_neural_benchmark,
+)
 from .orchestrator import QuantumOrchestrator, TickReport
 from .quantum import (
     BrainQuantumCircuit,
@@ -278,4 +286,10 @@ __all__ = [
     "SimulatedSensorAdapter",
     "SimulatedSensorReading",
     "run_coro_isolated",
+    "SemanticNeuralBackend",
+    "SPEACENeuralAgent",
+    "ClassicalBaselineAgent",
+    "BenchmarkComparisonResult",
+    "build_complex_ab_workload",
+    "run_ab_neural_benchmark",
 ]

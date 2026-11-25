@@ -203,7 +203,9 @@ class CognitivePredictionEnvironment:
 
         predicted = list(orchestrator.circuit.output_activations)
         reward, error = self.evaluate_prediction(predicted, true_next)
-        orchestrator.feedback(reward)
+        if hasattr(orchestrator.circuit, "learn_supervised"):
+            orchestrator.circuit.learn_supervised(true_next, lr=0.25)
+        orchestrator.feedback(reward - 0.5)
         # Teacher signal: transiently boost the correct output neurons to
         # strengthen the input-to-output association via STDP on the next tick.
         for i, val in enumerate(true_next[: len(orchestrator.circuit.output_neurons)]):

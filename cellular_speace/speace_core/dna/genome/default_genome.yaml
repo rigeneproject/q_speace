@@ -132,7 +132,7 @@ homeostasis:
   max_energy: 1.0
   overload_threshold: 0.85
   noise_suppression_rate: 0.2
-  energy_recovery_rate: 0.01
+  energy_recovery_rate: 0.04
 
 immune:
   prune_threshold: 0.1
@@ -143,7 +143,7 @@ immune:
 # Continuous dynamics substrate parameters
 dynamics:
   temporal_dynamics:
-    enabled: false
+    enabled: true
     tau: 1.0
     tau_w: 10.0
     tau_e: 5.0
@@ -161,17 +161,17 @@ dynamics:
     enabled: false
     default_coupling_strength: 1.0
   energy_field:
-    enabled: false
-    global_supply_rate: 0.02
-    recovery_boost: 0.03
-    fatigue_threshold: 0.2
+    enabled: true
+    global_supply_rate: 0.03
+    recovery_boost: 0.04
+    fatigue_threshold: 0.25
   predictive_coding:
-    enabled: false
+    enabled: true
     learning_rate: 0.1
   active_inference:
     enabled: false
   homeostatic_drive:
-    enabled: false
+    enabled: true
     plasticity_range: [0.0, 2.0]
     exploration_range: [0.0, 2.0]
     energy_supply_range: [0.5, 1.5]
@@ -179,7 +179,7 @@ dynamics:
     survival_suppression_threshold: 0.3
     efficiency_plasticity_threshold: -0.2
   criticality_monitor:
-    enabled: false
+    enabled: true
     avalanche_window: 10.0
     branching_bin_size: 5.0
     max_history: 10000
@@ -856,7 +856,7 @@ functional_activation:
 # Configures the optional quantum emulation. This is a functional analogy,
 # not a claim of real quantum coherence in biological neurons.
 quantum_genes:
-  enabled: false
+  enabled: true
   qubits_per_neuron: 1
   default_initial_state: 0
   entanglement_fidelity_threshold: 0.5

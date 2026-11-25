@@ -17,7 +17,10 @@ from speace_core.cellular_brain.base.receptor_profile import (
 
 class DigitalNeuron(DigitalCell):
     threshold: float = 0.5
+    base_threshold: float = 0.5
     activation: float = 0.0
+    firing_trace: float = 0.0
+    last_fired_strength: float = 0.0
     plasticity_rate: float = 0.05
     targets: List[str] = []
     error_history: List[float] = []
@@ -193,7 +196,16 @@ class DigitalNeuron(DigitalCell):
             "frequency": self.wave_frequency,
         }
 
+    @property
+    def readout(self) -> float:
+        """Non-destructive output trace preserving spikes that crossed threshold."""
+        return max(self.activation, self.firing_trace)
+
     async def tick(self) -> List[DigitalSignal]:
+        self.firing_trace *= 0.65
+        if self.firing_trace < 1e-4:
+            self.firing_trace = 0.0
+
         # T9 — handle snooze and refractory
         if self.snooze_counter > 0:
             self.snooze_counter -= 1
@@ -206,13 +218,16 @@ class DigitalNeuron(DigitalCell):
 
         signals: List[DigitalSignal] = []
         if self.activation >= self.threshold and self.energy > 0.1:
-            self.energy = max(0.0, self.energy - 0.05)
+            fired_strength = self.activation
+            self.last_fired_strength = fired_strength
+            self.firing_trace = max(self.firing_trace, min(1.5, fired_strength))
+            self.energy = max(0.0, self.energy - 0.02)
             for target_id in self.targets:
                 signals.append(
                     DigitalSignal(
                         source=self.cell_id,
                         target=target_id,
-                        strength=self.activation,
+                        strength=fired_strength,
                     )
                 )
             self.activation = 0.0
@@ -226,7 +241,7 @@ class DigitalNeuron(DigitalCell):
 
     def adapt(self, feedback_score: float) -> None:
         self.threshold -= self.plasticity_rate * feedback_score
-        self.threshold = max(0.1, min(1.0, self.threshold))
+        self.threshold = max(0.25, min(0.65, self.threshold))
         self.local_memory.append(feedback_score)
         if feedback_score < 0:
             self.error_history.append(feedback_score)

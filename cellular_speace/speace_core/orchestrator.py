@@ -690,8 +690,10 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
         # System Assimilation — VFS e Windows System Assimilation (dopo _initialize_dynamic_modules)
         genome_sa = getattr(self.genome, "system_assimilation", None)
         if genome_sa is not None:
-            self.vfs_enabled = getattr(genome_sa, "enable_vfs", False)
-            self.system_assimilation_enabled = getattr(genome_sa, "enable_assimilation", False)
+            if "vfs_enabled" not in self.model_fields_set:
+                self.vfs_enabled = getattr(genome_sa, "enable_vfs", False)
+            if "system_assimilation_enabled" not in self.model_fields_set:
+                self.system_assimilation_enabled = getattr(genome_sa, "enable_assimilation", False)
         if self.vfs_enabled:
             from speace_core.cellular_brain.virtual_file_system import VirtualFileSystemEngine
             from speace_core.cellular_brain.virtual_file_system.vfs_models import VFSConfig, AccessRule, VFSPermission
@@ -731,9 +733,9 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
         self._capability_gap_analyzer = CapabilityGapAnalyzer(directory="data/capability_gaps")
         self._bottleneck_detector = BottleneckDetector(directory="data/bottleneck_reports")
 
-        # Neuro-OS: read genome config and enable
+        # Neuro-OS: read genome config and enable unless caller explicitly configured neuro_os_enabled
         self._neuro_os_cfg = getattr(self.genome, "neuro_os", {}) or {}
-        if self._neuro_os_cfg.get("enabled", False):
+        if self._neuro_os_cfg.get("enabled", False) and "neuro_os_enabled" not in self.model_fields_set:
             self.neuro_os_enabled = True
 
         self._initialize_dynamic_modules()
@@ -1103,7 +1105,9 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
 
             # Cognitive Hypervisor — system event monitoring
             hv_cfg = self._neuro_os_cfg.get("cognitive_hypervisor", {})
-            if hv_cfg.get("enabled", False):
+            if hv_cfg.get("enabled", False) and (
+                "hypervisor_enabled" not in self.model_fields_set or self.hypervisor_enabled
+            ):
                 self.hypervisor_enabled = True
                 self._cognitive_hypervisor = CognitiveHypervisor(
                     namespace=UnifiedNamespace(),
@@ -1119,7 +1123,9 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
 
             # Cognitive Actuator — system action execution
             act_cfg = self._neuro_os_cfg.get("cognitive_actuator", {})
-            if act_cfg.get("enabled", False):
+            if act_cfg.get("enabled", False) and (
+                "actuator_enabled" not in self.model_fields_set or self.actuator_enabled
+            ):
                 self.actuator_enabled = True
                 self._cognitive_actuator = CognitiveActuator(
                     emergency_halt=None,
@@ -1263,15 +1269,17 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
             if self._memory_pressure is not None and self.current_tick % 10 == 0:
                 self._memory_pressure.consolidate(self.current_tick)
 
-            # Cognitive Hypervisor: drain events and inject into circuit
+            # Cognitive Hypervisor: drain events and inject into associative hidden pool (never corrupt sensory input_neurons)
             if self.hypervisor_enabled and self._cognitive_hypervisor is not None:
+                import zlib
+
                 events = self._cognitive_hypervisor.drain_events(max_events=20)
+                pool = self.circuit.hidden_neurons or self.circuit.input_neurons
                 for event in events:
                     pattern = event.to_neural_pattern(vector_size=10)
-                    if self.circuit.input_neurons:
-                        target = self.circuit.input_neurons[
-                            hash(event.cell_id) % len(self.circuit.input_neurons)
-                        ]
+                    if pool:
+                        idx = zlib.crc32(str(event.cell_id).encode("utf-8")) % len(pool)
+                        target = pool[idx]
                         target.activation = max(0.0, min(1.0, target.activation + pattern[0] * 0.3))
                         # Spread to connected neurons via astrocytes for broader integration
                         for astro in self.circuit.astrocytes:
@@ -1386,19 +1394,14 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
                 except Exception as exc:
                     logger.warning("physio_drive_sync_failed: %s", exc)
             modulation = self._homeostatic_drive.step()
-            # Apply modulations to circuit parameters
+            # Apply bounded modulations around base_threshold (prevent cumulative drift)
             for n in all_neurons:
                 n.plasticity_rate = max(
-                    0.001, min(1.0, n.plasticity_rate * modulation["plasticity_multiplier"])
+                    0.005, min(0.5, n.plasticity_rate * modulation["plasticity_multiplier"])
                 )
-                n.threshold = max(
-                    0.1,
-                    min(
-                        1.0,
-                        n.threshold
-                        / (modulation["exploration_multiplier"] if modulation["exploration_multiplier"] != 0 else 1.0),
-                    ),
-                )
+                exp_mult = modulation["exploration_multiplier"] if modulation["exploration_multiplier"] > 0 else 1.0
+                base_th = getattr(n, "base_threshold", 0.5)
+                n.threshold = max(0.30, min(0.60, base_th / exp_mult))
 
         if self.criticality_monitor_enabled and self._criticality_monitor is not None:
             for n in all_neurons:
@@ -2763,16 +2766,14 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
             + self.circuit.output_neurons
         )
 
-        # Adattamento soglie e gain basato sul campo
+        # Adattamento soglie e gain basato sul campo (negative feedback, senza spirale comatosa)
         for neuron in all_neurons:
-            # ILF basso: aumentare soglia, ridurre gain
+            base_th = getattr(neuron, "base_threshold", 0.5)
             if state.ilf_value < 0.4:
-                neuron.threshold = min(0.9, neuron.threshold * 1.05)
-                neuron.plasticity_rate = max(0.01, neuron.plasticity_rate * 0.95)
-            # ILF alto: diminuire soglia, aumentare plasticita'
-            elif state.ilf_value > 0.65:
-                neuron.threshold = max(0.15, neuron.threshold * 0.97)
-                neuron.plasticity_rate = min(1.0, neuron.plasticity_rate * 1.03)
+                # Bassa attivita'/coerenza: facilitare lievemente l'eccitabilita' entro [0.35, 0.55]
+                neuron.threshold = max(0.35, min(0.55, 0.95 * neuron.threshold + 0.05 * (base_th * 0.9)))
+            elif state.ilf_value > 0.75:
+                neuron.threshold = max(0.35, min(0.60, 0.95 * neuron.threshold + 0.05 * base_th))
 
             # Noise alto: regolazione robusta
             if state.field_noise > 0.25:
@@ -3759,25 +3760,48 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
         periodic_integrator = NeuroPeriodicIntegrator.from_genome(genome) if genome else NeuroPeriodicIntegrator()
 
         synapses: List[DigitalSynapse] = []
-        for _ in range(n_synapses):
-            src = random.choice(all_neurons)
-            tgt = random.choice(all_neurons)
-            if src.cell_id == tgt.cell_id:
-                continue
+        seen_pairs: set[Tuple[str, str]] = set()
+        rng = random.Random(42)
+
+        def _add_synapse(src: DigitalNeuron, tgt: DigitalNeuron, init_w: float | None = None) -> None:
+            if src.cell_id == tgt.cell_id or (src.cell_id, tgt.cell_id) in seen_pairs:
+                return
+            seen_pairs.add((src.cell_id, tgt.cell_id))
             syn = DigitalSynapse(
                 cell_id=f"syn_{src.cell_id}_{tgt.cell_id}",
                 role="digital_synapse",
                 source=src.cell_id,
                 target=tgt.cell_id,
             )
-            # T-NPT — inherit periodic identity from source/target neurons.
             syn.source_periodic_element_id = src.periodic_element_id
             syn.target_periodic_element_id = tgt.periodic_element_id
-            # T-DNA — derive initial weight, trust, plasticity and decay from bond physics.
             syn.apply_periodic_prediction(periodic_integrator)
+            if init_w is not None:
+                syn.weight = init_w
+                syn.trust = max(syn.trust, 0.80)
             syn.bind_genome(genome)
             synapses.append(syn)
             src.targets.append(tgt.cell_id)
+
+        # Structured plastic connectome:
+        # 1) Full low-weight plastic input->output projection (100 synapses) for direct associative binding
+        for src in input_neurons:
+            for tgt in output_neurons:
+                _add_synapse(src, tgt, init_w=0.12)
+        # 2) Feedforward input->hidden projection (100 synapses)
+        for i, src in enumerate(input_neurons):
+            for k in range(10):
+                tgt = hidden_neurons[(i * 6 + k) % len(hidden_neurons)]
+                _add_synapse(src, tgt, init_w=0.12)
+        # 3) Feedforward hidden->output projection (60 synapses)
+        for h_idx, src in enumerate(hidden_neurons):
+            tgt = output_neurons[h_idx % len(output_neurons)]
+            _add_synapse(src, tgt, init_w=0.12)
+        # 4) Recurrent hidden->hidden reservoir (40 synapses, zero output->input contamination)
+        while len(synapses) < n_synapses:
+            src = rng.choice(hidden_neurons)
+            tgt = rng.choice(hidden_neurons)
+            _add_synapse(src, tgt, init_w=0.12)
 
         astrocytes = [
             DigitalAstrocyte(cell_id=f"astro_{i}", role="digital_astrocyte")
@@ -3811,6 +3835,32 @@ class CellularBrainOrchestrator(FieldAwareMixin, BaseModel):
             kwargs.setdefault("cor_min_latent_states", cor_genes.min_latent_states)
             kwargs.setdefault("cor_max_hypotheses", cor_genes.max_hypotheses)
             kwargs.setdefault("cor_collapse_refractory_ticks", cor_genes.collapse_refractory_ticks)
+
+        # Wire genome.dynamics flags when enabled in Digital DNA (no longer ignored by build_mvp)
+        dyn = getattr(genome, "dynamics", None)
+        if dyn is not None:
+            for attr, flag_name in (
+                ("temporal_dynamics", "temporal_dynamics_enabled"),
+                ("energy_field", "energy_field_enabled"),
+                ("predictive_coding", "predictive_coding_enabled"),
+                ("homeostatic_drive", "homeostatic_drive_enabled"),
+                ("criticality_monitor", "criticality_monitor_enabled"),
+            ):
+                cfg_dict = getattr(dyn, attr, None)
+                if isinstance(cfg_dict, dict) and cfg_dict.get("enabled", False):
+                    kwargs.setdefault(flag_name, True)
+
+        # T217 / T250 — default host-OS assimilation & physical actuation to False in MVP builds
+        # unless explicitly opted in by caller, preventing host CPU/RAM telemetry from contaminating
+        # cognitive circuits and enforcing T217 qualification gates.
+        for host_flag in (
+            "neuro_os_enabled",
+            "system_assimilation_enabled",
+            "vfs_enabled",
+            "hypervisor_enabled",
+            "actuator_enabled",
+        ):
+            kwargs.setdefault(host_flag, False)
 
         # T-BCEL — enable Digital RNA by default in MVP builds
         kwargs.setdefault("digital_rna_enabled", True)

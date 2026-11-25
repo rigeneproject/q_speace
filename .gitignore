@@ -32,3 +32,4 @@ env/
 /.qspeace-dev/
 /.qspeace-micro-node/
 /.config/auth0/
+/data/dynamics/

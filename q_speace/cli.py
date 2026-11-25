@@ -360,6 +360,19 @@ def brain_health() -> None:
     typer.echo(json.dumps(h, indent=2))
 
 
+@brain_app.command("ab-benchmark")
+def brain_ab_benchmark(
+    seed: int = typer.Option(2026, "--seed", "-s", help="Deterministic PRNG seed."),
+) -> None:
+    """Run T250 A/B complex benchmark (SPEACE Neural Agent vs Classical Baseline)."""
+    from .neural_agent import run_ab_neural_benchmark
+
+    comparison = run_ab_neural_benchmark(seed=seed)
+    typer.echo(json.dumps(comparison.to_dict(), indent=2, sort_keys=True, allow_nan=False))
+    if not comparison.speace_outperforms_baseline:
+        raise typer.Exit(3)
+
+
 @brain_app.command("chat")
 def brain_chat(
     coherence: float = typer.Option(1.0, "--coherence", "-c", help="Initial ILF coherence_phi."),
