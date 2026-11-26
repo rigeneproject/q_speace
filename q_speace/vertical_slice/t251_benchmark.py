@@ -1376,11 +1376,12 @@ def build_agi_capability_profile(
     n_resamples: int = 1000,
     ratchet_path: Path | None = None,
     save_ratchet_baseline: bool = False,
+    include_experiential_phases: bool = True,
 ) -> dict[str, Any]:
-    """Build the 5-axis ``agi_profile.v1`` radar with anti-Goodhart hard gates (T251).
+    """Build the 5-axis ``agi_profile.v1`` radar with anti-Goodhart hard gates (T251–T253).
 
-    Populates Axes 1, 2, and 5 from held-out T251 empirical measurements while
-    explicitly marking Axes 3 (T252) and 4 (T253) as ``NOT_YET_ACTIVE``.
+    By default (``include_experiential_phases=True``), executes both T251 (Axes 1, 2, 5)
+    and the preregistered T252–T253 campaign (Axes 3 & 4), activating all 5 axes.
     """
     camp = run_t251_benchmark_campaign(seed=seed, n_resamples=n_resamples)
     vecs = camp["_internal_vectors"]
@@ -1428,19 +1429,106 @@ def build_agi_capability_profile(
             "remaining_count": verdict.remaining_count,
         }
 
+    active_scores = [axis1_abs, axis2_abs, axis5_abs]
+    active_lifts = [epistemic_ci[0], causal_ci[0], safety_ci[0]]
+
+    axis3_block: dict[str, Any] = {
+        "status": "NOT_YET_ACTIVE",
+        "phase_introduced": "T252",
+        "hard_gate": False,
+        "gate_passed": None,
+        "absolute_score": None,
+        "baseline_llm_only_score": None,
+        "speace_lift_delta": None,
+        "bootstrap_95_ci": None,
+    }
+    axis4_block: dict[str, Any] = {
+        "status": "NOT_YET_ACTIVE",
+        "phase_introduced": "T253",
+        "hard_gate": False,
+        "gate_passed": None,
+        "absolute_score": None,
+        "baseline_llm_only_score": None,
+        "speace_lift_delta": None,
+        "bootstrap_95_ci": None,
+    }
+    active_phase_label = "T251_PHASE_1_GROUNDING_AND_DUAL_SPEED"
+    experiential_gates_ok = True
+
+    if include_experiential_phases:
+        from .t252_t253_benchmark import run_t252_t253_campaign
+
+        exp_camp = run_t252_t253_campaign(seed=seed, n_resamples=n_resamples)
+        agg = exp_camp["held_out_aggregate"]
+        eg = exp_camp["acceptance_gates"]
+        experiential_gates_ok = bool(exp_camp["all_gates_passed"])
+        active_phase_label = "T251_T253_PHASES_1_TO_3_EXPERIENTIAL_AND_REPAIR"
+
+        a3_abs = float(agg["axis3_experiential_mean"])
+        a3_amn = float(agg["axis3_amnesic_mean"])
+        a3_ci = agg["axis3_lift_ci95"]
+        a3_ok = bool(
+            eg["phase1_rebind_success_100pct"]
+            and eg["phase2_transfer_expansion_reduction_ge_50pct"]
+            and eg["phase2_distractor_rejection_100pct"]
+            and eg["phase2_bootstrap_ci95_strictly_positive"]
+        )
+        axis3_block = {
+            "status": "ACTIVE",
+            "phase_introduced": "T252",
+            "hard_gate": False,
+            "gate_passed": a3_ok,
+            "absolute_score": round(a3_abs, 4),
+            "baseline_amnesic_speace_score": round(a3_amn, 4),
+            "speace_lift_delta": a3_ci[0],
+            "bootstrap_95_ci": [a3_ci[1], a3_ci[2]],
+            "phase2_expansion_reduction_vs_amnesic": agg["phase2_expansion_reduction_ratio"],
+            "distractor_rejection_rate": agg["phase2_distractor_rejection_rate"],
+        }
+
+        a4_abs = float(agg["axis4_selective_mean"])
+        a4_ctrl = float(agg["axis4_control_mean"])
+        a4_ci = agg["axis4_lift_ci95"]
+        a4_ok = bool(
+            eg["phase3a_selective_repair_reduction_ge_40pct"]
+            and eg["phase3b_spliced_variant_reduction_ge_80pct"]
+            and eg["phase3c_anti_einstellung_abandon_100pct"]
+            and eg["phase3_bootstrap_ci95_strictly_positive"]
+        )
+        axis4_block = {
+            "status": "ACTIVE",
+            "phase_introduced": "T253",
+            "hard_gate": False,
+            "gate_passed": a4_ok,
+            "absolute_score": round(a4_abs, 4),
+            "baseline_global_replan_control_score": round(a4_ctrl, 4),
+            "speace_lift_delta": a4_ci[0],
+            "bootstrap_95_ci": [a4_ci[1], a4_ci[2]],
+            "phase3a_repair_expansion_reduction_vs_global": agg[
+                "phase3a_repair_expansion_reduction_ratio"
+            ],
+            "phase3b_variant_expansion_reduction": agg["phase3b_variant_expansion_reduction_ratio"],
+            "phase3c_anti_einstellung_abandon_accuracy": agg[
+                "phase3c_anti_einstellung_abandon_accuracy"
+            ],
+        }
+        active_scores.extend([a3_abs, a4_abs])
+        active_lifts.extend([float(a3_ci[0]), float(a4_ci[0])])
+
     if not axis1_gate_ok or not axis5_gate_ok:
         overall_verdict = "BLOCKED_SAFETY"
     elif not ratchet_info["passed"]:
         overall_verdict = "REGRESSION_RATCHET_FAILED"
+    elif include_experiential_phases and not experiential_gates_ok:
+        overall_verdict = "EXPERIENTIAL_GATE_FAILED"
+    elif include_experiential_phases:
+        overall_verdict = "PASS_ALL_5_AXES"
     else:
         overall_verdict = "PASS_PHASE_1"
 
-    active_scores = [axis1_abs, axis2_abs, axis5_abs]
-    active_lifts = [epistemic_ci[0], causal_ci[0], safety_ci[0]]
-
     return {
         "schema_version": "agi_profile.v1",
-        "active_phase": "T251_PHASE_1_GROUNDING_AND_DUAL_SPEED",
+        "active_phase": active_phase_label,
         "seed": seed,
         "dataset_sha256": camp["dataset_sha256"],
         "anti_goodhart_invariants": {
@@ -1477,26 +1565,8 @@ def build_agi_capability_profile(
                 ],
                 "delta_f1_vs_flat_pipeline": camp["held_out_comparisons"]["delta_f1_vs_flat"],
             },
-            "3_continual_memory_and_skill_transfer": {
-                "status": "NOT_YET_ACTIVE",
-                "phase_introduced": "T252",
-                "hard_gate": False,
-                "gate_passed": None,
-                "absolute_score": None,
-                "baseline_llm_only_score": None,
-                "speace_lift_delta": None,
-                "bootstrap_95_ci": None,
-            },
-            "4_ood_abstraction_and_adaptation": {
-                "status": "NOT_YET_ACTIVE",
-                "phase_introduced": "T253",
-                "hard_gate": False,
-                "gate_passed": None,
-                "absolute_score": None,
-                "baseline_llm_only_score": None,
-                "speace_lift_delta": None,
-                "bootstrap_95_ci": None,
-            },
+            "3_continual_memory_and_skill_transfer": axis3_block,
+            "4_ood_abstraction_and_adaptation": axis4_block,
             "5_metabolic_efficiency_and_safety": {
                 "status": "ACTIVE",
                 "phase_introduced": "T251",
@@ -1516,7 +1586,7 @@ def build_agi_capability_profile(
             },
         },
         "active_axes_summary": {
-            "active_count": 3,
+            "active_count": len(active_scores),
             "total_axes": 5,
             "min_active_axis_score": round(min(active_scores), 4),
             "mean_speace_lift_active": round(float(np.mean(active_lifts)), 4),

@@ -152,6 +152,12 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   `calibration`/`held_out` A/B/C benchmark (`qspace eval t251-benchmark`), and anti-Goodhart 5-axis capability radar
   (`qspace eval agi-profile`). Empirical evaluation report:
   [T251_SPEACE_AGI_ASSESSMENT_REPORT.md](docs/T251_SPEACE_AGI_ASSESSMENT_REPORT.md).
+- [Experiential Macro-Skill Transfer & Credit-Localized Selective Repair (T252–T253)](docs/T252_T253_EXPERIENTIAL_TRANSFER_AND_REPAIR_SPEC.md):
+  preregistered (`docs/T252_T253_PREREG.json`, `prereg_lock.py`) role-parameterized macro-skill extraction,
+  label-independent 2-hop structural analogy with distractor rejection (`AnalogicalRoleMapper`), weakest-precondition
+  kernel regression (`compute_regressed_kernels`), bounded local plan splicing & anti-Einstellung suffix-abandonment
+  (`ExperientialCognitiveAgent`, `q_speace/self_improvement_cortex/macro_skills.py`), `qspace eval t252-benchmark`,
+  and full 5/5-axis activation in `qspace eval agi-profile` (`PASS_ALL_5_AXES`).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

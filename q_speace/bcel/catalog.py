@@ -799,6 +799,27 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Removed in silicon: 'fast' and 'slow' denote software latency/deliberation routing tiers "
         "only, and canonical symbol lookup does not imply conscious semantic comprehension.",
     ),
+    # ----- T252-T253: Experiential Macro-Skill Transfer & Credit-Localized Selective Repair -----
+    BCELEquivalence(
+        "Procedural chunking and relational role-parameterized macro-skill transfer (T252)",
+        "functional",
+        "Keep as deterministic lifting of solved GOAPAction sequences into role-parameterized "
+        "schemas bound across domains via injective 2-hop Jaccard relational signatures, "
+        "goal-consistency verification, and bounded micro-bridging over local refinements.",
+    ),
+    BCELEquivalence(
+        "Weakest-precondition suffix verification, local plan splicing, and anti-Einstellung abandonment (T253)",
+        "functional",
+        "Keep as step-level transition residual localization, empirical operator effect updates, "
+        "backward weakest-precondition kernel regression, sub-budget bridge splicing, and "
+        "explicit macro abandonment whenever suffix integrity or blocker constraints fail.",
+    ),
+    BCELEquivalence(
+        "Hippocampal schema replay consciousness and sudden insight qualia claims (T252-T253)",
+        "accidental",
+        "Removed in silicon: macro-skill lifting, structural analogy matching, and local plan "
+        "splicing are finite graph and set algorithms with zero subjective insight claims.",
+    ),
 ]
 
 

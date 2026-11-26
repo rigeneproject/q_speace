@@ -28,6 +28,23 @@ from .evolution_council import (
 )
 from .evolutionary_memory import EvolutionaryMemory, MemoryEntry
 from .ilf_regulator import ILFRegulator, MutationVerdict
+from .macro_skills import (
+    AnalogicalRoleMapper,
+    AnalogyAuditTrace,
+    EmpiricalOperatorModel,
+    EpisodeExecutionReport,
+    ExperientialCognitiveAgent,
+    LiftedAtom,
+    ParameterizedStep,
+    RepairDecisionKind,
+    RoleParameterizedMacroSkill,
+    RoleTopologyProfile,
+    StatefulPlanningEnvironment,
+    compute_regressed_kernels,
+    extract_macro_skill,
+    format_structured_atom,
+    parse_structured_atom,
+)
 from .neurogenesis import NeurogenesisPipeline, NewModuleSpec
 from .organism_observer import OrganismObserver, PhysiologicalProfile
 from .quantum_engine import (
@@ -83,4 +100,19 @@ __all__ = [
     "ReusableSkill",
     "SkillLibrary",
     "ReconsolidationWindow",
+    "AnalogicalRoleMapper",
+    "AnalogyAuditTrace",
+    "EmpiricalOperatorModel",
+    "EpisodeExecutionReport",
+    "ExperientialCognitiveAgent",
+    "LiftedAtom",
+    "ParameterizedStep",
+    "RepairDecisionKind",
+    "RoleParameterizedMacroSkill",
+    "RoleTopologyProfile",
+    "StatefulPlanningEnvironment",
+    "compute_regressed_kernels",
+    "extract_macro_skill",
+    "format_structured_atom",
+    "parse_structured_atom",
 ]

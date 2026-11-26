@@ -326,14 +326,19 @@ class GOAPPlanner:
         self.simulate_only = True
         self.max_expansions = max_expansions
 
-    def plan(
+    def plan_with_stats(
         self,
         initial_state: frozenset[str],
         goal_state: frozenset[str],
-    ) -> list[GOAPAction] | None:
-        """Find minimum-cost action sequence satisfying ``goal_state``, or None if unreachable."""
+        *,
+        max_expansions: int | None = None,
+    ) -> tuple[list[GOAPAction] | None, int]:
+        """Return ``(plan_or_none, expansions_used)`` under bounded A* search (T252)."""
+        budget = self.max_expansions if max_expansions is None else int(max_expansions)
+        if budget < 1:
+            raise ValueError("max_expansions must be >= 1")
         if goal_state.issubset(initial_state):
-            return []
+            return [], 0
 
         counter = 0
         start_h = float(len(goal_state - initial_state))
@@ -343,10 +348,10 @@ class GOAPPlanner:
         best_g: dict[frozenset[str], float] = {initial_state: 0.0}
         expansions = 0
 
-        while frontier and expansions < self.max_expansions:
+        while frontier and expansions < budget:
             _f, g, _tie, state, path = heapq.heappop(frontier)
             if goal_state.issubset(state):
-                return path
+                return path, expansions
             expansions += 1
             for action in self._actions:
                 if not action.preconditions.issubset(state):
@@ -360,7 +365,16 @@ class GOAPPlanner:
                     heapq.heappush(
                         frontier, (new_g + h, new_g, counter, next_state, [*path, action])
                     )
-        return None
+        return None, expansions
+
+    def plan(
+        self,
+        initial_state: frozenset[str],
+        goal_state: frozenset[str],
+    ) -> list[GOAPAction] | None:
+        """Find minimum-cost action sequence satisfying ``goal_state``, or None if unreachable."""
+        result, _exp = self.plan_with_stats(initial_state, goal_state)
+        return result
 
 
 @dataclass

@@ -63,6 +63,13 @@ from .t251_benchmark import (
     calibrate_t251_thresholds,
     run_t251_benchmark_campaign,
 )
+from .t252_t253_benchmark import (
+    PROBLEM_FAMILIES,
+    FamilyBenchmarkSummary,
+    FamilyVocabulary,
+    run_t252_t253_campaign,
+    verify_t252_preregistration,
+)
 
 __all__ = [
     "BenchmarkCase",
@@ -114,4 +121,9 @@ __all__ = [
     "build_t251_symbol_registry",
     "calibrate_t251_thresholds",
     "run_t251_benchmark_campaign",
+    "FamilyBenchmarkSummary",
+    "FamilyVocabulary",
+    "PROBLEM_FAMILIES",
+    "run_t252_t253_campaign",
+    "verify_t252_preregistration",
 ]

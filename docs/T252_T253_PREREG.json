@@ -1,0 +1,59 @@
+{
+  "locking_protocol": "q_speace.spiking.prereg_lock.v1",
+  "pre_calibration": {
+    "acceptance_thresholds": {
+      "phase1_rebind_success_min": 1.0,
+      "phase2_expansion_reduction_min": 0.5,
+      "phase3a_repair_expansion_reduction_min": 0.4,
+      "phase3b_variant_expansion_reduction_min": 0.8,
+      "phase3c_abandon_accuracy_min": 1.0
+    },
+    "arms_q1": [
+      "SPEACE_EXPERIENTIAL",
+      "SPEACE_AMNESIC"
+    ],
+    "arms_q2": [
+      "SPEACE_SELECTIVE_REPAIR",
+      "SPEACE_GLOBAL_REPLAN",
+      "STUBBORN_REUSE_CONTROL"
+    ],
+    "calibration_families": [
+      "F1_thermal_lock",
+      "F2_staging_pipeline"
+    ],
+    "lock_sha256": "6f40f2c7f0b1c612f662aa34f1e37968f32fe4e00241bca3c3a82266f76440c6",
+    "locked": true,
+    "parameter_grid": {
+      "alpha_local": [
+        0.2,
+        0.3,
+        0.4
+      ],
+      "tau_analogy": [
+        0.45,
+        0.6
+      ]
+    },
+    "section_id": "T252_T253_pre_calibration",
+    "seed": 2026
+  },
+  "pre_evaluation": {
+    "bootstrap_resamples": 1000,
+    "episodes_per_family": 4,
+    "held_out_families": [
+      "F3_quorum_handoff",
+      "F4_cryo_purification",
+      "F5_containment_airlock"
+    ],
+    "lock_sha256": "35303fd1f11e5ed12bf29b35671a6881763d271abeebffc95463f6859b6765a5",
+    "locked": true,
+    "non_isomorphic_features": [
+      "3_distractor_entities_per_episode",
+      "local_precondition_micro_refinement",
+      "mid_step_repairable_mutation",
+      "suffix_invalidating_negative_control"
+    ],
+    "section_id": "T252_T253_pre_evaluation"
+  },
+  "spec": "T252_T253"
+}

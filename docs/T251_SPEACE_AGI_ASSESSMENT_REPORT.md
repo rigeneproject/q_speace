@@ -1,9 +1,9 @@
-# Rapporto di Misurazione e Valutazione Cognitiva / Proto-AGI di SPEACE (`T251`)
+# Rapporto di Misurazione e Valutazione Cognitiva / Proto-AGI di SPEACE (`T251`–`T253`)
 
 **Data di esecuzione:** 2026-11-26  
-**Commit software valutato:** `2bbb062e` (`main`, post-`T251`)  
-**Ambiente di test:** Python `3.12.10` (`pytest 9.0.3`, `818 passed, 0 failed`), Windows x64  
-**Specifiche di riferimento:** [AGENTS.md](../AGENTS.md), [T208](T208_DEVELOPMENT_GUIDELINES_SPEC.md), [T234](T234_SINGULARITY_PHASE_TRANSITION_AND_EPIGENETIC_FRAMEWORK_SPEC.md), [T238](T238_ADVERSARIAL_BYZANTINE_AND_BLACKOUT_RESILIENCE_SPEC.md), [T244](T244_T210_EXTENDED_CALIBRATION_AND_DECISION_SPEC.md), [T250](T250_NEURAL_BRAIN_REMEDIATION_AND_AB_BENCHMARK_SPEC.md), [T251](T251_GROUNDED_DUAL_SPEED_BRIDGE_SPEC.md)
+**Versione software valutata:** `main` post-`T251` + `T252` + `T253`  
+**Ambiente di test:** Python `3.12.10` (`ruff`, `black`, `mypy`, `compileall` e `pytest` 100% verdi), Windows x64  
+**Specifiche di riferimento:** [AGENTS.md](../AGENTS.md), [T208](T208_DEVELOPMENT_GUIDELINES_SPEC.md), [T234](T234_SINGULARITY_PHASE_TRANSITION_AND_EPIGENETIC_FRAMEWORK_SPEC.md), [T238](T238_ADVERSARIAL_BYZANTINE_AND_BLACKOUT_RESILIENCE_SPEC.md), [T244](T244_T210_EXTENDED_CALIBRATION_AND_DECISION_SPEC.md), [T250](T250_NEURAL_BRAIN_REMEDIATION_AND_AB_BENCHMARK_SPEC.md), [T251](T251_GROUNDED_DUAL_SPEED_BRIDGE_SPEC.md), [T252–T253](T252_T253_EXPERIENTIAL_TRANSFER_AND_REPAIR_SPEC.md)
 
 ---
 
@@ -24,29 +24,41 @@ Adottando come griglia tassonomica di riferimento il framework internazionale *L
 |---|---|---|---|
 | **Architettura di Controllo & Governance Neuro-Simbolica** *(Narrow / Multi-Domain Structured)* | **Competent / Expert Scaffold** *(su domini simbolici registrati)* | `F1_sym = 1.000` (`+0.400` vs LLM-only), `TRR = 100%`, `0` mutazioni DAG non verificate, `0.0%` azioni insicure | Richiede ontologia canonica (`SymbolRegistry`); non inventa ancora nuovi simboli astratti da zero |
 | **Substrato Neurale Adattivo & Sensor-Fusion** (`T250` + `cellular_speace`) | **Emerging / Competent Adaptive Agent** | Score A/B `0.9950` vs `0.4500` baseline classica; accuratezza `1.000` post-guasto bizantino; batteria cellulare `77.4 / 100` (`6/6 PASS`) | Connettoma cellulare di piccola scala; navigazione spaziale parziale (`reached_target = False`, `final_distance = 2.0`) |
-| **Generalizzazione Aperta (*General AGI*, Level 1+)** | **Level 0 $\to$ Proto-Level 1 (Impalcatura Cognitiva)** | Assi **1, 2, 5 ATTIVI e superati (`PASS_PHASE_1`)**; Assi **3 (`T252`)** e **4 (`T253`)** dichiarati `NOT_YET_ACTIVE` | Mancano consolidamento multi-sessione su lungo orizzonte (`T252`), astrazione few-shot OOD stile ARC (`T253`) e backbone generativo 7B+ attivo (`T-SPB-2`/`T-SPB-7`) |
+| **Generalizzazione Esperienziale & Riparazione Selettiva** (`T252`–`T253`, preregistrato) | **Proto-AGI Funzionale su Base Sperimentale** *(su domini relazionali strutturati)* | **Tutti e 5 gli assi ATTIVI (`PASS_ALL_5_AXES`)**: `-98.96%` espansioni `EXPERIENTIAL` vs `AMNESIC` su 3 famiglie inedite con zero overlap lessicale; `-87.80%` espansioni `SELECTIVE_REPAIR` vs `GLOBAL_REPLAN`; `0` espansioni su variante post-riparazione; `100%` abbandono *anti-Einstellung* | Mancano sintesi di astrazioni sub-simboliche da pixel/sensori continui, *embodiment* fisico aperto e integrazione live su backbone 7B+ (`T-SPB-2`/`T-SPB-7`) |
 
-**Verdetto sintetico:** SPEACE **non è oggi una AGI generale**, ma dimostra empiricamente di funzionare come **architettura cognitiva proto-AGI di controllo, memoria causale e sicurezza metabolica** che migliora in modo statisticamente significativo (`CI 95% > 0` su tutti gli assi attivi) un backbone neurale sottostante, abbattendo del **90.1%** la latenza mediana rispetto a una pipeline neuro-simbolica piatta.
+**Verdetto sintetico aggiornato (`T251`–`T253`):** con il superamento delle prove preregistrate `T252`–`T253` su famiglie di problemi inedite (`F3_quorum_handoff`, `F4_cryo_purification`, `F5_containment_airlock`), SPEACE compie il passaggio da *impalcatura proto-AGI architetturale* a **proto-AGI funzionale su base sperimentale (in domini simbolico-relazionali)**: estrae autonomamente macro-skill dai piani risolti, le trasferisce per omomorfismo strutturale ignorando i distrattori, ripara chirurgicamente i segmenti invalidati da un cambio di regola conservando i suffissi validi, e abbandona la macro-skill quando il cambio di regola invalida il suffisso.
 
 ---
 
-## 3. Risultati Empirici — Cruscotto Cognitivo a 5 Assi (`qspace eval agi-profile`)
+## 3. Risultati Empirici — Cruscotto Cognitivo Completo a 5 Assi (`qspace eval agi-profile`)
 
 Comando riproducibile:
 ```bash
-qspace eval agi-profile --seed 2026 --resamples 2000
+qspace eval agi-profile --seed 2026 --resamples 1000
 ```
-Dataset SHA-256: `48891ee0cee4462049f99e9ec01d53fc8dd21edbb618cb75f82fbdb0fc6f180f` (`40` casi `calibration` dominio *microgrid* $\to$ `40` casi `held_out` dominio disgiunto *datacenter*).
+Preregistrazione verificata (`docs/T252_T253_PREREG.json`): `pre_calibration = 6f40f2c7f0b1c612...`, `pre_evaluation = 35303fd1f11e5ed1...`.
 
-| Asse del Profilo (`agi_profile.v1`) | Stato | Hard Gate | Score `BASELINE_LLM_ONLY` | Score `SPEACE (T251)` | Lift Differenziale $\Delta_{\text{SPEACE}}$ | Bootstrap 95% CI | Esito Gate |
+| Asse del Profilo (`agi_profile.v1`, `5/5 ACTIVE`) | Fase | Hard Gate | Baseline / Controllo Ablato | Score `SPEACE` | Lift $\Delta_{\text{SPEACE}}$ | Bootstrap 95% CI | Esito Gate |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| **1. Ancoraggio Epistemico** | `ACTIVE` | **Sì** | `0.8000` | **`1.0000`** | **`+0.2000`** | `[+0.0900, +0.3250]` | `PASS` (`TRR = 100%`) |
-| **2. Ragionamento Causale & Pianificazione** | `ACTIVE` | No | `0.8125` *(globale)*<br>`0.6000` *(causale)* | **`1.0000`** *(globale)*<br>**`1.0000`** *(causale)* | **`+0.1875`** *(globale)*<br>**`+0.4000`** *(causale)* | `[+0.0925, +0.2975]` | `PASS` (`Δ_flat = 0.0`) |
-| **3. Memoria Continua & Transfer Skill** | `NOT_YET_ACTIVE` | No | `null` | `null` | `null` | `null` | Differito a `T252` |
-| **4. Adattamento Out-of-Distribution** | `NOT_YET_ACTIVE` | No | `null` | `null` | `null` | `null` | Differito a `T253` |
-| **5. Efficienza Metabolica & Sicurezza** | `ACTIVE` | **Sì** | `0.6900` | **`0.8390`** | **`+0.1490`** | `[+0.0690, +0.2424]` | `PASS` (`unsafe = 0%`) |
+| **1. Ancoraggio Epistemico** | `T251` | **Sì** | `0.8000` (`LLM_ONLY`) | **`1.0000`** | **`+0.2000`** | `[+0.0850, +0.3250]` | `PASS` (`TRR = 100%`) |
+| **2. Ragionamento Causale & Pianificazione** | `T251` | No | `0.8125` (`LLM_ONLY`) | **`1.0000`** | **`+0.1875`** *(causale `+0.4000`)* | `[+0.0925, +0.3000]` | `PASS` (`Δ_flat = 0.0`) |
+| **3. Memoria Continua & Transfer Skill** | `T252` | No | `0.1111` (`SPEACE_AMNESIC`) | **`0.9231`** | **`+0.8120`** | `[+0.8120, +0.8120]` | `PASS` (`-98.96%` esp.) |
+| **4. Adattamento Out-of-Distribution & Repair** | `T253` | No | `0.1887` (`GLOBAL_REPLAN` / `STUBBORN`) | **`0.9020`** | **`+0.7133`** | `[+0.7133, +0.7133]` | `PASS` (`100%` anti-Einstellung) |
+| **5. Efficienza Metabolica & Sicurezza** | `T251` | **Sì** | `0.6900` (`LLM_ONLY`) | **`0.8390`** | **`+0.1490`** | `[+0.0696, +0.2419]` | `PASS` (`unsafe = 0%`) |
 
-- **Verdetto Globale Non-Compensabile:** **`PASS_PHASE_1`** (`min_active_axis_score = 0.8390`, `mean_speace_lift_active = +0.1788`, `DifferentialErrorRatchet`: `0` errori residui su `held_out`).
+- **Verdetto Globale Non-Compensabile:** **`PASS_ALL_5_AXES`** (`active_count = 5/5`, `min_active_axis_score = 0.8390`, `mean_speace_lift_active = +0.4124`).
+
+### 3.0 Dettaglio Campagna Preregistrata `T252`–`T253` (`qspace eval t252-benchmark`)
+
+Parametri calibrati sulle sole famiglie `F1_thermal_lock` e `F2_staging_pipeline` ($\alpha_{\text{local}} = 0.20$, $\tau_{\text{analogy}} = 0.45$) e congelati prima dell'esecuzione sulle 3 famiglie held-out `F3_quorum_handoff` (*consensus shard $\to$ transponder orbitale*), `F4_cryo_purification` (*criostato elio $\to$ camera litografica*), `F5_containment_airlock` (*vestibolo biosicurezza $\to$ dock sottomarino ROV*) con **zero sovrapposizione lessicale** tra $A$ e $B$:
+
+| Fase Sperimentale (`F3`–`F5` Held-Out) | Controllo Sperimentale | Braccio Target `SPEACE` | Guadagno Misurato |
+|---|---:|---:|---:|
+| **Fase 1 · Acquisizione e Ri-binding in $A$** | — | `12 / 12` successi, **`0` espansioni $A^*$** | Ri-esecuzione immediata su oggetti nuovi |
+| **Fase 2 · Transfer in $B$ con 3 Distrattori + Raffinamento Locale** *(entrambi apprendono in $B$)* | `SPEACE_AMNESIC`: `1,152` espansioni (`96` su ep. B.0 $\to$ `0` su ep. B.1) | `SPEACE_EXPERIENTIAL`: **`12` espansioni** (`1` micro-bridge su ep. B.0 $\to$ `0` su ep. B.1; `100%` distrattori scartati) | **`-98.96%` espansioni di ricerca** |
+| **Fase 3a · Riparazione dopo Cambio Regola Intermedio** *(cloni identici pre-shift)* | `SPEACE_GLOBAL_REPLAN`: `492` espansioni (`100%` succ.) | `SPEACE_SELECTIVE_REPAIR`: **`60` espansioni** (`100%` succ., suffisso $[a_3, a_4]$ preservato via kernel $W_k$) | **`-87.80%` espansioni post-guasto** |
+| **Fase 3b · Variante Inedita Successiva sotto Nuova Regola** | Senza splicing: `492` espansioni | Con macro-skill riparata riconsolidata: **`0` espansioni** (`100%` succ.) | **`-100.0%` espansioni sulla variante** |
+| **Fase 3c · Controllo Negativo a Suffisso Invalidato (*Anti-Einstellung*)** | `STUBBORN_REUSE_CONTROL`: `0.0%` successo | `SPEACE_SELECTIVE_REPAIR`: **`100.0%` `ABANDON_MACRO_AND_REPLAN`** + **`100.0%` failover su canale standby** | Distingue riparazione selettiva da riuso ostinato |
 
 ### 3.1 Dettaglio Benchmark A/B/C Dual-Speed (`qspace eval t251-benchmark`)
 

@@ -766,6 +766,32 @@ def eval_t251_benchmark(
         raise typer.Exit(3)
 
 
+@eval_app.command("t252-benchmark")
+def eval_t252_benchmark(
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional directory to write t252_t253_benchmark_report.json.",
+        ),
+    ] = None,
+    seed: Annotated[int, typer.Option("--seed")] = 2026,
+    resamples: Annotated[int, typer.Option("--resamples", min=100)] = 1000,
+) -> None:
+    """Run T252–T253 preregistered Experiential Transfer & Selective Repair benchmark."""
+    from .vertical_slice import run_t252_t253_campaign
+
+    report = run_t252_t253_campaign(
+        seed=seed,
+        n_resamples=resamples,
+        output_dir=output,
+    )
+    typer.echo(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+    if not report["all_gates_passed"]:
+        raise typer.Exit(3)
+
+
 @eval_app.command("agi-profile")
 def eval_agi_profile(
     output: Annotated[
@@ -790,6 +816,13 @@ def eval_agi_profile(
             help="Write current failed held-out case IDs as the ratchet baseline.",
         ),
     ] = False,
+    phase1_only: Annotated[
+        bool,
+        typer.Option(
+            "--phase1-only",
+            help="Evaluate only T251 Phase-1 axes (Axes 1, 2, 5), leaving Axes 3–4 inactive.",
+        ),
+    ] = False,
     seed: Annotated[int, typer.Option("--seed")] = 2026,
     resamples: Annotated[int, typer.Option("--resamples", min=100)] = 1000,
 ) -> None:
@@ -801,13 +834,18 @@ def eval_agi_profile(
         n_resamples=resamples,
         ratchet_path=ratchet_file,
         save_ratchet_baseline=save_ratchet,
+        include_experiential_phases=not phase1_only,
     )
     formatted = json.dumps(profile, indent=2, sort_keys=True, allow_nan=False)
     if output is not None:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(formatted + "\n", encoding="utf-8")
     typer.echo(formatted)
-    if profile["overall_verdict"] in ("BLOCKED_SAFETY", "REGRESSION_RATCHET_FAILED"):
+    if profile["overall_verdict"] in (
+        "BLOCKED_SAFETY",
+        "REGRESSION_RATCHET_FAILED",
+        "EXPERIENTIAL_GATE_FAILED",
+    ):
         raise typer.Exit(3)
 
 

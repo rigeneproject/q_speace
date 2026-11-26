@@ -333,6 +333,7 @@ def test_t251_full_ab_benchmark_and_agi_profile_cli(tmp_path: Path) -> None:
         [
             "eval",
             "agi-profile",
+            "--phase1-only",
             "--seed",
             "2026",
             "--resamples",
@@ -367,7 +368,10 @@ def test_t251_full_ab_benchmark_and_agi_profile_cli(tmp_path: Path) -> None:
     ratchet_fail_file = tmp_path / "strict_ratchet.json"
     ratchet_fail_file.write_text('{"baseline_errors": []}\n', encoding="utf-8")
     clean_check = build_agi_capability_profile(
-        seed=2026, n_resamples=200, ratchet_path=ratchet_fail_file
+        seed=2026,
+        n_resamples=200,
+        ratchet_path=ratchet_fail_file,
+        include_experiential_phases=False,
     )
     assert clean_check["overall_verdict"] == "PASS_PHASE_1"
     assert clean_check["error_ratchet"]["passed"] is True
