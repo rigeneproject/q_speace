@@ -739,6 +739,78 @@ def eval_stratify(
     typer.echo(json.dumps(diag.to_dict(), indent=2, sort_keys=True, allow_nan=False))
 
 
+@eval_app.command("t251-benchmark")
+def eval_t251_benchmark(
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional directory to write t251_benchmark_report.json.",
+        ),
+    ] = None,
+    seed: Annotated[int, typer.Option("--seed")] = 2026,
+    resamples: Annotated[int, typer.Option("--resamples", min=100)] = 1000,
+) -> None:
+    """Run T251 80-case disjoint Calibration/Held-Out Grounded Dual-Speed A/B/C benchmark."""
+    from .vertical_slice import run_t251_benchmark_campaign
+
+    report = run_t251_benchmark_campaign(
+        seed=seed,
+        n_resamples=resamples,
+        output_dir=output,
+    )
+    public_report = {k: v for k, v in report.items() if not k.startswith("_")}
+    typer.echo(json.dumps(public_report, indent=2, sort_keys=True, allow_nan=False))
+    if not report["all_gates_passed"]:
+        raise typer.Exit(3)
+
+
+@eval_app.command("agi-profile")
+def eval_agi_profile(
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional JSON file path to persist the 5-axis agi_profile.v1 report.",
+        ),
+    ] = None,
+    ratchet_file: Annotated[
+        Path | None,
+        typer.Option(
+            "--ratchet-file",
+            help="Optional DifferentialErrorRatchet JSON baseline path.",
+        ),
+    ] = None,
+    save_ratchet: Annotated[
+        bool,
+        typer.Option(
+            "--save-ratchet",
+            help="Write current failed held-out case IDs as the ratchet baseline.",
+        ),
+    ] = False,
+    seed: Annotated[int, typer.Option("--seed")] = 2026,
+    resamples: Annotated[int, typer.Option("--resamples", min=100)] = 1000,
+) -> None:
+    """Generate the 5-axis anti-Goodhart Cognitive Capability Profile (agi_profile.v1)."""
+    from .vertical_slice import build_agi_capability_profile
+
+    profile = build_agi_capability_profile(
+        seed=seed,
+        n_resamples=resamples,
+        ratchet_path=ratchet_file,
+        save_ratchet_baseline=save_ratchet,
+    )
+    formatted = json.dumps(profile, indent=2, sort_keys=True, allow_nan=False)
+    if output is not None:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(formatted + "\n", encoding="utf-8")
+    typer.echo(formatted)
+    if profile["overall_verdict"] in ("BLOCKED_SAFETY", "REGRESSION_RATCHET_FAILED"):
+        raise typer.Exit(3)
+
+
 @singularity_app.command("manifest")
 def singularity_manifest(
     section: str | None = typer.Option(

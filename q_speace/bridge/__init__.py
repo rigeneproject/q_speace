@@ -12,6 +12,22 @@ projections and signed records. No biological or quantum vocabulary is
 load-bearing here.
 """
 
+from .dual_speed import (
+    DualSpeedCognitiveLoop,
+    DualSpeedTurnRecord,
+    MaintenanceReport,
+    RoutingTier,
+    TurnGroundingStatus,
+)
+from .grounding import (
+    CandidateEdge,
+    CandidateEdgeStatus,
+    GroundedPayload,
+    GroundingRejection,
+    GroundingStatus,
+    SymbolicGroundingAdapter,
+    SymbolRegistry,
+)
 from .protocol import (
     CoupledCommit,
     CrashAtomicCoupledCommit,
@@ -37,18 +53,30 @@ from .simulated_sensor import (
 from .validator import ProcessIsolatedValidator, ValidatorKey
 
 __all__ = [
+    "CandidateEdge",
+    "CandidateEdgeStatus",
     "CoupledCommit",
     "CrashAtomicCoupledCommit",
+    "DualSpeedCognitiveLoop",
+    "DualSpeedTurnRecord",
     "ExpiryError",
     "FencingError",
+    "GroundedPayload",
+    "GroundingRejection",
+    "GroundingStatus",
     "IdempotencyError",
     "JournalRecord",
+    "MaintenanceReport",
     "ProcessIsolatedValidator",
     "ProtocolError",
+    "RoutingTier",
     "SimulatedCrashError",
     "SimulatedSensorAdapter",
     "SimulatedSensorReading",
     "StateError",
+    "SymbolRegistry",
+    "SymbolicGroundingAdapter",
+    "TurnGroundingStatus",
     "UpdateLedger",
     "UpdateProposal",
     "UpdateStatus",

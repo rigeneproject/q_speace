@@ -145,6 +145,12 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   defects across `cellular_speace` and `q_speace` (post-spike readout trace, three-factor eligibility plasticity,
   layered MVP connectome, per-neuron metabolic floor protection, negative-feedback threshold regulation, stationary
   `SemanticNeuralBackend`), and unified `SPEACENeuralAgent` (`q_speace/neural_agent.py`, T7/T8 bridge).
+- [Grounded Dual-Speed Cognitive Bridge & 5-Axis Capability Profile (T251)](docs/T251_GROUNDED_DUAL_SPEED_BRIDGE_SPEC.md):
+  closed-world `SymbolRegistry` + lagged `ObservationDigest` / `CYCLE_CONFLICT` quarantine (`SymbolicGroundingAdapter`,
+  `q_speace/bridge/grounding.py`), variational-surprise bifurcated `DualSpeedCognitiveLoop` with SQLite-free `fast`
+  tier and out-of-band `TDMMaintenanceScheduler` consolidation (`q_speace/bridge/dual_speed.py`), 80-case disjoint
+  `calibration`/`held_out` A/B/C benchmark (`qspace eval t251-benchmark`), and anti-Goodhart 5-axis capability radar
+  (`qspace eval agi-profile`).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

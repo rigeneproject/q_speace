@@ -778,6 +778,27 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Removed from assessment claims: positive baseline rewards on orthogonal or silent outputs "
         "create false-positive capability scores and must be paired with strict Top-1 accuracy.",
     ),
+    # ----- T251: Grounded Dual-Speed Cognitive Bridge & Symbolic Quarantine -----
+    BCELEquivalence(
+        "Closed-schema symbol grounding and lagged provenance edge quarantine (T251)",
+        "functional",
+        "Keep as strict JSON-schema validation against an immutable SHA-256 SymbolRegistry plus "
+        "CandidateEdge quarantine requiring calibrated parser confidence >= tau_ground, repeated "
+        "non-zero-lag ObservationDigest temporal asymmetry, and DAG acyclicity before promotion.",
+    ),
+    BCELEquivalence(
+        "Two-tier variational-surprise cognitive routing and out-of-band TDM consolidation (T251)",
+        "functional",
+        "Keep as a deterministic fast/slow dispatcher gated by ILF variational_free_energy, "
+        "calibrated confidence, and ActionDegradationGate.select(), isolating SQLite episodic "
+        "consolidation, GraphEdgePruner, and SkillLibrary pruning inside idle TDM maintenance ticks.",
+    ),
+    BCELEquivalence(
+        "Kahneman System-1/System-2 cortical personas and semantic qualia binding claims (T251)",
+        "accidental",
+        "Removed in silicon: 'fast' and 'slow' denote software latency/deliberation routing tiers "
+        "only, and canonical symbol lookup does not imply conscious semantic comprehension.",
+    ),
 ]
 
 

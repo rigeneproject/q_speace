@@ -52,6 +52,17 @@ from .policies import (
     evaluate_policy,
 )
 from .runner import VerticalSliceRunner
+from .t251_benchmark import (
+    DeterministicScenarioBackend,
+    SystemSplitMetrics,
+    T251CalibrationManifest,
+    T251Scenario,
+    build_agi_capability_profile,
+    build_t251_dataset,
+    build_t251_symbol_registry,
+    calibrate_t251_thresholds,
+    run_t251_benchmark_campaign,
+)
 
 __all__ = [
     "BenchmarkCase",
@@ -94,4 +105,13 @@ __all__ = [
     "RegimeFailureSummary",
     "StratifiedDiagnosticReport",
     "StratifiedFailureAnalyzer",
+    "DeterministicScenarioBackend",
+    "SystemSplitMetrics",
+    "T251CalibrationManifest",
+    "T251Scenario",
+    "build_agi_capability_profile",
+    "build_t251_dataset",
+    "build_t251_symbol_registry",
+    "calibrate_t251_thresholds",
+    "run_t251_benchmark_campaign",
 ]
