@@ -150,7 +150,8 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   `q_speace/bridge/grounding.py`), variational-surprise bifurcated `DualSpeedCognitiveLoop` with SQLite-free `fast`
   tier and out-of-band `TDMMaintenanceScheduler` consolidation (`q_speace/bridge/dual_speed.py`), 80-case disjoint
   `calibration`/`held_out` A/B/C benchmark (`qspace eval t251-benchmark`), and anti-Goodhart 5-axis capability radar
-  (`qspace eval agi-profile`).
+  (`qspace eval agi-profile`). Empirical evaluation report:
+  [T251_SPEACE_AGI_ASSESSMENT_REPORT.md](docs/T251_SPEACE_AGI_ASSESSMENT_REPORT.md).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

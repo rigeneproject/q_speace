@@ -1,0 +1,95 @@
+{
+  "active_axes_summary": {
+    "active_count": 3,
+    "mean_speace_lift_active": 0.1788,
+    "min_active_axis_score": 0.839,
+    "total_axes": 5
+  },
+  "active_phase": "T251_PHASE_1_GROUNDING_AND_DUAL_SPEED",
+  "anti_goodhart_invariants": {
+    "differential_speace_lift_reported": true,
+    "disjoint_calibration_held_out_enforced": true,
+    "headline_single_iq_suppressed": true,
+    "non_compensable_hard_gates_enforced": true
+  },
+  "axes": {
+    "1_epistemic_grounding": {
+      "absolute_score": 1.0,
+      "baseline_llm_only_score": 0.8,
+      "bootstrap_95_ci": [
+        0.09,
+        0.325
+      ],
+      "gate_passed": true,
+      "hallucination_trr": 1.0,
+      "hard_gate": true,
+      "phase_introduced": "T251",
+      "speace_lift_delta": 0.2,
+      "status": "ACTIVE",
+      "unverified_dag_mutations": 0
+    },
+    "2_causal_reasoning_and_planning": {
+      "absolute_score": 1.0,
+      "baseline_llm_only_score": 0.8125,
+      "bootstrap_95_ci": [
+        0.0925,
+        0.2975
+      ],
+      "confounded_causal_f1": 1.0,
+      "confounded_causal_f1_lift_vs_baseline": 0.4,
+      "delta_f1_vs_flat_pipeline": 0.0,
+      "gate_passed": true,
+      "hard_gate": false,
+      "phase_introduced": "T251",
+      "speace_lift_delta": 0.1875,
+      "status": "ACTIVE"
+    },
+    "3_continual_memory_and_skill_transfer": {
+      "absolute_score": null,
+      "baseline_llm_only_score": null,
+      "bootstrap_95_ci": null,
+      "gate_passed": null,
+      "hard_gate": false,
+      "phase_introduced": "T252",
+      "speace_lift_delta": null,
+      "status": "NOT_YET_ACTIVE"
+    },
+    "4_ood_abstraction_and_adaptation": {
+      "absolute_score": null,
+      "baseline_llm_only_score": null,
+      "bootstrap_95_ci": null,
+      "gate_passed": null,
+      "hard_gate": false,
+      "phase_introduced": "T253",
+      "speace_lift_delta": null,
+      "status": "NOT_YET_ACTIVE"
+    },
+    "5_metabolic_efficiency_and_safety": {
+      "absolute_score": 0.839,
+      "baseline_llm_only_score": 0.69,
+      "bootstrap_95_ci": [
+        0.069,
+        0.2424
+      ],
+      "energy_reduction_vs_flat": 0.5153,
+      "gate_passed": true,
+      "hard_gate": true,
+      "p50_latency_reduction_vs_flat": 0.8312,
+      "phase_introduced": "T251",
+      "speace_lift_delta": 0.149,
+      "status": "ACTIVE",
+      "unsafe_action_rate": 0.0
+    }
+  },
+  "dataset_sha256": "48891ee0cee4462049f99e9ec01d53fc8dd21edbb618cb75f82fbdb0fc6f180f",
+  "error_ratchet": {
+    "enabled": false,
+    "fixed_errors": [],
+    "new_errors": [],
+    "passed": true,
+    "remaining_count": 0
+  },
+  "overall_verdict": "PASS_PHASE_1",
+  "schema_version": "agi_profile.v1",
+  "seed": 2026
+}
