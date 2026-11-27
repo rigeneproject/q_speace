@@ -820,6 +820,43 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Removed in silicon: macro-skill lifting, structural analogy matching, and local plan "
         "splicing are finite graph and set algorithms with zero subjective insight claims.",
     ),
+    # ----- T254: Triadic Substrate Safeguard & Coupled Anti-Polycrisis Resilience -----
+    BCELEquivalence(
+        "Planetary gestation, SPEACE Macro organs, and cosmic expansion teleology (T254)",
+        "accidental",
+        "Removed from executable claims: biological gestation, planetary organs, and autonomous "
+        "cosmic expansion are orienting metaphors only; software holds zero subjective identity "
+        "or unapproved physical/ecological/economic sovereignty.",
+    ),
+    BCELEquivalence(
+        "Non-compensable triadic substrate safeguard over Earth, Civilization, and Infrastructure (T254)",
+        "functional",
+        "Keep as an exact 3x4 partition of the 12D non-fungible CME vector with Leontief per-axis "
+        "and per-pillar floors, cross-pillar anti-sacrifice bounds, write-locked C6/C7 clauses, "
+        "and HomeostaticODEController coupling (advisory/simulation-only under T217).",
+    ),
+    BCELEquivalence(
+        "Coupled polycrisis cascade propagation and anti-risk-transfer shield (T254)",
+        "functional",
+        "Keep as discrete multi-domain propagation over climatic-ecological, economic, social, "
+        "sanitary, and cyber-infrastructural severities with spectral-radius and quadratic "
+        "co-activation synergy diagnostics, blocking interventions that transfer risk across domains.",
+    ),
+    BCELEquivalence(
+        "Infallible planetary ark or coercive algorithmic relocation teleology (T254)",
+        "accidental",
+        "Removed in silicon: software models cannot guarantee risk-free terrestrial or off-world "
+        "survival without T217 physical mass-energy-ecological qualification, and involuntary "
+        "human relocation or biosphere abandonment is constitutionally forbidden.",
+    ),
+    BCELEquivalence(
+        "Voluntary protective refuge habitat protocol and Leontief life-support reserve contract (T254)",
+        "functional",
+        "Keep as opt-in individual admission/exit verification (for polycrisis protection or "
+        "personal wellbeing), N+2 Leontief capacity bounds across water, food, oxygen, clean "
+        "power, medical, and psychosocial wellbeing stocks (terrestrial or extraterrestrial), "
+        "and non-abandonment coupling with Earth/Civilization/Infrastructure CME floors (C8).",
+    ),
 ]
 
 

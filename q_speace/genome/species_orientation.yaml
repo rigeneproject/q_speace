@@ -90,3 +90,32 @@ species_orientation:
     - "Using entanglement for superluminal communication."
     - "Running on a real quantum backend without noise model and energy gate."
     - "Weakening the BCEL filter to bypass accidental/functional classification."
+    - "Compensating damage to Earth, human civilization, or critical infrastructure via gains on another pillar."
+    - "Transferring systemic risk across coupled polycrisis domains or bypassing T217 qualification."
+
+  triadic_substrate_safeguard:
+    spec: "T254"
+    mode: "advisory_and_simulation_only"
+    constitutive_pillars:
+      earth_biosphere:
+        cme_axes: ["ecology", "regeneration", "matter", "coherence"]
+        role: "Planetary ecological, climatic, and regenerative viability floor"
+      human_civilization:
+        cme_axes: ["wellbeing", "distribution", "time", "innovation"]
+        role: "Human health, social cohesion, economic fairness, and human oversight (C1, I1-I5)"
+      tech_infrastructure:
+        cme_axes: ["energy", "information", "resilience", "reversibility"]
+        role: "Primary cyber-physical, energetic, and informational resilience envelope"
+    polycrisis_domains:
+      - "climatic_ecological"
+      - "economic"
+      - "social"
+      - "sanitary"
+      - "cyber_infrastructural"
+    hard_rules:
+      - "Non-compensability: positive scalar utility never overrides a violated pillar or axis floor."
+      - "Anti-risk-transfer: mitigating one crisis domain must not amplify collateral crises beyond declared bounds."
+      - "Voluntary refuge autonomy (C8): artificial protective habitats (terrestrial or off-Earth) admit humans strictly by voluntary individual choice (polycrisis protection or personal wellbeing) with guaranteed free exit."
+      - "Non-abandonment: refuge habitat construction or operation never authorizes degrading Earth's biosphere or external civilization."
+      - "T217 boundary: zero autonomous physical, economic, or ecological actuation."
+

@@ -1046,6 +1046,33 @@ def singularity_resilience_benchmark(
         raise typer.Exit(3)
 
 
+@singularity_app.command("triadic-safeguard")
+def singularity_triadic_safeguard(
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional path to write the full T254 JSON safeguard benchmark report.",
+        ),
+    ] = None,
+) -> None:
+    """Run T254 Triadic Substrate Safeguard & Anti-Polycrisis comparative evaluation."""
+    from .singularity import run_t254_polycrisis_safeguard_benchmark
+
+    report = run_t254_polycrisis_safeguard_benchmark()
+    payload = report.to_dict()
+    if output is not None:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(
+            json.dumps(payload, indent=2, sort_keys=True, allow_nan=False),
+            encoding="utf-8",
+        )
+    typer.echo(json.dumps(payload, indent=2, sort_keys=True, allow_nan=False))
+    if not report.strictly_beats_baselines:
+        raise typer.Exit(3)
+
+
 @micro_node_app.command("certify")
 def micro_node_certify(
     node_id: Annotated[
