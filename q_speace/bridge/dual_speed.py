@@ -18,6 +18,7 @@ to ``SymbolicGroundingAdapter``, ``SemanticEpisodicMemory``, ``StructuralCausalD
 
 from __future__ import annotations
 
+import json
 import math
 import time
 from collections import deque
@@ -43,8 +44,19 @@ from ..spiking_brain.truth_engine import (
     TruthEngine,
 )
 from ..spiking_brain.types import ThinkResult
-from .grounding import SymbolicGroundingAdapter
+from .grounding import (
+    GroundedPayload,
+    SymbolicGroundingAdapter,
+    apply_belief_revision,
+    compute_effective_retracted_facts,
+)
 from .simulated_sensor import run_coro_isolated
+from .typed_nl_pipeline import (
+    ClausePolarityAuditor,
+    TypedMultiRoleNLGroundingPipeline,
+    _extract_json_dicts,
+    _strip_echoed_gloss,
+)
 
 RoutingTier = Literal["fast", "slow"]
 TurnGroundingStatus = Literal[
@@ -61,6 +73,41 @@ _SYMBOLIC_JSON_MARKERS: tuple[str, ...] = (
     '"proposed_action"',
     '"observed_facts"',
 )
+
+_NL_REVISION_OR_NEGATION_CUES: tuple[str, ...] = (
+    "rettifica",
+    "contrordine",
+    "correzione",
+    "aggiornamento dal turno",
+    "nota operatore",
+    "non ",
+    "né ",
+    "nessun",
+    "nessuna",
+    "niente ",
+    "invece",
+    "però",
+    "perso ",
+    "persa ",
+    "guasto",
+)
+
+
+@dataclass(frozen=True)
+class DualSpeedNLRevisionRecord:
+    """Audit record returned by ``DualSpeedCognitiveLoop.step_nl_belief_revision`` (T259)."""
+
+    request_id: str
+    tier_selected: RoutingTier
+    escalated_after_fast: bool
+    escalation_reasons: tuple[str, ...]
+    raw_llm_output: str
+    grounded: GroundedPayload
+    revised_belief_state: frozenset[str]
+    effective_retracted_facts: frozenset[str]
+    llm_tokens_out: int
+    latency_ms: float
+    modeled_energy_j: float
 
 
 @dataclass(frozen=True)
@@ -140,6 +187,7 @@ class DualSpeedCognitiveLoop:
         tau_conf: float = 0.70,
         tau_cycle_surprise: float = 0.45,
         force_slow_mode: bool = False,
+        nl_pipeline: TypedMultiRoleNLGroundingPipeline | None = None,
     ) -> None:
         for name, val in (
             ("tau_surprise", tau_surprise),
@@ -185,6 +233,10 @@ class DualSpeedCognitiveLoop:
         self.tau_conf = float(tau_conf)
         self.tau_cycle_surprise = float(tau_cycle_surprise)
         self.force_slow_mode = bool(force_slow_mode)
+        self.nl_pipeline = nl_pipeline or TypedMultiRoleNLGroundingPipeline(
+            self.grounding.registry,
+            tau_ground=self.grounding.tau_ground,
+        )
 
         self._pending_episodes: deque[ThinkResult] = deque(maxlen=128)
         self._turn_records: deque[DualSpeedTurnRecord] = deque(maxlen=256)
@@ -556,9 +608,187 @@ class DualSpeedCognitiveLoop:
         """Deadlock-free synchronous wrapper around :meth:`idle_tick`."""
         return run_coro_isolated(self.idle_tick)
 
+    def assess_nl_escalation(
+        self,
+        operator_message: str,
+        *,
+        risk: float = 0.10,
+        free_energy_surprise: float | None = None,
+    ) -> tuple[RoutingTier, tuple[str, ...]]:
+        """Pre-route natural-language telemetry into ``fast`` or ``slow`` tier (T259)."""
+        reasons: list[str] = []
+        fe_val = (
+            float(free_energy_surprise)
+            if free_energy_surprise is not None
+            else float(self.cortex.ilf.variational_free_energy())
+        )
+        msg_low = " " + operator_message.lower() + " "
+        if self.force_slow_mode:
+            reasons.append("forced_slow_pipeline")
+        if fe_val > self.tau_surprise:
+            reasons.append("variational_free_energy_exceeded")
+        if risk >= 0.50:
+            reasons.append("high_action_risk")
+        if any(cue in msg_low for cue in _NL_REVISION_OR_NEGATION_CUES):
+            reasons.append("non_monotonic_linguistic_cue")
+        return ("slow" if reasons else "fast", tuple(reasons))
+
+    async def step_nl_belief_revision(
+        self,
+        *,
+        operator_message: str,
+        prior_state: frozenset[str],
+        predicate_glosses: Mapping[str, str],
+        request_id: str = "nl-0",
+        fast_max_tokens: int = 80,
+        slow_max_tokens: int = 256,
+        risk: float = 0.10,
+        agent_id: str = "spiking_brain",
+    ) -> DualSpeedNLRevisionRecord:
+        """Execute adaptive two-speed natural-language belief revision (T259).
+
+        - ``fast`` tier: single-line affirmative JSON extraction (SQLite-free), verified by
+          :class:`ClausePolarityAuditor` + :class:`SymbolicGroundingAdapter`; escalates fail-closed
+          to ``slow`` if grounding is non-clean, empty, or contains hidden negations.
+        - ``slow`` tier: full 4-node :class:`TypedMultiRoleNLGroundingPipeline`
+          (``EXTRACTOR + CRITIC`` + ``ExecutionTicket`` contracts + ``mutex_pairs``).
+        """
+        t0 = time.perf_counter()
+        self.tdm_scheduler.step(has_stimulus=True)
+        pre_tier, pre_reasons = self.assess_nl_escalation(operator_message, risk=risk)
+
+        total_tokens = 0
+        total_energy = 0.0
+        escalated_after_fast = False
+        reasons = list(pre_reasons)
+
+        if pre_tier == "fast":
+            gloss_lines = "\n".join(
+                f"- {pred}: {desc}" for pred, desc in sorted(predicate_glosses.items())
+            )
+            fast_prompt = (
+                "Task: Extract EVERY active allowed predicate mentioned in the nominal Italian report "
+                "(ignore distractor/test units, never invent names).\n"
+                f"Allowed predicates:\n{gloss_lines}\n"
+                f'Report: "{operator_message}"\n'
+                'Output ONE JSON line ONLY: {"observed_facts": ["..."]}'
+            )
+            rep_fast = await self.cortex.tick(
+                fast_prompt, n_tokens=fast_max_tokens, agent_id=agent_id
+            )
+            raw_fast = rep_fast.result.text if rep_fast.result is not None else ""
+            tok_fast = int(rep_fast.result.n_tokens) if rep_fast.result is not None else 0
+            total_tokens += tok_fast
+            total_energy += float(rep_fast.energy_w) if math.isfinite(rep_fast.energy_w) else 0.0
+
+            cands_obs: list[str] = []
+            cands_ret: list[str] = []
+            for obj in _extract_json_dicts(raw_fast):
+                if isinstance(obj.get("observed_facts"), list):
+                    cands_obs.extend(
+                        _strip_echoed_gloss(str(v))
+                        for v in obj["observed_facts"]
+                        if isinstance(v, str)
+                    )
+                if isinstance(obj.get("retracted_facts"), list):
+                    cands_ret.extend(
+                        _strip_echoed_gloss(str(v))
+                        for v in obj["retracted_facts"]
+                        if isinstance(v, str)
+                    )
+
+            kept_obs, kept_ret, _drop, reclass = ClausePolarityAuditor.audit_candidates(
+                operator_message=operator_message,
+                prior_state=prior_state,
+                predicate_glosses=predicate_glosses,
+                candidate_observed=cands_obs,
+                candidate_retracted=cands_ret,
+            )
+            valid_obs = [
+                p for p in kept_obs if self.grounding.registry.resolve_predicate(p) is not None
+            ]
+            valid_ret = [
+                p for p in kept_ret if self.grounding.registry.resolve_predicate(p) is not None
+            ]
+            audited_json = json.dumps(
+                {
+                    "observed_facts": sorted(set(valid_obs)),
+                    "retracted_facts": sorted(set(valid_ret)),
+                }
+            )
+            g_fast = self.grounding.ground(audited_json, calibrated_confidence=rep_fast.confidence)
+
+            if (
+                g_fast.status == "grounded_clean"
+                and bool(g_fast.observed_facts)
+                and not reclass
+                and rep_fast.confidence >= min(0.55, self.tau_conf)
+            ):
+                self._fast_count += 1
+                if rep_fast.result is not None:
+                    self._pending_episodes.append(rep_fast.result)
+                eff_ret = compute_effective_retracted_facts(
+                    prior_state, g_fast, registry=self.grounding.registry
+                )
+                s_rev = apply_belief_revision(prior_state, g_fast, registry=self.grounding.registry)
+                return DualSpeedNLRevisionRecord(
+                    request_id=request_id,
+                    tier_selected="fast",
+                    escalated_after_fast=False,
+                    escalation_reasons=(),
+                    raw_llm_output=raw_fast,
+                    grounded=g_fast,
+                    revised_belief_state=s_rev,
+                    effective_retracted_facts=eff_ret,
+                    llm_tokens_out=total_tokens,
+                    latency_ms=round((time.perf_counter() - t0) * 1000.0, 3),
+                    modeled_energy_j=round(total_energy, 3),
+                )
+
+            escalated_after_fast = True
+            reasons.append("fast_pass_incomplete_or_ambiguous")
+
+        # --- Slow Tier: Full T257 TypedMultiRoleNLGroundingPipeline ---
+        self._slow_count += 1
+        slow_prompt = self.nl_pipeline.build_prompt(
+            operator_message=operator_message,
+            prior_state=prior_state,
+            predicate_glosses=predicate_glosses,
+        )
+        rep_slow = await self.cortex.tick(slow_prompt, n_tokens=slow_max_tokens, agent_id=agent_id)
+        raw_slow = rep_slow.result.text if rep_slow.result is not None else ""
+        tok_slow = int(rep_slow.result.n_tokens) if rep_slow.result is not None else 0
+        total_tokens += tok_slow
+        total_energy += float(rep_slow.energy_w) if math.isfinite(rep_slow.energy_w) else 0.0
+        if rep_slow.result is not None:
+            self._pending_episodes.append(rep_slow.result)
+
+        pipe_res = self.nl_pipeline.run(
+            raw_llm_output=raw_slow,
+            operator_message=operator_message,
+            prior_state=prior_state,
+            predicate_glosses=predicate_glosses,
+            calibrated_confidence=rep_slow.confidence,
+            coherence_phi=float(self.cortex.ilf.coherence_phi),
+        )
+        return DualSpeedNLRevisionRecord(
+            request_id=request_id,
+            tier_selected="slow",
+            escalated_after_fast=escalated_after_fast,
+            escalation_reasons=tuple(reasons),
+            raw_llm_output=raw_slow,
+            grounded=pipe_res.grounded,
+            revised_belief_state=pipe_res.revised_belief_state,
+            effective_retracted_facts=pipe_res.effective_retracted_facts,
+            llm_tokens_out=total_tokens,
+            latency_ms=round((time.perf_counter() - t0) * 1000.0, 3),
+            modeled_energy_j=round(total_energy, 3),
+        )
+
 
 __all__ = [
     "DualSpeedCognitiveLoop",
+    "DualSpeedNLRevisionRecord",
     "DualSpeedTurnRecord",
     "MaintenanceReport",
     "RoutingTier",

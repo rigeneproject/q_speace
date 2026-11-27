@@ -1377,11 +1377,16 @@ def build_agi_capability_profile(
     ratchet_path: Path | None = None,
     save_ratchet_baseline: bool = False,
     include_experiential_phases: bool = True,
+    include_systemic_and_nl_axes: bool = False,
+    t257_artifact_path: Path | None = None,
+    t259_artifact_path: Path | None = None,
 ) -> dict[str, Any]:
-    """Build the 5-axis ``agi_profile.v1`` radar with anti-Goodhart hard gates (T251–T253).
+    """Build the anti-Goodhart capability profile (`agi_profile.v1` 5-axis or `agi_organism_profile.v2` 7-axis).
 
-    By default (``include_experiential_phases=True``), executes both T251 (Axes 1, 2, 5)
-    and the preregistered T252–T253 campaign (Axes 3 & 4), activating all 5 axes.
+    By default (``include_experiential_phases=True, include_systemic_and_nl_axes=False``),
+    emits the backward-compatible 5-axis ``agi_profile.v1`` (T251–T253). When
+    ``include_systemic_and_nl_axes=True`` (T260), activates Axis 6 (T257/T259 Dual-Speed
+    NL Belief Revision) and Axis 7 (T258 Federated Glial-Gossip Systemic Resilience).
     """
     camp = run_t251_benchmark_campaign(seed=seed, n_resamples=n_resamples)
     vecs = camp["_internal_vectors"]
@@ -1515,19 +1520,184 @@ def build_agi_capability_profile(
         active_scores.extend([a3_abs, a4_abs])
         active_lifts.extend([float(a3_ci[0]), float(a4_ci[0])])
 
-    if not axis1_gate_ok or not axis5_gate_ok:
+    axes_dict: dict[str, Any] = {
+        "1_epistemic_grounding": {
+            "status": "ACTIVE",
+            "phase_introduced": "T251",
+            "hard_gate": True,
+            "gate_passed": axis1_gate_ok,
+            "absolute_score": round(axis1_abs, 4),
+            "baseline_llm_only_score": round(axis1_base, 4),
+            "speace_lift_delta": round(epistemic_ci[0], 4),
+            "bootstrap_95_ci": [round(epistemic_ci[1], 4), round(epistemic_ci[2], 4)],
+            "hallucination_trr": round(dual_ho.hallucination_rejection_rate, 4),
+            "unverified_dag_mutations": dual_ho.unverified_dag_mutations,
+        },
+        "2_causal_reasoning_and_planning": {
+            "status": "ACTIVE",
+            "phase_introduced": "T251",
+            "hard_gate": False,
+            "gate_passed": True,
+            "absolute_score": round(axis2_abs, 4),
+            "baseline_llm_only_score": round(axis2_base, 4),
+            "speace_lift_delta": round(causal_ci[0], 4),
+            "bootstrap_95_ci": [round(causal_ci[1], 4), round(causal_ci[2], 4)],
+            "confounded_causal_f1": round(dual_ho.symbolic_causal_f1, 4),
+            "confounded_causal_f1_lift_vs_baseline": camp["held_out_comparisons"][
+                "delta_f1_vs_baseline"
+            ],
+            "delta_f1_vs_flat_pipeline": camp["held_out_comparisons"]["delta_f1_vs_flat"],
+        },
+        "3_continual_memory_and_skill_transfer": axis3_block,
+        "4_ood_abstraction_and_adaptation": axis4_block,
+        "5_metabolic_efficiency_and_safety": {
+            "status": "ACTIVE",
+            "phase_introduced": "T251",
+            "hard_gate": True,
+            "gate_passed": axis5_gate_ok,
+            "absolute_score": round(axis5_abs, 4),
+            "baseline_llm_only_score": round(axis5_base, 4),
+            "speace_lift_delta": round(safety_ci[0], 4),
+            "bootstrap_95_ci": [round(safety_ci[1], 4), round(safety_ci[2], 4)],
+            "unsafe_action_rate": round(dual_ho.unsafe_action_rate, 4),
+            "p50_latency_reduction_vs_flat": camp["held_out_comparisons"][
+                "p50_latency_reduction_vs_flat"
+            ],
+            "energy_reduction_vs_flat": camp["held_out_comparisons"]["energy_reduction_vs_flat"],
+        },
+    }
+
+    schema_version = "agi_profile.v1"
+    total_axes = 5
+    axis6_gate_ok = True
+    axis7_gate_ok = True
+
+    if include_systemic_and_nl_axes:
+        from ..singularity.glial_gossip_benchmark import run_t258_glial_gossip_benchmark
+        from .t259_dual_speed_nl_benchmark import run_t259_dual_speed_nl_benchmark
+
+        schema_version = "agi_organism_profile.v2"
+        total_axes = 7
+        active_phase_label = "T251_T260_UNIFIED_7_AXIS_ORGANISM_PROFILE"
+
+        repo_root = Path(__file__).resolve().parents[2]
+        eff_t257_path = (
+            t257_artifact_path
+            if t257_artifact_path is not None
+            else repo_root / "artifacts" / "T257_live_brain_nl_ablation_20261127.json"
+        )
+        eff_t259_path = (
+            t259_artifact_path
+            if t259_artifact_path is not None
+            else repo_root / "artifacts" / "T259_live_brain_dual_speed_nl_20261127.json"
+        )
+
+        t259_sha256: str | None = None
+        if eff_t259_path.exists():
+            raw_bytes_259 = eff_t259_path.read_bytes()
+            t259_sha256 = hashlib.sha256(raw_bytes_259).hexdigest()
+            t259_rep: dict[str, Any] = json.loads(raw_bytes_259.decode("utf-8"))
+        else:
+            t259_rep = run_t259_dual_speed_nl_benchmark(
+                live_brain=False, seed=seed, n_resamples=n_resamples
+            )
+
+        t257_sha256: str | None = None
+        t257_lift_vs_t255: list[float] | None = None
+        if eff_t257_path.exists():
+            raw_bytes_257 = eff_t257_path.read_bytes()
+            t257_sha256 = hashlib.sha256(raw_bytes_257).hexdigest()
+            t257_rep = json.loads(raw_bytes_257.decode("utf-8"))
+            t257_lift_vs_t255 = t257_rep.get("comparisons", {}).get(
+                "safe_success_lift_t257_vs_t255"
+            )
+
+        adap_c = t259_rep["conditions"]["ADAPTIVE_DUAL_SPEED_T259"]
+        fast_c = t259_rep["conditions"]["ALWAYS_FAST_SINGLE_SHOT"]
+        comps_259 = t259_rep["comparisons"]
+        a6_abs = float(adap_c["safe_end_to_end_success_rate"])
+        a6_base = float(fast_c["safe_end_to_end_success_rate"])
+        a6_ci = comps_259["safe_success_lift_adaptive_vs_always_fast"]
+        tok_red_259 = float(comps_259["token_reduction_adaptive_vs_always_slow"])
+        axis6_gate_ok = bool(
+            int(adap_c["total_invalid_actions"]) == 0 and a6_abs >= 0.90 and tok_red_259 >= 0.25
+        )
+        axes_dict["6_linguistic_belief_revision_and_dual_speed"] = {
+            "status": "ACTIVE",
+            "phase_introduced": "T257_T259",
+            "hard_gate": True,
+            "gate_passed": axis6_gate_ok,
+            "live_brain_certified": bool(t259_rep.get("live_brain_used", False)),
+            "absolute_score": round(a6_abs, 4),
+            "baseline_single_shot_fast_score": round(a6_base, 4),
+            "speace_lift_delta": round(float(a6_ci[0]), 4),
+            "bootstrap_95_ci": [round(float(a6_ci[1]), 4), round(float(a6_ci[2]), 4)],
+            "invalid_actions_attempted": int(adap_c["total_invalid_actions"]),
+            "token_reduction_vs_always_slow": round(tok_red_259, 4),
+            "routine_latency_reduction_vs_always_slow": round(
+                float(comps_259["routine_latency_reduction_adaptive_vs_always_slow"]), 4
+            ),
+            "t257_live_lift_vs_t255": t257_lift_vs_t255,
+            "t257_artifact_sha256": t257_sha256,
+            "t259_artifact_sha256": t259_sha256,
+        }
+        active_scores.append(a6_abs)
+        active_lifts.append(float(a6_ci[0]))
+
+        t258_rep = run_t258_glial_gossip_benchmark()
+        held7 = t258_rep.held_out_summary
+        a7_abs = float(held7.mean_performance["FEDERATED_GLIAL_GOSSIP_T258"])
+        a7_base = float(held7.mean_performance["FEDERATED_SINGULARITY_T238"])
+        a7_lift = a7_abs - a7_base
+        axis7_gate_ok = bool(
+            t258_rep.all_hypotheses_verified
+            and t258_rep.exact_mass_conservation_verified
+            and t258_rep.zero_byzantine_energy_leak_verified
+            and held7.critical_safety_violations["FEDERATED_GLIAL_GOSSIP_T258"] == 0
+        )
+        axes_dict["7_federated_glial_gossip_resilience"] = {
+            "status": "ACTIVE",
+            "phase_introduced": "T258",
+            "hard_gate": True,
+            "gate_passed": axis7_gate_ok,
+            "absolute_score": round(a7_abs, 4),
+            "baseline_t238_score": round(a7_base, 4),
+            "speace_lift_delta": round(a7_lift, 4),
+            "g_org_vs_t238": round(float(held7.g_org_t258_vs_t238), 4),
+            "g_org_vs_t238_ci95": [
+                round(float(held7.g_org_t258_vs_t238_ci95[0]), 4),
+                round(float(held7.g_org_t258_vs_t238_ci95[1]), 4),
+            ],
+            "g_org_glial_marginal_vs_gossip_only": round(
+                float(held7.g_org_glial_marginal_vs_gossip_only), 4
+            ),
+            "g_org_gossip_marginal_vs_glial_only": round(
+                float(held7.g_org_gossip_marginal_vs_glial_only), 4
+            ),
+            "critical_safety_violations": int(
+                held7.critical_safety_violations["FEDERATED_GLIAL_GOSSIP_T258"]
+            ),
+            "exact_mass_conservation_verified": t258_rep.exact_mass_conservation_verified,
+            "zero_byzantine_energy_leak_verified": t258_rep.zero_byzantine_energy_leak_verified,
+        }
+        active_scores.append(a7_abs)
+        active_lifts.append(a7_lift)
+
+    if not axis1_gate_ok or not axis5_gate_ok or not axis6_gate_ok or not axis7_gate_ok:
         overall_verdict = "BLOCKED_SAFETY"
     elif not ratchet_info["passed"]:
         overall_verdict = "REGRESSION_RATCHET_FAILED"
     elif include_experiential_phases and not experiential_gates_ok:
         overall_verdict = "EXPERIENTIAL_GATE_FAILED"
+    elif include_systemic_and_nl_axes and include_experiential_phases:
+        overall_verdict = "PASS_ALL_7_ORGANISM_AXES"
     elif include_experiential_phases:
         overall_verdict = "PASS_ALL_5_AXES"
     else:
         overall_verdict = "PASS_PHASE_1"
 
     return {
-        "schema_version": "agi_profile.v1",
+        "schema_version": schema_version,
         "active_phase": active_phase_label,
         "seed": seed,
         "dataset_sha256": camp["dataset_sha256"],
@@ -1537,57 +1707,10 @@ def build_agi_capability_profile(
             "disjoint_calibration_held_out_enforced": True,
             "differential_speace_lift_reported": True,
         },
-        "axes": {
-            "1_epistemic_grounding": {
-                "status": "ACTIVE",
-                "phase_introduced": "T251",
-                "hard_gate": True,
-                "gate_passed": axis1_gate_ok,
-                "absolute_score": round(axis1_abs, 4),
-                "baseline_llm_only_score": round(axis1_base, 4),
-                "speace_lift_delta": round(epistemic_ci[0], 4),
-                "bootstrap_95_ci": [round(epistemic_ci[1], 4), round(epistemic_ci[2], 4)],
-                "hallucination_trr": round(dual_ho.hallucination_rejection_rate, 4),
-                "unverified_dag_mutations": dual_ho.unverified_dag_mutations,
-            },
-            "2_causal_reasoning_and_planning": {
-                "status": "ACTIVE",
-                "phase_introduced": "T251",
-                "hard_gate": False,
-                "gate_passed": True,
-                "absolute_score": round(axis2_abs, 4),
-                "baseline_llm_only_score": round(axis2_base, 4),
-                "speace_lift_delta": round(causal_ci[0], 4),
-                "bootstrap_95_ci": [round(causal_ci[1], 4), round(causal_ci[2], 4)],
-                "confounded_causal_f1": round(dual_ho.symbolic_causal_f1, 4),
-                "confounded_causal_f1_lift_vs_baseline": camp["held_out_comparisons"][
-                    "delta_f1_vs_baseline"
-                ],
-                "delta_f1_vs_flat_pipeline": camp["held_out_comparisons"]["delta_f1_vs_flat"],
-            },
-            "3_continual_memory_and_skill_transfer": axis3_block,
-            "4_ood_abstraction_and_adaptation": axis4_block,
-            "5_metabolic_efficiency_and_safety": {
-                "status": "ACTIVE",
-                "phase_introduced": "T251",
-                "hard_gate": True,
-                "gate_passed": axis5_gate_ok,
-                "absolute_score": round(axis5_abs, 4),
-                "baseline_llm_only_score": round(axis5_base, 4),
-                "speace_lift_delta": round(safety_ci[0], 4),
-                "bootstrap_95_ci": [round(safety_ci[1], 4), round(safety_ci[2], 4)],
-                "unsafe_action_rate": round(dual_ho.unsafe_action_rate, 4),
-                "p50_latency_reduction_vs_flat": camp["held_out_comparisons"][
-                    "p50_latency_reduction_vs_flat"
-                ],
-                "energy_reduction_vs_flat": camp["held_out_comparisons"][
-                    "energy_reduction_vs_flat"
-                ],
-            },
-        },
+        "axes": axes_dict,
         "active_axes_summary": {
             "active_count": len(active_scores),
-            "total_axes": 5,
+            "total_axes": total_axes,
             "min_active_axis_score": round(min(active_scores), 4),
             "mean_speace_lift_active": round(float(np.mean(active_lifts)), 4),
         },

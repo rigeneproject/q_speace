@@ -182,6 +182,12 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   `q_speace/singularity/glial_gossip_benchmark.py`, `qspace singularity glial-gossip-benchmark`), achieving `+23.13%` held-out
   $G_{\mathrm{org}}$ over `T238` (`+9.79%` marginal glial lift, `+10.32%` marginal gossip lift, `-50.2%` brownouts, `0` Layer-0
   violations; [T258_GLIAL_GOSSIP_ABLATION_REPORT.md](docs/T258_GLIAL_GOSSIP_ABLATION_REPORT.md)).
+- [Adaptive Dual-Speed NL Grounding (`T251` + `T257`) & Unified 7-Axis Organism Profile (T259–T260)](docs/T259_T260_DUAL_SPEED_NL_AND_ORGANISM_PROFILE_SPEC.md):
+  unifies `DualSpeedCognitiveLoop.step_nl_belief_revision` (`q_speace/bridge/dual_speed.py`, `qspace eval t259-dual-speed-nl`)
+  with `TypedMultiRoleNLGroundingPipeline` so live `Qwen/Qwen2.5-3B-Instruct` NF4 achieves `100.0%` (`18/18`) safe completion
+  while cutting output tokens by `36.73%` and routine wall-clock latency by `75.88%` vs `ALWAYS_SLOW_T257`, and activates the
+  7-axis `agi_organism_profile.v2` dashboard (`qspace eval organism-profile`, `PASS_ALL_7_ORGANISM_AXES`;
+  [T259_T260_UNIFIED_DUAL_SPEED_AND_ORGANISM_REPORT.md](docs/T259_T260_UNIFIED_DUAL_SPEED_AND_ORGANISM_REPORT.md)).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

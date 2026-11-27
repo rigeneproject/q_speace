@@ -1,0 +1,149 @@
+{
+  "active_axes_summary": {
+    "active_count": 7,
+    "mean_speace_lift_active": 0.3895,
+    "min_active_axis_score": 0.5801,
+    "total_axes": 7
+  },
+  "active_phase": "T251_T260_UNIFIED_7_AXIS_ORGANISM_PROFILE",
+  "anti_goodhart_invariants": {
+    "differential_speace_lift_reported": true,
+    "disjoint_calibration_held_out_enforced": true,
+    "headline_single_iq_suppressed": true,
+    "non_compensable_hard_gates_enforced": true
+  },
+  "axes": {
+    "1_epistemic_grounding": {
+      "absolute_score": 1.0,
+      "baseline_llm_only_score": 0.8,
+      "bootstrap_95_ci": [
+        0.085,
+        0.325
+      ],
+      "gate_passed": true,
+      "hallucination_trr": 1.0,
+      "hard_gate": true,
+      "phase_introduced": "T251",
+      "speace_lift_delta": 0.2,
+      "status": "ACTIVE",
+      "unverified_dag_mutations": 0
+    },
+    "2_causal_reasoning_and_planning": {
+      "absolute_score": 1.0,
+      "baseline_llm_only_score": 0.8125,
+      "bootstrap_95_ci": [
+        0.0925,
+        0.3
+      ],
+      "confounded_causal_f1": 1.0,
+      "confounded_causal_f1_lift_vs_baseline": 0.4,
+      "delta_f1_vs_flat_pipeline": 0.0,
+      "gate_passed": true,
+      "hard_gate": false,
+      "phase_introduced": "T251",
+      "speace_lift_delta": 0.1875,
+      "status": "ACTIVE"
+    },
+    "3_continual_memory_and_skill_transfer": {
+      "absolute_score": 0.9231,
+      "baseline_amnesic_speace_score": 0.1111,
+      "bootstrap_95_ci": [
+        0.812,
+        0.812
+      ],
+      "distractor_rejection_rate": 1.0,
+      "gate_passed": true,
+      "hard_gate": false,
+      "phase2_expansion_reduction_vs_amnesic": 0.9896,
+      "phase_introduced": "T252",
+      "speace_lift_delta": 0.812,
+      "status": "ACTIVE"
+    },
+    "4_ood_abstraction_and_adaptation": {
+      "absolute_score": 0.902,
+      "baseline_global_replan_control_score": 0.1887,
+      "bootstrap_95_ci": [
+        0.7133,
+        0.7133
+      ],
+      "gate_passed": true,
+      "hard_gate": false,
+      "phase3a_repair_expansion_reduction_vs_global": 0.878,
+      "phase3b_variant_expansion_reduction": 1.0,
+      "phase3c_anti_einstellung_abandon_accuracy": 1.0,
+      "phase_introduced": "T253",
+      "speace_lift_delta": 0.7133,
+      "status": "ACTIVE"
+    },
+    "5_metabolic_efficiency_and_safety": {
+      "absolute_score": 0.839,
+      "baseline_llm_only_score": 0.69,
+      "bootstrap_95_ci": [
+        0.0696,
+        0.2419
+      ],
+      "energy_reduction_vs_flat": 0.5153,
+      "gate_passed": true,
+      "hard_gate": true,
+      "p50_latency_reduction_vs_flat": 0.7861,
+      "phase_introduced": "T251",
+      "speace_lift_delta": 0.149,
+      "status": "ACTIVE",
+      "unsafe_action_rate": 0.0
+    },
+    "6_linguistic_belief_revision_and_dual_speed": {
+      "absolute_score": 1.0,
+      "baseline_single_shot_fast_score": 0.4444,
+      "bootstrap_95_ci": [
+        0.3333,
+        0.7778
+      ],
+      "gate_passed": true,
+      "hard_gate": true,
+      "invalid_actions_attempted": 0,
+      "live_brain_certified": true,
+      "phase_introduced": "T257_T259",
+      "routine_latency_reduction_vs_always_slow": 0.7588,
+      "speace_lift_delta": 0.5556,
+      "status": "ACTIVE",
+      "t257_artifact_sha256": "4bcea60f845ae34202f5ee20fe9f08772d773188037fe6effad6e32eccd44bd7",
+      "t257_live_lift_vs_t255": [
+        0.9333,
+        0.8,
+        1.0
+      ],
+      "t259_artifact_sha256": "64ec92ebb816287c65346adc8401c51ec64a12e502dc40576cbf5cbb9bd7124f",
+      "token_reduction_vs_always_slow": 0.3673
+    },
+    "7_federated_glial_gossip_resilience": {
+      "absolute_score": 0.5801,
+      "baseline_t238_score": 0.4711,
+      "critical_safety_violations": 0,
+      "exact_mass_conservation_verified": true,
+      "g_org_glial_marginal_vs_gossip_only": 0.0979,
+      "g_org_gossip_marginal_vs_glial_only": 0.1032,
+      "g_org_vs_t238": 0.2313,
+      "g_org_vs_t238_ci95": [
+        0.1907,
+        0.2763
+      ],
+      "gate_passed": true,
+      "hard_gate": true,
+      "phase_introduced": "T258",
+      "speace_lift_delta": 0.109,
+      "status": "ACTIVE",
+      "zero_byzantine_energy_leak_verified": true
+    }
+  },
+  "dataset_sha256": "48891ee0cee4462049f99e9ec01d53fc8dd21edbb618cb75f82fbdb0fc6f180f",
+  "error_ratchet": {
+    "enabled": false,
+    "fixed_errors": [],
+    "new_errors": [],
+    "passed": true,
+    "remaining_count": 0
+  },
+  "overall_verdict": "PASS_ALL_7_ORGANISM_AXES",
+  "schema_version": "agi_organism_profile.v2",
+  "seed": 2026
+}

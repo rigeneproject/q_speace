@@ -935,6 +935,27 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Removed in silicon: standby peer cutover and per-node reserve balancing are "
         "deterministic sandboxed algorithms under Layer-0 interlocks and T217 rules.",
     ),
+    # ----- T259-T260: Adaptive Dual-Speed NL Grounding & 7-Axis Organism Profile -----
+    BCELEquivalence(
+        "Surprise- and cue-gated dual-speed natural-language belief revision (T259)",
+        "functional",
+        "Keep as deterministic routing between a compact SQLite-free single-pass extractor "
+        "(with automatic fail-closed escalation on ambiguity/negation) and the 4-stage "
+        "TypedMultiRoleNLGroundingPipeline for mid-episode retractions and anomalies.",
+    ),
+    BCELEquivalence(
+        "Multi-axis non-compensable cognitive and systemic organism radar (T260)",
+        "functional",
+        "Keep as a 7-axis vector profile (agi_organism_profile.v2) enforcing 4 non-compensable "
+        "epistemic, metabolic, linguistic, and Layer-0 physical hard gates with paired "
+        "bootstrap CIs while suppressing single scalar headline scores.",
+    ),
+    BCELEquivalence(
+        "Single scalar Organism IQ or Consciousness Quotient headline index (T260)",
+        "accidental",
+        "Rejected in silicon: collapsing heterogeneous safety, planning, linguistic, and "
+        "federated resilience axes into one scalar hides safety regressions and violates T208.",
+    ),
 ]
 
 

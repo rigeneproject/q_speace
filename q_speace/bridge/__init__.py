@@ -14,6 +14,7 @@ load-bearing here.
 
 from .dual_speed import (
     DualSpeedCognitiveLoop,
+    DualSpeedNLRevisionRecord,
     DualSpeedTurnRecord,
     MaintenanceReport,
     RoutingTier,
@@ -65,6 +66,7 @@ __all__ = [
     "CoupledCommit",
     "CrashAtomicCoupledCommit",
     "DualSpeedCognitiveLoop",
+    "DualSpeedNLRevisionRecord",
     "DualSpeedTurnRecord",
     "ExpiryError",
     "FencingError",

@@ -906,6 +906,52 @@ def eval_t257_nl_ablation(
     typer.echo(json.dumps(compact, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False))
 
 
+@eval_app.command("t259-dual-speed-nl")
+def eval_t259_dual_speed_nl(
+    live_brain: Annotated[
+        bool,
+        typer.Option(
+            "--live-brain",
+            help="Connect to live HTTP generative sidecar (Q_SPEACE_BRAIN_ENDPOINT / localhost:8002).",
+        ),
+    ] = False,
+    endpoint: Annotated[
+        str | None,
+        typer.Option("--endpoint", help="Explicit HTTP sidecar base URL override."),
+    ] = None,
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional JSON output path for full T259 dual-speed NL report.",
+        ),
+    ] = None,
+    timeout_s: Annotated[float, typer.Option("--timeout-s", min=1.0)] = 60.0,
+    fast_max_tokens: Annotated[int, typer.Option("--fast-max-tokens", min=32)] = 80,
+    slow_max_tokens: Annotated[int, typer.Option("--slow-max-tokens", min=64)] = 256,
+    seed: Annotated[int, typer.Option("--seed")] = 2026,
+    resamples: Annotated[int, typer.Option("--resamples", min=100)] = 1000,
+) -> None:
+    """Run T259 3-arm Dual-Speed NL benchmark (Always-Fast vs Always-Slow vs Adaptive)."""
+    from .vertical_slice import run_t259_dual_speed_nl_benchmark
+
+    report = run_t259_dual_speed_nl_benchmark(
+        live_brain=live_brain,
+        endpoint=endpoint,
+        timeout_s=timeout_s,
+        fast_max_tokens=fast_max_tokens,
+        slow_max_tokens=slow_max_tokens,
+        seed=seed,
+        n_resamples=resamples,
+        output_path=output,
+    )
+    compact = {k: v for k, v in report.items() if k != "all_traces"}
+    typer.echo(json.dumps(compact, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False))
+    if not report["all_gates_passed"]:
+        raise typer.Exit(3)
+
+
 @eval_app.command("agi-profile")
 def eval_agi_profile(
     output: Annotated[
@@ -937,10 +983,17 @@ def eval_agi_profile(
             help="Evaluate only T251 Phase-1 axes (Axes 1, 2, 5), leaving Axes 3–4 inactive.",
         ),
     ] = False,
+    full_organism: Annotated[
+        bool,
+        typer.Option(
+            "--full-organism",
+            help="Emit 7-axis agi_organism_profile.v2 including Axis 6 (T257/T259) and Axis 7 (T258).",
+        ),
+    ] = False,
     seed: Annotated[int, typer.Option("--seed")] = 2026,
     resamples: Annotated[int, typer.Option("--resamples", min=100)] = 1000,
 ) -> None:
-    """Generate the 5-axis anti-Goodhart Cognitive Capability Profile (agi_profile.v1)."""
+    """Generate the anti-Goodhart Capability Profile (5-axis v1 or --full-organism 7-axis v2)."""
     from .vertical_slice import build_agi_capability_profile
 
     profile = build_agi_capability_profile(
@@ -949,6 +1002,7 @@ def eval_agi_profile(
         ratchet_path=ratchet_file,
         save_ratchet_baseline=save_ratchet,
         include_experiential_phases=not phase1_only,
+        include_systemic_and_nl_axes=full_organism,
     )
     formatted = json.dumps(profile, indent=2, sort_keys=True, allow_nan=False)
     if output is not None:
@@ -961,6 +1015,31 @@ def eval_agi_profile(
         "EXPERIENTIAL_GATE_FAILED",
     ):
         raise typer.Exit(3)
+
+
+@eval_app.command("organism-profile")
+def eval_organism_profile(
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional JSON file path to persist the 7-axis agi_organism_profile.v2 report.",
+        ),
+    ] = None,
+    seed: Annotated[int, typer.Option("--seed")] = 2026,
+    resamples: Annotated[int, typer.Option("--resamples", min=100)] = 1000,
+) -> None:
+    """Generate the unified 7-axis Cognitive & Systemic Organism Profile (agi_organism_profile.v2)."""
+    eval_agi_profile(
+        output=output,
+        ratchet_file=None,
+        save_ratchet=False,
+        phase1_only=False,
+        full_organism=True,
+        seed=seed,
+        resamples=resamples,
+    )
 
 
 @singularity_app.command("manifest")

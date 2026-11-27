@@ -79,6 +79,11 @@ from .t255_nl_live_benchmark import (
     run_t255_nl_benchmark,
     run_t257_nl_ablation,
 )
+from .t259_dual_speed_nl_benchmark import (
+    T259EpisodeTrace,
+    build_t259_mixed_nl_workload,
+    run_t259_dual_speed_nl_benchmark,
+)
 
 __all__ = [
     "BenchmarkCase",
@@ -142,4 +147,7 @@ __all__ = [
     "build_t255_nl_episodes",
     "run_t255_nl_benchmark",
     "run_t257_nl_ablation",
+    "T259EpisodeTrace",
+    "build_t259_mixed_nl_workload",
+    "run_t259_dual_speed_nl_benchmark",
 ]

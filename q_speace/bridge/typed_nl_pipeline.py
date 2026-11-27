@@ -158,6 +158,14 @@ def _distinctive_stems(atom: str, gloss: str) -> tuple[str, ...]:
     return tuple(specific if specific else fallback)
 
 
+def _strip_echoed_gloss(token: str) -> str:
+    """Strip echoed prompt bullet or ': gloss' suffix prior to closed-registry validation."""
+    cleaned = token.strip().lstrip("-*• ").strip()
+    if ":" in cleaned:
+        cleaned = cleaned.split(":", 1)[0].strip()
+    return cleaned
+
+
 def _extract_json_dicts(section_text: str) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     decoder = json.JSONDecoder()
@@ -444,8 +452,8 @@ class TypedMultiRoleNLGroundingPipeline:
             holder["critic_used"] = critic_used
             return {
                 "candidate_bundle": {
-                    "obs": obs_cands,
-                    "ret": ret_cands,
+                    "obs": [_strip_echoed_gloss(v) for v in obs_cands],
+                    "ret": [_strip_echoed_gloss(v) for v in ret_cands],
                     "critic_used": critic_used,
                 }
             }
