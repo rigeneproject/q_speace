@@ -55,6 +55,13 @@ from .memory import (
     WorkingMemory,
     embed_text_hashed,
 )
+from .myelination import (
+    BatchRoleDeliberationCodec,
+    HystereticLoadBalancer,
+    LoadSnapshot,
+    MyelinatedPath,
+    MyelinationRegistry,
+)
 from .stub import StubSpikingBrain, StubSpikingBrainV2
 from .truth_engine import (
     ActionDegradationGate,
@@ -105,4 +112,10 @@ __all__ = [
     "ObservationDigest",
     "StructuralPredictiveCoder",
     "TruthEngine",
+    # T256-06 myelination, load balancing & batch role codec
+    "MyelinatedPath",
+    "MyelinationRegistry",
+    "LoadSnapshot",
+    "HystereticLoadBalancer",
+    "BatchRoleDeliberationCodec",
 ]

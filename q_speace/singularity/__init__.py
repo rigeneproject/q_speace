@@ -125,6 +125,14 @@ from .schema import (
     SingularityStage,
     TransitionVerdict,
 )
+from .swarm_gossip import (
+    BoundedGossipProtocol,
+    GossipEnvelope,
+    PeerNodeRecord,
+    PeerState,
+    RepairPlan,
+    SwarmSelfHealer,
+)
 from .triadic_safeguard import (
     CRISIS_DOMAINS,
     DEFAULT_CRISIS_DAMPING,
@@ -320,4 +328,10 @@ __all__ = [
     "evaluate_refuge_habitat_plan",
     "run_t254_polycrisis_safeguard_benchmark",
     "verify_triadic_cme_partition",
+    "PeerState",
+    "PeerNodeRecord",
+    "GossipEnvelope",
+    "RepairPlan",
+    "BoundedGossipProtocol",
+    "SwarmSelfHealer",
 ]

@@ -163,6 +163,14 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   mid-chain Triangle-Table suffix entry (`execute_from_revised_belief`), and 3-arm paired `--live-brain` benchmark
   (`ORACLE_SYMBOLIC_SPEACE` vs `NL_LIVE_BRAIN_SPEACE` vs `NL_LIVE_BRAIN_ONLY`, `qspace eval t255-nl-benchmark`)
   evaluated on `Qwen/Qwen2.5-3B-Instruct` NF4 ([T255_LIVE_BRAIN_NL_ASSESSMENT_REPORT.md](docs/T255_LIVE_BRAIN_NL_ASSESSMENT_REPORT.md)).
+- [BCEL Synthesis from `SPEACE PROTOTIPO CLAUDE` (T256)](docs/T256_CLAUDE_PROTOTYPE_BCEL_SYNTHESIS_SPEC.md):
+  eval-free `ExecutionTicket` contracts & multi-port cycle-rejecting `TypedComputationalDAG` (`q_speace/aacm/typed_dag.py`),
+  *Nature 2026*-inspired `PlasticAstrocyteSyncytium` with donor-floor metabolic buffering (`q_speace/metabolism/astrocyte_syncytium.py`),
+  `KineticaRegimeController` 7-regime FSM & `HomeodynaBalanceController` overload rerouter (`q_speace/spiking/morphogenesis.py`),
+  pure-`numpy` small-system Minimum Information Partition coupling index (`compute_mip_integration`, `qspace quantum mip-audit`,
+  and `CVStrategySelector` in `q_speace/edd_cvt/mip_integration.py` — strictly non-consciousness), SWIM-like
+  `BoundedGossipProtocol` + `SwarmSelfHealer` (`q_speace/singularity/swarm_gossip.py`), and `MyelinationRegistry` +
+  `HystereticLoadBalancer` + `BatchRoleDeliberationCodec` (`q_speace/spiking_brain/myelination.py`; tasks: [T256_TASKS.md](docs/T256_TASKS.md)).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

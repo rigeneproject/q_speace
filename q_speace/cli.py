@@ -181,6 +181,40 @@ def quantum_memory_audit(
         raise typer.Exit(3)
 
 
+@quantum_app.command("mip-audit")
+def quantum_mip_audit(
+    nodes: int = typer.Option(6, "--nodes", "-n", min=2, max=16),
+    samples: int = typer.Option(64, "--samples", "-s", min=8),
+    seed: int = typer.Option(42, "--seed"),
+) -> None:
+    """Run T256-04 Minimum Information Partition network-coupling audit (non-consciousness)."""
+    import numpy as np
+
+    from .edd_cvt.mip_integration import compute_mip_integration
+
+    rng = np.random.default_rng(seed)
+    latent = rng.normal(0.0, 1.0, size=(samples, 1))
+    coupled_traj = 0.85 * latent + 0.15 * rng.normal(0.0, 1.0, size=(samples, nodes))
+    indep_traj = rng.normal(0.0, 1.0, size=(samples, nodes))
+
+    coupled_res = compute_mip_integration(coupled_traj)
+    indep_res = compute_mip_integration(indep_traj)
+    payload = {
+        "nodes": nodes,
+        "samples": samples,
+        "mode": coupled_res.mode,
+        "evaluated_partitions": coupled_res.evaluated_partitions,
+        "coupled_mip_index": round(coupled_res.mip_coupling_index, 6),
+        "independent_mip_index": round(indep_res.mip_coupling_index, 6),
+        "coupled_exceeds_independent": (
+            coupled_res.mip_coupling_index > indep_res.mip_coupling_index
+        ),
+    }
+    typer.echo(json.dumps(payload, indent=2, sort_keys=True, allow_nan=False))
+    if not payload["coupled_exceeds_independent"]:
+        raise typer.Exit(3)
+
+
 @sia_app.command("run")
 def sia_run(
     ticks: int = typer.Option(10, "--ticks", "-t", min=0),

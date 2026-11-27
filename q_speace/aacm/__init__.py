@@ -98,6 +98,15 @@ from .topology import (
     edge_weights_from_observations,
     node_failure_streak,
 )
+from .typed_dag import (
+    ContractSpec,
+    DAGNodeSpec,
+    EdgeKind,
+    ExecutionTicket,
+    FieldConstraint,
+    PortEdge,
+    TypedComputationalDAG,
+)
 
 __all__ = [
     # constants
@@ -181,4 +190,12 @@ __all__ = [
     "GraphEdgePruner",
     "ProposalOnlyEdgeGrower",
     "shannon_entropy_bits",
+    # typed contract DAG (T256-02)
+    "ContractSpec",
+    "DAGNodeSpec",
+    "EdgeKind",
+    "ExecutionTicket",
+    "FieldConstraint",
+    "PortEdge",
+    "TypedComputationalDAG",
 ]

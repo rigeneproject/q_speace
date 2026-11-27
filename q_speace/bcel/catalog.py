@@ -871,6 +871,42 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Removed in silicon: LLM-to-symbol transduction is untrusted structured parsing audited by "
         "extraction F1, paraphrase decision consistency, and safe end-to-end execution.",
     ),
+    # ----- T256: BCEL Synthesis from SPEACE PROTOTIPO CLAUDE -----
+    BCELEquivalence(
+        "Plastic regional astrocyte gap-junction syncytium and donor-floor metabolic buffering (T256)",
+        "functional",
+        "Keep as bidirectional gap-junction conductances modulated by sliding regional coherence, "
+        "attenuated BFS alert/coherence propagation, pruning below threshold, and mass-conserving "
+        "energy redistribution respecting a minimum donor reserve floor.",
+    ),
+    BCELEquivalence(
+        "Declarative ExecutionTicket contracts and multi-port Kahn computational DAG (T256)",
+        "functional",
+        "Keep as eval-free typed input/output contract validation, pre/post-checked ExecutionTickets, "
+        "explicit source_port->target_port DATA/CONTROL/FEEDBACK edges, and cycle-rejecting "
+        "topological subgraph execution.",
+    ),
+    BCELEquivalence(
+        "Kinetica cognitive-regime FSM, Homeodyna overload rerouting, and adaptive path myelination (T256)",
+        "functional",
+        "Keep as a 7-regime bounded compute/exploration FSM with overload EMERGENCY fallback, "
+        "excitation-inhibition balance scoring with bypass rerouting, coherence-driven path "
+        "myelination, inter-resource variance throttling, and batch role prompt framing.",
+    ),
+    BCELEquivalence(
+        "Small-system Minimum Information Partition coupling index, CV strategy switching, and bounded-TTL gossip (T256)",
+        "functional",
+        "Keep strictly as a pure-numpy Gaussian mutual-information bipartition coupling metric "
+        "(2 <= n <= 10, no consciousness claims), exp(-CV) confidence-triggered strategy selection, "
+        "and deduplicated bounded-TTL gossip failure detection with advisory repair plans.",
+    ),
+    BCELEquivalence(
+        "Unsanitized eval() contract predicates, consciousness_index labels, and host-CPU phi coupling (T256)",
+        "accidental",
+        "Rejected in full from SPEACE PROTOTIPO CLAUDE: eval() creates code-injection risks, "
+        "'consciousness_index' violates the no-consciousness invariant, and coupling coherence "
+        "to live psutil CPU usage corrupts deterministic scientific evaluation.",
+    ),
 ]
 
 

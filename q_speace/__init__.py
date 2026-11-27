@@ -8,15 +8,29 @@ and a quantum orchestrator. See progetto_q_speace_linee_guida.md.
 from __future__ import annotations
 
 from .aacm import (
+    ContractSpec,
+    DAGNodeSpec,
     EdgeGrowthProposal,
+    EdgeKind,
     EntropyBoundedUCB1Gating,
+    ExecutionTicket,
+    FieldConstraint,
     GraphEdgePruner,
+    PortEdge,
     ProposalOnlyEdgeGrower,
+    TypedComputationalDAG,
 )
 from .bcel import BCELCatalog
 from .bridge import SimulatedSensorAdapter, SimulatedSensorReading, run_coro_isolated
 from .earth_feed import EarthFeed, EarthSignals
-from .edd_cvt import CosmicVirusOptimizer, CVConfig, InformationalLogicalField
+from .edd_cvt import (
+    CosmicVirusOptimizer,
+    CVConfig,
+    CVStrategySelector,
+    InformationalLogicalField,
+    MIPResult,
+    compute_mip_integration,
+)
 from .fractal_qca import FractalQCA
 from .fractal_qca_cascade import (
     FractalQCACascade,
@@ -28,11 +42,14 @@ from .fractal_qca_cascade import (
 from .genome import QuantumGeneSet
 from .metabolism import (
     DiffusiveBudgetAllocator,
+    GapJunctionLink,
     HomeostaticChannel,
     HomeostaticODEController,
     HomeostaticSnapshot,
+    PlasticAstrocyteSyncytium,
     QuantumCostModel,
     QuantumOperation,
+    RegionalAstrocyteNode,
 )
 from .neural_agent import (
     BenchmarkComparisonResult,
@@ -127,8 +144,14 @@ from .self_improvement_cortex import (
 )
 from .spiking import (
     CausalEdge,
+    CognitiveRegime,
     CriticalityController,
     CriticalityState,
+    HomeodynaBalanceController,
+    HomeodynaEvaluation,
+    KineticaRegimeController,
+    RegimeConfig,
+    RegimeTransition,
     RelationEdge,
     StructuralCausalDAG,
     SymbolicGraphReasoner,
@@ -138,12 +161,17 @@ from .spiking import (
 )
 from .spiking_brain import (
     ActionDegradationGate,
+    BatchRoleDeliberationCodec,
     CortexReport,
     CycleObservation,
     CyclePrediction,
     CycleSurprise,
     EpistemicAssessment,
     HTTPSpikingBrainClient,
+    HystereticLoadBalancer,
+    LoadSnapshot,
+    MyelinatedPath,
+    MyelinationRegistry,
     ObservationDigest,
     SemanticEpisodicMemory,
     SpikingBrainCortex,
@@ -292,4 +320,28 @@ __all__ = [
     "BenchmarkComparisonResult",
     "build_complex_ab_workload",
     "run_ab_neural_benchmark",
+    "GapJunctionLink",
+    "RegionalAstrocyteNode",
+    "PlasticAstrocyteSyncytium",
+    "FieldConstraint",
+    "ContractSpec",
+    "ExecutionTicket",
+    "EdgeKind",
+    "PortEdge",
+    "DAGNodeSpec",
+    "TypedComputationalDAG",
+    "CognitiveRegime",
+    "RegimeConfig",
+    "RegimeTransition",
+    "KineticaRegimeController",
+    "HomeodynaEvaluation",
+    "HomeodynaBalanceController",
+    "MIPResult",
+    "compute_mip_integration",
+    "CVStrategySelector",
+    "MyelinatedPath",
+    "MyelinationRegistry",
+    "LoadSnapshot",
+    "HystereticLoadBalancer",
+    "BatchRoleDeliberationCodec",
 ]

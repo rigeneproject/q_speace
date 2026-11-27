@@ -19,6 +19,14 @@ from .correlation import (
 from .criticality import CriticalityController, CriticalityRegime, CriticalityState
 from .encoder import SpikeEncodingResult, dynamic_spikes, sparsity, spike_count, spike_rate
 from .linear import SpikeEncodedLinear
+from .morphogenesis import (
+    CognitiveRegime,
+    HomeodynaBalanceController,
+    HomeodynaEvaluation,
+    KineticaRegimeController,
+    RegimeConfig,
+    RegimeTransition,
+)
 from .ncm_calibration import (
     CalibrationConfig,
     CalibrationDataset,
@@ -81,4 +89,10 @@ __all__ = [
     "TDMOperatingMode",
     "TDMPhase",
     "TDMScheduleTick",
+    "CognitiveRegime",
+    "RegimeConfig",
+    "RegimeTransition",
+    "KineticaRegimeController",
+    "HomeodynaEvaluation",
+    "HomeodynaBalanceController",
 ]

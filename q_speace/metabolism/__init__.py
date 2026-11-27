@@ -2,6 +2,11 @@
 
 from __future__ import annotations
 
+from .astrocyte_syncytium import (
+    GapJunctionLink,
+    PlasticAstrocyteSyncytium,
+    RegionalAstrocyteNode,
+)
 from .cognitive_cost_model import QuantumCostModel, QuantumOperation
 from .homeostasis import (
     DiffusiveBudgetAllocator,
@@ -17,4 +22,7 @@ __all__ = [
     "HomeostaticSnapshot",
     "HomeostaticODEController",
     "DiffusiveBudgetAllocator",
+    "GapJunctionLink",
+    "RegionalAstrocyteNode",
+    "PlasticAstrocyteSyncytium",
 ]
