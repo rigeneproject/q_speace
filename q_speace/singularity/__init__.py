@@ -57,6 +57,16 @@ from .federation_benchmark import (
     run_iont_federation_benchmark,
     run_t238_adversarial_resilience_benchmark,
 )
+from .glial_gossip_benchmark import (
+    ALL_T258_CONFIGS,
+    T258_SCENARIOS,
+    T258ConfigName,
+    T258EpisodeResult,
+    T258FederationScenario,
+    T258GlialGossipReport,
+    T258SplitSummary,
+    run_t258_glial_gossip_benchmark,
+)
 from .iont_node import (
     SLOW_PLANE_DLT_ONLY_LOCI,
     VALID_IONT_TIERS,
@@ -334,4 +344,12 @@ __all__ = [
     "RepairPlan",
     "BoundedGossipProtocol",
     "SwarmSelfHealer",
+    "ALL_T258_CONFIGS",
+    "T258_SCENARIOS",
+    "T258ConfigName",
+    "T258EpisodeResult",
+    "T258FederationScenario",
+    "T258GlialGossipReport",
+    "T258SplitSummary",
+    "run_t258_glial_gossip_benchmark",
 ]

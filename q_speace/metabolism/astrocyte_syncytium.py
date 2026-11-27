@@ -265,14 +265,28 @@ class PlasticAstrocyteSyncytium:
         donor_ids: Sequence[str],
         *,
         max_donor_fraction: float = 0.50,
+        require_connected: bool = False,
     ) -> float:
         """Transfer metabolic reserve from donors (above ``donor_floor``) to needy nodes.
 
-        Strictly conserves ``sum(n.metabolic_reserve for n in nodes)``.
+        Strictly conserves ``sum(n.metabolic_reserve for n in nodes)``. When
+        ``require_connected=True``, transfers occur only across active (unpruned)
+        gap-junction paths reachable from ``nid``.
         Returns total energy transferred.
         """
         if not math.isfinite(max_donor_fraction) or not (0.0 < max_donor_fraction <= 1.0):
             raise ValueError("max_donor_fraction must be in (0, 1]")
+
+        def _reachable(start_id: str) -> set[str]:
+            seen = {start_id}
+            q: deque[str] = deque([start_id])
+            while q:
+                cur = q.popleft()
+                for nb in self._adj.get(cur, ()):
+                    if nb not in seen:
+                        seen.add(nb)
+                        q.append(nb)
+            return seen
 
         total_transferred = 0.0
         for nid in needy_ids:
@@ -282,8 +296,11 @@ class PlasticAstrocyteSyncytium:
             deficit = 1.0 - needy.metabolic_reserve
             if deficit <= 1e-9:
                 continue
+            connected_set = _reachable(nid) if require_connected else None
             for did in donor_ids:
                 if did == nid:
+                    continue
+                if connected_set is not None and did not in connected_set:
                     continue
                 donor = self._nodes.get(did)
                 if donor is None:

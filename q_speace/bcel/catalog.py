@@ -921,6 +921,20 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Removed in silicon: EXTRACTOR and CRITIC are deterministic structured prompt/parser "
         "slots verified by ExecutionTicket contracts, with zero inner-persona agency claims.",
     ),
+    # ----- T258: Glial Syncytium & Bounded-TTL Gossip Resilience in IoNT Federations -----
+    BCELEquivalence(
+        "Federated IoNT glial reserve buffering and fast-plane gossip self-healing under blackout (T258)",
+        "functional",
+        "Keep as mass-conserving gap-junction reserve redistribution with Byzantine coherence "
+        "pruning coupled to bounded-TTL peer gossip, monotonic ACTIVE->STALE->FAILED standby "
+        "cutover, and post-blackout DLTSwarmLedger reconciliation.",
+    ),
+    BCELEquivalence(
+        "Autonomous tissue regeneration and distributed swarm sentience claims (T258)",
+        "accidental",
+        "Removed in silicon: standby peer cutover and per-node reserve balancing are "
+        "deterministic sandboxed algorithms under Layer-0 interlocks and T217 rules.",
+    ),
 ]
 
 

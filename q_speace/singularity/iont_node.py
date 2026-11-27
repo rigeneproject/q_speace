@@ -430,16 +430,94 @@ class DLTSwarmLedger:
 
 
 class IoNTCellularNodeTwin:
-    """Strictly sandboxed Digital Twin of one SPEACE Macro Mini IoNT cellular node (Phase P1)."""
+    """Strictly sandboxed Digital Twin of one SPEACE Macro Mini IoNT cellular node (Phase P1/T258)."""
 
     def __init__(
-        self, profile: IoNTNodeProfile, *, genome: ConstitutionalGenome | None = None
+        self,
+        profile: IoNTNodeProfile,
+        *,
+        genome: ConstitutionalGenome | None = None,
+        swarm_members: tuple[str, ...] | None = None,
+        syncytium: Any | None = None,
+        gossip: Any | None = None,
+        self_healer: Any | None = None,
     ) -> None:
         if not profile.sandboxed:
             raise EpigeneticFaultError("IoNTCellularNodeTwin must run with sandboxed=True")
         self.profile = profile
-        self.ledger = DLTSwarmLedger(genome=genome, quorum_ratio=profile.dlt_quorum_ratio)
+        self.ledger = (
+            DLTSwarmLedger(
+                genome=genome,
+                swarm_members=swarm_members,
+                quorum_ratio=profile.dlt_quorum_ratio,
+            )
+            if swarm_members is not None
+            else DLTSwarmLedger(genome=genome, quorum_ratio=profile.dlt_quorum_ratio)
+        )
+        self.syncytium = syncytium
+        self.gossip = gossip
+        self.self_healer = self_healer
         self._epoch = 0
+        self._pending_repair_plans: list[dict[str, Any]] = []
+        self._reconciled_glacial_flux: float = 0.0
+
+    def run_fast_resilience_step(
+        self,
+        *,
+        now_s: float,
+        local_phi: float,
+        incoming_envelopes: tuple[Any, ...] = (),
+        candidate_peers: tuple[str, ...] = (),
+        needy_regions: tuple[str, ...] = (),
+        donor_regions: tuple[str, ...] = (),
+    ) -> dict[str, Any]:
+        """Execute one fast-plane peer gossip, self-healing & glial buffering tick (T258).
+
+        Operates autonomously even during central coordinator/MCP blackouts without
+        touching slow-plane ``consensus_quorum`` or constitutional loci.
+        """
+        forwarded_count = 0
+        if self.gossip is not None:
+            for env in incoming_envelopes:
+                fwd, targets = self.gossip.prepare_forward(env, candidate_peers)
+                if fwd is not None and targets:
+                    forwarded_count += len(targets)
+
+        emitted_plans: tuple[Any, ...] = ()
+        if self.self_healer is not None:
+            emitted_plans = self.self_healer.audit_liveness(now_s)
+            for plan in emitted_plans:
+                self._pending_repair_plans.append(
+                    {
+                        "failed_node_id": plan.failed_node_id,
+                        "strategy": plan.strategy,
+                        "selected_targets": list(plan.selected_targets),
+                        "at_s": float(now_s),
+                    }
+                )
+
+        transferred = 0.0
+        if self.syncytium is not None:
+            if self.profile.node_id in self.syncytium.nodes:
+                self.syncytium.propagate_wave(
+                    self.profile.node_id, float(max(0.0, min(1.0, local_phi)))
+                )
+            if needy_regions and donor_regions:
+                transferred = float(
+                    self.syncytium.redistribute_reserves(
+                        needy_regions,
+                        donor_regions,
+                        require_connected=True,
+                    )
+                )
+                self._reconciled_glacial_flux += transferred
+
+        return {
+            "forwarded_gossip_messages": forwarded_count,
+            "repair_plans_emitted": emitted_plans,
+            "glial_reserve_transferred": transferred,
+            "pending_dlt_reconciliations": len(self._pending_repair_plans),
+        }
 
     def run_advisory_cycle(
         self,
@@ -473,6 +551,10 @@ class IoNTCellularNodeTwin:
                 "admitted": assessment.admitted_for_mcp_advisory,
                 "stage": verdict.stage,
                 "d_allo": assessment.estimated_allopoietic_dependence,
+                "reconciled_repair_plans": len(self._pending_repair_plans),
+                "reconciled_glial_flux": round(self._reconciled_glacial_flux, 6),
             },
         )
+        self._pending_repair_plans.clear()
+        self._reconciled_glacial_flux = 0.0
         return assessment, verdict, self.ledger.verify_chain()

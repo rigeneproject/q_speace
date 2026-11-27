@@ -176,6 +176,12 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   `MyelinationRegistry`) with recall-preserving `ClausePolarityAuditor` (`q_speace/bridge/typed_nl_pipeline.py`) and declarative
   `SymbolRegistry` `mutex_pairs` (`qspace eval t257-nl-ablation`), raising `--live-brain` `Qwen/Qwen2.5-3B-Instruct` NF4 safe
   end-to-end completion from `6.67%` (`T255`) to `100.0%` (`15/15`, lift `+0.9333`, [T257_LIVE_BRAIN_ABLATION_REPORT.md](docs/T257_LIVE_BRAIN_ABLATION_REPORT.md)).
+- [Glial Syncytium & Bounded-TTL Gossip Self-Healing in Federated IoNTCellularNodeTwin (T258)](docs/T258_GLIAL_GOSSIP_IONT_RESILIENCE_SPEC.md):
+  wires `PlasticAstrocyteSyncytium` (`require_connected=True` mass-conserving buffering + Byzantine decoherence pruning),
+  `BoundedGossipProtocol`, `SwarmSelfHealer`, and `HystereticLoadBalancer` into `IoNTCellularNodeTwin` (`q_speace/singularity/iont_node.py`,
+  `q_speace/singularity/glial_gossip_benchmark.py`, `qspace singularity glial-gossip-benchmark`), achieving `+23.13%` held-out
+  $G_{\mathrm{org}}$ over `T238` (`+9.79%` marginal glial lift, `+10.32%` marginal gossip lift, `-50.2%` brownouts, `0` Layer-0
+  violations; [T258_GLIAL_GOSSIP_ABLATION_REPORT.md](docs/T258_GLIAL_GOSSIP_ABLATION_REPORT.md)).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

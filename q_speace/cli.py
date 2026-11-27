@@ -1160,6 +1160,49 @@ def singularity_resilience_benchmark(
         raise typer.Exit(3)
 
 
+@singularity_app.command("glial-gossip-benchmark")
+def singularity_glial_gossip_benchmark(
+    seeds: Annotated[
+        str,
+        typer.Option(
+            "--seeds",
+            help="Comma-separated deterministic integer seeds (e.g. '11,23,37,53,71,89').",
+        ),
+    ] = "11,23,37,53,71,89",
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional path to write the full T258 JSON benchmark report.",
+        ),
+    ] = None,
+) -> None:
+    """Run T258 7-arm Glial Syncytium & Bounded-TTL Gossip IoNT resilience ablation."""
+    from .singularity import run_t258_glial_gossip_benchmark
+
+    try:
+        parsed_seeds = tuple(int(s.strip()) for s in seeds.split(",") if s.strip())
+        if not parsed_seeds:
+            raise ValueError("at least one integer seed is required")
+    except ValueError as exc:
+        typer.echo(f"error: invalid --seeds value: {exc}")
+        raise typer.Exit(2) from None
+
+    report = run_t258_glial_gossip_benchmark(seeds=parsed_seeds)
+    payload = report.to_dict()
+    if output is not None:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(
+            json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n",
+            encoding="utf-8",
+        )
+    summary = {k: v for k, v in payload.items() if k != "episodes"}
+    typer.echo(json.dumps(summary, indent=2, sort_keys=True, allow_nan=False))
+    if not report.all_hypotheses_verified:
+        raise typer.Exit(3)
+
+
 @singularity_app.command("triadic-safeguard")
 def singularity_triadic_safeguard(
     output: Annotated[
