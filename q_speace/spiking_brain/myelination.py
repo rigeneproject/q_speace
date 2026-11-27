@@ -281,16 +281,19 @@ class BatchRoleDeliberationCodec:
         for line in raw_text.splitlines():
             stripped = line.strip()
             if stripped.startswith("---") and stripped.endswith("---") and len(stripped) > 6:
-                if current_role is not None:
-                    parsed[current_role] = "\n".join(buf).strip()
                 header = stripped.strip("-").strip().lower()
                 matched = (
                     header
                     if header in self.roles
                     else next((r for r in self.roles if r in header), None)
                 )
-                current_role = matched
-                buf = []
+                if matched is not None:
+                    if current_role is not None:
+                        parsed[current_role] = "\n".join(buf).strip()
+                    current_role = matched
+                    buf = []
+                elif current_role is not None:
+                    buf.append(line)
             elif current_role is not None:
                 buf.append(line)
 

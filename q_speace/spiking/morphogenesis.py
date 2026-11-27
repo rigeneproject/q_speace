@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import math
 from collections import deque
-from collections.abc import Sequence
+from collections.abc import Container, Mapping, Sequence
 from dataclasses import dataclass
 from enum import StrEnum
 
@@ -255,8 +255,10 @@ class HomeodynaBalanceController:
         current_path: Sequence[str],
         overloaded_node: str,
         bypass_candidates: Sequence[str],
+        *,
+        adjacency: Mapping[str, Container[str]] | None = None,
     ) -> tuple[str, ...]:
-        """Return a new path replacing ``overloaded_node`` with the first healthy bypass node."""
+        """Return a new path replacing ``overloaded_node`` with the first valid bypass node."""
         path = list(current_path)
         if overloaded_node not in path:
             return tuple(path)
@@ -264,7 +266,18 @@ class HomeodynaBalanceController:
         prefix = path[:idx]
         suffix = path[idx + 1 :]
         used = set(prefix) | set(suffix) | {overloaded_node}
-        replacement = next((c for c in bypass_candidates if c and c not in used), None)
-        if replacement is not None:
-            return (*prefix, replacement, *suffix)
+
+        def _links(u: str, v: str) -> bool:
+            return True if adjacency is None else (v in adjacency.get(u, ()))
+
+        for cand in bypass_candidates:
+            if not cand or cand in used:
+                continue
+            prev_ok = (not prefix) or _links(prefix[-1], cand)
+            next_ok = (not suffix) or _links(cand, suffix[0])
+            if prev_ok and next_ok:
+                return (*prefix, cand, *suffix)
+
+        if adjacency is not None and prefix and suffix and not _links(prefix[-1], suffix[0]):
+            return tuple(path)
         return (*prefix, *suffix)

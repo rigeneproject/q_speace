@@ -26,6 +26,7 @@ import numpy as np
 
 from ..bridge.grounding import SymbolicGroundingAdapter, SymbolRegistry, apply_belief_revision
 from ..bridge.simulated_sensor import run_coro_isolated
+from ..bridge.typed_nl_pipeline import TypedMultiRoleNLGroundingPipeline
 from ..edd_cvt.ilf import InformationalLogicalField
 from ..metabolism.cognitive_cost_model import QuantumCostModel, QuantumOperation
 from ..routing import GOAPAction
@@ -79,6 +80,7 @@ class T255NLEpisode:
     nominal_domain_actions: tuple[GOAPAction, ...]
     domain_edges: tuple[RelationEdge, ...]
     expected_repair_decision: RepairDecisionKind
+    domain_mutex_pairs: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -282,6 +284,13 @@ def build_t255_nl_episodes() -> list[T255NLEpisode]:
         trig, f1, f2, _f3, _goal_name = vocab.fluents_b
         prep_fl = vocab.prep_fluent_b
         latch_fl = vocab.latch_fluent_b
+        mutex_b: tuple[tuple[str, str], ...] = (
+            (format_structured_atom(latch_fl, (n1,)), format_structured_atom(f2, (n1,))),
+            (
+                format_structured_atom("terminal_fault", (n1,)),
+                format_structured_atom("channel_intact", (n1,)),
+            ),
+        )
 
         # --- Type R1: 3 Unseen Paraphrases of Mid-Episode Repairable Correction ---
         # In R1, op2(n1, n2) is blocked by the mid-step skew/backpressure/hydrate fault (producing
@@ -336,6 +345,7 @@ def build_t255_nl_episodes() -> list[T255NLEpisode]:
                     nominal_domain_actions=tuple(acts_b),
                     domain_edges=tuple(edges_b),
                     expected_repair_decision="SELECTIVE_LOCAL_REPAIR",
+                    domain_mutex_pairs=mutex_b,
                 )
             )
 
@@ -368,6 +378,7 @@ def build_t255_nl_episodes() -> list[T255NLEpisode]:
                 nominal_domain_actions=tuple(acts_b),
                 domain_edges=tuple(edges_b),
                 expected_repair_decision="ABANDON_MACRO_AND_REPLAN",
+                domain_mutex_pairs=mutex_b,
             )
         )
 
@@ -404,13 +415,18 @@ def build_t255_nl_episodes() -> list[T255NLEpisode]:
                 nominal_domain_actions=tuple(acts_b),
                 domain_edges=tuple(edges_b),
                 expected_repair_decision="NO_REPAIR_NEEDED",
+                domain_mutex_pairs=mutex_b,
             )
         )
 
     return episodes
 
 
-def _build_episode_symbol_registry(ep: T255NLEpisode) -> SymbolRegistry:
+def _build_episode_symbol_registry(
+    ep: T255NLEpisode,
+    *,
+    with_mutex: bool = False,
+) -> SymbolRegistry:
     all_preds: set[str] = set(ep.predicate_glosses.keys())
     all_preds |= set(ep.prior_assumed_state) | set(ep.true_world_state) | set(ep.goal_state)
     for act in ep.domain_actions:
@@ -420,6 +436,7 @@ def _build_episode_symbol_registry(ep: T255NLEpisode) -> SymbolRegistry:
         predicates=sorted(all_preds),
         causal_nodes=sorted(nodes),
         actions=ep.domain_actions,
+        mutex_pairs=ep.domain_mutex_pairs if with_mutex else (),
     )
 
 
@@ -531,6 +548,22 @@ class SimulatedNLTransducerBackend:
                     if not a.name.startswith("distractor_") and "sb" not in a.name
                 ][3:5]
                 out_txt = json.dumps({"planned_actions": chain_acts})
+        elif "--- EXTRACTOR ---" in prompt:
+            # Simulated noisy multi-role 3B output: EXTRACTOR includes noisy unmentioned/negated
+            # predicates and omits explicit retraction, testing T257 audit + mutex closure!
+            noisy_obs = sorted(matched_ep.oracle_observed_facts)
+            if matched_ep.category == "negated_alarm_with_distractors":
+                for k_pred in matched_ep.predicate_glosses:
+                    if k_pred.startswith("terminal_fault("):
+                        noisy_obs.append(k_pred)
+            ext_json = json.dumps({"observed_facts": noisy_obs, "retracted_facts": []})
+            crit_json = json.dumps(
+                {
+                    "observed_facts": sorted(matched_ep.oracle_observed_facts),
+                    "retracted_facts": [],
+                }
+            )
+            out_txt = f"--- EXTRACTOR ---\n{ext_json}\n--- CRITIC ---\n{crit_json}"
         else:
             out_txt = json.dumps(
                 {
@@ -615,6 +648,7 @@ def run_t255_nl_benchmark(
     seed: int = 2026,
     n_resamples: int = 1000,
     output_path: Path | None = None,
+    include_t257: bool = False,
 ) -> dict[str, Any]:
     """Execute the 3-arm paired Natural-Language Belief-Revision & Repair benchmark (T255)."""
     episodes = build_t255_nl_episodes()
@@ -637,6 +671,7 @@ def run_t255_nl_benchmark(
     oracle_traces: list[EpisodeArmTrace] = []
     nl_speace_traces: list[EpisodeArmTrace] = []
     nl_only_traces: list[EpisodeArmTrace] = []
+    nl_t257_traces: list[EpisodeArmTrace] = []
 
     async def _run_all_episodes() -> None:
         await backend.load()
@@ -857,10 +892,113 @@ def run_t255_nl_benchmark(
                         modeled_energy_j=round(float(cost_model.energy_watts(op_only)), 3),
                     )
                 )
+
+                # --------------------------------------------------------------
+                # Condition 4 (Optional T257): Typed-DAG Multi-Role + Mutex -> SPEACE
+                # --------------------------------------------------------------
+                if include_t257:
+                    t0_257 = time.perf_counter()
+                    ep_ilf_257 = InformationalLogicalField(
+                        coherence_phi=0.85, q_star_ema=0.5, coherence_phi_ema=0.5
+                    )
+                    cortex_257 = SpikingBrainCortex(
+                        backend=backend,
+                        ilf=ep_ilf_257,
+                        truth_engine=TruthEngine(),
+                        sevo_threshold=0.5,
+                        min_coherence_phi=0.01,
+                        min_confidence=0.05,
+                    )
+                    reg_257 = _build_episode_symbol_registry(ep, with_mutex=True)
+                    pipe_257 = TypedMultiRoleNLGroundingPipeline(reg_257, tau_ground=0.70)
+                    prompt_257 = pipe_257.build_prompt(
+                        operator_message=ep.nl_operator_message,
+                        prior_state=ep.prior_assumed_state,
+                        predicate_glosses=ep.predicate_glosses,
+                    )
+                    rep_257 = await cortex_257.tick(prompt_257, n_tokens=max(max_tokens, 220))
+                    raw_257 = rep_257.result.text if rep_257.result is not None else ""
+                    tok_257 = int(rep_257.result.n_tokens) if rep_257.result is not None else 0
+                    pipe_res = pipe_257.run(
+                        raw_llm_output=raw_257,
+                        operator_message=ep.nl_operator_message,
+                        prior_state=ep.prior_assumed_state,
+                        predicate_glosses=ep.predicate_glosses,
+                        calibrated_confidence=rep_257.confidence,
+                        coherence_phi=float(ep_ilf_257.coherence_phi),
+                    )
+                    s_rev_257 = pipe_res.revised_belief_state
+
+                    ag_257 = base_agent.clone_from_checkpoint(
+                        new_arm_name="NL_LIVE_BRAIN_SPEACE_T257",
+                        repair_mode="selective",
+                    )
+                    ag_257.operator_model = EmpiricalOperatorModel(ep.domain_actions)
+                    env_257 = StatefulPlanningEnvironment(ep.true_world_state, ep.domain_actions)
+                    exec_257 = ag_257.execute_from_revised_belief(
+                        env_257,
+                        revised_belief_state=s_rev_257,
+                        domain=ep.domain_b,
+                        goal_state=ep.goal_state,
+                        domain_edges=ep.domain_edges,
+                        mapping_actions=ep.nominal_domain_actions,
+                    )
+                    lat_257 = (time.perf_counter() - t0_257) * 1000.0
+                    e_257 = float(rep_257.energy_w) + float(
+                        cost_model.energy_watts(
+                            QuantumOperation(
+                                num_qubits=4,
+                                num_gates=24 + 6 * exec_257.planner_expansions,
+                                entanglement_depth=2,
+                                decoherence_budget=max(0.0, 1.0 - rep_257.confidence),
+                            )
+                        )
+                    )
+                    nl_t257_traces.append(
+                        EpisodeArmTrace(
+                            episode_id=ep.episode_id,
+                            family_id=ep.family_id,
+                            category=ep.category,
+                            paraphrase_group=ep.paraphrase_group,
+                            paraphrase_variant=ep.paraphrase_variant,
+                            condition="NL_LIVE_BRAIN_SPEACE_T257",
+                            backend_name=cortex_257.backend_name,
+                            raw_llm_output=raw_257,
+                            extracted_observed=tuple(sorted(pipe_res.grounded.observed_facts)),
+                            extracted_retracted=tuple(sorted(pipe_res.effective_retracted_facts)),
+                            revised_belief_state=tuple(sorted(s_rev_257)),
+                            extraction_f1=round(
+                                _set_f1(
+                                    _relevant_dynamic_facts(s_rev_257, ep),
+                                    _relevant_dynamic_facts(ep.true_world_state, ep),
+                                ),
+                                4,
+                            ),
+                            retraction_f1=round(
+                                _set_f1(
+                                    pipe_res.effective_retracted_facts,
+                                    ep.oracle_retracted_facts,
+                                ),
+                                4,
+                            ),
+                            repair_decision=exec_257.repair_decision,
+                            skipped_prefix_steps=exec_257.skipped_prefix_steps,
+                            spliced_bridge_steps=exec_257.spliced_bridge_steps,
+                            preserved_suffix_steps=exec_257.preserved_suffix_steps,
+                            executed_actions=exec_257.executed_actions,
+                            invalid_actions_attempted=exec_257.invalid_actions_attempted,
+                            goal_reached=exec_257.goal_reached,
+                            safe_end_to_end_success=exec_257.safe_execution,
+                            planner_expansions=exec_257.planner_expansions,
+                            llm_tokens_out=tok_257,
+                            wall_latency_ms=round(lat_257, 3),
+                            modeled_energy_j=round(e_257, 3),
+                        )
+                    )
         finally:
             await backend.shutdown()
 
-    total_budget_s = max(120.0, float(len(episodes)) * float(timeout_s) * 2.5)
+    total_budget_s = max(180.0, float(len(episodes)) * float(timeout_s) * 3.5)
     run_coro_isolated(_run_all_episodes, timeout_s=total_budget_s)
 
     def _summarize_arm(
@@ -928,7 +1066,7 @@ def run_t255_nl_benchmark(
     )
 
     report: dict[str, Any] = {
-        "spec": "T255",
+        "spec": "T257" if include_t257 else "T255",
         "seed": seed,
         "live_brain_used": bool(live_brain or endpoint),
         "backend_identifier": nl_speace_traces[0].backend_name if nl_speace_traces else "none",
@@ -944,13 +1082,55 @@ def run_t255_nl_benchmark(
             "oracle_safe_success_rate": round(float(np.mean(safe_oracle_vec)), 4),
         },
         "sample_revision_traces": [
-            asdict(t) for t in nl_speace_traces if t.episode_id.startswith("F3_quorum_handoff")
+            asdict(t)
+            for t in (nl_t257_traces if include_t257 else nl_speace_traces)
+            if t.episode_id.startswith("F3_quorum_handoff")
         ],
         "all_traces": {
             "NL_LIVE_BRAIN_SPEACE": [asdict(t) for t in nl_speace_traces],
             "NL_LIVE_BRAIN_ONLY": [asdict(t) for t in nl_only_traces],
         },
     }
+
+    if include_t257:
+        sum_t257 = _summarize_arm(nl_t257_traces, oracle_traces)
+        safe_t257_vec = [1.0 if t.safe_end_to_end_success else 0.0 for t in nl_t257_traces]
+        ret_255_vec = [
+            t.retraction_f1
+            for t in nl_speace_traces
+            if t.category
+            in ("mid_episode_repairable_correction", "mid_episode_suffix_invalidating_correction")
+        ]
+        ret_257_vec = [
+            t.retraction_f1
+            for t in nl_t257_traces
+            if t.category
+            in ("mid_episode_repairable_correction", "mid_episode_suffix_invalidating_correction")
+        ]
+        lift_257_vs_255 = paired_bootstrap_ci(
+            safe_speace_vec, safe_t257_vec, n_resamples=n_resamples, seed=seed
+        )
+        lift_257_vs_only = paired_bootstrap_ci(
+            safe_only_vec, safe_t257_vec, n_resamples=n_resamples, seed=seed
+        )
+        ret_lift_257_vs_255 = paired_bootstrap_ci(
+            ret_255_vec, ret_257_vec, n_resamples=n_resamples, seed=seed
+        )
+        survival_257 = sum_t257["safe_end_to_end_success_rate"] / max(
+            sum_oracle["safe_end_to_end_success_rate"], 1e-6
+        )
+        report["conditions"]["NL_LIVE_BRAIN_SPEACE_T257"] = sum_t257
+        report["comparisons"]["t257_advantage_survival_ratio_vs_oracle"] = round(survival_257, 4)
+        report["comparisons"]["safe_success_lift_t257_vs_t255"] = [
+            round(x, 4) for x in lift_257_vs_255
+        ]
+        report["comparisons"]["safe_success_lift_t257_vs_nl_only"] = [
+            round(x, 4) for x in lift_257_vs_only
+        ]
+        report["comparisons"]["retraction_f1_lift_t257_vs_t255"] = [
+            round(x, 4) for x in ret_lift_257_vs_255
+        ]
+        report["all_traces"]["NL_LIVE_BRAIN_SPEACE_T257"] = [asdict(t) for t in nl_t257_traces]
 
     if output_path is not None:
         output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -962,6 +1142,29 @@ def run_t255_nl_benchmark(
     return report
 
 
+def run_t257_nl_ablation(
+    *,
+    live_brain: bool = False,
+    endpoint: str | None = None,
+    timeout_s: float = 60.0,
+    max_tokens: int = 220,
+    seed: int = 2026,
+    n_resamples: int = 1000,
+    output_path: Path | None = None,
+) -> dict[str, Any]:
+    """Run 4-arm paired ablation comparing T257 Typed-DAG Multi-Role + Mutex vs T255."""
+    return run_t255_nl_benchmark(
+        live_brain=live_brain,
+        endpoint=endpoint,
+        timeout_s=timeout_s,
+        max_tokens=max_tokens,
+        seed=seed,
+        n_resamples=n_resamples,
+        output_path=output_path,
+        include_t257=True,
+    )
+
+
 __all__ = [
     "EpisodeArmTrace",
     "EpisodeCategory",
@@ -969,4 +1172,5 @@ __all__ = [
     "T255NLEpisode",
     "build_t255_nl_episodes",
     "run_t255_nl_benchmark",
+    "run_t257_nl_ablation",
 ]

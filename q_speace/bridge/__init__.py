@@ -28,6 +28,7 @@ from .grounding import (
     SymbolicGroundingAdapter,
     SymbolRegistry,
     apply_belief_revision,
+    compute_effective_retracted_facts,
 )
 from .protocol import (
     CoupledCommit,
@@ -50,6 +51,11 @@ from .simulated_sensor import (
     SimulatedSensorAdapter,
     SimulatedSensorReading,
     run_coro_isolated,
+)
+from .typed_nl_pipeline import (
+    ClausePolarityAuditor,
+    TypedMultiRoleNLGroundingPipeline,
+    TypedPipelineResult,
 )
 from .validator import ProcessIsolatedValidator, ValidatorKey
 
@@ -83,8 +89,12 @@ __all__ = [
     "UpdateStatus",
     "VALID_RUNTIME_MODES",
     "ValidatorKey",
+    "ClausePolarityAuditor",
+    "TypedMultiRoleNLGroundingPipeline",
+    "TypedPipelineResult",
     "apply_belief_revision",
     "canonical_param_hash",
+    "compute_effective_retracted_facts",
     "recover_coupled_wal",
     "run_coro_isolated",
 ]

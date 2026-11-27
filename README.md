@@ -171,6 +171,11 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   and `CVStrategySelector` in `q_speace/edd_cvt/mip_integration.py` — strictly non-consciousness), SWIM-like
   `BoundedGossipProtocol` + `SwarmSelfHealer` (`q_speace/singularity/swarm_gossip.py`), and `MyelinationRegistry` +
   `HystereticLoadBalancer` + `BatchRoleDeliberationCodec` (`q_speace/spiking_brain/myelination.py`; tasks: [T256_TASKS.md](docs/T256_TASKS.md)).
+- [Typed-DAG Multi-Role NL Grounding, Ontology Mutex Closure & T256 Hardening (T257)](docs/T257_TYPED_DAG_MULTI_ROLE_NL_GROUNDING_SPEC.md):
+  wires `T256` primitives (`BatchRoleDeliberationCodec`, `TypedComputationalDAG` + `ExecutionTicket`, `KineticaRegimeController`,
+  `MyelinationRegistry`) with recall-preserving `ClausePolarityAuditor` (`q_speace/bridge/typed_nl_pipeline.py`) and declarative
+  `SymbolRegistry` `mutex_pairs` (`qspace eval t257-nl-ablation`), raising `--live-brain` `Qwen/Qwen2.5-3B-Instruct` NF4 safe
+  end-to-end completion from `6.67%` (`T255`) to `100.0%` (`15/15`, lift `+0.9333`, [T257_LIVE_BRAIN_ABLATION_REPORT.md](docs/T257_LIVE_BRAIN_ABLATION_REPORT.md)).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

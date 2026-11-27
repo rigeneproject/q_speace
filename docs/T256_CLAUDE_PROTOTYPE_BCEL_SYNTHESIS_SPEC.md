@@ -41,7 +41,7 @@ Given regional nodes $V_A$ with calcium/activity state $c_i \in [0, 1]$, local c
 ### 2.4 Small-System MIP Coupling Index (`T256-04` — Closing `T25` Without Consciousness Claims)
 - For $T \times n$ finite state trajectories $X$ ($2 \le n \le 10$, $T \ge 3$) and optional symmetric coupling matrix $W \in \mathbb{R}_{\ge 0}^{n \times n}$, `compute_mip_integration` evaluates all $2^{n-1} - 1$ non-trivial bipartitions $(A, \bar{A})$ using regularized Gaussian mutual information:
   $$I(X_A; X_{\bar{A}}) = \frac{1}{2}\ln\frac{\det(\Sigma_{AA} + \varepsilon I)\,\det(\Sigma_{\bar{A}\bar{A}} + \varepsilon I)}{\det(\Sigma + \varepsilon I)}$$
-  normalized by $\min(|A|, |\bar{A}|)$ and weighted by normalized cross-cut coupling $1 + \bar{w}_{A, \bar{A}}$ (fixing the prototype's `np.trace` bug where zero-diagonal adjacency matrices produced `0.0`). For $n > 10$, it falls back cleanly to a deterministic bisection/spectral coupling proxy.
+  normalized by $\min(|A|, |\bar{A}|)$ and weighted multiplicatively by mean cross-cut coupling $\bar{w}_{A, \bar{A}}$ ($\bar{w}_{A,\bar{A}} = 1$ when `connectivity=None`, fixing the prototype's `np.trace` bug where zero-diagonal adjacency matrices produced `0.0` everywhere while guaranteeing `0.0` across disconnected blocks). For $n > 10$, it falls back cleanly to a deterministic bisection/spectral coupling proxy.
 - `CVStrategySelector` tracks bounded performance windows and computes confidence $c = \exp(-\sigma / (|\mu| + \varepsilon)) \in (0, 1]$, switching to the highest-mean historical strategy when $c < \theta_c$ or monotonic decline is detected.
 
 ### 2.5 Bounded-TTL Swarm Gossip & Self-Healing (`T256-05`)

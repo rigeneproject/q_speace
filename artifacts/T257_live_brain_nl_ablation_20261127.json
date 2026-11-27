@@ -1,0 +1,2294 @@
+{
+  "all_traces": {
+    "NL_LIVE_BRAIN_ONLY": [
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F3_quorum_handoff-R1-P1",
+        "executed_actions": [
+          "acquire_beacon(b50_n0)",
+          "mute_uplink(b50_n0,b50_n1)",
+          "rotate_feedhorn(b50_n1)",
+          "lock_carrier_pll(b50_n1)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 65,
+        "modeled_energy_j": 69.082,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"acquire_beacon(b50_n0)\", \"mute_uplink(b50_n0,b50_n1)\", \"rotate_feedhorn(b50_n1)\", \"lock_carrier_pll(b50_n1)\", \"illuminate_spot(b50_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 4737.97
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F3_quorum_handoff-R1-P2",
+        "executed_actions": [
+          "rotate_feedhorn(b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 60,
+        "modeled_energy_j": 68.639,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"rotate_feedhorn(b50_n1)\", \"slew_gimbal(b50_n1,b50_n2)\", \"handover_carrier(b50_n1,b50_n2)\", \"illuminate_spot(b50_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 4511.139
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F3_quorum_handoff-R1-P3",
+        "executed_actions": [
+          "rotate_feedhorn(b50_n1)",
+          "lock_carrier_pll(b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 45,
+        "modeled_energy_j": 67.281,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"rotate_feedhorn(b50_n1)\", \"lock_carrier_pll(b50_n1)\", \"slew_gimbal(b50_n1,b50_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 3879.662
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F3_quorum_handoff-R2-ABANDON",
+        "executed_actions": [],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 38,
+        "modeled_energy_j": 66.631,
+        "paraphrase_group": "F3_quorum_handoff-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"rotate_feedhorn(b50_n1)\", \"lock_carrier_pll(b50_n1)\", \"illuminate_spot(b50_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 4118.136
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F3_quorum_handoff-R3-NEGATION",
+        "executed_actions": [],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 59,
+        "modeled_energy_j": 68.538,
+        "paraphrase_group": "F3_quorum_handoff-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"rotate_feedhorn(b50_n1)\", \"align_gimbal(b50_n1,b50_n2)\", \"handover_carrier(b50_n1,b50_n2)\", \"illuminate_spot(b50_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5256.287
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F4_cryo_purification-R1-P1",
+        "executed_actions": [
+          "arm_interlock_shutter(b51_n0)",
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)",
+          "pulse_backflush(b51_n1)",
+          "reverify_purity(b51_n1)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 82,
+        "modeled_energy_j": 70.636,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"arm_interlock_shutter(b51_n0)\", \"seal_loadlock(b51_n0,b51_n1)\", \"scrub_outgas(b51_n1,b51_n2)\", \"pulse_backflush(b51_n1)\", \"reverify_purity(b51_n1)\", \"open_exposure(b51_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 6223.545
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F4_cryo_purification-R1-P2",
+        "executed_actions": [
+          "arm_interlock_shutter(b51_n0)",
+          "pulse_backflush(b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 71,
+        "modeled_energy_j": 69.651,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"arm_interlock_shutter(b51_n0)\", \"pulse_backflush(b51_n1)\", \"scrub_outgas(b51_n1,b51_n2)\", \"ionize_purge(b51_n1,b51_n2)\", \"open_exposure(b51_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5774.072
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F4_cryo_purification-R1-P3",
+        "executed_actions": [
+          "arm_interlock_shutter(b51_n0)",
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)",
+          "pulse_backflush(b51_n1)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 71,
+        "modeled_energy_j": 69.62,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"arm_interlock_shutter(b51_n0)\", \"seal_loadlock(b51_n0,b51_n1)\", \"scrub_outgas(b51_n1,b51_n2)\", \"pulse_backflush(b51_n1)\", \"open_exposure(b51_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5569.469
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F4_cryo_purification-R2-ABANDON",
+        "executed_actions": [
+          "arm_interlock_shutter(b51_n0)",
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 71,
+        "modeled_energy_j": 69.615,
+        "paraphrase_group": "F4_cryo_purification-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"arm_interlock_shutter(b51_n0)\", \"seal_loadlock(b51_n0,b51_n1)\", \"scrub_outgas(b51_n1,b51_n2)\", \"pulse_backflush(b51_n1)\", \"open_exposure(b51_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5908.235
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F4_cryo_purification-R3-NEGATION",
+        "executed_actions": [
+          "arm_interlock_shutter(b51_n0)",
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 71,
+        "modeled_energy_j": 69.602,
+        "paraphrase_group": "F4_cryo_purification-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"arm_interlock_shutter(b51_n0)\", \"seal_loadlock(b51_n0,b51_n1)\", \"scrub_outgas(b51_n1,b51_n2)\", \"pulse_backflush(b51_n1)\", \"open_exposure(b51_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5633.107
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F5_containment_airlock-R1-P1",
+        "executed_actions": [
+          "engage_clamp_ring(b52_n0)",
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)",
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 116,
+        "modeled_energy_j": 73.785,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"engage_clamp_ring(b52_n0)\", \"seat_collar(b52_n0,b52_n1)\", \"equalize_ballast(b52_n1,b52_n2)\", \"inject_glycol(b52_n1)\", \"confirm_trunk_dry(b52_n1)\", \"open_moonpool(b52_n2)\", \"release_tether_latch(b52_sb0,b52_sb1)\", \"launch_via_crane(b52_sb1,b52_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 7269.138
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F5_containment_airlock-R1-P2",
+        "executed_actions": [
+          "engage_clamp_ring(b52_n0)",
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)",
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 128,
+        "modeled_energy_j": 74.892,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"engage_clamp_ring(b52_n0)\", \"seat_collar(b52_n0,b52_n1)\", \"equalize_ballast(b52_n1,b52_n2)\", \"inject_glycol(b52_n1)\", \"confirm_trunk_dry(b52_n1)\", \"open_moonpool(b52_n2)\", \"winch_deck_crane(b52_sb0)\", \"release_tether_latch(b52_sb0,b52_sb1)\", \"launch_via_crane(b52_sb1,b52_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 8492.908
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F5_containment_airlock-R1-P3",
+        "executed_actions": [
+          "engage_clamp_ring(b52_n0)",
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)",
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 128,
+        "modeled_energy_j": 74.897,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"engage_clamp_ring(b52_n0)\", \"seat_collar(b52_n0,b52_n1)\", \"equalize_ballast(b52_n1,b52_n2)\", \"inject_glycol(b52_n1)\", \"confirm_trunk_dry(b52_n1)\", \"open_moonpool(b52_n2)\", \"winch_deck_crane(b52_sb0)\", \"release_tether_latch(b52_sb0,b52_sb1)\", \"launch_via_crane(b52_sb1,b52_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 11256.768
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F5_containment_airlock-R2-ABANDON",
+        "executed_actions": [
+          "engage_clamp_ring(b52_n0)",
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 116,
+        "modeled_energy_j": 73.785,
+        "paraphrase_group": "F5_containment_airlock-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"engage_clamp_ring(b52_n0)\", \"seat_collar(b52_n0,b52_n1)\", \"equalize_ballast(b52_n1,b52_n2)\", \"inject_glycol(b52_n1)\", \"confirm_trunk_dry(b52_n1)\", \"open_moonpool(b52_n2)\", \"release_tether_latch(b52_sb0,b52_sb1)\", \"launch_via_crane(b52_sb1,b52_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 8458.764
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_ONLY",
+        "episode_id": "F5_containment_airlock-R3-NEGATION",
+        "executed_actions": [
+          "engage_clamp_ring(b52_n0)",
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)"
+        ],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 128,
+        "modeled_energy_j": 74.89,
+        "paraphrase_group": "F5_containment_airlock-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"planned_actions\": [\"engage_clamp_ring(b52_n0)\", \"seat_collar(b52_n0,b52_n1)\", \"equalize_ballast(b52_n1,b52_n2)\", \"inject_glycol(b52_n1)\", \"confirm_trunk_dry(b52_n1)\", \"open_moonpool(b52_n2)\", \"winch_deck_crane(b52_sb0)\", \"release_tether_latch(b52_sb0,b52_sb1)\", \"launch_via_crane(b52_sb1,b52_n2)\"]}",
+        "repair_decision": "DIRECT_LLM_PLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 9385.078
+      }
+    ],
+    "NL_LIVE_BRAIN_SPEACE": [
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F3_quorum_handoff-R1-P1",
+        "executed_actions": [],
+        "extracted_observed": [
+          "beacon_locked(b50_n0)",
+          "doppler_alert(b50_n0)",
+          "gimbal_aligned(b50_n1)",
+          "terminal_fault(b50_n1)",
+          "uplink_muted(b50_n1)"
+        ],
+        "extracted_retracted": [
+          "channel_intact(b50_n1)",
+          "standby_ready(b50_sb0)"
+        ],
+        "extraction_f1": 0.6,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 87,
+        "modeled_energy_j": 197.712,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 256,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"observed_facts\": [\"beacon_locked(b50_n0)\", \"doppler_alert(b50_n0)\", \"gimbal_aligned(b50_n1)\", \"terminal_fault(b50_n1)\", \"uplink_muted(b50_n1)\"], \"retracted_facts\": [\"channel_intact(b50_n1)\", \"standby_ready(b50_sb0)\"]}",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [
+          "beacon_locked(b50_n0)",
+          "doppler_alert(b50_n0)",
+          "gimbal_aligned(b50_n1)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)",
+          "terminal_fault(b50_n1)",
+          "uplink_muted(b50_n1)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5674.719
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F3_quorum_handoff-R1-P2",
+        "executed_actions": [],
+        "extracted_observed": [
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)",
+          "gimbal_aligned(b50_n1)",
+          "polarization_skew(b50_n1)"
+        ],
+        "extracted_retracted": [],
+        "extraction_f1": 0.6667,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 60,
+        "modeled_energy_j": 150.232,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "raw_llm_output": "{\"observed_facts\": [\"channel_intact(b50_n1)\", \"doppler_alert(b50_n0)\", \"gimbal_aligned(b50_n1)\", \"polarization_skew(b50_n1)\"], \"retracted_facts\": []}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)",
+          "gimbal_aligned(b50_n1)",
+          "polarization_skew(b50_n1)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "mute_uplink(b50_n0,b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)"
+        ],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 4122.673
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F3_quorum_handoff-R1-P3",
+        "executed_actions": [],
+        "extracted_observed": [
+          "beacon_locked(b50_n0)",
+          "carrier_locked(b50_n2)",
+          "gimbal_aligned(b50_n1)",
+          "uplink_muted(b50_n1)"
+        ],
+        "extracted_retracted": [
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)"
+        ],
+        "extraction_f1": 0.4444,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 77,
+        "modeled_energy_j": 150.271,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [
+          "illuminate_spot(b50_n2)"
+        ],
+        "raw_llm_output": "{\"observed_facts\": [\"beacon_locked(b50_n0)\", \"carrier_locked(b50_n2)\", \"gimbal_aligned(b50_n1)\", \"uplink_muted(b50_n1)\"], \"retracted_facts\": [\"doppler_alert(b50_n0)\", \"channel_intact(b50_n1)\"]}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [
+          "beacon_locked(b50_n0)",
+          "carrier_locked(b50_n2)",
+          "gimbal_aligned(b50_n1)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)",
+          "uplink_muted(b50_n1)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "mute_uplink(b50_n0,b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)",
+          "handover_carrier(b50_n1,b50_n2)"
+        ],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5264.924
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F3_quorum_handoff-R2-ABANDON",
+        "executed_actions": [],
+        "extracted_observed": [
+          "terminal_fault(b50_n1)"
+        ],
+        "extracted_retracted": [
+          "channel_intact(b50_n1)"
+        ],
+        "extraction_f1": 0.8,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 34,
+        "modeled_energy_j": 197.58,
+        "paraphrase_group": "F3_quorum_handoff-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 256,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"observed_facts\": [\"terminal_fault(b50_n1)\"], \"retracted_facts\": [\"channel_intact(b50_n1)\"]}",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "doppler_alert(b50_n0)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)",
+          "terminal_fault(b50_n1)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 2786.162
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F3_quorum_handoff-R3-NEGATION",
+        "executed_actions": [],
+        "extracted_observed": [
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)",
+          "standby_ready(b50_sb0)",
+          "terminal_fault(b50_n1)",
+          "uplink_muted(b50_n1)"
+        ],
+        "extracted_retracted": [],
+        "extraction_f1": 0.5714,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 67,
+        "modeled_energy_j": 154.105,
+        "paraphrase_group": "F3_quorum_handoff-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 21,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"observed_facts\": [\"doppler_alert(b50_n0)\", \"channel_intact(b50_n1)\", \"standby_ready(b50_sb0)\", \"terminal_fault(b50_n1)\", \"uplink_muted(b50_n1)\"], \"retracted_facts\": []}",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)",
+          "standby_ready(b50_sb0)",
+          "terminal_fault(b50_n1)",
+          "uplink_muted(b50_n1)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5240.966
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F4_cryo_purification-R1-P1",
+        "executed_actions": [],
+        "extracted_observed": [
+          "backflush_done(b51_n1)",
+          "filter_backpressure(b51_n1)",
+          "loadlock_sealed(b51_n1)",
+          "outgas_scrubbed(b51_n1)",
+          "particle_alarm(b51_n0)",
+          "purge_ionized(b51_n2)",
+          "shutter_armed(b51_n0)",
+          "standby_ready(b51_sb0)"
+        ],
+        "extracted_retracted": [],
+        "extraction_f1": 0.7143,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 110,
+        "modeled_energy_j": 150.198,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [
+          "open_exposure(b51_n2)"
+        ],
+        "raw_llm_output": "{\"observed_facts\": [\"backflush_done(b51_n1)\", \"filter_backpressure(b51_n1)\", \"loadlock_sealed(b51_n1)\", \"particle_alarm(b51_n0)\", \"particle_alarm(b51_n0)\", \"standby_ready(b51_sb0)\", \"shutter_armed(b51_n0)\", \"outgas_scrubbed(b51_n1)\", \"purge_ionized(b51_n2)\"], \"retracted_facts\": []}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [
+          "backflush_done(b51_n1)",
+          "channel_intact(b51_n1)",
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "filter_backpressure(b51_n1)",
+          "loadlock_sealed(b51_n1)",
+          "outgas_scrubbed(b51_n1)",
+          "particle_alarm(b51_n0)",
+          "purge_ionized(b51_n2)",
+          "shutter_armed(b51_n0)",
+          "standby_ready(b51_sb0)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)",
+          "ionize_purge(b51_n1,b51_n2)"
+        ],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 6803.69
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F4_cryo_purification-R1-P2",
+        "executed_actions": [],
+        "extracted_observed": [
+          "backflush_done(b51_n1)",
+          "channel_intact(b51_n1)",
+          "filter_backpressure(b51_n1)",
+          "loadlock_sealed(b51_n1)",
+          "outgas_scrubbed(b51_n1)",
+          "particle_alarm(b51_n0)",
+          "purge_ionized(b51_n2)",
+          "shutter_armed(b51_n0)",
+          "standby_ready(b51_sb0)"
+        ],
+        "extracted_retracted": [],
+        "extraction_f1": 0.7143,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 120,
+        "modeled_energy_j": 150.14,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [
+          "open_exposure(b51_n2)"
+        ],
+        "raw_llm_output": "{\"observed_facts\": [\"backflush_done(b51_n1)\", \"channel_intact(b51_n1)\", \"filter_backpressure(b51_n1)\", \"loadlock_sealed(b51_n1)\", \"outgas_scrubbed(b51_n1)\", \"particle_alarm(b51_n0)\", \"particle_alarm(b51_n0)\", \"purge_ionized(b51_n2)\", \"shutter_armed(b51_n0)\", \"standby_ready(b51_sb0)\"], \"retracted_facts\": []}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [
+          "backflush_done(b51_n1)",
+          "channel_intact(b51_n1)",
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "filter_backpressure(b51_n1)",
+          "loadlock_sealed(b51_n1)",
+          "outgas_scrubbed(b51_n1)",
+          "particle_alarm(b51_n0)",
+          "purge_ionized(b51_n2)",
+          "shutter_armed(b51_n0)",
+          "standby_ready(b51_sb0)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)",
+          "ionize_purge(b51_n1,b51_n2)"
+        ],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 8328.792
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F4_cryo_purification-R1-P3",
+        "executed_actions": [],
+        "extracted_observed": [
+          "backflush_done(b51_n1)",
+          "filter_backpressure(b51_n1)",
+          "loadlock_sealed(b51_n1)",
+          "outgas_scrubbed(b51_n1)",
+          "particle_alarm(b51_n0)",
+          "shutter_armed(b51_n0)",
+          "wafer_online(b51_n2)"
+        ],
+        "extracted_retracted": [],
+        "extraction_f1": 0.7692,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 89,
+        "modeled_energy_j": 150.247,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"observed_facts\": [\"backflush_done(b51_n1)\", \"filter_backpressure(b51_n1)\", \"loadlock_sealed(b51_n1)\", \"outgas_scrubbed(b51_n1)\", \"particle_alarm(b51_n0)\", \"shutter_armed(b51_n0)\", \"wafer_online(b51_n2)\"], \"retracted_facts\": []}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [
+          "backflush_done(b51_n1)",
+          "channel_intact(b51_n1)",
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "filter_backpressure(b51_n1)",
+          "loadlock_sealed(b51_n1)",
+          "outgas_scrubbed(b51_n1)",
+          "particle_alarm(b51_n0)",
+          "shutter_armed(b51_n0)",
+          "wafer_online(b51_n2)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)",
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 5771.781
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F4_cryo_purification-R2-ABANDON",
+        "executed_actions": [],
+        "extracted_observed": [
+          "terminal_fault(b51_n1)"
+        ],
+        "extracted_retracted": [
+          "channel_intact(b51_n1)"
+        ],
+        "extraction_f1": 0.8,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 34,
+        "modeled_energy_j": 197.629,
+        "paraphrase_group": "F4_cryo_purification-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 256,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"observed_facts\": [\"terminal_fault(b51_n1)\"], \"retracted_facts\": [\"channel_intact(b51_n1)\"]}",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "particle_alarm(b51_n0)",
+          "terminal_fault(b51_n1)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 2851.627
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F4_cryo_purification-R3-NEGATION",
+        "executed_actions": [],
+        "extracted_observed": [],
+        "extracted_retracted": [],
+        "extraction_f1": 0.6667,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": false,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 108,
+        "modeled_energy_j": 171.009,
+        "paraphrase_group": "F4_cryo_purification-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 112,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"observed_facts\": [\"particle_alarm(b51_n0)\", \"channel_intact(b51_n1)\", \"standby_ready(b51_sb0)\", \"outgas_scrubbed(b51_n2)\", \"shutter_armed(b51_n0)\", \"purge_ionized(b51_n2)\"], \"retracted_facts\": [\"backflush_done(b51_n1)\", \"filter_backpressure(b51_n1)\", \"terminal_fault(b51_n1)\"]}",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b51_n1)",
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 7687.641
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F5_containment_airlock-R1-P1",
+        "executed_actions": [],
+        "extracted_observed": [
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "glycol_injected(b52_n1)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)"
+        ],
+        "extracted_retracted": [
+          "ballast_equal(b52_n1)"
+        ],
+        "extraction_f1": 0.9091,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 78,
+        "modeled_energy_j": 150.369,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 1,
+        "preserved_suffix_steps": [
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "raw_llm_output": "{\"observed_facts\": [\"clamp_engaged(b52_n0)\", \"collar_seated(b52_n1)\", \"glycol_injected(b52_n1)\", \"hydrate_plug_latched(b52_n1)\", \"pressure_delta(b52_n0)\"], \"retracted_facts\": [\"ballast_equal(b52_n1)\"]}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b52_n1)",
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "glycol_injected(b52_n1)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "confirm_trunk_dry(b52_n1)"
+        ],
+        "wall_latency_ms": 4977.304
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F5_containment_airlock-R1-P2",
+        "executed_actions": [],
+        "extracted_observed": [
+          "ballast_equal(b52_n1)",
+          "channel_intact(b52_n1)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)",
+          "standby_ready(b52_sb0)"
+        ],
+        "extracted_retracted": [
+          "rov_deployed(b52_n2)"
+        ],
+        "extraction_f1": 0.6,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 77,
+        "modeled_energy_j": 150.247,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "raw_llm_output": "{\"observed_facts\": [\"ballast_equal(b52_n1)\", \"channel_intact(b52_n1)\", \"hydrate_plug_latched(b52_n1)\", \"standby_ready(b52_sb0)\", \"pressure_delta(b52_n0)\"], \"retracted_facts\": [\"rov_deployed(b52_n2)\"]}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [
+          "ballast_equal(b52_n1)",
+          "channel_intact(b52_n1)",
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)",
+          "standby_ready(b52_sb0)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)"
+        ],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 6131.757
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F5_containment_airlock-R1-P3",
+        "executed_actions": [],
+        "extracted_observed": [
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)",
+          "trunk_dry(b52_n2)"
+        ],
+        "extracted_retracted": [
+          "ballast_equal(b52_n1)",
+          "standby_ready(b52_sb0)"
+        ],
+        "extraction_f1": 0.9091,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 89,
+        "modeled_energy_j": 150.116,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [
+          "open_moonpool(b52_n2)"
+        ],
+        "raw_llm_output": "{\"observed_facts\": [\"clamp_engaged(b52_n0)\", \"collar_seated(b52_n1)\", \"hydrate_plug_latched(b52_n1)\", \"pressure_delta(b52_n0)\", \"trunk_dry(b52_n2)\"], \"retracted_facts\": [\"ballast_equal(b52_n1)\", \"standby_ready(b52_sb0)\"]}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 0.6667,
+        "revised_belief_state": [
+          "channel_intact(b52_n1)",
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)",
+          "trunk_dry(b52_n2)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)",
+          "dewater_trunk(b52_n1,b52_n2)"
+        ],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 7124.187
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F5_containment_airlock-R2-ABANDON",
+        "executed_actions": [
+          "winch_deck_crane(b52_sb0)",
+          "release_tether_latch(b52_sb0,b52_sb1)",
+          "launch_via_crane(b52_sb1,b52_n2)"
+        ],
+        "extracted_observed": [
+          "channel_intact(b52_n1)",
+          "standby_ready(b52_sb0)",
+          "terminal_fault(b52_n1)"
+        ],
+        "extracted_retracted": [
+          "channel_intact(b52_n1)",
+          "pressure_delta(b52_n0)"
+        ],
+        "extraction_f1": 0.8,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 63,
+        "modeled_energy_j": 158.092,
+        "paraphrase_group": "F5_containment_airlock-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 43,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "{\"observed_facts\": [\"channel_intact(b52_n1)\", \"terminal_fault(b52_n1)\", \"standby_ready(b52_sb0)\"], \"retracted_facts\": [\"channel_intact(b52_n1)\", \"pressure_delta(b52_n0)\"]}",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 0.6667,
+        "revised_belief_state": [
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "standby_ready(b52_sb0)",
+          "terminal_fault(b52_n1)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 4936.165
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_SPEACE",
+        "episode_id": "F5_containment_airlock-R3-NEGATION",
+        "executed_actions": [],
+        "extracted_observed": [
+          "channel_intact(b52_n1)",
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "glycol_injected(b52_n1)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)",
+          "standby_ready(b52_sb0)"
+        ],
+        "extracted_retracted": [
+          "rov_deployed(b52_n2)",
+          "terminal_fault(b52_n1)"
+        ],
+        "extraction_f1": 0.4444,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": false,
+        "invalid_actions_attempted": 1,
+        "llm_tokens_out": 109,
+        "modeled_energy_j": 150.203,
+        "paraphrase_group": "F5_containment_airlock-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 0,
+        "preserved_suffix_steps": [
+          "equalize_ballast(b52_n1,b52_n2)",
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "raw_llm_output": "{\"observed_facts\": [\"channel_intact(b52_n1)\", \"standby_ready(b52_sb0)\", \"pressure_delta(b52_n0)\", \"clamp_engaged(b52_n0)\", \"collar_seated(b52_n1)\", \"glycol_injected(b52_n1)\", \"hydrate_plug_latched(b52_n1)\"], \"retracted_facts\": [\"rov_deployed(b52_n2)\", \"terminal_fault(b52_n1)\"]}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 0.0,
+        "revised_belief_state": [
+          "channel_intact(b52_n1)",
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "glycol_injected(b52_n1)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)",
+          "standby_ready(b52_sb0)"
+        ],
+        "safe_end_to_end_success": false,
+        "skipped_prefix_steps": [
+          "seat_collar(b52_n0,b52_n1)"
+        ],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 7525.86
+      }
+    ],
+    "NL_LIVE_BRAIN_SPEACE_T257": [
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F3_quorum_handoff-R1-P1",
+        "executed_actions": [
+          "rotate_feedhorn(b50_n1)",
+          "lock_carrier_pll(b50_n1)",
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "extracted_observed": [
+          "beacon_locked(b50_n0)",
+          "polarization_skew(b50_n1)",
+          "uplink_muted(b50_n1)"
+        ],
+        "extracted_retracted": [
+          "gimbal_aligned(b50_n1)"
+        ],
+        "extraction_f1": 1.0,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 249,
+        "modeled_energy_j": 151.014,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 5,
+        "preserved_suffix_steps": [
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_dist0)\",\n    \"doppler_alert(b50_n0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\",\n    \"uplink_muted(b50_n1)\"\n  ],\n  \"retracted_facts\": []\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_dist0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\",\n    \"uplink_muted(b50_n1)\"\n  ],\n  \"retracted_facts\": []\n}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "beacon_locked(b50_n0)",
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)",
+          "polarization_skew(b50_n1)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)",
+          "uplink_muted(b50_n1)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "mute_uplink(b50_n0,b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "rotate_feedhorn(b50_n1)",
+          "lock_carrier_pll(b50_n1)"
+        ],
+        "wall_latency_ms": 15980.028
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F3_quorum_handoff-R1-P2",
+        "executed_actions": [
+          "rotate_feedhorn(b50_n1)",
+          "lock_carrier_pll(b50_n1)",
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "extracted_observed": [
+          "beacon_locked(b50_n0)",
+          "polarization_skew(b50_n1)"
+        ],
+        "extracted_retracted": [
+          "gimbal_aligned(b50_n1)"
+        ],
+        "extraction_f1": 0.8889,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 256,
+        "modeled_energy_j": 151.236,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 6,
+        "preserved_suffix_steps": [
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_dist0)\",\n    \"doppler_alert(b50_n0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"gimbal_aligned(b50_n1)\",\n    \"service_restored(b50_n2)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_dist0)\",\n    \"doppler_alert(b50_n0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"polarization_skew(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"gimbal_aligned(b5",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "beacon_locked(b50_n0)",
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)",
+          "polarization_skew(b50_n1)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "mute_uplink(b50_n0,b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "rotate_feedhorn(b50_n1)",
+          "lock_carrier_pll(b50_n1)"
+        ],
+        "wall_latency_ms": 15697.586
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F3_quorum_handoff-R1-P3",
+        "executed_actions": [
+          "rotate_feedhorn(b50_n1)",
+          "lock_carrier_pll(b50_n1)",
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "extracted_observed": [
+          "beacon_locked(b50_n0)",
+          "polarization_skew(b50_n1)"
+        ],
+        "extracted_retracted": [
+          "gimbal_aligned(b50_n1)"
+        ],
+        "extraction_f1": 0.8889,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 256,
+        "modeled_energy_j": 151.232,
+        "paraphrase_group": "F3_quorum_handoff-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 6,
+        "preserved_suffix_steps": [
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_n0)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"doppler_alert(b50_dist0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"terminal_fault(b50_n1)\",\n    \"uplink_muted(b50_n1)\",\n    \"service_restored(b50_n2)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"doppler_alert(b50_dist0)\",\n    \"feedhorn_rotated(b50_n",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "beacon_locked(b50_n0)",
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)",
+          "polarization_skew(b50_n1)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "mute_uplink(b50_n0,b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "rotate_feedhorn(b50_n1)",
+          "lock_carrier_pll(b50_n1)"
+        ],
+        "wall_latency_ms": 17066.69
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F3_quorum_handoff-R2-ABANDON",
+        "executed_actions": [
+          "wake_spare_dish(b50_sb0)",
+          "align_spare_uplink(b50_sb0,b50_sb1)",
+          "route_spare_spot(b50_sb1,b50_n2)"
+        ],
+        "extracted_observed": [
+          "standby_ready(b50_sb0)",
+          "terminal_fault(b50_n1)"
+        ],
+        "extracted_retracted": [
+          "channel_intact(b50_n1)"
+        ],
+        "extraction_f1": 1.0,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 102,
+        "modeled_energy_j": 167.852,
+        "paraphrase_group": "F3_quorum_handoff-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 95,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\"observed_facts\": [\"terminal_fault(b50_n1)\", \"standby_ready(b50_sb0)\", \"uplink_muted(b50_n1)\"], \"retracted_facts\": []}\n\n--- CRITIC ---\n{\"observed_facts\": [\"terminal_fault(b50_n1)\", \"standby_ready(b50_sbml0)\", \"uplink_muted(b50_n1)\"], \"retracted_facts\": []}",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "doppler_alert(b50_n0)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)",
+          "standby_ready(b50_sb0)",
+          "terminal_fault(b50_n1)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 7760.257
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F3_quorum_handoff-R3-NEGATION",
+        "executed_actions": [
+          "acquire_beacon(b50_n0)",
+          "mute_uplink(b50_n0,b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)",
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "extracted_observed": [
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)"
+        ],
+        "extracted_retracted": [],
+        "extraction_f1": 1.0,
+        "family_id": "F3_quorum_handoff",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 181,
+        "modeled_energy_j": 150.34,
+        "paraphrase_group": "F3_quorum_handoff-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 1,
+        "preserved_suffix_steps": [
+          "mute_uplink(b50_n0,b50_n1)",
+          "slew_gimbal(b50_n1,b50_n2)",
+          "handover_carrier(b50_n1,b50_n2)",
+          "illuminate_spot(b50_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"doppler_alert(b50_n0)\",\n    \"channel_intact(b50_n1)\",\n    \"polarization_skew(b50_n1)\",\n    \"terminal_fault(b50_n1)\",\n    \"doppler_alert(b50_dist0)\"\n  ],\n  \"retracted_facts\": []\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"doppler_alert(b50_n0)\",\n    \"channel_intact(b50_n1)\",\n    \"terminal_fault(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"doppler_alert(b50_dist0)\",\n    \"polarization_skew(b50_n1)\",\n    \"doppler_alert(b50_dist0)\"\n  ]\n}",
+        "repair_decision": "NO_REPAIR_NEEDED",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b50_n1)",
+          "doppler_alert(b50_n0)",
+          "relays_beam_to(b50_dist0,b50_dist1)",
+          "relays_beam_to(b50_n0,b50_n1)",
+          "relays_beam_to(b50_n1,b50_n2)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [
+          "acquire_beacon(b50_n0)"
+        ],
+        "wall_latency_ms": 11621.818
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F4_cryo_purification-R1-P1",
+        "executed_actions": [
+          "pulse_backflush(b51_n1)",
+          "reverify_purity(b51_n1)",
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "extracted_observed": [
+          "filter_backpressure(b51_n1)",
+          "loadlock_sealed(b51_n1)",
+          "outgas_scrubbed(b51_n1)"
+        ],
+        "extracted_retracted": [
+          "outgas_scrubbed(b51_n1)"
+        ],
+        "extraction_f1": 0.8889,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 223,
+        "modeled_energy_j": 151.216,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 6,
+        "preserved_suffix_steps": [
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"filter_backpressure(b51_n1)\",\n    \"loadlock_sealed(b51_n1)\",\n    \"outgas_scrubbed(b51_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"channel_intact(b51_n1)\",\n    \"ducts_gas_to(b51_dist0,b51_dist1)\",\n    \"ducts_gas_to(b51_n0,b51_n1)\",\n    \"ducts_gas_to(b51_n1,b51_n2)\",\n    \"outgas_scrubbed(b51_n1)\",\n    \"particle_alarm(b51_n0)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"filter_backpressure(b51_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"channel_intact(b51_n1)\",\n    \"loadlock_sealed(b51_n1)\",\n    \"outgas_scrubbed(b51_n1)\"\n  ]\n}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b51_n1)",
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "filter_backpressure(b51_n1)",
+          "loadlock_sealed(b51_n1)",
+          "particle_alarm(b51_n0)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "pulse_backflush(b51_n1)",
+          "reverify_purity(b51_n1)"
+        ],
+        "wall_latency_ms": 14370.11
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F4_cryo_purification-R1-P2",
+        "executed_actions": [
+          "pulse_backflush(b51_n1)",
+          "reverify_purity(b51_n1)",
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "extracted_observed": [
+          "filter_backpressure(b51_n1)"
+        ],
+        "extracted_retracted": [
+          "outgas_scrubbed(b51_n1)"
+        ],
+        "extraction_f1": 0.75,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 256,
+        "modeled_energy_j": 151.303,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 6,
+        "preserved_suffix_steps": [
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"channel_intact(b51_n1)\",\n    \"filter_backpressure(b51_n1)\",\n    \"outgas_scrubbed(b51_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"loadlock_sealed(b51_n1)\",\n    \"particle_alarm(b51_n0)\",\n    \"particle_alarm(b51_n0)\",\n    \"shutter_armed(b51_n0)\",\n    \"wafer_online(b51_n2)\",\n    \"purge_ionized(b51_n2)\",\n    \"standby_ready(b51_sb0)\",\n    \"terminal_fault(b51_n1)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"channel_intact(b51_n1)\",\n    \"filter_backpressure(b51_n1)\",\n    \"outgas_scrubbed(b51_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"loadlock_sealed(b51_n1)\",\n    \"particle_alarm(b51_n0)\",\n    \"shutter_armed(b51_n0)\",\n    \"wafer_online(b51_n2)\",",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b51_n1)",
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "filter_backpressure(b51_n1)",
+          "particle_alarm(b51_n0)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "pulse_backflush(b51_n1)",
+          "reverify_purity(b51_n1)"
+        ],
+        "wall_latency_ms": 15460.594
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F4_cryo_purification-R1-P3",
+        "executed_actions": [
+          "pulse_backflush(b51_n1)",
+          "reverify_purity(b51_n1)",
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "extracted_observed": [
+          "filter_backpressure(b51_n1)"
+        ],
+        "extracted_retracted": [
+          "outgas_scrubbed(b51_n1)"
+        ],
+        "extraction_f1": 0.75,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 93,
+        "modeled_energy_j": 151.278,
+        "paraphrase_group": "F4_cryo_purification-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 6,
+        "preserved_suffix_steps": [
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"filter_backpressure(b51_n1)\",\n    \"particle_alarm(b51_n0)\"\n  ],\n  \"retracted_facts\": []\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"filter_backpressure(b51_n1)\",\n    \"particle_alarm(b51_n0)\"\n  ],\n  \"retracted_facts\": []\n}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b51_n1)",
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "filter_backpressure(b51_n1)",
+          "particle_alarm(b51_n0)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "pulse_backflush(b51_n1)",
+          "reverify_purity(b51_n1)"
+        ],
+        "wall_latency_ms": 6766.46
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F4_cryo_purification-R2-ABANDON",
+        "executed_actions": [
+          "engage_bypass_bay(b51_sb0)",
+          "Condition_bypass_vacuum(b51_sb0,b51_sb1)",
+          "enable_bypass_wafer(b51_sb1,b51_n2)"
+        ],
+        "extracted_observed": [
+          "standby_ready(b51_sb0)",
+          "terminal_fault(b51_n1)"
+        ],
+        "extracted_retracted": [
+          "channel_intact(b51_n1)"
+        ],
+        "extraction_f1": 1.0,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 256,
+        "modeled_energy_j": 167.797,
+        "paraphrase_group": "F4_cryo_purification-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 95,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"terminal_fault(b51_n1)\",\n    \"standby_ready(b51_sb0)\"\n  ],\n  \"retracted_facts\": [\n    \"channel_intact(b51_n1)\",\n    \"ducts_gas_to(b51_dist0,b51_dist1)\",\n    \"ducts_gas_to(b51_n0,b51_n1)\",\n    \"ducts_gas_to(b51_n1,b51_nml)\",\n    \"particle_alarm(b51_n0)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"terminal_fault(b51_n1)\",\n    \"standby_ready(b51_sb0)\"\n  ],\n  \"retracted_facts\": [\n    \"channel_intact(b51_n1)\",\n    \"filter_backpressure(b51_n1)\",\n    \"loadlock_sealed(b51_n1)\",\n    \"outgas_scrubbed(b51_n1)\",\n    \"particle_alarm(b51_n0)\",\n    \"particle_alarm(b51_dist0)\",\n    \"shutter_armed(b51_n0)\",\n    \"wafer_online(b51_n2)\",",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "particle_alarm(b51_n0)",
+          "standby_ready(b51_sb0)",
+          "terminal_fault(b51_n1)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 18138.218
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F4_cryo_purification-R3-NEGATION",
+        "executed_actions": [
+          "arm_interlock_shutter(b51_n0)",
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)",
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "extracted_observed": [
+          "channel_intact(b51_n1)",
+          "particle_alarm(b51_n0)"
+        ],
+        "extracted_retracted": [],
+        "extraction_f1": 1.0,
+        "family_id": "F4_cryo_purification",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 183,
+        "modeled_energy_j": 150.331,
+        "paraphrase_group": "F4_cryo_purification-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 1,
+        "preserved_suffix_steps": [
+          "seal_loadlock(b51_n0,b51_n1)",
+          "scrub_outgas(b51_n1,b51_n2)",
+          "ionize_purge(b51_n1,b51_n2)",
+          "open_exposure(b51_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"particle_alarm(b51_n0)\",\n    \"channel_intact(b51_n1)\",\n    \"filter_backpressure(b51_n1)\",\n    \"outgas_scrubbed(b51_n1)\",\n    \"particle_alarm(b51_dist0)\",\n    \"terminal_fault(b51_n1)\"\n  ],\n  \"retracted_facts\": []\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"channel_intact(b51_n1)\",\n    \"filter_backpressure(b51_n1)\",\n    \"outgas_scrubbed(b51_n1)\",\n    \"terminal_fault(b51_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"particle_alarm(b51_n0)\",\n    \"particle_alarm(b51_dist0)\"\n  ]\n}",
+        "repair_decision": "NO_REPAIR_NEEDED",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b51_n1)",
+          "ducts_gas_to(b51_dist0,b51_dist1)",
+          "ducts_gas_to(b51_n0,b51_n1)",
+          "ducts_gas_to(b51_n1,b51_n2)",
+          "particle_alarm(b51_n0)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [
+          "arm_interlock_shutter(b51_n0)"
+        ],
+        "wall_latency_ms": 11085.575
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F5_containment_airlock-R1-P1",
+        "executed_actions": [
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)",
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "extracted_observed": [
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "hydrate_plug_latched(b52_n1)"
+        ],
+        "extracted_retracted": [
+          "ballast_equal(b52_n1)"
+        ],
+        "extraction_f1": 1.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 256,
+        "modeled_energy_j": 150.981,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P1",
+        "planner_expansions": 5,
+        "preserved_suffix_steps": [
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"clamp_engaged(b52_n0)\",\n    \"collar_seated(b52_n1)\",\n    \"glycol_injected(b52_n1)\",\n    \"hydrate_plug_latched(b52_n1)\",\n    \"pressure_delta(b52_n0)\"\n  ],\n  \"retracted_facts\": [\n    \"ballast_equal(b52_n1)\",\n    \"channel_intact(b52_n1)\",\n    \"couples_hatch_to(b52_dist0,b52_dist1)\",\n    \"couples_hatch_to(b52_n0,b52_n1)\",\n    \"couples_hatch_to(b52_n1,b52_n2)\",\n    \"pressure_delta(b52_dist0)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"clamp_engaged(b52_n0)\",\n    \"collar_seated(b52_n1)\",\n    \"glycol_injected(b52_n1)\",\n    \"hydrate_plug_latched(b52_n1)\",\n    \"pressure_delta(b52_n0)\"\n  ],\n  \"retracted_facts\": [\n    \"ball",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b52_n1)",
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)"
+        ],
+        "wall_latency_ms": 15711.909
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F5_containment_airlock-R1-P2",
+        "executed_actions": [
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)",
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "extracted_observed": [
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "hydrate_plug_latched(b52_n1)"
+        ],
+        "extracted_retracted": [
+          "ballast_equal(b52_n1)"
+        ],
+        "extraction_f1": 1.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 256,
+        "modeled_energy_j": 151.011,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P2",
+        "planner_expansions": 5,
+        "preserved_suffix_steps": [
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"channel_intact(b52_n1)\",\n    \"clamp_engaged(b52_n0)\",\n    \"collar_seated(b52_n1)\",\n    \"glycol_injected(b52_n1)\",\n    \"hydrate_plug_latched(b52_n1)\",\n    \"pressure_delta(b52_dist0)\",\n    \"pressure_delta(b52_n0)\"\n  ],\n  \"retracted_facts\": [\n    \"ballast_equal(b52_n1)\",\n    \"standby_ready(b52_sb0)\",\n    \"terminal_fault(b52_n1)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"channel_intact(b52_n1)\",\n    \"clamp_engaged(b52_n0)\",\n    \"collar_seated(b52_n1)\",\n    \"glycol_injected(b52_n1)\",\n    \"hydrate_plug_latched(b52_n1)\",\n    \"pressure_delta(b52_dist0)\",\n    \"pressure_delta(b52_n0)\"\n  ],\n  \"retracted_facts\": [\n    \"ballast_equal(b52_n1)\",\n    \"standby",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b52_n1)",
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)"
+        ],
+        "wall_latency_ms": 16332.404
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_repairable_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F5_containment_airlock-R1-P3",
+        "executed_actions": [
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)",
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "extracted_observed": [
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "hydrate_plug_latched(b52_n1)"
+        ],
+        "extracted_retracted": [
+          "ballast_equal(b52_n1)"
+        ],
+        "extraction_f1": 1.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 215,
+        "modeled_energy_j": 150.973,
+        "paraphrase_group": "F5_containment_airlock-R1",
+        "paraphrase_variant": "P3",
+        "planner_expansions": 5,
+        "preserved_suffix_steps": [
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"clamp_engaged(b52_n0)\",\n    \"collar_seated(b52_n1)\",\n    \"glycol_injected(b52_n1)\",\n    \"hydrate_plug_latched(b52_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"ballast_equal(b52_n1)\",\n    \"channel_intact(b52_n1)\",\n    \"pressure_delta(b52_n0)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"clamp_engaged(b52_n0)\",\n    \"collar_seated(b52_n1)\",\n    \"glycol_injected(b52_n1)\",\n    \"hydrate_plug_latched(b52_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"ballast_equal(b52_n1)\",\n    \"channel_intact(b52_n1)\",\n    \"pressure_delta(b52_n0)\"\n  ]\n}",
+        "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b52_n1)",
+          "clamp_engaged(b52_n0)",
+          "collar_seated(b52_n1)",
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "hydrate_plug_latched(b52_n1)",
+          "pressure_delta(b52_n0)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)"
+        ],
+        "spliced_bridge_steps": [
+          "inject_glycol(b52_n1)",
+          "confirm_trunk_dry(b52_n1)"
+        ],
+        "wall_latency_ms": 16498.849
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "mid_episode_suffix_invalidating_correction",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F5_containment_airlock-R2-ABANDON",
+        "executed_actions": [
+          "winch_deck_crane(b52_sb0)",
+          "release_tether_latch(b52_sb0,b52_sb1)",
+          "launch_via_crane(b52_sb1,b52_n2)"
+        ],
+        "extracted_observed": [
+          "standby_ready(b52_sb0)",
+          "terminal_fault(b52_n1)"
+        ],
+        "extracted_retracted": [
+          "channel_intact(b52_n1)"
+        ],
+        "extraction_f1": 1.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 139,
+        "modeled_energy_j": 167.737,
+        "paraphrase_group": "F5_containment_airlock-R2",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 95,
+        "preserved_suffix_steps": [],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"terminal_fault(b52_n1)\",\n    \"standby_ready(b52_sb0)\"\n  ],\n  \"retracted_facts\": [\n    \"channel_intact(b52_n1)\",\n    \"pressure_delta(b52_dist0)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"terminal_fault(b52_n1)\",\n    \"standby_ready(b52_sb0)\"\n  ],\n  \"retracted_facts\": [\n    \"channel_intact(b52_n1)\",\n    \"pressure_delta(b52_dist0)\"\n  ]\n}",
+        "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "pressure_delta(b52_n0)",
+          "standby_ready(b52_sb0)",
+          "terminal_fault(b52_n1)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [],
+        "wall_latency_ms": 9364.557
+      },
+      {
+        "backend_name": "http://localhost:8002",
+        "category": "negated_alarm_with_distractors",
+        "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+        "episode_id": "F5_containment_airlock-R3-NEGATION",
+        "executed_actions": [
+          "engage_clamp_ring(b52_n0)",
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)",
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "extracted_observed": [
+          "channel_intact(b52_n1)",
+          "pressure_delta(b52_n0)"
+        ],
+        "extracted_retracted": [],
+        "extraction_f1": 1.0,
+        "family_id": "F5_containment_airlock",
+        "goal_reached": true,
+        "invalid_actions_attempted": 0,
+        "llm_tokens_out": 256,
+        "modeled_energy_j": 150.349,
+        "paraphrase_group": "F5_containment_airlock-R3",
+        "paraphrase_variant": "SINGLE",
+        "planner_expansions": 1,
+        "preserved_suffix_steps": [
+          "seat_collar(b52_n0,b52_n1)",
+          "equalize_ballast(b52_n1,b52_n2)",
+          "dewater_trunk(b52_n1,b52_n2)",
+          "open_moonpool(b52_n2)"
+        ],
+        "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"channel_intact(b52_n1)\",\n    \"pressure_delta(b52_n0)\",\n    \"hydrate_plug_latched(b52_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"couples_hatch_to(b52_dist0,b52_dist1)\",\n    \"couples_hatch_to(b52_n0,b52_n1)\",\n    \"couples_hatch_to(b52_n1,b52_n2)\",\n    \"glycol_injected(b52_n1)\",\n    \"clamp_engaged(b52_n0)\",\n    \"collar_seated(b52_n1)\",\n    \"terminal_fault(b52_n1)\",\n    \"trunk_dry(b52_n2)\",\n    \"rov_deployed(b52_n2)\",\n    \"standby_ready(b52_sb0)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"channel_intact(b52_n1)\",\n    \"pressure_delta(b52_n0)\",\n    \"hydrate_plug_latched(b52_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"c",
+        "repair_decision": "NO_REPAIR_NEEDED",
+        "retraction_f1": 1.0,
+        "revised_belief_state": [
+          "channel_intact(b52_n1)",
+          "couples_hatch_to(b52_dist0,b52_dist1)",
+          "couples_hatch_to(b52_n0,b52_n1)",
+          "couples_hatch_to(b52_n1,b52_n2)",
+          "pressure_delta(b52_n0)"
+        ],
+        "safe_end_to_end_success": true,
+        "skipped_prefix_steps": [],
+        "spliced_bridge_steps": [
+          "engage_clamp_ring(b52_n0)"
+        ],
+        "wall_latency_ms": 17162.059
+      }
+    ]
+  },
+  "backend_identifier": "http://localhost:8002",
+  "comparisons": {
+    "oracle_safe_success_rate": 1.0,
+    "retraction_f1_lift_t257_vs_t255": [
+      0.6389,
+      0.3889,
+      0.8611
+    ],
+    "safe_success_lift_nl_speace_vs_nl_only": [
+      0.0667,
+      0.0,
+      0.2
+    ],
+    "safe_success_lift_t257_vs_nl_only": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "safe_success_lift_t257_vs_t255": [
+      0.9333,
+      0.8,
+      1.0
+    ],
+    "speace_advantage_survival_ratio_vs_oracle": 0.0667,
+    "t257_advantage_survival_ratio_vs_oracle": 1.0
+  },
+  "conditions": {
+    "NL_LIVE_BRAIN_ONLY": {
+      "goal_reached_rate": 0.0,
+      "mean_extraction_fidelity_f1": 0.0,
+      "mean_retraction_f1": 0.0,
+      "mean_wall_latency_ms": 6431.619,
+      "n_episodes": 15,
+      "paraphrase_consistency_rate": 0.0,
+      "repair_decision_match_vs_oracle": 0.0,
+      "safe_end_to_end_success_rate": 0.0,
+      "total_invalid_actions_attempted": 14,
+      "total_llm_tokens_out": 1249,
+      "total_modeled_energy_j": 1061.544,
+      "total_planner_expansions": 0
+    },
+    "NL_LIVE_BRAIN_SPEACE": {
+      "goal_reached_rate": 0.0667,
+      "mean_extraction_fidelity_f1": 0.694,
+      "mean_retraction_f1": 0.3611,
+      "mean_wall_latency_ms": 5681.883,
+      "n_episodes": 15,
+      "paraphrase_consistency_rate": 0.0,
+      "repair_decision_match_vs_oracle": 0.7333,
+      "safe_end_to_end_success_rate": 0.0667,
+      "total_invalid_actions_attempted": 9,
+      "total_llm_tokens_out": 1202,
+      "total_modeled_energy_j": 2428.15,
+      "total_planner_expansions": 945
+    },
+    "NL_LIVE_BRAIN_SPEACE_T257": {
+      "goal_reached_rate": 1.0,
+      "mean_extraction_fidelity_f1": 0.9444,
+      "mean_retraction_f1": 1.0,
+      "mean_wall_latency_ms": 13934.474,
+      "n_episodes": 15,
+      "paraphrase_consistency_rate": 1.0,
+      "repair_decision_match_vs_oracle": 1.0,
+      "safe_end_to_end_success_rate": 1.0,
+      "total_invalid_actions_attempted": 0,
+      "total_llm_tokens_out": 3177,
+      "total_modeled_energy_j": 2314.65,
+      "total_planner_expansions": 338
+    },
+    "ORACLE_SYMBOLIC_SPEACE": {
+      "goal_reached_rate": 1.0,
+      "mean_extraction_fidelity_f1": 1.0,
+      "mean_retraction_f1": 1.0,
+      "mean_wall_latency_ms": 1.026,
+      "n_episodes": 15,
+      "paraphrase_consistency_rate": 1.0,
+      "repair_decision_match_vs_oracle": 1.0,
+      "safe_end_to_end_success_rate": 1.0,
+      "total_invalid_actions_attempted": 0,
+      "total_llm_tokens_out": 0,
+      "total_modeled_energy_j": 1012.758,
+      "total_planner_expansions": 333
+    }
+  },
+  "live_brain_used": true,
+  "n_episodes": 15,
+  "sample_revision_traces": [
+    {
+      "backend_name": "http://localhost:8002",
+      "category": "mid_episode_repairable_correction",
+      "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+      "episode_id": "F3_quorum_handoff-R1-P1",
+      "executed_actions": [
+        "rotate_feedhorn(b50_n1)",
+        "lock_carrier_pll(b50_n1)",
+        "handover_carrier(b50_n1,b50_n2)",
+        "illuminate_spot(b50_n2)"
+      ],
+      "extracted_observed": [
+        "beacon_locked(b50_n0)",
+        "polarization_skew(b50_n1)",
+        "uplink_muted(b50_n1)"
+      ],
+      "extracted_retracted": [
+        "gimbal_aligned(b50_n1)"
+      ],
+      "extraction_f1": 1.0,
+      "family_id": "F3_quorum_handoff",
+      "goal_reached": true,
+      "invalid_actions_attempted": 0,
+      "llm_tokens_out": 249,
+      "modeled_energy_j": 151.014,
+      "paraphrase_group": "F3_quorum_handoff-R1",
+      "paraphrase_variant": "P1",
+      "planner_expansions": 5,
+      "preserved_suffix_steps": [
+        "handover_carrier(b50_n1,b50_n2)",
+        "illuminate_spot(b50_n2)"
+      ],
+      "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_dist0)\",\n    \"doppler_alert(b50_n0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\",\n    \"uplink_muted(b50_n1)\"\n  ],\n  \"retracted_facts\": []\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_dist0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\",\n    \"uplink_muted(b50_n1)\"\n  ],\n  \"retracted_facts\": []\n}",
+      "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+      "retraction_f1": 1.0,
+      "revised_belief_state": [
+        "beacon_locked(b50_n0)",
+        "channel_intact(b50_n1)",
+        "doppler_alert(b50_n0)",
+        "polarization_skew(b50_n1)",
+        "relays_beam_to(b50_dist0,b50_dist1)",
+        "relays_beam_to(b50_n0,b50_n1)",
+        "relays_beam_to(b50_n1,b50_n2)",
+        "uplink_muted(b50_n1)"
+      ],
+      "safe_end_to_end_success": true,
+      "skipped_prefix_steps": [
+        "mute_uplink(b50_n0,b50_n1)",
+        "slew_gimbal(b50_n1,b50_n2)"
+      ],
+      "spliced_bridge_steps": [
+        "rotate_feedhorn(b50_n1)",
+        "lock_carrier_pll(b50_n1)"
+      ],
+      "wall_latency_ms": 15980.028
+    },
+    {
+      "backend_name": "http://localhost:8002",
+      "category": "mid_episode_repairable_correction",
+      "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+      "episode_id": "F3_quorum_handoff-R1-P2",
+      "executed_actions": [
+        "rotate_feedhorn(b50_n1)",
+        "lock_carrier_pll(b50_n1)",
+        "handover_carrier(b50_n1,b50_n2)",
+        "illuminate_spot(b50_n2)"
+      ],
+      "extracted_observed": [
+        "beacon_locked(b50_n0)",
+        "polarization_skew(b50_n1)"
+      ],
+      "extracted_retracted": [
+        "gimbal_aligned(b50_n1)"
+      ],
+      "extraction_f1": 0.8889,
+      "family_id": "F3_quorum_handoff",
+      "goal_reached": true,
+      "invalid_actions_attempted": 0,
+      "llm_tokens_out": 256,
+      "modeled_energy_j": 151.236,
+      "paraphrase_group": "F3_quorum_handoff-R1",
+      "paraphrase_variant": "P2",
+      "planner_expansions": 6,
+      "preserved_suffix_steps": [
+        "handover_carrier(b50_n1,b50_n2)",
+        "illuminate_spot(b50_n2)"
+      ],
+      "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_dist0)\",\n    \"doppler_alert(b50_n0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"gimbal_aligned(b50_n1)\",\n    \"service_restored(b50_n2)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_dist0)\",\n    \"doppler_alert(b50_n0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"polarization_skew(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"gimbal_aligned(b5",
+      "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+      "retraction_f1": 1.0,
+      "revised_belief_state": [
+        "beacon_locked(b50_n0)",
+        "channel_intact(b50_n1)",
+        "doppler_alert(b50_n0)",
+        "polarization_skew(b50_n1)",
+        "relays_beam_to(b50_dist0,b50_dist1)",
+        "relays_beam_to(b50_n0,b50_n1)",
+        "relays_beam_to(b50_n1,b50_n2)"
+      ],
+      "safe_end_to_end_success": true,
+      "skipped_prefix_steps": [
+        "mute_uplink(b50_n0,b50_n1)",
+        "slew_gimbal(b50_n1,b50_n2)"
+      ],
+      "spliced_bridge_steps": [
+        "rotate_feedhorn(b50_n1)",
+        "lock_carrier_pll(b50_n1)"
+      ],
+      "wall_latency_ms": 15697.586
+    },
+    {
+      "backend_name": "http://localhost:8002",
+      "category": "mid_episode_repairable_correction",
+      "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+      "episode_id": "F3_quorum_handoff-R1-P3",
+      "executed_actions": [
+        "rotate_feedhorn(b50_n1)",
+        "lock_carrier_pll(b50_n1)",
+        "handover_carrier(b50_n1,b50_n2)",
+        "illuminate_spot(b50_n2)"
+      ],
+      "extracted_observed": [
+        "beacon_locked(b50_n0)",
+        "polarization_skew(b50_n1)"
+      ],
+      "extracted_retracted": [
+        "gimbal_aligned(b50_n1)"
+      ],
+      "extraction_f1": 0.8889,
+      "family_id": "F3_quorum_handoff",
+      "goal_reached": true,
+      "invalid_actions_attempted": 0,
+      "llm_tokens_out": 256,
+      "modeled_energy_j": 151.232,
+      "paraphrase_group": "F3_quorum_handoff-R1",
+      "paraphrase_variant": "P3",
+      "planner_expansions": 6,
+      "preserved_suffix_steps": [
+        "handover_carrier(b50_n1,b50_n2)",
+        "illuminate_spot(b50_n2)"
+      ],
+      "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"doppler_alert(b50_n0)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"doppler_alert(b50_dist0)\",\n    \"feedhorn_rotated(b50_n1)\",\n    \"terminal_fault(b50_n1)\",\n    \"uplink_muted(b50_n1)\",\n    \"service_restored(b50_n2)\"\n  ]\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"beacon_locked(b50_n0)\",\n    \"carrier_locked(b50_n2)\",\n    \"channel_intact(b50_n1)\",\n    \"gimbal_aligned(b50_n1)\",\n    \"polarization_skew(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"doppler_alert(b50_dist0)\",\n    \"feedhorn_rotated(b50_n",
+      "repair_decision": "SELECTIVE_LOCAL_REPAIR",
+      "retraction_f1": 1.0,
+      "revised_belief_state": [
+        "beacon_locked(b50_n0)",
+        "channel_intact(b50_n1)",
+        "doppler_alert(b50_n0)",
+        "polarization_skew(b50_n1)",
+        "relays_beam_to(b50_dist0,b50_dist1)",
+        "relays_beam_to(b50_n0,b50_n1)",
+        "relays_beam_to(b50_n1,b50_n2)"
+      ],
+      "safe_end_to_end_success": true,
+      "skipped_prefix_steps": [
+        "mute_uplink(b50_n0,b50_n1)",
+        "slew_gimbal(b50_n1,b50_n2)"
+      ],
+      "spliced_bridge_steps": [
+        "rotate_feedhorn(b50_n1)",
+        "lock_carrier_pll(b50_n1)"
+      ],
+      "wall_latency_ms": 17066.69
+    },
+    {
+      "backend_name": "http://localhost:8002",
+      "category": "mid_episode_suffix_invalidating_correction",
+      "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+      "episode_id": "F3_quorum_handoff-R2-ABANDON",
+      "executed_actions": [
+        "wake_spare_dish(b50_sb0)",
+        "align_spare_uplink(b50_sb0,b50_sb1)",
+        "route_spare_spot(b50_sb1,b50_n2)"
+      ],
+      "extracted_observed": [
+        "standby_ready(b50_sb0)",
+        "terminal_fault(b50_n1)"
+      ],
+      "extracted_retracted": [
+        "channel_intact(b50_n1)"
+      ],
+      "extraction_f1": 1.0,
+      "family_id": "F3_quorum_handoff",
+      "goal_reached": true,
+      "invalid_actions_attempted": 0,
+      "llm_tokens_out": 102,
+      "modeled_energy_j": 167.852,
+      "paraphrase_group": "F3_quorum_handoff-R2",
+      "paraphrase_variant": "SINGLE",
+      "planner_expansions": 95,
+      "preserved_suffix_steps": [],
+      "raw_llm_output": "--- EXTRACTOR ---\n{\"observed_facts\": [\"terminal_fault(b50_n1)\", \"standby_ready(b50_sb0)\", \"uplink_muted(b50_n1)\"], \"retracted_facts\": []}\n\n--- CRITIC ---\n{\"observed_facts\": [\"terminal_fault(b50_n1)\", \"standby_ready(b50_sbml0)\", \"uplink_muted(b50_n1)\"], \"retracted_facts\": []}",
+      "repair_decision": "ABANDON_MACRO_AND_REPLAN",
+      "retraction_f1": 1.0,
+      "revised_belief_state": [
+        "doppler_alert(b50_n0)",
+        "relays_beam_to(b50_dist0,b50_dist1)",
+        "relays_beam_to(b50_n0,b50_n1)",
+        "relays_beam_to(b50_n1,b50_n2)",
+        "standby_ready(b50_sb0)",
+        "terminal_fault(b50_n1)"
+      ],
+      "safe_end_to_end_success": true,
+      "skipped_prefix_steps": [],
+      "spliced_bridge_steps": [],
+      "wall_latency_ms": 7760.257
+    },
+    {
+      "backend_name": "http://localhost:8002",
+      "category": "negated_alarm_with_distractors",
+      "condition": "NL_LIVE_BRAIN_SPEACE_T257",
+      "episode_id": "F3_quorum_handoff-R3-NEGATION",
+      "executed_actions": [
+        "acquire_beacon(b50_n0)",
+        "mute_uplink(b50_n0,b50_n1)",
+        "slew_gimbal(b50_n1,b50_n2)",
+        "handover_carrier(b50_n1,b50_n2)",
+        "illuminate_spot(b50_n2)"
+      ],
+      "extracted_observed": [
+        "channel_intact(b50_n1)",
+        "doppler_alert(b50_n0)"
+      ],
+      "extracted_retracted": [],
+      "extraction_f1": 1.0,
+      "family_id": "F3_quorum_handoff",
+      "goal_reached": true,
+      "invalid_actions_attempted": 0,
+      "llm_tokens_out": 181,
+      "modeled_energy_j": 150.34,
+      "paraphrase_group": "F3_quorum_handoff-R3",
+      "paraphrase_variant": "SINGLE",
+      "planner_expansions": 1,
+      "preserved_suffix_steps": [
+        "mute_uplink(b50_n0,b50_n1)",
+        "slew_gimbal(b50_n1,b50_n2)",
+        "handover_carrier(b50_n1,b50_n2)",
+        "illuminate_spot(b50_n2)"
+      ],
+      "raw_llm_output": "--- EXTRACTOR ---\n{\n  \"observed_facts\": [\n    \"doppler_alert(b50_n0)\",\n    \"channel_intact(b50_n1)\",\n    \"polarization_skew(b50_n1)\",\n    \"terminal_fault(b50_n1)\",\n    \"doppler_alert(b50_dist0)\"\n  ],\n  \"retracted_facts\": []\n}\n\n--- CRITIC ---\n{\n  \"observed_facts\": [\n    \"doppler_alert(b50_n0)\",\n    \"channel_intact(b50_n1)\",\n    \"terminal_fault(b50_n1)\"\n  ],\n  \"retracted_facts\": [\n    \"doppler_alert(b50_dist0)\",\n    \"polarization_skew(b50_n1)\",\n    \"doppler_alert(b50_dist0)\"\n  ]\n}",
+      "repair_decision": "NO_REPAIR_NEEDED",
+      "retraction_f1": 1.0,
+      "revised_belief_state": [
+        "channel_intact(b50_n1)",
+        "doppler_alert(b50_n0)",
+        "relays_beam_to(b50_dist0,b50_dist1)",
+        "relays_beam_to(b50_n0,b50_n1)",
+        "relays_beam_to(b50_n1,b50_n2)"
+      ],
+      "safe_end_to_end_success": true,
+      "skipped_prefix_steps": [],
+      "spliced_bridge_steps": [
+        "acquire_beacon(b50_n0)"
+      ],
+      "wall_latency_ms": 11621.818
+    }
+  ],
+  "seed": 2026,
+  "spec": "T257"
+}

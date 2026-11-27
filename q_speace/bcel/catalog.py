@@ -907,6 +907,20 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "'consciousness_index' violates the no-consciousness invariant, and coupling coherence "
         "to live psutil CPU usage corrupts deterministic scientific evaluation.",
     ),
+    # ----- T257: Typed-DAG Multi-Role NL Grounding & Ontology Mutex Revision -----
+    BCELEquivalence(
+        "Typed-DAG multi-role grounding, clause-polarity screening, and ontology mutex belief revision (T257)",
+        "functional",
+        "Keep as single-call BatchRoleDeliberationCodec (EXTRACTOR + CRITIC) wired through "
+        "ExecutionTicket-validated TypedComputationalDAG stages with recall-preserving "
+        "negation/goal clause screening and symmetric SymbolRegistry mutex auto-retraction.",
+    ),
+    BCELEquivalence(
+        "Anthropomorphic inner-parliament debate personas (T257)",
+        "accidental",
+        "Removed in silicon: EXTRACTOR and CRITIC are deterministic structured prompt/parser "
+        "slots verified by ExecutionTicket contracts, with zero inner-persona agency claims.",
+    ),
 ]
 
 

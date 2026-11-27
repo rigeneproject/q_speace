@@ -77,6 +77,7 @@ from .t255_nl_live_benchmark import (
     T255NLEpisode,
     build_t255_nl_episodes,
     run_t255_nl_benchmark,
+    run_t257_nl_ablation,
 )
 
 __all__ = [
@@ -140,4 +141,5 @@ __all__ = [
     "T255NLEpisode",
     "build_t255_nl_episodes",
     "run_t255_nl_benchmark",
+    "run_t257_nl_ablation",
 ]

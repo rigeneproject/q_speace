@@ -33,21 +33,18 @@ class MIPResult:
 
 
 def _gaussian_mutual_information(
-    cov: np.ndarray,
+    cov_reg: np.ndarray,
+    logdet_ab: float,
     idx_a: Sequence[int],
     idx_b: Sequence[int],
-    reg: float = 1e-6,
 ) -> float:
     """Compute regularized Gaussian mutual information I(X_A; X_B) >= 0 in nats."""
-    n = cov.shape[0]
-    cov_reg = cov + reg * np.eye(n, dtype=np.float64)
     sub_a = cov_reg[np.ix_(idx_a, idx_a)]
     sub_b = cov_reg[np.ix_(idx_b, idx_b)]
 
-    sign_ab, logdet_ab = np.linalg.slogdet(cov_reg)
     sign_a, logdet_a = np.linalg.slogdet(sub_a)
     sign_b, logdet_b = np.linalg.slogdet(sub_b)
-    if sign_ab <= 0 or sign_a <= 0 or sign_b <= 0:
+    if sign_a <= 0 or sign_b <= 0:
         return 0.0
     mi = 0.5 * float(logdet_a + logdet_b - logdet_ab)
     return max(0.0, mi)
@@ -100,9 +97,12 @@ def compute_mip_integration(
         if conn_arr.shape != (n_nodes, n_nodes) or not np.all(np.isfinite(conn_arr)):
             raise ValueError("connectivity must be a finite (n_nodes, n_nodes) matrix")
 
-    # Center variables and compute sample covariance (n_nodes x n_nodes)
+    # Center variables and precompute regularized full-system log-determinant once
     centered = x - np.mean(x, axis=0, keepdims=True)
     cov = (centered.T @ centered) / max(1, n_samples - 1)
+    cov_reg = cov + reg * np.eye(n_nodes, dtype=np.float64)
+    sign_ab, logdet_ab_arr = np.linalg.slogdet(cov_reg)
+    logdet_ab = float(logdet_ab_arr) if sign_ab > 0 else 0.0
 
     all_indices = tuple(range(n_nodes))
     bipartitions: list[tuple[tuple[int, ...], tuple[int, ...]]] = []
@@ -129,7 +129,9 @@ def compute_mip_integration(
     best_b: tuple[int, ...] = bipartitions[0][1]
 
     for part_a, part_b in bipartitions:
-        mi = _gaussian_mutual_information(cov, part_a, part_b, reg=reg)
+        mi = (
+            _gaussian_mutual_information(cov_reg, logdet_ab, part_a, part_b) if sign_ab > 0 else 0.0
+        )
         norm_factor = float(min(len(part_a), len(part_b)))
         cut_w = _cross_cut_weight(conn_arr, part_a, part_b)
         score = (mi / norm_factor) * cut_w

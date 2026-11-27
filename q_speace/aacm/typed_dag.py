@@ -222,6 +222,16 @@ class TypedComputationalDAG:
             raise KeyError("Both source_id and target_id must be registered before connecting")
         if source_id == target_id and kind != EdgeKind.FEEDBACK:
             raise ValueError("Self-loops are rejected on forward DATA/CONTROL edges")
+        if kind != EdgeKind.FEEDBACK:
+            for existing in self._edges.values():
+                if (
+                    existing.kind != EdgeKind.FEEDBACK
+                    and existing.target_id == target_id
+                    and existing.target_port == target_port
+                ):
+                    raise ValueError(
+                        f"Duplicate forward connection onto {target_id!r}.{target_port!r}"
+                    )
 
         edge_id = f"e_{uuid.uuid4().hex[:10]}"
         edge = PortEdge(
@@ -395,6 +405,14 @@ class TypedComputationalDAG:
                 run_tickets[nid] = ticket
                 continue
             ticket.elapsed_s = time.perf_counter() - t0
+            if spec.contract is not None and ticket.elapsed_s > spec.contract.timeout_s:
+                ticket.status = "timeout_exceeded"
+                ticket.validation_errors = (
+                    f"elapsed_s {ticket.elapsed_s:.4f} > timeout_s {spec.contract.timeout_s:.4f}",
+                )
+                self._tickets.append(ticket)
+                run_tickets[nid] = ticket
+                continue
 
             if spec.contract is not None:
                 out_ok, out_errs = spec.contract.validate_outputs(raw_out)

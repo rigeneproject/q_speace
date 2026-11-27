@@ -117,25 +117,57 @@ class GroundedPayload:
     retracted_facts: frozenset[str] = frozenset()
 
 
+def compute_effective_retracted_facts(
+    prior_state: frozenset[str],
+    grounded: GroundedPayload,
+    *,
+    min_parser_confidence: float = 0.0,
+    registry: SymbolRegistry | None = None,
+) -> frozenset[str]:
+    """Return explicit plus ontology-mutex retracted facts against ``prior_state`` (T257)."""
+    if grounded.status in ("rejected_unknown_symbol", "rejected_schema"):
+        return frozenset()
+    if grounded.parser_confidence < min_parser_confidence:
+        return frozenset()
+    prior_fs = frozenset(prior_state)
+    clean_adds = grounded.observed_facts - grounded.retracted_facts
+    # Newly asserted facts (absent from prior_state) retract mutually exclusive prior fluents
+    newly_asserted = clean_adds - prior_fs
+    mutex_ret = (
+        (registry.mutex_conflicts_for(newly_asserted) & prior_fs)
+        if registry is not None
+        else frozenset()
+    )
+    return grounded.retracted_facts | mutex_ret
+
+
 def apply_belief_revision(
     prior_state: frozenset[str],
     grounded: GroundedPayload,
     *,
     min_parser_confidence: float = 0.0,
+    registry: SymbolRegistry | None = None,
 ) -> frozenset[str]:
-    """Non-monotonic belief update ``(S_prior \\ F_ret) | (F_obs \\ F_ret)`` (T255).
+    """Non-monotonic belief update ``(S_prior \\ F_ret*) | (F_obs \\ F_ret*)`` (T255/T257).
 
     If ``grounded.status`` indicates schema or vocabulary rejection (or
     ``grounded.parser_confidence < min_parser_confidence``), ``prior_state``
-    is returned unchanged (fail-closed). If a predicate appears in both
-    ``observed_facts`` and ``retracted_facts``, retraction takes precedence.
+    is returned unchanged (fail-closed). If ``registry`` declares ``mutex_pairs``,
+    confirmed newly observed facts automatically retract mutually exclusive fluents
+    present in ``prior_state`` (and exclude them from ``F_obs``).
     """
     if grounded.status in ("rejected_unknown_symbol", "rejected_schema"):
         return frozenset(prior_state)
     if grounded.parser_confidence < min_parser_confidence:
         return frozenset(prior_state)
-    clean_adds = grounded.observed_facts - grounded.retracted_facts
-    return (frozenset(prior_state) - grounded.retracted_facts) | clean_adds
+    eff_retracted = compute_effective_retracted_facts(
+        prior_state,
+        grounded,
+        min_parser_confidence=min_parser_confidence,
+        registry=registry,
+    )
+    final_adds = grounded.observed_facts - eff_retracted
+    return (frozenset(prior_state) - eff_retracted) | final_adds
 
 
 class SymbolRegistry:
@@ -148,6 +180,7 @@ class SymbolRegistry:
         causal_nodes: Iterable[str],
         actions: Sequence[GOAPAction] = (),
         aliases: Mapping[str, str] | None = None,
+        mutex_pairs: Sequence[tuple[str, str]] = (),
     ) -> None:
         norm_preds = frozenset(_normalize_symbol(p) for p in predicates if _normalize_symbol(p))
         norm_nodes = frozenset(_normalize_symbol(n) for n in causal_nodes if _normalize_symbol(n))
@@ -188,26 +221,45 @@ class SymbolRegistry:
                     raise ValueError(f"alias {k!r} maps to unregistered target {v!r}")
                 norm_aliases[k] = v
 
+        mutex_adj: dict[str, set[str]] = {}
+        canon_mutex_pairs: list[tuple[str, str]] = []
+        for raw_a, raw_b in mutex_pairs:
+            ca = norm_aliases.get(_normalize_symbol(raw_a), _normalize_symbol(raw_a))
+            cb = norm_aliases.get(_normalize_symbol(raw_b), _normalize_symbol(raw_b))
+            if not ca or not cb or ca == cb:
+                raise ValueError("mutex_pairs entries must be distinct non-empty predicates")
+            if ca not in norm_preds or cb not in norm_preds:
+                raise ValueError(
+                    f"mutex_pairs ({ca!r}, {cb!r}) must reference registered predicates"
+                )
+            pair_sorted = (ca, cb) if ca < cb else (cb, ca)
+            if pair_sorted not in canon_mutex_pairs:
+                canon_mutex_pairs.append(pair_sorted)
+            mutex_adj.setdefault(ca, set()).add(cb)
+            mutex_adj.setdefault(cb, set()).add(ca)
+
         self._predicates: frozenset[str] = norm_preds
         self._causal_nodes: frozenset[str] = norm_nodes
         self._actions: dict[str, GOAPAction] = action_map
         self._aliases: dict[str, str] = norm_aliases
-        self._digest: str = _canonical_json_sha256(
-            {
-                "predicates": sorted(self._predicates),
-                "causal_nodes": sorted(self._causal_nodes),
-                "actions": {
-                    k: {
-                        "preconditions": sorted(a.preconditions),
-                        "add_effects": sorted(a.add_effects),
-                        "del_effects": sorted(a.del_effects),
-                        "cost": a.cost,
-                    }
-                    for k, a in sorted(self._actions.items())
-                },
-                "aliases": dict(sorted(self._aliases.items())),
-            }
-        )
+        self._mutex_map: dict[str, frozenset[str]] = {k: frozenset(v) for k, v in mutex_adj.items()}
+        digest_payload: dict[str, Any] = {
+            "predicates": sorted(self._predicates),
+            "causal_nodes": sorted(self._causal_nodes),
+            "actions": {
+                k: {
+                    "preconditions": sorted(a.preconditions),
+                    "add_effects": sorted(a.add_effects),
+                    "del_effects": sorted(a.del_effects),
+                    "cost": a.cost,
+                }
+                for k, a in sorted(self._actions.items())
+            },
+            "aliases": dict(sorted(self._aliases.items())),
+        }
+        if canon_mutex_pairs:
+            digest_payload["mutex_pairs"] = [list(p) for p in sorted(canon_mutex_pairs)]
+        self._digest: str = _canonical_json_sha256(digest_payload)
 
     @property
     def predicates(self) -> frozenset[str]:
@@ -224,6 +276,14 @@ class SymbolRegistry:
     @property
     def registry_digest(self) -> str:
         return self._digest
+
+    def mutex_conflicts_for(self, predicates: Iterable[str]) -> frozenset[str]:
+        """Return all registered predicates mutually exclusive with any item in ``predicates``."""
+        conflicts: set[str] = set()
+        for p in predicates:
+            canon = self._canonicalize(p)
+            conflicts |= self._mutex_map.get(canon, frozenset())
+        return frozenset(conflicts)
 
     def _canonicalize(self, token: str) -> str:
         norm = _normalize_symbol(token)
@@ -807,4 +867,5 @@ __all__ = [
     "SymbolRegistry",
     "SymbolicGroundingAdapter",
     "apply_belief_revision",
+    "compute_effective_retracted_facts",
 ]
