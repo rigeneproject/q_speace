@@ -70,6 +70,14 @@ from .t252_t253_benchmark import (
     run_t252_t253_campaign,
     verify_t252_preregistration,
 )
+from .t255_nl_live_benchmark import (
+    EpisodeArmTrace,
+    EpisodeCategory,
+    SimulatedNLTransducerBackend,
+    T255NLEpisode,
+    build_t255_nl_episodes,
+    run_t255_nl_benchmark,
+)
 
 __all__ = [
     "BenchmarkCase",
@@ -126,4 +134,10 @@ __all__ = [
     "PROBLEM_FAMILIES",
     "run_t252_t253_campaign",
     "verify_t252_preregistration",
+    "EpisodeArmTrace",
+    "EpisodeCategory",
+    "SimulatedNLTransducerBackend",
+    "T255NLEpisode",
+    "build_t255_nl_episodes",
+    "run_t255_nl_benchmark",
 ]

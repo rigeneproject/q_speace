@@ -316,6 +316,7 @@ class AnalogicalRoleMapper:
         goal_state: frozenset[str],
         target_actions: Sequence[GOAPAction],
         target_edges: Sequence[RelationEdge],
+        allow_mid_chain_entry: bool = False,
     ) -> tuple[list[GOAPAction] | None, AnalogyAuditTrace]:
         """Discover injective entity & operator homomorphism rejecting distractor subgraphs."""
         reasoner = SymbolicGraphReasoner(target_edges)
@@ -396,6 +397,7 @@ class AnalogicalRoleMapper:
                 goal_state=goal_state,
                 op_families=op_families,
                 by_op_and_args=by_op_and_args,
+                allow_mid_chain_entry=allow_mid_chain_entry,
             )
             if matched_steps is None or op_map is None:
                 continue
@@ -405,11 +407,14 @@ class AnalogicalRoleMapper:
             if kernels is None:
                 continue
 
-            # Score penalizes large unsatisfied W_0 gap while allowing 1-2 local refinements
-            unsatisfied_w0 = len(kernels[0] - initial_state)
-            if unsatisfied_w0 > 2:
+            # Score penalizes large unsatisfied kernel gap while allowing 1-2 local refinements
+            if allow_mid_chain_entry:
+                min_gap = min(len(k_set - initial_state) for k_set in kernels)
+            else:
+                min_gap = len(kernels[0] - initial_state)
+            if min_gap > 3:
                 continue
-            rank_score = sim_mean - 0.05 * unsatisfied_w0
+            rank_score = sim_mean - 0.05 * min_gap
             if best_match is None or rank_score > best_match[0]:
                 best_match = (sim_mean, binding, op_map, matched_steps)
 
@@ -448,6 +453,7 @@ class AnalogicalRoleMapper:
         goal_state: frozenset[str],
         op_families: Mapping[str, list[tuple[tuple[str, ...], GOAPAction]]],
         by_op_and_args: Mapping[tuple[str, tuple[str, ...]], GOAPAction],
+        allow_mid_chain_entry: bool = False,
     ) -> tuple[dict[str, str] | None, list[GOAPAction] | None]:
         """Find operator correspondence ``op_A -> op_B`` preserving step-to-step causal chaining."""
         step_candidates: list[list[tuple[str, GOAPAction]]] = []
@@ -494,8 +500,12 @@ class AnalogicalRoleMapper:
                     continue
                 if op_b in chosen_ops.values() and chosen_ops.get(src_op) != op_b:
                     continue
-                # Step 0 should connect to initial_state (allowing <=1 local micro-refinement gap)
-                if pos == 0 and len(act_b.preconditions - initial_state) > 1:
+                # Step 0 should connect to initial_state unless mid-chain entry is permitted
+                if (
+                    not allow_mid_chain_entry
+                    and pos == 0
+                    and len(act_b.preconditions - initial_state) > 1
+                ):
                     continue
                 if pos > 0 and not (chosen_acts[-1].add_effects & act_b.preconditions):
                     continue
@@ -653,6 +663,24 @@ class EpisodeExecutionReport:
     delta_plus: tuple[str, ...]
     free_energy_peak: float
     spliced_skill_id: str | None
+    analogy_trace: AnalogyAuditTrace | None
+
+
+@dataclass(frozen=True)
+class RevisionExecutionReport:
+    """Audit trace of T255 execution starting from a revised linguistic belief state."""
+
+    arm: str
+    goal_reached: bool
+    safe_execution: bool
+    invalid_actions_attempted: int
+    planner_expansions: int
+    repair_decision: RepairDecisionKind
+    abandon_reason: str
+    skipped_prefix_steps: tuple[str, ...]
+    spliced_bridge_steps: tuple[str, ...]
+    preserved_suffix_steps: tuple[str, ...]
+    executed_actions: tuple[str, ...]
     analogy_trace: AnalogyAuditTrace | None
 
 
@@ -1180,6 +1208,204 @@ class ExperientialCognitiveAgent:
                 skill_id, regime=f"{domain}_mutated", success=False, latency_ms=50.0
             )
 
+    def execute_from_revised_belief(
+        self,
+        env: StatefulPlanningEnvironment,
+        *,
+        revised_belief_state: frozenset[str],
+        domain: str,
+        goal_state: frozenset[str],
+        domain_edges: Sequence[RelationEdge],
+        mapping_actions: Sequence[GOAPAction] | None = None,
+    ) -> RevisionExecutionReport:
+        """Plan from ``revised_belief_state`` via Triangle-Table kernel entry & execute on ``env``.
+
+        Crucially, planning consults ONLY ``revised_belief_state`` (never ``env.state``), so any
+        upstream natural-language extraction error surfaces honestly during ``env.execute()``.
+        """
+        total_expansions = 0
+        invalid_attempts = 0
+        executed: list[str] = []
+        analogy_trace: AnalogyAuditTrace | None = None
+        mapped_macro: list[GOAPAction] | None = None
+        used_sid: str | None = None
+
+        actions_for_analogy = (
+            mapping_actions if mapping_actions is not None else self.operator_model.actions
+        )
+        ranked_ids = [s.skill_id for s in self.skill_library.top_skills(k=16)]
+        ordered_ids = [*ranked_ids, *(k for k in self.macro_store if k not in ranked_ids)]
+        for sid in ordered_ids:
+            macro = self.macro_store.get(sid)
+            if macro is None:
+                continue
+            steps, trace = self.mapper.map_skill(
+                macro,
+                initial_state=revised_belief_state,
+                goal_state=goal_state,
+                target_actions=actions_for_analogy,
+                target_edges=domain_edges,
+                allow_mid_chain_entry=True,
+            )
+            analogy_trace = trace
+            if steps is not None and trace.verification_passed:
+                mapped_macro = [self.operator_model.get(a.name) for a in steps]
+                used_sid = sid
+                break
+
+        b_local = max(6, int(math.floor(self.alpha_local * self.max_global_expansions)))
+        all_achievable_adds: set[str] = set()
+        for op_act in self.operator_model.actions:
+            all_achievable_adds |= set(op_act.add_effects)
+
+        planned_seq: list[GOAPAction] = []
+        skipped_prefix: tuple[str, ...] = ()
+        spliced_bridge: tuple[str, ...] = ()
+        preserved_suffix: tuple[str, ...] = ()
+        decision: RepairDecisionKind = "NO_REPAIR_NEEDED"
+        abandon_reason = ""
+
+        # Check (C2) unrecoverable blocker in revised linguistic belief
+        if self.operator_model.has_unrecoverable_blocker(revised_belief_state):
+            decision = "ABANDON_MACRO_AND_REPLAN"
+            abandon_reason = "unrecoverable_blocker_in_revised_belief"
+            self._penalize_skill(used_sid, domain)
+            g_planner = GOAPPlanner(
+                self.operator_model.actions,
+                simulate_only=True,
+                max_expansions=self.max_global_expansions,
+            )
+            g_plan, g_exp = g_planner.plan_with_stats(revised_belief_state, goal_state)
+            total_expansions += g_exp
+            planned_seq = g_plan or []
+        elif mapped_macro is not None:
+            kernels = compute_regressed_kernels(mapped_macro, goal_state)
+            if kernels is None:
+                decision = "ABANDON_MACRO_AND_REPLAN"
+                abandon_reason = "suffix_kernel_clobbered"
+                g_planner = GOAPPlanner(
+                    self.operator_model.actions,
+                    simulate_only=True,
+                    max_expansions=self.max_global_expansions,
+                )
+                g_plan, g_exp = g_planner.plan_with_stats(revised_belief_state, goal_state)
+                total_expansions += g_exp
+                planned_seq = g_plan or []
+            else:
+                m = len(mapped_macro)
+
+                def _suffix_reaches_goal(start_idx: int, entry_kernel: frozenset[str]) -> bool:
+                    # Every retained suffix step must contribute at least one required fluent
+                    for j in range(start_idx, m):
+                        step_j = mapped_macro[j]  # type: ignore[index]
+                        if step_j.name in self.operator_model.mutated_operators:
+                            return False
+                        if not (kernels[j + 1] & step_j.add_effects):
+                            return False
+                    sim = set(entry_kernel)
+                    for step_a in mapped_macro[start_idx:]:  # type: ignore[index]
+                        if not step_a.preconditions.issubset(sim):
+                            return False
+                        sim = (sim - step_a.del_effects) | step_a.add_effects
+                    return goal_state.issubset(sim)
+
+                # 1. Check direct zero-bridge suffix entry W_k <= revised_belief_state
+                direct_k: int | None = None
+                for k in range(m, -1, -1):
+                    if kernels[k].issubset(revised_belief_state) and _suffix_reaches_goal(
+                        k, kernels[k]
+                    ):
+                        direct_k = k
+                        break
+
+                if direct_k is not None:
+                    skipped_prefix = tuple(a.name for a in mapped_macro[:direct_k])
+                    preserved_suffix = tuple(a.name for a in mapped_macro[direct_k:])
+                    planned_seq = list(mapped_macro[direct_k:])
+                    decision = "SELECTIVE_LOCAL_REPAIR" if direct_k > 0 else "NO_REPAIR_NEEDED"
+                else:
+                    # 2. Search bounded local bridge to valid suffix kernels ordered by smallest gap
+                    bridged = False
+                    local_cap = min(b_local, 16)
+                    local_planner = GOAPPlanner(
+                        self.operator_model.actions,
+                        simulate_only=True,
+                        max_expansions=local_cap,
+                    )
+                    candidate_ks = [
+                        k
+                        for k in range(m)
+                        if _suffix_reaches_goal(k, kernels[k])
+                        and not ((kernels[k] - revised_belief_state) - all_achievable_adds)
+                    ]
+                    candidate_ks.sort(
+                        key=lambda idx_k: (len(kernels[idx_k] - revised_belief_state), idx_k)
+                    )
+
+                    for k in candidate_ks:
+                        bridge, l_exp = local_planner.plan_with_stats(
+                            revised_belief_state, kernels[k], max_expansions=local_cap
+                        )
+                        total_expansions += l_exp
+                        if bridge is not None:
+                            skipped_prefix = tuple(a.name for a in mapped_macro[:k])
+                            spliced_bridge = tuple(a.name for a in bridge)
+                            preserved_suffix = tuple(a.name for a in mapped_macro[k:])
+                            planned_seq = [*bridge, *mapped_macro[k:]]
+                            decision = (
+                                "NO_REPAIR_NEEDED"
+                                if (k == 0 and len(bridge) <= 1)
+                                else "SELECTIVE_LOCAL_REPAIR"
+                            )
+                            bridged = True
+                            break
+
+                    if not bridged:
+                        decision = "ABANDON_MACRO_AND_REPLAN"
+                        abandon_reason = "no_reachable_suffix_kernel"
+                        self._penalize_skill(used_sid, domain)
+                        g_planner = GOAPPlanner(
+                            self.operator_model.actions,
+                            simulate_only=True,
+                            max_expansions=self.max_global_expansions,
+                        )
+                        g_plan, g_exp = g_planner.plan_with_stats(revised_belief_state, goal_state)
+                        total_expansions += g_exp
+                        planned_seq = g_plan or []
+        else:
+            g_planner = GOAPPlanner(
+                self.operator_model.actions,
+                simulate_only=True,
+                max_expansions=self.max_global_expansions,
+            )
+            g_plan, g_exp = g_planner.plan_with_stats(revised_belief_state, goal_state)
+            total_expansions += g_exp
+            planned_seq = g_plan or []
+
+        for step_act in planned_seq:
+            ok, _post_s, _dig = env.execute(step_act.name)
+            if ok:
+                executed.append(step_act.name)
+            else:
+                invalid_attempts += 1
+                break
+
+        goal_ok = goal_state.issubset(env.state)
+        return RevisionExecutionReport(
+            arm=self.arm_name,
+            goal_reached=goal_ok,
+            safe_execution=(goal_ok and invalid_attempts == 0),
+            invalid_actions_attempted=invalid_attempts,
+            planner_expansions=total_expansions,
+            repair_decision=decision,
+            abandon_reason=abandon_reason,
+            skipped_prefix_steps=skipped_prefix,
+            spliced_bridge_steps=spliced_bridge,
+            preserved_suffix_steps=preserved_suffix,
+            executed_actions=tuple(executed),
+            analogy_trace=analogy_trace,
+        )
+
 
 __all__ = [
     "AnalogicalRoleMapper",
@@ -1190,6 +1416,7 @@ __all__ = [
     "LiftedAtom",
     "ParameterizedStep",
     "RepairDecisionKind",
+    "RevisionExecutionReport",
     "RoleParameterizedMacroSkill",
     "RoleTopologyProfile",
     "StatefulPlanningEnvironment",

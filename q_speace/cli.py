@@ -792,6 +792,46 @@ def eval_t252_benchmark(
         raise typer.Exit(3)
 
 
+@eval_app.command("t255-nl-benchmark")
+def eval_t255_nl_benchmark(
+    live_brain: Annotated[
+        bool,
+        typer.Option(
+            "--live-brain",
+            help="Connect to live HTTP generative sidecar (Q_SPEACE_BRAIN_ENDPOINT / localhost:8002).",
+        ),
+    ] = False,
+    endpoint: Annotated[
+        str | None,
+        typer.Option("--endpoint", help="Explicit HTTP sidecar base URL override."),
+    ] = None,
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output", "-o", help="Optional JSON output path for full T255 trace report."
+        ),
+    ] = None,
+    timeout_s: Annotated[float, typer.Option("--timeout-s", min=1.0)] = 45.0,
+    max_tokens: Annotated[int, typer.Option("--max-tokens", min=32)] = 160,
+    seed: Annotated[int, typer.Option("--seed")] = 2026,
+    resamples: Annotated[int, typer.Option("--resamples", min=100)] = 1000,
+) -> None:
+    """Run T255 3-arm Natural-Language Belief Revision & Selective Repair benchmark."""
+    from .vertical_slice import run_t255_nl_benchmark
+
+    report = run_t255_nl_benchmark(
+        live_brain=live_brain,
+        endpoint=endpoint,
+        timeout_s=timeout_s,
+        max_tokens=max_tokens,
+        seed=seed,
+        n_resamples=resamples,
+        output_path=output,
+    )
+    compact = {k: v for k, v in report.items() if k != "all_traces"}
+    typer.echo(json.dumps(compact, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False))
+
+
 @eval_app.command("agi-profile")
 def eval_agi_profile(
     output: Annotated[

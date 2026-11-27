@@ -27,6 +27,7 @@ from .grounding import (
     GroundingStatus,
     SymbolicGroundingAdapter,
     SymbolRegistry,
+    apply_belief_revision,
 )
 from .protocol import (
     CoupledCommit,
@@ -82,6 +83,7 @@ __all__ = [
     "UpdateStatus",
     "VALID_RUNTIME_MODES",
     "ValidatorKey",
+    "apply_belief_revision",
     "canonical_param_hash",
     "recover_coupled_wal",
     "run_coro_isolated",

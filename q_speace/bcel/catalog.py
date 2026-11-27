@@ -857,6 +857,20 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "power, medical, and psychosocial wellbeing stocks (terrestrial or extraterrestrial), "
         "and non-abandonment coupling with Earth/Civilization/Infrastructure CME floors (C8).",
     ),
+    # ----- T255: Live-Brain Natural-Language Belief Revision & 3-Arm Paired Evaluation -----
+    BCELEquivalence(
+        "Non-monotonic linguistic belief revision and 3-arm NL-to-symbolic repair evaluation (T255)",
+        "functional",
+        "Keep as closed-registry extraction of (observed_facts, retracted_facts) with conflict-safe "
+        "set-difference state revision S' = (S \\ F_ret) U (F_obs \\ F_ret) feeding weakest-precondition "
+        "macro-skill splicing or abandonment across paired symbolic, NL+SPEACE, and NL-only arms.",
+    ),
+    BCELEquivalence(
+        "Human pragmatic comprehension and conversational intentionality claims (T255)",
+        "accidental",
+        "Removed in silicon: LLM-to-symbol transduction is untrusted structured parsing audited by "
+        "extraction F1, paraphrase decision consistency, and safe end-to-end execution.",
+    ),
 ]
 
 

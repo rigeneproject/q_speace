@@ -158,6 +158,11 @@ qspace quantum synthesize   # print BCEL quantum equivalences
   kernel regression (`compute_regressed_kernels`), bounded local plan splicing & anti-Einstellung suffix-abandonment
   (`ExperientialCognitiveAgent`, `q_speace/self_improvement_cortex/macro_skills.py`), `qspace eval t252-benchmark`,
   and full 5/5-axis activation in `qspace eval agi-profile` (`PASS_ALL_5_AXES`).
+- [Live-Brain Natural-Language Belief Revision & 3-Arm Paired Evaluation (T255)](docs/T255_LIVE_BRAIN_NL_REVISION_AND_REPAIR_SPEC.md):
+  fail-closed non-monotonic belief revision (`retracted_facts`, `apply_belief_revision` in `q_speace/bridge/grounding.py`),
+  mid-chain Triangle-Table suffix entry (`execute_from_revised_belief`), and 3-arm paired `--live-brain` benchmark
+  (`ORACLE_SYMBOLIC_SPEACE` vs `NL_LIVE_BRAIN_SPEACE` vs `NL_LIVE_BRAIN_ONLY`, `qspace eval t255-nl-benchmark`)
+  evaluated on `Qwen/Qwen2.5-3B-Instruct` NF4 ([T255_LIVE_BRAIN_NL_ASSESSMENT_REPORT.md](docs/T255_LIVE_BRAIN_NL_ASSESSMENT_REPORT.md)).
 
 See `progetto_q_speace_linee_guida.md` (tasks T1–T25). Implemented here:
 T3 (kernel), T4 (QuantumGeneSet), T5 (optional Qiskit/Aer & Quantum Inspire adapters,

@@ -46,6 +46,7 @@ GroundingStatus = Literal[
 _ALLOWED_SCHEMA_KEYS: frozenset[str] = frozenset(
     {
         "observed_facts",
+        "retracted_facts",
         "goal_predicates",
         "proposed_edges",
         "proposed_action",
@@ -113,6 +114,28 @@ class GroundedPayload:
     parser_confidence: float
     answer_text: str
     registry_digest: str
+    retracted_facts: frozenset[str] = frozenset()
+
+
+def apply_belief_revision(
+    prior_state: frozenset[str],
+    grounded: GroundedPayload,
+    *,
+    min_parser_confidence: float = 0.0,
+) -> frozenset[str]:
+    """Non-monotonic belief update ``(S_prior \\ F_ret) | (F_obs \\ F_ret)`` (T255).
+
+    If ``grounded.status`` indicates schema or vocabulary rejection (or
+    ``grounded.parser_confidence < min_parser_confidence``), ``prior_state``
+    is returned unchanged (fail-closed). If a predicate appears in both
+    ``observed_facts`` and ``retracted_facts``, retraction takes precedence.
+    """
+    if grounded.status in ("rejected_unknown_symbol", "rejected_schema"):
+        return frozenset(prior_state)
+    if grounded.parser_confidence < min_parser_confidence:
+        return frozenset(prior_state)
+    clean_adds = grounded.observed_facts - grounded.retracted_facts
+    return (frozenset(prior_state) - grounded.retracted_facts) | clean_adds
 
 
 class SymbolRegistry:
@@ -244,7 +267,15 @@ def _parse_strict_json_object(raw_text: str) -> dict[str, Any] | None:
     try:
         parsed = json.loads(candidate, parse_constant=_forbid_nonfinite)
     except (ValueError, TypeError):
-        return None
+        # Tolerate brief natural-language preamble/epilogue around a single JSON object
+        brace_idx = candidate.find("{")
+        if brace_idx < 0:
+            return None
+        decoder = json.JSONDecoder(parse_constant=_forbid_nonfinite)
+        try:
+            parsed, _end = decoder.raw_decode(candidate[brace_idx:])
+        except (ValueError, TypeError):
+            return None
 
     return parsed if isinstance(parsed, dict) else None
 
@@ -533,6 +564,28 @@ class SymbolicGroundingAdapter:
                 else:
                     obs_facts.add(canon)
 
+        # 1b. Validate retracted_facts (T255 non-monotonic linguistic belief revision)
+        ret_facts: set[str] = set()
+        raw_retracted = parsed.get("retracted_facts", [])
+        if not isinstance(raw_retracted, list):
+            schema_errors.append(
+                GroundingRejection("expected_list", "retracted_facts", type(raw_retracted).__name__)
+            )
+        else:
+            for item in raw_retracted:
+                if not isinstance(item, str):
+                    schema_errors.append(
+                        GroundingRejection("expected_string", "retracted_facts", repr(item))
+                    )
+                    continue
+                canon = self.registry.resolve_predicate(item)
+                if canon is None:
+                    rejections.append(
+                        GroundingRejection("unknown_predicate", "retracted_facts", item)
+                    )
+                else:
+                    ret_facts.add(canon)
+
         # 2. Validate goal_predicates
         goal_preds: set[str] = set()
         raw_goals = parsed.get("goal_predicates", [])
@@ -718,6 +771,7 @@ class SymbolicGroundingAdapter:
             parser_confidence=eff_conf,
             answer_text=raw_answer,
             registry_digest=self.registry.registry_digest,
+            retracted_facts=frozenset(ret_facts),
         )
 
     def _empty_payload(
@@ -752,4 +806,5 @@ __all__ = [
     "GroundingStatus",
     "SymbolRegistry",
     "SymbolicGroundingAdapter",
+    "apply_belief_revision",
 ]
