@@ -33,3 +33,8 @@ env/
 /.qspeace-micro-node/
 /.config/auth0/
 /data/dynamics/
+
+# Local transcripts and working notes (T266-02)
+/docs/notes/local/
+# Stray logs written with a Windows path as file name
+/cellular_speace/C:*

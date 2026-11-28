@@ -640,6 +640,9 @@ def _run_local_demo(policy: PolicyConfig) -> AgentReport:
             port=port,
             allowed_hosts=[f"127.0.0.1:{port}"],
             worker_seconds=20.0,
+            # T266-04: the 12-tool walkthrough issues more requests than the default token
+            # bucket allows; the demo raised 429 after `iont_node_assess` since T236.
+            burst=60,
         )
         app = create_app(config)
         server = uvicorn.Server(uvicorn.Config(app, host="127.0.0.1", port=port, log_level="error"))
