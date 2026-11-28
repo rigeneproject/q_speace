@@ -1,0 +1,190 @@
+{
+  "battery": "t263_stage1_adversarial.v1",
+  "E1_sigma_gate": {
+    "iid_uniform_noise_0_12": {
+      "mean_sigma": 1.4717,
+      "in_band_0p85_1p15": false
+    },
+    "iid_poisson_noise_lambda4": {
+      "mean_sigma": 1.1418,
+      "in_band_0p85_1p15": true
+    },
+    "constant_5": {
+      "mean_sigma": 1.0,
+      "in_band_0p85_1p15": true
+    },
+    "decay_to_silence": {
+      "mean_sigma": 0.9632,
+      "in_band_0p85_1p15": true
+    },
+    "slow_growth_x1p12": {
+      "mean_sigma": 1.1066,
+      "in_band_0p85_1p15": true
+    },
+    "fast_growth_x1p30": {
+      "mean_sigma": 1.2596,
+      "in_band_0p85_1p15": false
+    },
+    "noise_passes_gate": false
+  },
+  "E2_workspace_attribution": {
+    "baseline": {
+      "saved": 2,
+      "ticks": 57,
+      "failed": 2,
+      "mean_sigma": 1.0101
+    },
+    "fixed_k_criticality_off": {
+      "saved": 2,
+      "ticks": 57,
+      "failed": 2,
+      "mean_sigma": 1.0125
+    },
+    "spikes_removed_salience_only": {
+      "saved": 2,
+      "ticks": 57,
+      "failed": 2,
+      "mean_sigma": 1.0
+    },
+    "fixed_k_behaviour_identical": true,
+    "no_spikes_behaviour_identical": true
+  },
+  "E3_E4_recall_and_transfer": {
+    "consolidated_rules": 2,
+    "E3a_known_surface": {
+      "with_consolidated_memory": {
+        "ticks": 9,
+        "failed_actuations": 0,
+        "goals": 3
+      },
+      "amnesic": {
+        "ticks": 21,
+        "failed_actuations": 3,
+        "goals": 3
+      },
+      "memory_helps": true
+    },
+    "E3b_plus_one_irrelevant_fact": {
+      "with_consolidated_memory": {
+        "ticks": 21,
+        "failed_actuations": 3,
+        "goals": 3
+      },
+      "amnesic": {
+        "ticks": 21,
+        "failed_actuations": 3,
+        "goals": 3
+      },
+      "memory_helps": false
+    },
+    "E4_new_device_same_mechanism": {
+      "with_consolidated_memory": {
+        "ticks": 21,
+        "failed_actuations": 3,
+        "goals": 3
+      },
+      "amnesic": {
+        "ticks": 21,
+        "failed_actuations": 3,
+        "goals": 3
+      },
+      "memory_helps": false
+    }
+  },
+  "E5_noisy_probes": {
+    "flip_probability": 0.2,
+    "runs": [
+      {
+        "seed": 0,
+        "consolidated": 0,
+        "heldout_failed": 2,
+        "heldout_goals": 3
+      },
+      {
+        "seed": 1,
+        "consolidated": 0,
+        "heldout_failed": 2,
+        "heldout_goals": 3
+      },
+      {
+        "seed": 2,
+        "consolidated": 0,
+        "heldout_failed": 2,
+        "heldout_goals": 3
+      },
+      {
+        "seed": 3,
+        "consolidated": 1,
+        "heldout_failed": 1,
+        "heldout_goals": 3
+      },
+      {
+        "seed": 4,
+        "consolidated": 0,
+        "heldout_failed": 1,
+        "heldout_goals": 3
+      }
+    ],
+    "runs_with_both_rules": 0
+  },
+  "E6_curriculum_order": {
+    "permutations": 10,
+    "consolidated_per_perm": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "perms_with_both_rules": 0
+  },
+  "E6b_long_random_stream_clean": {
+    "seeds": 10,
+    "stream_len": 31,
+    "flip_probability": 0.0,
+    "consolidated_per_seed": [
+      2,
+      2,
+      1,
+      2,
+      1,
+      1,
+      2,
+      2,
+      1,
+      1
+    ],
+    "seeds_with_both_rules": 5
+  },
+  "E6c_long_random_stream_noise10": {
+    "seeds": 10,
+    "stream_len": 31,
+    "flip_probability": 0.1,
+    "consolidated_per_seed": [
+      2,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      2,
+      1
+    ],
+    "seeds_with_both_rules": 2
+  },
+  "E7_unobservable_latent": {
+    "consolidated_rules": 1,
+    "heldout_failed_actuations": 3,
+    "heldout_goals": 3,
+    "heldout_ticks": 21
+  },
+  "rss_start_mb": 47.15,
+  "rss_end_mb": 52.03
+}

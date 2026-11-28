@@ -1,0 +1,166 @@
+{
+ "battery": "t264_agi_readiness.v1",
+ "A1_workspace_causality": {
+  "computed": {
+   "ticks": 591,
+   "failed": 45,
+   "idle": 0,
+   "goals": 205,
+   "n": 205
+  },
+  "shuffled": {
+   "ticks": 541,
+   "failed": 60,
+   "idle": 0,
+   "goals": 205,
+   "n": 205
+  },
+  "constant": {
+   "ticks": 914,
+   "failed": 39,
+   "idle": 0,
+   "goals": 205,
+   "n": 205
+  },
+  "k_frozen_high_threshold": {
+   "ticks": 591,
+   "failed": 45,
+   "idle": 0,
+   "goals": 205,
+   "n": 205
+  },
+  "gate_beats_shuffled": true,
+  "gate_beats_constant": false,
+  "gate_frozen_k_more_idle": false
+ },
+ "A2_informative_sigma": {
+  "gw_m0.5": {
+   "mr": 0.385,
+   "ratio_estimator": 1.175
+  },
+  "gw_m0.9": {
+   "mr": 0.906,
+   "ratio_estimator": 1.039
+  },
+  "gw_m1.3": {
+   "mr": 1.235,
+   "ratio_estimator": 1.415
+  },
+  "iid_poisson": {
+   "mr": 0.0,
+   "ratio_estimator": 1.242
+  },
+  "gate": true
+ },
+ "A3_abstraction": {
+  "pump": {
+   "memory": {
+    "failed": 4,
+    "ticks": 62
+   },
+   "amnesic": {
+    "failed": 15,
+    "ticks": 75
+   },
+   "no_abstraction": {
+    "failed": 15,
+    "ticks": 135
+   },
+   "gate": true
+  },
+  "iceline": {
+   "memory": {
+    "failed": 5,
+    "ticks": 104
+   },
+   "amnesic": {
+    "failed": 15,
+    "ticks": 90
+   },
+   "no_abstraction": {
+    "failed": 15,
+    "ticks": 150
+   },
+   "gate": true
+  },
+  "bus_fan": {
+   "memory": {
+    "failed": 0,
+    "ticks": 33
+   },
+   "amnesic": {
+    "failed": 15,
+    "ticks": 75
+   },
+   "no_abstraction": {
+    "failed": 0,
+    "ticks": 33
+   },
+   "gate": false
+  },
+  "gate": false
+ },
+ "A4_robustness": {
+  "flip_0.0": {
+   "both_correct": 5,
+   "spurious": 1,
+   "gate": false
+  },
+  "flip_0.1": {
+   "both_correct": 1,
+   "spurious": 1,
+   "gate": false
+  },
+  "flip_0.2": {
+   "both_correct": 0,
+   "spurious": 2,
+   "gate": false
+  },
+  "gate": false
+ },
+ "A5_constructed_observables": {
+  "conjunctions_on": 5,
+  "conjunctions_off": 0,
+  "gate": false
+ },
+ "A6_cold_boot": {
+  "train": {
+   "saved": 2,
+   "rss": 51.65625
+  },
+  "eval_memory": {
+   "loaded": 2,
+   "failed": 2,
+   "ticks": 42,
+   "task_a": true,
+   "rss": 51.65625
+  },
+  "eval_amnesic": {
+   "loaded": 0,
+   "failed": 8,
+   "ticks": 45,
+   "task_a": true,
+   "rss": 51.65625
+  },
+  "gate": true
+ },
+ "A7_negative_controls": {
+  "unobservable_consolidated": 0,
+  "shuffled_consolidated": 1,
+  "gate": false
+ },
+ "A8_resources": {
+  "peak_rss_mb": 51.66,
+  "gpu_imported": false,
+  "gate": true
+ },
+ "gates": {
+  "A2_informative_sigma": true,
+  "A3_abstraction": false,
+  "A4_robustness": false,
+  "A5_constructed_observables": false,
+  "A6_cold_boot": true,
+  "A7_negative_controls": false,
+  "A8_resources": true
+ }
+}
