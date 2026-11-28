@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
 
 from q_speace.self_improvement_cortex import (
@@ -361,7 +363,7 @@ def test_cli_sia_help():
         [sys.executable, "-m", "q_speace.cli", "sia", "--help"],
         capture_output=True,
         text=True,
-        cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace",
+        cwd=str(Path(__file__).resolve().parents[1]),
     )
     assert "Self-Improvement" in result.stdout or "Self-Improvement" in result.stderr
 
@@ -374,7 +376,7 @@ def test_cli_sia_run():
         [sys.executable, "-m", "q_speace.cli", "sia", "run", "--ticks", "3"],
         capture_output=True,
         text=True,
-        cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace",
+        cwd=str(Path(__file__).resolve().parents[1]),
     )
     assert result.returncode == 0
 
@@ -387,6 +389,6 @@ def test_cli_qee():
         [sys.executable, "-m", "q_speace.cli", "quantum", "qee"],
         capture_output=True,
         text=True,
-        cwd=r"C:\Users\rober\Desktop\Q-SPEACE\q_speace",
+        cwd=str(Path(__file__).resolve().parents[1]),
     )
     assert result.returncode == 0

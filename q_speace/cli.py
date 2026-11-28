@@ -1042,6 +1042,44 @@ def eval_organism_profile(
     )
 
 
+@eval_app.command("t261-stage1")
+def eval_t261_stage1(
+    work_dir: Annotated[
+        Path,
+        typer.Option(
+            "--work-dir",
+            help="Temporary/scratch directory for SQLite cold-boot state files.",
+        ),
+    ] = Path("artifacts/t261_stage1_run"),
+    max_rss_mb: Annotated[
+        float,
+        typer.Option(
+            "--max-rss-mb",
+            help="Hard per-process resident RAM cap in MiB (Stage-1 default: 250.0).",
+        ),
+    ] = 250.0,
+    output: Annotated[
+        Path | None,
+        typer.Option(
+            "--output",
+            "-o",
+            help="Optional JSON file path to persist the Stage-1 T261-T262 report.",
+        ),
+    ] = None,
+) -> None:
+    """Run T261-T262 Stage-1 CPU prototype: Global Workspace, latent discovery & cold-boot."""
+    from .bridge.latent_discovery import run_stage1_subprocess_campaign
+
+    report = run_stage1_subprocess_campaign(work_dir=work_dir, max_rss_mb=max_rss_mb)
+    formatted = json.dumps(report, indent=2, sort_keys=True, allow_nan=False)
+    if output is not None:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(formatted + "\n", encoding="utf-8")
+    typer.echo(formatted)
+    if not report["all_gates_passed"]:
+        raise typer.Exit(3)
+
+
 @singularity_app.command("manifest")
 def singularity_manifest(
     section: str | None = typer.Option(

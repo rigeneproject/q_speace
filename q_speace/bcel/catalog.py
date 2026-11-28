@@ -956,6 +956,62 @@ _QUANTUM_EQUIVALENCES: list[BCELEquivalence] = [
         "Rejected in silicon: collapsing heterogeneous safety, planning, linguistic, and "
         "federated resilience axes into one scalar hides safety regressions and violates T208.",
     ),
+    # ----- T261-T262: Stage-1 Async Global Workspace, Latent Discovery & Cold-Boot -----
+    BCELEquivalence(
+        "Asynchronous Global Workspace coalition arbitration (T261)",
+        "functional",
+        "Keep as concurrent asyncio specialist coroutines emitting bounded salience proposals "
+        "quantized via dynamic_spikes with closed-loop CriticalityController regulation "
+        "(sigma ~ 1.0 over non-zero-variance spike trains) and gated broadcast.",
+    ),
+    BCELEquivalence(
+        "Global Workspace as phenomenal consciousness (T261)",
+        "accidental",
+        "Removed in silicon: coalition ignition and broadcast are deterministic event-driven "
+        "scheduling primitives, never subjective awareness or phenomenal experience (AGENTS.md §2).",
+    ),
+    BCELEquivalence(
+        "Prediction-error-driven latent state and mutex discovery (T261)",
+        "functional",
+        "Keep as domain-agnostic action-outcome discrepancy detection triggering non-destructive "
+        "probes and minting anonymous candidate predicates and dynamic retractions inside "
+        "EpistemicSymbolSandbox without mutating constitutional SeedGenome.",
+    ),
+    BCELEquivalence(
+        "Cold-boot SQLite and epigenetic rule consolidation (T262)",
+        "functional",
+        "Keep as empirical promotion/suppression tracking in EpigeneticEngine where only "
+        "consolidated rules (>=3 promotions, stability >=0.70) persist as active rules in SQLite "
+        "alongside EpigeneticProfile and SemanticEpisodicMemory across OS process restarts.",
+    ),
+    BCELEquivalence(
+        "Falsification-driven retraction of candidate latent hypotheses (T263)",
+        "functional",
+        "Keep as a deterministic rule: a non-consolidated candidate with >=2 suppressions and "
+        "stability below the consolidation bar is removed from EpistemicSymbolSandbox and its "
+        "(surface, action, probe, token) signature is barred from re-minting. Cold-boot restores "
+        "the EpigeneticEngine lifecycle counters together with each consolidated rule.",
+    ),
+    BCELEquivalence(
+        "Multistep-regression branching estimate of propagation (T264)",
+        "functional",
+        "Keep as the MR estimator r_k = b*m**k over an integer activity series (nonlinear fit, "
+        "lag-1 significance test); reports undefined for zero variance. Avalanche and "
+        "epilepsy narratives are accidental.",
+    ),
+    BCELEquivalence(
+        "Role-abstract causal schemas with scope learning (T264)",
+        "functional",
+        "Keep as hypotheses over action-graph roles (cheapest interchangeable action fails; goal "
+        "action clobbers its restorable precondition), validated two-sided, with per-action "
+        "transfer evidence that can exclude or reinstate a target action.",
+    ),
+    BCELEquivalence(
+        "Cortical ignition as decision mechanism (T264)",
+        "accidental",
+        "Rejected as a claim: in Stage-2 the decision is an expected-value argmax over learned "
+        "failure probabilities; spike gating is scheduling vocabulary with no measured effect.",
+    ),
 ]
 
 

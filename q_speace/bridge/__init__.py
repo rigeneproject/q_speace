@@ -31,6 +31,15 @@ from .grounding import (
     apply_belief_revision,
     compute_effective_retracted_facts,
 )
+from .latent_discovery import (
+    DiscoveredLatentRule,
+    EpistemicSymbolSandbox,
+    LatentDistinctionLearner,
+    LatentSandboxTwin,
+    Stage1CognitivePrototype,
+    Stage1PersistenceStore,
+    run_stage1_subprocess_campaign,
+)
 from .protocol import (
     CoupledCommit,
     CrashAtomicCoupledCommit,
@@ -52,6 +61,16 @@ from .simulated_sensor import (
     SimulatedSensorAdapter,
     SimulatedSensorReading,
     run_coro_isolated,
+)
+from .stage1_workspace import (
+    AsyncGlobalWorkspace,
+    CoalitionProposal,
+    MemoryBudgetExceededError,
+    MemoryBudgetGuard,
+    WorkspaceBlackboard,
+    WorkspaceTelemetrySummary,
+    WorkspaceTickTelemetry,
+    read_process_rss_mb,
 )
 from .typed_nl_pipeline import (
     ClausePolarityAuditor,
@@ -99,4 +118,19 @@ __all__ = [
     "compute_effective_retracted_facts",
     "recover_coupled_wal",
     "run_coro_isolated",
+    "AsyncGlobalWorkspace",
+    "CoalitionProposal",
+    "DiscoveredLatentRule",
+    "EpistemicSymbolSandbox",
+    "LatentDistinctionLearner",
+    "LatentSandboxTwin",
+    "MemoryBudgetExceededError",
+    "MemoryBudgetGuard",
+    "Stage1CognitivePrototype",
+    "Stage1PersistenceStore",
+    "WorkspaceBlackboard",
+    "WorkspaceTelemetrySummary",
+    "WorkspaceTickTelemetry",
+    "read_process_rss_mb",
+    "run_stage1_subprocess_campaign",
 ]

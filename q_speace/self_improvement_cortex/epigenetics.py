@@ -58,12 +58,24 @@ class EpigeneticEngine:
         self._stability_threshold = stability_threshold
 
     def register(self, mutation_id: str) -> EpigeneticState:
+        """Register ``mutation_id``; idempotent (T265: never wipes accumulated evidence)."""
+        existing = self._states.get(mutation_id)
+        if existing is not None:
+            return existing
         state = EpigeneticState(
             mutation_id=mutation_id,
             created_at=time.time(),
         )
         self._states[mutation_id] = state
         return state
+
+    def _is_ready(self, state: EpigeneticState) -> bool:
+        """Consolidation criterion using this engine's configured thresholds (T265)."""
+        return (
+            state.promotion_count >= self._min_promotions
+            and state.stability_ratio >= self._stability_threshold
+            and not state.consolidated
+        )
 
     def promote(self, mutation_id: str, confidence: float = 0.0, source: str = "") -> EpigeneticTag:
         state = self._states.setdefault(
@@ -99,17 +111,21 @@ class EpigeneticEngine:
             source=source,
         )
         state.tags.append(tag)
+        # T265: a consolidated mutation that meets the rollback criterion is de-consolidated,
+        # otherwise ``consolidated`` and ``should_rollback`` could both be True forever.
+        if state.consolidated and state.ready_for_rollback:
+            state.consolidated = False
         return tag
 
     def _check_consolidation(self, state: EpigeneticState) -> None:
-        if state.ready_for_consolidation:
+        if self._is_ready(state):
             state.consolidated = True
 
     def consolidate(self, mutation_id: str) -> bool:
         state = self._states.get(mutation_id)
         if state is None:
             return False
-        if state.ready_for_consolidation:
+        if self._is_ready(state):
             state.consolidated = True
             return True
         return False

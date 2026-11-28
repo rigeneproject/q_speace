@@ -42,6 +42,11 @@ REQUIRED_CONCEPTS: list[tuple[str, str]] = [
     # --- existing quantum equivalences (regression guard) ---
     ("Entanglement (cell/planet communication)", "accidental"),
     ("Superposition (parallel hypotheses)", "functional"),
+    # --- T261-T262: Stage-1 async Global Workspace, latent discovery & cold-boot ---
+    ("Asynchronous Global Workspace coalition arbitration (T261)", "functional"),
+    ("Global Workspace as phenomenal consciousness (T261)", "accidental"),
+    ("Prediction-error-driven latent state and mutex discovery (T261)", "functional"),
+    ("Cold-boot SQLite and epigenetic rule consolidation (T262)", "functional"),
 ]
 
 
