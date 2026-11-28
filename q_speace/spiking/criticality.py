@@ -78,12 +78,21 @@ class CriticalityController:
         self._counts.clear()
 
     def empirical_branching_ratio(self) -> float:
-        """Return rolling Laplace-smoothed branching ratio E[(S_t + 1)/(S_{t-1} + 1)]."""
+        """Return the rolling Laplace-smoothed branching ratio as a ratio of sums.
+
+        ``sigma = sum_t (S_t + 1) / sum_t (S_{t-1} + 1)`` over the window.
+
+        T265 fix: the previous mean-of-ratios form ``E[(S_t + 1)/(S_{t-1} + 1)]`` is biased
+        above 1 for any stationary noisy activity (Jensen), e.g. ~1.19 for Poisson(4), which
+        drove ``k`` to ``k_min`` under perfectly stationary input. The ratio of sums is 1 for
+        stationary activity and equals the growth factor for geometric growth or decay.
+        """
         if len(self._counts) < 2:
             return self.target_sigma
         items = list(self._counts)
-        ratios = [(items[t] + 1.0) / (items[t - 1] + 1.0) for t in range(1, len(items))]
-        return float(sum(ratios) / len(ratios))
+        num = sum(c + 1.0 for c in items[1:])
+        den = sum(c + 1.0 for c in items[:-1])
+        return float(num / den)
 
     def classify_regime(self, sigma: float) -> CriticalityRegime:
         if sigma < self.low_band:

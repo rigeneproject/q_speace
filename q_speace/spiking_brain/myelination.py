@@ -217,15 +217,14 @@ class HystereticLoadBalancer:
             self._throttled = True
             self._throttle_factor = min(self._throttle_factor, 0.60)
             self._last_throttle_s = float(now_s)
-        elif self._throttled:
-            if (
-                level in {"idle", "light"}
-                and (now_s - self._last_throttle_s) >= self.recovery_cooldown_s
-            ):
-                self._throttle_factor = min(1.0, self._throttle_factor + self.recovery_step)
-                if self._throttle_factor >= 1.0 - 1e-9:
-                    self._throttle_factor = 1.0
-                    self._throttled = False
+        elif self._throttled and (
+            level in {"idle", "light"}
+            and (now_s - self._last_throttle_s) >= self.recovery_cooldown_s
+        ):
+            self._throttle_factor = min(1.0, self._throttle_factor + self.recovery_step)
+            if self._throttle_factor >= 1.0 - 1e-9:
+                self._throttle_factor = 1.0
+                self._throttled = False
 
         return LoadSnapshot(
             level=level,

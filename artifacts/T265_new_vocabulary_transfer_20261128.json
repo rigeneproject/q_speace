@@ -1,0 +1,128 @@
+{
+ "experiment": "t265_new_vocabulary_transfer.v1",
+ "summary": {
+  "rotor_fail_trained": 77,
+  "rotor_fail_amnesic": 49,
+  "rotor_fail_first6_trained": 31,
+  "rotor_fail_first6_amnesic": 31,
+  "median_units_to_schema_trained": 8.0,
+  "median_units_to_schema_amnesic": 8.0,
+  "schema_learned_trained": 6,
+  "schema_learned_amnesic": 10,
+  "decoy_fail_trained": 12,
+  "decoy_fail_amnesic": 0,
+  "verdict": "H1_token_lookup"
+ },
+ "rows": [
+  {
+   "seed": 0,
+   "rotor_fail_trained": 12,
+   "rotor_fail_amnesic": 12,
+   "rotor_fail_first6_trained": 5,
+   "rotor_fail_first6_amnesic": 5,
+   "units_to_schema_trained": 15,
+   "units_to_schema_amnesic": 15,
+   "decoy_fail_trained": 2,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 1,
+   "rotor_fail_trained": 8,
+   "rotor_fail_amnesic": 8,
+   "rotor_fail_first6_trained": 4,
+   "rotor_fail_first6_amnesic": 4,
+   "units_to_schema_trained": 12,
+   "units_to_schema_amnesic": 12,
+   "decoy_fail_trained": 2,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 2,
+   "rotor_fail_trained": 8,
+   "rotor_fail_amnesic": 3,
+   "rotor_fail_first6_trained": 1,
+   "rotor_fail_first6_amnesic": 1,
+   "units_to_schema_trained": null,
+   "units_to_schema_amnesic": 13,
+   "decoy_fail_trained": 0,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 3,
+   "rotor_fail_trained": 3,
+   "rotor_fail_amnesic": 3,
+   "rotor_fail_first6_trained": 3,
+   "rotor_fail_first6_amnesic": 3,
+   "units_to_schema_trained": 6,
+   "units_to_schema_amnesic": 6,
+   "decoy_fail_trained": 0,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 4,
+   "rotor_fail_trained": 10,
+   "rotor_fail_amnesic": 5,
+   "rotor_fail_first6_trained": 2,
+   "rotor_fail_first6_amnesic": 2,
+   "units_to_schema_trained": null,
+   "units_to_schema_amnesic": 9,
+   "decoy_fail_trained": 2,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 5,
+   "rotor_fail_trained": 4,
+   "rotor_fail_amnesic": 4,
+   "rotor_fail_first6_trained": 4,
+   "rotor_fail_first6_amnesic": 4,
+   "units_to_schema_trained": 7,
+   "units_to_schema_amnesic": 7,
+   "decoy_fail_trained": 0,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 6,
+   "rotor_fail_trained": 12,
+   "rotor_fail_amnesic": 3,
+   "rotor_fail_first6_trained": 3,
+   "rotor_fail_first6_amnesic": 3,
+   "units_to_schema_trained": null,
+   "units_to_schema_amnesic": 6,
+   "decoy_fail_trained": 2,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 7,
+   "rotor_fail_trained": 5,
+   "rotor_fail_amnesic": 5,
+   "rotor_fail_first6_trained": 4,
+   "rotor_fail_first6_amnesic": 4,
+   "units_to_schema_trained": 8,
+   "units_to_schema_amnesic": 8,
+   "decoy_fail_trained": 2,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 8,
+   "rotor_fail_trained": 3,
+   "rotor_fail_amnesic": 3,
+   "rotor_fail_first6_trained": 3,
+   "rotor_fail_first6_amnesic": 3,
+   "units_to_schema_trained": 6,
+   "units_to_schema_amnesic": 6,
+   "decoy_fail_trained": 2,
+   "decoy_fail_amnesic": 0
+  },
+  {
+   "seed": 9,
+   "rotor_fail_trained": 12,
+   "rotor_fail_amnesic": 3,
+   "rotor_fail_first6_trained": 2,
+   "rotor_fail_first6_amnesic": 2,
+   "units_to_schema_trained": null,
+   "units_to_schema_amnesic": 7,
+   "decoy_fail_trained": 0,
+   "decoy_fail_amnesic": 0
+  }
+ ]
+}
